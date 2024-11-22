@@ -1,0 +1,59 @@
+---
+id: Test-PowerPoint
+title: Test-PowerPoint
+description: Help page for the "Test-PowerPoint" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Tests whether PowerPoint is running in either fullscreen slideshow mode or presentation mode.
+
+## SYNTAX
+
+```powershell
+Test-PowerPoint [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Tests whether someone is presenting using PowerPoint in either fullscreen slideshow mode or presentation mode.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Test-PowerPoint
+```
+
+## PARAMETERS
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.Boolean
+
+### Returns $true if PowerPoint is running in either fullscreen slideshow mode or presentation mode, otherwise returns $false.
+## NOTES
+This function can only execute detection logic if the process is in interactive mode.
+
+There is a possiblity of a false positive if the PowerPoint filename starts with "PowerPoint Slide Show".
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

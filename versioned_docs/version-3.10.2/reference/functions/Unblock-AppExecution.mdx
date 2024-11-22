@@ -1,0 +1,59 @@
+---
+id: Unblock-AppExecution
+title: Unblock-AppExecution
+description: Help page for the "Unblock-AppExecution" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Unblocks the execution of applications performed by the Block-AppExecution function
+
+## SYNTAX
+
+```powershell
+Unblock-AppExecution [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+This function is called by the Exit-Script function or when the script itself is called with the parameters -CleanupBlockedApps
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Unblock-AppExecution
+```
+
+## PARAMETERS
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not generate any output.
+## NOTES
+This is an internal script function and should typically not be called directly.
+
+It is used when the -BlockExecution parameter is specified with the Show-InstallationWelcome function to undo the actions performed by Block-AppExecution.
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

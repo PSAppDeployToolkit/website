@@ -1,0 +1,100 @@
+---
+id: Get-UniversalDate
+title: Get-UniversalDate
+description: Help page for the "Get-UniversalDate" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Returns the date/time for the local culture in a universal sortable date time pattern.
+
+## SYNTAX
+
+```powershell
+Get-UniversalDate [[-DateTime] <String>] [[-ContinueOnError] <Boolean>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Converts the current datetime or a datetime string for the current culture into a universal sortable date time pattern, e.g.
+2013-08-22 11:51:52Z
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Get-UniversalDate
+```
+
+Returns the current date in a universal sortable date time pattern.
+
+### EXAMPLE 2
+
+```powershell
+Get-UniversalDate -DateTime '25/08/2013'
+```
+
+Returns the date for the current culture in a universal sortable date time pattern.
+
+## PARAMETERS
+
+### -DateTime
+
+Specify the DateTime in the current culture.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: ((Get-Date -Format ($culture).DateTimeFormat.UniversalDateTimePattern).ToString())
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ContinueOnError
+
+Continue if an error is encountered.
+Default: $false.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.String
+
+### Returns the date/time for the local culture in a universal sortable date time pattern.
+## NOTES
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

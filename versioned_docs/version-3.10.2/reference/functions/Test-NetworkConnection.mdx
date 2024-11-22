@@ -1,0 +1,56 @@
+---
+id: Test-NetworkConnection
+title: Test-NetworkConnection
+description: Help page for the "Test-NetworkConnection" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Tests for an active local network connection, excluding wireless and virtual network adapters.
+
+## SYNTAX
+
+```powershell
+Test-NetworkConnection [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Tests for an active local network connection, excluding wireless and virtual network adapters, by querying the Win32_NetworkAdapter WMI class.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Test-NetworkConnection
+```
+
+## PARAMETERS
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.Boolean
+
+### Returns $true if a wired network connection is detected, otherwise returns $false.
+## NOTES
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

@@ -1,0 +1,73 @@
+.aboutPage {
+  padding: 2rem 0;
+}
+
+.headerBlock {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 18px;
+  }
+}
+
+.heroBlock {
+  text-align: center;
+  padding: 4rem 0;
+  background-color: var(--ifm-color-gray-800);
+
+  h2 {
+    font-size: 2rem;
+    margin: 0;
+  }
+}
+
+.introBlock {
+  margin: 4rem auto;
+}
+
+.foundersBlock {
+  margin: 4rem auto;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+
+  .founderCard {
+    background-color: var(--ifm-card-background-color);
+    padding: 2rem;
+    border-radius: var(--ifm-global-radius);
+    box-shadow: var(--ifm-global-shadow);
+    text-align: center;
+    border: solid 1px var(--ifm-color-gray-800);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    p,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    .founderImage {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      background: white;
+    }
+
+    .founderSubtitle {
+      font-weight: bold;
+      color: var(--ifm-color-secondary);
+    }
+  }
+}
+
+.contributorsBlock {
+  margin: 4rem auto;
+  text-align: center;
+}

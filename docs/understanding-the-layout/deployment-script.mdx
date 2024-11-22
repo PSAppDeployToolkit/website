@@ -1,0 +1,27 @@
+---
+sidebar_position: 2
+title: 'Deployment Script'
+description: 'Understanding how a PSAppDeployToolkit deployment is structured.'
+slug: /understanding-the-layout/deployment-script
+hide_title: true
+tags:
+  - Usage
+  - Deployment Script
+---
+
+# Deployment Script
+
+The ```Deploy-Application.ps1``` script is where you will spend most of your time when using PSAppDeployToolkit. This script is the main entry point for the deployment and is responsible for executing the deployment phases.
+
+## Deployment Phases
+
+The script is broken down into the following sections:
+
+| Phase                  | Description                                                  |
+| :---------------------------------- | ------------------------------------------------------------ |
+| Initialization                  | Gathers information about the deployment and machine environment to instantiate PSADT from. |
+| Pre-Installation                | Close applications, uninstall or clean-up previous versions. |
+| Installation                    | Install the primary application, or components of the application |
+| Post-Installation               | Drop additional files, registry tweaks                     |
+| Uninstallation                  | Uninstall / rollback the changes performed in the install section. |
+| Repair                          | Repair the changes performed in the install section.            |

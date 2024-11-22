@@ -1,0 +1,149 @@
+---
+id: Show-BalloonTip
+title: Show-BalloonTip
+description: Help page for the "Show-BalloonTip" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Displays a balloon tip notification in the system tray.
+
+## SYNTAX
+
+```powershell
+Show-BalloonTip [-BalloonTipText] <String> [[-BalloonTipTitle] <String>] [[-BalloonTipIcon] <ToolTipIcon>]
+ [[-BalloonTipTime] <Int32>] [-NoWait] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Displays a balloon tip notification in the system tray.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Show-BalloonTip -BalloonTipText 'Installation Started' -BalloonTipTitle 'Application Name'
+```
+
+### EXAMPLE 2
+
+```powershell
+Show-BalloonTip -BalloonTipIcon 'Info' -BalloonTipText 'Installation Started' -BalloonTipTitle 'Application Name' -BalloonTipTime 1000
+```
+
+## PARAMETERS
+
+### -BalloonTipText
+
+Text of the balloon tip.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -BalloonTipTitle
+
+Title of the balloon tip.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: $installTitle
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -BalloonTipIcon
+
+Icon to be used.
+Options: 'Error', 'Info', 'None', 'Warning'.
+Default is: Info.
+
+```yaml
+Type: ToolTipIcon
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, Info, Warning, Error
+
+Required: False
+Position: 3
+Default value: Info
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -BalloonTipTime
+
+Time in milliseconds to display the balloon tip.
+Default: 10000.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: 10000
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoWait
+
+Create the balloontip asynchronously.
+Default: $false
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.String
+
+### Returns the version of the specified file.
+## NOTES
+For Windows 10 OS and above a Toast notification is displayed in place of a balloon tip if toast notifications are enabled in the XML config file.
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

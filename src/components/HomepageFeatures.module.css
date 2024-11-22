@@ -1,0 +1,209 @@
+/* Desktop only styling */
+.featureColumns {
+  border: 3px solid rgb(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: var(--ifm-global-radius);
+}
+
+html[data-theme='dark'] .featureColumns {
+  background-color: var(--ifm-navbar-background-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Forced Desktop styling only */
+@media (min-width: 997px) {
+  .featureColumns {
+    max-width: calc(4 / 12 * 96%);
+    margin: 1rem calc(4 / 12 * 2%) 2rem;
+    padding: 5rem 3rem 3rem;
+    background-color: #fff;
+  }
+
+  .capabilityColumns {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+
+  html[data-theme='dark'] .featureImage {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.horizAlign {
+  text-align: right;
+}
+
+/* Tablet and Phone styling */
+@media (max-width: 996px) {
+  .featureColumns {
+    padding: 2rem 2.5rem 1.5rem;
+    display: block;
+    margin: 0.5rem auto;
+  }
+
+  .capabilityColumns {
+    padding: 3rem 2rem 2rem;
+    margin: 1rem auto;
+  }
+
+  .featureImage {
+    width: 50%;
+  }
+
+  .introText {
+    width: 90% !important;
+    font-size: 0.9rem;
+    display: block;
+    margin: 2rem auto 2.5rem;
+  }
+
+  .blockImage {
+    display: none;
+  }
+
+  .buttonLink {
+    float: none !important;
+  }
+
+  .capabilitiesTitle {
+    text-align: left !important;
+  }  
+
+  .webinarHeader {
+    text-align: left !important;
+    padding-left: 0 !important;
+  }
+
+  .leftAlign {
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  .blockStyling {
+    margin: 3.5em 0 3.5rem !important;
+  }
+
+}
+
+.buttonLink {
+float:right;
+}
+
+.col--2 .button.button--secondary {
+  margin: 0;
+}
+
+
+.buttonLink a {
+text-decoration: none;
+color: var(--ifm-heading-color);}
+
+.featureImage {
+  width: 75px;
+  padding: 1rem;
+  border-radius: var(--ifm-global-radius);
+  margin-bottom: 1.5rem;
+  background-color: rgba(16, 36, 69, 0.05);
+}
+
+.featureHeader {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.capabilityHeader {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+
+.webinarHeader {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1rem;
+}
+
+
+.contrastContainer {
+  background-color: var(--ifm-pre-background);
+  padding: 2rem var(--ifm-spacing-horizontal) 3rem;
+
+}
+
+
+.containerPadding  {
+  padding: 2rem var(--ifm-spacing-horizontal) 3rem;
+}
+
+.featureText {
+  font-size: 0.9rem;
+}
+
+.introHeader {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.introText {
+  text-align: center;
+  width: 80%;
+  font-size: 1rem;
+  display: block;
+  margin: 2rem auto 2.5rem;
+}
+
+.blockStyling {
+  margin: 7rem 0 7rem;
+}
+
+.blockTitle {
+  text-align: left;
+  font-weight: 500;
+  font-size: 2.2em;
+  padding: 0rem 0 0.5rem;
+  line-height: 1.3em;
+  margin: 0 0 0.8rem;
+}
+
+.capabilitiesTitle {
+  text-align: center;
+  font-weight: 500;
+  font-size: 2.2em;
+  padding: 2rem 0 0.5rem;
+  line-height: 1.3em;
+  margin: 0 0 0.8rem;
+}
+
+
+.logoThickText {
+  color: var(--palette-blue);
+  font-weight: 800 !important;
+}
+
+.blockText {
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.blockImage {
+  max-height: 400px;
+}
+
+main.features {
+  align-items: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.blockText ul {
+  list-style-image: url('@site/static/images/checkmark.svg');
+  font-size: 1rem;
+  padding: 0 6px 0 15px;
+}
+
+.blockText li::marker {
+  font-size: 1.8em;
+  line-height: 0.1;
+}

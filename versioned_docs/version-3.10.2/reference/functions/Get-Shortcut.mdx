@@ -1,0 +1,100 @@
+---
+id: Get-Shortcut
+title: Get-Shortcut
+description: Help page for the "Get-Shortcut" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Get information from a new .lnk or .url type shortcut
+
+## SYNTAX
+
+```powershell
+Get-Shortcut [-Path] <String> [-ContinueOnError <Boolean>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Get information from a new .lnk or .url type shortcut.
+Returns a hashtable.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Get-Shortcut -Path "$envProgramData\Microsoft\Windows\Start Menu\My Shortcut.lnk"
+```
+
+## PARAMETERS
+
+### -Path
+
+Path to the shortcut to get information from
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ContinueOnError
+
+Continue if an error is encountered.
+Default is: $true.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: True
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.Collections.Hashtable.
+
+### Returns a hashtable with the following keys
+### - TargetPath
+### - Arguments
+### - Description
+### - WorkingDirectory
+### - WindowStyle
+### - Hotkey
+### - IconLocation
+### - IconIndex
+### - RunAsAdmin
+## NOTES
+Url shortcuts only support TargetPath, IconLocation and IconIndex.
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

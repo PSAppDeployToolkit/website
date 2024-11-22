@@ -1,0 +1,89 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+
+ .heroBanner {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: var(--palette-blue-darkest);
+  background-image: url("@site/static/images/background-image-light.jpg");
+  background-size: cover;
+  padding: 4.5rem 0 3.5rem;
+}
+
+html[data-theme='dark'] .heroBanner {
+  background-image: url("@site/static/images/background-image-dark.jpg");
+  color: #f3f3f3;
+}
+
+
+.logo {
+  width: 350px;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+}
+
+.subtitle {
+  margin: 0 auto 2rem;
+}
+
+
+.startedButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.startedButton a {
+  font-weight: 500;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #f3f3f3;
+  border-radius: var(--ifm-global-radius);
+  color: #f3f3f3;
+}
+
+
+html[data-theme='dark'] .startedButton a {
+  color: #fff;
+}
+
+.introText {
+  text-align: left;
+  font-size: 1rem;
+  display: block;
+  margin: 1rem auto 2.5rem;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner .container {
+    padding: 2rem;
+  }
+
+  .logo {
+    max-width: 200px;
+  }
+
+  .introText {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 2rem 5vw 1rem;
+  }
+
+}
+
+.logoThinText {
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: left;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+}
+
+.logoThickText {
+  color: var(--palette-blue);
+  font-weight: 800 !important;
+}

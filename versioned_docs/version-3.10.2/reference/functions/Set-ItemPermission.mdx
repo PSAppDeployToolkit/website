@@ -1,0 +1,235 @@
+---
+id: Set-ItemPermission
+title: Set-ItemPermission
+description: Help page for the "Set-ItemPermission" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Allow you to easily change permissions on files or folders
+
+## SYNTAX
+
+### EnableInheritance
+
+```powershell
+Set-ItemPermission [-Path] <String> [-EnableInheritance] [<CommonParameters>]
+```
+
+### DisableInheritance
+
+```powershell
+Set-ItemPermission [-Path] <String> [-User] <String[]> [-Permission] <String[]> [[-PermissionType] <String>]
+ [[-Inheritance] <String[]>] [[-Propagation] <String>] [[-Method] <String>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Allow you to easily change permissions on files or folders for a given user or group.
+You can add, remove or replace permissions, set inheritance and propagation.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Will grant FullControl permissions to 'John' and 'Users' on 'C:\Temp' and its files and folders children.
+```
+
+PS C:\\&gt;Set-ItemPermission -Path 'C:\Temp' -User 'DOMAIN\John', 'BUILTIN\Utilisateurs' -Permission FullControl -Inheritance ObjectInherit,ContainerInherit
+
+### EXAMPLE 2
+
+```powershell
+Will grant Read permissions to 'John' on 'C:\Temp\pic.png'
+```
+
+PS C:\\&gt;Set-ItemPermission -Path 'C:\Temp\pic.png' -User 'DOMAIN\John' -Permission 'Read'
+
+### EXAMPLE 3
+
+```powershell
+Will remove all permissions to 'John' on 'C:\Temp\Private'
+```
+
+PS C:\\&gt;Set-ItemPermission -Path 'C:\Temp\Private' -User 'DOMAIN\John' -Permission 'None' -Method 'RemoveAll'
+
+## PARAMETERS
+
+### -Path
+
+Path to the folder or file you want to modify (ex: C:\Temp)
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: File, Folder
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -User
+
+One or more user names (ex: BUILTIN\Users, DOMAIN\Admin) to give the permissions to.
+If you want to use SID, prefix it with an asterisk * (ex: *S-1-5-18)
+
+```yaml
+Type: String[]
+Parameter Sets: DisableInheritance
+Aliases: Username, Users, SID, Usernames
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Permission
+
+Permission or list of permissions to be set/added/removed/replaced.
+To see all the possible permissions go to 'http://technet.microsoft.com/fr-fr/library/ff730951.aspx'.
+
+Permission DeleteSubdirectoriesAndFiles does not apply to files.
+
+```yaml
+Type: String[]
+Parameter Sets: DisableInheritance
+Aliases: Acl, Grant, Permissions, Deny
+
+Required: True
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PermissionType
+
+Sets Access Control Type of the permissions.
+Allowed options: Allow, Deny   Default: Allow
+
+```yaml
+Type: String
+Parameter Sets: DisableInheritance
+Aliases: AccessControlType
+
+Required: False
+Position: 4
+Default value: Allow
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Inheritance
+
+Sets permission inheritance.
+Does not apply to files.
+Multiple options can be specified.
+Allowed options: ObjectInherit, ContainerInherit, None  Default: None
+
+None - The permission entry is not inherited by child objects, ObjectInherit - The permission entry is inherited by child leaf objects.
+ContainerInherit - The permission entry is inherited by child container objects.
+
+```yaml
+Type: String[]
+Parameter Sets: DisableInheritance
+Aliases:
+
+Required: False
+Position: 5
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Propagation
+
+Sets how to propagate inheritance.
+Does not apply to files.
+Allowed options: None, InheritOnly, NoPropagateInherit  Default: None
+
+None - Specifies that no inheritance flags are set.
+NoPropagateInherit - Specifies that the permission entry is not propagated to child objects.
+InheritOnly - Specifies that the permission entry is propagated only to child objects.
+This includes both container and leaf child objects.
+
+```yaml
+Type: String
+Parameter Sets: DisableInheritance
+Aliases:
+
+Required: False
+Position: 6
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Method
+
+Specifies which method will be used to apply the permissions.
+Allowed options: Add, Set, Reset.
+
+Add - adds permissions rules but it does not remove previous permissions, Set - overwrites matching permission rules with new ones, Reset - removes matching permissions rules and then adds permission rules, Remove - Removes matching permission rules, RemoveSpecific - Removes specific permissions, RemoveAll - Removes all permission rules for specified user/s
+Default: Add
+
+```yaml
+Type: String
+Parameter Sets: DisableInheritance
+Aliases: ApplyMethod, ApplicationMethod
+
+Required: False
+Position: 7
+Default value: Add
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -EnableInheritance
+
+Enables inheritance on the files/folders.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: EnableInheritance
+Aliases:
+
+Required: True
+Position: 2
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not return any objects.
+## NOTES
+Original Author: Julian DA CUNHA - dacunha.julian@gmail.com, used with permission
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

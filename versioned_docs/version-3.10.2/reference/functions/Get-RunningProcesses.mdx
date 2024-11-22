@@ -1,0 +1,90 @@
+---
+id: Get-RunningProcesses
+title: Get-RunningProcesses
+description: Help page for the "Get-RunningProcesses" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Gets the processes that are running from a custom list of process objects and also adds a property called ProcessDescription.
+
+## SYNTAX
+
+```powershell
+Get-RunningProcesses [[-ProcessObjects] <PSObject[]>] [-DisableLogging] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Gets the processes that are running from a custom list of process objects and also adds a property called ProcessDescription.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Get-RunningProcesses -ProcessObjects $ProcessObjects
+```
+
+## PARAMETERS
+
+### -ProcessObjects
+
+Custom object containing the process objects to search for.
+If not supplied, the function just returns $null
+
+```yaml
+Type: PSObject[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DisableLogging
+
+Disables function logging
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### Syste.Boolean.
+
+### Rettuns $true if the process is running, otherwise $false.
+## NOTES
+This is an internal script function and should typically not be called directly.
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

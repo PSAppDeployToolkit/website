@@ -1,0 +1,29 @@
+---
+sidebar_position: 1
+sidebar_label: 'Exit Codes'
+title: 'Exit Codes'
+description: 'PSAppDeployToolkit has a number of internal exit codes for any issues that may occur.'
+slug: /exit-codes
+tags:
+  - Exit Codes
+  - Reference
+---
+
+# Exit Codes
+PSAppDeployToolkit uses pre-defined Exit Codes to indicate the success or failure of a deployment and can be used to control the flow of your deployment logic, or just to understand what happened during a deployment.
+
+| Exit Code     | Description                                                  |
+| :------------ | :----------------------------------------------------------- |
+| 60000-68999   | Reserved for built-in exit codes in *Deploy-Application.ps1*, *Deploy-Application.exe*, and *AppDeployToolkitMain.ps1*. |
+| 69000 - 69999 | Recommended for user customized exit codes in ```Deploy-Application.ps1```. |
+| 70000 - 79999 | Recommended for user customized exit codes in ```Deploy-Application.ps1```. |
+| 60001         | An error occurred in ```Deploy-Application.ps1```. Check your script syntax use. |
+| 60002         | Administrator privileges required for `Execute-ProcessAsUser` function. |
+| 60003         | Failure when loading .NET WinForms / WPF Assemblies.         |
+| 60004         | Failure when displaying the Blocked Application dialog.      |
+| 60005         | AllowSystemInteractionFallback option was not selected in the config XML file, so toolkit will not fall back to SYSTEM context with no interaction. |
+| 60006         | Failed to export the schedule task XML file in `Execute-ProcessAsUser` function. |
+| 60007         | ```Deploy-Application.ps1``` failed to dot source ```AppDeployToolkitMain.ps1``` either because it could not be found or there was an error while it was being dot sourced. |
+| 60008         | The ```-UserName``` parameter in the `Execute-ProcessAsUser` function has a default value that is empty because no logged in users were detected when the PSAppDeployToolkit was launched. |
+| 60009         | ```Deploy-Application.exe``` failed before *PowerShell.exe* process could be launched. |
+| 60013         | If `Execute-Process` function captures an exit code out of range for int32 then return this custom exit code. |

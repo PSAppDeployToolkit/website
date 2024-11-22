@@ -1,0 +1,90 @@
+---
+id: Test-Battery
+title: Test-Battery
+description: Help page for the "Test-Battery" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Tests whether the local machine is running on AC power or not.
+
+## SYNTAX
+
+```powershell
+Test-Battery [-PassThru] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Tests whether the local machine is running on AC power and returns true/false.
+For detailed information, use -PassThru option.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Test-Battery
+```
+
+### EXAMPLE 2
+
+```powershell
+(Test-Battery -PassThru).IsLaptop
+```
+
+Determines if the current system is a laptop or not.
+
+## PARAMETERS
+
+### -PassThru
+
+Outputs a hashtable containing the following properties:
+
+IsLaptop, IsUsingACPower, ACPowerLineStatus, BatteryChargeStatus, BatteryLifePercent, BatteryLifeRemaining, BatteryFullLifetime
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.Hashtable.
+
+### Returns a hashtable containing the following properties
+### - IsLaptop
+### - IsUsingACPower
+### - ACPowerLineStatus
+### - BatteryChargeStatus
+### - BatteryLifePercent
+### - BatteryLifeRemaining
+### - BatteryFullLifetime
+## NOTES
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

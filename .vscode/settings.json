@@ -1,0 +1,41 @@
+{
+    "[markdown]": {
+        "editor.fontSize": 14,
+        "editor.lineHeight": 26,
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 64,
+        "editor.lineNumbers": "off",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        },
+        "editor.minimap.enabled": false
+    },
+    "cSpell.enableFiletypes": [
+        "!c",
+        "!cpp",
+        "!pug",
+        "!scala",
+        "mdx",
+        "powershell"
+    ],
+    "files.exclude": {
+        "**/.trunk/*actions/": true,
+        "**/.trunk/*logs/": true,
+        "**/.trunk/*notifications/": true,
+        "**/.trunk/*out/": true,
+        "**/.trunk/*plugins/": true
+    },
+    "cSpell.words": [
+        "CAPICOM",
+        "Environmentx",
+        "LTSC",
+        "MEMCM",
+        "Passthru",
+        "psadt",
+        "psappdeploytoolkit",
+        "SCCM",
+        "Uninstallation"
+    ]
+}

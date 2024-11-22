@@ -1,0 +1,190 @@
+/* Desktop styling */
+.featureColumns {
+  border: 3px solid rgb(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: var(--ifm-global-radius);
+  padding: 2.5rem 2.5rem 1.5rem;
+  margin: 0 0 2.5rem;
+}
+
+.featureColumns h3 {
+  font-size: 1.8rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.featureImage {
+  width: 75px;
+  padding: 1rem;
+  border-radius: var(--ifm-global-radius);
+  margin-bottom: 1.5rem;
+  background-color: rgba(16, 36, 69, 0.05);
+}
+
+.featureHeader {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.capabilityHeader {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding-bottom: 1rem;
+}
+
+.capabilitiesContainer {
+  padding: 0 var(--ifm-spacing-horizontal) 7rem;
+}
+
+.featureText ul {
+  padding: 0 6px 0 0;
+  list-style-type: none;
+}
+
+.featureText li {
+  padding: 0 0 1rem;
+}
+
+.featureText {
+  font-size: 0.9rem;
+}
+
+.introHeader {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.introText {
+  text-align: center;
+  width: 60%;
+  font-size: 0.9rem;
+  display: block;
+  margin: 2rem auto 2.5rem;
+}
+
+.blockStyling {
+  margin: 4rem 0 8rem;
+}
+
+.blockTitle {
+  text-align: left;
+  font-weight: 500;
+  font-size: 2.2em;
+  padding: 0rem 0 1rem;
+  line-height: 1.3em;
+  margin: 0 0 0.8rem;
+}
+
+.capabilitiesContainer .blockTitle {
+  text-align: center;
+}
+
+.capabilitiesTitle {
+  text-align: center;
+  font-weight: 500;
+  font-size: 2.2em;
+  padding: 2rem 0 0.5rem;
+  line-height: 1.3em;
+  margin: 0 0 0.8rem;
+}
+
+
+.logoThickText {
+  color: var(--palette-blue);
+  font-weight: 800 !important;
+}
+
+.blockText {
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.blockImage {
+  max-height: 400px;
+}
+
+main.features {
+  align-items: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.blockText ul {
+  list-style-image: url('@site/static/images/checkmark.svg');
+  font-size: 1rem;
+  padding: 0 6pxpx 0 15px;
+}
+
+.blockText li::marker {
+  font-size: 1.8em;
+  line-height: 0.1;
+}
+
+
+
+/* Forced Desktop styling only */
+@media (min-width: 997px) {
+
+
+  .capabilityColumns {
+    padding: 3rem 1.5rem 0;
+  }
+
+
+  html[data-theme='dark'] .featureImage {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Tablet and Phone styling */
+@media (max-width: 996px) {
+  .featureColumns {
+    padding: 2rem 2rem 1.5rem;
+    display: block;
+  }
+
+  .capabilityColumns {
+    padding: 3rem 2rem 2rem;
+    margin: 1rem auto;
+  }
+
+  .blockStyling {
+    margin: 1.5rem 0 5rem;
+  }
+
+  .featureImage {
+    width: 50%;
+  }
+
+  .introText {
+    width: 90% !important;
+    font-size: 0.9rem;
+    display: block;
+    margin: 2rem auto 2.5rem;
+  }
+
+  .blockImage {
+    display: none;
+  }
+
+  .featureText ul {
+    margin: 0;
+  }
+
+  .capabilitiesContainer .blockTitle {
+    text-align: left;
+  }
+
+  .featureColumns h3 {
+    text-align: left;
+  }
+
+
+}
+
+/* Dark Theme Styling */
+html[data-theme='dark'] .featureColumns {
+  background-color: var(--ifm-navbar-background-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

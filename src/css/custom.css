@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --palette-blue-darkest: #001220;
+  --palette-blue-darker: #004466;
+  --palette-blue-dark: #0167a2;
+  --palette-blue: #0081c6;
+  --palette-blue-light: #2fbdfa;
+  --palette-blue-lighter: #76d2fd;
+  --palette-blue-lightest: #def3fe;
+
+  --ifm-global-radius: 5px;
+
+  --ifm-color-primary-darkest: var(--palette-blue-darkest);
+  --ifm-color-primary-darker: var(--palette-blue-darker);
+  --ifm-color-primary-dark: var(--palette-blue-dark);
+  --ifm-color-primary: var(--palette-blue);
+  --ifm-color-primary-dark: var(--palette-blue-dark);
+  --ifm-color-primary-light: var(--palette-blue-light);
+  --ifm-color-primary-lighter: var(--palette-blue-lighter);
+  --ifm-color-primary-lightest: var(--palette-blue-lightest);
+
+  --image-shadow: 0 5px 61px 5px rgba(34, 34, 34, 0.94);
+
+  --transition-bezier: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  --transition-fastest: 100ms;
+
+  --ifm-font-family-base: 'Poppins', 'Inter', sans-serif;
+  --ifm-font-family-monospace: 'Fira Code', monospace;
+
+  --ifm-code-font-size: 95%;
+  --ifm-navbar-shadow: 5px 0px rgba(0, 0, 0, 0.05), 0 5px 5px 0 rgba(0, 0, 0, 0.05);
+
+  --docusaurus-highlighted-code-line-bg: rgba(128, 128, 128, 0.1);
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --doc-sidebar-width: 360px !important;
+}
+
+html {
+  -webkit-font-smoothing: auto;
+}
+
+.button {
+  border: var(--ifm-button-border-width) solid #1c1e21;
+}
+
+.theme-code-block-highlighted-line {
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.docusaurus-highlight-code-line {
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+[data-theme='dark'] {
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: var(--palette-blue-light);
+}
+
+[data-theme='light'] .shiki.github-dark {
+  display: none;
+}
+
+[data-theme='dark'] .shiki.github-light {
+  display: none;
+}
+
+[data-theme='dark'] .button {
+  border: var(--ifm-button-border-width) solid #e3e3e3;
+}
+
+.hero__subtitle {
+  text-align: left;
+  font-weight: 700;
+  font-size: 3rem;
+  padding: 0 0 1rem;
+  line-height: 1.3em;
+}
+
+@media screen and (max-width: 996px) {
+  .hero__subtitle {
+    font-size: 2rem;
+    padding: 2em 0 0;
+    text-align: center;
+  }
+
+  .flex-col-reverse {
+    flex-direction: column-reverse;
+  }
+}
+
+.navbar--fixed-top {
+  height: 96px;
+}
+
+.navbar__link {
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.navbar__brand {
+  font-size: 1.5rem;
+}
+
+.navbar__title {
+  font-weight: 700;
+  font-style: normal;
+}
+
+.navbar__logo {
+  height: 50px;
+  margin-right: 2rem;
+}
+
+a.navbar__brand:hover {
+  color: var(--ifm-color-primary);
+}
+
+.navbar__item {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.DocSearch-Container {
+  z-index: 110;
+}
+
+.navbar__item svg {
+  display: none;
+}
+
+.footer__copyright {
+  padding-top: 20px;
+}
+
+.footer__link-item svg {
+  display: none;
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+header h2 a {
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+}
+
+header h2 a:hover {
+  text-decoration: none;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+img {
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+.themedImage--light_node_modules-\@docusaurus-theme-classic-lib-theme-ThemedImage-styles-module {
+  display: block !important;
+}
+
+.button.button--secondary {
+  margin-right: 25px !important;
+}
+
+header .col--5 {
+  display: flex;
+}
+
+.menu > .menu__list .menu__list {
+  border-left: 1px solid var(--ifm-color-primary);
+  margin-left: 15px;
+}
+
+.docs-doc-id-reference .menu > .menu__list .menu__list {
+  font-size: 12px;
+}
+
+/* Hide icon for external links */
+.docusaurus-theme-classic-lib-theme-Icon-ExternalLink-styles-module {
+  display: none;
+}
+
+/* GitHub Icon */
+.header-github-link:before {
+  content: '';
+  width: 26px;
+  height: 26px;
+  display: flex;
+
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat;
+}
+
+html[data-theme='dark'] .header-github-link:before {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat;
+}
+
+/* GitHub Icon Hover */
+.header-github-link:hover {
+  opacity: 0.6;
+}

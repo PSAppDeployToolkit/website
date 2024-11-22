@@ -1,0 +1,231 @@
+---
+sidebar_position: 1
+title: 'MCM - Google Chrome'
+description: 'How to package and deploy Google Chrome Enterprise using Microsoft Configuration Manager.'
+hide_title: true
+slug: /examples/googlechrome-configmgr
+tags:
+  - Examples
+  - Google Chrome
+  - Microsoft Configuration Manager
+---
+
+# Google Chrome Enterprise
+
+## Introduction
+
+In this example, we will build a Google Chrome Enterprise deployment which provides the following benefits over using the standard MSI based deployment:
+
+- The ability to defer the installation up to 3 times
+- The ability to close any applications that could cause errors during the installation
+- Verification that the required disk space is available
+- Full removal of any previous version of Google Chrome, both consumer and enterprise versions (to prevent issues sometimes seen when doing an MSI upgrade, i.e. Missing previous installation source files)
+
+## Creating the PSAppDeployToolkit deployment
+
+- Start with a fresh copy of the PSAppDeployToolkit source files.
+
+![Google Chrome installation Files](../images/chrome-sccm20.png)
+
+- Download and copy the Google Chrome Enterprise MSI file in to the ```Files``` folder, e.g.
+
+![Google Chrome installation Files](../images/chrome-sccm20.png)
+
+### Script Customization
+
+Open the ```Deploy-Application.ps1``` script and customize with the following changes:
+
+#### Initialization
+
+Populate these variables with the application and script details:
+
+```powershell
+$appVendor = 'Google'
+$appName = 'Chrome Enterprise (x64)'
+$appVersion = '118.0.5993.118'
+$appArch = 'x64'
+$appLang = 'EN'
+$appRevision = '01'
+$appScriptVersion = '1.0.0'
+$appScriptDate = '10/31/2023'
+$appScriptAuthor = 'Dan Cunningham'
+```
+
+#### Pre-Install
+
+Copy the following into the Pre-Install section:
+
+```powershell
+## Prompt the user to close the following applications if they are running and
+## allow the option to defer the installation up to 3 times:
+Show-InstallationWelcome -CloseApps 'chrome' -AllowDefer -DeferTimes 3
+
+## Show Progress Message (with the default message)
+Show-InstallationProgress
+
+## Remove any previous versions of Google Chrome (consumer and enterprise)
+Remove-MSIApplications -Name 'Google Chrome'
+```
+
+#### Installation
+
+Copy the following into the Installation section:
+
+```powershell
+## Install the MSI
+Execute-MSI -Action Install -Path 'googlechromestandaloneenterprisex64.msi'
+```
+
+#### Post-Installation
+
+Copy the following into the Post-Install section:
+
+```powershell
+## No actions required here
+```
+
+#### Uninstallation
+
+Copy the following into the Uninstallation section:
+
+```powershell
+## Prompt the user to close the following applications if they are running:
+Show-InstallationWelcome -CloseApps 'chrome'
+
+## Show Progress Message (with a message to indicate the application is being uninstalled)
+Show-InstallationProgress -StatusMessage "Uninstalling Application $installTitle. Please Wait..."
+
+## Remove this version of Google Chrome Enterprise
+Execute-MSI -Action Uninstall -Path '{3ACBC599-F9FA-344F-A90C-4BC47885D629}'
+```
+
+### Testing the Deployment Script
+
+- Install the application by running the following from a Windows Powershell command prompt:
+
+```powershell
+.\Deploy-Application.ps1
+```
+
+or
+
+```powershell
+.\Deploy-Application.ps1 -DeploymentType Install
+```
+
+- Uninstall the application by running:
+
+```powershell
+.\Deploy-Application.ps1 -DeploymentType Uninstall
+```
+
+------
+
+## Deploying through MCM using the Application Model
+
+### Creating the Application
+- Copy the installation files to your application sources folder. This should be a network share accessible by your Microsoft Configuration Manager Primary Site.
+
+- Within the Configuration Manager Console, create a new Application:
+
+![MCM Create Application](../images/chrome-sccm3.png)
+
+- Manually specify the application information:
+
+![MCM Select manually specify the application information](../images/chrome-sccm4.png)
+
+![MCM Manually specify the application information](../images/chrome-sccm5.png)
+
+- Specify the Software Center entry details:
+
+![MCM Specify the Software Center entry details](../images/chrome-sccm6.png)
+
+### Creating the Deployment Type
+
+- Add a Deployment Type:
+
+![MCM Add a Deployment Type](../images/chrome-sccm7.png)
+
+- Add a type of Script Installer:
+
+![MCM Add a type of Script Installer](../images/chrome-sccm8.png)
+
+![MCM Specify general information for this Deployment Type](../images/chrome-sccm9.png)
+
+- Specify the Content Details. Ensure the content location is set correctly and tick Persist content in the client cache.
+
+- Enter the following for the Installation program:
+
+```powershell
+Powershell.exe -File Deploy-Application.ps1
+```
+
+- Enter the following for the Uninstall program:
+
+```powershell
+Powershell.exe -File Deploy-Application.ps1 -DeploymentType Uninstall
+```
+
+![MCM Specify the content location for this Deployment Type](../images/chrome-sccm10.png)
+
+- For the Deployment Type Detection Method, add a Clause. Select Windows Installer and browse for the MSI file. This should populate the product code automatically:
+
+![MCM Deployment Type Detection Method](../images/chrome-sccm12.png)
+
+![MCM Deployment Type Detection Clause](../images/chrome-sccm13.png)
+
+- For the Deployment Type User Experience, select Install for User, Installation program visibility to Normal, and select the checkbox to allow users to view and interact with the program installation.
+
+- Click Next on the Deployment Type Requirements page.
+
+![MCM Deployment Type Requirements](../images/chrome-sccm15.png)
+
+- Click Next on the Dependencies page.
+
+![MCM Deployment Type Dependencies](../images/chrome-sccm16.png)
+
+- Click Next on the Deployment Type Summary page.
+
+![MCM Deployment Type Summary](../images/chrome-sccm17.png)
+
+- Click Close on the Deployment Type Completion page.
+
+![MCM Deployment Type Completion](../images/chrome-sccm18.png)
+
+- Click Next on the Deployment Type page.
+
+![MCM Deployment Type](../images/chrome-sccm19.png)
+
+- Click Next on the Application Summary page.
+
+![MCM Application Summary](../images/chrome-sccm20.png)
+
+- Click Close on the Application Completion page.
+
+![MCM Application Completion](../images/chrome-sccm21.png)
+
+### Deploying the Application
+
+- Right click on the Application and select Deploy:
+
+![MCM Deploy Application](../images/chrome-sccm22.png)
+
+- Select the collection to deploy to and click Next to start the deployment.
+
+### Testing the Application
+
+- Within a few minutes, you should see the application available for install in Software Center:
+
+![MCM Software Center App](../images/chrome-sccm23.png)
+
+![MCM Software Center App Details](../images/chrome-sccm24.png)
+
+- Select Install to start the installation.
+
+- The installation will now start. When complete, the Status should change to Installed:
+
+![MCM Software Center App Complete](../images/chrome-sccm25.png)
+
+- You can use the PSAppDeployToolkit automatic logging, including the Windows Installer logs by navigating to the logs folder (default is C:\Windows\Logs\Software):
+
+![MCM PSAppDeployToolkit Logs](../images/chrome-sccm26.png)

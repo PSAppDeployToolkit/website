@@ -1,0 +1,210 @@
+---
+id: Remove-FileFromUserProfiles
+title: Remove-FileFromUserProfiles
+description: Help page for the "Remove-FileFromUserProfiles" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Removes one or more items from each user profile on the system.
+
+## SYNTAX
+
+### Path
+
+```powershell
+Remove-FileFromUserProfiles [-Path] <String[]> [-Recurse] [-ExcludeNTAccount <String[]>]
+ [-ExcludeSystemProfiles <Boolean>] [-ExcludeServiceProfiles <Boolean>] [-ExcludeDefaultUser]
+ [-ContinueOnError <Boolean>] [<CommonParameters>]
+```
+
+### LiteralPath
+
+```powershell
+Remove-FileFromUserProfiles [-LiteralPath] <String[]> [-Recurse] [-ExcludeNTAccount <String[]>]
+ [-ExcludeSystemProfiles <Boolean>] [-ExcludeServiceProfiles <Boolean>] [-ExcludeDefaultUser]
+ [-ContinueOnError <Boolean>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Removes one or more items from each user profile on the system.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Remove-FileFromUserProfiles -Path "AppData\Roaming\MyApp\config.txt"
+```
+
+### EXAMPLE 2
+
+```powershell
+Remove-FileFromUserProfiles -Path "AppData\Local\MyApp" -Recurse
+```
+
+## PARAMETERS
+
+### -Path
+
+Specifies the path to append to the root of the user profile to be resolved.
+The value of Path will accept wildcards.
+Will accept an array of values.
+
+```yaml
+Type: String[]
+Parameter Sets: Path
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LiteralPath
+
+Specifies the path to append to the root of the user profile to be resolved.
+The value of LiteralPath is used exactly as it is typed; no characters are interpreted as wildcards.
+Will accept an array of values.
+
+```yaml
+Type: String[]
+Parameter Sets: LiteralPath
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Recurse
+
+Deletes the files in the specified location(s) and in all child items of the location(s).
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExcludeNTAccount
+
+Specify NT account names in Domain\Username format to exclude from the list of user profiles.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExcludeSystemProfiles
+
+Exclude system profiles: SYSTEM, LOCAL SERVICE, NETWORK SERVICE.
+Default is: $true.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: True
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExcludeServiceProfiles
+
+Exclude service profiles where NTAccount begins with NT SERVICE.
+Default is: $true.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: True
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExcludeDefaultUser
+
+Exclude the Default User.
+Default is: $false.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ContinueOnError
+
+Continue if an error is encountered.
+Default is: $true.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: True
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not generate any output.
+## NOTES
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

@@ -1,0 +1,166 @@
+---
+id: Configure-EdgeExtension
+title: Configure-EdgeExtension
+description: Help page for the "Configure-EdgeExtension" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Configures an extension for Microsoft Edge using the ExtensionSettings policy
+
+## SYNTAX
+
+### Add
+
+```powershell
+Configure-EdgeExtension [-Add] -ExtensionID <String> -InstallationMode <String> -UpdateUrl <String>
+ [-MinimumVersionRequired <String>] [<CommonParameters>]
+```
+
+### Remove
+
+```powershell
+Configure-EdgeExtension [-Remove] -ExtensionID <String> [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+This function configures an extension for Microsoft Edge using the ExtensionSettings policy: https://learn.microsoft.com/en-us/deployedge/microsoft-edge-manage-extensions-ref-guide
+This enables Edge Extensions to be installed and managed like applications, enabling extensions to be pushed to specific devices or users alongside existing GPO/Intune extension policies.
+This should not be used in conjunction with Edge Management Service which leverages the same registry key to configure Edge extensions.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Configure-EdgeExtension -Add -ExtensionID "extensionID" -InstallationMode "force_installed" -UpdateUrl "https://edge.microsoft.com/extensionwebstorebase/v1/crx"
+```
+
+### EXAMPLE 2
+
+```powershell
+Configure-EdgeExtension -Remove -ExtensionID "extensionID"
+```
+
+## PARAMETERS
+
+### -Add
+
+Adds an extension configuration
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Add
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Remove
+
+Removes an extension configuration
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Remove
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExtensionID
+
+The ID of the extension to install.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InstallationMode
+
+The installation mode of the extension.
+Allowed values: blocked, allowed, removed, force_installed, normal_installed
+
+```yaml
+Type: String
+Parameter Sets: Add
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UpdateUrl
+
+The update URL of the extension.
+This is the URL where the extension will check for updates.
+
+```yaml
+Type: String
+Parameter Sets: Add
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MinimumVersionRequired
+
+The minimum version of the extension required for installation.
+
+```yaml
+Type: String
+Parameter Sets: Add
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+This function is provided as a template to install an extension for Microsoft Edge.
+This should not be used in conjunction with Edge Management Service which leverages the same registry key to configure Edge extensions.
+
+## RELATED LINKS

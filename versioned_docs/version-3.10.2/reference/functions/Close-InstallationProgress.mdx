@@ -1,0 +1,76 @@
+---
+id: Close-InstallationProgress
+title: Close-InstallationProgress
+description: Help page for the "Close-InstallationProgress" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Closes the dialog created by Show-InstallationProgress.
+
+## SYNTAX
+
+```powershell
+Close-InstallationProgress [[-WaitingTime] <Int32>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Closes the dialog created by Show-InstallationProgress.
+
+This function is called by the Exit-Script function to close a running instance of the progress dialog if found.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Close-InstallationProgress
+```
+
+## PARAMETERS
+
+### -WaitingTime
+
+How many seconds to wait, at most, for the InstallationProgress window to be initialized, before the function returns, without closing anything.
+Range: 1 - 60  Default: 5
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: 5
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.String
+
+### Returns the version of the specified file.
+## NOTES
+This is an internal script function and should typically not be called directly.
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)

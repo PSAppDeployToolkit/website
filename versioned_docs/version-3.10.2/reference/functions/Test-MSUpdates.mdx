@@ -1,0 +1,89 @@
+---
+id: Test-MSUpdates
+title: Test-MSUpdates
+description: Help page for the "Test-MSUpdates" command
+keywords:
+  - PSAppDeployToolkit
+  - PowerShell
+  - Help
+  - Documentation
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Test whether a Microsoft Windows update is installed.
+
+## SYNTAX
+
+```powershell
+Test-MSUpdates [-KBNumber] <String> [[-ContinueOnError] <Boolean>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Test whether a Microsoft Windows update is installed.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Test-MSUpdates -KBNumber 'KB2549864'
+```
+
+## PARAMETERS
+
+### -KBNumber
+
+KBNumber of the update.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ContinueOnError
+
+Suppress writing log message to console on failure to write message to log file.
+Default is: $true.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: True
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.Boolean
+
+### Returns $true if the update is installed, otherwise returns $false.
+## NOTES
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com](https://psappdeploytoolkit.com)
