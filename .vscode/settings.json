@@ -10,7 +10,7 @@
             "strings": "off",
             "other": "off"
         },
-        "editor.minimap.enabled": false
+        "editor.minimap.enabled": true
     },
     "cSpell.enableFiletypes": [
         "!c",
@@ -20,13 +20,6 @@
         "mdx",
         "powershell"
     ],
-    "files.exclude": {
-        "**/.trunk/*actions/": true,
-        "**/.trunk/*logs/": true,
-        "**/.trunk/*notifications/": true,
-        "**/.trunk/*out/": true,
-        "**/.trunk/*plugins/": true
-    },
     "cSpell.words": [
         "CAPICOM",
         "Environmentx",

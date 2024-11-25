@@ -112,6 +112,3 @@ dist
 
 # VSCode History
 .history/
-
-# PNPM lock file
-pnpm-lock.yaml

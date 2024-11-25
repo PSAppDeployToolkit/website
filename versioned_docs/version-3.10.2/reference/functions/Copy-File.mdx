@@ -150,7 +150,7 @@ Accept wildcard characters: False
 
 Use Robocopy to copy files rather than native PowerShell method.
 Robocopy overcomes the 260 character limit.
-Supports * in file names, but not folders, in source paths.
+Supports \* in file names, but not folders, in source paths.
 Default is configured in the AppDeployToolkitConfig.xml file: $true
 
 ```yaml
@@ -208,11 +208,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### None
 
 ### This function does not generate any output.
+
 ## NOTES
 
 ## RELATED LINKS

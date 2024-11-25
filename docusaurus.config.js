@@ -8,6 +8,11 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  future: {
+    // See https://docusaurus.io/blog/releases/3.6
+    experimental_faster: true,
+  },
+
   title: 'PSAppDeployToolkit',
   tagline: 'Enterprise App Deployment, Simplified.',
   favicon: '/images/favicon.ico',
@@ -20,7 +25,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'PSAppDeployToolkit', // Usually your GitHub org/user name.
-  projectName: 'PSAppDeployToolkit', // Usually your repo name.
+  projectName: 'website', // Usually your repo name.
 
   titleDelimiter: '·',
 
@@ -36,6 +41,11 @@ const config = {
     'https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
   ],
 
+  customFields: {
+    meta: {
+      description: 'A PowerShell-based framework to simplify and standardize the process of deploying applications to endpoints in a Windows-based organization.',
+    },
+  },
   plugins: [],
 
   presets: [
@@ -110,7 +120,7 @@ const config = {
       // announcementBar: {
       //   id: 'support_us',
       //   content:
-      //     'Join the PSAppDeployToolkit 101 webinar on Wednesday 27th March. <a target="_blank" rel="noopener noreferrer" href="https://pmpc.link/joinwebinar">Join now!</a>',
+      //     'Join the PSAppDeployToolkit v4 release webinar on Thursday Dec 4th. <a target="_blank" rel="noopener noreferrer" href="https://pmpc.link/joinwebinar">Join now!</a>',
       //   backgroundColor: '#0081c6',
       //   textColor: '#fff',
       //   isCloseable: true,

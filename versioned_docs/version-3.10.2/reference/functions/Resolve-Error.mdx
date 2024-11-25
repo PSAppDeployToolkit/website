@@ -76,7 +76,7 @@ Accept wildcard characters: False
 ### -Property
 
 The list of properties to display from the error record.
-Use "*" to display all properties.
+Use "\*" to display all properties.
 
 Default list of error properties is: Message, FullyQualifiedErrorId, ScriptStackTrace, PositionMessage, InnerException
 
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 
 ### -GetErrorRecord
 
-Get error record details as represented by $_.
+Get error record details as represented by $\_.
 
 ```yaml
 Type: SwitchParameter
@@ -110,7 +110,7 @@ Accept wildcard characters: False
 
 ### -GetErrorInvocation
 
-Get error record invocation information as represented by $_.InvocationInfo.
+Get error record invocation information as represented by $\_.InvocationInfo.
 
 ```yaml
 Type: SwitchParameter
@@ -126,7 +126,7 @@ Accept wildcard characters: False
 
 ### -GetErrorException
 
-Get error record exception details as represented by $_.Exception.
+Get error record exception details as represented by $\_.Exception.
 
 ```yaml
 Type: SwitchParameter
@@ -142,7 +142,7 @@ Accept wildcard characters: False
 
 ### -GetErrorInnerException
 
-Get error record inner exception details as represented by $_.Exception.InnerException.
+Get error record inner exception details as represented by $\_.Exception.InnerException.
 Will retrieve all inner exceptions if there is more than one.
 
 ```yaml
@@ -166,11 +166,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Array.
 
 ### Accepts an array of error records.
+
 ## OUTPUTS
 
 ### System.String
 
 ### Displays the error record details.
+
 ## NOTES
 
 ## RELATED LINKS

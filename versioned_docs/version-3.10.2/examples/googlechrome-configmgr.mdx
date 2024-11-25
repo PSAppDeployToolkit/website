@@ -27,13 +27,13 @@ In this example, we will build a Google Chrome Enterprise deployment which provi
 
 ![Google Chrome installation Files](../images/chrome-sccm20.png)
 
-- Download and copy the Google Chrome Enterprise MSI file in to the ```Files``` folder, e.g.
+- Download and copy the Google Chrome Enterprise MSI file in to the `Files` folder, e.g.
 
 ![Google Chrome installation Files](../images/chrome-sccm20.png)
 
 ### Script Customization
 
-Open the ```Deploy-Application.ps1``` script and customize with the following changes:
+Open the `Deploy-Application.ps1` script and customize with the following changes:
 
 #### Initialization
 
@@ -119,11 +119,12 @@ or
 .\Deploy-Application.ps1 -DeploymentType Uninstall
 ```
 
-------
+---
 
 ## Deploying through MCM using the Application Model
 
 ### Creating the Application
+
 - Copy the installation files to your application sources folder. This should be a network share accessible by your Microsoft Configuration Manager Primary Site.
 
 - Within the Configuration Manager Console, create a new Application:

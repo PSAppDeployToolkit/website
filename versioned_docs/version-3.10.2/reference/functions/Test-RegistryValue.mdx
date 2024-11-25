@@ -112,12 +112,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.String
 
 ### Accepts a string value for the registry key path.
+
 ## OUTPUTS
 
 ### System.String
 
 ### Returns $true if the registry value exists, $false if it does not.
+
 ## NOTES
+
 To test if registry key exists, use Test-Path function like so:
 
 Test-Path -Path $Key -PathType 'Container'

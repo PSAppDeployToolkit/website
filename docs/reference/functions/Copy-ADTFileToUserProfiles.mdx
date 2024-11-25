@@ -145,7 +145,7 @@ Accept wildcard characters: False
 
 Select from 'Native' or 'Robocopy'.
 Default is configured in config.psd1.
-Note that Robocopy supports * in file names, but not folders, in source paths.
+Note that Robocopy supports \* in file names, but not folders, in source paths.
 
 ```yaml
 Type: String
@@ -288,12 +288,15 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ### System.String[]
 
 ### You can pipe in string values for $Path.
+
 ## OUTPUTS
 
 ### None
 
 ### This function does not generate any output.
+
 ## NOTES
+
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

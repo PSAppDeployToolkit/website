@@ -54,8 +54,8 @@ Remove-MSIApplications -Name 'Java 8 Update' -FilterApplication @(
 ```
 
 @('Is64BitApplication', $false, 'Exact'),
-        @('Publisher', 'Oracle Corporation', 'Exact')
-    )
+@('Publisher', 'Oracle Corporation', 'Exact')
+)
 
 Removes all versions of software that match the name "Java 8 Update" where the software is 32-bits and the publisher is "Oracle Corporation".
 
@@ -84,10 +84,10 @@ Remove-MSIApplications -Name 'Java 8 Update' -ExcludeFromUninstall @(
 ```
 
 @('Is64BitApplication', $true, 'Exact'),
-    @('DisplayName', 'Java 8 Update 45', 'Exact'),
-    @('DisplayName', 'Java 8 Update 4*', 'WildCard'),
-    @('DisplayName', 'Java \d Update \d\{3\}', 'RegEx'),
-    @('DisplayName', 'Java 8 Update', 'Contains'))
+@('DisplayName', 'Java 8 Update 45', 'Exact'),
+@('DisplayName', 'Java 8 Update 4\*', 'WildCard'),
+@('DisplayName', 'Java \d Update \d\{3\}', 'RegEx'),
+@('DisplayName', 'Java 8 Update', 'Contains'))
 
 Removes all versions of software that match the name "Java 8 Update"; however, it does not uninstall 64-bit versions of the software, Update 45 of the software, or any Update that starts with 4.
 
@@ -229,7 +229,7 @@ Accept wildcard characters: False
 ### -LoggingOptions
 
 Overrides the default logging options specified in the XML configuration file.
-Default options are: "/L*v".
+Default options are: "/L\*v".
 
 ```yaml
 Type: String
@@ -304,15 +304,21 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### PSObject
 
 ### Returns an object with the following properties:
+
 ### - ExitCode
+
 ### - StdOut
+
 ### - StdErr
+
 ## NOTES
+
 More reading on how to create arrays if having trouble with -FilterApplication or -ExcludeFromUninstall parameter: http://blogs.msdn.com/b/powershell/archive/2007/01/23/array-literals-in-powershell.aspx
 
 ## RELATED LINKS

@@ -109,12 +109,15 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ### System.String
 
 ### Accepts a string value for the registry key path.
+
 ## OUTPUTS
 
 ### System.Boolean
 
 ### Returns $true if the registry value exists, $false if it does not.
+
 ## NOTES
+
 An active ADT session is NOT required to use this function.
 
 To test if a registry key exists, use the Test-Path function like so: Test-Path -LiteralPath $Key -PathType 'Container'

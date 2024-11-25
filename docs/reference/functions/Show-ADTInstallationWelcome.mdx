@@ -34,10 +34,10 @@ Show-ADTInstallationWelcome [-CloseProcesses <ProcessObject[]>] [-Silent] [-Clos
 ## DESCRIPTION
 
 The following prompts can be included in the welcome dialog:
-    a) Close the specified running applications, or optionally close the applications without showing a prompt (using the -Silent switch).
-    b) Defer the installation a certain number of times, for a certain number of days or until a deadline is reached.
-    c) Countdown until applications are automatically closed.
-    d) Prevent users from launching the specified applications while the installation is in progress.
+a) Close the specified running applications, or optionally close the applications without showing a prompt (using the -Silent switch).
+b) Defer the installation a certain number of times, for a certain number of days or until a deadline is reached.
+c) Countdown until applications are automatically closed.
+d) Prevent users from launching the specified applications while the installation is in progress.
 
 ## EXAMPLES
 
@@ -455,12 +455,15 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### None
 
 ### This function does not return any output.
+
 ## NOTES
+
 An active ADT session is NOT required to use this function.
 
 The process descriptions are retrieved via Get-Process, with a fall back on the process name if no description is available.

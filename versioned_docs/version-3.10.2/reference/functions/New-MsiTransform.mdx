@@ -30,7 +30,7 @@ Create a transform file for an MSI database and create/modify properties in the 
 
 ### EXAMPLE 1
 
-```powershell
+````powershell
 [Hashtable]$TransformProperties = {
     ```
 
@@ -58,7 +58,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-```
+````
 
 ### -ApplyTransformPath
 
@@ -82,7 +82,7 @@ Specify the path where the new transform file with the desired properties will b
 If a transform file of the same name already exists, it will be deleted before a new one is created.
 
 Default is: a) If -ApplyTransformPath was specified but not -NewTransformPath, then &lt;ApplyTransformPath&gt;.new.mst
-                b) If only -MsiPath was specified, then &lt;MsiPath&gt;.mst
+b) If only -MsiPath was specified, then &lt;MsiPath&gt;.mst
 
 ```yaml
 Type: String
@@ -140,11 +140,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### None
 
 ### This function does not generate any output.
+
 ## NOTES
 
 ## RELATED LINKS

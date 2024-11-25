@@ -207,7 +207,7 @@ Accept wildcard characters: False
 ### -LoggingOptions
 
 Overrides the default logging options specified in the XML configuration file.
-Default options are: "/L*v".
+Default options are: "/L\*v".
 
 ```yaml
 Type: String
@@ -325,7 +325,7 @@ Accept wildcard characters: False
 
 ### -IgnoreExitCodes
 
-List the exit codes to ignore or * to ignore all exit codes.
+List the exit codes to ignore or \* to ignore all exit codes.
 
 ```yaml
 Type: String
@@ -419,14 +419,19 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### PSObject
 
 ### Returns a PSObject with the results of the installation
+
 ### - ExitCode
+
 ### - STDOut
+
 ### - STDErr
+
 ## NOTES
 
 ## RELATED LINKS

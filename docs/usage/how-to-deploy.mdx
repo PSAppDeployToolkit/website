@@ -13,9 +13,9 @@ tags:
 
 There are two ways to launch the PSAppDeployToolkit for deployment of applications.
 
-- Launch ```Deploy-Application.ps1``` PowerShell script as administrator.
+- Launch `Deploy-Application.ps1` PowerShell script as administrator.
 
-- Launch ```Deploy-Application.exe``` as administrator. This will launch the ```Deploy-Application.ps1``` PowerShell script without opening a PowerShell command window. Note, if the x86 PowerShell is required (for example, if CAPICOM or another x86 library is needed), launch `Deploy-Application.exe /32`.
+- Launch `Deploy-Application.exe` as administrator. This will launch the `Deploy-Application.ps1` PowerShell script without opening a PowerShell command window. Note, if the x86 PowerShell is required (for example, if CAPICOM or another x86 library is needed), launch `Deploy-Application.exe /32`.
 
 Deploy an application for installation
 
@@ -41,7 +41,7 @@ Deploy an application for installation, suppressing the PowerShell console windo
 Deploy-Application.exe -AllowRebootPassThru
 ```
 
-Deploy an application with a custom name instead of ```Deploy-Application.ps1```.
+Deploy an application with a custom name instead of `Deploy-Application.ps1`.
 
 ```powershell
 Deploy-Application.exe 'Custom-Script.ps1'
@@ -55,7 +55,7 @@ Deploy-Application.exe -Command 'C:\Testing\Custom-Script.ps1' -DeploymentType '
 
 #### Toolkit Parameters
 
-The following parameters are accepted by ```Deploy-Application.ps1```:
+The following parameters are accepted by `Deploy-Application.ps1`:
 
 ##### -DeploymentType
 

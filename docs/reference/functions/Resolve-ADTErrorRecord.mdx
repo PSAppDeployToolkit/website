@@ -61,7 +61,7 @@ Enumerates the details of the last error record, excluding the invocation inform
 ### -ErrorRecord
 
 The error record to resolve.
-The default error record is the latest one: $global:Error[0].
+The default error record is the latest one: $global\:Error[0].
 This parameter will also accept an array of error records.
 
 ```yaml
@@ -79,7 +79,7 @@ Accept wildcard characters: False
 ### -Property
 
 The list of properties to display from the error record.
-Use "*" to display all properties.
+Use "\*" to display all properties.
 
 Default list of error properties is: Message, FullyQualifiedErrorId, ScriptStackTrace, PositionMessage, InnerException
 
@@ -97,7 +97,7 @@ Accept wildcard characters: True
 
 ### -ExcludeErrorRecord
 
-Exclude error record details as represented by $_.
+Exclude error record details as represented by $\_.
 
 ```yaml
 Type: SwitchParameter
@@ -113,7 +113,7 @@ Accept wildcard characters: False
 
 ### -ExcludeErrorInvocation
 
-Exclude error record invocation information as represented by $_.InvocationInfo.
+Exclude error record invocation information as represented by $\_.InvocationInfo.
 
 ```yaml
 Type: SwitchParameter
@@ -129,7 +129,7 @@ Accept wildcard characters: False
 
 ### -ExcludeErrorException
 
-Exclude error record exception details as represented by $_.Exception.
+Exclude error record exception details as represented by $\_.Exception.
 
 ```yaml
 Type: SwitchParameter
@@ -145,7 +145,7 @@ Accept wildcard characters: False
 
 ### -ExcludeErrorInnerException
 
-Exclude error record inner exception details as represented by $_.Exception.InnerException.
+Exclude error record inner exception details as represented by $\_.Exception.InnerException.
 Will retrieve all inner exceptions if there is more than one.
 
 ```yaml
@@ -170,12 +170,15 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ### System.Management.Automation.ErrorRecord
 
 ### Accepts one or more ErrorRecord objects via the pipeline.
+
 ## OUTPUTS
 
 ### System.String
 
 ### Displays the error record details.
+
 ## NOTES
+
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

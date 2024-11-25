@@ -39,15 +39,15 @@ Show-InstallationWelcome [-CloseApps <String>] [-Silent] [-CloseAppsCountdown <I
 ## DESCRIPTION
 
 The following prompts can be included in the welcome dialog:
-    a) Close the specified running applications, or optionally close the applications without showing a prompt (using the -Silent switch).
-    b) Defer the installation a certain number of times, for a certain number of days or until a deadline is reached.
-    c) Countdown until applications are automatically closed.
-    d) Prevent users from launching the specified applications while the installation is in progress.
+a) Close the specified running applications, or optionally close the applications without showing a prompt (using the -Silent switch).
+b) Defer the installation a certain number of times, for a certain number of days or until a deadline is reached.
+c) Countdown until applications are automatically closed.
+d) Prevent users from launching the specified applications while the installation is in progress.
 
 Notes:
-    The process descriptions are retrieved from WMI, with a fall back on the process name if no description is available.
+The process descriptions are retrieved from WMI, with a fall back on the process name if no description is available.
 Alternatively, you can specify the description yourself with a '=' symbol - see examples.
-    The dialog box will timeout after the timeout specified in the XML configuration file (default 1 hour and 55 minutes) to prevent SCCM installations from timing out and returning a failure code to SCCM.
+The dialog box will timeout after the timeout specified in the XML configuration file (default 1 hour and 55 minutes) to prevent SCCM installations from timing out and returning a failure code to SCCM.
 When the dialog times out, the script will exit and return a 1618 code (SCCM fast retry code).
 
 ## EXAMPLES
@@ -434,11 +434,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### None
 
 ### This function does not return objects.
+
 ## NOTES
 
 ## RELATED LINKS

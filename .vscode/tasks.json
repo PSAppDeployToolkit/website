@@ -3,9 +3,14 @@
 		"version": "2.0.0",
 		"tasks": [
 			{
-				"label": "install dependencies",
+				"label": "Install Dependencies",
 				"type": "shell",
 				"command": "pnpm install"
+			},
+			{
+				"label": "Start Local Dev Server",
+				"type": "shell",
+				"command": "pnpm start"
 			}
 		]
 	}
