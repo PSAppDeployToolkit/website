@@ -29,7 +29,6 @@ Search for a window title.
 If window title searched for returns more than one result, then details for each window will be displayed.
 
 Returns the following properties for each window:
-
 - WindowTitle
 - WindowHandle
 - ParentProcess
@@ -100,33 +99,24 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### PSADT.Types.WindowInfo
 
 ### Returns a PSADT.Types.WindowInfo object with the following properties:
-
 ### - WindowTitle
-
 ### - WindowHandle
-
 ### - ParentProcess
-
 ### - ParentProcessMainWindowHandle
-
 ### - ParentProcessId
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 Function does not work in SYSTEM context unless launched with "psexec.exe -s -i" to run it as an interactive process under the SYSTEM account.

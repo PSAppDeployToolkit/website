@@ -18,9 +18,9 @@ Open-ADTSession [-SessionState] <SessionState> [[-DeploymentType] <String>] [[-D
  [[-AppScriptVersion] <Version>] [[-AppScriptDate] <DateTime>] [[-AppScriptAuthor] <String>]
  [[-InstallName] <String>] [[-InstallTitle] <String>] [[-DeployAppScriptFriendlyName] <String>]
  [[-DeployAppScriptVersion] <Version>] [[-DeployAppScriptDate] <DateTime>]
- [[-DeployAppScriptParameters] <IDictionary>] [[-AppSuccessExitCodes] <Int32[]>]
- [[-AppRebootExitCodes] <Int32[]>] [[-ScriptDirectory] <String>] [[-DirFiles] <String>]
- [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
+ [[-DeployAppScriptParameters] <System.Collections.Generic.Dictionary`2[System.String,System.Object]>]
+ [[-AppSuccessExitCodes] <Int32[]>] [[-AppRebootExitCodes] <Int32[]>] [[-ScriptDirectory] <String>]
+ [[-DirFiles] <String>] [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
  [[-DefaultMspFiles] <String[]>] [-ForceWimDetection] [-PassThru] [<CommonParameters>]
 ```
 
@@ -367,7 +367,7 @@ Accept wildcard characters: False
 Specifies the parameters for the deploy application script.
 
 ```yaml
-Type: IDictionary
+Type: System.Collections.Generic.Dictionary`2[System.String,System.Object]
 Parameter Sets: (All)
 Aliases:
 
@@ -540,23 +540,19 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### ADTSession
 
 ### This function returns the session object if -PassThru is specified.
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

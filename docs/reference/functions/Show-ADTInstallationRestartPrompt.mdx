@@ -14,7 +14,7 @@ Displays a restart prompt with a countdown to a forced restart.
 ```powershell
 Show-ADTInstallationRestartPrompt [[-CountdownSeconds] <UInt32>] [[-CountdownNoHideSeconds] <UInt32>]
  [[-SilentCountdownSeconds] <UInt32>] [-SilentRestart] [-NoCountdown] [-NotTopMost] -Title <String>
- [<CommonParameters>]
+ -Subtitle <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ It also supports silent mode where the restart can be triggered without user int
 ### EXAMPLE 1
 
 ```powershell
-Show-ADTInstallationRestartPromptClassic -NoCountdown
+Show-ADTInstallationRestartPrompt -NoCountdown
 ```
 
 Displays a restart prompt without a countdown.
@@ -36,7 +36,7 @@ Displays a restart prompt without a countdown.
 ### EXAMPLE 2
 
 ```powershell
-Show-ADTInstallationRestartPromptClassic -Countdownseconds 300
+Show-ADTInstallationRestartPrompt -Countdownseconds 300
 ```
 
 Displays a restart prompt with a 300-second countdown.
@@ -150,6 +150,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Subtitle
+
+Subtitle of the prompt.
+Default: the application deployment type.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Title
 
 Title of the prompt.
@@ -169,23 +186,19 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### None
 
 ### This function does not generate any output.
-
 ## NOTES
-
 Be mindful of the countdown you specify for the reboot as code directly after this function might NOT be able to execute - that includes logging.
 
 Tags: psadt

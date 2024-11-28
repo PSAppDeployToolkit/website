@@ -30,23 +30,25 @@ The advantage of using this function over ActiveSetup is that a user does not ha
 
 ### EXAMPLE 1
 
-````powershell
+```powershell
 Invoke-ADTAllUsersRegistryAction -ScriptBlock {
-    ```
-
-Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $_.SID
+    Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $_.SID
     Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord -SID $_.SID
-\}
+}
+```
+
+
+Example demonstrating the setting of two values within each user's HKEY_CURRENT_USER hive.
 
 ### EXAMPLE 2
 
 ```powershell
 Invoke-ADTAllUsersRegistryAction {
-    ```
-
-Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $_.SID
+    Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $_.SID
     Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord -SID $_.SID
-\}
+}
+```
+
 
 As the previous example, but showing how to use ScriptBlock as a positional parameter with no name specified.
 
@@ -54,11 +56,11 @@ As the previous example, but showing how to use ScriptBlock as a positional para
 
 ```powershell
 Invoke-ADTAllUsersRegistryAction -UserProfiles (Get-ADTUserProfiles -ExcludeDefaultUser) -ScriptBlock {
-    ```
-
-Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $_.SID
+    Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $_.SID
     Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord -SID $_.SID
-\}
+}
+```
+
 
 As the previous example, but sending specific user profiles through to exclude the Default profile.
 
@@ -78,7 +80,7 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-````
+```
 
 ### -UserProfiles
 
@@ -99,23 +101,19 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### None
 
 ### This function does not generate any output.
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

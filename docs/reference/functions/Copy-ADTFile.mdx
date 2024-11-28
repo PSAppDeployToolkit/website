@@ -116,7 +116,8 @@ Accept wildcard characters: False
 
 ### -ContinueFileCopyOnError
 
-If Path is an array, continue copying files if an error is encountered.
+Continue copying files if an error is encountered.
+This will continue the deployment script and will warn about files that failed to be copied.
 
 ```yaml
 Type: SwitchParameter
@@ -134,7 +135,7 @@ Accept wildcard characters: False
 
 Select from 'Native' or 'Robocopy'.
 Default is configured in config.psd1.
-Note that Robocopy supports \* in file names, but not folders, in source paths.
+Note that Robocopy supports * in file names, but not folders, in source paths.
 
 ```yaml
 Type: String
@@ -184,23 +185,19 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### None
 
 ### This function does not generate any output.
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

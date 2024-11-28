@@ -14,7 +14,8 @@ Displays a custom installation prompt with the toolkit branding and optional but
 ```powershell
 Show-ADTInstallationPrompt [-Message] <String> [[-MessageAlignment] <String>] [[-ButtonRightText] <String>]
  [[-ButtonLeftText] <String>] [[-ButtonMiddleText] <String>] [[-Icon] <String>] [-NoWait] [-PersistPrompt]
- [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] -Title <String> [-Timeout <UInt32>] [<CommonParameters>]
+ [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] -Title <String> -Subtitle <String> [-Timeout <UInt32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -227,6 +228,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Subtitle
+
+Subtitle of the prompt.
+Default: the application deployment type.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Timeout
 
 Specifies how long, in seconds, to show the message prompt before aborting.
@@ -262,23 +280,19 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### None
 
 ### This function does not generate any output.
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

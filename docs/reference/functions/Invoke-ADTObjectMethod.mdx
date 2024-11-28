@@ -35,9 +35,9 @@ Invoke method on any object with or without using named parameters.
 
 ```powershell
 $ShellApp = New-Object -ComObject 'Shell.Application'
+$null = Invoke-ADTObjectMethod -InputObject $ShellApp -MethodName 'MinimizeAll'
 ```
 
-PS C:\\&gt;$null = Invoke-ADTObjectMethod -InputObject $ShellApp -MethodName 'MinimizeAll'
 
 Minimizes all windows.
 
@@ -45,9 +45,9 @@ Minimizes all windows.
 
 ```powershell
 $ShellApp = New-Object -ComObject 'Shell.Application'
+$null = Invoke-ADTObjectMethod -InputObject $ShellApp -MethodName 'Explore' -Parameter @{'vDir'='C:\Windows'}
 ```
 
-PS C:\\&gt;$null = Invoke-ADTObjectMethod -InputObject $ShellApp -MethodName 'Explore' -Parameter @\{'vDir'='C:\Windows'\}
 
 Opens the C:\Windows folder in a Windows Explorer window.
 
@@ -121,23 +121,19 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### System.Object
 
 ### The object returned by the method being invoked.
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

@@ -231,7 +231,7 @@ Accept wildcard characters: False
 ### -LoggingOptions
 
 Overrides the default MSI logging options specified in the configuration file.
-Default options are: "/L\*v".
+Default options are: "/L*v".
 
 ```yaml
 Type: String
@@ -283,29 +283,22 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### PSADT.Types.ProcessResult
 
 ### Returns an object with the results of the installation if -PassThru is specified.
-
 ### - ExitCode
-
 ### - StdOut
-
 ### - StdErr
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 More reading on how to create filterscripts https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-5.1#description

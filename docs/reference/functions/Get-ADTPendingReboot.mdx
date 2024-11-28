@@ -46,41 +46,28 @@ This example returns a boolean value determining whether or not there is a pendi
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### PSADT.Types.RebootInfo
 
 ### Returns a custom object with the following properties:
-
 ### - ComputerName
-
 ### - LastBootUpTime
-
 ### - IsSystemRebootPending
-
 ### - IsCBServicingRebootPending
-
 ### - IsWindowsUpdateRebootPending
-
 ### - IsSCCMClientRebootPending
-
 ### - IsFileRenameRebootPending
-
 ### - PendingFileRenameOperations
-
 ### - ErrorMsg
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 ErrorMsg only contains something if an error occurred.

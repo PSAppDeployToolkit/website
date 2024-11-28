@@ -28,11 +28,11 @@ This helps in identifying and handling invalid parameter values in scripts.
 
 ```powershell
 $paramName = "FilePath"
+$providedValue = "C:\InvalidPath"
+$exceptionMessage = "The specified path does not exist."
+New-ADTValidateScriptErrorRecord -ParameterName $paramName -ProvidedValue $providedValue -ExceptionMessage $exceptionMessage
 ```
 
-PS C:\\&gt;$providedValue = "C:\InvalidPath"
-PS C:\\&gt;$exceptionMessage = "The specified path does not exist."
-PS C:\\&gt;New-ADTValidateScriptErrorRecord -ParameterName $paramName -ProvidedValue $providedValue -ExceptionMessage $exceptionMessage
 
 Creates a new ErrorRecord for a validation error with the specified parameters.
 
@@ -104,23 +104,19 @@ Accept wildcard characters: False
 
 ### CommonParameters
 
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### System.Management.Automation.ErrorRecord
 
 ### This function returns an ErrorRecord object.
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 Tags: psadt
