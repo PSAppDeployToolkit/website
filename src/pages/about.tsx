@@ -15,7 +15,7 @@ const AboutPage = () => {
       name: 'Sean Lillis',
       subtitle: 'Co-founder & Developer',
       bio: 'Bio here. E.g., helped secure many projects for enterprise clients. Worked in software innovation for decades.',
-      image: '../../images/about/sean.png',
+      image: '../../images/about/sean.jpg',
       github: 'https://github.com/seanlillis',
       linkedin: 'https://linkedin.com/in/seanlillis',
     },
@@ -35,17 +35,31 @@ const AboutPage = () => {
       github: 'https://github.com/mmashwani',
       linkedin: 'https://linkedin.com/in/muhammad-mashwani',
     },
+    {
+      name: 'Mitch Richters',
+      subtitle: 'Lead Developer',
+      bio: 'PowerShell and Modern Workplace specialist with over 20 years of proven industry experience',
+      image: '../../images/about/mitch.png',
+      github: 'https://github.com/mmashwani',
+      linkedin: 'https://linkedin.com/in/mitch-richters',
+    },
+    {
+      name: 'Dan Gough',
+      subtitle: 'Co-Founder & Developer',
+      bio: 'Bio here. E.g., helped secure many projects for enterprise clients. Worked in software innovation for decades.',
+      image: '../../images/about/dang.png',
+      github: 'https://github.com/mmashwani',
+      linkedin: 'https://linkedin.com/in/dan-gough',
+    },
   ];
 
-  // this code is for demo purposes
-  // you would normally get this list from an API endpoint or manually type the contributors in
   const contributors = Array.from({ length: 50 }, (_, index) => {
     const name = `name${index + 1}`;
     const hasLink = Math.random() > 0.5;
     return {
       id: `ctrb-${index}`,
       name,
-      link: hasLink ? `https://x.com/@${name}` : null,
+      link: hasLink ? `https:/github.com/@${name}` : null,
     };
   });
 

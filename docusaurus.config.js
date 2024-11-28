@@ -120,7 +120,7 @@ const config = {
       // announcementBar: {
       //   id: 'support_us',
       //   content:
-      //     'Join the PSAppDeployToolkit v4 release webinar on Thursday Dec 4th. <a target="_blank" rel="noopener noreferrer" href="https://pmpc.link/joinwebinar">Join now!</a>',
+      //     'Join the PSAppDeployToolkit v4 release webinar on Wednesday Dec 4th. <a target="_blank" rel="noopener noreferrer" href="https://patchmypc.com/psappdeploytoolkit-v4-launch-webinar">More details here!</a>',
       //   backgroundColor: '#0081c6',
       //   textColor: '#fff',
       //   isCloseable: true,
