@@ -34,10 +34,10 @@ Show-ADTInstallationWelcome [-CloseProcesses <ProcessObject[]>] [-Silent] [-Clos
 ## DESCRIPTION
 
 The following prompts can be included in the welcome dialog:
-    a) Close the specified running applications, or optionally close the applications without showing a prompt (using the -Silent switch).
-    b) Defer the installation a certain number of times, for a certain number of days or until a deadline is reached.
-    c) Countdown until applications are automatically closed.
-    d) Prevent users from launching the specified applications while the installation is in progress.
+a) Close the specified running applications, or optionally close the applications without showing a prompt (using the -Silent switch).
+b) Defer the installation a certain number of times, for a certain number of days or until a deadline is reached.
+c) Countdown until applications are automatically closed.
+d) Prevent users from launching the specified applications while the installation is in progress.
 
 ## EXAMPLES
 
@@ -96,7 +96,6 @@ Allow the user to defer the installation until the deadline is reached.
 Show-ADTInstallationWelcome -CloseProcesses @{ Name = 'winword' }, @{ Name = 'excel' } -BlockExecution -AllowDefer -DeferTimes 10 -DeferDeadline '25/08/2013' -CloseProcessesCountdown 600
 Close Word and Excel and prevent the user from launching the applications while the installation is in progress.
 ```
-
 
 Allow the user to defer the installation a maximum of 10 times or until the deadline is reached, whichever happens first.
 
@@ -471,12 +470,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### None
 
 ### This function does not return any output.
+
 ## NOTES
+
 An active ADT session is NOT required to use this function.
 
 The process descriptions are retrieved via Get-Process, with a fall back on the process name if no description is available.

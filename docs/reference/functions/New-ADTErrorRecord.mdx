@@ -32,7 +32,6 @@ $category = [System.Management.Automation.ErrorCategory]::NotSpecified
 New-ADTErrorRecord -Exception $exception -Category $category -ErrorId "CustomErrorId" -TargetObject $null -TargetName "TargetName" -TargetType "TargetType" -Activity "Activity" -Reason "Reason" -RecommendedAction "RecommendedAction"
 ```
 
-
 Creates a new ErrorRecord object with the specified parameters.
 
 ## PARAMETERS
@@ -192,12 +191,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### System.Management.Automation.ErrorRecord
 
 ### This function returns an ErrorRecord object.
+
 ## NOTES
+
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

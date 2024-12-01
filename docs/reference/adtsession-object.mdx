@@ -2,13 +2,53 @@
 sidebar_position: 2
 sidebar_label: 'ADTSession Object'
 title: 'ADTSession Object'
-description: 'PSAppDeployToolkit uses ADTSessions to govern each deployment. You can find more information here'
+description: 'PSAppDeployToolkit uses ADTSession to govern each deployment. You can find more information here'
 slug: /adtsession-object
 tags:
   - ADTSession Object
   - Variables
 ---
 
-# ADT Session Object
+# ADTSession Object
 
-We have much detail to fill in here
+The `ADTSession` object is a core component of the **PSAppDeployToolkit** that manages the state and information throughout a deployment session. It captures essential details about the deployment environment and provides convenient properties and methods for use in your scripts.
+
+## Initialization
+
+When you start a deployment script, initialize the `ADTSession` with the `Start-ADTSession` function:
+
+```powershell
+Start-ADTSession -AppName "YourAppName" -AppVersion "1.0.0" -AppVendor "YourVendor" -DeploymentType "Install"
+```
+
+This initializes the session, gathers information about the deployment, the user, and the computer, and makes several helpful properties available for you to use.
+
+# Properties
+The ADTSession object exposes several properties:
+
+## Deployment Information
+
+- *AppName*: The name of the application being deployed.
+- *AppVersion*: The version of the application.
+- *AppVendor*: The vendor of the application.
+- *DeploymentType*: Indicates if the deployment is an "Install" or "Uninstall".
+
+## System Information
+
+- *OSArchitecture*: The operating system architecture (e.g., x86, x64).
+- *OSName*: The name of the operating system.
+- *OSVersion*: The version number of the operating system.
+- *ComputerName*: The name of the computer.
+- *DomainName*: The Active Directory domain name.
+
+## User Information
+
+- UserName: The username of the logged-in user.
+- UserProfilePath: The path to the user's profile directory.
+- UserHomeDrive: The user's home drive letter.
+
+## Path Information
+
+- *ProgramFilesDir*: Path to the Program Files directory.
+- *AppDataDir*: Path to the Application Data directory.
+- *CommonAppDataDir*: Path to the Common Application Data directory.

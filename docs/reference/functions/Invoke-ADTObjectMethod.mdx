@@ -38,7 +38,6 @@ $ShellApp = New-Object -ComObject 'Shell.Application'
 $null = Invoke-ADTObjectMethod -InputObject $ShellApp -MethodName 'MinimizeAll'
 ```
 
-
 Minimizes all windows.
 
 ### EXAMPLE 2
@@ -47,7 +46,6 @@ Minimizes all windows.
 $ShellApp = New-Object -ComObject 'Shell.Application'
 $null = Invoke-ADTObjectMethod -InputObject $ShellApp -MethodName 'Explore' -Parameter @{'vDir'='C:\Windows'}
 ```
-
 
 Opens the C:\Windows folder in a Windows Explorer window.
 
@@ -128,12 +126,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
+
 ## OUTPUTS
 
 ### System.Object
 
 ### The object returned by the method being invoked.
+
 ## NOTES
+
 An active ADT session is NOT required to use this function.
 
 Tags: psadt
