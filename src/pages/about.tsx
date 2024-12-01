@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import styles from './about.module.css';
 import Heading from '@theme/Heading';
-import Newsletter from '../components/Newsletter';
 import Link from '@docusaurus/Link';
 
 const AboutPage = () => {
@@ -76,14 +75,40 @@ const AboutPage = () => {
       <section className={styles.aboutPage}>
         {/* Header Block */}
         <div className={clsx('container', styles.headerBlock)}>
-          <Heading as="h1">Text here that we can change with H1 tag</Heading>
+          <Heading as="h1">About PSAppDeployToolkit</Heading>
         </div>
 
-        {/* Intro Block */}
         <div className={clsx('container', styles.introBlock)}>
-          <div className="row">
-            <Newsletter />
-          </div>
+          <p>
+            The <b>PowerShell App Deployment Toolkit</b> (<b>PSAppDeployToolkit</b>) is an open-source framework which
+            simplifies the complex scripting challenges of application repackaging, customization, and deployment of
+            applications in a managed Windows environment. It compliments and enhances existing deployment and
+            configuration management solutions (such as Microsoft Intune, SCCM, IBM BigFix, Tanium Deploy and VMware
+            Workspace ONE) with new capabilities. It provides a consistent, corporate-branded deployment experience for
+            end users, ensures packaging teams follow best practices, and substantially improves overall deployment
+            success rates.
+          </p>
+          <p>
+            PSAppDeployToolkit was created by <b>Sean Lillis</b>, <b>Dan Cunningham</b> and <b>Mo Mashwani</b> in their
+            spare time while working for one of the &apos;Big Five&apos; financial services companies and was standard.
+            It was first released to CodePlex in August 2013. Since then, it has grown from a small project to being
+            almost universally adopted as the de facto deployment standard by companies all overthe world - largely due
+            to its reputation for stability and ease of use. From small companies to Fortune 500s and federal
+            governments, PSAppDeployToolkit is used by in-house IT teams, consultants, and managed service providers to
+            deploy applications on millions of endpoints all over the world.
+          </p>
+          <p>
+            <i>
+              &apos;Truly powerful application deployment toolkit written in PowerShell! Solving some classic
+              problems&apos;- <b>Jörgen Nilsson, Microsoft MVP, Enterprise Client Management</b>
+            </i>
+          </p>
+          <p>
+            <i>
+              &apos;Another very cool SCCM 2012 must have tool - PowerShell App Deployment Toolkit&apos; -{' '}
+              <b>Kent Agerlund, Microsoft MVP, Enterprise Client Management</b>
+            </i>
+          </p>
         </div>
 
         {/* Founders Block */}
