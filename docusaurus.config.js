@@ -44,7 +44,8 @@ const config = {
 
   customFields: {
     meta: {
-      description: 'A PowerShell-based framework to simplify and standardize the process of deploying applications to endpoints in a Windows-based organization.',
+      description:
+        'A PowerShell-based framework to simplify and standardize the process of deploying applications to endpoints in a Windows-based organization.',
     },
   },
   plugins: [],

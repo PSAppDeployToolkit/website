@@ -23,7 +23,6 @@ html[data-theme='dark'] .featureColumns {
     padding: 3rem 1.5rem 1.5rem;
   }
 
-
   html[data-theme='dark'] .featureImage {
     background-color: rgba(255, 255, 255, 0.1);
   }
@@ -67,7 +66,7 @@ html[data-theme='dark'] .featureColumns {
 
   .capabilitiesTitle {
     text-align: left !important;
-  }  
+  }
 
   .webinarHeader {
     text-align: left !important;
@@ -82,21 +81,20 @@ html[data-theme='dark'] .featureColumns {
   .blockStyling {
     margin: 3.5em 0 3.5rem !important;
   }
-
 }
 
 .buttonLink {
-float:right;
+  float: right;
 }
 
 .col--2 .button.button--secondary {
   margin: 0;
 }
 
-
 .buttonLink a {
-text-decoration: none;
-color: var(--ifm-heading-color);}
+  text-decoration: none;
+  color: var(--ifm-heading-color);
+}
 
 .featureImage {
   width: 75px;
@@ -124,15 +122,12 @@ color: var(--ifm-heading-color);}
   padding: 1rem;
 }
 
-
 .contrastContainer {
   background-color: var(--ifm-pre-background);
   padding: 2rem var(--ifm-spacing-horizontal) 3rem;
-
 }
 
-
-.containerPadding  {
+.containerPadding {
   padding: 2rem var(--ifm-spacing-horizontal) 3rem;
 }
 
@@ -175,7 +170,6 @@ color: var(--ifm-heading-color);}
   line-height: 1.3em;
   margin: 0 0 0.8rem;
 }
-
 
 .logoThickText {
   color: var(--palette-blue);

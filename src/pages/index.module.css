@@ -3,22 +3,20 @@
  * and scoped locally.
  */
 
-
- .heroBanner {
+.heroBanner {
   text-align: center;
   position: relative;
   overflow: hidden;
   color: var(--palette-blue-darkest);
-  background-image: url("@site/static/images/background-image-light.jpg");
+  background-image: url('@site/static/images/background-image-light.jpg');
   background-size: cover;
   padding: 4.5rem 0 3.5rem;
 }
 
 html[data-theme='dark'] .heroBanner {
-  background-image: url("@site/static/images/background-image-dark.jpg");
+  background-image: url('@site/static/images/background-image-dark.jpg');
   color: #f3f3f3;
 }
-
 
 .logo {
   width: 350px;
@@ -30,7 +28,6 @@ html[data-theme='dark'] .heroBanner {
 .subtitle {
   margin: 0 auto 2rem;
 }
-
 
 .startedButton {
   display: flex;
@@ -45,7 +42,6 @@ html[data-theme='dark'] .heroBanner {
   border-radius: var(--ifm-global-radius);
   color: #f3f3f3;
 }
-
 
 html[data-theme='dark'] .startedButton a {
   color: #fff;
@@ -72,7 +68,6 @@ html[data-theme='dark'] .startedButton a {
     font-size: 0.9rem;
     margin: 2rem 5vw 1rem;
   }
-
 }
 
 .logoThinText {

@@ -194,12 +194,11 @@ export default function HomepageFeatures() {
         </div>
       </div>
 
-<div className="container">
-<div className={clsx('row', styles.blockStyling)}>
- <Newsletter />
-</div>
-</div>
-
+      <div className="container">
+        <div className={clsx('row', styles.blockStyling)}>
+          <Newsletter />
+        </div>
+      </div>
     </section>
   );
 }

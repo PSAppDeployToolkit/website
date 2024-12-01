@@ -89,7 +89,6 @@
   margin: 0 0 0.8rem;
 }
 
-
 .logoThickText {
   color: var(--palette-blue);
   font-weight: 800 !important;
@@ -121,16 +120,11 @@ main.features {
   line-height: 0.1;
 }
 
-
-
 /* Forced Desktop styling only */
 @media (min-width: 997px) {
-
-
   .capabilityColumns {
     padding: 3rem 1.5rem 0;
   }
-
 
   html[data-theme='dark'] .featureImage {
     background-color: rgba(255, 255, 255, 0.1);
@@ -179,8 +173,6 @@ main.features {
   .featureColumns h3 {
     text-align: left;
   }
-
-
 }
 
 /* Dark Theme Styling */
