@@ -13,24 +13,29 @@ tags:
 
 ## PowerShell Version
 
-PSAppDeployToolkit v4 fully supports Windows PowerShell 5.1 and PowerShell (Core) 7.4.
+PSAppDeployToolkit have been tested against PowerShell versions as far back as PowerShell 2.0. However, for performance and stablilty (as well as supportability), we recommend using the latest version of PowerShell version available for your operating system.
 
 ## Windows Client
 
 ### Currently Supported
 
-PSAppDeployToolkit v4 is primarily developed on the latest Windows Client operating system (currently Windows 11) and we aim to test and validate against any versions on the list of [Microsoft's currently supported Windows Client versions](https://learn.microsoft.com/en-us/windows/release-health/supported-versions-windows-client).
+PSAppDeployToolkit 3.x is primarily developed on the latest Windows Client operating system (currently Windows 11) and we aim to test and validate against any versions on the list of [Microsoft's currently supported Windows Client versions](https://learn.microsoft.com/en-us/windows/release-health/supported-versions-windows-client).
 
-#### Windows 11
 - Windows 11 24H2
-- Windows 11 23H2
 - Windows 11 22H2
 - Windows 11 21H2
-
-#### Windows 10
 - Windows 10 22H2
 - Windows 10 21H2
 - Windows 10 1809
+
+### Best Effort Support
+
+The lifecycle of Enterprise devices are often driven be external factors affecting budgets - and often require IT teams to maintain devices that are no longer supported by Microsoft. And so, while we can't guarantee PSAppDeployToolkit will work on older operating systems, we periodically test against operating system versions that are no longer supported by Microsoft. The following have been tested and verified as working:
+
+- Windows 10 1607 (Extended Support)
+- Windows 10 1507 (RTM) (Extended Support)
+- Windows 8.1
+- Windows 7
 
 ## Windows Server
 
@@ -38,7 +43,17 @@ PSAppDeployToolkit v4 is primarily developed on the latest Windows Client operat
 
 Additionally, we test and validate against the Long-Term Servicing Channel (LTSC) versions on the list of [Microsoft's currently supported Windows Server list](https://learn.microsoft.com/en-us/windows/release-health/windows-server-release-info).
 
-- Windows Server 2025
 - Windows Server 2022
+
+### Best Effort Support
+
+The lifecycle of Enterprise devices are often driven be external factors affecting budgets - and often require IT teams to maintain devices that are no longer supported by Microsoft. And so, while we can't guarantee PSAppDeployToolkit will work on older operating systems, we periodically test against operating system versions that are are no longer supported by Microsoft. The following have been tested and verified as working:
+
 - Windows Server 2019 (version 1809)
-- Windows Server 2016 (version 1607)
+- Windows Server 2016 (version 1606)
+- Windows Server 2012 R2
+- Windows Server 2008 R2
+
+## Older Windows Versions
+
+While we have attempted to maintain this backwards compatibility through the life cycle of PSAppDeployToolkit, the degree of testing performed across older Operating Systems such as XP and Vista is limited. However, PSAppDeployToolkit has widespread adoption in the enterprise from SMEs to large multinationals so there is safety in numbers and the assurance that PSAppDeployToolkit has been put through its paces VERY extensively on a large number of Windows clients around the globe.
