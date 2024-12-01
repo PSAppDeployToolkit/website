@@ -24,13 +24,15 @@ jobs:
     strategy:
       matrix:
         node-version: [22]
-    steps:
+    steps:    
     - name: Checkout
       uses: actions/checkout@v4
       with:
         repository: psappdeploytoolkit/website
     - name: Install pnpm
       uses: pnpm/action-setup@v4
+      with:
+        version: 9
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
@@ -44,6 +46,8 @@ jobs:
       run: pnpm build
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
+      with:
+        path: build
 
   # Deployment job
   deploy:
