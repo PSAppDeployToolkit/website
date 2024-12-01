@@ -17,11 +17,11 @@ const config = {
   tagline: 'Enterprise App Deployment, Simplified.',
   favicon: '/images/favicon.ico',
   // Set the production url of your site here
-  url: 'https://psappdeploytoolkit.github.io/',
+  url: 'https://psappdeploytoolkit.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   deploymentBranch: 'gh-pages',
-  baseUrl: '/website/',
+  baseUrl: '/',
   trailingSlash: false,
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
