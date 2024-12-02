@@ -37,6 +37,7 @@ Invoke-ADTAllUsersRegistryAction -ScriptBlock {
 }
 ```
 
+
 Example demonstrating the setting of two values within each user's HKEY_CURRENT_USER hive.
 
 ### EXAMPLE 2
@@ -48,6 +49,7 @@ Invoke-ADTAllUsersRegistryAction {
 }
 ```
 
+
 As the previous example, but showing how to use ScriptBlock as a positional parameter with no name specified.
 
 ### EXAMPLE 3
@@ -58,6 +60,7 @@ Invoke-ADTAllUsersRegistryAction -UserProfiles (Get-ADTUserProfiles -ExcludeDefa
     Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord -SID $_.SID
 }
 ```
+
 
 As the previous example, but sending specific user profiles through to exclude the Default profile.
 
@@ -105,15 +108,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### None
 
 ### This function does not generate any output.
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 Tags: psadt

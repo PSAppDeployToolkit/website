@@ -22,7 +22,7 @@ Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-Argume
 ### Search
 
 ```powershell
-Uninstall-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode <String[]>]
+Uninstall-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode <Guid[]>]
  [-ApplicationType <String>] [-IncludeUpdatesAndHotfixes] [[-FilterScript] <ScriptBlock>]
  [-ArgumentList <String>] [-AdditionalArgumentList <String>] [-SecureArgumentList] [-LoggingOptions <String>]
  [-LogFileName <String>] [-PassThru] [<CommonParameters>]
@@ -119,7 +119,7 @@ Accept wildcard characters: False
 The product code of the application to retrieve information for.
 
 ```yaml
-Type: String[]
+Type: Guid[]
 Parameter Sets: Search
 Aliases:
 
@@ -231,7 +231,7 @@ Accept wildcard characters: False
 ### -LoggingOptions
 
 Overrides the default MSI logging options specified in the configuration file.
-Default options are: "/L\*v".
+Default options are: "/L*v".
 
 ```yaml
 Type: String
@@ -290,21 +290,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 ### You cannot pipe objects to this function.
-
 ## OUTPUTS
 
 ### PSADT.Types.ProcessResult
 
 ### Returns an object with the results of the installation if -PassThru is specified.
-
 ### - ExitCode
-
 ### - StdOut
-
 ### - StdErr
-
 ## NOTES
-
 An active ADT session is NOT required to use this function.
 
 More reading on how to create filterscripts https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-5.1#description
