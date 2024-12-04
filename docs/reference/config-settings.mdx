@@ -1,0 +1,253 @@
+---
+sidebar_position: 2
+sidebar_label: 'Configuration Settings'
+title: 'Configuration Settings'
+description: 'PSAppDeployToolkit uses ADTSession to govern each deployment. You can find more information here'
+slug: /config-settings
+tags:
+  - Configuration Settings
+---
+
+# Configuration Settings
+
+Each setting in the config.psd1 is exposed using the `Get-ADTConfig` function.
+
+# Settings
+
+
+```pwsh
+(Get-ADTConfig).Toolkit.CachePath
+```
+
+Retrieves the cache path for the toolkit.
+
+```pwsh
+(Get-ADTConfig).Toolkit.CompressLogs
+```
+Determines if logs should be compressed.
+
+```pwsh
+(Get-ADTConfig).Toolkit.FileCopyMode
+```
+
+Specifies the file copy mode for the toolkit.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogAppend
+```
+
+Indicates if logs should be appended.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogDebugMessage
+```
+
+Enables or disables debug message logging.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogHostOutputToStdStreams
+```
+
+Logs host output to standard streams.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogMaxHistory
+```
+
+Sets the maximum history for logs.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogMaxSize
+```
+
+Defines the maximum size for logs.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogPath
+```
+
+Specifies the path where logs are stored.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogPathNoAdminRights
+```
+
+Specifies the log path when no admin rights are available.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogStyle`
+```
+Sets the style for logging.
+
+```pwsh
+(Get-ADTConfig).Toolkit.LogWriteToHost`
+```
+
+Determines if logs should be written to the host.
+
+```pwsh
+(Get-ADTConfig).Toolkit.OobeDetection`
+```
+
+Detects Out-of-Box Experience (OOBE) state.
+
+```pwsh
+(Get-ADTConfig).Toolkit.RegPath`
+```
+
+Specifies the registry path for the toolkit.
+
+```pwsh
+(Get-ADTConfig).Toolkit.RegPathNoAdminRights`
+```
+
+Specifies the registry path when no admin rights are available.
+
+```pwsh
+(Get-ADTConfig).Toolkit.RequireAdmin`
+```
+
+Indicates if administrative rights are required.
+
+```pwsh
+(Get-ADTConfig).Toolkit.SessionDetection`
+```
+
+Detects user session state.
+
+```pwsh
+(Get-ADTConfig).Toolkit.TempPath`
+```
+
+Specifies the temporary path for the toolkit.
+
+```pwsh
+(Get-ADTConfig).Toolkit.TempPathNoAdminRights`
+```
+
+Specifies the temporary path when no admin rights are available.
+
+```pwsh
+(Get-ADTConfig).UI.BalloonNotifications`
+```
+
+Enables or disables balloon notifications.
+
+```pwsh
+(Get-ADTConfig).UI.BalloonTitle`
+```
+
+Sets the title for balloon notifications.
+
+```pwsh
+(Get-ADTConfig).UI.DefaultExitCode`
+```
+
+Specifies the default exit code for the UI.
+
+```pwsh
+(Get-ADTConfig).UI.DefaultPromptPersistInterval`
+```
+
+Sets the default interval for prompt persistence.
+
+```pwsh
+(Get-ADTConfig).UI.DefaultTimeout`
+```
+
+Defines the default timeout for the UI.
+
+```pwsh
+(Get-ADTConfig).UI.DeferExitCode`
+```
+
+Specifies the exit code for deferred actions.
+
+```pwsh
+(Get-ADTConfig).UI.DialogStyle`
+```
+
+Sets the style for dialogs.
+
+```pwsh
+(Get-ADTConfig).UI.DynamicProcessEvaluation`
+```
+
+Enables or disables dynamic process evaluation.
+
+```pwsh
+(Get-ADTConfig).UI.DynamicProcessEvaluationInterval`
+```
+
+Sets the interval for dynamic process evaluation.
+
+```pwsh
+(Get-ADTConfig).UI.LanguageOverride`
+```
+
+Overrides the language for the UI.
+
+```pwsh
+(Get-ADTConfig).UI.PromptToSaveTimeout`
+```
+
+Sets the timeout for prompt to save.
+
+```pwsh
+(Get-ADTConfig).UI.RestartPromptPersistInterval`
+```
+
+Sets the interval for restart prompt persistence.
+
+```pwsh
+(Get-ADTConfig).Assets.Banner`
+```
+
+Specifies the banner asset.
+
+```pwsh
+(Get-ADTConfig).Assets.Logo`
+```
+
+Specifies the logo asset.
+
+```pwsh
+(Get-ADTConfig).MSI.InstallParams`
+```
+
+Defines the installation parameters for MSI.
+
+```pwsh
+(Get-ADTConfig).MSI.LoggingOptions`
+```
+
+Specifies the logging options for MSI.
+
+```pwsh
+(Get-ADTConfig).MSI.LogPath`
+```
+
+Specifies the log path for MSI.
+
+```pwsh
+(Get-ADTConfig).MSI.LogPathNoAdminRights`
+```
+
+Specifies the log path for MSI when no admin rights are available.
+
+```pwsh
+(Get-ADTConfig).MSI.MutexWaitTime`
+```
+
+Sets the mutex wait time for MSI.
+
+```pwsh
+(Get-ADTConfig).MSI.SilentParams`
+```
+
+Defines the silent parameters for MSI.
+
+```pwsh
+(Get-ADTConfig).MSI.UninstallParams`
+```
+Defines the uninstall parameters for MSI.

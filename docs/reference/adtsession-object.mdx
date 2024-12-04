@@ -15,40 +15,65 @@ The `ADTSession` object is a core component of the **PSAppDeployToolkit** that m
 
 ## Initialization
 
-When you start a deployment script, initialize the `ADTSession` with the `Start-ADTSession` function:
+When you start a deployment script, initialize the `ADTSession` with the `Open-ADTSession` function:
 
 ```powershell
-Start-ADTSession -AppName "YourAppName" -AppVersion "1.0.0" -AppVendor "YourVendor" -DeploymentType "Install"
+$adtSession = Open-ADTSession -SessionState $ExecutionContext.SessionState -AppName "YourAppName" -AppVersion "1.0.0" -AppVendor "YourVendor" -DeploymentType "Install"
 ```
 
 This initializes the session, gathers information about the deployment, the user, and the computer, and makes several helpful properties available for you to use.
 
 # Properties
-The ADTSession object exposes several properties:
+The ADTSession object exposes several properties, which can be accessed using `$adtSession.<PropertyName>`, e.g `$adtSession.AppName`.
 
 ## Deployment Information
 
-- *AppName*: The name of the application being deployed.
-- *AppVersion*: The version of the application.
-- *AppVendor*: The vendor of the application.
-- *DeploymentType*: Indicates if the deployment is an "Install" or "Uninstall".
+- **AppName**: The name of the application being deployed.
+- **AppVersion**: The version of the application.
+- **AppVendor**: The vendor of the application.
+- **AppRevision**: The revision number of the application.
+- **DeploymentType**: Indicates if the deployment is an "Install" or "Uninstall".
+- **DeploymentTypeName**: The friendly name of the deployment type.
+- **DeployMode**: The mode in which the deployment is running (e.g., "Interactive", "Silent").
+- **AppArch**: The architecture (e.g., x86, x64) of the application.
+- **AppLang**: The language or locale of the application.
+
+## Script Information
+
+- **AppScriptAuthor**: The author of the deployment script.
+- **AppScriptDate**: The creation date of the deployment script.
+- **AppScriptVersion**: The version of the deployment script.
+- **DeployAppScriptDate**: The date associated with the `Deploy-Application.ps1` script.
+- **DeployAppScriptVersion**: The version of the `Deploy-Application.ps1` script.
+- **DeployAppScriptFriendlyName**: The friendly name of the `Deploy-Application.ps1` script.
+- **DeployAppScriptParameters**: The parameters passed to the deployment script.
 
 ## System Information
 
-- *OSArchitecture*: The operating system architecture (e.g., x86, x64).
-- *OSName*: The name of the operating system.
-- *OSVersion*: The version number of the operating system.
-- *ComputerName*: The name of the computer.
-- *DomainName*: The Active Directory domain name.
-
-## User Information
-
-- *UserName*: The username of the logged-in user.
-- *UserProfilePath*: The path to the user's profile directory.
-- *UserHomeDrive*: The user's home drive letter.
+- **TerminalServerMode**: Indicates if Terminal Server mode is enabled.
 
 ## Path Information
 
-- *ProgramFilesDir*: Path to the Program Files directory.
-- *AppDataDir*: Path to the Application Data directory.
-- *CommonAppDataDir*: Path to the Common Application Data directory.
+- **ScriptDirectory**: The directory where the deployment script is located.
+- **DirFiles**: Path to the "Files" directory used by the toolkit.
+- **DirSupportFiles**: Path to the "SupportFiles" directory used by the toolkit.
+
+## Logging Information
+
+- **LogName**: The name of the log file.
+- **LogTempFolder**: The temporary folder where logs are stored.
+- **DisableLogging**: Indicates if logging is disabled (`True` or `False`).
+
+## Date and Time Information
+
+- **CurrentDate**: The current date.
+- **CurrentDateTime**: The current date and time.
+
+## Installation Information
+
+- **InstallName**: The name assigned to the installation.
+- **InstallTitle**: The title displayed during installation.
+- **InstallPhase**: The current phase of the installation process (e.g., "Pre-Installation", "Installation", "Post-Installation").
+- **DefaultMsiFile**: The default MSI file used for installation if none is specified.
+- **UseDefaultMsi**: Indicates whether to use the default MSI file (`True` or `False`).
+- **AllowRebootPassThru**: Indicates if reboot requests from the installer should be passed through to the system.

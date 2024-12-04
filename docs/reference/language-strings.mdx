@@ -1,0 +1,69 @@
+---
+sidebar_position: 2
+sidebar_label: 'Language Strings'
+title: 'Language Strings'
+description: 'PSAppDeployToolkit exposes all of the text used in the UI.'
+slug: /language-strings
+tags:
+  - Language Strings
+---
+
+# Language Strings
+
+Each setting in the config.psd1 is exposed using the `Get-ADTConfig` function.
+
+# Settings
+
+
+## General Strings
+
+- **Close Prompt**
+    - `ClosePrompt.ButtonDefer`: Button text for deferring the close prompt.
+    - `ClosePrompt.ButtonContinue`: Button text for continuing the close prompt.
+    - `ClosePrompt.ButtonClose`: Button text for closing the prompt.
+
+- **Progress Messages**
+    - `Progress.MessageInstall`: Message displayed during installation.
+    - `Progress.MessageUninstallDetail`: Detailed message displayed during uninstallation.
+    - `Progress.MessageRepair`: Message displayed during repair.
+    - `Progress.MessageUninstall`: Message displayed during uninstallation.
+    - `Progress.MessageRepairDetail`: Detailed message displayed during repair.
+    - `Progress.MessageInstallDetail`: Detailed message displayed during installation.
+
+- **Disk Space**
+    - `DiskSpace.Message`: Message displayed when checking disk space.
+
+- **Deployment Types**
+    - `DeploymentType.Uninstall`: Text for uninstall deployment type.
+    - `DeploymentType.Install`: Text for install deployment type.
+    - `DeploymentType.Repair`: Text for repair deployment type.
+
+- **Welcome Prompts**
+    - `WelcomePrompt.Classic`: Classic style welcome prompt.
+    - `WelcomePrompt.Fluent`: Fluent style welcome prompt.
+
+- **Block Execution**
+    - `BlockExecution.Message`: Message displayed when execution is blocked.
+
+- **Balloon Texts**
+    - `BalloonText.Complete`: Balloon text for completion.
+    - `BalloonText.Error`: Balloon text for errors.
+    - `BalloonText.FastRetry`: Balloon text for fast retry.
+    - `BalloonText.RestartRequired`: Balloon text for restart required.
+    - `BalloonText.Start`: Balloon text for start.
+
+- **Restart Prompts**
+    - `RestartPrompt.Message`: General restart prompt message.
+    - `RestartPrompt.MessageRestart`: Message displayed when a restart is required.
+    - `RestartPrompt.ButtonRestartLater`: Button text for restarting later.
+    - `RestartPrompt.TimeRemaining`: Time remaining message for restart.
+    - `RestartPrompt.ButtonRestartNow`: Button text for restarting now.
+    - `RestartPrompt.MessageTime`: Time message for restart prompt.
+    - `RestartPrompt.Title`: Title for restart prompt.
+
+- **Defer Prompts**
+    - `DeferPrompt.WarningMessage`: Warning message for defer prompt.
+    - `DeferPrompt.WelcomeMessage`: Welcome message for defer prompt.
+    - `DeferPrompt.ExpiryMessage`: Expiry message for defer prompt.
+    - `DeferPrompt.Deadline`: Deadline message for defer prompt.
+    - `DeferPrompt.RemainingDeferrals`: Remaining deferrals message for defer prompt.

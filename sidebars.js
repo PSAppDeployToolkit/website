@@ -59,8 +59,10 @@ const sidebars = {
   ],
   reference: [
     'reference',
-    'reference/exit-codes',
     'reference/adtsession-object',
+    'reference/config-settings',
+    'reference/language-strings',
+    'reference/exit-codes',
     {
       type: 'category',
       label: 'Functions',
