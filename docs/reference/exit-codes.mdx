@@ -13,18 +13,21 @@ tags:
 
 PSAppDeployToolkit uses pre-defined Exit Codes to indicate the success or failure of a deployment and can be used to control the flow of your deployment logic, or just to understand what happened during a deployment.
 
-| Exit Code     | Description                                                                                                                                                                            |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 60000-68999   | Reserved for built-in exit codes in _Invoke-AppDeployToolkit.ps1_, _Invoke-AppDeployToolkit.exe_, and _AppDeployToolkitMain.ps1_.                                                                |
-| 69000 - 69999 | Recommended for user customized exit codes in `Invoke-AppDeployToolkit.ps1`.                                                                                                                |
-| 70000 - 79999 | Recommended for user customized exit codes in `Invoke-AppDeployToolkit.ps1`.                                                                                                                |
-| 60001         | An error occurred in `Invoke-AppDeployToolkit.ps1`. Check your script syntax use.                                                                                                           |
-| 60002         | Administrator privileges required for `Execute-ProcessAsUser` function.                                                                                                                |
-| 60003         | Failure when loading .NET WinForms / WPF Assemblies.                                                                                                                                   |
-| 60004         | Failure when displaying the Blocked Application dialog.                                                                                                                                |
-| 60005         | AllowSystemInteractionFallback option was not selected in the config PSD1 file, so toolkit will not fall back to SYSTEM context with no interaction.                                    |
-| 60006         | Failed to export the schedule task XML file in `Execute-ProcessAsUser` function.                                                                                                       |
-| 60007         | `Invoke-AppDeployToolkit.ps1` failed to dot source `AppDeployToolkitMain.ps1` either because it could not be found or there was an error while it was being dot sourced.                    |
-| 60008         | The `-UserName` parameter in the `Execute-ProcessAsUser` function has a default value that is empty because no logged in users were detected when the PSAppDeployToolkit was launched. |
-| 60009         | `Invoke-AppDeployToolkit.exe` failed before _PowerShell.exe_ process could be launched.                                                                                                     |
-| 60013         | If `Execute-Process` function captures an exit code out of range for int32 then return this custom exit code.                                                                          |
+| Exit Code     | Description                                                                                                                                                                  |
+| :------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 60000 - 68999 | Reserved for built-in exit codes in _Invoke-AppDeployToolkit.ps1_, _Invoke-AppDeployToolkit.exe_, and _AppDeployToolkitMain.ps1_.                                            |
+| 69000 - 69999 | Recommended for user customized exit codes in `Invoke-AppDeployToolkit.ps1`.                                                                                                 |
+| 70000 - 79999 | Recommended for user customized exit codes in `Invoke-AppDeployToolkit.ps1`.                                                                                                 |
+| 60001         | An error occurred in `Invoke-AppDeployToolkit.ps1`. Check your script syntax use.                                                                                            |
+| 60002         | Error when running `Start-ADTProcess` function.                                                                                                                              |
+| 60003         | Administrator privileges required for `Start-ADTProcessAsUser` function.                                                                                                     |
+| 60004         | Failure when loading .NET Winforms / WPF Assemblies.                                                                                                                         |
+| 60005         | Failure when displaying the Blocked Application dialog.                                                                                                                      |
+| 60006         | AllowSystemInteractionFallback option was not selected in the config XML file, so toolkit will not fall back to SYSTEM context with no interaction.                          |
+| 60007         | `Invoke-AppDeployToolkit.ps1` failed to dot source `AppDeployToolkitMain.ps1` either because it could not be found or there was an error while it was being dot sourced.     |
+| 60008         | The `-UserName` parameter in the `Start-ADTProcessAsUser` function has a default value that is empty because no logged in users were detected when the toolkit was launched. |
+| 60009         | `Invoke-AppDeployToolkit.exe` failed before _PowerShell.exe_ process could be launched.                                                                                      |
+| 60010         | `Invoke-AppDeployToolkit.exe` failed before PowerShell.exe process could be launched.                                                                                        |
+| 60011         | `Invoke-AppDeployToolkit.exe` failed to execute the PowerShell.exe process.                                                                                                  |
+| 60012         | A UI prompt timed out or the user opted to defer the installation.                                                                                                           |
+| 60013         | If `Start-ADTProcess` function captures an exit code out of range for int32 then return this custom exit code.                                                               |
