@@ -60,6 +60,7 @@ const sidebars = {
   reference: [
     'reference',
     'reference/adtsession-object',
+    'reference/variables',
     'reference/config-settings',
     'reference/language-strings',
     'reference/exit-codes',
