@@ -59,11 +59,11 @@ const config = {
         },
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          lastVersion: '3.10.2',
+          lastVersion: 'current',
           versions: {
             current: {
-              label: '4.0.0',
-              banner: 'unreleased',
+              label: '4.0.2',
+              banner: 'none',
               // editUrl: 'https://github.com/psappdeploytoolkit/website/docs/edit/main',
             },
             '3.10.2': {
