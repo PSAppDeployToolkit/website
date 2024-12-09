@@ -62,7 +62,7 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: '4.0.2',
+              label: '4.0.3',
               banner: 'none',
               // editUrl: 'https://github.com/psappdeploytoolkit/website/docs/edit/main',
             },
