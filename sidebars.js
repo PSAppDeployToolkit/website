@@ -23,19 +23,19 @@ const sidebars = {
         type: 'generated-index',
       },
       collapsed: false,
-      items: ['getting-started/requirements', 'getting-started/downloading', 'getting-started/licensing'],
+      items: ['getting-started/licensing', 'getting-started/requirements', 'getting-started/downloading', 'getting-started/creating-a-new-deployment'],
     },
     {
       type: 'category',
-      label: 'Understanding the Layout',
+      label: 'Deployment Concepts',
       link: {
         type: 'generated-index',
       },
       collapsed: false,
       items: [
-        'understanding-the-layout/extracted-archive',
-        'understanding-the-layout/deployment-script',
-        'understanding-the-layout/zero-config-deployment',
+        'deployment-concepts/deployment-structure',
+        'deployment-concepts/invoke-appdeploytoolkit',
+        'deployment-concepts/zero-config-deployment',
       ],
     },
     {
@@ -64,6 +64,7 @@ const sidebars = {
     'reference/config-settings',
     'reference/language-strings',
     'reference/exit-codes',
+    'reference/v4-function-mapping',
     {
       type: 'category',
       label: 'Functions',
