@@ -23,7 +23,7 @@ const sidebars = {
         type: 'generated-index',
       },
       collapsed: false,
-      items: ['getting-started/licensing', 'getting-started/requirements', 'getting-started/downloading', 'getting-started/creating-a-new-deployment'],
+      items: ['getting-started/licensing', 'getting-started/requirements', 'getting-started/downloading', 'getting-started/changes-in-v4', 'getting-started/creating-a-new-deployment'],
     },
     {
       type: 'category',

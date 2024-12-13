@@ -1,0 +1,136 @@
+﻿---
+sidebar_position: 4
+title: 'Changes in v4'
+description: 'Guidance on what has changed in v4.'
+slug: /getting-started/changes-in-v4
+hide_title: true
+tags:
+  - Getting Started
+  - Changes
+---
+
+# Changes in v4
+
+## Overview
+
+- Modern Fluent user interface
+- Digitally signed PowerShell module
+- All C# code is now compiled
+- Codebase completely refactored and optimized
+- Complete removal of VBScript code
+- Strongly typed and defined object types, no more PSCustomObjects, etc
+- Defensively coded to ensure security and reliability
+- Now provides PowerShell 7 and ARM support
+- Extensions supported as supplemental modules
+- Custom action support for extensions on deployment start/finish
+- Support for overriding config via the registry
+- Backwards-compatibility with v3 deployment scripts
+
+<br />
+### Renamed Deployment Script and Launcher
+
+`Deploy-Application.exe` ➡️ `Invoke-AppDeployToolkit.exe`
+
+`Deploy-Application.ps1` ➡️ `Invoke-AppDeployToolkit.ps1`
+
+For more information on changes to the deployment script, see the [Invoke-AppDeployToolkit](../understanding-the-layout/invoke-appdeploytoolkit) page.
+
+Further changes to the deployment layout are detailed in the [Deployment Structure](../deployment-concepts/deployment-structure) page.
+
+<br />
+### New Configuration Format
+
+`AppDeployToolkitConfig.xml` ➡️ `Config\Config.psd1`
+
+**.psd1** is PowerShell's native config file format. See the [Customizing Deployments](../usage/customizing-deployments) page for further info.
+
+<br />
+### Renamed Functions
+
+Functions renamed to avoid collisions with other scripts/modules:
+
+`Copy-File` ➡️ `Copy-ADTFile`
+
+`Execute-Process` ➡️ `Start-ADTProcess`
+
+`Write-Log` ➡️ `Write-ADTLogEntry`
+
+For a detailed mapping of v3 to v4 functions, check out the [Function Mapping](../reference/v4-function-mapping) page.
+
+<br />
+### Variables
+
+The standard toolkit environment variables (e.g. `$envProgramFiles`) will be available once an [ADTSession](../adtsession-object) has been started.
+
+Variables specific to a particular deployment (e.g. `$appName`) can now be found within the [ADTSession](../adtsession-object) object (e.g. `$adtSession.AppName`).
+
+<br />
+### Booleans Replaced with Switches
+
+v3 had many Boolean parameters, some of which default to true, and others to false. It was often difficult to know what the default was for each command without looking up the help or code.
+
+Now instead of:
+
+`TopMost $true` or `-TopMost $false`
+
+We have a single optional switch:
+
+`-NotTopMost`
+
+This way, the name of the parameter naturally implies what the default behaviour is.
+
+<br />
+### Standardised Filtering
+
+The `Remove-MsiApplications` command in v3 had `-FilterApplication` and `-ExcludeFromUninstall` parameters that use a complex syntax:
+
+```powershell
+FilterApplication @(, @('Publisher', 'Oracle Corporation', 'Exact')) -ExcludeFromUninstall @(, @('DisplayName', 'Java 8 Update 45', 'Contains'))
+```
+
+In the new function [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication), these have now been combined into a single FilterScript that should be familiar to anyone that has used PowerShell's `Where-Object` command:
+
+```powershell
+-FilterScript {$_.Publisher -eq 'Oracle Corporation' -and $_.DisplayVersion -notmatch 'Java 8 Update 45'}
+```
+
+<br />
+### Error Handling
+
+Many commands in v3 used a `-ContinueOnError` parameter. In v4, you just use the standard PowerShell `-ErrorAction` parameter:
+
+Instead of:
+
+`ContinueOnError $false` or `-ContinueOnError $true`
+
+You use:
+`-ErrorAction Stop` or `-ErrorAction SilentlyContinue`
+
+
+<br />
+### Uninstallation of EXE apps
+
+[Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication) can now support uninstallaton of **EXE** apps in addition to **MSI**.
+
+- Use the `-ApplicationType` parameter to restrict to one application type or the other.
+- `-ArgumentList` will replace the detected arguments found in the **QuietUninstallString** / **UninstallString** in the registry, `-AdditionalArgumentList` will append to them.
+
+
+<br />
+### User Profile Paths
+
+[Get-ADTUserProfiles](../reference/functions/Get-ADTUserProfiles) now supports a `-LoadProfilePaths` switch to find various common folders for each user profile, such as **Documents** and **Desktop**.
+
+This can be used by [Copy-ADTFileToUserProfiles](../reference/functions/Copy-ADTFileToUserProfiles) to copy files directly to these locations.
+
+
+<br />
+### Zero Config WIM Support
+
+There is now support for compressing your file content to a WIM archive and mounting it during installation. This can be managed manually via [Mount-ADTWimFile](../reference/functions/Mount-ADTWimFile) and [Dismount-ADTWimFile](../reference/functions/Dismount-ADTWimFile).
+
+Alternatively you can use the `-ForceWimDetection` switch with the [Open-ADTSession](../reference/functions/Open-ADTSession) command to auto-mount and dismount any WIM files found.
+
+If you leave the **AppName** blank, [Zero Config](understanding-the-layout/zero-config-deployment) will kick in, auto-mount any WIM file found and install the MSI found within.
+
+<br />
