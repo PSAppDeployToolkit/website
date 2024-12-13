@@ -44,6 +44,10 @@
   --doc-sidebar-width: 360px !important;
 }
 
+table {
+    width:100%;
+}
+
 html {
   -webkit-font-smoothing: auto;
 }

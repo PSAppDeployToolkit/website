@@ -10,18 +10,16 @@ If you feel like you can contribute, please do so by opening an issue or pull re
 
 We are using pnpm to manage our dependencies. We've found it to be more reliable than either `yarn` or `npm`. You can download `pnpm` from [here](https://pnpm.io). Then you can install the dependencies by running:
 
-```
-$ pnpm install
+```powershell
+pnpm install
 ```
 
 To start a local development server and opens up a browser window, run the following:
 
-```
-$ pnpm start
+```powershell
+pnpm start
 ```
 
 Most changes are reflected live without having to restart the server.
-
-<hr>
 
 This website is built using [Docusaurus](https://docusaurus.io/).

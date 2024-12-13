@@ -33,16 +33,16 @@ Each of these types has three phases:
 
 The script is broken down into the following sections:
 
-| **Install Type**          | **Phase**        | **Deployment Tasks**                                                                   |
-| :------------------------ | :----------------| :------------------------------------------------------------------------------------- |
-| `Install-ADTDeployment`   | `Pre-Install`    | Prompt to close processes, allow defer, uninstall / clean-up previous versions         |
-|                           | `Install`        | Install application                                                                    |
-|                           | `Post-Install`   | Drop additional files, registry tweaks, cleanup, prompt for restart                    |
-|                           |                  |                                                                                        |
-| `Uninstall-ADTDeployment` | `Pre-Uninstall`  | Display end user messaging, close processes                                            |
-|                           | `Uninstall`      | Uninstall application                                                                  |
-|                           | `Post-Uninstall` | Prompt for restart                                                                     |
-|                           |                  |                                                                                        |
-| `Repair-ADTDeployment`    | `Pre-Repair`     | Display end user messaging, close processes, uninstall / clean up previous versions    |
-|                           | `Repair`         | Repair application                                                                     |
-|                           | `Post-Repair`    | Drop additional files, registry tweaks, reset settings, prompt for restart             |
+| **Install Type**          | **Phase**        | **Deployment Tasks**                                                                |
+| :------------------------ | :----------------| :---------------------------------------------------------------------------------- |
+| `Install-ADTDeployment`   | `Pre-Install`    | Prompt to close processes, allow defer, uninstall / clean-up previous versions      |
+|                           | `Install`        | Install application                                                                 |
+|                           | `Post-Install`   | Drop additional files, registry tweaks, cleanup, prompt for restart                 |
+|                           |                  |                                                                                     |
+| `Uninstall-ADTDeployment` | `Pre-Uninstall`  | Display end user messaging, close processes                                         |
+|                           | `Uninstall`      | Uninstall application                                                               |
+|                           | `Post-Uninstall` | Prompt for restart                                                                  |
+|                           |                  |                                                                                     |
+| `Repair-ADTDeployment`    | `Pre-Repair`     | Display end user messaging, close processes, uninstall / clean up previous versions |
+|                           | `Repair`         | Repair application                                                                  |
+|                           | `Post-Repair`    | Drop additional files, registry tweaks, reset settings, prompt for restart          |

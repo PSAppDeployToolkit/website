@@ -14,56 +14,82 @@ Each setting in the config.psd1 is exposed using the `Get-ADTConfig` function.
 
 # Settings
 
-
 ## General Strings
 
-- **Close Prompt**
-    - `ClosePrompt.ButtonDefer`: Button text for deferring the close prompt.
-    - `ClosePrompt.ButtonContinue`: Button text for continuing the close prompt.
-    - `ClosePrompt.ButtonClose`: Button text for closing the prompt.
+## Close Prompts
 
-- **Progress Messages**
-    - `Progress.MessageInstall`: Message displayed during installation.
-    - `Progress.MessageUninstallDetail`: Detailed message displayed during uninstallation.
-    - `Progress.MessageRepair`: Message displayed during repair.
-    - `Progress.MessageUninstall`: Message displayed during uninstallation.
-    - `Progress.MessageRepairDetail`: Detailed message displayed during repair.
-    - `Progress.MessageInstallDetail`: Detailed message displayed during installation.
+| Setting                      | Description                                  |
+|:-----------------------------|:---------------------------------------------|
+| `ClosePrompt.ButtonClose`    | Button text for closing the prompt.          |
+| `ClosePrompt.ButtonContinue` | Button text for continuing the close prompt. |
+| `ClosePrompt.ButtonDefer`    | Button text for deferring the close prompt.  |
 
-- **Disk Space**
-    - `DiskSpace.Message`: Message displayed when checking disk space.
+## Progress Messages
 
-- **Deployment Types**
-    - `DeploymentType.Uninstall`: Text for uninstall deployment type.
-    - `DeploymentType.Install`: Text for install deployment type.
-    - `DeploymentType.Repair`: Text for repair deployment type.
+| Setting                           | Description                                       |
+|:----------------------------------|:--------------------------------------------------|
+| `Progress.MessageInstall`         | Message displayed during installation.            |
+| `Progress.MessageInstallDetail`   | Detailed message displayed during installation.   |
+| `Progress.MessageRepair`          | Message displayed during repair.                  |
+| `Progress.MessageRepairDetail`    | Detailed message displayed during repair.         |
+| `Progress.MessageUninstall`       | Message displayed during uninstallation.          |
+| `Progress.MessageUninstallDetail` | Detailed message displayed during uninstallation. |
 
-- **Welcome Prompts**
-    - `WelcomePrompt.Classic`: Classic style welcome prompt.
-    - `WelcomePrompt.Fluent`: Fluent style welcome prompt.
+## Disk Space
 
-- **Block Execution**
-    - `BlockExecution.Message`: Message displayed when execution is blocked.
+| Setting             | Description                                 |
+|:--------------------|:--------------------------------------------|
+| `DiskSpace.Message` | Message displayed when checking disk space. |
 
-- **Balloon Texts**
-    - `BalloonText.Complete`: Balloon text for completion.
-    - `BalloonText.Error`: Balloon text for errors.
-    - `BalloonText.FastRetry`: Balloon text for fast retry.
-    - `BalloonText.RestartRequired`: Balloon text for restart required.
-    - `BalloonText.Start`: Balloon text for start.
+## Deployment Types
 
-- **Restart Prompts**
-    - `RestartPrompt.Message`: General restart prompt message.
-    - `RestartPrompt.MessageRestart`: Message displayed when a restart is required.
-    - `RestartPrompt.ButtonRestartLater`: Button text for restarting later.
-    - `RestartPrompt.TimeRemaining`: Time remaining message for restart.
-    - `RestartPrompt.ButtonRestartNow`: Button text for restarting now.
-    - `RestartPrompt.MessageTime`: Time message for restart prompt.
-    - `RestartPrompt.Title`: Title for restart prompt.
+| Setting                    | Description                         |
+|:---------------------------|:------------------------------------|
+| `DeploymentType.Install`   | Text for install deployment type.   |
+| `DeploymentType.Repair`    | Text for repair deployment type.    |
+| `DeploymentType.Uninstall` | Text for uninstall deployment type. |
 
-- **Defer Prompts**
-    - `DeferPrompt.WarningMessage`: Warning message for defer prompt.
-    - `DeferPrompt.WelcomeMessage`: Welcome message for defer prompt.
-    - `DeferPrompt.ExpiryMessage`: Expiry message for defer prompt.
-    - `DeferPrompt.Deadline`: Deadline message for defer prompt.
-    - `DeferPrompt.RemainingDeferrals`: Remaining deferrals message for defer prompt.
+## Welcome Prompts
+
+| Setting                 | Description                   |
+|:------------------------|:------------------------------|
+| `WelcomePrompt.Classic` | Classic style welcome prompt. |
+| `WelcomePrompt.Fluent`  | Fluent style welcome prompt.  |
+
+## Block Execution
+
+| Setting                  | Description                                  |
+|:-------------------------|:---------------------------------------------|
+| `BlockExecution.Message` | Message displayed when execution is blocked. |
+
+## Balloon Texts
+
+| Setting                       | Description                        |
+|:------------------------------|:-----------------------------------|
+| `BalloonText.Complete`        | Balloon text for completion.       |
+| `BalloonText.Error`           | Balloon text for errors.           |
+| `BalloonText.FastRetry`       | Balloon text for fast retry.       |
+| `BalloonText.RestartRequired` | Balloon text for restart required. |
+| `BalloonText.Start`           | Balloon text for start.            |
+
+## Restart Prompts
+
+| Setting                            | Description                                   |
+|:-----------------------------------|:----------------------------------------------|
+| `RestartPrompt.ButtonRestartLater` | Button text for restarting later.             |
+| `RestartPrompt.ButtonRestartNow`   | Button text for restarting now.               |
+| `RestartPrompt.Message`            | General restart prompt message.               |
+| `RestartPrompt.MessageRestart`     | Message displayed when a restart is required. |
+| `RestartPrompt.MessageTime`        | Time message for restart prompt.              |
+| `RestartPrompt.TimeRemaining`      | Time remaining message for restart.           |
+| `RestartPrompt.Title`              | Title for restart prompt.                     |
+
+## Defer Prompts
+
+| Setting                          | Description                                   |
+|:---------------------------------|:----------------------------------------------|
+| `DeferPrompt.Deadline`           | Deadline message for defer prompt.            |
+| `DeferPrompt.ExpiryMessage`      | Expiry message for defer prompt.              |
+| `DeferPrompt.RemainingDeferrals` | Remaining deferrals message for defer prompt. |
+| `DeferPrompt.WarningMessage`     | Warning message for defer prompt.             |
+| `DeferPrompt.WelcomeMessage`     | Welcome message for defer prompt.             |

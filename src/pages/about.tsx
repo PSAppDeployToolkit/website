@@ -90,7 +90,7 @@ const AboutPage = () => {
           </p>
           <p>
             PSAppDeployToolkit was created by <b>Sean Lillis</b>, <b>Dan Cunningham</b> and <b>Mo Mashwani</b> in their
-            spare time while working for one of the &apos;Big Five&apos; financial services companies and was standard.
+            spare time while working for one of the &apos;Big Five&apos; financial services companies, where it was quickly adopted as the global standard for deploying applications.
             It was first released to CodePlex in August 2013. Since then, it has grown from a small project to being
             almost universally adopted as the de facto deployment standard by companies all overthe world - largely due
             to its reputation for stability and ease of use. From small companies to Fortune 500s and federal
