@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@docusaurus/eslint-plugin": "^3.6.3",
-    "@docusaurus/module-type-aliases": "3.6.1",
+    "@docusaurus/module-type-aliases": "3.6.3",
     "@docusaurus/preset-classic": "^3.6.3",
     "@docusaurus/theme-classic": "^3.6.3",
     "@docusaurus/tsconfig": "^3.6.3",
