@@ -21,8 +21,8 @@ importers:
         specifier: ^3.6.3
         version: 3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@easyops-cn/docusaurus-search-local':
-        specifier: ^0.45.0
-        version: 0.45.0(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@docusaurus/theme-common@3.6.3(@docusaurus/plugin-content-docs@3.6.3(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
+        specifier: ^0.46.1
+        version: 0.46.1(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@docusaurus/theme-common@3.6.3(@docusaurus/plugin-content-docs@3.6.3(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
       '@fec/remark-a11y-emoji':
         specifier: ^4.0.2
         version: 4.0.2
@@ -1248,8 +1248,8 @@ packages:
   '@easyops-cn/autocomplete.js@0.38.1':
     resolution: {integrity: sha512-drg76jS6syilOUmVNkyo1c7ZEBPcPuK+aJA7AksM5ZIIbV57DMHCywiCr+uHyv8BE5jUTU98j/H7gVrkHrWW3Q==}
 
-  '@easyops-cn/docusaurus-search-local@0.45.0':
-    resolution: {integrity: sha512-ccJjeYmBHrv2v8Y9eQnH79S0PEKcogACKkEatEKPcad7usQj/14jA9POUUUYW/yougLSXghwe+uIncbuUBuBFg==}
+  '@easyops-cn/docusaurus-search-local@0.46.1':
+    resolution: {integrity: sha512-kgenn5+pctVlJg8s1FOAm9KuZLRZvkBTMMGJvTTcvNTmnFIHVVYzYfA2Eg+yVefzsC8/cSZGKKJ0kLf8I+mQyw==}
     engines: {node: '>=12'}
     peerDependencies:
       '@docusaurus/theme-common': ^2 || ^3
@@ -2541,6 +2541,9 @@ packages:
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
+
+  comlink@4.4.2:
+    resolution: {integrity: sha512-OxGdvBmJuNKSCMO4NTl1L47VRp6xn2wG4F/2hYzB6tiCb709otOxtEYCSvK80PtjODfXXZu8ds+Nw5kVCjqd2g==}
 
   comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==}
@@ -8488,7 +8491,7 @@ snapshots:
       cssesc: 3.0.0
       immediate: 3.3.0
 
-  '@easyops-cn/docusaurus-search-local@0.45.0(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@docusaurus/theme-common@3.6.3(@docusaurus/plugin-content-docs@3.6.3(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)':
+  '@easyops-cn/docusaurus-search-local@0.46.1(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@docusaurus/theme-common@3.6.3(@docusaurus/plugin-content-docs@3.6.3(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)':
     dependencies:
       '@docusaurus/plugin-content-docs': 3.6.3(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(debug@4.3.7)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
       '@docusaurus/theme-common': 3.6.3(@docusaurus/plugin-content-docs@3.6.3(@docusaurus/faster@3.6.3(@docusaurus/types@3.6.3(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(@mdx-js/react@3.1.0(@types/react@18.3.12)(react@18.3.1))(@rspack/core@1.1.4)(acorn@8.14.0)(eslint@8.57.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2))(acorn@8.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
@@ -8500,6 +8503,7 @@ snapshots:
       '@node-rs/jieba': 1.10.4
       cheerio: 1.0.0
       clsx: 1.2.1
+      comlink: 4.4.2
       debug: 4.3.7
       fs-extra: 10.1.0
       klaw-sync: 6.0.0
@@ -9982,6 +9986,8 @@ snapshots:
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
+
+  comlink@4.4.2: {}
 
   comma-separated-tokens@2.0.3: {}
 
