@@ -35,3 +35,22 @@ Here you'll see the latest release of PSAppDeployToolkit. Click on the `Assets` 
 | `Source code (zip)` | Zip file containing the source code. |
 
 Once the main zip file is extracted, you will see a file and folder structure similar to the one outlined on the next page.
+
+<br />
+## Downloading PSAppDeployToolkit.Tools
+
+PSAppDeployToolkit.Tools is a companion module , designed for functions that will help you create your packages rather than deploy them. At present, this is in pre-release status, so installing from the PowerShell Gallery requires an additional switch:
+
+```powershell
+Install-Module PSAppDeployToolkit.Tools -Scope CurrentUser -AllowPreRelease
+```
+
+If this produces an error that the `-AllowPreRelease` parameter is not recognised, then first update PowerShellGet and then restart your PowerShell console:
+
+```powershell
+Install-Module PowerShellGet -Force -Scope CurrentUser
+```
+
+Alternatively, you can download the release assets:
+
+- [PSAppDeployToolkit.Tools Releases](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools/releases).
