@@ -1,0 +1,58 @@
+---
+sidebar_position: 7
+title: 'FAQ'
+description: 'Frequently Asked Questions'
+slug: /getting-started/faq
+hide_title: true
+tags:
+  - Getting Started
+  - FAQ
+---
+
+# Frequently Asked Questions
+
+<details>
+<summary>Everything has changed! Where do I begin?</summary>
+
+Some useful links to get you going:
+
+- [Changes in v4](/docs/getting-started/changes-in-v4)
+- [v4 Function Mapping](/docs/reference/v4-function-mapping)
+- [Migrating from v3](/docs/getting-started/migrating-from-v3)
+</details>
+
+<details>
+<summary>I've installed and imported the module - where are my toolkit variables?</summary>
+
+Environment variables will not be available until you have either opened an ADTSession or called the [Export-ADTEnvironmentTableToSessionState](/docs/reference/functions/Export-ADTEnvironmentTableToSessionState) command.
+
+This will be handled for you automatically within the deployment script.
+
+Variables specific to a particular deployment, such as `$appName` and `$appVersion`, can now be found inside the [$adtSession](/docs/reference/adtsession-object) object.
+
+For more information, see the [Variables](/docs/reference/variables) page.
+</details>
+
+<details>
+<summary>Why do I get the errror "A PSAppDeployToolkit assembly of a different file hash is already loaded"?</summary>
+
+Once dlls are loaded into PowerShell, it is not possible to unload them. If the module detects that a mismatching version has already been imported in the current PowerShell session, this error will be thrown.
+
+Restart PowerShell, or use a separate shell for testing your deployment. You can also avoid this by ensuring that your installed version of the module and your application package are all on the same latest version.
+</details>
+
+<details>
+<summary>Why can't I get the new Fluent UI to work with my v3 scripts in compatibility mode?</summary>
+
+The new Fluent UI has some additional parameters, such as SubTitle, that are not part of the Classic UI.
+
+To ensure 100% backwards compatibility, when running a v3 script in compatibility mode, you are restricted to only being able to use the classic UI.
+</details>
+
+<details>
+<summary>Why can't I get the new Fluent UI to work with PowerShell ISE?</summary>
+
+Unfortunately there are some issues with the PowerShell host of the ISE that make it incompatible with the new Fluent UI.
+
+You can continue to develop within the ISE, but you should use a separate PowerShell instance to launch and test your deployment. Alternatively, use another IDE such as [Visual Studio Code](https://code.visualstudio.com/download).
+</details>
