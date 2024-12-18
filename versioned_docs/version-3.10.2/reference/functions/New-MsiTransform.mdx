@@ -30,17 +30,16 @@ Create a transform file for an MSI database and create/modify properties in the 
 
 ### EXAMPLE 1
 
-````powershell
+```powershell
 [Hashtable]$TransformProperties = {
-    ```
-
-'ALLUSERS' = '1'
+    'ALLUSERS' = '1'
     'AgreeToLicense' = 'Yes'
     'REBOOT' = 'ReallySuppress'
     'RebootYesNo' = 'No'
     'ROOTDRIVE' = 'C:'
-\}
+}
 New-MsiTransform -MsiPath 'C:\Temp\PSADTInstall.msi' -TransformProperties $TransformProperties
+```
 
 ## PARAMETERS
 
