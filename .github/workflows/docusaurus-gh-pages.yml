@@ -1,6 +1,3 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Docusuarus with GitHub Pages dependencies preinstalled
-
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -31,7 +28,10 @@ jobs:
         repository: psappdeploytoolkit/website
     - name: Install pnpm
       uses: pnpm/action-setup@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+      with:
+        version: 9
+        run_install: false
+    - name: Install Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}

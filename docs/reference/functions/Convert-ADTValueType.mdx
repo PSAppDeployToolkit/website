@@ -1,65 +1,64 @@
 ---
-id: Show-ADTBlockedAppDialog
-title: Show-ADTBlockedAppDialog
+id: Convert-ADTValueType
+title: Convert-ADTValueType
 hide_title: false
 hide_table_of_contents: false
 ---
 
 ## SYNOPSIS
 
-Displays a dialog to inform the user about a blocked application.
+Casts the provided value to the requested type without range errors.
 
 ## SYNTAX
 
 ```powershell
-Show-ADTBlockedAppDialog [-Title] <String>
- [[-UnboundArguments] <System.Collections.Generic.List`1[System.Object]>] [<CommonParameters>]
+Convert-ADTValueType [-Value] <Int64> [-To] <ValueTypes> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Displays a dialog to inform the user that an application is blocked.
-This function ensures that only one instance of the blocked application dialog is shown at a time by using a mutex.
-If another instance of the dialog is already open, the function exits without displaying a new dialog.
+This function uses C# code to cast the provided value to the requested type.
+This avoids errors from PowerShell when values exceed the casted value type's range.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Show-ADTBlockedAppDialog -Title 'Blocked Application'
+Convert-ADTValueType -Value 256 -To SByte
 ```
 
-Displays a dialog with the title 'Blocked Application' to inform the user about a blocked application.
+Invokes the Convert-ADTValueType function and returns the value as a byte, which would equal 0.
 
 ## PARAMETERS
 
-### -Title
+### -Value
 
-The title of the blocked application dialog.
+The value to convert.
 
 ```yaml
-Type: String
+Type: Int64
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 1
-Default value: None
-Accept pipeline input: False
+Default value: 0
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -UnboundArguments
+### -To
 
-Captures any additional arguments passed to the function.
+What to cast the value to.
 
 ```yaml
-Type: System.Collections.Generic.List`1[System.Object]
+Type: ValueTypes
 Parameter Sets: (All)
 Aliases:
+Accepted values: SByte, Byte, Short, Int16, UShort, UInt16, Int, Int32, UInt, UInt32, Long, Int64, ULong, UInt64
 
-Required: False
+Required: True
 Position: 2
 Default value: None
 Accept pipeline input: False
@@ -72,14 +71,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.Int64
 
-### You cannot pipe objects to this function.
+### Convert-ADTValueType will accept any value type as a signed 64-bit integer, then cast to the requested type.
 ## OUTPUTS
 
-### None
+### System.ValueType
 
-### This function does not return any output.
+### Convert-ADTValueType will convert the piped input to this type if specified by the caller.
 ## NOTES
 An active ADT session is NOT required to use this function.
 
