@@ -1,5 +1,5 @@
 ---
-title: PSADT & Patch My PC Q&A Webinar
+title: PSADT and Patch My PC's Stewardship - Q&A Webinar
 authors: [sintaxasn]
 tags: [psappdeploytoolkit, patchmypc, webinar]
 description: The PSADT & PMPC Q&A webinar is now live!

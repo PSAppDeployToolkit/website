@@ -62,12 +62,13 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: '4.0.3',
+              label: '4.0',
               banner: 'none',
               // editUrl: 'https://github.com/psappdeploytoolkit/website/docs/edit/main',
             },
             '3.10.2': {
               label: '3.10.2',
+              path: '3.10.2',
             },
           },
         },
@@ -118,14 +119,14 @@ const config = {
         minHeadingLevel: 2,
         maxHeadingLevel: 2,
       },
-      // announcementBar: {
-      //   id: 'support_us',
-      //   content:
-      //     'Join the PSAppDeployToolkit v4 release webinar on Wednesday Dec 4th. <a target="_blank" rel="noopener noreferrer" href="https://patchmypc.com/psappdeploytoolkit-v4-launch-webinar">More details here!</a>',
-      //   backgroundColor: '#0081c6',
-      //   textColor: '#fff',
-      //   isCloseable: true,
-      // },
+      announcementBar: {
+        id: 'support_us',
+        content:
+          'Watch the <a target="_blank" rel="noopener noreferrer" href="https://patchmypc.com/psappdeploytoolkit-v4-launch-webinar">PSADT v4 launch webinar</a> to see the new features and changes, then find out how to download the new version in our <a target="_blank" rel="noopener noreferrer" href="https://psappdeploytoolkit.com/docs/category/getting-started">Getting Started</a> guide.',
+        backgroundColor: '#0081c6',
+        textColor: '#fff',
+        isCloseable: true,
+      },
       navbar: {
         title: '',
         logo: {

@@ -62,6 +62,7 @@ html {
   padding: 0 var(--ifm-pre-padding);
 }
 
+
 .docusaurus-highlight-code-line {
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
@@ -84,6 +85,8 @@ html {
 [data-theme='dark'] .button {
   border: var(--ifm-button-border-width) solid #e3e3e3;
 }
+
+
 
 .hero__subtitle {
   text-align: left;
@@ -232,4 +235,23 @@ html[data-theme='dark'] .header-github-link:before {
 /* GitHub Icon Hover */
 .header-github-link:hover {
   opacity: 0.6;
+}
+
+.theme-doc-version-badge {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  padding: .5rem .5rem;
+  border-radius: 0.25rem;
+  border-width: 0;
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: .5rem 0.25rem .5rem 0.25rem;
+}
+
+html[data-theme='dark'] .theme-doc-version-badge {
+  background-color: var(--ifm-color-primary-dark);
+  color: white;
+
 }

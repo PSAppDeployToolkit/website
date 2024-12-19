@@ -11,9 +11,9 @@ tags:
 
 # Downloading
 
-## Downloading PSAppDeployToolkit v4
-
 PSAppDeployToolkit is provided as a module via the PowerShell Gallery, and a self-contained Zip file archive via GitHub, which contains the PSAppDeployToolkit module. Both downloads contain the functions required to scaffold a new deployment.
+
+## Installing from the PowerShell Gallery
 
 You can install the PSAppDeployToolkit module from the PowerShell Gallery using the following:
 
@@ -21,9 +21,11 @@ You can install the PSAppDeployToolkit module from the PowerShell Gallery using 
 Install-Module -Name PSAppDeployToolkit -Scope CurrentUser
 ```
 
+## Downloading the archive from GitHub
+
 Alternatively, you can download the release assets:
 
-- [PSAppDeployToolkit Latest Release](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases/latest).
+- [PSAppDeployToolkit Latest Release](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases/latest)
 
 Here you'll see the latest release of PSAppDeployToolkit. Click on the `Assets` dropdown to see the available downloads. You should see the following:
 
@@ -35,3 +37,23 @@ Here you'll see the latest release of PSAppDeployToolkit. Click on the `Assets` 
 | `Source code (zip)`                  | Zip file containing the source code.                                                          |
 
 Once the main zip file is extracted, you will see a file and folder structure similar to the one outlined on the next page.
+
+## Downloading PSAppDeployToolkit.Tools
+
+PSAppDeployToolkit.Tools is a companion module, designed for functions that will help you create your packages rather than deploy them.
+
+At present, this is in pre-release status, so installing from the PowerShell Gallery requires an additional switch:
+
+```powershell
+Install-Module PSAppDeployToolkit.Tools -Scope CurrentUser -AllowPreRelease
+```
+
+If this produces an error that the -AllowPreRelease parameter is not recognised, then first update PowerShellGet and then restart your PowerShell console:
+
+```powershell
+Install-Module PowerShellGet -Force -Scope CurrentUser
+```
+
+Alternatively, you can download the release assets:
+
+- [PSAppDeployToolkit.Tools Latest Release](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools/releases/latest)
