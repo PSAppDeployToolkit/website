@@ -34,8 +34,8 @@ Further changes to the deployment layout are detailed in the [Deployment Structu
 
 :::
 
-| **Old Name**                 | **New Name**                  | **More Information**                                                          |
-|:-----------------------------|:------------------------------|:------------------------------------------------------------------------------|
+| **Old Name**                 | **New Name**                  | **More Information**                                                      |
+|:-----------------------------|:------------------------------|:--------------------------------------------------------------------------|
 | `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit) |
 | `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit) |
 | `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Customizing Deployments](../usage/customizing-deployments)               |
@@ -55,8 +55,8 @@ For a detailed mapping of all v3 to v4 functions, check out the [Function Mappin
 
 - The following table highlights the key function name changes where functions hve been renamed to avoid collisions with other scripts / modules.
 
-| **Old Name**      | **New Name / Details**                                              |
-|:------------------|:--------------------------------------------------------------------|
+| **Old Name**      | **New Name / Details**                                          |
+|:------------------|:----------------------------------------------------------------|
 | `Copy-File`       | [`Copy-ADTFile`](../reference/functions/Copy-ADTFile)           |
 | `Execute-Process` | [`Start-ADTProcess`](../reference/functions/Start-ADTProcess)   |
 | `Write-Log`       | [`Write-ADTLogEntry`](../reference/functions/Write-ADTLogEntry) |
@@ -72,7 +72,7 @@ For a detailed mapping of all v3 to v4 functions, check out the [Function Mappin
 v3 had many Boolean parameters, some of which default to true, and others to false. It was often difficult to know what the default was for each command without looking up the help or code.
 
 - Now instead of: `TopMost $true` or `-TopMost $false`
-- We have a single optional switch: `-NotTopMost`
+- We have a single optional switch `-NotTopMost`
 
 This way, the name of the parameter naturally implies what the default behavior is.
 
