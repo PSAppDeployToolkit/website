@@ -36,8 +36,8 @@ Further changes to the deployment layout are detailed in the [Deployment Structu
 
 | **Old Name**                 | **New Name**                  | **More Information**                                                      |
 |:-----------------------------|:------------------------------|:--------------------------------------------------------------------------|
-| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit) |
-| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit) |
+| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](/docs/deployment-concepts/invoke-appdeploytoolkit) |
+| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](/docs1/deployment-concepts/invoke-appdeploytoolkit) |
 | `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Customizing Deployments](../usage/customizing-deployments)               |
 | *Was part of Config file*    | `Strings\Strings.psd1`        | [Add correct link](../usage/customizing-deployments)                      |
 
@@ -63,9 +63,9 @@ For a detailed mapping of all v3 to v4 functions, check out the [Function Mappin
 
 ## Variables
 
-- The standard toolkit environment variables (e.g. `$envProgramFiles`) will be available once an [ADTSession](../reference/adtsession-object) has been started.
+- The standard toolkit environment variables (e.g. `$envProgramFiles`) will be available once an [ADTSession](/docs/reference/adtsession-object) has been started.
 
-- Variables specific to a particular deployment (e.g. `$appName`) can now be found within the [ADTSession](../reference/adtsession-object) object (e.g. `$adtSession.AppName`).
+- Variables specific to a particular deployment (e.g. `$appName`) can now be found within the [ADTSession](/docs/reference/adtsession-object) object (e.g. `$adtSession.AppName`).
 
 ## Booleans Replaced with Switches
 
