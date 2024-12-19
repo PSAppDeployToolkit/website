@@ -5,20 +5,20 @@ description: 'Migration guidance for those coming from v3.'
 slug: /getting-started/migrating-from-v3
 hide_title: true
 tags:
-  - Getting Started
   - Usage
   - Migration
+  - Getting Started
 ---
 
 # Migrating from v3
 
 ## Changes in v4
 
-If you have not already done so, be sure to familiarise yourself with the numerous [changes](../getting-started/changes-in-v4) in v4.
+If you have not already done so, be sure to familiarize yourself with the numerous [changes](/docs/getting-started/changes-in-v4) in v4.
 
 ## Using v4 in v3 Compatibility Mode
 
-The [Creating a new deployment](../getting-started/create-a-new-deployment) page details how to create a v3-compatible deployment template, or to download one from GitHub.
+The [Creating a new deployment](/docs/getting-started/create-a-new-deployment) page details how to create a v3-compatible deployment template, or to download one from GitHub.
 
 This will create a layout where you can simply drop in your existing v3 **Deploy-Application.ps1** scripts (also **AppDeployToolkit\AppDeployToolkitExtensions.ps1**) and they will continue to work, with the following caveats:
 
@@ -33,7 +33,7 @@ This will create a layout where you can simply drop in your existing v3 **Deploy
 - **Test-ADTCompatibility** - Test your PSAppDeployToolkit v3 scripts to get a full report on which functions and variables have changed in v4.
 - **Convert-ADTDeployment** - Convert a PSAppDeployToolkit v3 script or an entire package folder to v4 standards.
 
-The [Downloading](../getting-started/download) page covers how to download and install this additional module.
+The [Downloading](/docs/getting-started/downloading) page covers how to download and install this additional module.
 
 ### Test-ADTCompatibility
 Example command usage:
@@ -64,6 +64,6 @@ Conversion limitations:
 - Any other custom variable/function declarations or other code outside of these blocks will not be transferred.
 - **Files** and **SupportFiles** content will be transferred if a package folder is supplied as the path rather than a **Deploy-Application.ps1** file.
 - **Config.xml** changes will not be ported over to the new .psd1 files.
-- Customised assets/banners are not currently copied over.
+- Customized assets/banners are not currently copied over.
 
 **PSAppDeployToolkit.Tools** is currently in pre-release status to gather early feedback. If you encounter any conversion issues, please submit them as a [GitHub Issue](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools/issues).

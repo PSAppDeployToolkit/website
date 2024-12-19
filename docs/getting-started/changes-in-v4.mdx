@@ -5,8 +5,8 @@ description: 'Guidance on what has changed in v4.'
 slug: /getting-started/changes-in-v4
 hide_title: true
 tags:
-  - Getting Started
   - Changes
+  - Getting Started
 ---
 
 # Changes in v4
@@ -30,36 +30,36 @@ tags:
 
 :::info
 
-Further changes to the deployment layout are detailed in the [Deployment Structure](../deployment-concepts/deployment-structure) page.
+Further changes to the deployment layout are detailed in the [Deployment Structure](/docs/deployment-concepts/deployment-structure) page.
 
 :::
 
-| **Old Name**                 | **New Name**                  | **More Information**                                                      |
-|:-----------------------------|:------------------------------|:--------------------------------------------------------------------------|
+| **Old Name**                 | **New Name**                  | **More Information**                                                    |
+|:-----------------------------|:------------------------------|:------------------------------------------------------------------------|
 | `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](/docs/deployment-concepts/invoke-appdeploytoolkit) |
-| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](/docs1/deployment-concepts/invoke-appdeploytoolkit) |
-| `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Customizing Deployments](../usage/customizing-deployments)               |
-| *Was part of Config file*    | `Strings\Strings.psd1`        | [Add correct link](../usage/customizing-deployments)                      |
+| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](/docs/deployment-concepts/invoke-appdeploytoolkit) |
+| `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Configuration Settings](/docs/reference/config-settings)                    |
+| *Was part of Config file*    | `Strings\Strings.psd1`        | [Language Strings](/docs/reference/language-strings)                       |
 
 ## New Configuration Format
 
-- **.psd1** is PowerShell's native config file format. See the [Customizing Deployments](../usage/customizing-deployments) page for further info.
+- **.psd1** is PowerShell's native config file format. See the [Customizing Deployments](/docs/usage/customizing-deployments) page for further info.
 
 ## Key Function Name Changes
 
 :::info
 
-For a detailed mapping of all v3 to v4 functions, check out the [Function Mapping](../reference/v4-function-mapping) page.
+For a detailed mapping of all v3 to v4 functions, check out the [Function Mapping](/docs/reference/v4-function-mapping) page.
 
 :::
 
 - The following table highlights the key function name changes where functions hve been renamed to avoid collisions with other scripts / modules.
 
-| **Old Name**      | **New Name / Details**                                          |
-|:------------------|:----------------------------------------------------------------|
-| `Copy-File`       | [`Copy-ADTFile`](../reference/functions/Copy-ADTFile)           |
-| `Execute-Process` | [`Start-ADTProcess`](../reference/functions/Start-ADTProcess)   |
-| `Write-Log`       | [`Write-ADTLogEntry`](../reference/functions/Write-ADTLogEntry) |
+| **Old Name**      | **New Name / Details**                                        |
+|:------------------|:--------------------------------------------------------------|
+| `Copy-File`       | [`Copy-ADTFile`](/docs/reference/functions/Copy-ADTFile)           |
+| `Execute-Process` | [`Start-ADTProcess`](/docs/reference/functions/Start-ADTProcess)   |
+| `Write-Log`       | [`Write-ADTLogEntry`](/docs/reference/functions/Write-ADTLogEntry) |
 
 ## Variables
 
@@ -84,7 +84,7 @@ The `Remove-MsiApplications` command in v3 had `-FilterApplication` and `-Exclud
 FilterApplication @(, @('Publisher', 'Oracle Corporation', 'Exact')) -ExcludeFromUninstall @(, @('DisplayName', 'Java 8 Update 45', 'Contains'))
 ```
 
-In the new function [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication), these have now been combined into a single FilterScript that should be familiar to anyone that has used PowerShell's `Where-Object` command:
+In the new function [Uninstall-ADTApplication](/docs/reference/functions/Uninstall-ADTApplication), these have now been combined into a single FilterScript that should be familiar to anyone that has used PowerShell's `Where-Object` command:
 
 ```powershell
 -FilterScript {$_.Publisher -eq 'Oracle Corporation' -and $_.DisplayVersion -notmatch 'Java 8 Update 45'}
@@ -99,7 +99,7 @@ Many commands in v3 used a `-ContinueOnError` parameter. In v4, you just use the
 
 ### Uninstallation of EXE apps
 
-- [`Uninstall-ADTApplication`](../reference/functions/Uninstall-ADTApplication) can now support uninstallation of **EXE** apps in addition to **MSI**.
+- [`Uninstall-ADTApplication`](/docs/reference/functions/Uninstall-ADTApplication) can now support uninstallation of **EXE** apps in addition to **MSI**.
 
 - Use the `-ApplicationType` parameter to restrict to one application type or the other.
 
@@ -107,16 +107,16 @@ Many commands in v3 used a `-ContinueOnError` parameter. In v4, you just use the
 
 ### User Profile Paths
 
-- [`Get-ADTUserProfiles`](../reference/functions/Get-ADTUserProfiles) now supports a `-LoadProfilePaths` switch to find various common folders for each user profile, such as **Documents** and **Desktop**.
+- [`Get-ADTUserProfiles`](/docs/reference/functions/Get-ADTUserProfiles) now supports a `-LoadProfilePaths` switch to find various common folders for each user profile, such as **Documents** and **Desktop**.
 
-- This can be used by [`Copy-ADTFileToUserProfiles`](../reference/functions/Copy-ADTFileToUserProfiles) to copy files directly to these locations.
+- This can be used by [`Copy-ADTFileToUserProfiles`](/docs/reference/functions/Copy-ADTFileToUserProfiles) to copy files directly to these locations.
 
 ### Zero Config WIM Support
 
-- There is now support for compressing your file content to a WIM archive and mounting it during installation. This can be managed manually via [`Mount-ADTWimFile`](../reference/functions/Mount-ADTWimFile) and [`Dismount-ADTWimFile`](../reference/functions/Dismount-ADTWimFile).
+- There is now support for compressing your file content to a WIM archive and mounting it during installation. This can be managed manually via [`Mount-ADTWimFile`](/docs/reference/functions/Mount-ADTWimFile) and [`Dismount-ADTWimFile`](/docs/reference/functions/Dismount-ADTWimFile).
 
-- Alternatively you can use the `-ForceWimDetection` switch with the [`Open-ADTSession`](../reference/functions/Open-ADTSession) command to auto-mount and dismount any WIM files found.
+- Alternatively you can use the `-ForceWimDetection` switch with the [`Open-ADTSession`](/docs/reference/functions/Open-ADTSession) command to auto-mount and dismount any WIM files found.
 
-If you leave the **AppName** blank, [Zero Config](../understanding-the-layout/zero-config-deployment) will kick in, auto-mount any WIM file found and install the MSI found within.
+If you leave the **AppName** blank, [Zero Config](/docs/understanding-the-layout/zero-config-deployment) will kick in, auto-mount any WIM file found and install the MSI found within.
 
 <br />
