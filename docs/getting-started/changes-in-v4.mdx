@@ -141,7 +141,7 @@ Many commands in v3 used a `-ContinueOnError` parameter. In v4, you just use the
 - Instead of: `ContinueOnError $false` or `-ContinueOnError $true`
 - You use: `-ErrorAction Stop` or `-ErrorAction SilentlyContinue`
 
-### Uninstallation of EXE apps
+## Uninstallation of EXE apps
 
 - [`Uninstall-ADTApplication`](/docs/reference/functions/Uninstall-ADTApplication) can now support uninstallation of **EXE** apps in addition to **MSI**.
 
@@ -149,13 +149,13 @@ Many commands in v3 used a `-ContinueOnError` parameter. In v4, you just use the
 
 - `-ArgumentList` will replace the detected arguments found in the `QuietUninstallString` / `UninstallString` in the registry, `-AdditionalArgumentList` will append to them.
 
-### User Profile Paths
+## User Profile Paths
 
 - [`Get-ADTUserProfiles`](/docs/reference/functions/Get-ADTUserProfiles) now supports a `-LoadProfilePaths` switch to find various common folders for each user profile, such as **Documents** and **Desktop**.
 
 - This can be used by [`Copy-ADTFileToUserProfiles`](/docs/reference/functions/Copy-ADTFileToUserProfiles) to copy files directly to these locations.
 
-### Zero Config WIM Support
+## WIM Support
 
 - There is now support for compressing your file content to a WIM archive and mounting it during installation. This can be managed manually via [`Mount-ADTWimFile`](/docs/reference/functions/Mount-ADTWimFile) and [`Dismount-ADTWimFile`](/docs/reference/functions/Dismount-ADTWimFile).
 
