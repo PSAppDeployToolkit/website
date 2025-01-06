@@ -90,6 +90,32 @@ In the new function [Uninstall-ADTApplication](/docs/reference/functions/Uninsta
 -FilterScript {$_.Publisher -eq 'Oracle Corporation' -and $_.DisplayVersion -notmatch 'Java 8 Update 45'}
 ```
 
+## Standardized Array Inputs
+
+Functions that accept multiple values now accept arrays rather than a single string delimited by commas. For example instead of:
+
+```powershell
+Show-InstallationWelcome -CloseApps 'iexplore,winword,excel'
+```
+
+The process list is now defined like so:
+
+```powershell
+Show-ADTInstallationWelcome -CloseProcesses iexplore, winword, excel
+```
+
+Instead of:
+
+```powershell
+Execute-Process -Path 'setup.exe' -Parameters '/S' -IgnoreExitCodes '1,2'
+```
+
+The exit codes are now defined like so:
+
+```powershell
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -IgnoreExitCodes 1,2
+```
+
 ## Error Handling
 
 Many commands in v3 used a `-ContinueOnError` parameter. In v4, you just use the standard PowerShell `-ErrorAction` parameter:
