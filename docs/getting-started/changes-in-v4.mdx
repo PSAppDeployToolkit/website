@@ -90,6 +90,24 @@ In the new function [Uninstall-ADTApplication](/docs/reference/functions/Uninsta
 -FilterScript {$_.Publisher -eq 'Oracle Corporation' -and $_.DisplayVersion -notmatch 'Java 8 Update 45'}
 ```
 
+## ScriptBlock Variables
+
+`Invoke-HKCURegistrySettingsForAllUsers` in v3 required the use of a $UserProfile variable:
+
+```powershell
+Invoke-HKCURegistrySettingsForAllUsers -RegistrySettings {
+    Set-RegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $UserProfile.SID
+}
+```
+
+In v4, the UserProfile objects are piped to the provided scriptblock, so `$_` should be used to represent these objects:
+
+```powershell
+Invoke-ADTAllUsersRegistryAction -ScriptBlock {
+    Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $_.SID
+}
+```
+
 ## Standardized Array Inputs
 
 Functions that accept multiple values now accept arrays rather than a single string delimited by commas. For example instead of:
