@@ -13,4 +13,12 @@ tags:
 
 ## Simple Deployment Method
 
-Work In Progress - Coming Soon!
+Now that you understand the basics of how a deployment works, you can try a simple MSI-based deployment with no effort. PSAppDeployToolkit has a zero-config MSI install feature which allows you to quickly execute an installation with zero configuration of the `Invoke-AppDeployToolkit.ps1` file.
+
+To use this feature:
+
+1. Ensure the AppName is left empty in `Invoke-AppDeployToolkit.ps1` to activate the zero-config feature.
+2. Place your MSI file into the `Files` folder of the PSAppDeployToolkit deployment template. This method only support the installation of one MSI, so if more than one MSI is found, then only the first one is selected.
+3. If you have an MST file, then also place this into the `Files` folder. The MST file must have the same name as the MSI file. For example, if your MSI file name is `test01.msi`, then the MST file must be named `test01.mst`.
+4. If you have any MSP files, then also place them into the `Files` folder. You can place more than one MSP file in the folder, but you must name the files in alphabetical order to control the order in which they are installed.
+5. You can also compress all of these files along with any other installation content required into a WIM file, and it will be automatically mounted and used.
