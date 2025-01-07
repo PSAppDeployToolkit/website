@@ -46,7 +46,7 @@ const sidebars = {
       },
       collapsed: false,
       items: ['usage/how-to-deploy', 'usage/adding-ui-elements', 'usage/customizing-deployments'],
-    },
+    }/*,
     {
       type: 'category',
       label: 'Examples',
@@ -55,7 +55,7 @@ const sidebars = {
       },
       collapsed: false,
       items: ['examples/googlechrome-configmgr'],
-    },
+    },*/
   ],
   reference: [
     'reference',
