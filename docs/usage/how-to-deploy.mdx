@@ -17,6 +17,8 @@ There are two ways to launch the PSAppDeployToolkit for deployment of applicatio
 - Launch `Invoke-AppDeployToolkit.exe` as administrator. This will launch the `Invoke-AppDeployToolkit.ps1` PowerShell script without opening a PowerShell command window.
 
 Additionally:
+- If deploying a system-wide app via **Configuration Manager**, the **'Allow users to view and interact with the program installation'** option should be enabled on the Deployment Type in order to display the UI.
+- If deploying a system-wide app via **Intune**, no such option is available. It is recommended to use ServiceUI.exe to make the deployment process visible to the user using this helper script: [Invoke-ServiceUI.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/tree/main/examples/ServiceUI)
 - If PowerShell x86 is required (for example, if CAPICOM or another x86 library is needed), launch with `Invoke-AppDeployToolkit.exe /32`.
 
 Deploy an application for installation
