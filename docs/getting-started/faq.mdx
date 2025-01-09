@@ -80,13 +80,13 @@ There are pros and cons to this approach:
 
 To update a PSAppDeployToolkit v3 package to v4 standards, there is a `Convert-ADTDeployment` command in the companion [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) module (see [Migrating from v3](../getting-started/migrating-from-v3) for further info).
 
-To update a v4 package to a newer version, since the config and asset folders are externalised, all you need to do is replace the PSAppDeployToolkit folder with the new version. There should not be any breaking changes to worry about if applying a patch release (e.g. upgrading 4.0.0 to 4.0.4).
+To update a v4 package to a newer version, since the config and asset folders are externalized, all you need to do is replace the PSAppDeployToolkit folder with the new version. There should not be any breaking changes to worry about if applying a patch release (e.g. upgrading 4.0.0 to 4.0.4).
 
 However, for major/minor upgrades (e.g. from 4.0 to 4.1 or even 5.0), then you should review the release notes and documentation to see if there are any changes required to the configuration files.
 </details>
 
 <details>
-<summary>Will PSAppDeployToolkit ever get support for Winget?</summary>
+<summary>Will PSAppDeployToolkit ever get support for WinGet?</summary>
 
 There are no current plans to include this directly in the toolkit, however there is a community extension that has been created to provide this functionality:
 
