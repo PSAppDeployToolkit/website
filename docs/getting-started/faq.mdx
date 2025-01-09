@@ -9,19 +9,20 @@ tags:
   - FAQ
 ---
 
-## Frequently Asked Questions
+# Frequently Asked Questions
 
-
-### Everything has changed! Where do I begin?
+<details>
+<summary>Everything has changed! Where do I begin?</summary>
 
 Some useful links to get you going:
 
 - [Changes in v4](/docs/getting-started/changes-in-v4)
 - [v4 Function Mapping](/docs/reference/v4-function-mapping)
 - [Migrating from v3](/docs/getting-started/migrating-from-v3)
+</details>
 
-
-### I've installed and imported the module - where are my toolkit variables?
+<details>
+<summary>I've installed and imported the module - where are my toolkit variables?</summary>
 
 Environment variables will not be available until you have either opened an ADTSession or called the [Export-ADTEnvironmentTableToSessionState](/docs/reference/functions/Export-ADTEnvironmentTableToSessionState) command.
 
@@ -29,26 +30,35 @@ This will be handled for you automatically within the deployment script.
 
 Variables specific to a particular deployment, such as `$appName` and `$appVersion`, can now be found inside the [$adtSession](/docs/reference/adtsession-object) object.
 
-For more information, see the [Variables](/docs/reference/variables) p\he module detects that a mismatching version has already been imported in the current PowerShell session, this error will be thrown.
+For more information, see the [Variables](/docs/reference/variables) page.
+</details>
+
+<details>
+<summary>Why do I get the error "A PSAppDeployToolkit assembly of a different file hash is already loaded"?</summary>
+
+Once dlls are loaded into PowerShell, it is not possible to unload them. If the module detects that a mismatching version has already been imported in the current PowerShell session, this error will be thrown.
 
 Restart PowerShell, or use a separate shell for testing your deployment. You can also avoid this by ensuring that your installed version of the module and your application package are all on the same latest version.
+</details>
 
-
-### Why can't I get the new Fluent UI to work with my v3 scripts in compatibility mode?
+<details>
+<summary>Why can't I get the new Fluent UI to work with my v3 scripts in compatibility mode?</summary>
 
 The new Fluent UI has some additional parameters, such as SubTitle, that are not part of the Classic UI.
 
 To ensure 100% backwards compatibility, when running a v3 script in compatibility mode, you are restricted to only being able to use the classic UI.
+</details>
 
-
-### Why can't I get the new Fluent UI to work with PowerShell ISE?
+<details>
+<summary>Why can't I get the new Fluent UI to work with PowerShell ISE?</summary>
 
 Unfortunately there are some issues with the PowerShell host of the ISE that make it incompatible with the new Fluent UI.
 
 You can continue to develop within the ISE, but you should use a separate PowerShell instance to launch and test your deployment. Alternatively, use another IDE such as [Visual Studio Code](https://code.visualstudio.com/download).
+</details>
 
-
-### Do we need to deploy this module to our endpoints?
+<details>
+<summary>Do we need to deploy this module to our endpoints?</summary>
 
 This is not required, as a copy of the module is contained within the deployment template that we provide for download (or that you can generate with the `New-ADTTemplate` command).
 
@@ -63,43 +73,49 @@ There are pros and cons to this approach:
 - Cons:
   - You need to figure out how to deploy the module to all devices and ensure this runs before and packages that depend upon the module.
   - There is a risk running a previously tested deployment against a new version of the module that it was not previously tested against, either through bugs being introduced, or new breaking changes brought in through major version updates.
+</details>
 
-
-### How can I update the version of the toolkit that my package uses?
+<details>
+<summary>How can I update the version of the toolkit that my package uses?</summary>
 
 To update a PSAppDeployToolkit v3 package to v4 standards, there is a `Convert-ADTDeployment` command in the companion [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) module (see [Migrating from v3](../getting-started/migrating-from-v3) for further info).
 
 To update a v4 package to a newer version, since the config and asset folders are externalised, all you need to do is replace the PSAppDeployToolkit folder with the new version. There should not be any breaking changes to worry about if applying a patch release (e.g. upgrading 4.0.0 to 4.0.4).
 
 However, for major/minor upgrades (e.g. from 4.0 to 4.1 or even 5.0), then you should review the release notes and documentation to see if there are any changes required to the configuration files.
+</details>
 
-
-### Will PSAppDeployToolkit ever get support for WinGet?
+<details>
+<summary>Will PSAppDeployToolkit ever get support for Winget?</summary>
 
 There are no current plans to include this directly in the toolkit, however there is a community extension that has been created to provide this functionality:
 
-- [GitHub](https://github.com/mjr4077au/PSAppDeployToolkit.WinGet)
-- [PSGallery](https://www.powershellgallery.com/packages/PSAppDeployToolkit.WinGet)
+[GitHub](https://github.com/mjr4077au/PSAppDeployToolkit.WinGet)
+[PSGallery](https://www.powershellgallery.com/packages/PSAppDeployToolkit.WinGet)
+</details>
 
-
-### How do I get the UI to display with an Intune deployment?
+<details>
+<summary>How do I get the UI to display with an Intune deployment?</summary>
 
 For 4.0.x and below, ServiceUI.exe is required to display the UI in an Intune deployment. There is a helper script available to assist with this:
 
 [Invoke-ServiceUI](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/tree/main/examples/ServiceUI)
 
 The plan is to handle this natively in a future version of the toolkit by having the UI components run as a separate user process.
+</details>
 
-
-### How can I control when retries will occur after the defer option is selected?
+<details>
+<summary>How can I control when retries will occur after the defer option is selected?</summary>
 
 A 60012 error code will be returned when the defer option is selected. With ConfigMgr, you have the option to configure the Fast Retry interval and set 60012 to be interpreted as Fast Retry (usually 1618).
 
 This is not a good solution for Intune however, as there is no way to configure the Fast Retry interval and it will retry a few minutes later.
 
 Options have been discussed for scheduling a task to retry the deployment at a later time, but there are numerous issues with this approach, such as the need to cache the package, the risk of multiple installs running concurrently and the success code not being reported back to Intune.
+</details>
 
-
-### Can I use PSAppDeployToolkit to install user-context apps?
+<details>
+<summary>Can I use PSAppDeployToolkit to install user-context apps?</summary>
 
 Sure, you just need to set the `RequireAdmin` option in Config.psd1 to `$false` if the installation does not require admin rights.
+</details>
