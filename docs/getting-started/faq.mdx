@@ -16,9 +16,9 @@ tags:
 
   Some useful links to get you going:
 
-  [Changes in v4](/docs/getting-started/changes-in-v4)
-  [v4 Function Mapping](/docs/reference/v4-function-mapping)
-  [Migrating from v3](/docs/getting-started/migrating-from-v3)
+  - [Changes in v4](/docs/getting-started/changes-in-v4)
+  - [v4 Function Mapping](/docs/reference/v4-function-mapping)
+  - [Migrating from v3](/docs/getting-started/migrating-from-v3)
 
 </details>
 
@@ -32,7 +32,6 @@ tags:
   Variables specific to a particular deployment, such as `$appName` and `$appVersion`, can now be found inside the [$adtSession](/docs/reference/adtsession-object) object.
 
   For more information, see the [Variables](/docs/reference/variables) page.
-
 </details>
 
 <details>
@@ -41,7 +40,6 @@ tags:
   Once dlls are loaded into PowerShell, it is not possible to unload them. If the module detects that a mismatching version has already been imported in the current PowerShell session, this error will be thrown.
 
   Restart PowerShell, or use a separate shell for testing your deployment. You can also avoid this by ensuring that your installed version of the module and your application package are all on the same latest version.
-
 </details>
 
 <details>
@@ -50,7 +48,6 @@ tags:
   The new Fluent UI has some additional parameters, such as SubTitle, that are not part of the Classic UI.
 
   To ensure 100% backwards compatibility, when running a v3 script in compatibility mode, you are restricted to only being able to use the classic UI.
-
 </details>
 
 <details>
@@ -77,7 +74,6 @@ tags:
   - Cons:
     - You need to figure out how to deploy the module to all devices and ensure this runs before and packages that depend upon the module.
     - There is a risk running a previously tested deployment against a new version of the module that it was not previously tested against, either through bugs being introduced, or new breaking changes brought in through major version updates.
-
 </details>
 
 <details>
@@ -88,16 +84,16 @@ tags:
   To update a v4 package to a newer version, since the config and asset folders are externalized, all you need to do is replace the PSAppDeployToolkit folder with the new version. There should not be any breaking changes to worry about if applying a patch release (e.g. upgrading 4.0.0 to 4.0.4).
 
   However, for major/minor upgrades (e.g. from 4.0 to 4.1 or even 5.0), then you should review the release notes and documentation to see if there are any changes required to the configuration files.
-  </details>
+</details>
 
 <details>
   <summary>Will PSAppDeployToolkit ever get support for WinGet?</summary>
 
   There are no current plans to include this directly in the toolkit, however there is a community extension that has been created to provide this functionality:
 
-  [GitHub](https://github.com/mjr4077au/PSAppDeployToolkit.WinGet)
-  [PSGallery](https://www.powershellgallery.com/packages/PSAppDeployToolkit.WinGet)
-  </details>
+  - [GitHub](https://github.com/mjr4077au/PSAppDeployToolkit.WinGet)
+  - [PSGallery](https://www.powershellgallery.com/packages/PSAppDeployToolkit.WinGet)
+</details>
 
 <details>
   <summary>How do I get the UI to display with an Intune deployment?</summary>
@@ -121,9 +117,7 @@ tags:
 </details>
 
 <details>
-
   <summary>Can I use PSAppDeployToolkit to install user-context apps?</summary>
 
   Sure, you just need to set the `RequireAdmin` option in Config.psd1 to `$false` if the installation does not require admin rights.
-
 </details>
