@@ -17,8 +17,8 @@ Show a welcome dialog prompting the user with information about the installation
 Show-ADTInstallationWelcome [-CloseProcesses <ProcessObject[]>] [-Silent] [-CloseProcessesCountdown <UInt32>]
  [-ForceCloseProcessesCountdown <UInt32>] [-PromptToSave] [-PersistPrompt] [-BlockExecution] [-AllowDefer]
  [-AllowDeferCloseProcesses] [-DeferTimes <Int32>] [-DeferDays <UInt32>] [-DeferDeadline <String>]
- [-NoMinimizeWindows] [-NotTopMost] [-ForceCountdown <UInt32>] [-CustomText] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-DeferRunInterval <TimeSpan>] [-NoMinimizeWindows] [-NotTopMost] [-ForceCountdown <UInt32>] [-CustomText]
+ -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### CheckDiskSpace
@@ -27,8 +27,8 @@ Show-ADTInstallationWelcome [-CloseProcesses <ProcessObject[]>] [-Silent] [-Clos
 Show-ADTInstallationWelcome [-CloseProcesses <ProcessObject[]>] [-Silent] [-CloseProcessesCountdown <UInt32>]
  [-ForceCloseProcessesCountdown <UInt32>] [-PromptToSave] [-PersistPrompt] [-BlockExecution] [-AllowDefer]
  [-AllowDeferCloseProcesses] [-DeferTimes <Int32>] [-DeferDays <UInt32>] [-DeferDeadline <String>]
- [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-NoMinimizeWindows] [-NotTopMost] [-ForceCountdown <UInt32>]
- [-CustomText] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-DeferRunInterval <TimeSpan>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-NoMinimizeWindows]
+ [-NotTopMost] [-ForceCountdown <UInt32>] [-CustomText] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -302,6 +302,28 @@ The deadline date will be displayed to the user in the format of their culture.
 
 ```yaml
 Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DeferRunInterval
+
+Specifies the time span that must elapse before prompting the user again if a process listed in 'CloseProcesses' is still running after a deferral.
+
+This addresses the issue where Intune retries installations shortly after a user defers, preventing multiple immediate prompts and improving the user experience.
+
+Example:
+- To specify 30 minutes, use: `([System.TimeSpan]::FromMinutes(30))`.
+- To specify 24 hours, use: `([System.TimeSpan]::FromHours(24))`.
+
+```yaml
+Type: TimeSpan
 Parameter Sets: (All)
 Aliases:
 
