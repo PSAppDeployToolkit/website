@@ -11,7 +11,7 @@ tags:
 
 # Customizing Deployments
 
-Aside from customizing the `Invoke-AppDeployToolkit.ps1` script to deploy your application, no configuration is necessary out of the box. The following components can be configured as required:
+Aside from customizing the `Invoke-AppDeployToolkit.ps1` script, no configuration is required by default. However, these components are configurable:
 
 ### Config
 
@@ -42,6 +42,8 @@ All MSI actions are logged and the log file is named according to the MSI file u
 - `Oracle_JavaRuntimeEnvironmentx86_1.7.0.17_EN_01_Patch.log`
 - `Oracle_JavaRuntimeEnvironmentx86_1.7.0.17_EN_01_Uninstall.log`
 
+Enable `CompressLogs` in `config.psd1` to collect log files in a temporary folder and zip them at the end of the installation or uninstallation.
+
 One of the options in config.psd1 is **CompressLogs**. Enabling this option will create a temporary logging folder where you can save all of the log files you want to include in the single ZIP file that will be created from this folder. When set to True, the following happens:
 
 - Both toolkit and MSI logs are temporally placed in a temp folder, the path of which is set in `$adtSession.LogTempFolder` and defaults to `$envTemp\$installName`.
@@ -57,6 +59,6 @@ See [Language Strings](/docs/reference/language-strings.mdx) for further informa
 
 ### Assets
 
-To brand the Fluent UI dialogs with your own custom/corporate logo, replace the `AppIcon.png` file with your own .png file (retaining the file name).
+To brand the Fluent UI dialogs with a custom logo, replace `AppIcon.png` with your own file, retaining the file name. For Classic UI dialogs, replace `Banner.Classic.png`.
 
 To brand the Classic UI dialogs with your own custom/corporate banner, replace the `Banner.Classic.png` file with your own .png file (retaining the file name). The file must be in PNG format and must be 450 x 50 in size.

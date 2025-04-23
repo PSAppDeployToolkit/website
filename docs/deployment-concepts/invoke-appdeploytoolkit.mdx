@@ -12,7 +12,7 @@ tags:
 
 # Deployment Script
 
-The `Invoke-AppDeployToolkit.ps1` script is where you will spend most of your time when using PSAppDeployToolkit. This script is the main entry point for the deployment and is responsible for executing the deployment phases.
+The `Invoke-AppDeployToolkit.ps1` script is where you will spend most of your time when using PSAppDeployToolkit. This script is the main entry point of the deployment, responsible for executing the deployment phases.
 
 ## Deployment Types
 
@@ -24,11 +24,7 @@ The script is broken down into three main deployment types:
 
 ## Deployment Phases
 
-Each of these types has three phases:
-
-- `Pre-InstallType`
-- `InstallType`
-- `Post-InstallType`
+Use `Pre-InstallType`, `InstallType`, and `Post-InstallType` phases to organize tasks for installation, uninstallation, or repair.
 
 ## Script
 
