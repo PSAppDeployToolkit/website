@@ -15,21 +15,21 @@ tags:
 
 :::info
 
-A **deployment template** contains the source files for an application deployment, the deployment script itself which is the logic for how the application should be deployed, and the PSADT module and configuration itself. It is typically entirely self-contained and can be shared with others to deploy the application in a consistent manner.
+A **deployment template** contains the source files for an application deployment, the deployment script that defines the deployment logic, and the PSADT module and configuration. It is typically entirely self-contained and can be shared with others to deploy the application in a consistent manner.
 
 :::
 
 ## Using the module
 
-The PSAppDeployToolkit module can create a new deployment from PSADT's internal templates.
+The PSAppDeployToolkit module can create a new deployment from PSADT’s internal templates.
 
-To create a new deployment using the PSADT v3 compatible deployment template, use the following PowerShell command:
+To create a new deployment using the PSADT v3 compatible template, run:
 
 ```powershell
 New-ADTTemplate -Destination C:\Temp\MyAppDeployment -Name "MyOldAppDeployment" -Version 3
 ```
 
-To create a new deployment using the PSADT v4 native deployment template, use the following PowerShell command:
+To create a new deployment using the PSADT v4 native deployment template, run:
 
 ```powershell
 New-ADTTemplate -Destination C:\Temp\MyAppDeployment -Name "MyAppDeployment"
@@ -37,7 +37,7 @@ New-ADTTemplate -Destination C:\Temp\MyAppDeployment -Name "MyAppDeployment"
 
 ## Using the downloadable templates
 
-The PSAppDeployToolkit Github Releases page includes a number of templates that can be used to create a new deployment.
+The PSAppDeployToolkit GitHub Releases page includes several templates for creating a new deployment.
 
 - `PSAppDeployToolkit_Template_v3.zip` - PSADT v3 compatible deployment template
 - `PSAppDeployToolkit_Template_v4.zip` - PSADT v4 native deployment template

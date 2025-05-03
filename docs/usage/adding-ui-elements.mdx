@@ -11,11 +11,11 @@ tags:
 
 # Adding User Interface Elements
 
-The user interface consists of several components detailed below. The user interface can be branded with a custom logo (Fluent UI) or banner (Classic UI).
+The user interface consists of several components described below. It can be branded with a custom logo (Fluent UI) or a banner (Classic UI).
 
-All of the UI components include message text that is customizable in `strings.psd1`, which has been localized in 25 different languages.
+All UI components include customizable message text in `strings.psd1`, which has been localized into 25 languages.
 
-The language is selected automatically based on the operating system settings, however the `LanguageOverride` setting inside `config.psd1` can be used to override this.
+The language is selected automatically based on the operating system settings. However, you can override it by specifying `LanguageOverride` in `config.psd1`.
 
 The user interface can be suppressed by specifying the deploy mode parameter as follows:
 
@@ -31,7 +31,7 @@ The installation progress message displays an indeterminate progress ring to ind
 
 ![Installation Progress (Dark Mode)](../images/psadt-inprogress_dark.png)
 
-The progress message can be dynamically updated to indicate the stage of the installation or to display custom messages to the user, using the [Show-ADTInstallationProgress](/docs/reference/functions/Show-ADTInstallationProgress) function.
+The progress message can be updated dynamically to show the installation stage or display custom messages, using the [Show-ADTInstallationProgress](/docs/reference/functions/Show-ADTInstallationProgress) function.
 
 ![Dynamic Progress Updating (Light Mode)](../images/psadt-customprogress_light.png)
 
@@ -63,7 +63,7 @@ If the block execution option is enabled (see [Show-ADTInstallationWelcome](/doc
 
 ### Custom Installation Prompt
 
-A custom prompt with the PSAppDeployToolkit branding can be used to display messages and interact with the user using the [Show-ADTInstallationPrompt](/docs/reference/functions/Show-ADTInstallationPrompt) function. The title and text is customizable and up to 3 customizable buttons can be included on the prompt as well as optional system icons.
+A custom prompt with PSAppDeployToolkit branding can be displayed using [Show-ADTInstallationPrompt](/docs/reference/functions/Show-ADTInstallationPrompt). The title and text can be customized, and up to 3 buttons can be included.
 
 ![3 Buttons being used in a custom message box (Light Mode)](../images/psadt-3buttonmsgbox_light.png)
 

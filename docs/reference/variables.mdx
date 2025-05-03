@@ -11,11 +11,11 @@ tags:
 
 # Variables
 
-When you open an ADTSession (which is done for you automatically in Invoke-AppDeployToolkit.ps1), a number of helpful variables are created, ranging from hardware information such as processor architecture and operating system name, system and user paths such as the Program Data folder, and Users' Home Drive, Active Directory Domain details etc.
+When you open an ADTSession (automatically handled in Invoke-AppDeployToolkit.ps1), several useful variables are created. These include hardware information, system and user paths, and Active Directory domain details, among others.
 
 These variables can also be instantiated without opening a session by calling the [Export-ADTEnvironmentTableToSessionState](../reference/functions/Export-ADTEnvironmentTableToSessionState) command.
 
-Variables specific to a particular deployment, such as `$appName` and `$appVersion`, have now been moved inside of the **ADTSession** object. For more information, see the [ADTSession Object](./adtsession-object) page.
+Variables specific to a particular deployment, such as `$appName` and `$appVersion`, have been moved inside the **ADTSession** object. For more information, see the [ADTSession Object](./adtsession-object) page.
 
 ## Toolkit Name
 

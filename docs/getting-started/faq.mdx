@@ -14,7 +14,7 @@ tags:
 <details>
   <summary>Everything has changed! Where do I begin?</summary>
 
-  Some useful links to get you going:
+  Some useful links to get you started:
 
   - [Changes in v4](/docs/getting-started/changes-in-v4)
   - [v4 Function Mapping](/docs/reference/v4-function-mapping)
@@ -25,72 +25,70 @@ tags:
 <details>
   <summary>I've installed and imported the module - where are my toolkit variables?</summary>
 
-  Environment variables will not be available until you have either opened an ADTSession or called the [Export-ADTEnvironmentTableToSessionState](/docs/reference/functions/Export-ADTEnvironmentTableToSessionState) command.
+  Environment variables are not available until you have either opened an ADTSession or called the [Export-ADTEnvironmentTableToSessionState](/docs/reference/functions/Export-ADTEnvironmentTableToSessionState) command.
 
-  This will be handled for you automatically within the deployment script.
+  This is handled automatically within the deployment script.
 
-  Variables specific to a particular deployment, such as `$appName` and `$appVersion`, can now be found inside the [$adtSession](/docs/reference/adtsession-object) object.
+  Variables specific to a particular deployment, such as `$appName` and `$appVersion`, are now stored in the [$adtSession](/docs/reference/adtsession-object) object.
 
-  For more information, see the [Variables](/docs/reference/variables) page.
+  For details, see the [Variables](/docs/reference/variables) page.
 </details>
 
 <details>
   <summary>Why do I get the error "A PSAppDeployToolkit assembly of a different file hash is already loaded"?</summary>
 
-  Once dlls are loaded into PowerShell, it is not possible to unload them. If the module detects that a mismatching version has already been imported in the current PowerShell session, this error will be thrown.
+  Once DLLs are loaded into PowerShell, they cannot be unloaded. If the module detects that a mismatching version has already been imported in the current PowerShell session, this error is thrown.
 
-  Restart PowerShell, or use a separate shell for testing your deployment. You can also avoid this by ensuring that your installed version of the module and your application package are all on the same latest version.
+  Restart PowerShell, or use a separate shell for testing your deployment. You can also prevent this by making sure your installed version of the module and your application package are on the same latest version.
 </details>
 
 <details>
   <summary>Why can't I get the new Fluent UI to work with my v3 scripts in compatibility mode?</summary>
 
-  The new Fluent UI has some additional parameters, such as SubTitle, that are not part of the Classic UI.
+  The new Fluent UI has additional parameters, such as SubTitle, which are not part of the Classic UI.
 
-  To ensure 100% backwards compatibility, when running a v3 script in compatibility mode, you are restricted to only being able to use the classic UI.
+  For full compatibility with v3 scripts, only the Classic UI is enabled in compatibility mode.
 </details>
 
 <details>
   <summary>Why can't I get the new Fluent UI to work with PowerShell ISE?</summary>
 
-  Unfortunately there are some issues with the PowerShell host of the ISE that make it incompatible with the new Fluent UI.
+  Unfortunately, issues with the PowerShell host in the ISE make it incompatible with the new Fluent UI.
 
-  You can continue to develop within the ISE, but you should use a separate PowerShell instance to launch and test your deployment. Alternatively, use another IDE such as [Visual Studio Code](https://code.visualstudio.com/download).
+  You can still develop in the ISE, but you should use a separate PowerShell instance to launch and test your deployment. Alternatively, use another IDE like [Visual Studio Code](https://code.visualstudio.com/download).
 </details>
 
 <details>
   <summary>Do we need to deploy this module to our endpoints?</summary>
 
-  This is not required, as a copy of the module is contained within the deployment template that we provide for download (or that you can generate with the `New-ADTTemplate` command).
+  It is not required, as a copy of the module is included in the deployment template we provide for download (or that you can generate using the `New-ADTTemplate` command).
 
-  However, the option also exists for you to delete the PSAppDeployToolkit folder from this template and pre-install the module on the device.
+  However, you also have the option to remove the PSAppDeployToolkit folder from this template and pre-install the module on each device.
 
-  There are pros and cons to this approach:
+  **Pros**:
+  - Packages are smaller and faster to download.
+  - Updating the module means all packages get the latest updates and UI improvements.
 
-  - Pros:
-    - Packages will be smaller and faster to download
-    - Updating the module means all packages will get the latest updates and UI changes
-
-  - Cons:
-    - You need to figure out how to deploy the module to all devices and ensure this runs before and packages that depend upon the module.
-    - There is a risk running a previously tested deployment against a new version of the module that it was not previously tested against, either through bugs being introduced, or new breaking changes brought in through major version updates.
+  **Cons**:
+  - You must figure out how to deploy the module to all devices before any packages that depend on the module run.
+  - There is a risk in running a previously tested deployment against a newer module version if it was not tested against it, due to potential bugs or breaking changes.
 
 </details>
 
 <details>
   <summary>How can I update the version of the toolkit that my package uses?</summary>
 
-  To update a PSAppDeployToolkit v3 package to v4 standards, there is a `Convert-ADTDeployment` command in the companion [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) module (see [Migrating from v3](../getting-started/migrating-from-v3) for further info).
+  To update a PSAppDeployToolkit v3 package to v4, there is a `Convert-ADTDeployment` command in the companion [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) module (see [Migrating from v3](../getting-started/migrating-from-v3) for further details).
 
-  To update a v4 package to a newer version, since the config and asset folders are externalized, all you need to do is replace the PSAppDeployToolkit folder with the new version. There should not be any breaking changes to worry about if applying a patch release (e.g. upgrading 4.0.0 to 4.0.4).
+  To update a v4 package to a newer version, because the config and asset folders are externalized, you can simply replace the PSAppDeployToolkit folder with the new version. There should be no breaking changes if you apply a patch release (for example, upgrading from 4.0.0 to 4.0.4).
 
-  However, for major/minor upgrades (e.g. from 4.0 to 4.1 or even 5.0), then you should review the release notes and documentation to see if there are any changes required to the configuration files.
+  However, for major or minor upgrades (for example, 4.0 to 4.1 or 5.0), review the release notes and documentation for any necessary configuration file changes.
 </details>
 
 <details>
   <summary>Will PSAppDeployToolkit ever get support for WinGet?</summary>
 
-  There are no current plans to include this directly in the toolkit, however there is a community extension that has been created to provide this functionality:
+  There are no immediate plans to include this directly in the toolkit, but there is a community extension that provides this functionality:
 
   - [GitHub](https://github.com/mjr4077au/PSAppDeployToolkit.WinGet)
   - [PSGallery](https://www.powershellgallery.com/packages/PSAppDeployToolkit.WinGet)
@@ -100,26 +98,25 @@ tags:
 <details>
   <summary>How do I get the UI to display with an Intune deployment?</summary>
 
-  For 4.0.x and below, ServiceUI.exe is required to display the UI in an Intune deployment. There is a helper script available to assist with this:
+  For 4.0.x and below, ServiceUI.exe is required to display the UI in an Intune deployment. A helper script is available to facilitate this:
 
   [Invoke-ServiceUI](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/tree/main/examples/ServiceUI)
 
-  The plan is to handle this natively in a future version of the toolkit by having the UI components run as a separate user process.
-
+  A future version of the toolkit may handle this natively by running the UI components as a separate user process.
 </details>
 
 <details>
   <summary>How can I control when retries will occur after the defer option is selected?</summary>
 
-  A 60012 error code will be returned when the defer option is selected. With ConfigMgr, you have the option to configure the Fast Retry interval and set 60012 to be interpreted as Fast Retry (usually 1618).
+  A 60012 error code is returned when the defer option is selected. With ConfigMgr, you can configure the Fast Retry interval and interpret 60012 as Fast Retry (usually 1618).
 
-  This is not a good solution for Intune however, as there is no way to configure the Fast Retry interval and it will retry a few minutes later.
+  However, this is not a good solution for Intune, as it automatically retries within minutes and does not permit interval configuration.
 
-  Options have been discussed for scheduling a task to retry the deployment at a later time, but there are numerous issues with this approach, such as the need to cache the package, the risk of multiple installs running concurrently and the success code not being reported back to Intune.
+  Scheduling a task to retry later has been discussed, but it involves multiple issues like the need to cache the package, the risk of concurrent installs, and the possibility that a success code will not be reported back to Intune.
 </details>
 
 <details>
   <summary>Can I use PSAppDeployToolkit to install user-context apps?</summary>
 
-  Sure, you just need to set the `RequireAdmin` option in Config.psd1 to `$false` if the installation does not require admin rights.
+  Yes. Set the `RequireAdmin` option in Config.psd1 to `$false` if the installation does not require administrative rights.
 </details>

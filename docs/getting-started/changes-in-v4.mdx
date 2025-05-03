@@ -17,90 +17,68 @@ tags:
 - Digitally signed PowerShell module
 - All C# code is now compiled
 - Codebase completely refactored and optimized
-- Complete removal of VBScript code
-- Strongly typed and defined object types, no more PSCustomObjects, etc
-- Defensively coded to ensure security and reliability
+- Removed all VBScript code
+- Strongly typed and defined object types (no more PSCustomObjects, etc.)
+- Defensive coding to ensure security and reliability
 - Now provides PowerShell 7 and ARM support
 - Extensions supported as supplemental modules
-- Custom action support for extensions on deployment start/finish
+- Custom action support for extensions on deployment start and finish
 - Support for overriding config via the registry
 - Backwards-compatibility with v3 deployment scripts
 
 ## Key Filename Changes
 
 :::info
-
 Further changes to the deployment layout are detailed in the [Deployment Structure](/docs/deployment-concepts/deployment-structure) page.
-
 :::
 
-| **Old Name**                 | **New Name**                  | **More Information**                                                    |
-|:-----------------------------|:------------------------------|:------------------------------------------------------------------------|
-| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](/docs/deployment-concepts/invoke-appdeploytoolkit) |
-| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](/docs/deployment-concepts/invoke-appdeploytoolkit) |
-| `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Configuration Settings](/docs/reference/config-settings)                    |
-| *Was part of Config file*    | `Strings\Strings.psd1`        | [Language Strings](/docs/reference/language-strings)                       |
+| **Old Name**                 | **New Name**                  | **More Information**                                                            |
+|:-----------------------------|:------------------------------|:--------------------------------------------------------------------------------|
+| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](/docs/deployment-concepts/invoke-appdeploytoolkit)    |
+| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](/docs/deployment-concepts/invoke-appdeploytoolkit)    |
+| `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Configuration Settings](/docs/reference/config-settings)                       |
+| *Was part of Config file*    | `Strings\Strings.psd1`        | [Language Strings](/docs/reference/language-strings)                            |
 
 ## New Configuration Format
 
-- **.psd1** is PowerShell's native config file format. See the [Customizing Deployments](/docs/usage/customizing-deployments) page for further info.
+- **.psd1** is the native PowerShell config file format. See [Customizing Deployments](/docs/usage/customizing-deployments) for more information.
 
 ## Key Function Name Changes
 
 :::info
-
-For a detailed mapping of all v3 to v4 functions, check out the [Function Mapping](/docs/reference/v4-function-mapping) page.
-
+For a detailed mapping of all v3 to v4 functions, see the [Function Mapping](/docs/reference/v4-function-mapping) page.
 :::
 
-- The following table highlights the key function name changes where functions hve been renamed to avoid collisions with other scripts / modules.
+- Certain function names have been changed to avoid collisions with other scripts or modules.
 
-| **Old Name**      | **New Name / Details**                                        |
-|:------------------|:--------------------------------------------------------------|
+| **Old Name**      | **New Name / Details**                                             |
+|:------------------|:-------------------------------------------------------------------|
 | `Copy-File`       | [`Copy-ADTFile`](/docs/reference/functions/Copy-ADTFile)           |
 | `Execute-Process` | [`Start-ADTProcess`](/docs/reference/functions/Start-ADTProcess)   |
 | `Write-Log`       | [`Write-ADTLogEntry`](/docs/reference/functions/Write-ADTLogEntry) |
 
 ## Variables
 
-- The standard toolkit environment variables (e.g. `$envProgramFiles`) will be available once an [ADTSession](/docs/reference/adtsession-object) has been started, or the `Export-ADTEnvironmentTableToSessionState` command has been run.
-
-- Variables specific to a particular deployment (e.g. `$appName`) can now be found within the [ADTSession](/docs/reference/adtsession-object) object (e.g. `$adtSession.AppName`).
+- Standard toolkit environment variables, such as `$envProgramFiles`, become available once an [ADTSession](/docs/reference/adtsession-object) is opened or after the `Export-ADTEnvironmentTableToSessionState` command is executed.
+- Variables specific to a particular deployment (for example, `$appName`) are found within the [ADTSession](/docs/reference/adtsession-object) object (for example, `$adtSession.AppName`).
 
 ## Booleans Replaced with Switches
 
-v3 had many Boolean parameters, some of which default to true, and others to false. It was often difficult to know what the default was for each command without looking up the help or code.
+v3 used many Boolean parameters, some defaulting to true and others to false. It was not always clear what the default behavior was without referencing documentation.
 
-- Now instead of: `TopMost $true` or `-TopMost $false`
-- We have a single optional switch `-NotTopMost`
-
-This way, the name of the parameter naturally implies what the default behavior is.
+- Instead of `TopMost $true` or `-TopMost $false`, there is now a single optional switch, `-NotTopMost`, which clarifies that the default behavior is TopMost.
 
 ## Standardized Filtering
 
-The `Remove-MsiApplications` command in v3 had `-FilterApplication` and `-ExcludeFromUninstall` parameters that use a complex syntax:
+The `Remove-MsiApplications` command in v3 used `-FilterApplication` and `-ExcludeFromUninstall` parameters with a complex syntax. In the new function, [Uninstall-ADTApplication](/docs/reference/functions/Uninstall-ADTApplication), these have been replaced with a single `-FilterScript`, similar to PowerShell's `Where-Object`:
 
 ```powershell
-FilterApplication @(, @('Publisher', 'Oracle Corporation', 'Exact')) -ExcludeFromUninstall @(, @('DisplayName', 'Java 8 Update 45', 'Contains'))
-```
-
-In the new function [Uninstall-ADTApplication](/docs/reference/functions/Uninstall-ADTApplication), these have now been combined into a single FilterScript that should be familiar to anyone that has used PowerShell's `Where-Object` command:
-
-```powershell
--FilterScript {$_.Publisher -eq 'Oracle Corporation' -and $_.DisplayVersion -notmatch 'Java 8 Update 45'}
+-FilterScript { $_.Publisher -eq 'Oracle Corporation' -and $_.DisplayVersion -notmatch 'Java 8 Update 45' }
 ```
 
 ## ScriptBlock Variables
 
-`Invoke-HKCURegistrySettingsForAllUsers` in v3 required the use of a $UserProfile variable:
-
-```powershell
-Invoke-HKCURegistrySettingsForAllUsers -RegistrySettings {
-    Set-RegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $UserProfile.SID
-}
-```
-
-In v4, the UserProfile objects are piped to the provided scriptblock, so `$_` should be used to represent these objects:
+Previously, `Invoke-HKCURegistrySettingsForAllUsers` in v3 required a `$UserProfile` variable. In v4, [Invoke-ADTAllUsersRegistryAction](/docs/reference/functions/Invoke-ADTAllUsersRegistryAction) pipes user profile objects to the provided scriptblock, so you can use `$_`:
 
 ```powershell
 Invoke-ADTAllUsersRegistryAction -ScriptBlock {
@@ -110,57 +88,34 @@ Invoke-ADTAllUsersRegistryAction -ScriptBlock {
 
 ## Standardized Array Inputs
 
-Functions that accept multiple values now accept arrays rather than a single string delimited by commas. For example instead of:
+Functions that accept multiple values now take arrays rather than comma-delimited strings. For example, instead of:
 
 ```powershell
 Show-InstallationWelcome -CloseApps 'iexplore,winword,excel'
 ```
 
-The process list is now defined like so:
+you can specify:
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses iexplore, winword, excel
 ```
 
-Instead of:
-
-```powershell
-Execute-Process -Path 'setup.exe' -Parameters '/S' -IgnoreExitCodes '1,2'
-```
-
-The exit codes are now defined like so:
-
-```powershell
-Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -IgnoreExitCodes 1,2
-```
-
 ## Error Handling
 
-Many commands in v3 used a `-ContinueOnError` parameter. In v4, you just use the standard PowerShell `-ErrorAction` parameter:
+Many commands in v3 used a `-ContinueOnError` parameter. In v4, you use the standard PowerShell `-ErrorAction` parameter:
 
-- Instead of: `ContinueOnError $false` or `-ContinueOnError $true`
-- You use: `-ErrorAction Stop` or `-ErrorAction SilentlyContinue`
+- Instead of `-ContinueOnError $true` or `$false`, use `-ErrorAction Stop` or `-ErrorAction SilentlyContinue`.
 
-## Uninstallation of EXE apps
+## Uninstallation of EXE Apps
 
-- [`Uninstall-ADTApplication`](/docs/reference/functions/Uninstall-ADTApplication) can now support uninstallation of **EXE** apps in addition to **MSI**.
-
-- Use the `-ApplicationType` parameter to restrict to one application type or the other.
-
-- `-ArgumentList` will replace the detected arguments found in the `QuietUninstallString` / `UninstallString` in the registry, `-AdditionalArgumentList` will append to them.
+[Uninstall-ADTApplication](/docs/reference/functions/Uninstall-ADTApplication) can now uninstall **EXE** apps in addition to **MSI**. Specify the `-ApplicationType` parameter to focus on one type or the other. The `-ArgumentList` parameter replaces any detected arguments in the registry, and `-AdditionalArgumentList` appends to them.
 
 ## User Profile Paths
 
-- [`Get-ADTUserProfiles`](/docs/reference/functions/Get-ADTUserProfiles) now supports a `-LoadProfilePaths` switch to find various common folders for each user profile, such as **Documents** and **Desktop**.
-
-- This can be used by [`Copy-ADTFileToUserProfiles`](/docs/reference/functions/Copy-ADTFileToUserProfiles) to copy files directly to these locations.
+[Get-ADTUserProfiles](/docs/reference/functions/Get-ADTUserProfiles) now has a `-LoadProfilePaths` switch to discover common folders within user profiles, such as **Documents** and **Desktop**. You can use [Copy-ADTFileToUserProfiles](/docs/reference/functions/Copy-ADTFileToUserProfiles) to copy files directly to these locations.
 
 ## WIM Support
 
-- There is now support for compressing your file content to a WIM archive and mounting it during installation. This can be managed manually via [`Mount-ADTWimFile`](/docs/reference/functions/Mount-ADTWimFile) and [`Dismount-ADTWimFile`](/docs/reference/functions/Dismount-ADTWimFile).
+There is now support for compressing file content into a WIM archive and mounting it during installation. You can manage this manually using [Mount-ADTWimFile](/docs/reference/functions/Mount-ADTWimFile) and [Dismount-ADTWimFile](/docs/reference/functions/Dismount-ADTWimFile), or you can use the `-ForceWimDetection` switch with [Open-ADTSession](/docs/reference/functions/Open-ADTSession) to auto-mount and dismount any WIM files found.
 
-- Alternatively you can use the `-ForceWimDetection` switch with the [`Open-ADTSession`](/docs/reference/functions/Open-ADTSession) command to auto-mount and dismount any WIM files found.
-
-If you leave the **AppName** blank, [Zero Config](/docs/deployment-concepts/zero-config-deployment) will kick in, auto-mount any WIM file found and install the MSI found within.
-
-<br />
+If you leave the **AppName** blank, [Zero Config](/docs/deployment-concepts/zero-config-deployment) will start automatically, mount any WIM file found, and install the MSI located inside.

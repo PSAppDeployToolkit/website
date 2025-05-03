@@ -11,7 +11,7 @@ tags:
 
 # ADTSession Object
 
-The `ADTSession` object is a core component of the **PSAppDeployToolkit** that manages the state and information throughout a deployment session. It captures essential details about the deployment environment and provides convenient properties and methods for use in your scripts.
+The `ADTSession` object is a core component of **PSAppDeployToolkit**, managing the state and information throughout a deployment session. It gathers essential details about the deployment environment and provides convenient properties and methods for use in scripts.
 
 ## Initialization
 
@@ -21,9 +21,9 @@ When you start a deployment script, initialize the `ADTSession` with the `Open-A
 $adtSession = Open-ADTSession -AppName "YourAppName" -AppVersion "1.0.0" -AppVendor "YourVendor" -DeploymentType "Install" -SessionState $ExecutionContext.SessionState -PassThru
 ```
 
-This initializes the session, gathers information about the deployment, the user, and the computer, and the resulting object has several helpful properties available for you to use.
+This initializes the session and gathers information about the deployment, user, and computer, providing an object with several helpful properties you can use.
 
-In addition, opening a session creates additional variables in your PowerShell environment that are not specific to a particular deployment - more information on these can be found in the [Variables](./variables) page.
+In addition, opening a session creates additional variables in your PowerShell environment that are independent of any particular deployment. More information about these variables can be found in the [Variables](./variables) page.
 
 # Properties
 The ADTSession object exposes several properties, which can be accessed using `$adtSession.<PropertyName>`, e.g `$adtSession.AppName`.
@@ -81,7 +81,7 @@ The ADTSession object exposes several properties, which can be accessed using `$
 | AllowRebootPassThru | Indicates if reboot requests from the installer should be passed through to the system.                        |
 | DefaultMsiFile      | The default MSI file used for installation if none is specified.                                               |
 | DefaultMspFiles     | The default MSP files used for installation if none are specified.                                             |
-| DefaultMstFile      | The default MST file used for installation if none is specified.                                               |
+| DefaultMstFile      | The default MST file used for installation if none are specified.                                               |
 | InstallName         | The name assigned to the installation.                                                                         |
 | InstallPhase        | The current phase of the installation process (e.g., "Pre-Installation", "Installation", "Post-Installation"). |
 | InstallTitle        | The title displayed during installation.                                                                       |
