@@ -106,7 +106,7 @@ html[data-theme='dark'] .featureColumns {
 
 .featureHeader {
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .capabilityHeader {
@@ -137,7 +137,7 @@ html[data-theme='dark'] .featureColumns {
 
 .introHeader {
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.5rem;
 }
 
@@ -155,7 +155,7 @@ html[data-theme='dark'] .featureColumns {
 
 .blockTitle {
   text-align: left;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 2.2em;
   padding: 0rem 0 0.5rem;
   line-height: 1.3em;
@@ -164,7 +164,7 @@ html[data-theme='dark'] .featureColumns {
 
 .capabilitiesTitle {
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 2.2em;
   padding: 2rem 0 0.5rem;
   line-height: 1.3em;
@@ -173,7 +173,7 @@ html[data-theme='dark'] .featureColumns {
 
 .logoThickText {
   color: var(--palette-blue);
-  font-weight: 800 !important;
+  font-weight: 700 !important;
 }
 
 .blockText {
@@ -183,6 +183,16 @@ html[data-theme='dark'] .featureColumns {
 
 .blockImage {
   max-height: 400px;
+}
+
+.upcomingConferences {
+  margin: 2rem 0;
+  line-height: 2em;
+}
+
+.conferencesImage {
+  margin: unset;
+  max-width: 400px;
 }
 
 main.features {

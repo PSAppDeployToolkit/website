@@ -73,6 +73,7 @@ const CapabilityList = [
   },
 ];
 
+// Not used. remove?
 function Feature({ image, title, description }) {
   return (
     <div className={clsx('col col--4', styles.featureColumns)}>
@@ -84,7 +85,12 @@ function Feature({ image, title, description }) {
   );
 }
 
-function Capability({ title, description }) {
+type CapabilityProps = {
+  title: string;
+  description: React.JSX.Element;
+};
+
+function Capability({ title, description }: CapabilityProps) {
   return (
     <div className={clsx('col col--4', styles.featureColumns, styles.capabilityColumns)}>
       <div className="padding-horiz--md">
@@ -197,6 +203,64 @@ export default function HomepageFeatures() {
       <div className="container">
         <div className={clsx('row', styles.blockStyling)}>
           <Newsletter />
+        </div>
+      </div>
+
+      <div className={styles.contrastContainer}>
+        <div className={clsx('container')}>
+          <div className={clsx('row', styles.blockStyling, styles.upcomingConferences)}>
+            <div className="col col--7">
+              <p className={styles.blockTitle}>Meet us in person</p>
+
+              <div className="container">
+                <div className="row">
+                  <div className={clsx('col', styles.blockText)}>
+                    <ul>
+                      <li>
+                        <div>
+                          <Link to="https://www.endpointsummit.com">Endpoint Summit 2025</Link>
+                        </div>
+                        <div>23-25 April 2025 - Paris, France</div>
+                      </li>
+                      <li>
+                        <div>
+                          <Link to="https://developer.microsoft.com/en-us/reactor/events/25871/?wt.mc_id=3reg_25871_webpage_reactor">Workplace Ninjas Toronto 2025</Link>
+                        </div>
+                        <div>June 13th - Toronto, Canada</div>
+                      </li>
+                      <li>
+                        <div>
+                          <Link to="https://wpninjas.uk">Workplace Ninjas UK 2025</Link>
+                        </div>
+                        <div>June 16th & 17th - Edinburgh, United Kingdom</div>
+                      </li>
+                      <li>
+                        <div>
+                          <Link to="https://appmanagevent.com">AppManagEvent 2025</Link>
+                        </div>
+                        <div>October 10th - Utrecht, The Netherlands</div>
+                      </li>
+                      <li>
+                        <div>
+                          <Link to="https://mmsmoa.com/mms2025music">MMS Music City Edition 2025</Link>
+                        </div>
+                        <div>October 12th to 15th - Nashville, Tennesse, USA</div>
+                      </li>
+                      <li>
+                        <div>
+                          <Link to="https://workplaceninjas.us">Workplace Ninjas US 2025</Link>
+                        </div>
+                        <div>December 9th & 10th - Dallas, Texas, USA</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col col--5">
+              <img className={styles.conferencesImage} src="/images/AppManage-2025-Event.png" alt="AppManage2025" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
