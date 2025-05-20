@@ -1,8 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import clsx from 'clsx';
-import styles from './HomepageFeatures.module.css';
 import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { useColorMode } from '@docusaurus/theme-common';
+import styles from './HomepageFeatures.module.css';
 import Newsletter from './Newsletter';
 
 const FeatureList = [
@@ -209,56 +211,90 @@ export default function HomepageFeatures() {
       <div className={styles.contrastContainer}>
         <div className={clsx('container')}>
           <div className={clsx('row', styles.blockStyling, styles.upcomingConferences)}>
+          <div className="col col--7">
+        <p className={styles.blockTitle}>
+          <span className={styles.logoThickText}>Upcoming conferences</span> and <span className={styles.logoThickText}>community events</span></p> 
+
+        <p>
+          We'll be there to spread the good word about PSAppDeployToolkit and to share our knowledge with you. We're there to help answer your questions and help you be successful. So come talk to us. No really... We're lonely.
+        </p>
+      </div>
+
+
+
             <div className="col col--7">
-              <p className={styles.blockTitle}>Meet us in person</p>
 
               <div className="container">
                 <div className="row">
-                  <div className={clsx('col', styles.blockText)}>
+                  <div className={clsx('col col--5', styles.blockText)}>
                     <ul>
                       <li>
                         <div>
-                          <Link to="https://www.endpointsummit.com">Endpoint Summit 2025</Link>
+                          <Link to="https://www.endpointsummit.com"><b>Endpoint Summit 2025</b></Link>
                         </div>
-                        <div>23-25 April 2025 - Paris, France</div>
+                        <div>23-25 April 2025 <br/> Paris, France</div>
                       </li>
                       <li>
                         <div>
-                          <Link to="https://developer.microsoft.com/en-us/reactor/events/25871/?wt.mc_id=3reg_25871_webpage_reactor">Workplace Ninjas Toronto 2025</Link>
+                          <Link to="https://developer.microsoft.com/en-us/reactor/events/25871/?wt.mc_id=3reg_25871_webpage_reactor"><b>Workplace Ninjas Toronto 2025</b></Link>
                         </div>
-                        <div>June 13th - Toronto, Canada</div>
+                        <div>June 13th <br/> Toronto, Canada</div>
                       </li>
                       <li>
                         <div>
-                          <Link to="https://wpninjas.uk">Workplace Ninjas UK 2025</Link>
+                          <Link to="https://wpninjas.uk"><b>Workplace Ninjas UK 2025</b></Link>
                         </div>
-                        <div>June 16th & 17th - Edinburgh, United Kingdom</div>
+                        <div>June 16th & 17th <br/> Edinburgh, United Kingdom</div>
+                      </li>
+                      </ul>
+                      </div>
+                  <div className={clsx('col col--5', styles.blockText)}>
+                      <ul>
+                      <li>
+                        <div>
+                          <Link to="https://appmanagevent.com"><b>AppManagEvent 2025</b></Link>
+                        </div>
+                        <div>October 10th <br/> Utrecht, The Netherlands</div>
                       </li>
                       <li>
                         <div>
-                          <Link to="https://appmanagevent.com">AppManagEvent 2025</Link>
+                          <Link to="https://mmsmoa.com/mms2025music"><b>MMS Music City Edition 2025</b></Link>
                         </div>
-                        <div>October 10th - Utrecht, The Netherlands</div>
+                        <div>October 12th to 15th <br/> Nashville, Tennesse, USA</div>
                       </li>
                       <li>
                         <div>
-                          <Link to="https://mmsmoa.com/mms2025music">MMS Music City Edition 2025</Link>
+                          <Link to="https://workplaceninjas.us"><b>Workplace Ninjas US 2025</b></Link>
                         </div>
-                        <div>October 12th to 15th - Nashville, Tennesse, USA</div>
+                        <div>December 9th & 10th <br/> Dallas, Texas, USA</div>
                       </li>
-                      <li>
-                        <div>
-                          <Link to="https://workplaceninjas.us">Workplace Ninjas US 2025</Link>
-                        </div>
-                        <div>December 9th & 10th - Dallas, Texas, USA</div>
-                      </li>
-                    </ul>
+                      </ul>
                   </div>
                 </div>
               </div>
             </div>
             <div className="col col--5">
-              <img className={styles.conferencesImage} src="/images/AppManage-2025-Event.png" alt="AppManage2025" />
+              <div className={styles.imageContainer}>
+                <img 
+                  className={styles.conferencesImage} 
+                  src={
+                    useColorMode().colorMode === 'dark' 
+                      ? "/images/AME-Banner-DarkBackground.png" 
+                      : "/images/AME-Banner-LightBackground.png"
+                  } 
+                  alt="AppManage2025" 
+                />
+                <img 
+                  className={styles.conferencesImage} 
+                  src="/images/MMSMusicCity.webp" 
+                  alt="MMS: Music City Edition 2025" 
+                />
+                <img 
+                  className={styles.conferencesImage} 
+                  src="/images/WPNinjas.png" 
+                  alt="WP Ninjas" 
+                />
+              </div>
             </div>
           </div>
         </div>

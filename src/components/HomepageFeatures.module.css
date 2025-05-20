@@ -106,7 +106,7 @@ html[data-theme='dark'] .featureColumns {
 
 .featureHeader {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .capabilityHeader {
@@ -137,7 +137,7 @@ html[data-theme='dark'] .featureColumns {
 
 .introHeader {
   text-align: center;
-  font-weight: 700;
+  font-weight: 300;
   font-size: 1.5rem;
 }
 
@@ -155,7 +155,7 @@ html[data-theme='dark'] .featureColumns {
 
 .blockTitle {
   text-align: left;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 2.2em;
   padding: 0rem 0 0.5rem;
   line-height: 1.3em;
@@ -164,7 +164,7 @@ html[data-theme='dark'] .featureColumns {
 
 .capabilitiesTitle {
   text-align: center;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 2.2em;
   padding: 2rem 0 0.5rem;
   line-height: 1.3em;
@@ -187,12 +187,30 @@ html[data-theme='dark'] .featureColumns {
 
 .upcomingConferences {
   margin: 2rem 0;
-  line-height: 2em;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem 0;
+  position: relative;
+  top: 50%;
+  transform: translateY(-25%);
 }
 
 .conferencesImage {
-  margin: unset;
-  max-width: 400px;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 main.features {
@@ -202,12 +220,47 @@ main.features {
 }
 
 .blockText ul {
-  list-style-image: url('@site/static/images/checkmark.svg');
-  font-size: 1rem;
-  padding: 0 6px 0 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.blockText li::marker {
-  font-size: 1.8em;
-  line-height: 0.1;
+.blockText li {
+  margin: 0;
+  padding: 0 0 0 2rem;
+  position: relative;
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  text-indent: 0;
+}
+
+.blockText li > div {
+  text-align: left;
+  width: 100%;
+}
+
+.blockText li a {
+  display: inline-block;
+  width: 100%;
+}
+
+.blockText li::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0.4em;
+  width: 1em;
+  height: 1em;
+  background-image: url('@site/static/images/checkmark.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.blockText li > div:first-child {
+  margin-bottom: 0.25rem;
 }
