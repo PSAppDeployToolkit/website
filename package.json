@@ -33,7 +33,7 @@
     "search-insights": "^2.17.3"
   },
   "devDependencies": {
-    "@docusaurus/eslint-plugin": "^3.7.0",
+    "@docusaurus/eslint-plugin": "^3.8.1",
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/preset-classic": "^3.8.0",
     "@docusaurus/theme-classic": "^3.7.0",
