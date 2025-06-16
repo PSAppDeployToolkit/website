@@ -17,7 +17,7 @@
     "prettier-docs": "prettier --config .prettierrc --write \"**/*.{md,mdx}\""
   },
   "dependencies": {
-    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/core": "^3.8.1",
     "@docusaurus/faster": "^3.7.0",
     "@docusaurus/theme-common": "^3.7.0",
     "@docusaurus/types": "^3.7.0",
