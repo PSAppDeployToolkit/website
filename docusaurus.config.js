@@ -9,24 +9,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   future: {
-    v4: {
-      removeLegacyPostBuildHeadAttribute: true,
-      useCssCascadeLayers: true,
-    },
-    experimental_faster: {
-      swcJsLoader: true,
-      swcJsMinimizer: true,
-      swcHtmlMinimizer: true,
-      lightningCssMinimizer: true,
-      rspackBundler: true,
-      rspackPersistentCache: true,
-      ssgWorkerThreads: true,
-      mdxCrossCompilerCache: true,
-    },
-    experimental_storage: {
-      type: 'localStorage',
-      namespace: true,
-    },
+    v4: true
     // experimental_router: 'hash',
   },
   title: 'PSAppDeployToolkit',
@@ -89,9 +72,9 @@ const config = {
         gtag: {
           trackingID: 'G-KK2LXQPHKC',
         },
-        // googleAnalytics: {
-          // containerId: 'GTM-KG8TQPX',
-        // },
+        googleTagManager: {
+          containerId: 'GTM-KG8TQPX',
+        },
       }),
     ],
   ],
@@ -126,12 +109,12 @@ const config = {
         maxHeadingLevel: 2,
       },
       // announcementBar: {
-        // id: 'support_us',
-        // content:
-        //   'Watch the <a target="_blank" rel="noopener noreferrer" href="https://patchmypc.com/psappdeploytoolkit-v4-launch-webinar">PSADT v4 launch webinar</a> to see the new features and changes, then find out how to download the new version in our <a target="_blank" rel="noopener noreferrer" href="https://psappdeploytoolkit.com/docs/category/getting-started">Getting Started</a> guide.',
-        // backgroundColor: '#0081c6',
-        // textColor: '#fff',
-        // isCloseable: true,
+      // id: 'support_us',
+      // content:
+      //   'Watch the <a target="_blank" rel="noopener noreferrer" href="https://patchmypc.com/psappdeploytoolkit-v4-launch-webinar">PSADT v4 launch webinar</a> to see the new features and changes, then find out how to download the new version in our <a target="_blank" rel="noopener noreferrer" href="https://psappdeploytoolkit.com/docs/category/getting-started">Getting Started</a> guide.',
+      // backgroundColor: '#0081c6',
+      // textColor: '#fff',
+      // isCloseable: true,
       // },
       navbar: {
         title: 'PSAppDeployToolkit',
