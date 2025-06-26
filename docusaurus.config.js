@@ -27,27 +27,19 @@ const config = {
       type: 'localStorage',
       namespace: true,
     },
-    experimental_router: 'hash',
+    // experimental_router: 'hash',
   },
   title: 'PSAppDeployToolkit',
   tagline: 'Enterprise App Deployment, Simplified.',
   favicon: '/images/favicon.ico',
-  // Set the production url of your site here
   url: 'https://psappdeploytoolkit.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
   trailingSlash: false,
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'PSAppDeployToolkit', // Usually your GitHub org/user name.
   projectName: 'website', // Usually your repo name.
-
   titleDelimiter: '·',
-
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -97,9 +89,9 @@ const config = {
         gtag: {
           trackingID: 'G-KK2LXQPHKC',
         },
-        googleTagManager: {
-          containerId: 'GTM-KG8TQPX',
-        },
+        // googleAnalytics: {
+          // containerId: 'GTM-KG8TQPX',
+        // },
       }),
     ],
   ],
@@ -127,24 +119,22 @@ const config = {
       ],
       image: 'images/psadt-socialcard.jpg',
       colorMode: {
-        defaultMode: 'light',
-        // disableSwitch:  true,
         respectPrefersColorScheme: true,
       },
       tableOfContents: {
         minHeadingLevel: 2,
         maxHeadingLevel: 2,
       },
-      announcementBar: {
-        id: 'support_us',
-        content:
-          'Watch the <a target="_blank" rel="noopener noreferrer" href="https://patchmypc.com/psappdeploytoolkit-v4-launch-webinar">PSADT v4 launch webinar</a> to see the new features and changes, then find out how to download the new version in our <a target="_blank" rel="noopener noreferrer" href="https://psappdeploytoolkit.com/docs/category/getting-started">Getting Started</a> guide.',
-        backgroundColor: '#0081c6',
-        textColor: '#fff',
-        isCloseable: true,
-      },
+      // announcementBar: {
+        // id: 'support_us',
+        // content:
+        //   'Watch the <a target="_blank" rel="noopener noreferrer" href="https://patchmypc.com/psappdeploytoolkit-v4-launch-webinar">PSADT v4 launch webinar</a> to see the new features and changes, then find out how to download the new version in our <a target="_blank" rel="noopener noreferrer" href="https://psappdeploytoolkit.com/docs/category/getting-started">Getting Started</a> guide.',
+        // backgroundColor: '#0081c6',
+        // textColor: '#fff',
+        // isCloseable: true,
+      // },
       navbar: {
-        title: '',
+        title: 'PSAppDeployToolkit',
         logo: {
           alt: 'PSAppDeployToolkit',
           src: '/images/psadt-light-navheader.svg',

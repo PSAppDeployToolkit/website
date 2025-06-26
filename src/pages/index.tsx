@@ -11,8 +11,8 @@ import Heading from '@theme/Heading';
 import ThemedImage from '@theme/ThemedImage';
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
-const heroImageDark = `/images/psadt-dark-logo.svg`;
-const heroImageLight = `/images/psadt-light-logo.svg`;
+const heroImageDark = `/images/psadt-logo.svg`;
+const heroImageLight = `/images/psadt-logo.svg`;
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();

@@ -1,0 +1,6 @@
+ignoredBuiltDependencies:
+  - '@swc/core'
+  - core-js-pure
+
+onlyBuiltDependencies:
+  - core-js
