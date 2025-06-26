@@ -4,3 +4,6 @@ ignoredBuiltDependencies:
 
 onlyBuiltDependencies:
   - core-js
+
+packages:
+  - .
