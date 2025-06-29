@@ -1,0 +1,200 @@
+---
+sidebar_position: 2
+sidebar_label: 'Variables'
+title: 'Variables'
+description: 'Variables available for use within PSAppDeployToolkit.'
+slug: /reference/variables
+tags:
+  - Variables
+  - Reference
+---
+
+# Variables
+
+When you open an ADTSession (automatically handled in Invoke-AppDeployToolkit.ps1), several useful variables are created. These include hardware information, system and user paths, and Active Directory domain details, among others.
+
+These variables can also be instantiated without opening a session by calling the [Export-ADTEnvironmentTableToSessionState](../reference/functions/Export-ADTEnvironmentTableToSessionState) command.
+
+Variables specific to a particular deployment, such as `$appName` and `$appVersion`, have been moved inside the **ADTSession** object. For more information, see the [ADTSession Object](./adtsession-object) page.
+
+## Toolkit Name
+
+| Variable                           | Description                           |
+|:-----------------------------------|:--------------------------------------|
+| `$appDeployMainScriptFriendlyName` | Full name of toolkit including spaces |
+| `$appDeployToolkitName`            | Short-name of toolkit without spaces  |
+
+## Script Info
+
+| Variable                      | Description                              |
+|:------------------------------|:-----------------------------------------|
+| `$appDeployMainScriptVersion` | Version number of the PSAppDeployToolkit |
+
+## Culture
+
+| Variable             | Description                                                               |
+|:---------------------|:--------------------------------------------------------------------------|
+| `$culture`           | Object which contains all of the current Windows culture settings         |
+| `$currentLanguage`   | Current Windows two letter ISO language name (e.g. EN, FR, DE, JA etc)    |
+| `$currentUILanguage` | Current Windows two letter UI ISO language name (e.g. EN, FR, DE, JA etc) |
+
+## Environment Variables
+
+| Variable                      | Description                                                                                                                                                                                                                                                                                                                        |
+|:------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$envAllUsersProfile`         | %ALLUSERSPROFILE%, e.g. `C:\ProgramData`                                                                                                                                                                                                                                                                                           |
+| `$envAppData`                 | %APPDATA%, e.g. `C:\Users\%USERNAME%\AppData\Roaming`                                                                                                                                                                                                                                                                              |
+| `$envArchitecture`            | %PROCESSOR_ARCHITECTURE%, e.g. AMD64/IA64/x86.<br />Note - This doesn't tell you the architecture of the processor but only of the current process, so it returns "x86" for a 32-bit WOW process running on 64-bit Windows.                                                                                                        |
+| `$envCommonDesktop`           | e.g. `C:\Users\Public\Desktop`                                                                                                                                                                                                                                                                                                     |
+| `$envCommonDocuments`         | e.g. `C:\Users\Public\Documents`                                                                                                                                                                                                                                                                                                   |
+| `$envCommonProgramFiles`      | %COMMONPROGRAMFILES%, e.g. `C:\Program Files\Common Files`)                                                                                                                                                                                                                                                                        |
+| `$envCommonProgramFilesX86`   | %COMMONPROGRAMFILES(x86)%, e.g. `C:\Program Files (x86)\Common Files`                                                                                                                                                                                                                                                              |
+| `$envCommonStartMenu`         | e.g. `C:\ProgramData\Microsoft\Windows\Start Menu`                                                                                                                                                                                                                                                                                 |
+| `$envCommonStartMenuPrograms` | e.g. `C:\ProgramData\Microsoft\Windows\Start Menu\Programs`                                                                                                                                                                                                                                                                        |
+| `$envCommonStartUp`           | e.g. `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup`                                                                                                                                                                                                                                                              |
+| `$envCommonTemplates`         | e.g. `C:\ProgramData\Microsoft\Windows\Templates`                                                                                                                                                                                                                                                                                  |
+| `$envComputerName`            | $COMPUTERNAME%, e.g. Computer1                                                                                                                                                                                                                                                                                                     |
+| `$envComputerNameFQDN`        | Fully qualified computer name, e.g. computer1.contoso.com                                                                                                                                                                                                                                                                          |
+| `$envHomeDrive`               | %HOMEDRIVE%, e.g. `C:`                                                                                                                                                                                                                                                                                                             |
+| `$envHomePath`                | %HOMEPATH%, e.g. `C:\Users\%USERNAME%`                                                                                                                                                                                                                                                                                             |
+| `$envHomeShare`               | %HOMESHARE% (Used instead of HOMEDRIVE if the home folder uses UNC paths.)                                                                                                                                                                                                                                                         |
+| `$envLocalAppData`            | %LOCALAPPDATA%, e.g. `C:\Users\%USERNAME%\AppData\Local`                                                                                                                                                                                                                                                                           |
+| `$envLogicalDrives`           | An array containing all of the logical drives on the system.                                                                                                                                                                                                                                                                       |
+| `$envProgramData`             | %PROGRAMDATA%, e.g. `C:\ProgramData`                                                                                                                                                                                                                                                                                               |
+| `$envProgramFiles`            | %PROGRAMFILES%, e.g. `C:\Program Files`                                                                                                                                                                                                                                                                                            |
+| `$envProgramFilesX86`         | %ProgramFiles(x86)%, e.g. `C:\Program Files (x86)` (Only on 64 bit. Used to store 32 bit apps.)                                                                                                                                                                                                                                    |
+| `$envPublic`                  | %PUBLIC%, e.g. `C:\Users\Public`                                                                                                                                                                                                                                                                                                   |
+| `$envSystem32Directory`       | `C:\WINDOWS\system32`                                                                                                                                                                                                                                                                                                              |
+| `$envSystemDrive`             | %SYSTEMDRIVE%, e.g. `C:`                                                                                                                                                                                                                                                                                                           |
+| `$envSystemRAM`               | System RAM as an integer                                                                                                                                                                                                                                                                                                           |
+| `$envSystemRoot`              | %SYSTEMROOT%, e.g. `C:\Windows`                                                                                                                                                                                                                                                                                                    |
+| `$envTemp`                    | Checks for the existence of environment variables in the following order and uses the first path found:<br />- The path specified by TEMP environment variable, (e.g. `C:\Users\%USERNAME%\AppData\Local\Temp`).<br />- The path specified by the USERPROFILE environment variable.<br />- The Windows root (`C:\Windows`) folder. |
+| `$envUserCookies`             | `C:\Users\%USERNAME%\AppData\Local\Microsoft\Windows\INetCookies`                                                                                                                                                                                                                                                                  |
+| `$envUserDesktop`             | `C:\Users\%USERNAME%\Desktop`                                                                                                                                                                                                                                                                                                      |
+| `$envUserFavorites`           | `C:\Users\%USERNAME%\Favorites`                                                                                                                                                                                                                                                                                                    |
+| `$envUserInternetCache`       | `C:\Users\%USERNAME%\AppData\Local\Microsoft\Windows\INetCache`                                                                                                                                                                                                                                                                    |
+| `$envUserInternetHistory`     | `C:\Users\%USERNAME%\AppData\Local\Microsoft\Windows\History`                                                                                                                                                                                                                                                                      |
+| `$envUserMyDocuments`         | `C:\Users\%USERNAME%\Documents`                                                                                                                                                                                                                                                                                                    |
+| `$envUserName`                | %USERNAME%                                                                                                                                                                                                                                                                                                                         |
+| `$envUserProfile`             | %USERPROFILE%, e.g. `%SystemDrive%\Users\%USERNAME%`                                                                                                                                                                                                                                                                               |
+| `$envUserSendTo`              | `C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\SendTo`                                                                                                                                                                                                                                                                     |
+| `$envUserStartMenu`           | `C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu`                                                                                                                                                                                                                                                                 |
+| `$envUserStartMenuPrograms`   | `C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs`                                                                                                                                                                                                                                                        |
+| `$envUserStartUp`             | `C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`                                                                                                                                                                                                                                                |
+| `$envWinDir`                  | %WINDIR%, e.g. `C:\Windows`                                                                                                                                                                                                                                                                                                        |
+
+## Domain Membership
+
+| Variable                   | Description                                                            |
+|:---------------------------|:-----------------------------------------------------------------------|
+| `$envLogonServer`          | FQDN of %LOGONSERVER% used for authenticating logged in user           |
+| `$envMachineADDomain`      | Root AD domain name for machine, e.g. domain.contoso.com               |
+| `$envMachineDNSDomain`     | Full Domain name for machine, e.g. &lt;name&gt;.contoso.com            |
+| `$envMachineWorkgroup`     | If machine not joined to domain, what is the WORKGROUP it belongs to?  |
+| `$envUserDNSDomain`        | %USERDNSDOMAIN%. Root AD domain name for user, e.g. domain.contoso.com |
+| `$envUserDomain`           | %USERDOMAIN%, e.g. domain.contoso.com                                  |
+| `$IsMachinePartOfDomain`   | Is machine joined to a domain, e.g. $true/$false                       |
+| `$MachineDomainController` | FQDN of an AD domain controller used for authentication                |
+
+## Operating System
+
+| Variable                | Description                                                                                                 |
+|:------------------------|:------------------------------------------------------------------------------------------------------------|
+| `$envOS`                | Object that contains details about the operating system                                                     |
+| `$envOSArchitecture`    | Represents the OS architecture (e.g. 32-Bit/64-Bit)                                                         |
+| `$envOSName`            | Name of the operating system (e.g. Microsoft Windows 8.1 Pro)                                               |
+| `$envOSProductType`     | OS product type represented as an integer (e.g. 1/2/3)                                                      |
+| `$envOSProductTypeName` | OS product type name (e.g. Server/Domain Controller/Workstation/Unknown)                                    |
+| `$envOSServicePack`     | Latest service pack installed on the system (e.g. Service Pack 3)                                           |
+| `$envOSVersion`         | Full version number of the OS (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)             |
+| `$envOSVersionBuild`    | Build portion of the OS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)    |
+| `$envOSVersionMajor`    | Major portion of the OS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)    |
+| `$envOSVersionMinor`    | Minor portion of the OS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)    |
+| `$envOSVersionRevision` | Revision portion of the OS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;) |
+| `$Is64Bit`              | Is this a 64-bit OS? (e.g. $true/$false)                                                                    |
+| `$IsDomainControllerOS` | Is domain controller OS? (e.g. $true/$false)                                                                |
+| `$IsServerOS`           | Is server OS? (e.g. $true/$false)                                                                           |
+| `$IsWorkStationOS`      | Is workstation OS? (e.g. $true/$false)                                                                      |
+
+## Current Process Architecture
+
+| Variable          | Description                                                |
+|:------------------|:-----------------------------------------------------------|
+| `$Is64BitProcess` | Is the current process 64-bits? (e.g. $true/$false)        |
+| `$psArchitecture` | Represents the current process architecture (e.g. x86/x64) |
+
+## PowerShell And CLR (.NET) Versions
+
+| Variable                 | Description                                                                                                  |
+|:-------------------------|:-------------------------------------------------------------------------------------------------------------|
+| `$envCLRVersion`         | Full version number of .NET used by PS (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)     |
+| `$envCLRVersionBuild`    | Build portion of PS .NET version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)    |
+| `$envCLRVersionMajor`    | Major portion of PS .NET version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)    |
+| `$envCLRVersionMinor`    | Minor portion of PS .NET version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)    |
+| `$envCLRVersionRevision` | Revision portion of PS .NET version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;) |
+| `$envHost`               | Object that contains details about the current PowerShell console                                            |
+| `$envPSVersion`          | Full version number of PS (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)                  |
+| `$envPSVersionBuild`     | Build portion of PS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)         |
+| `$envPSVersionMajor`     | Major portion of PS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)         |
+| `$envPSVersionMinor`     | Minor portion of PS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)         |
+| `$envPSVersionRevision`  | Revision portion of PS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)      |
+| `$envPSVersionTable`     | Object containing PowerShell version details from PS variable `$PSVersionTable`                              |
+
+## Permissions / Accounts
+
+| Variable                    | Description                                                                                                                                       |
+|:----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$CurrentProcessSID`        | Object that represents the current process account SID (e.g. S-1-5-32-544)                                                                        |
+| `$CurrentProcessToken`      | Object that represents the current processes Windows Identity user token. Contains all details regarding user permissions.                        |
+| `$IsAdmin`                  | Is the current process running with elevated admin privileges? (e.g. $true/$false)                                                                |
+| `$IsLocalServiceAccount`    | Is the current process running under LOCAL SERVICE account? (e.g. $true/$false)                                                                   |
+| `$IsLocalSystemAccount`     | Is the current process running under the SYSTEM account? (e.g. $true/$false)                                                                      |
+| `$IsNetworkServiceAccount`  | Is the current process running under the NETWORK SERVICE account? (e.g. $true/$false)                                                             |
+| `$IsProcessUserInteractive` | Is the current process able to display a user interface?                                                                                          |
+| `$IsServiceAccount`         | Is the current process running as a service? (e.g. $true/$false)                                                                                  |
+| `$LocalSystemNTAccount`     | Localized NT account name of the SYSTEM account (e.g. NT AUTHORITY\SYSTEM)                                                                        |
+| `$ProcessNTAccount`         | Current process NT Account (e.g. NT AUTHORITY\SYSTEM)                                                                                             |
+| `$ProcessNTAccountSID`      | Current process account SID (e.g. S-1-5-32-544)                                                                                                   |
+| `$SessionZero`              | Is the current process currently in session zero? In session zero isolation, process is not able to display a user interface. (e.g. $true/$false) |
+
+## RegEx Patterns
+
+| Variable                      | Description                                                  |
+|:------------------------------|:-------------------------------------------------------------|
+| `$MSIProductCodeRegExPattern` | Contains the regex pattern used to detect a MSI product code |
+
+## COM Objects
+
+| Variable    | Description                                                   |
+|:------------|:--------------------------------------------------------------|
+| `$Shell`    | Represents and allows use of the WScript.Shell COM object     |
+| `$ShellApp` | Represents and allows use of the Shell.Application COM object |
+
+
+## Logged On Users
+
+| Variable                      | Description                                                                                                                                                                                                                                 |
+|:------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$CurrentConsoleUserSession`  | Objects that contains the account and session details of the console user (user with control of the physical monitor, keyboard, and mouse). This is the object from `$LoggedOnUserSessions` where the `IsConsoleSession` property is $true. |
+| `$CurrentLoggedOnUserSession` | Object that contains account and session details for the current process if it is running as a logged in user. This is the object from `$LoggedOnUserSessions` where the `IsCurrentSession` property is $true.                              |
+| `$LoggedOnUserSessions`       | Object that contains account and session details for all users                                                                                                                                                                              |
+| `$RunAsActiveUser`            | The active console user. If no console user exists but users are logged in, such as on terminal servers, then the first logged-in non-console user.                                                                                         |
+| `$UsersLoggedOn`              | Array that contains all of the NTAccount names of logged in users                                                                                                                                                                           |
+
+## Microsoft Office
+
+| Variable           | Description                                                           |
+|:-------------------|:----------------------------------------------------------------------|
+| `envOfficeBitness` | Architecture of current Office installation, e.g. x86 or x64          |
+| `envOfficeChannel` | Current Office Channel, e.g. 'Monthly Enterprise'                     |
+| `envOfficeVars`    | Properties of HKLM\SOFTWARE\Microsoft\Office\ClickToRun\Configuration |
+| `envOfficeVersion` | Microsoft Office version, e.g. 16.0.x.x                               |
+
+## Miscellaneous
+
+| Variable                    | Description                                                                                                  |
+|:----------------------------|:-------------------------------------------------------------------------------------------------------------|
+| `$invalidFileNameChars`     | Array of all invalid file name characters used to sanitize variables which may be used to create file names. |
+| `$LocalAdministratorsGroup` | Returns the name of the local Administrators group, typically `BUILTIN\Administrators`                       |
+| `$LocalUsersGroup`          | Returns the name of the local Users group, typically `BUILTIN\Users`                                         |
+| `$RunningTaskSequence`      | Is the current process running in a SCCM task sequence? (e.g. `$true` / `$false`)                            |
