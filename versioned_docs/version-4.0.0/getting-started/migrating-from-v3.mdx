@@ -1,0 +1,71 @@
+---
+sidebar_position: 6
+title: 'Migrating from v3'
+description: 'Migration guidance for those coming from v3.'
+slug: /getting-started/migrating-from-v3
+hide_title: true
+tags:
+  - Usage
+  - Migration
+  - Getting Started
+---
+
+# Migrating from v3
+
+## Changes in v4
+
+Before proceeding, ensure that you have reviewed the numerous [changes](/docs/getting-started/changes-in-v4) in v4.
+
+## Using v4 in v3 Compatibility Mode
+
+See the [Creating a new deployment](/docs/getting-started/creating-a-new-deployment) page for instructions on creating a v3-compatible deployment template or downloading one from GitHub.
+
+This layout allows you to drop in your existing v3 **Deploy-Application.ps1** scripts (along with **AppDeployToolkit\AppDeployToolkitExtensions.ps1**), which will continue to function with the following caveats:
+
+- If you customized **config.xml** in your previous v3 deployment, you will now need to modify **Config\config.psd1** and/or **Strings\strings.psd1** accordingly.
+- Copy your custom banner to **Assets\Banner.Classic.png**.
+- Compatibility mode does not support the new Fluent UI.
+
+## Migration Tools in PSAppDeployToolkit.Tools
+
+[PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) provides the following commands to help you migrate from v3:
+
+- **Test-ADTCompatibility** - Tests your PSAppDeployToolkit v3 scripts to generate a full report on which functions and variables have changed in v4.
+- **Convert-ADTDeployment** - Converts a PSAppDeployToolkit v3 script or an entire package folder to v4 standards.
+
+The [Downloading](/docs/getting-started/download) page covers how to download and install this additional module.
+
+### Test-ADTCompatibility
+
+Example command usage:
+
+```powershell
+Test-ADTCompatibility -FilePath .\Deploy-Application.ps1 -Format Grid
+```
+
+This command analyzes **Deploy-Application.ps1** and displays the results in a grid view.
+
+### Convert-ADTDeployment
+
+Example command usage:
+
+```powershell
+Convert-ADTDeployment -Path .\Deploy-Application.ps1
+```
+This command converts **Deploy-Application.ps1** to **Invoke-AppDeployToolkit.ps1** in the same folder.
+
+```powershell
+Convert-ADTDeployment -Path .\PackageFolder
+```
+This command converts **PackageFolder** to **PackageFolder_Converted** in the same folder.
+
+Conversion limitations:
+
+- Known toolkit variables, such as `$appName`, are copied over to the hashtable that creates `$adtSession`.
+- The main Install, Uninstall, and Repair scriptblocks are converted and copied to the new script.
+- Any other custom variables, function declarations, or code located outside these blocks will not be transferred.
+- **Files** and **SupportFiles** contents are transferred if a package folder is supplied as the path rather than a **Deploy-Application.ps1** file.
+- **Config.xml** changes will not be ported to the new .psd1 files.
+- Customized assets or banners are not currently copied over.
+
+**PSAppDeployToolkit.Tools** is currently in pre-release to gather early feedback. If you encounter any conversion issues, please submit a [GitHub Issue](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools/issues).
