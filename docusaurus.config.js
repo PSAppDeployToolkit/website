@@ -50,16 +50,12 @@ const config = {
         },
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          lastVersion: '4.0.0',
+          lastVersion: 'current',
           versions: {
             current: {
-              label: '4.1.0',
+              label: '4.0',
               banner: 'none',
               // editUrl: 'https://github.com/psappdeploytoolkit/website/docs/edit/main',
-            },
-            '4.0.0': {
-              label: '4.0.0',
-              path: '4.0.0',
             },
             '3.10.2': {
               label: '3.10.2',
