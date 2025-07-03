@@ -12,9 +12,9 @@ Write messages to a log file in CMTrace.exe compatible format or Legacy text fil
 ## SYNTAX
 
 ```powershell
-Write-ADTLogEntry [-Message] <String[]> [[-Severity] <UInt32>] [[-Source] <String>] [[-ScriptSection] <String>]
- [[-LogType] <String>] [[-LogFileDirectory] <String>] [[-LogFileName] <String>] [-PassThru] [-DebugMessage]
- [<CommonParameters>]
+Write-ADTLogEntry [-Message] <String[]> [[-Severity] <LogSeverity>] [[-Source] <String>]
+ [[-ScriptSection] <String>] [[-LogType] <LogStyle>] [[-LogFileDirectory] <String>] [[-LogFileName] <String>]
+ [-PassThru] [-DebugMessage] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,9 +65,10 @@ When writing to console or CMTrace.exe log format, it allows highlighting of mes
 Options: 0 = Success (highlighted in green), 1 = Information (default), 2 = Warning (highlighted in yellow), 3 = Error (highlighted in red)
 
 ```yaml
-Type: UInt32
+Type: LogSeverity
 Parameter Sets: (All)
 Aliases:
+Accepted values: Success, Info, Warning, Error
 
 Required: False
 Position: 2
@@ -87,7 +88,7 @@ Aliases:
 
 Required: False
 Position: 3
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -103,7 +104,7 @@ Aliases:
 
 Required: False
 Position: 4
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -113,9 +114,10 @@ Accept wildcard characters: False
 Choose whether to write a CMTrace.exe compatible log file or a Legacy text log file.
 
 ```yaml
-Type: String
+Type: LogStyle
 Parameter Sets: (All)
 Aliases:
+Accepted values: Legacy, CMTrace
 
 Required: False
 Position: 5
@@ -135,7 +137,7 @@ Aliases:
 
 Required: False
 Position: 6
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -151,7 +153,7 @@ Aliases:
 
 Required: False
 Position: 7
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -213,4 +215,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Write-ADTLogEntry](./Write-ADTLogEntry.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Write-ADTLogEntry](https://psappdeploytoolkit.com/docs/reference/functions/Write-ADTLogEntry)

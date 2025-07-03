@@ -12,8 +12,9 @@ Display a custom dialog box with optional title, buttons, icon, and timeout.
 ## SYNTAX
 
 ```powershell
-Show-ADTDialogBox [-Text] <String> [-Buttons <String>] [-DefaultButton <String>] [-Icon <String>] [-NotTopMost]
- -Title <String> [-Timeout <UInt32>] [<CommonParameters>]
+Show-ADTDialogBox [-Text] <String> [-Buttons <DialogBoxButtons>] [-DefaultButton <DialogBoxDefaultButton>]
+ [-Icon <DialogBoxIcon>] [-NoWait] [-ExitOnTimeout] [-NotTopMost] [-Force] -Title <String> [-Timeout <UInt32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,13 +55,14 @@ Accept wildcard characters: False
 The button(s) to display on the dialog box.
 
 ```yaml
-Type: String
+Type: DialogBoxButtons
 Parameter Sets: (All)
 Aliases:
+Accepted values: Ok, OkCancel, AbortRetryIgnore, YesNoCancel, YesNo, RetryCancel, CancelTryContinue
 
 Required: False
 Position: Named
-Default value: OK
+Default value: Ok
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -71,9 +73,10 @@ The Default button that is selected.
 Options: First, Second, Third.
 
 ```yaml
-Type: String
+Type: DialogBoxDefaultButton
 Parameter Sets: (All)
 Aliases:
+Accepted values: First, Second, Third
 
 Required: False
 Position: Named
@@ -88,13 +91,46 @@ Icon to display on the dialog box.
 Options: None, Stop, Question, Exclamation, Information.
 
 ```yaml
-Type: String
+Type: DialogBoxIcon
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, Stop, Question, Exclamation, Information
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoWait
+
+Presents the dialog in a separate, independent thread so that the main process isn't stalled waiting for a response.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExitOnTimeout
+
+Specifies whether to not exit the script if the UI times out.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -115,9 +151,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Force
+
+Specifies whether the message box should appear irrespective of an ongoing DeploymentSession's DeployMode.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Timeout
 
-Specifies how long, in seconds, to show the message prompt before aborting.
+Specifies how long to show the message prompt before aborting.
 
 ```yaml
 Type: UInt32
@@ -158,7 +210,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### System.String
+### PSADT.UserInterface.DialogResults.DialogBoxResult
 
 ### Returns the text of the button that was clicked.
 ## NOTES
@@ -171,4 +223,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Show-ADTDialogBox](./Show-ADTDialogBox.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTDialogBox](https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTDialogBox)

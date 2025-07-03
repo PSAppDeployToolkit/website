@@ -12,8 +12,9 @@ Creates or sets a registry key name, value, and value data.
 ## SYNTAX
 
 ```powershell
-Set-ADTRegistryKey [-Key] <String> [[-Name] <String>] [[-Value] <Object>] [[-Type] <RegistryValueKind>]
- [-Wow6432Node] [[-SID] <String>] [<CommonParameters>]
+Set-ADTRegistryKey [-LiteralPath] <String> [[-Name] <String>] [[-Value] <Object>] [[-Type] <RegistryValueKind>]
+ [[-MultiStringValueMode] <MultiStringValueMode>] [-Wow6432Node] [[-RegistryOptions] <RegistryOptions>]
+ [[-SID] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,14 +66,14 @@ Creates or sets the default value in the specified registry key.
 
 ## PARAMETERS
 
-### -Key
+### -LiteralPath
 
 The registry key path.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Key
 
 Required: True
 Position: 1
@@ -92,7 +93,7 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -116,8 +117,6 @@ Accept wildcard characters: False
 ### -Type
 
 The type of registry value to create or set.
-Options: 'Binary','DWord','ExpandString','MultiString','None','QWord','String','Unknown'.
-Default: String.
 
 DWord should be specified as a decimal.
 
@@ -129,7 +128,25 @@ Accepted values: Unknown, String, ExpandString, Binary, DWord, MultiString, QWor
 
 Required: False
 Position: 4
-Default value: String
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MultiStringValueMode
+
+The mode to operate when working with MultiString objects.
+The default is replace, but add and remove modes are supported also.
+
+```yaml
+Type: MultiStringValueMode
+Parameter Sets: (All)
+Aliases:
+Accepted values: Replace, Add, Remove
+
+Required: False
+Position: 5
+Default value: Replace
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -150,6 +167,24 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -RegistryOptions
+
+Extra options to use while creating the key.
+This is useful for creating volatile keys that do not survive a reboot.
+
+```yaml
+Type: RegistryOptions
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, Volatile
+
+Required: False
+Position: 6
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -SID
 
 The security identifier (SID) for a user.
@@ -163,7 +198,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
+Position: 7
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -193,4 +228,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Set-ADTRegistryKey](./Set-ADTRegistryKey.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Set-ADTRegistryKey](https://psappdeploytoolkit.com/docs/reference/functions/Set-ADTRegistryKey)

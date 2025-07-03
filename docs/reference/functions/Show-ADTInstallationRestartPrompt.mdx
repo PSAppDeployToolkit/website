@@ -14,22 +14,24 @@ Displays a restart prompt with a countdown to a forced restart.
 ### Countdown (Default)
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-CountdownSeconds <UInt32>] [-CountdownNoHideSeconds <UInt32>] [-NotTopMost]
- -Title <String> -Subtitle <String> [<CommonParameters>]
+Show-ADTInstallationRestartPrompt [-CountdownSeconds <UInt32>] [-CountdownNoHideSeconds <UInt32>]
+ [-WindowLocation <DialogPosition>] [-CustomText] [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ### NoCountdown
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-NoCountdown] [-NotTopMost] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+Show-ADTInstallationRestartPrompt [-NoCountdown] [-WindowLocation <DialogPosition>] [-CustomText] [-NotTopMost]
+ [-AllowMove] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### SilentRestart
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-SilentRestart] [-SilentCountdownSeconds <UInt32>] [-NotTopMost]
- -Title <String> -Subtitle <String> [<CommonParameters>]
+Show-ADTInstallationRestartPrompt [-SilentRestart] [-SilentCountdownSeconds <UInt32>]
+ [-WindowLocation <DialogPosition>] [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -85,7 +87,6 @@ Accept wildcard characters: False
 ### -CountdownSeconds
 
 Specifies the number of seconds to display the restart prompt.
-Default: 60
 
 ```yaml
 Type: UInt32
@@ -102,7 +103,6 @@ Accept wildcard characters: False
 ### -CountdownNoHideSeconds
 
 Specifies the number of seconds to display the restart prompt without allowing the window to be hidden.
-Default: 30
 
 ```yaml
 Type: UInt32
@@ -135,7 +135,6 @@ Accept wildcard characters: False
 ### -SilentCountdownSeconds
 
 Specifies number of seconds to countdown for the restart when the toolkit is running in silent mode and `-SilentRestart` isn't specified.
-Default: 5
 
 ```yaml
 Type: UInt32
@@ -145,6 +144,40 @@ Aliases:
 Required: False
 Position: Named
 Default value: 5
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WindowLocation
+
+The location of the dialog on the screen.
+
+```yaml
+Type: DialogPosition
+Parameter Sets: (All)
+Aliases:
+Accepted values: TopLeft, Top, TopRight, TopCenter, Center, BottomLeft, Bottom, BottomRight, BottomCenter
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CustomText
+
+Specify whether to display a custom message specified in the `strings.psd1` file.
+Custom message must be populated for each language section in the `strings.psd1` file.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Countdown, NoCountdown
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -165,10 +198,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -AllowMove
+
+Specifies that the user can move the dialog on the screen.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Subtitle
 
 Subtitle of the prompt.
-Default: the application deployment type.
 
 ```yaml
 Type: String
@@ -185,7 +233,6 @@ Accept wildcard characters: False
 ### -Title
 
 Title of the prompt.
-Default: the application installation name.
 
 ```yaml
 Type: String
@@ -223,4 +270,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Show-ADTInstallationRestartPrompt](./Show-ADTInstallationRestartPrompt.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTInstallationRestartPrompt](https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTInstallationRestartPrompt)

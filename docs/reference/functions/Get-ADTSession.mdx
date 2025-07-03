@@ -30,6 +30,18 @@ Get-ADTSession
 
 This example retrieves the most recent ADT session.
 
+### EXAMPLE 2
+
+```powershell
+$adtSession = Get-ADTSession
+...
+Close-ADTSession
+$adtSession.GetExitCode()
+```
+
+
+This example retrieves the given deployment session's exit code after the session has closed.
+
 ## PARAMETERS
 
 ### CommonParameters
@@ -58,4 +70,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Get-ADTSession](./Get-ADTSession.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTSession](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTSession)

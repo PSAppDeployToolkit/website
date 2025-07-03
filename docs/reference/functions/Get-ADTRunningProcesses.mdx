@@ -1,43 +1,43 @@
 ---
-id: Add-ADTSessionFinishingCallback
-title: Add-ADTSessionFinishingCallback
+id: Get-ADTRunningProcesses
+title: Get-ADTRunningProcesses
 hide_title: false
 hide_table_of_contents: false
 ---
 
 ## SYNOPSIS
 
-Adds a callback to be executed when the ADT session is finishing.
+Gets the processes that are running from a list of process objects.
 
 ## SYNTAX
 
 ```powershell
-Add-ADTSessionFinishingCallback [-Callback] <CommandInfo[]> [<CommonParameters>]
+Get-ADTRunningProcesses [-ProcessObjects] <ProcessDefinition[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The Add-ADTSessionFinishingCallback function registers a callback command to be executed when the ADT session is finishing.
-This function sends the callback to the backend function for processing.
+Gets the processes that are running from a list of process objects.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Add-ADTSessionFinishingCallback -Callback $myCallback
+Get-ADTRunningProcesses -ProcessObjects $processObjects
 ```
 
-This example adds the specified callback to be executed when the ADT session is finishing.
+Returns a list of running processes.
+If nothing is found nothing will be returned.
 
 ## PARAMETERS
 
-### -Callback
+### -ProcessObjects
 
-The callback command(s) to be executed when the ADT session is finishing.
+One or more process objects to search for.
 
 ```yaml
-Type: CommandInfo[]
+Type: ProcessDefinition[]
 Parameter Sets: (All)
 Aliases:
 
@@ -54,16 +54,16 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### None.
 
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### None
+### System.Collections.Generic.IReadOnlyList`1[[PSADT.ProcessManagement.RunningProcess]].
 
-### This function does not return any output.
+### Returns one or more RunningProcess objects representing each running process.
 ## NOTES
-An active ADT session is required to use this function.
+An active ADT session is NOT required to use this function.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
@@ -72,4 +72,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Add-ADTSessionFinishingCallback](./Add-ADTSessionFinishingCallback.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTServiceStartMode](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTServiceStartMode)

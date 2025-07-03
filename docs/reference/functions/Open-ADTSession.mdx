@@ -12,19 +12,19 @@ Opens a new ADT session.
 ## SYNTAX
 
 ```powershell
-Open-ADTSession [-SessionState] <SessionState> [[-DeploymentType] <DeploymentType>]
- [[-DeployMode] <DeployMode>] [-AllowRebootPassThru] [-TerminalServerMode] [-DisableLogging]
+Open-ADTSession [[-SessionState] <SessionState>] [[-DeploymentType] <DeploymentType>]
+ [[-DeployMode] <DeployMode>] [-SuppressRebootPassThru] [-TerminalServerMode] [-DisableLogging]
  [[-AppVendor] <String>] [[-AppName] <String>] [[-AppVersion] <String>] [[-AppArch] <String>]
  [[-AppLang] <String>] [[-AppRevision] <String>] [[-AppScriptVersion] <Version>] [[-AppScriptDate] <DateTime>]
  [[-AppScriptAuthor] <String>] [[-InstallName] <String>] [[-InstallTitle] <String>]
  [[-DeployAppScriptFriendlyName] <String>] [[-DeployAppScriptVersion] <Version>]
- [[-DeployAppScriptDate] <DateTime>]
- [[-DeployAppScriptParameters] <System.Collections.Generic.Dictionary`2[System.String,System.Object]>]
- [[-AppSuccessExitCodes] <Int32[]>] [[-AppRebootExitCodes] <Int32[]>] [[-ScriptDirectory] <String[]>]
- [[-DirFiles] <String>] [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
+ [[-DeployAppScriptParameters] <System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]>]
+ [[-AppSuccessExitCodes] <Int32[]>] [[-AppRebootExitCodes] <Int32[]>]
+ [[-AppProcessesToClose] <ProcessDefinition[]>] [[-ScriptDirectory] <String[]>] [[-DirFiles] <String>]
+ [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
  [[-DefaultMspFiles] <String[]>] [-DisableDefaultMsiProcessList] [[-LogName] <String>] [[-SessionClass] <Type>]
- [-ForceWimDetection] [-PassThru] [[-UnboundArguments] <System.Collections.Generic.List`1[System.Object]>]
- [<CommonParameters>]
+ [-ForceWimDetection] [-ForceMsiDetection] [-PassThru]
+ [[-UnboundArguments] <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -47,16 +47,16 @@ Opens a new ADT session with the specified parameters.
 
 ### -SessionState
 
-Caller's SessionState.
+Defaults to $PSCmdlet.SessionState to get the caller's SessionState, so only required if you need to override this.
 
 ```yaml
 Type: SessionState
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 1
-Default value: None
+Default value: $PSCmdlet.SessionState
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -95,9 +95,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AllowRebootPassThru
+### -SuppressRebootPassThru
 
-Allows reboot pass-through.
+Suppresses reboot pass-through.
 
 ```yaml
 Type: SwitchParameter
@@ -154,7 +154,7 @@ Aliases:
 
 Required: False
 Position: 4
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -170,7 +170,7 @@ Aliases:
 
 Required: False
 Position: 5
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -186,7 +186,7 @@ Aliases:
 
 Required: False
 Position: 6
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -202,7 +202,7 @@ Aliases:
 
 Required: False
 Position: 7
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -218,7 +218,7 @@ Aliases:
 
 Required: False
 Position: 8
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -234,7 +234,7 @@ Aliases:
 
 Required: False
 Position: 9
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -282,7 +282,7 @@ Aliases:
 
 Required: False
 Position: 12
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -298,7 +298,7 @@ Aliases:
 
 Required: False
 Position: 13
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -314,7 +314,7 @@ Aliases:
 
 Required: False
 Position: 14
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -330,7 +330,7 @@ Aliases:
 
 Required: False
 Position: 15
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -351,33 +351,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -DeployAppScriptDate
-
-Specifies the date of the deploy application script.
-
-```yaml
-Type: DateTime
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 17
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -DeployAppScriptParameters
 
 Specifies the parameters for the deploy application script.
 
 ```yaml
-Type: System.Collections.Generic.Dictionary`2[System.String,System.Object]
+Type: System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 18
+Position: 17
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -393,7 +377,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 19
+Position: 18
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -405,6 +389,22 @@ Specifies the application reboot codes.
 
 ```yaml
 Type: Int32[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 19
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppProcessesToClose
+
+Specifies one or more processes that require closing to ensure a successful deployment.
+
+```yaml
+Type: ProcessDefinition[]
 Parameter Sets: (All)
 Aliases:
 
@@ -442,7 +442,7 @@ Aliases:
 
 Required: False
 Position: 22
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -458,7 +458,7 @@ Aliases:
 
 Required: False
 Position: 23
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -474,7 +474,7 @@ Aliases:
 
 Required: False
 Position: 24
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -490,7 +490,7 @@ Aliases:
 
 Required: False
 Position: 25
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -538,7 +538,7 @@ Aliases:
 
 Required: False
 Position: 27
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -576,6 +576,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ForceMsiDetection
+
+Specifies that MSI files should be detected and parsed during session initialization, irrespective of whether any App values are provided.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -PassThru
 
 Passes the session object through the pipeline.
@@ -597,7 +613,7 @@ Accept wildcard characters: False
 Captures any additional arguments passed to the function.
 
 ```yaml
-Type: System.Collections.Generic.List`1[System.Object]
+Type: System.Collections.Generic.IReadOnlyList`1[System.Object]
 Parameter Sets: (All)
 Aliases:
 
@@ -632,4 +648,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Open-ADTSession](./Open-ADTSession.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Open-ADTSession](https://psappdeploytoolkit.com/docs/reference/functions/Open-ADTSession)

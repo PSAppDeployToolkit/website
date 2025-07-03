@@ -13,7 +13,7 @@ Enumerates ErrorRecord details.
 
 ```powershell
 Resolve-ADTErrorRecord [-ErrorRecord] <ErrorRecord> [[-Property] <String[]>] [-ExcludeErrorRecord]
- [-ExcludeErrorInvocation] [-ExcludeErrorException] [-ExcludeErrorInnerException] [<CommonParameters>]
+ [-ExcludeErrorInvocation] [-ExcludeErrorException] [-IncludeErrorInnerException] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -142,9 +142,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ExcludeErrorInnerException
+### -IncludeErrorInnerException
 
-Exclude ErrorRecord inner exception details as represented by $ErrorRecord.Exception.InnerException.
+Includes further ErrorRecord inner exception details as represented by $ErrorRecord.Exception.InnerException.
 Will retrieve all inner exceptions if there is more than one.
 
 ```yaml
@@ -183,4 +183,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Resolve-ADTErrorRecord](./Resolve-ADTErrorRecord.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Resolve-ADTErrorRecord](https://psappdeploytoolkit.com/docs/reference/functions/Resolve-ADTErrorRecord)

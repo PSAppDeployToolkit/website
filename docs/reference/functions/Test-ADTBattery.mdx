@@ -44,13 +44,14 @@ Returns true if the current system is a laptop, otherwise false.
 
 Outputs an object containing the following properties:
 
-- IsLaptop
-- IsUsingACPower
 - ACPowerLineStatus
 - BatteryChargeStatus
 - BatteryLifePercent
+- BatterySaverEnabled
 - BatteryLifeRemaining
 - BatteryFullLifetime
+- IsUsingACPower
+- IsLaptop
 
 ```yaml
 Type: SwitchParameter
@@ -78,13 +79,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### PSADT.Types.BatteryInfo
 
 ### Returns an object containing the following properties:
-### - IsLaptop
-### - IsUsingACPower
 ### - ACPowerLineStatus
 ### - BatteryChargeStatus
 ### - BatteryLifePercent
+### - BatterySaverEnabled
 ### - BatteryLifeRemaining
 ### - BatteryFullLifetime
+### - IsUsingACPower
+### - IsLaptop
 ## NOTES
 An active ADT session is NOT required to use this function.
 
@@ -95,4 +97,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Test-ADTBattery](./Test-ADTBattery.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Test-ADTBattery](https://psappdeploytoolkit.com/docs/reference/functions/Test-ADTBattery)

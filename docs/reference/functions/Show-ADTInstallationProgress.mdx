@@ -12,9 +12,10 @@ Displays a progress dialog in a separate thread with an updateable custom messag
 ## SYNTAX
 
 ```powershell
-Show-ADTInstallationProgress [[-WindowLocation] <String>] [[-MessageAlignment] <TextAlignment>] [-NotTopMost]
- [-NoRelocation] -WindowTitle <String> -WindowSubtitle <String> -StatusMessage <String>
- -StatusMessageDetail <String> [<CommonParameters>]
+Show-ADTInstallationProgress [[-StatusMessage] <String>] [[-StatusMessageDetail] <String>]
+ [[-StatusBarPercentage] <Double>] [[-MessageAlignment] <DialogMessageAlignment>]
+ [[-WindowLocation] <DialogPosition>] [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,75 +61,6 @@ Displays a progress dialog with the status message 'Installation in Progress...'
 
 ## PARAMETERS
 
-### -WindowLocation
-
-The location of the progress window.
-Default: center of the screen.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: Default
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -MessageAlignment
-
-The text alignment to use for the status message.
-Default: center.
-
-```yaml
-Type: TextAlignment
-Parameter Sets: (All)
-Aliases:
-Accepted values: Left, Right, Center, Justify
-
-Required: False
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -NotTopMost
-
-Specifies whether the progress window shouldn't be topmost.
-Default: $false.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -NoRelocation
-
-Specifies whether to not reposition the window upon updating the message.
-Default: $false.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -StatusMessage
 
 The status message to be displayed.
@@ -139,9 +71,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: Named
-Default value: None
+Required: False
+Position: 1
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -156,14 +88,97 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: Named
+Required: False
+Position: 2
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -StatusBarPercentage
+
+The percentage to display on the status bar.
+If null or not supplied, the status bar will continuously scroll.
+
+```yaml
+Type: Double
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WindowSubtitle
+### -MessageAlignment
+
+The text alignment to use for the status message.
+
+```yaml
+Type: DialogMessageAlignment
+Parameter Sets: (All)
+Aliases:
+Accepted values: Left, Center, Right
+
+Required: False
+Position: 4
+Default value: Center
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WindowLocation
+
+The location of the dialog on the screen.
+
+```yaml
+Type: DialogPosition
+Parameter Sets: (All)
+Aliases:
+Accepted values: TopLeft, Top, TopRight, TopCenter, Center, BottomLeft, Bottom, BottomRight, BottomCenter
+
+Required: False
+Position: 5
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NotTopMost
+
+Specifies whether the progress window shouldn't be topmost.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowMove
+
+Specifies that the user can move the dialog on the screen.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Subtitle
 
 The subtitle of the window to be displayed with a fluent progress window.
 The default is the derived value from "$($adtSession.DeploymentType)".
@@ -171,7 +186,7 @@ The default is the derived value from "$($adtSession.DeploymentType)".
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: WindowSubtitle
 
 Required: True
 Position: Named
@@ -180,7 +195,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WindowTitle
+### -Title
 
 The title of the window to be displayed.
 The default is the derived value from "$($adtSession.InstallTitle)".
@@ -188,7 +203,7 @@ The default is the derived value from "$($adtSession.InstallTitle)".
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: WindowTitle
 
 Required: True
 Position: Named
@@ -221,4 +236,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Show-ADTInstallationProgress](./Show-ADTInstallationProgress.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTInstallationProgress](https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTInstallationProgress)

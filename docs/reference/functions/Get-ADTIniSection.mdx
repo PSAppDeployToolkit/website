@@ -1,49 +1,63 @@
 ---
-id: Remove-ADTSessionStartingCallback
-title: Remove-ADTSessionStartingCallback
+id: Get-ADTIniSection
+title: Get-ADTIniSection
 hide_title: false
 hide_table_of_contents: false
 ---
 
 ## SYNOPSIS
 
-Removes a callback function from the ADT session starting event.
+Parses an INI file and returns the specified section as an ordered hashtable of key value pairs.
 
 ## SYNTAX
 
 ```powershell
-Remove-ADTSessionStartingCallback [-Callback] <CommandInfo[]> [<CommonParameters>]
+Get-ADTIniSection [-FilePath] <String> [-Section] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-This function removes a specified callback function from the ADT session starting event.
-The callback function must be provided as a parameter.
-If the operation fails, it throws a terminating error.
+Parses an INI file and returns the specified section as an ordered hashtable of key value pairs.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Remove-ADTSessionStartingCallback -Callback (Get-Command -Name 'MyCallbackFunction')
+Get-ADTIniSection -FilePath "$env:ProgramFilesX86\IBM\Notes\notes.ini" -Section 'Notes'
 ```
 
-Removes the specified callback function from the ADT session starting event.
+This example retrieves the section of the 'Notes' of the specified INI file.
 
 ## PARAMETERS
 
-### -Callback
+### -FilePath
 
-The callback function to remove from the ADT session starting event.
+Path to the INI file.
 
 ```yaml
-Type: CommandInfo[]
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Section
+
+Section within the INI file.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -60,9 +74,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### None
+### Collections.Specialized.OrderedDictionary
 
-### This function does not generate any output.
+### Returns the value of the specified section and key.
 ## NOTES
 An active ADT session is NOT required to use this function.
 
@@ -73,4 +87,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Remove-ADTSessionStartingCallback](./Remove-ADTSessionStartingCallback.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTIniValue](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTIniValue)

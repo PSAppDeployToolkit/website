@@ -14,21 +14,14 @@ Send a sequence of keys to one or more application windows.
 ### WindowTitle
 
 ```powershell
-Send-ADTKeys [-WindowTitle] <String> [-Keys] <String> [[-WaitSeconds] <Int32>] [[-WaitDuration] <TimeSpan>]
- [<CommonParameters>]
-```
-
-### GetAllWindowTitles
-
-```powershell
-Send-ADTKeys [-GetAllWindowTitles] [-Keys] <String> [[-WaitSeconds] <Int32>] [[-WaitDuration] <TimeSpan>]
+Send-ADTKeys -WindowTitle <String> -Keys <String> [-WaitSeconds <Int32>] [-WaitDuration <TimeSpan>]
  [<CommonParameters>]
 ```
 
 ### WindowHandle
 
 ```powershell
-Send-ADTKeys [-WindowHandle] <IntPtr> [-Keys] <String> [[-WaitSeconds] <Int32>] [[-WaitDuration] <TimeSpan>]
+Send-ADTKeys -WindowHandle <IntPtr> -Keys <String> [-WaitSeconds <Int32>] [-WaitDuration <TimeSpan>]
  [<CommonParameters>]
 ```
 
@@ -77,24 +70,8 @@ Parameter Sets: WindowTitle
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -GetAllWindowTitles
-
-Get titles for all open windows on the system.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: GetAllWindowTitles
-Aliases:
-
-Required: True
-Position: 2
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -109,7 +86,7 @@ Parameter Sets: WindowHandle
 Aliases:
 
 Required: True
-Position: 3
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -126,7 +103,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 4
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -143,8 +120,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
-Default value: 0
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -159,7 +136,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -191,4 +168,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 [http://msdn.microsoft.com/en-us/library/System.Windows.Forms.SendKeys(v=vs.100).aspx](http://msdn.microsoft.com/en-us/library/System.Windows.Forms.SendKeys(v=vs.100).aspx)
 
-[Send-ADTKeys](./Send-ADTKeys.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Send-ADTKeys](https://psappdeploytoolkit.com/docs/reference/functions/Send-ADTKeys)

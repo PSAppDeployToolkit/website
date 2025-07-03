@@ -11,8 +11,18 @@ Deletes the specified registry key or value.
 
 ## SYNTAX
 
+### Path
+
 ```powershell
-Remove-ADTRegistryKey [-Key] <String> [[-Name] <String>] [-Recurse] [[-SID] <String>] [<CommonParameters>]
+Remove-ADTRegistryKey -Path <String> [-Name <String>] [-Wow6432Node] [-Recurse] [-SID <String>]
+ [<CommonParameters>]
+```
+
+### LiteralPath
+
+```powershell
+Remove-ADTRegistryKey -LiteralPath <String> [-Name <String>] [-Wow6432Node] [-Recurse] [-SID <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,17 +59,33 @@ Deletes the default registry value in the specified key.
 
 ## PARAMETERS
 
-### -Key
+### -Path
 
-Path of the registry key to delete.
+Path of the registry key to delete, wildcards permitted.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Path
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -LiteralPath
+
+Literal path of the registry key to delete.
+
+```yaml
+Type: String
+Parameter Sets: LiteralPath
+Aliases: Key
+
+Required: True
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -75,8 +101,24 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
-Default value: None
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Wow6432Node
+
+Specify this switch to read the 32-bit registry (Wow6432Node) on 64-bit systems.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -110,7 +152,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -140,4 +182,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Remove-ADTRegistryKey](./Remove-ADTRegistryKey.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTRegistryKey](https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTRegistryKey)

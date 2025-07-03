@@ -1,43 +1,42 @@
 ---
-id: Add-ADTSessionStartingCallback
-title: Add-ADTSessionStartingCallback
+id: Remove-ADTHashtableNullOrEmptyValues
+title: Remove-ADTHashtableNullOrEmptyValues
 hide_title: false
 hide_table_of_contents: false
 ---
 
 ## SYNOPSIS
 
-Adds a callback to be executed when the ADT session is starting.
+Removes any key/value pairs from the supplied hashtable where the value is null.
 
 ## SYNTAX
 
 ```powershell
-Add-ADTSessionStartingCallback [-Callback] <CommandInfo[]> [<CommonParameters>]
+Remove-ADTHashtableNullOrEmptyValues [-Hashtable] <Hashtable> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The Add-ADTSessionStartingCallback function registers a callback command to be executed when the ADT session is starting.
-This function sends the callback to the backend function for processing.
+This function removes any key/value pairs from the supplied hashtable where the value is null.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Add-ADTSessionStartingCallback -Callback $myCallback
+Remove-ADTHashtableNullOrEmptyValues -Hashtable
 ```
 
-This example adds the specified callback to be executed when the ADT session is starting.
+Returns a new hashtable with only key/values where the value isn't null.
 
 ## PARAMETERS
 
-### -Callback
+### -Hashtable
 
-The callback command(s) to be executed when the ADT session is starting.
+The hashtable to remove null values from.
 
 ```yaml
-Type: CommandInfo[]
+Type: Hashtable
 Parameter Sets: (All)
 Aliases:
 
@@ -59,11 +58,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### None
+### System.Collections.Hashtable
 
-### This function does not return any output.
+### Returns a new hashtable with only key/values where the value isn't null.
 ## NOTES
-An active ADT session is required to use this function.
+An active ADT session is NOT required to use this function.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
@@ -72,4 +71,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Add-ADTSessionStartingCallback](./Add-ADTSessionStartingCallback.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTHashtableNullOrEmptyValues](https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTHashtableNullOrEmptyValues)

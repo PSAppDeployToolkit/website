@@ -11,11 +11,23 @@ Displays a custom installation prompt with the toolkit branding and optional but
 
 ## SYNTAX
 
+### ShowCustomDialog (Default)
+
 ```powershell
-Show-ADTInstallationPrompt [-Message] <String> [[-MessageAlignment] <String>] [[-ButtonRightText] <String>]
- [[-ButtonLeftText] <String>] [[-ButtonMiddleText] <String>] [[-Icon] <String>] [-NoWait] [-PersistPrompt]
- [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] -Title <String> -Subtitle <String> [-Timeout <UInt32>]
- [<CommonParameters>]
+Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAlignment>]
+ [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>]
+ [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout]
+ [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
+```
+
+### ShowInputDialog
+
+```powershell
+Show-ADTInstallationPrompt [-RequestInput] [-DefaultValue <String>] -Message <String>
+ [-MessageAlignment <DialogMessageAlignment>] [-ButtonRightText <String>] [-ButtonLeftText <String>]
+ [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
+ [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String>
+ [-Timeout <UInt32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,22 +42,54 @@ The prompt can also display a system icon and be configured to persist, minimize
 ### EXAMPLE 1
 
 ```powershell
-Show-ADTInstallationPrompt -Message 'Do you want to proceed with the installation?' -ButtonRightText 'Yes' -ButtonLeftText 'No'
+Show-ADTInstallationPrompt -Message 'Do you want to proceed with the installation?' -ButtonLeftText 'Yes' -ButtonRightText 'No'
 ```
 
 ### EXAMPLE 2
 
 ```powershell
-Show-ADTInstallationPrompt -Title 'Funny Prompt' -Message 'How are you feeling today?' -ButtonRightText 'Good' -ButtonLeftText 'Bad' -ButtonMiddleText 'Indifferent'
+Show-ADTInstallationPrompt -Title 'Funny Prompt' -Message 'How are you feeling today?' -ButtonLeftText 'Good' -ButtonRightText 'Bad' -ButtonMiddleText 'Indifferent'
 ```
 
 ### EXAMPLE 3
 
 ```powershell
-Show-ADTInstallationPrompt -Message 'You can customize text to appear at the end of an install, or remove it completely for unattended installations.' -ButtonRightText 'OK' -Icon Information -NoWait
+Show-ADTInstallationPrompt -Message 'You can customize text to appear at the end of an install, or remove it completely for unattended installations.' -ButtonLeftText 'OK' -Icon Information -NoWait
 ```
 
 ## PARAMETERS
+
+### -RequestInput
+
+Show a text box for the user to provide an answer.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ShowInputDialog
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DefaultValue
+
+The default value to show in the text box.
+
+```yaml
+Type: String
+Parameter Sets: ShowInputDialog
+Aliases:
+
+Required: False
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Message
 
@@ -57,8 +101,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
-Default value: None
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -66,16 +110,15 @@ Accept wildcard characters: False
 ### -MessageAlignment
 
 Alignment of the message text.
-Options: Left, Center, Right.
-Default: Center.
 
 ```yaml
-Type: String
+Type: DialogMessageAlignment
 Parameter Sets: (All)
 Aliases:
+Accepted values: Left, Center, Right
 
 Required: False
-Position: 2
+Position: Named
 Default value: Center
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -91,8 +134,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
-Default value: None
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -107,8 +150,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 4
-Default value: None
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -123,8 +166,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
-Default value: None
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -132,16 +175,32 @@ Accept wildcard characters: False
 ### -Icon
 
 Show a system icon in the prompt.
-Options: Application, Asterisk, Error, Exclamation, Hand, Information, None, Question, Shield, Warning, WinLogo.
-Default: None.
 
 ```yaml
-Type: String
+Type: DialogSystemIcon
 Parameter Sets: (All)
 Aliases:
+Accepted values: Application, Asterisk, Error, Exclamation, Hand, Information, Question, Shield, Warning, WinLogo
 
 Required: False
-Position: 6
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WindowLocation
+
+The location of the dialog on the screen.
+
+```yaml
+Type: DialogPosition
+Parameter Sets: (All)
+Aliases:
+Accepted values: TopLeft, Top, TopRight, TopCenter, Center, BottomLeft, Bottom, BottomRight, BottomCenter
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -153,7 +212,7 @@ Presents the dialog in a separate, independent thread so that the main process i
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: ShowCustomDialog
 Aliases:
 
 Required: False
@@ -228,10 +287,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -AllowMove
+
+Specifies that the user can move the dialog on the screen.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Subtitle
 
 Subtitle of the prompt.
-Default: the application deployment type.
 
 ```yaml
 Type: String
@@ -247,7 +321,7 @@ Accept wildcard characters: False
 
 ### -Timeout
 
-Specifies how long, in seconds, to show the message prompt before aborting.
+Specifies how long to show the message prompt before aborting.
 
 ```yaml
 Type: UInt32
@@ -264,7 +338,6 @@ Accept wildcard characters: False
 ### -Title
 
 Title of the prompt.
-Default: the application installation name.
 
 ```yaml
 Type: String
@@ -302,4 +375,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Show-ADTInstallationPrompt](./Show-ADTInstallationPrompt.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTInstallationPrompt](https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTInstallationPrompt)

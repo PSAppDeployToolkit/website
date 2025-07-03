@@ -11,8 +11,17 @@ Retrieves value names and value data for a specified registry key or optionally,
 
 ## SYNTAX
 
+### Path
+
 ```powershell
-Get-ADTRegistryKey [-Key] <String> [[-Name] <String>] [-Wow6432Node] [[-SID] <String>]
+Get-ADTRegistryKey -Path <String> [-Name <String>] [-Wow6432Node] [-SID <String>] [-ReturnEmptyKeyIfExists]
+ [-DoNotExpandEnvironmentNames] [<CommonParameters>]
+```
+
+### LiteralPath
+
+```powershell
+Get-ADTRegistryKey -LiteralPath <String> [-Name <String>] [-Wow6432Node] [-SID <String>]
  [-ReturnEmptyKeyIfExists] [-DoNotExpandEnvironmentNames] [<CommonParameters>]
 ```
 
@@ -67,17 +76,33 @@ This example retrieves the default value data for the specified registry key.
 
 ## PARAMETERS
 
-### -Key
+### -Path
 
-Path of the registry key.
+Path of the registry key, wildcards permitted.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Path
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -LiteralPath
+
+Literal path of the registry key.
+
+```yaml
+Type: String
+Parameter Sets: LiteralPath
+Aliases: Key
+
+Required: True
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -93,8 +118,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
-Default value: None
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -128,8 +153,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
-Default value: None
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -190,4 +215,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Get-ADTRegistryKey](./Get-ADTRegistryKey.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTRegistryKey](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTRegistryKey)

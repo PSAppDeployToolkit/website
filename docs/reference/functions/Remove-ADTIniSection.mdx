@@ -1,48 +1,63 @@
 ---
-id: Add-ADTSessionOpeningCallback
-title: Add-ADTSessionOpeningCallback
+id: Remove-ADTIniSection
+title: Remove-ADTIniSection
 hide_title: false
 hide_table_of_contents: false
 ---
 
 ## SYNOPSIS
 
-Adds a callback to be executed when the ADT session is opening.
+Opens an INI file and removes the specified section.
 
 ## SYNTAX
 
 ```powershell
-Add-ADTSessionOpeningCallback [-Callback] <CommandInfo[]> [<CommonParameters>]
+Remove-ADTIniSection [-FilePath] <String> [-Section] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The Add-ADTSessionOpeningCallback function registers a callback command to be executed when the ADT session is opening.
-This function sends the callback to the backend function for processing.
+Opens an INI file and removes the specified section.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Add-ADTSessionOpeningCallback -Callback $myCallback
+Remove-ADTIniSection -FilePath "$env:ProgramFilesX86\IBM\Notes\notes.ini" -Section 'Notes'
 ```
 
-This example adds the specified callback to be executed when the ADT session is opening.
+Removes the 'Notes' section of the 'notes.ini' file.
 
 ## PARAMETERS
 
-### -Callback
+### -FilePath
 
-The callback command(s) to be executed when the ADT session is opening.
+Path to the INI file.
 
 ```yaml
-Type: CommandInfo[]
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Section
+
+Section within the INI file.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -63,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### This function does not return any output.
 ## NOTES
-An active ADT session is required to use this function.
+An active ADT session is NOT required to use this function.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
@@ -72,4 +87,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[Add-ADTSessionOpeningCallback](./Add-ADTSessionOpeningCallback.mdx)
+[https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTIniSection](https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTIniSection)
