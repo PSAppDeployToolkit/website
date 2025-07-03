@@ -53,16 +53,15 @@ const config = {
           lastVersion: '4.0.0',
           versions: {
             current: {
-              label: '4.1.0',
+              label: 'In Development (4.1.x)',
               banner: 'unreleased',
-              // editUrl: 'https://github.com/psappdeploytoolkit/website/docs/edit/main',
+              // editUrl: 'https://github.com/psappdeploytoolkit/website/edit/main',
             },
             '4.0.0': {
-              label: '4.0.0',
-              path: '4.0.0',
+              label: 'Stable (4.0.x)',
             },
             '3.10.2': {
-              label: '3.10.2',
+              label: 'Deprecated (3.10.2)',
               path: '3.10.2',
               banner: 'unmaintained'
             },
