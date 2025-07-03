@@ -1,0 +1,72 @@
+---
+sidebar_position: 3
+sidebar_label: 'Configuration Settings'
+title: 'Configuration Settings'
+description: 'PSAppDeployToolkit uses ADTSession to govern each deployment. You can find more information here'
+slug: /reference/config-settings
+tags:
+  - Configuration Settings
+  - Reference
+---
+
+# Configuration Settings
+
+# Settings
+
+## Assets
+
+| Setting       | Description                 |
+|:--------------|:----------------------------|
+| Assets.Banner | Specifies the banner asset. |
+| Assets.Logo   | Specifies the logo asset.   |
+
+## Toolkit Settings
+| Setting                           | Description                                                      |
+|:----------------------------------|:-----------------------------------------------------------------|
+| Toolkit.CachePath                 | Specifies where the toolkit caches files.                        |
+| Toolkit.CompressLogs              | Determines if log files should be compressed.                    |
+| Toolkit.FileCopyMode              | Specifies the file copy mode for the toolkit.                    |
+| Toolkit.LogAppend                 | Indicates if logs should be appended.                            |
+| Toolkit.LogDebugMessage           | Enables or disables debug message logging.                       |
+| Toolkit.LogHostOutputToStdStreams | Logs host output to standard streams.                            |
+| Toolkit.LogMaxHistory             | Sets the maximum history for logs.                               |
+| Toolkit.LogMaxSize                | Defines the maximum size for logs.                               |
+| Toolkit.LogPath                   | Specifies the path where logs are stored.                        |
+| Toolkit.LogPathNoAdminRights      | Specifies the log path when no admin rights are available.       |
+| Toolkit.LogStyle                  | Sets the style for logging.                                      |
+| Toolkit.LogWriteToHost            | Determines if logs should be written to the host.                |
+| Toolkit.OobeDetection             | Detects Out-of-Box Experience (OOBE) state.                      |
+| Toolkit.RegPath                   | Specifies the registry path for the toolkit.                     |
+| Toolkit.RegPathNoAdminRights      | Specifies the registry path when no admin rights are available.  |
+| Toolkit.RequireAdmin              | Indicates if administrative rights are required.                 |
+| Toolkit.SessionDetection          | Detects user session state.                                      |
+| Toolkit.TempPath                  | Specifies the temporary path for the toolkit.                    |
+| Toolkit.TempPathNoAdminRights     | Specifies the temporary path when no admin rights are available. |
+| Toolkit.UIHostProcess             | Specifies the UI host process for the toolkit.                   |
+
+## Windows Installer (MSI) Execution Settings
+| Setting                  | Description                                                        |
+|:-------------------------|:-------------------------------------------------------------------|
+| MSI.InstallParams        | Defines the installation parameters for MSI.                       |
+| MSI.LoggingOptions       | Specifies the logging options for MSI.                             |
+| MSI.LogPath              | Specifies the log path for MSI.                                    |
+| MSI.LogPathNoAdminRights | Specifies the log path for MSI when no admin rights are available. |
+| MSI.MutexWaitTime        | Sets the mutex wait time for MSI.                                  |
+| MSI.SilentParams         | Defines the silent parameters for MSI.                             |
+| MSI.UninstallParams      | Defines the uninstall parameters for MSI.                          |
+
+## User Interface Settings
+| Setting                             | Description                                       |
+|:------------------------------------|:--------------------------------------------------|
+| UI.BalloonNotifications             | Enables or disables balloon notifications.        |
+| UI.BalloonTitle                     | Sets the title for balloon notifications.         |
+| UI.DefaultExitCode                  | Specifies the default exit code for the UI.       |
+| UI.DefaultPromptPersistInterval     | Sets the default interval for prompt persistence. |
+| UI.DefaultTimeout                   | Defines the default timeout for the UI.           |
+| UI.DeferExitCode                    | Specifies the exit code for deferred actions.     |
+| UI.DialogStyle                      | Defines the appearance of dialogs.                |
+| UI.DynamicProcessEvaluation         | Enables or disables dynamic process evaluation.   |
+| UI.DynamicProcessEvaluationInterval | Sets the interval for dynamic process evaluation. |
+| UI.LanguageOverride                 | Overrides the language for the UI.                |
+| UI.PromptToSaveTimeout              | Controls how long the user has to respond before a prompt closes. |
+| UI.RestartPromptPersistInterval     | Sets the interval for restart prompt persistence. |

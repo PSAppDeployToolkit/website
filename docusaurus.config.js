@@ -50,16 +50,21 @@ const config = {
         },
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          lastVersion: 'current',
+          lastVersion: '4.0.0',
           versions: {
             current: {
-              label: '4.0',
-              banner: 'none',
+              label: '4.1.0',
+              banner: 'unreleased',
               // editUrl: 'https://github.com/psappdeploytoolkit/website/docs/edit/main',
+            },
+            '4.0.0': {
+              label: '4.0.0',
+              path: '4.0.0',
             },
             '3.10.2': {
               label: '3.10.2',
               path: '3.10.2',
+              banner: 'unmaintained'
             },
           },
         },
@@ -185,19 +190,19 @@ const config = {
             items: [
               {
                 label: 'Features',
-                to: '/features',
+                to: 'https://psappdeploytoolkit.com/features',
               },
               {
                 label: 'Documentation',
-                to: '/docs',
+                to: 'https://psappdeploytoolkit.com/docs',
               },
               {
                 label: 'Reference',
-                to: '/docs/reference',
+                to: 'https://psappdeploytoolkit.com/docs/reference',
               },
               {
                 label: 'News',
-                to: '/blog',
+                to: 'https://psappdeploytoolkit.com/blog',
               },
             ],
           },
