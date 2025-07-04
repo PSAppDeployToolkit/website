@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: 'How to Deploy'
-description: 'How to deployments an application installer using the command line / SCCM.'
+description: 'How to deploy the toolkit using the command line / ConfigMgr / Intune.'
 slug: /usage/how-to-deploy
 hide_title: true
 tags:
@@ -13,10 +13,12 @@ tags:
 
 There are two ways to launch the PSAppDeployToolkit for deployment of applications.
 
-- Launch `Invoke-AppDeployToolkit.ps1` PowerShell script as administrator.
-- Launch `Invoke-AppDeployToolkit.exe` as administrator. This will launch the `Invoke-AppDeployToolkit.ps1` PowerShell script without opening a PowerShell command window.
+- Run `Invoke-AppDeployToolkit.ps1` via PowerShell:
+`%SystemRoot%\System32\WindowsPowerShell\v1.0\PowerShell.exe -ExecutionPolicy Bypass -NoProfile -File Invoke-AppDeployToolkit.ps1`
+- Run `Invoke-AppDeployToolkit.exe` to launch `Invoke-AppDeployToolkit.ps1` in a hidden PowerShell window.
 
 Additionally:
+- As of 4.1.0, there is no longer any reqirement to use `ServiceUI.exe` workarounds to display the UI in **Intune** deployments.
 - If deploying via **Configuration Manager**, enable the **'Allow users to view and interact with the program installation'** option to display the UI.
 - Use `ServiceUI.exe` or a helper script if you need to show dialogs in **Intune** deployments: [Invoke-ServiceUI.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/tree/main/examples/ServiceUI)
 - If PowerShell x86 is required (for example, if CAPICOM or another x86 library is needed), launch with `Invoke-AppDeployToolkit.exe /32`.
