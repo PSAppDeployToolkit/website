@@ -16,7 +16,8 @@ Removes one or more applications specified by name, filter script, or InstalledA
 ```powershell
 Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-ArgumentList <String>]
  [-AdditionalArgumentList <String>] [-SecureArgumentList] [-LoggingOptions <String>] [-LogFileName <String>]
- [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-PassThru] [<CommonParameters>]
+ [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
+ [-RebootExitCodes <Int32[]>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
 ```
 
 ### Search
@@ -25,8 +26,8 @@ Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-Argume
 Uninstall-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode <Guid[]>]
  [-ApplicationType <String>] [-IncludeUpdatesAndHotfixes] [[-FilterScript] <ScriptBlock>]
  [-ArgumentList <String>] [-AdditionalArgumentList <String>] [-SecureArgumentList] [-LoggingOptions <String>]
- [-LogFileName <String>] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-PassThru]
- [<CommonParameters>]
+ [-LogFileName <String>] [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
+ [-RebootExitCodes <Int32[]>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -266,6 +267,39 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -WaitForChildProcesses
+
+Specifies whether the started process should be considered finished only when any child processes it spawns have finished also.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -KillChildProcessesWithParent
+
+Specifies whether any child processes started by the provided executable should be closed when the provided executable closes.
+This is handy for application installs that open web browsers and other programs that cannot be suppressed.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -SuccessExitCodes
 
 List of exit codes to be considered successful.
@@ -296,6 +330,22 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExitOnProcessFailure
+
+Automatically closes the active deployment session via Close-ADTSession in the event the process exits with a non-success or non-ignored exit code.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
