@@ -12,14 +12,13 @@ Triggers SCCM to invoke the requested schedule task ID.
 ## SYNTAX
 
 ```powershell
-Invoke-ADTSCCMTask [-ScheduleID] <String> [<CommonParameters>]
+Invoke-ADTSCCMTask [-ScheduleId] <TriggerScheduleId> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
 Triggers SCCM to invoke the requested schedule task ID.
-This function supports a variety of schedule IDs compatible with different versions of the SCCM client.
-It ensures that the correct schedule IDs are used based on the SCCM client version.
+This function supports a variety of Schedule Id values as defined via https://learn.microsoft.com/en-us/intune/configmgr/develop/reference/core/clients/client-classes/triggerschedule-method-in-class-sms_client.
 
 ## EXAMPLES
 
@@ -41,16 +40,15 @@ Triggers the 'HardwareInventory' schedule task in SCCM.
 
 ## PARAMETERS
 
-### -ScheduleID
+### -ScheduleId
 
-Name of the schedule id to trigger.
-
-Options: HardwareInventory, SoftwareInventory, HeartbeatDiscovery, SoftwareInventoryFileCollection, RequestMachinePolicy, EvaluateMachinePolicy, LocationServicesCleanup, SoftwareMeteringReport, SourceUpdate, PolicyAgentCleanup, RequestMachinePolicy2, CertificateMaintenance, PeerDistributionPointStatus, PeerDistributionPointProvisioning, ComplianceIntervalEnforcement, SoftwareUpdatesAgentAssignmentEvaluation, UploadStateMessage, StateMessageManager, SoftwareUpdatesScan, AMTProvisionCycle, UpdateStorePolicy, StateSystemBulkSend, ApplicationManagerPolicyAction, PowerManagementStartSummarizer
+Name of the Schedule Id to trigger.
 
 ```yaml
-Type: String
+Type: TriggerScheduleId
 Parameter Sets: (All)
 Aliases:
+Accepted values: HardwareInventory, SoftwareInventory, HeartbeatDiscovery, SoftwareInventoryFileCollection, IDMIFCollection, ClientMachineAuthentication, RequestMachinePolicy, EvaluateMachinePolicy, RefreshDefaultMp, RefreshLocationServices, LocationServicesCleanup, PolicyAgentRequestAssignment, PolicyAgentEvaluateAssignment, SoftwareMeteringReport, SourceUpdate, ClearProxySettingsCache, PolicyAgentCleanup, UserPolicyAgentCleanup, PolicyAgentValidateMachinePolicy, PolicyAgentValidateUserPolicy, CertificateMaintenance, PeerDistributionPointStatus, PeerDistributionPointProvisioning, SUMUpdatesInstallSchedule, HardwareInventoryCollectionCycle, SoftwareInventoryCollectionCycle, DiscoveryDataCollectionCycle, FileCollectionCycle, IDMIFCollectionCycle, SoftwareMeteringUsageReportCycle, WindowsInstallerSourceListUpdateCycle, SoftwareUpdatesAgentAssignmentEvaluation, BranchDistributionPointMaintenanceTask, UploadStateMessage, StateMessageManager, SoftwareUpdatesScan, UpdateStorePolicy, StateSystemPolicyBulkSendHigh, StateSystemPolicyBulkSendLow, ApplicationManagerPolicyAction, ApplicationManagerUserPolicyAction, ApplicationManagerGlobalEvaluationAction, PowerManagementStartSummarizer, EndpointDeploymentReevaluate, EndpointAMPolicyReevaluate, ExternalEventDetection
 
 Required: True
 Position: 1
