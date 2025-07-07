@@ -34,8 +34,7 @@ const sidebars = {
       collapsed: false,
       items: [
         'deployment-concepts/deployment-structure',
-        'deployment-concepts/invoke-appdeploytoolkit',
-        'deployment-concepts/zero-config-deployment',
+        'deployment-concepts/zero-config-deployment'
       ],
     },
     {
@@ -45,7 +44,12 @@ const sidebars = {
         type: 'generated-index',
       },
       collapsed: false,
-      items: ['usage/how-to-deploy', 'usage/adding-ui-elements', 'usage/customizing-deployments'],
+      items: [
+        'usage/customizing-deployments',
+        'usage/invoke-appdeploytoolkit',
+        'usage/adding-ui-elements',
+        'usage/how-to-deploy'
+      ],
     }/*,
     {
       type: 'category',
