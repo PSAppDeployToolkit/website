@@ -55,6 +55,7 @@ const sidebars = {
       items: [
         'usage/customizing-deployments',
         'usage/invoke-appdeploytoolkit',
+        'usage/installing-applications',
         'usage/adding-ui-elements',
         'usage/how-to-deploy'
       ],

@@ -1,0 +1,96 @@
+---
+sidebar_position: 2
+title: 'Installing Applications'
+description: 'Guidance for installing applications with PSAppDeployToolkit.'
+slug: /usage/installing applications
+hide_title: true
+tags:
+  - Usage
+---
+
+# Installing Applications
+
+## Start-ADTProcess
+The `Start-ADTProcess` function xan be used to execute a typical setup.exe installer. It provides a number of features over the standard `Start-Process` command, and like all PSAppDeployToolkit functions, provides standard logging.
+
+### Parameters
+Full parameter descriptions can be found in the [Start-ADTProcess](../reference/functions/Start-ADTProcess.mdx) documentation, but here are some of the most commonly used parameters:
+
+| **Parameter** | **Description** |
+| ------------- | --------------- |
+| -FilePath | Path to the file to be executed. If the file is located directly in the **Files** directory, only the filename needs to be specified. |
+| -ArgumentList | Arguments to be passed to the executable. |
+| -SecureArgumentList | Hide ArgumentList from the log file. |
+| -WorkingDirectory | The working directory used for executing the process. Defaults to the directory of the file being executed. |
+| -WindowStyle | Style of the window of the process executed. Options: Normal, Hidden, Maximized, Minimized. |
+| -CreateNoWindow | Used with console apps, stop a new window being created and allows capture of the standard output streams. |
+| -WaitForMsiExec | Wait until Windows Installer is free before starting the process. |
+| -WaitForChildProcesses | Wait for all child processes to complete. Useful for installers or uninstallers that exit early and hand off to a child process. |
+| -KillChildProcessesWithParent | Terminate all child processes once the main process closes - useful when an installer launches the application once complete and you want it closed. |
+| -UseUnelevatedToken | Force the process to be started with the user's unelevated token. Useful when installing user-context apps that refuse to install when elevated, or to work around Windows 11 Administrator Protection issues. |
+| -Verb | Use `-Verb RunAs` to force the process to run elevated. Note that this does not magically make standard users into admins. |
+| -UseShellExecute | Useful for opening a file or URL and letting the Windows shell figure out which application to open it with. |
+| -NoWait | Do not wait for the process to complete. This is useful for launching processes that run in the background or when you do not need to wait for the process to finish before continuing with the script. |
+| -Timeout | Specifies the maximum time to wait for the process to complete. |
+| -TimeoutAction | Specifies the action to take if the process does not complete within the specified timeout period. |
+| -NoTerminateOnTimeout | Specifies that the process should be left running if the timeout is reached. |
+| -SuccessExitCodes | List of exit codes to be considered successful. |
+| -RebootExitCodes | List of exit codes to indicate a reboot is required. |
+| -IgnoreExitCodes | List the exit codes to ignore or * to ignore all exit codes. |
+| -PassThru | Returns an object with ExitCode, StdOut, and StdErr output from the process. |
+
+### Example Usage
+
+```powershell
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S'
+```
+
+## Start-ADTProcessAsUser
+The `Start-ADTProcessAsUser` function is used to run a process in the context of the currently logged-in user. This should not typically be used to run installers, as it's best practice to create user-context deployments for those with user-context detection rules. However, there are some scenarios where this comes in handy:
+
+- Some 'Machine wide' installers actually set up a HKLM Run key in the registry to run a user-context installer for every user that logs in. You would normally then need the user to log off and on again to complete the installation. Using this function, you can immediately complete the installation for the logged-in user from the system account.
+- When you want to replace a user-context installation with a machine-wide installation, you may want to run the uninstaller in user context to remove the previous version before installing.
+- Some applications require a configuration or licensing tool to be run in user context before the application can be used.
+
+### Parameters
+This function is actually a wrapper around `Start-ADTProcess`, which also accepts a `-Username` parameter on top of the options listed above, therefore the parameters available are almost identical.
+Full parameter descriptions can be found in the [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) documentation, but here are some of the most commonly used ones that are only available when starting processes as a user:
+
+| **Parameter** | **Description** |
+| ------------- | --------------- |
+| -UseLinkedAdminToken | Run the process with the user's admin token if available. |
+| -InheritEnvironmentVariables | Inherit environment variables from the current deployment process; user environment variables such as APPDATA are always layered on top so take precedence. |
+| -ExpandEnvironmentVariables | Expand environment variables such as %APPDATA% in the file path, arguments, and working directory. |
+
+### Example Usage
+
+```powershell
+Start-ADTProcess -FilePath '%LOCALAPPDATA%\Programs\SomeApp\Uninstall.exe' -ArgumentList '/S' -ExpandEnvironmentVariables
+```
+
+## Start-ADTMsiProcess
+For installing / uninstalling / repairing MSI files, use the `Start-ADTMsiProcess` function.
+
+### Parameters
+Again this wraps `Start-ADTProcess` and provides a lot of the same parameters, but also includes some additional parameters specific to MSI installations.
+Full parameter descriptions can be found in the [Start-ADTMsiProcess](../reference/functions/Start-ADTMsiProcess.mdx) documentation, but here are some of the most commonly used parameters specific to this function:
+
+| **Parameter** | **Description** |
+| ------------- | --------------- |
+| -Action | The action to perform on the MSI file. Options: Install, Uninstall, Repair, Patch. Defaults to Install. |
+| -FilePath | Path to the MSI file to be executed. If the file is located directly in the **Files** directory, only the filename needs to be specified. |
+| -ProductCode | The product code of installed MSI file; only valid for Repair/Uninstall operations. |
+| -InstalledApplication | Allows you to perform MSI operations by piping output from the [Get-InstalledApplication](../reference/functions/Get-ADTApplication.mdx) function. |
+| -ArgumentList | Arguments to be passed to the MSI file. Note that this **replaces** the default MSI parameters defined in the config (e.g. `/qn REBOOT=ReallySuppress`) |
+| -AdditionalArgumentList | Additional arguments to be appended to the default MSI parameters defined in the config. This is what you will typically use when setting MSI properties. |
+| -Transforms | Names of the MST transform files to be applied to the MSI. MST files should be located in the same directory as the MSI file. |
+| -Patches | Names of the MSP patch files to be applied to the MSI. MSP files should be located in the same directory as the MSI file. |
+| -RepairMode | Specify `Reinstall` (default) to reinstall by adding `REINSTALL=ALL REINSTALLMODE=omus` to the standard InstallParams, or `Repair` to repair via `msiexec.exe /p` (which can trigger unsupressable reboots). |
+| -RepairFromSource | Adds `REINSTALLMODE=vomus` to the command line to force the cached MSI to be replaced with the source MSI file. |
+| -SkipMSIAlreadyInstalledCheck | Attempt to install if already installed, or uninstall if not detected. |
+
+### Example Usage
+
+```powershell
+Start-ADTMsiProcess -Action 'Install' -FilePath 'SomeApp.msi' -Transforms 'SomeApp.mst' -AdditionalArgumentList 'SERIAL=12345' -SecureArgumentList
+```
