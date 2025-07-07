@@ -13,7 +13,17 @@ tags:
 
 ## Highlights
 
-- **Removed** ServiceUI requirement for Intune deployments and 'Allow users to view and interact with the program installation' checkbox for Configuration Manager deployments
+![Installation Welcome in PSADT 4.1 (Light Mode)](../images/psadt-41-1.png)
+
+![Installation Welcome in PSADT 4.1 (Dark Mode)](../images/psadt-41-2.png)
+
+- **Removed** ServiceUI requirement for Intune deployments and 'Allow users to view and interact with the program installation' checkbox for Configuration Manager deployments.
+
+  - I REPEAT! You no longer need to use ServiceUI, EVER AGAIN! 🥳🎉🎊🪅🪩👯‍♂️
+  - In fact, we strongly advise you stop using it as soon as possible. ServiceUI works by manipulating system security tokens in a way that could allow malicious actors to escalate privileges or bypass security controls.
+  - We've taken a fresh approach which leverages the Windows security model and separates out user interactions onto a process running in the users' session - we never perform any user interaction or messaging of any kind within the SYSTEM context. This means a more secure and reliable deployment experience.
+  - We have also removed the requirement for the 'Allow users to view and interact with the program installation' checkbox in Configuration Manager deployments.
+
 - **Added** feature parity between Fluent UI and Classic UI:
   - Deferral Deadline and Countdown Timer on Close Apps Dialog
   - Support for moveable dialogs, and multiple dialog placement options
@@ -40,6 +50,14 @@ tags:
 - **Added** PowerShell ISE compatibility to Fluent UI
 - **Added** process detection code to enable automatic silent deployments when processes aren't running
 
+### Example Screenshots
+
+![Installation Welcome in PSADT 4.1 (Custom Accent Light Mode)](../images/psadt-41-3.png)
+
+![Installation Welcome in PSADT 4.1 (Custom Accent Dark Mode)](../images/psadt-41-4.png)
+
+![Installation Welcome in PSADT 4.1 (Custom Accent 2 Dark Mode)](../images/psadt-41-5.png)
+
 ## Added
 
 ### New Functions
@@ -54,8 +72,8 @@ tags:
 
 ### Other Improvements
 
-- **Added** /Debug switch to [Invoke-AppDeployToolkit.exe](../reference/functions/Invoke-AppDeployToolkit.mdx) to show terminal output for debugging purposes
-- **Added** /Core switch to [Invoke-AppDeployToolkit.exe](../reference/functions/Invoke-AppDeployToolkit.mdx) to allow PowerShell 7 usage
+- **Added** /Debug switch to [Invoke-AppDeployToolkit.exe](../usage/invoke-appdeploytoolkit.mdx) to show terminal output for debugging purposes
+- **Added** /Core switch to [Invoke-AppDeployToolkit.exe](../usage/invoke-appdeploytoolkit.mdx) to allow PowerShell 7 usage
 - **Added** LogToHierarchy / LogToSubfolder options in [Config.psd1](../reference/config-settings.mdx) to allow logs to be created under subfolders
 
 ## Fixed
