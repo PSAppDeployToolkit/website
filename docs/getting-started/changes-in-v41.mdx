@@ -21,6 +21,14 @@ tags:
   - Support for formattable text (Bold, Italic & Accent) as well as URL hyperlinks in dialog messages
   - Progress dialog now supports setting progress bar values
   - User text input prompts via [Show-ADTInstallationPrompt's](../reference/functions/Show-ADTInstallationPrompt.mdx) -InputBox parameter
+- **Enhanced** [Start-ADTProcess](../reference/functions/Start-ADTProcess.mdx) / [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) with multiple new parameters:
+  - -UseUnelevatedToken parameter to force a process run without elevation, for deploying user-context apps with Windows 11 Administrator Protection enabled
+  - -WaitForChildProcesses parameter to wait for all child processes to end - useful for installers/uninstallers that hand off to another process and exit early
+  - -KillChildProcessesWithParent parameter to close all started child processes once main process has ended - useful when installers start the application post-install, which is typically undesired when running as system
+  - -Timeout parameter along with supporting -TimeoutAction and -NoTerminateOnTimeout parameters to control the outcome
+  - -ExpandEnvironmentVariables parameter to allow variable expansion such as %AppData% when running a process as a user
+  - -StreamEncoding parameter, useful for apps like Winget that write to the console using UTF8
+  - -PassThru output now has a new 'interleaved' property that combines stdout/stderr in order
 - **Improved** [Show-ADTHelpConsole](../reference/functions/Show-ADTHelpConsole.mdx) with High-DPI awareness, resizability, PowerShell 7 compatibility, and extension module display
 - **Added** ADMX templates for policy-based management
 
@@ -37,14 +45,6 @@ tags:
 ### New Functions
 - **Added** functions for managing user/machine environment variables
 - **Added** functions for managing INI sections/values
-- **Enhanced** [Start-ADTProcess](../reference/functions/Start-ADTProcess.mdx) / [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) with multiple new parameters:
-  - -UseUnelevatedToken parameter to force a process run without elevation, for deploying user-context apps with Windows 11 Administrator Protection enabled
-  - -WaitForChildProcesses parameter to wait for all child processes to end - useful for installers/uninstallers that hand off to another process and exit early
-  - -KillChildProcessesWithParent parameter to close all started child processes once main process has ended - useful when installers start the application post-install, which is typically undesired when running as system
-  - -Timeout parameter along with supporting -TimeoutAction and -NoTerminateOnTimeout parameters to control the outcome
-  - -ExpandEnvironmentVariables parameter to allow variable expansion such as %AppData% when running a process as a user
-  - -StreamEncoding parameter, useful for apps like Winget that write to the console using UTF8
-  - -PassThru output now has a new 'interleaved' property that combines stdout/stderr in order
 - **Added** -DeferRunInterval switch to [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome.mdx) to limit retry times from Intune
 - **Added** -Path / -LiteralPath support to registry functions
 - **Added** volatile key creation support to [Set-ADTRegistryKey](../reference/functions/Set-ADTRegistryKey.mdx)
@@ -56,6 +56,7 @@ tags:
 
 - **Added** /Debug switch to [Invoke-AppDeployToolkit.exe](../reference/functions/Invoke-AppDeployToolkit.mdx) to show terminal output for debugging purposes
 - **Added** /Core switch to [Invoke-AppDeployToolkit.exe](../reference/functions/Invoke-AppDeployToolkit.mdx) to allow PowerShell 7 usage
+- **Added** LogToHierarchy / LogToSubfolder options in [Config.psd1](../reference/config-settings.mdx) to allow logs to be created under subfolders
 
 ## Fixed
 
