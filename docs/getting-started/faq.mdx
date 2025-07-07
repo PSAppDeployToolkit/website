@@ -108,11 +108,13 @@ tags:
 <details>
   <summary>How can I control when retries will occur after the defer option is selected?</summary>
 
-  A 60012 error code is returned when the defer option is selected. With ConfigMgr, you can configure the Fast Retry interval and interpret 60012 as Fast Retry (usually 1618).
+  A 1602 error code is returned when the defer option is selected.
 
-  However, this is not a good solution for Intune, as it automatically retries within minutes and does not permit interval configuration.
+  With ConfigMgr, you could configure DeferExitCode in config.psd1 to be 1618 (Fast Retry). The Fast Retry interval is configurable via ConfigMgr policy.
 
-  Scheduling a task to retry later has been discussed, but it involves multiple issues like the need to cache the package, the risk of concurrent installs, and the possibility that a success code will not be reported back to Intune.
+  However, with Intune the fast retry period is much shorter and not configurable, meaning it will re-attempt within minutes. You can add the new `-DeferRunInterval` parameter to `Show-ADTInstallationWelcome` to abort installation if processes need to be close and the installation was recently deferred within the selected timespan.
+
+  Scheduling a task to retry later has been discussed, but it involves multiple issues like the need to cache the package, the risk of concurrent installs, and the exit code not being reported back to Intune.
 </details>
 
 <details>
