@@ -120,5 +120,5 @@ tags:
 <details>
   <summary>Can I use PSAppDeployToolkit to install user-context apps?</summary>
 
-  Yes. Set the `RequireAdmin` option in Config.psd1 to `$false` if the installation does not require administrative rights.
+  Yes. Ensure `RequireAdmin = $false` is configured within the `$adtSession` properties in Invoke-AppDeployToolkit.ps1. As of 4.1, the `RequireAdmin` is no longer to be found in Config.psd1.
 </details>
