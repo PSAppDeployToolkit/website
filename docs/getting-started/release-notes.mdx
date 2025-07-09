@@ -1,0 +1,210 @@
+﻿---
+sidebar_position: 5
+title: 'Release Notes'
+description: 'Release notes for PSAppDeployToolkit v4.1'
+slug: /getting-started/release-notes
+hide_title: true
+tags:
+  - Changes
+  - Getting Started
+---
+
+# Release Notes
+
+## 🖥️ What's New in v4.1 (RC1) - 2025-07-08
+
+**NOTE**: This is currently a release candidate for PSADT 4.1. which has not yet reached final status. While we are confident that it is rock solid, we are still testing it and may make changes before final release. As such, it is not recommended for production use at this time.
+
+### 🎯 Major Improvements
+
+- Up until now, it was not possible to display any user interface when deploying an application as SYSTEM using Intune (or any endpoint management tool) without using ServiceUI. Well, now it IS possible:
+  - I REPEAT! **You no longer need to use ServiceUI**, EVER AGAIN! 🥳🎉🎊🪅🪩👯‍♂️
+  - In fact, we strongly advise you stop using it as soon as possible. ServiceUI works by manipulating system security tokens in a way that could allow malicious actors to escalate privileges or bypass security controls.
+  - We've taken a fresh approach which leverages the Windows security model and separates out user interactions onto a process running in the users' session - we never perform any user interaction or messaging of any kind within the SYSTEM context. This means a more secure and reliable deployment experience.
+  - We have also removed the requirement for the 'Allow users to view and interact with the program installation' checkbox in Configuration Manager deployments.
+
+- There is now **full feature parity** between the Fluent and Classic User Interfaces:
+  - Deferral Deadline and Countdown Timer on Close Apps Dialog
+  - Ability to prevent the Restart Dialog from being dismissed once a certain point in the countdown is reached
+  - Ability to allow users to move dialogs
+  - Ability to set the initial dialog placement to multiple locations
+  - PowerShell ISE compatibility
+
+- Furthermore, the Fluent UI has gained new features:
+  - Due to the rearchitecture of how we handle user interaction with Dialogs, it is now possible to prompt the user for input using [Show-ADTInstallationPrompt](../reference/functions/Show-ADTInstallationPrompt.mdx)'s -InputBox parameter
+  - Support for formattable text (Bold, Italic & Accent) as well as URL hyperlinks in dialog messages
+  - You can now set the % complete of the progress bar in the Progress Dialog (for example, if you are running a custom script that you want to show incremental progress changes for)
+  - Ability to set different icons for Light / Dark mode
+
+- The security rearchitecture required all of our process execution code to be rewritten. This has enabled us to provide a wealth of new capabilities to both [Start-ADTProcess](../reference/functions/Start-ADTProcess.mdx) and [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) using the following new parameters:
+  - -UseUnelevatedToken parameter to force a process run without elevation, for deploying user-context apps with Windows 11 Administrator Protection enabled
+  - -WaitForChildProcesses parameter to wait for all child processes to end - useful for installers/uninstallers that hand off to another process and exit early
+  - -KillChildProcessesWithParent parameter to close all started child processes once main process has ended - useful when installers start the application post-install, which is typically undesired when running as system
+  - -Timeout parameter along with supporting -TimeoutAction and -NoTerminateOnTimeout parameters to control the outcome
+  - -ExpandEnvironmentVariables parameter to allow variable expansion such as %AppData% when running a process as a user
+  - -StreamEncoding parameter, useful for apps like Winget that write to the console using UTF8
+  - -PassThru output now has a new 'interleaved' property that combines stdout/stderr in order
+- It's now possible to set PSADT configuration settings via Group Policy using the included ADMX templates, which will override any settings in the config.psd1 file. This allows you to change, update or enforce settings across an organization.
+
+### 🛠️ New and Enhanced Functions
+
+- Added functions for managing user / machine environment variables:
+  - [Get-ADTEnvironmentVariable](../reference/functions/Get-ADTEnvironmentVariable.mdx) / [Set-ADTEnvironmentVariable](../reference/functions/Set-ADTEnvironmentVariable.mdx) / [Remove-ADTEnvironmentVariable](../reference/functions/Remove-ADTEnvironmentVariable.mdx)
+- Added functions for managing INI file sections / values:
+  - [Get-ADTIniSection](../reference/functions/Get-ADTIniSection.mdx) / [Set-ADTIniSection](../reference/functions/Set-ADTIniSection.mdx) / [Remove-ADTIniSection](../reference/functions/Remove-ADTIniSection.mdx)
+  - [Get-ADTIniValue](../reference/functions/Get-ADTIniValue.mdx) / [Set-ADTIniValue](../reference/functions/Set-ADTIniValue.mdx) / [Remove-ADTIniValue](../reference/functions/Remove-ADTIniValue.mdx)
+- Added [Start-ADTMsiProcessAsUser](../reference/functions/Start-ADTMsiProcessAsUser.mdx) for installing / uninstalling user-context MSIs via the System account
+- Added -DeferRunInterval switch to [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome.mdx) to limit retry times from Intune
+- Added -Path / -LiteralPath support to registry functions
+- Added volatile key creation support to [Set-ADTRegistryKey](../reference/functions/Set-ADTRegistryKey.mdx)
+- Added MultiString add / remove support to [Set-ADTRegistryKey](../reference/functions/Set-ADTRegistryKey.mdx)
+- Added -MaximumElapsedTime parameter to [Invoke-ADTCommandWithRetries](../reference/functions/Invoke-ADTCommandWithRetries.mdx)
+- Added -SuccessExitCodes and -RebootExitCodes parameters to [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication.mdx)
+
+### 🛠️ Other Improvements
+
+- [Show-ADTHelpConsole](../reference/functions/Show-ADTHelpConsole.mdx) has been given some love and a facelift with High-DPI awareness, resizability, PowerShell 7 compatibility, and extension module display
+- Added -NoWait support to [Show-ADTDialogBox](../reference/functions/Show-ADTDialogBox.mdx)
+- Added process detection code to enable automatic silent deployments when processes aren't running
+- Added /Debug switch to [Invoke-AppDeployToolkit.exe](../usage/invoke-appdeploytoolkit.mdx) to show terminal output for debugging purposes
+- Added /Core switch to [Invoke-AppDeployToolkit.exe](../usage/invoke-appdeploytoolkit.mdx) to allow PowerShell 7 usage
+
+### 🛠️ Changes
+
+- Changed default DeferExitCode from 60012 to 1602, since ConfigMgr and Intune recognize this natively as 'User cancelled the installation'
+- Changed toolkit to exit with 3010 if a suppressed reboot was encountered without having to use -AllowRebootPassThru. To mask 3010 return codes and exit with 0, you can now add -SuppressRebootPassThru
+- Changed default msiexec.exe parameters in interactive mode from /qb-! to /qn
+- Changed UI functions to no longer minimize windows by default, -MinimizeWindows can be added to enable this
+- Changed the 'Processes to close' in the Invoke-AppDeployToolkit template to the AppProcessesToClose ADTSession parameter, where they can be re-used over Install / Uninstall / Repair
+- Changed installation failure to be silent as it was in v3.x; however, you can still uncomment a line to get the full detailed stack trace as used in v4.0.x, or a new minimal example using the Fluent UI
+
+### 🛠️ Fixes
+
+- Fixed [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) function to work as expected
+- Fixed [Block-ADTAppExecution](../reference/functions/Block-ADTAppExecution.mdx) to avoid triggering AV solutions
+- Fixed dialogs to show correct deployment type Install / Uninstall / Repair
+- Fixed SCCM pending reboot tests within [Get-ADTPendingReboot](../reference/functions/Get-ADTPendingReboot.mdx)
+- Fixed MSI repair to default to 'Reinstall' to avoid forced unavoidable reboots when running msiexec /f against an app that is in-use
+- Fixed OOBE detection code to factor in User ESP phase
+
+### 📸 Screenshots
+
+| Light Mode | Dark Mode |
+|---------------------|-----------------|
+| ![LightMode](../images/psadt-41-1.png) | ![DarkMode](../images/psadt-41-2.png) |
+
+| Custom Accent Light | Custom Accent Dark |
+|---------------------|-----------------|
+| ![CustomLightMode](../images/psadt-41-3.png) | ![CustomDarkMode](../images/psadt-41-4.png) |
+| ![CustomLightMode2](../images/psadt-41-5.png) | |
+
+## 🖥️ What's New in v4.0
+
+### Overview
+
+- **Added** modern Fluent user interface
+- **Added** digitally signed PowerShell module
+- **Changed** all C# code to be compiled
+- **Changed** codebase with complete refactoring and optimization
+- **Removed** all VBScript code
+- **Added** strongly typed and defined object types (no more PSCustomObjects, etc.)
+- **Added** defensive coding to ensure security and reliability
+- **Added** PowerShell 7 and ARM support
+- **Added** extensions support as supplemental modules
+- **Added** custom action support for extensions on deployment start and finish
+- **Added** support for overriding config via the registry
+- **Added** backwards-compatibility with v3 deployment scripts
+
+### Key Filename Changes
+
+:::info
+Further changes to the deployment layout are detailed in the [Deployment Structure](../deployment-concepts/deployment-structure.mdx) page.
+:::
+
+| **Old Name**                 | **New Name**                  | **More Information**                                                            |
+|:-----------------------------|:------------------------------|:--------------------------------------------------------------------------------|
+| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../usage/invoke-appdeploytoolkit.mdx)|
+| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../usage/invoke-appdeploytoolkit.mdx)|
+| `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Configuration Settings](../reference/config-settings.mdx)                   |
+| *Was part of Config file*    | `Strings\Strings.psd1`        | [Language Strings](../reference/language-strings.mdx)                        |
+
+### New Configuration Format
+
+- **Changed** to **.psd1** as the native PowerShell config file format. See [Customizing Deployments](../usage/customizing-deployments.mdx) for more information.
+
+### Key Function Name Changes
+
+:::info
+For a detailed mapping of all v3 to v4 functions, see the [Function Mapping](../reference/v4-function-mapping.mdx) page.
+:::
+
+- **Changed** certain function names to avoid collisions with other scripts or modules.
+
+| **Old Name**      | **New Name / Details**                                             |
+|:------------------|:-------------------------------------------------------------------|
+| `Copy-File`       | [`Copy-ADTFile`](../reference/functions/Copy-ADTFile.mdx)           |
+| `Execute-Process` | [`Start-ADTProcess`](../reference/functions/Start-ADTProcess.mdx)   |
+| `Write-Log`       | [`Write-ADTLogEntry`](../reference/functions/Write-ADTLogEntry.mdx) |
+
+### Variables
+
+- **Changed** standard toolkit environment variables, such as `$envProgramFiles`, to become available once an [ADTSession](../reference/adtsession-object.mdx) is opened or after the `Export-ADTEnvironmentTableToSessionState` command is executed
+- **Changed** variables specific to a particular deployment (for example, `$appName`) to be found within the [ADTSession](../reference/adtsession-object.mdx) object (for example, `$adtSession.AppName`)
+
+### Booleans Replaced with Switches
+
+**Changed** from many Boolean parameters in v3 (some defaulting to true and others to false) to a clearer switch-based system. It was not always clear what the default behavior was without referencing documentation.
+
+- **Changed** from `TopMost $true` or `-TopMost $false` to a single optional switch, `-NotTopMost`, which clarifies that the default behavior is TopMost
+
+### Standardized Filtering
+
+**Changed** the `Remove-MsiApplications` command from v3 that used `-FilterApplication` and `-ExcludeFromUninstall` parameters with a complex syntax. In the new function, [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication.mdx), these have been **replaced** with a single `-FilterScript`, similar to PowerShell's `Where-Object`:
+
+```powershell
+-FilterScript { $_.Publisher -eq 'Oracle Corporation' -and $_.DisplayVersion -notmatch 'Java 8 Update 45' }
+```
+
+### ScriptBlock Variables
+
+**Changed** from `Invoke-HKCURegistrySettingsForAllUsers` in v3 that required a `$UserProfile` variable. In v4, [Invoke-ADTAllUsersRegistryAction](../reference/functions/Invoke-ADTAllUsersRegistryAction.mdx) pipes user profile objects to the provided scriptblock, so you can use `$_`:
+
+```powershell
+Invoke-ADTAllUsersRegistryAction -ScriptBlock {
+    Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord -SID $_.SID
+}
+```
+
+### Standardized Array Inputs
+
+**Changed** functions that accept multiple values to take arrays rather than comma-delimited strings. For example, **instead of**:
+
+```powershell
+Show-InstallationWelcome -CloseApps 'iexplore,winword,excel'
+```
+
+you can specify:
+
+```powershell
+Show-ADTInstallationWelcome -CloseProcesses iexplore, winword, excel
+```
+
+### Error Handling
+
+**Changed** from many commands in v3 that used a `-ContinueOnError` parameter. In v4, you use the standard PowerShell `-ErrorAction` parameter:
+
+- **Changed** from `-ContinueOnError $true` or `$false` to `-ErrorAction Stop` or `-ErrorAction SilentlyContinue`
+
+### Uninstallation of EXE Apps
+
+**Added** support for [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication.mdx) to uninstall **EXE** apps in addition to **MSI**. Specify the `-ApplicationType` parameter to focus on one type or the other. The `-ArgumentList` parameter replaces any detected arguments in the registry, and `-AdditionalArgumentList` appends to them.
+
+### User Profile Paths
+
+**Added** `-LoadProfilePaths` switch to [Get-ADTUserProfiles](../reference/functions/Get-ADTUserProfiles.mdx) to discover common folders within user profiles, such as **Documents** and **Desktop**. You can use [Copy-ADTFileToUserProfiles](../reference/functions/Copy-ADTFileToUserProfiles.mdx) to copy files directly to these locations.
+
+### WIM Support
+
+**Added** support for compressing file content into a WIM archive and mounting it during installation. You can manage this manually using [Mount-ADTWimFile](../reference/functions/Mount-ADTWimFile.mdx) and [Dismount-ADTWimFile](../reference/functions/Dismount-ADTWimFile.mdx), or you can use the `-ForceWimDetection` switch with [Open-ADTSession](../reference/functions/Open-ADTSession.mdx) to auto-mount and dismount any WIM files found.
+
+**Added** [Zero Config](../deployment-concepts/zero-config-deployment.mdx) feature that starts automatically if you leave the **AppName** blank, mounts any WIM file found, and installs the MSI located inside.

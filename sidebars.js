@@ -28,10 +28,9 @@ const sidebars = {
         'getting-started/requirements',
         'getting-started/download',
         'getting-started/creating-a-new-deployment',
-        'getting-started/changes-in-v41',
-        'getting-started/changes-in-v40',
-        'getting-started/migrating-from-v40',
-        'getting-started/migrating-from-v3',
+        'getting-started/release-notes',
+        'getting-started/upgrade-guidance-4x-to-v41',
+        'getting-started/upgrade-guidance-v3x-to-v41',
         'getting-started/faq'
       ]
     },
