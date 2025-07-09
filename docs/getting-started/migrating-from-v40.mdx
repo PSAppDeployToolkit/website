@@ -1,0 +1,95 @@
+---
+sidebar_position: 7
+title: 'Migrating from v4.0'
+description: 'Migration guidance for those coming from v4.0.'
+slug: /getting-started/migrating-from-v40
+hide_title: true
+tags:
+  - Usage
+  - Migration
+  - Getting Started
+---
+
+# Migrating from v4.0
+
+## Changes in v4.1
+
+Before proceeding, ensure that you have reviewed the numerous [changes](../getting-started/changes-in-v41.mdx) in v4.1.
+
+## Updating an Existing v4.0 Deployment to v4.1
+
+For patch releases (e.g. v4.0.5 to v4.0.6), all that is normally required is to replace the PSAppDeployToolkit folder within the package.
+
+However there are a number of changes to various toolkit files in 4.1 to be aware of.
+
+## Changes in Invoke-AppDeployToolkit.ps1
+
+There are 2 new additions to the $adtSession hashtable:
+
+```powershell
+$adtSession = @{
+    # App variables.
+
+    AppProcessesToClose = @('regedit', @{ Name = 'msconfig'; Description = 'System Configuration (msconfig)' })
+
+    RequireAdmin = $true
+}
+```
+
+`AppProcessesToClose` allows you to specify the processes to be closed in one place, saving you from copying the same list to the Uninstall and Repair sections of your script. Also, if `ProcessDetection = $true` is set in `Config.psd1`, the toolkit will automatically switch to `DeployMode = Silent` if none of the defined processes are running when the session is opened. You will either want to comment this line out or set it to an empty value in your own customised template, the example is provided to demonstrate the abiltiy to add proceses by name or as a hashtable with an additional description.
+
+The `Show-ADTInstallationWelcome` example has been updated to use [splatting](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting):
+
+```powershell
+$saiwParams = @{
+    AllowDefer = $true
+    DeferTimes = 3
+    CheckDiskSpace = $true
+    PersistPrompt = $true
+}
+if ($adtSession.AppProcessesToClose.Count -gt 0)
+{
+    $saiwParams.Add('CloseProcesses', $adtSession.AppProcessesToClose)
+}
+Show-ADTInstallationWelcome @saiwParams
+```
+
+This allows you to more easily read the options being set, and will only add CloseProcesses to the parameter list if it's not empty. You are still welcome to use the method from the v4.0 template if you prefer - the template is provided for your customisation.
+
+The last important change is this line that calls `Remove-ADTHashtableNullOrEmptyValues` to strip out any null or empty values from the `$adtSession` hashtable before it is passed to the `Open-ADTSession` function:
+
+```powershell
+    $adtSession = Remove-ADTHashtableNullOrEmptyValues -Hashtable $adtSession ⬅️
+    $adtSession = Open-ADTSession @adtSession @iadtParams -PassThru
+```
+
+## Changes in Config.psd1
+
+New configuration options:
+
+| Option | Default | Description |
+| ------ | ------- | ----------- |
+| Assets.LogoDark | Assets\Logo.Dark.png | Path to the dark mode logo image. |
+| Toolkit.CompanyName | PSAppDeployToolkit | The company name to be used in the toolkit. Replaces UI.BalloonTitle. |
+| Toolkit.LogToHierarchy | $false | Whether to log to a hierarchy of folders based on the vendor and application name. |
+| Toolkit.ProcessDetection | $false | Whether to enable process detection (i.e. run in silent mode if listed processes are not running) |
+| UI.FluentAccentColor | $null | Override the accent color for the Fluent UI dialogs. |
+
+Removed configuration options:
+- Toolkit.RequireAdmin
+- UI.BalloonTitle
+- UI.DynamicProcessEvaluation
+- UI.DynamicProcessEvaluationInterval
+
+Changed defaults:
+
+| Option | Default | Description |
+| ------ | ------- | ----------- |
+| MSI.InstallParams | /qn REBOOT=ReallySuppress | Default MSI parameters for installation. |
+| MSI.LogPath | | Now uses the same path as Toolkit.LogPath when empty. |
+| MSI.LogPathNoAdminRights | | Now uses the same path as Toolkit.LogPathNoAdminRights when empty. |
+| UI.DeferExitCode | 1602 | Default exit code for deferred installations. |
+
+## Changes in Strings.psd1
+
+There have been extensive changes to the Strings.psd1 files for each language, too many to list here. Please submit an issue or pull request on GitHub if you are able to improve any of the translations!

@@ -27,11 +27,13 @@ const sidebars = {
         'getting-started/licensing',
         'getting-started/requirements',
         'getting-started/download',
+        'getting-started/creating-a-new-deployment',
         'getting-started/changes-in-v41',
         'getting-started/changes-in-v40',
-        'getting-started/creating-a-new-deployment',
+        'getting-started/migrating-from-v40',
         'getting-started/migrating-from-v3',
-        'getting-started/faq'],
+        'getting-started/faq'
+      ]
     },
     {
       type: 'category',
@@ -43,7 +45,7 @@ const sidebars = {
       items: [
         'deployment-concepts/deployment-structure',
         'deployment-concepts/zero-config-deployment'
-      ],
+      ]
     },
     {
       type: 'category',
@@ -58,7 +60,7 @@ const sidebars = {
         'usage/installing-applications',
         'usage/adding-ui-elements',
         'usage/how-to-deploy'
-      ],
+      ]
     }/*,
     {
       type: 'category',
