@@ -36,7 +36,8 @@ $adtSession = @{
 }
 ```
 
-`AppProcessesToClose` allows you to specify the processes to be closed in one place, saving you from copying the same list to the Uninstall and Repair sections of your script. Also, if `ProcessDetection = $true` is set in `Config.psd1`, the toolkit will automatically switch to `DeployMode = Silent` if none of the defined processes are running when the session is opened. You will either want to comment this line out or set it to an empty value in your own customised template, the example is provided to demonstrate the abiltiy to add proceses by name or as a hashtable with an additional description.
+- `AppProcessesToClose` allows you to specify the processes to be closed in one place, saving you from copying the same list to the Uninstall and Repair sections of your script. Also, if `ProcessDetection = $true` is set in `Config.psd1`, the toolkit will automatically switch to `DeployMode = Silent` if none of the defined processes are running when the session is opened. You will either want to comment this line out or set it to an empty value in your own customised template, the example is provided to demonstrate the abiltiy to add proceses by name or as a hashtable with an additional description.
+- `RequireAdmin` has been moved from the config file to the template, since it is a per-package setting. If set to `$true`, the script will fail at the point of opening the session if the user does not have administrative privileges.
 
 The `Show-ADTInstallationWelcome` example has been updated to use [splatting](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting):
 
