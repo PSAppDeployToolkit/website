@@ -30,7 +30,8 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-WaitForChildProcesses] [-KillChildProcessesWithParent] -Timeout <TimeSpan>
  [-TimeoutAction <ActionPreference>] [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-StreamEncoding <Encoding>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoStreamLogging] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### Username_CreateNoWindow_NoWait
@@ -41,7 +42,8 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-ExpandEnvironmentVariables] [-CreateNoWindow] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>]
  [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-StreamEncoding <Encoding>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait] [-NoStreamLogging] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### Username_CreateNoWindow_Wait
@@ -52,7 +54,8 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-ExpandEnvironmentVariables] [-CreateNoWindow] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>]
  [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-StreamEncoding <Encoding>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoStreamLogging] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### Username_WindowStyle_Timeout
@@ -133,7 +136,8 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent] -Timeout <TimeSpan>
  [-TimeoutAction <ActionPreference>] [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-StreamEncoding <Encoding>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoStreamLogging] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### Default_CreateNoWindow_NoWait
@@ -144,7 +148,7 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
  [-StreamEncoding <Encoding>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-NoStreamLogging] [-PassThru] [<CommonParameters>]
 ```
 
 ### Default_CreateNoWindow_Wait
@@ -154,8 +158,8 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-WorkingDirectory <String>] [-UseUnelevatedToken] [-CreateNoWindow] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-StreamEncoding <Encoding>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru]
- [<CommonParameters>]
+ [-StreamEncoding <Encoding>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoStreamLogging] [-PassThru] [<CommonParameters>]
 ```
 
 ### Default_WindowStyle_Timeout
@@ -220,7 +224,8 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent] -Timeout <TimeSpan>
  [-TimeoutAction <ActionPreference>] [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-StreamEncoding <Encoding>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoStreamLogging] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### UseShellExecute_CreateNoWindow_NoWait
@@ -231,7 +236,7 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
  [-StreamEncoding <Encoding>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-NoStreamLogging] [-PassThru] [<CommonParameters>]
 ```
 
 ### UseShellExecute_CreateNoWindow_Wait
@@ -241,8 +246,8 @@ Start-ADTProcess -FilePath <String> [-ArgumentList <String[]>] [-SecureArgumentL
  [-WorkingDirectory <String>] [-UseShellExecute] [-Verb <String>] [-CreateNoWindow] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-StreamEncoding <Encoding>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru]
- [<CommonParameters>]
+ [-StreamEncoding <Encoding>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoStreamLogging] [-PassThru] [<CommonParameters>]
 ```
 
 ### UseShellExecute_WindowStyle_Timeout
@@ -842,6 +847,22 @@ Parameter Sets: Username_CreateNoWindow_NoWait, Username_WindowStyle_NoWait, Use
 Aliases:
 
 Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoStreamLogging
+
+Don't log any available stdout/stderr data to the log file.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Username_CreateNoWindow_Timeout, Username_CreateNoWindow_NoWait, Username_CreateNoWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_NoWait, Default_CreateNoWindow_Wait, UseShellExecute_CreateNoWindow_Timeout, UseShellExecute_CreateNoWindow_NoWait, UseShellExecute_CreateNoWindow_Wait
+Aliases:
+
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False

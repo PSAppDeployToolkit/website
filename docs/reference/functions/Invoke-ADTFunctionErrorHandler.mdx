@@ -18,11 +18,11 @@ Invoke-ADTFunctionErrorHandler -Cmdlet <PSCmdlet> -SessionState <SessionState> -
  [-LogMessage <String>] [<CommonParameters>]
 ```
 
-### ResolveErrorProperties
+### DisableErrorResolving
 
 ```powershell
 Invoke-ADTFunctionErrorHandler -Cmdlet <PSCmdlet> -SessionState <SessionState> -ErrorRecord <ErrorRecord>
- [-LogMessage <String>] -ResolveErrorProperties <String[]> [<CommonParameters>]
+ [-LogMessage <String>] [-DisableErrorResolving] [<CommonParameters>]
 ```
 
 ### AdditionalResolveErrorProperties
@@ -32,11 +32,18 @@ Invoke-ADTFunctionErrorHandler -Cmdlet <PSCmdlet> -SessionState <SessionState> -
  [-LogMessage <String>] -AdditionalResolveErrorProperties <String[]> [<CommonParameters>]
 ```
 
-### DisableErrorResolving
+### ResolveErrorProperties
 
 ```powershell
 Invoke-ADTFunctionErrorHandler -Cmdlet <PSCmdlet> -SessionState <SessionState> -ErrorRecord <ErrorRecord>
- [-LogMessage <String>] [-DisableErrorResolving] [<CommonParameters>]
+ [-LogMessage <String>] -ResolveErrorProperties <String[]> [<CommonParameters>]
+```
+
+### Silent
+
+```powershell
+Invoke-ADTFunctionErrorHandler -Cmdlet <PSCmdlet> -SessionState <SessionState> -ErrorRecord <ErrorRecord>
+ [-Silent] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -120,7 +127,7 @@ The error message to write to the active ADTSession's log file.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: None, DisableErrorResolving, AdditionalResolveErrorProperties, ResolveErrorProperties
 Aliases:
 
 Required: False
@@ -169,6 +176,22 @@ If specified, the function will not append the resolved error record to the log 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: DisableErrorResolving
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Silent
+
+If specified, doesn't write anything to the log and just handles the ErrorRecord itself.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Silent
 Aliases:
 
 Required: True
