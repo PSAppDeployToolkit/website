@@ -124,6 +124,7 @@ module.exports = [
     'commands/Stop-ADTServiceAndDependencies',
     'commands/Test-ADTBattery',
     'commands/Test-ADTCallerIsAdmin',
+    'commands/Test-ADTEspActive',
     'commands/Test-ADTMicrophoneInUse',
     'commands/Test-ADTModuleInitialized',
     'commands/Test-ADTMSUpdates',
