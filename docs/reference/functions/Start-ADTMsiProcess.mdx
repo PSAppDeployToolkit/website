@@ -16,11 +16,11 @@ Executes msiexec.exe to perform actions such as install, uninstall, patch, repai
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-LoggingOptions <String>]
- [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
- [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
+ [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
+ [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_FilePath
@@ -41,10 +41,11 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-LoggingOptions <String>] [-LogFileName <String>]
- [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
+ [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_ProductCode
@@ -52,11 +53,11 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-LoggingOptions <String>]
- [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
- [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
+ [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
+ [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_ProductCode
@@ -77,10 +78,11 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-LoggingOptions <String>] [-LogFileName <String>]
- [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
+ [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_InstalledApplication
@@ -88,11 +90,11 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-LoggingOptions <String>]
- [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
- [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
+ [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
+ [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_InstalledApplication
@@ -113,10 +115,11 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-LoggingOptions <String>] [-LogFileName <String>]
- [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
+ [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -388,22 +391,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ExpandEnvironmentVariables
-
-Specifies whether to expand any Windows/DOS-style environment variables in the specified FilePath/ArgumentList.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: Username_FilePath, Username_ProductCode, Username_InstalledApplication
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -UseUnelevatedToken
 
 If the current process is elevated, starts the new process unelevated using the user's unelevated linked token.
@@ -414,6 +401,22 @@ Parameter Sets: UseUnelevatedToken_FilePath, UseUnelevatedToken_ProductCode, Use
 Aliases:
 
 Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExpandEnvironmentVariables
+
+Specifies whether to expand any Windows/DOS-style environment variables in the specified FilePath/ArgumentList.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
