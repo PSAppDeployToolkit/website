@@ -11,36 +11,10 @@ Executes msiexec.exe to perform actions such as install, uninstall, patch, repai
 
 ## SYNTAX
 
-### Username_FilePath
-
-```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
- [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
- [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
- [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
-```
-
 ### FilePath
 
 ```powershell
 Start-ADTMsiProcessAsUser [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
- [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
- [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
- [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
-```
-
-### Username_ProductCode
-
-```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
  [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
@@ -57,19 +31,6 @@ Start-ADTMsiProcessAsUser [-Action <String>] -ProductCode <Guid> [-ArgumentList 
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
  [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
- [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
- [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
-```
-
-### Username_InstalledApplication
-
-```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -InstalledApplication <InstalledApplication>
- [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
- [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>]
- [-UseLinkedAdminToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
  [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
@@ -168,7 +129,7 @@ The file path to the MSI/MSP file.
 
 ```yaml
 Type: String
-Parameter Sets: Username_FilePath, FilePath
+Parameter Sets: FilePath
 Aliases:
 
 Required: True
@@ -184,7 +145,7 @@ The product code of the installed MSI.
 
 ```yaml
 Type: Guid
-Parameter Sets: Username_ProductCode, ProductCode
+Parameter Sets: ProductCode
 Aliases:
 
 Required: True
@@ -200,7 +161,7 @@ The InstalledApplication object of the installed MSI.
 
 ```yaml
 Type: InstalledApplication
-Parameter Sets: Username_InstalledApplication, InstalledApplication
+Parameter Sets: InstalledApplication
 Aliases:
 
 Required: True
@@ -423,7 +384,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: Reinstall
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
