@@ -46,7 +46,7 @@
     "@fec/remark-a11y-emoji": "^4.0.2",
     "@types/node": "^24.0.14",
     "@types/react": "^19.1.8",
-    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
