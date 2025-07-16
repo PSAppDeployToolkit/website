@@ -47,7 +47,7 @@
     "@types/node": "^24.0.14",
     "@types/react": "^19.1.8",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
-    "@typescript-eslint/parser": "^8.35.1",
+    "@typescript-eslint/parser": "^8.37.0",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-markdown": "^5.1.0",
