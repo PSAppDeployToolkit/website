@@ -39,7 +39,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  [-AllowDeferCloseProcesses] -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>]
- [-DeferDays <UInt32>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
+ [-DeferDays <Double>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows]
  [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>]
  -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -50,7 +50,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  [-AllowDeferCloseProcesses] -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>]
- [-DeferDays <UInt32>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
+ [-DeferDays <Double>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows]
  [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText] -Title <String> -Subtitle <String>
  [<CommonParameters>]
@@ -60,7 +60,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
- [-AllowDeferCloseProcesses] -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+ [-AllowDeferCloseProcesses] -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost]
  [-AllowMove] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] -Title <String> -Subtitle <String>
@@ -71,7 +71,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
- [-AllowDeferCloseProcesses] -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+ [-AllowDeferCloseProcesses] -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost]
  [-AllowMove] [-CustomText] -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -81,7 +81,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
- [-AllowDeferCloseProcesses] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+ [-AllowDeferCloseProcesses] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost]
  [-AllowMove] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] -Title <String> -Subtitle <String>
@@ -92,7 +92,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
- [-AllowDeferCloseProcesses] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+ [-AllowDeferCloseProcesses] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost]
  [-AllowMove] [-CustomText] -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -102,7 +102,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
- [-AllowDeferCloseProcesses] [-DeferTimes <UInt32>] [-DeferDays <UInt32>] [-DeferDeadline <DateTime>]
+ [-AllowDeferCloseProcesses] [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText]
  [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -112,7 +112,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
- [-AllowDeferCloseProcesses] [-DeferTimes <UInt32>] [-DeferDays <UInt32>] [-DeferDeadline <DateTime>]
+ [-AllowDeferCloseProcesses] [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText]
  -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -122,7 +122,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
- -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+ -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost]
  [-AllowMove] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] -Title <String> -Subtitle <String>
@@ -133,7 +133,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
- -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+ -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost]
  [-AllowMove] [-CustomText] -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -143,7 +143,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
- -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>] [-DeferDeadline <DateTime>]
+ -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText]
  [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -153,7 +153,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
- -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>] [-DeferDeadline <DateTime>]
+ -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText]
  -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -163,7 +163,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
- -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>] [-DeferDeadline <DateTime>]
+ -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText]
  [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -173,7 +173,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
- -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>] [-DeferDeadline <DateTime>]
+ -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText]
  -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -183,7 +183,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
- [-DeferTimes <UInt32>] [-DeferDays <UInt32>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
+ [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows]
  [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>]
  -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -193,7 +193,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
- [-DeferTimes <UInt32>] [-DeferDays <UInt32>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
+ [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows]
  [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText] -Title <String> -Subtitle <String>
  [<CommonParameters>]
@@ -256,7 +256,7 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 ### InteractiveAllowDeferForceCountdownCheckDiskSpace
 
 ```powershell
-Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
  [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText] [-CheckDiskSpace]
  [-RequiredDiskSpace <UInt32>] -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -265,7 +265,7 @@ Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes 
 ### InteractiveAllowDeferForceCountdown
 
 ```powershell
-Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
  [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText] -Title <String>
  -Subtitle <String> [<CommonParameters>]
@@ -274,7 +274,7 @@ Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes 
 ### InteractiveAllowDeferCheckDiskSpace
 
 ```powershell
-Show-ADTInstallationWelcome [-AllowDefer] [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+Show-ADTInstallationWelcome [-AllowDefer] [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
  [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText] [-CheckDiskSpace]
  [-RequiredDiskSpace <UInt32>] -Title <String> -Subtitle <String> [<CommonParameters>]
@@ -283,7 +283,7 @@ Show-ADTInstallationWelcome [-AllowDefer] [-DeferTimes <UInt32>] [-DeferDays <UI
 ### InteractiveAllowDefer
 
 ```powershell
-Show-ADTInstallationWelcome [-AllowDefer] [-DeferTimes <UInt32>] [-DeferDays <UInt32>]
+Show-ADTInstallationWelcome [-AllowDefer] [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
  [-MinimizeWindows] [-NoMinimizeWindows] [-NotTopMost] [-AllowMove] [-CustomText] -Title <String>
  -Subtitle <String> [<CommonParameters>]
@@ -538,7 +538,7 @@ Specify the number of days since first run that the deployment can be deferred.
 This is converted to a deadline.
 
 ```yaml
-Type: UInt32
+Type: Double
 Parameter Sets: InteractiveCloseProcessesAllowDeferCloseProcessesForceCloseProcessesCountdownCheckDiskSpace, InteractiveCloseProcessesAllowDeferCloseProcessesForceCloseProcessesCountdown, InteractiveCloseProcessesAllowDeferCloseProcessesCloseProcessesCountdownCheckDiskSpace, InteractiveCloseProcessesAllowDeferCloseProcessesCloseProcessesCountdown, InteractiveCloseProcessesAllowDeferCloseProcessesForceCountdownCheckDiskSpace, InteractiveCloseProcessesAllowDeferCloseProcessesForceCountdown, InteractiveCloseProcessesAllowDeferCloseProcessesCheckDiskSpace, InteractiveCloseProcessesAllowDeferCloseProcesses, InteractiveCloseProcessesAllowDeferForceCloseProcessesCountdownCheckDiskSpace, InteractiveCloseProcessesAllowDeferForceCloseProcessesCountdown, InteractiveCloseProcessesAllowDeferCloseProcessesCountdownCheckDiskSpace, InteractiveCloseProcessesAllowDeferCloseProcessesCountdown, InteractiveCloseProcessesAllowDeferForceCountdownCheckDiskSpace, InteractiveCloseProcessesAllowDeferForceCountdown, InteractiveCloseProcessesAllowDeferCheckDiskSpace, InteractiveCloseProcessesAllowDefer, InteractiveAllowDeferForceCountdownCheckDiskSpace, InteractiveAllowDeferForceCountdown, InteractiveAllowDeferCheckDiskSpace, InteractiveAllowDefer
 Aliases:
 
