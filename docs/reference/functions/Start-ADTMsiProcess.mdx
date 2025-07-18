@@ -20,7 +20,7 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_FilePath
@@ -32,8 +32,8 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### FilePath
@@ -44,8 +44,8 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_ProductCode
@@ -57,7 +57,7 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_ProductCode
@@ -69,8 +69,8 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### ProductCode
@@ -81,8 +81,8 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_InstalledApplication
@@ -94,7 +94,7 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_InstalledApplication
@@ -106,8 +106,8 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### InstalledApplication
@@ -118,8 +118,8 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -597,6 +597,22 @@ Accept wildcard characters: False
 ### -ExitOnProcessFailure
 
 Automatically closes the active deployment session via Close-ADTSession in the event the process exits with a non-success or non-ignored exit code.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoDesktopRefresh
+
+If specifies, doesn't refresh the desktop and environment after successful MSI installation.
 
 ```yaml
 Type: SwitchParameter
