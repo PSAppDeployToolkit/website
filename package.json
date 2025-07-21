@@ -25,7 +25,7 @@
     "@docusaurus/preset-classic": "3.8.1",
     "@docusaurus/theme-common": "^3.8.1",
     "@docusaurus/types": "^3.8.1",
-    "@easyops-cn/docusaurus-search-local": "^0.51.1",
+    "@easyops-cn/docusaurus-search-local": "^0.52.0",
     "@fec/remark-a11y-emoji": "^4.0.2",
     "@mdx-js/react": "^3.1.0",
     "clsx": "^2.1.1",
