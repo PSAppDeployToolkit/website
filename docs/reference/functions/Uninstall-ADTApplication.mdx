@@ -14,8 +14,8 @@ Removes one or more applications specified by name, filter script, or InstalledA
 ### InstalledApplication
 
 ```powershell
-Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-ArgumentList <String>]
- [-AdditionalArgumentList <String>] [-SecureArgumentList] [-LoggingOptions <String>] [-LogFileName <String>]
+Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-LoggingOptions <String>] [-LogFileName <String>]
  [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
 ```
@@ -25,9 +25,10 @@ Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-Argume
 ```powershell
 Uninstall-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode <Guid[]>]
  [-ApplicationType <String>] [-IncludeUpdatesAndHotfixes] [[-FilterScript] <ScriptBlock>]
- [-ArgumentList <String>] [-AdditionalArgumentList <String>] [-SecureArgumentList] [-LoggingOptions <String>]
- [-LogFileName <String>] [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
- [-RebootExitCodes <Int32[]>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
+ [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-ExitOnProcessFailure] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -187,13 +188,13 @@ Accept wildcard characters: False
 Overrides the default MSI parameters specified in the config.psd1 file, or the parameters found in QuietUninstallString/UninstallString for EXE applications.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: [System.Management.Automation.Language.NullString]::Value
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -203,13 +204,13 @@ Accept wildcard characters: False
 Adds to the default parameters specified in the config.psd1 file, or the parameters found in QuietUninstallString/UninstallString for EXE applications.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: [System.Management.Automation.Language.NullString]::Value
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
