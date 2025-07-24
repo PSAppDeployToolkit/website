@@ -11,9 +11,17 @@ Get the User Profile Path, User Account SID, and the User Account Name for all u
 
 ## SYNTAX
 
+### All (Default)
+
 ```powershell
-Get-ADTUserProfiles [[-ExcludeNTAccount] <NTAccount[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles]
+Get-ADTUserProfiles [-ExcludeNTAccount <NTAccount[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles]
  [-IncludeIISAppPoolProfiles] [-ExcludeDefaultUser] [-LoadProfilePaths] [<CommonParameters>]
+```
+
+### FilterScript
+
+```powershell
+Get-ADTUserProfiles [-FilterScript] <ScriptBlock> [-LoadProfilePaths] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -51,17 +59,33 @@ This information can then be used to make modifications under the user profile o
 
 ## PARAMETERS
 
+### -FilterScript
+
+Allows filtration of the returned result by any property in a UserProfile object.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: FilterScript
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ExcludeNTAccount
 
 Specify NT account names in DOMAIN\username format to exclude from the list of user profiles.
 
 ```yaml
 Type: NTAccount[]
-Parameter Sets: (All)
+Parameter Sets: All
 Aliases:
 
 Required: False
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -73,7 +97,7 @@ Include system profiles: SYSTEM, LOCAL SERVICE, NETWORK SERVICE.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: All
 Aliases:
 
 Required: False
@@ -89,7 +113,7 @@ Include service (NT SERVICE) profiles.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: All
 Aliases:
 
 Required: False
@@ -106,7 +130,7 @@ Excluded by default as they don't parse well.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: All
 Aliases:
 
 Required: False
@@ -122,7 +146,7 @@ Exclude the Default User.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: All
 Aliases:
 
 Required: False

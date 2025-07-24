@@ -11,11 +11,21 @@ Copy one or more items to each user profile on the system.
 
 ## SYNTAX
 
+### CalculatedProfiles (Default)
+
 ```powershell
 Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
  [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
  [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles] [-ExcludeDefaultUser]
  [-ContinueFileCopyOnError] [<CommonParameters>]
+```
+
+### SpecifiedProfiles
+
+```powershell
+Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
+ [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
+ -UserProfiles <UserProfile[]> [-ContinueFileCopyOnError] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -189,13 +199,29 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -UserProfiles
+
+Specifies one or more UserProfile objects to copy files into.
+
+```yaml
+Type: UserProfile[]
+Parameter Sets: SpecifiedProfiles
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ExcludeNTAccount
 
 Specify NT account names in Domain\Username format to exclude from the list of user profiles.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: CalculatedProfiles
 Aliases:
 
 Required: False
@@ -211,7 +237,7 @@ Include system profiles: SYSTEM, LOCAL SERVICE, NETWORK SERVICE.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: CalculatedProfiles
 Aliases:
 
 Required: False
@@ -227,7 +253,7 @@ Include service profiles where NTAccount begins with NT SERVICE.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: CalculatedProfiles
 Aliases:
 
 Required: False
@@ -243,7 +269,7 @@ Exclude the Default User.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: CalculatedProfiles
 Aliases:
 
 Required: False
