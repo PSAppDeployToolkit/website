@@ -14,14 +14,14 @@ Get all of the properties from a Windows Installer database table or the Summary
 ### TableInfo (Default)
 
 ```powershell
-Get-ADTMsiTableProperty -Path <String> [-TransformPath <String[]>] [-Table <String>]
+Get-ADTMsiTableProperty -LiteralPath <String> [-TransformPath <String[]>] [-Table <String>]
  [-TablePropertyNameColumnNum <Int32>] [-TablePropertyValueColumnNum <Int32>] [<CommonParameters>]
 ```
 
 ### SummaryInfo
 
 ```powershell
-Get-ADTMsiTableProperty -Path <String> [-TransformPath <String[]>] [-GetSummaryInformation]
+Get-ADTMsiTableProperty -LiteralPath <String> [-TransformPath <String[]>] [-GetSummaryInformation]
  [<CommonParameters>]
 ```
 
@@ -34,7 +34,7 @@ Use the Windows Installer object to read all of the properties from a Windows In
 ### EXAMPLE 1
 
 ```powershell
-Get-ADTMsiTableProperty -Path 'C:\Package\AppDeploy.msi' -TransformPath 'C:\Package\AppDeploy.mst'
+Get-ADTMsiTableProperty -LiteralPath 'C:\Package\AppDeploy.msi' -TransformPath 'C:\Package\AppDeploy.mst'
 ```
 
 Retrieve all of the properties from the default 'Property' table.
@@ -42,7 +42,7 @@ Retrieve all of the properties from the default 'Property' table.
 ### EXAMPLE 2
 
 ```powershell
-(Get-ADTMsiTableProperty -Path 'C:\Package\AppDeploy.msi' -TransformPath 'C:\Package\AppDeploy.mst' -Table 'Property').ProductCode
+(Get-ADTMsiTableProperty -LiteralPath 'C:\Package\AppDeploy.msi' -TransformPath 'C:\Package\AppDeploy.mst' -Table 'Property').ProductCode
 ```
 
 Retrieve all of the properties from the 'Property' table, then retrieves just the 'ProductCode' member.
@@ -50,14 +50,14 @@ Retrieve all of the properties from the 'Property' table, then retrieves just th
 ### EXAMPLE 3
 
 ```powershell
-Get-ADTMsiTableProperty -Path 'C:\Package\AppDeploy.msi' -GetSummaryInformation
+Get-ADTMsiTableProperty -LiteralPath 'C:\Package\AppDeploy.msi' -GetSummaryInformation
 ```
 
 Retrieve the Summary Information for the Windows Installer database.
 
 ## PARAMETERS
 
-### -Path
+### -LiteralPath
 
 The fully qualified path to an database file.
 Supports .msi and .msp files.
@@ -65,7 +65,7 @@ Supports .msi and .msp files.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Path, PSPath
 
 Required: True
 Position: Named

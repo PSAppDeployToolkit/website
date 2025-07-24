@@ -11,8 +11,22 @@ Remove folder and files if they exist.
 
 ## SYNTAX
 
+### Path
+
 ```powershell
-Remove-ADTFolder [-Path] <DirectoryInfo> [-DisableRecursion] [<CommonParameters>]
+Remove-ADTFolder -Path <String[]> [-DisableRecursion] [<CommonParameters>]
+```
+
+### LiteralPath
+
+```powershell
+Remove-ADTFolder -LiteralPath <String[]> [-DisableRecursion] [<CommonParameters>]
+```
+
+### InputObject
+
+```powershell
+Remove-ADTFolder -InputObject <DirectoryInfo> [-DisableRecursion] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,17 +57,51 @@ Deletes all files in the Temp\MyAppCache folder but does not delete any subfolde
 
 ### -Path
 
-Path to the folder to remove.
+A path to the folder to remove.
+Can contain wildcards.
 
 ```yaml
-Type: DirectoryInfo
-Parameter Sets: (All)
+Type: String[]
+Parameter Sets: Path
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LiteralPath
+
+A literal path to the folder to remove.
+
+```yaml
+Type: String[]
+Parameter Sets: LiteralPath
+Aliases: PSPath
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InputObject
+
+A DirectoryInfo object to remove.
+Available for pipelining.
+
+```yaml
+Type: DirectoryInfo
+Parameter Sets: InputObject
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

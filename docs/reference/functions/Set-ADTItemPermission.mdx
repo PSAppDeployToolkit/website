@@ -14,19 +14,19 @@ Allows you to easily change permissions on files or folders.
 ### AccessControlList
 
 ```powershell
-Set-ADTItemPermission -Path <String> -AccessControlList <FileSystemSecurity> [<CommonParameters>]
+Set-ADTItemPermission -LiteralPath <String> -AccessControlList <FileSystemSecurity> [<CommonParameters>]
 ```
 
 ### EnableInheritance
 
 ```powershell
-Set-ADTItemPermission -Path <String> [-EnableInheritance] [<CommonParameters>]
+Set-ADTItemPermission -LiteralPath <String> [-EnableInheritance] [<CommonParameters>]
 ```
 
 ### DisableInheritance
 
 ```powershell
-Set-ADTItemPermission -Path <String> -User <String[]> -Permission <FileSystemRights>
+Set-ADTItemPermission -LiteralPath <String> -User <String[]> -Permission <FileSystemRights>
  [-PermissionType <AccessControlType>] [-Inheritance <InheritanceFlags>] [-Propagation <PropagationFlags>]
  [-Method <String>] [<CommonParameters>]
 ```
@@ -41,7 +41,7 @@ You can add, remove or replace permissions, set inheritance and propagation.
 ### EXAMPLE 1
 
 ```powershell
-Set-ADTItemPermission -Path 'C:\Temp' -User 'DOMAIN\John', 'BUILTIN\Users' -Permission FullControl -Inheritance ObjectInherit,ContainerInherit
+Set-ADTItemPermission -LiteralPath 'C:\Temp' -User 'DOMAIN\John', 'BUILTIN\Users' -Permission FullControl -Inheritance ObjectInherit,ContainerInherit
 ```
 
 Will grant FullControl permissions to 'John' and 'Users' on 'C:\Temp' and its files and folders children.
@@ -49,7 +49,7 @@ Will grant FullControl permissions to 'John' and 'Users' on 'C:\Temp' and its fi
 ### EXAMPLE 2
 
 ```powershell
-Set-ADTItemPermission -Path 'C:\Temp\pic.png' -User 'DOMAIN\John' -Permission 'Read'
+Set-ADTItemPermission -LiteralPath 'C:\Temp\pic.png' -User 'DOMAIN\John' -Permission 'Read'
 ```
 
 Will grant Read permissions to 'John' on 'C:\Temp\pic.png'.
@@ -57,21 +57,21 @@ Will grant Read permissions to 'John' on 'C:\Temp\pic.png'.
 ### EXAMPLE 3
 
 ```powershell
-Set-ADTItemPermission -Path 'C:\Temp\Private' -User 'DOMAIN\John' -Permission 'None' -Method 'RemoveAll'
+Set-ADTItemPermission -LiteralPath 'C:\Temp\Private' -User 'DOMAIN\John' -Permission 'None' -Method 'RemoveAll'
 ```
 
 Will remove all permissions to 'John' on 'C:\Temp\Private'.
 
 ## PARAMETERS
 
-### -Path
+### -LiteralPath
 
 Path to the folder or file you want to modify (ex: C:\Temp)
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: File, Folder
+Aliases: Path, PSPath, File, Folder
 
 Required: True
 Position: Named

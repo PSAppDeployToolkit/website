@@ -12,7 +12,7 @@ Copies the toolkit content to a cache folder on the local machine and sets the $
 ## SYNTAX
 
 ```powershell
-Copy-ADTContentToCache [[-Path] <String>] [<CommonParameters>]
+Copy-ADTContentToCache [[-LiteralPath] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,21 +28,21 @@ It is important to clean up the cache in the uninstall section for the current v
 ### EXAMPLE 1
 
 ```powershell
-Copy-ADTContentToCache -Path "$envWinDir\Temp\PSAppDeployToolkit"
+Copy-ADTContentToCache -LiteralPath "$envWinDir\Temp\PSAppDeployToolkit"
 ```
 
 This example copies the toolkit content to the specified cache folder.
 
 ## PARAMETERS
 
-### -Path
+### -LiteralPath
 
 The path to the software cache folder.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Path, PSPath
 
 Required: False
 Position: 1
@@ -73,7 +73,7 @@ Intune is lacking this functionality whereas ConfigMgr includes this functionali
 
 Since this cache folder is effectively unmanaged, it is important to cleanup the cache in the uninstall section for the current version and potentially also in the pre-installation section for previous versions.
 
-This can be done using `Remove-ADTFile -Path "(Get-ADTConfig).Toolkit.CachePath\$($adtSession.InstallName)" -Recurse -ErrorAction Ignore`.
+This can be done using `Remove-ADTFile -LiteralPath "(Get-ADTConfig).Toolkit.CachePath\$($adtSession.InstallName)" -Recurse -ErrorAction Ignore`.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

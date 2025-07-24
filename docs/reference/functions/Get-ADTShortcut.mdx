@@ -12,7 +12,7 @@ Get information from a .lnk or .url type shortcut.
 ## SYNTAX
 
 ```powershell
-Get-ADTShortcut [-Path] <String> [<CommonParameters>]
+Get-ADTShortcut [-LiteralPath] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,21 +25,21 @@ Returns a hashtable with details about the shortcut such as TargetPath, Argument
 ### EXAMPLE 1
 
 ```powershell
-Get-ADTShortcut -Path "$envProgramData\Microsoft\Windows\Start Menu\My Shortcut.lnk"
+Get-ADTShortcut -LiteralPath "$envProgramData\Microsoft\Windows\Start Menu\My Shortcut.lnk"
 ```
 
 Retrieves information from the specified .lnk shortcut.
 
 ## PARAMETERS
 
-### -Path
+### -LiteralPath
 
 Path to the shortcut to get information from.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Path, PSPath
 
 Required: True
 Position: 1

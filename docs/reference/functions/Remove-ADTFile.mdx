@@ -35,7 +35,7 @@ The function can also delete items recursively if the Recurse parameter is speci
 ### EXAMPLE 1
 
 ```powershell
-Remove-ADTFile -Path 'C:\Windows\Downloaded Program Files\Temp.inf'
+Remove-ADTFile -LiteralPath 'C:\Windows\Downloaded Program Files\Temp.inf'
 ```
 
 Removes the specified file.
@@ -52,7 +52,7 @@ Removes the specified folder and all its contents recursively.
 
 ### -Path
 
-Specifies the path on the filesystem to be resolved.
+Specifies the file on the filesystem to be removed.
 The value of Path will accept wildcards.
 Will accept an array of values.
 
@@ -65,19 +65,19 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -LiteralPath
 
-Specifies the path on the filesystem to be resolved.
+Specifies the file on the filesystem to be removed.
 The value of LiteralPath is used exactly as it is typed; no characters are interpreted as wildcards.
 Will accept an array of values.
 
 ```yaml
 Type: String[]
 Parameter Sets: LiteralPath
-Aliases:
+Aliases: PSPath
 
 Required: True
 Position: Named

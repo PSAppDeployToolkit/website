@@ -12,7 +12,7 @@ Create a new folder.
 ## SYNTAX
 
 ```powershell
-New-ADTFolder [-Path] <String> [<CommonParameters>]
+New-ADTFolder [-LiteralPath] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,21 +26,21 @@ It logs the creation process and handles any errors that may occur during the fo
 ### EXAMPLE 1
 
 ```powershell
-New-ADTFolder -Path "$env:WinDir\System32"
+New-ADTFolder -LiteralPath "$env:WinDir\System32"
 ```
 
 Creates a new folder at the specified path if it does not already exist.
 
 ## PARAMETERS
 
-### -Path
+### -LiteralPath
 
 Path to the new folder to create.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Path, PSPath
 
 Required: True
 Position: 1

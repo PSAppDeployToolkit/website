@@ -12,7 +12,7 @@ Modifies a .lnk or .url type shortcut.
 ## SYNTAX
 
 ```powershell
-Set-ADTShortcut [-Path] <String> [-TargetPath <String>] [-Arguments <String>] [-IconLocation <String>]
+Set-ADTShortcut [-LiteralPath] <String> [-TargetPath <String>] [-Arguments <String>] [-IconLocation <String>]
  [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>] [-WindowStyle <String>]
  [-RunAsAdmin] [-Hotkey <String>] [<CommonParameters>]
 ```
@@ -27,21 +27,21 @@ Only specify the parameters that you want to change.
 ### EXAMPLE 1
 
 ```powershell
-Set-ADTShortcut -Path "$envCommonDesktop\Application.lnk" -TargetPath "$envProgramFiles\Application\application.exe"
+Set-ADTShortcut -LiteralPath "$envCommonDesktop\Application.lnk" -TargetPath "$envProgramFiles\Application\application.exe"
 ```
 
 Creates a shortcut on the All Users desktop named 'Application', targeted to '$envProgramFiles\Application\application.exe'.
 
 ## PARAMETERS
 
-### -Path
+### -LiteralPath
 
 Path to the shortcut to be changed.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Path
 
 Required: True
 Position: 1

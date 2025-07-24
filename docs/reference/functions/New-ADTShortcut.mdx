@@ -12,7 +12,7 @@ Creates a new .lnk or .url type shortcut.
 ## SYNTAX
 
 ```powershell
-New-ADTShortcut [-Path] <String> -TargetPath <String> [-Arguments <String>] [-IconLocation <String>]
+New-ADTShortcut [-LiteralPath] <String> -TargetPath <String> [-Arguments <String>] [-IconLocation <String>]
  [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>] [-WindowStyle <String>]
  [-RunAsAdmin] [-Hotkey <String>] [<CommonParameters>]
 ```
@@ -27,21 +27,21 @@ This function allows you to specify various parameters such as the target path, 
 ### EXAMPLE 1
 
 ```powershell
-New-ADTShortcut -Path "$envCommonStartMenuPrograms\My Shortcut.lnk" -TargetPath "$envWinDir\notepad.exe" -IconLocation "$envWinDir\notepad.exe" -Description 'Notepad' -WorkingDirectory '%HOMEDRIVE%\%HOMEPATH%'
+New-ADTShortcut -LiteralPath "$envCommonStartMenuPrograms\My Shortcut.lnk" -TargetPath "$envWinDir\notepad.exe" -IconLocation "$envWinDir\notepad.exe" -Description 'Notepad' -WorkingDirectory '%HOMEDRIVE%\%HOMEPATH%'
 ```
 
 Creates a new shortcut for Notepad with the specified parameters.
 
 ## PARAMETERS
 
-### -Path
+### -LiteralPath
 
 Path to save the shortcut.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Path, PSPath
 
 Required: True
 Position: 1
