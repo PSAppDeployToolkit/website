@@ -16,15 +16,16 @@ Open-ADTSession [[-SessionState] <SessionState>] [[-DeploymentType] <DeploymentT
  [[-DeployMode] <DeployMode>] [-SuppressRebootPassThru] [-TerminalServerMode] [-DisableLogging]
  [[-AppVendor] <String>] [[-AppName] <String>] [[-AppVersion] <String>] [[-AppArch] <String>]
  [[-AppLang] <String>] [[-AppRevision] <String>] [[-AppScriptVersion] <Version>] [[-AppScriptDate] <DateTime>]
- [[-AppScriptAuthor] <String>] [-RequireAdmin] [[-InstallName] <String>] [[-InstallTitle] <String>]
+ [[-AppScriptAuthor] <String>] [[-InstallName] <String>] [[-InstallTitle] <String>]
  [[-DeployAppScriptFriendlyName] <String>] [[-DeployAppScriptVersion] <Version>]
  [[-DeployAppScriptParameters] <System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]>]
  [[-AppSuccessExitCodes] <Int32[]>] [[-AppRebootExitCodes] <Int32[]>]
- [[-AppProcessesToClose] <ProcessDefinition[]>] [[-ScriptDirectory] <String[]>] [[-DirFiles] <String>]
- [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
- [[-DefaultMspFiles] <String[]>] [-DisableDefaultMsiProcessList] [[-LogName] <String>] [[-SessionClass] <Type>]
- [-ForceWimDetection] [-ForceMsiDetection] [-PassThru]
- [[-UnboundArguments] <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
+ [[-AppProcessesToClose] <ProcessDefinition[]>] [-RequireAdmin] [[-ScriptDirectory] <String[]>]
+ [[-DirFiles] <String>] [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
+ [[-DefaultMspFiles] <String[]>] [-DisableDefaultMsiProcessList] [-ForceMsiDetection] [-ForceWimDetection]
+ [-NoSessionDetection] [-NoOobeDetection] [-NoProcessDetection] [-PassThru] [[-LogName] <String>]
+ [[-SessionClass] <Type>] [[-UnboundArguments] <System.Collections.Generic.IReadOnlyList`1[System.Object]>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -86,7 +87,7 @@ Specifies the deployment mode: Interactive, NonInteractive, or Silent.
 Type: DeployMode
 Parameter Sets: (All)
 Aliases:
-Accepted values: Interactive, NonInteractive, Silent
+Accepted values: Auto, Interactive, NonInteractive, Silent
 
 Required: False
 Position: 3
@@ -287,22 +288,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -RequireAdmin
-
-Specifies that this deployment requires administrative permissions.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -InstallName
 
 Specifies the install name.
@@ -431,6 +416,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -RequireAdmin
+
+Specifies that this deployment requires administrative permissions.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ScriptDirectory
 
 Specifies the base path for Files and SupportFiles.
@@ -543,6 +544,102 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ForceMsiDetection
+
+Specifies that MSI files should be detected and parsed during session initialization, irrespective of whether any App values are provided.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ForceWimDetection
+
+Specifies that WIM files should be detected and mounted during session initialization, irrespective of whether any App values are provided.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoSessionDetection
+
+When DeployMode is not specified or is Auto, bypasses DeployMode adjustment when there's no logged on user session available.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoOobeDetection
+
+When DeployMode is not specified or is Auto, bypasses DeployMode adjustment when the device hasn't completed the OOBE or a user ESP is active.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoProcessDetection
+
+When DeployMode is not specified or is Auto, bypasses DeployMode adjustment when there's no processes to close in the specified AppProcessesToClose list.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+
+Passes the session object through the pipeline.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -LogName
 
 Specifies an override for the default-generated log file name.
@@ -572,54 +669,6 @@ Aliases:
 Required: False
 Position: 28
 Default value: PSADT.Module.DeploymentSession
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ForceWimDetection
-
-Specifies that WIM files should be detected and mounted during session initialization, irrespective of whether any App values are provided.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ForceMsiDetection
-
-Specifies that MSI files should be detected and parsed during session initialization, irrespective of whether any App values are provided.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PassThru
-
-Passes the session object through the pipeline.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
