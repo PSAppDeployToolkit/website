@@ -331,7 +331,7 @@ Provides various options for handling the return codes (see Parameters).
 ### EXAMPLE 1
 
 ```powershell
-Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -IgnoreExitCodes 1,2
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -SuccessExitCodes 1,2
 ```
 
 Launch InstallShield "setup.exe" from the ".\Files" sub-directory.
@@ -777,6 +777,7 @@ Accept wildcard characters: False
 ### -IgnoreExitCodes
 
 List the exit codes to ignore or * to ignore all exit codes.
+Where possible, please use `-SuccessExitCodes` and/or `-RebootExitCodes` instead.
 
 ```yaml
 Type: String[]
