@@ -51,7 +51,6 @@ module.exports = [
     'commands/Get-ADTPowerShellProcessPath',
     'commands/Get-ADTPresentationSettingsEnabledUsers',
     'commands/Get-ADTRegistryKey',
-    'commands/Get-ADTRunAsActiveUser',
     'commands/Get-ADTRunningProcesses',
     'commands/Get-ADTServiceStartMode',
     'commands/Get-ADTSession',
