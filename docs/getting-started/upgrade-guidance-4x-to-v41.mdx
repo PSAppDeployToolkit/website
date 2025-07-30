@@ -10,11 +10,17 @@ tags:
   - Getting Started
 ---
 
-# Upgrade Guidance: v4 to v4.1 
+# Upgrade Guidance: v4 to v4.1
 
-## Changes in v4.1
+## Breaking Changes in v4.1
 
-Before proceeding, ensure that you have reviewed the numerous [changes](../getting-started/release-notes.mdx) in v4.1.
+:::warning
+
+- `RequireAdmin` is no longer set in Config.psd1. It must be set per deployment in your script session object.
+- `AppProcessesToClose` replaces the old process list methods (e.g., `-CloseApps`).
+- Several config options have been removed or renamed. See below for details.
+- Deprecated functions and parameters are scheduled for removal in 4.2.0. Update your scripts accordingly.
+  :::
 
 ## Updating an Existing v4.0 Deployment to v4.1
 
@@ -23,6 +29,10 @@ For patch releases (e.g. v4.0.5 to v4.0.6), all that is normally required is to 
 However there are a number of changes to various toolkit files in 4.1 to be aware of.
 
 ## Changes in Invoke-AppDeployToolkit.ps1
+
+:::note
+`AppProcessesToClose` and `RequireAdmin` are now set in the `$adtSession` object. This is a breaking change from previous versions. See the examples below for the new pattern.
+:::
 
 There are 2 new additions to the $adtSession hashtable:
 
@@ -64,33 +74,31 @@ The last important change is this line that calls `Remove-ADTHashtableNullOrEmpt
     $adtSession = Open-ADTSession @adtSession @iadtParams -PassThru
 ```
 
+## OOBE and Session Detection Changes
+
+:::warning
+OOBE and session detection logic has changed in 4.1. OOBE detection now includes the User ESP phase, and you can now bypass OOBE or session detection per deployment using the new `NoOobeDetection` and `NoSessionDetection` session parameters. Review your scripts and config if you rely on the old behavior.
+:::
+
 ## Changes in Config.psd1
-
-New configuration options:
-
-| Option | Default | Description |
-| ------ | ------- | ----------- |
-| Assets.LogoDark | Assets\Logo.Dark.png | Path to the dark mode logo image. |
-| Toolkit.CompanyName | PSAppDeployToolkit | The company name to be used in the toolkit. Replaces UI.BalloonTitle. |
-| Toolkit.LogToHierarchy | $false | Whether to log to a hierarchy of folders based on the vendor and application name. |
-| Toolkit.ProcessDetection | $false | Whether to enable process detection (i.e. run in silent mode if listed processes are not running) |
-| UI.FluentAccentColor | $null | Override the accent color for the Fluent UI dialogs. |
-
-Removed configuration options:
-- Toolkit.RequireAdmin
-- UI.BalloonTitle
-- UI.DynamicProcessEvaluation
-- UI.DynamicProcessEvaluationInterval
 
 Changed defaults:
 
-| Option | Default | Description |
-| ------ | ------- | ----------- |
-| MSI.InstallParams | /qn REBOOT=ReallySuppress | Default MSI parameters for installation. |
-| MSI.LogPath | | Now uses the same path as Toolkit.LogPath when empty. |
-| MSI.LogPathNoAdminRights | | Now uses the same path as Toolkit.LogPathNoAdminRights when empty. |
-| UI.DeferExitCode | 1602 | Default exit code for deferred installations. |
+| Option                   | Default                   | Description                                                        |
+| ------------------------ | ------------------------- | ------------------------------------------------------------------ |
+| MSI.InstallParams        | /qn REBOOT=ReallySuppress | Default MSI parameters for installation.                           |
+| MSI.LogPath              |                           | Now uses the same path as Toolkit.LogPath when empty.              |
+| MSI.LogPathNoAdminRights |                           | Now uses the same path as Toolkit.LogPathNoAdminRights when empty. |
+| UI.DeferExitCode         | 1602                      | Default exit code for deferred installations.                      |
 
 ## Changes in Strings.psd1
 
 There have been extensive changes to the Strings.psd1 files for each language, too many to list here. Please submit an issue or pull request on GitHub if you are able to improve any of the translations!
+
+## Additional Migration Notes
+
+:::note
+
+- Use the migration tools (`Test-ADTCompatibility`, `Convert-ADTDeployment`) to help update your scripts.
+- Review all function and parameter deprecations in the [release notes](../getting-started/release-notes.mdx).
+  :::

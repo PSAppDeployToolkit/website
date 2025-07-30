@@ -43,6 +43,7 @@ const sidebars = {
       collapsed: false,
       items: [
         'deployment-concepts/deployment-structure',
+        'deployment-concepts/invoke-appdeploytoolkit',
         'deployment-concepts/zero-config-deployment'
       ]
     },
@@ -55,7 +56,6 @@ const sidebars = {
       collapsed: false,
       items: [
         'usage/customizing-deployments',
-        'usage/invoke-appdeploytoolkit',
         'usage/installing-applications',
         'usage/adding-ui-elements',
         'usage/how-to-deploy'

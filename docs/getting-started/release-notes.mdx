@@ -11,9 +11,27 @@ tags:
 
 # Release Notes
 
-## 🖥️ What's New in v4.1 (RC1) - 2025-07-08
+#### 4.1 Pre-Release Notes
 
-**NOTE**: This is currently a release candidate for PSADT 4.1. which has not yet reached final status. While we are confident that it is rock solid, we are still testing it and may make changes before final release. As such, it is not recommended for production use at this time.
+**NOTE**: This is currently a release candidate for PSADT 4.1 which has not yet reached final status. While we are confident that it is rock solid, we are still testing it and may make changes before final release. As such, it is not recommended for production use at this time.
+
+##### 🖥️ 4.1 RC3 Updates - 2025-07-30
+
+- Changed default `-DeployMode` to `Auto`. This is functionally the same as the old `Interactive` mode, where the toolkit will automatically detect if a user is logged on and switch to Silent mode if no user is logged on.
+- Changed `-DeployMode Interactive` to always show interactively. This means the toolkit will always show the dialogs, even if there are no processes to close.
+- Added `$adtSSession.NoOobeDetection` which allows you to bypass OOBE detection if you want to run the toolkit in a non-OOBE environment.
+- Added `$adtSSession.NoSessionDetection` which allows you to bypass session detection if you want to run the toolkit in a non-session environment.
+
+##### 4.1 RC2 Updates - 2025-07-08
+
+- Added [Test-ADTEspActive](../reference/functions/Test-ADTEspActive.mdx) to test for an active Enrollment Status Page (ESP).
+- Added support for running processes from network drives.
+- Fixed launching processes in the users' session when using certain MDMs, e.g. VMware Workspace ONE.
+- Fixed setting the Accent Color using the ADMX templates.
+- Fixed minimize button not being shown on Fluent Progress and Restart Dialogs.
+- Fixed the "Restart Later" button in the Fluent Restart Dialog not being disabled during the warning period.
+
+## 4.1 Release Notes - 2025-08-xx
 
 ### 🎯 Major Improvements
 
@@ -35,6 +53,7 @@ tags:
   - Support for formattable text (Bold, Italic & Accent) as well as URL hyperlinks in dialog messages
   - You can now set the % complete of the progress bar in the Progress Dialog (for example, if you are running a custom script that you want to show incremental progress changes for)
   - Ability to set different icons for Light / Dark mode
+  - Custom accent colors via `UI.FluentAccentColor` configuration
 
 - The security rearchitecture required all of our process execution code to be rewritten. This has enabled us to provide a wealth of new capabilities to both [Start-ADTProcess](../reference/functions/Start-ADTProcess.mdx) and [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) using the following new parameters:
   - -UseUnelevatedToken parameter to force a process run without elevation, for deploying user-context apps with Windows 11 Administrator Protection enabled
@@ -64,6 +83,7 @@ tags:
 ### 🛠️ Other Improvements
 
 - [Show-ADTHelpConsole](../reference/functions/Show-ADTHelpConsole.mdx) has been given some love and a facelift with High-DPI awareness, resizability, PowerShell 7 compatibility, and extension module display
+- Reworked Invoke-AppDeployToolkit.exe to be more compliant within WDAC environments
 - Added -NoWait support to [Show-ADTDialogBox](../reference/functions/Show-ADTDialogBox.mdx)
 - Added process detection code to enable automatic silent deployments when processes aren't running
 - Added /Debug switch to [Invoke-AppDeployToolkit.exe](../usage/invoke-appdeploytoolkit.mdx) to show terminal output for debugging purposes

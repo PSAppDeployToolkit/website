@@ -14,68 +14,67 @@ tags:
 
 ## V4 Native Deployment Template
 
+The **v4 native deployment template** is designed to be more modular, flexible, and user-friendly than the v3 structure, while still containing all core PSADT module files.
 
-The v4 native deployment structure is designed to be more modular, flexible, and user-friendly than the v3 structure, while still containing all core PSADT module files.
+:::note
+The **v4 native deployment template** structure is considerably more sophisticated than the V3 deployment structure. At first glance, it can seem overly complex and daunting. However, you can avoid getting overwhelmed by focusing on just the files you need to know about.
+:::
 
-The PSADT v4 native deployment structure is considerably more complex than v3, since it contains the entire PSADT module. However, we can limit your exposure to the complexity by focusing on just the files you need to know about:
-
-```
-Invoke-AppDeployToolkit.ps1             # PSADT Deployment PowerShell script
-Invoke-AppDeployToolkit.exe             # PSADT Deployment executable (to easily launch the above script)
-
-├───Files                               # Primary installation files#
-├───SupportFiles                        # Supporting resources or assets
-│
-├───PSAppDeployToolkit                  # PSADT module files. Please do not modify anything under this folder.
-│   PSAppDeployToolkit.psd1             # PSADT module manifest. Import this if you want to use the module in your own scripts.
-│   PSAppDeployToolkit.psm1             # PSADT module script. Contains all the functions and logic.
-│
-├───PSAppDeployToolkit.Extensions       # PSADT Extensions module files. # TODO - write more on this
-│   PSAppDeployToolkit.Extensions.psd1
-│   PSAppDeployToolkit.Extensions.psm1
-│
-├───Assets
-│   AppIcon.png                         # The icon to display in the PSADT User Interface
-│   Banner.Classic.png                  # The banner to display in the PSADT Classic User Interface (not used for Fluent dialogs)
-│
-├───Config
-│   config.psd1                         # PSADT configuration file
-│
-└───Strings
-    └───<LanguageCode>
-        strings.psd1                    # PSADT User Interface language strings for <LanguageCode>.
-    strings.psd1                        # PSADT User Interface language strings for English.
-```
+| Folder                             | File                        | Purpose                                                                                                         |
+|:-----------------------------------|:----------------------------|:----------------------------------------------------------------------------------------------------------------|
+| **/**                              |                             |                                                                                                                 |
+|                                    | Invoke-AppDeployToolkit.ps1 | PSADT Deployment PowerShell script. This is the main entry point for your deployment.                           |
+|                                    | Invoke-AppDeployToolkit.exe | PSADT Deployment executable. This is a wrapper around the above script to easily launch it.                     |
+| **PSAppDeployToolkit/**            |                             |                                                                                                                 |
+|                                    |                             | PSADT core module files. Please do not modify anything under this folder.                                       |
+| **PSAppDeployToolkit.Extensions/** |                             |                                                                                                                 |
+|                                    |                             | PSADT optional extensions. Ignore this folder if you are not using any custom functions.                        |
+| **Files/**                         |                             |                                                                                                                 |
+|                                    |                             | [***Put installation files here***]                                                                             |
+|                                    | Setup.Exe                   | Example Setup executable.                                                                                       |
+|                                    | AppInstaller.msi            | Example Windows Installer MSI file                                                                              |
+| **SupportFiles/**                  |                             |                                                                                                                 |
+|                                    |                             | [***Put optional install support files here***]                                                                 |
+|                                    | PerUserSettings.reg         | Example installation support file.                                                                              |
+| **Assets/**                        |                             |                                                                                                                 |
+|                                    | AppIcon.png                 | PSADT App Icon. Used to display the application icon, or your organizations logo. Should be a 256x256 PNG file. |
+| **Config/**                        |                             |                                                                                                                 |
+|                                    | config.psd1                 | PSADT configuration file. Contains settings that control the behavior                                           |
+| **Strings/**                       |                             |                                                                                                                 |
+|                                    | strings.psd1                | PSADT User Interface strings file. This changes the text displayed in the PSADT User Interface.                 |
 
 ## V3 Compatibility Deployment Template
 
-The v3 compatibility deployment structure is designed to allow you to use an existing v3 deployment script with the v4 PSADT framework. This v3 compatibility structure allows you to leverage your existing v3 script paths and function references, mapping them to their new v4 equivalents. The structure is laid out similarly to v4, however some file and folder names are kept the same as v3. This is so that we can use leverage any file paths you may have used within your script. And we also leverage the folder structure to impersonate the v3 PSADT framework, while remapping each function to the new v4 equivilent. This allows you to use your existing v3 deployment scripts with the v4 PSADT framework, allowing you to take advantage of the new features and improvements in v4, but without having to make any functional change to your existing script.
+The v3 compatibility deployment structure is designed to allow you to use an existing v3 deployment script with the v4 PSADT framework. This v3 compatibility structure allows you to leverage your existing v3 script paths and function references, mapping them to their new v4 equivalents.
 
-The PSADT v4 compatibility deployment structure is considerably more complex than v3, since it contains the entire PSADT module. However, we can limit your exposure to the complexity by focusing on just the files you need to know about:
+The structure is laid out similarly to v4, however some file and folder names are kept the same as v3. This is so that we can use leverage any file paths you may have used within your script. And we also leverage the folder structure to impersonate the v3 PSADT framework, while remapping each function to the new v4 equivilent.
 
-```
-Deploy-Application.ps1                   # PSADT Deployment PowerShell script
-Deploy-Application.exe                   # PSADT Deployment executable (to easily launch the above script)
+This allows you to use your existing v3 deployment scripts with the v4 PSADT framework, taking advantage of the new features and improvements in v4, but without having to make any functional change to your existing script.
 
-├───Files                               # Primary installation files
-├───SupportFiles                        # Supporting resources or assets
-│
-├───AppDeployToolkit
-│   └───PSAppDeployToolkit              # PSADT module files. Please do not modify anything under this folder.
-│       └───PSAppDeployToolkit.psd1     # PSADT module manifest. Used to import the module. Import this if you want to use the module in your
-│           PSAppDeployToolkit.psm1     # PSADT module script. Contains all the functions and logic.
-│   AppDeployToolkitMain.ps1            # PSADT compatibility shim script. Used to restore v3 function wrappers.
-│   AppDeployToolkitExtensions.ps1      # PSADT compatibility extensions scripts. Used for your custom v3 functions.
-│
-├───Assets
-│   AppIcon.png                         # The icon to display in the PSADT User Interface
-│   Banner.Classic.png                  # The banner to display in the PSADT Classic User Interface (not used for Fluent dialogs)
-│
-├───Config
-│   config.psd1                         # PSADT configuration file
-│
-└───Strings
-    └───<LanguageCode>
-        strings.psd1                    # PSADT User Interface language strings for <LanguageCode>.
-    strings.psd1                        # PSADT User Interface language strings for English.
-```
+:::note
+The PSADT v4 compatibility deployment template structure is considerably more sophisticated than the V3 deployment structure. At first glance, it can seem overly complex and daunting. However, you can avoid getting overwhelmed by focusing on just the files you need to know about.
+:::
+
+| Folder                                        | File                           | Purpose                                                                                                         |
+|:----------------------------------------------|:-------------------------------|:----------------------------------------------------------------------------------------------------------------|
+| **/**                                         |                                |                                                                                                                 |
+|                                               | Deploy-Application.ps1         | PSADT Deployment PowerShell script. This is the main entry point for your deployment.                           |
+|                                               | Deploy-Application.exe         | PSADT Deployment executable. This is a wrapper around the above script to easily launch it.                     |
+| **AppDeployToolkit/**                         |                                |                                                                                                                 |
+|                                               | AppDeployToolkitMain.ps1       | PSADT compatibility shim script. Used to restore v3 function wrappers.                                          |
+|                                               | AppDeployToolkitExtensions.ps1 | PSADT compatibility extensions scripts. Used for your custom v3 functions.                                      |
+| **AppDeployToolkit/** **PSAppDeployToolkit/** |                                |                                                                                                                 |
+|                                               |                                | PSADT core module files. Please do not modify anything under this folder.                                       |
+| **Files/**                                    |                                |                                                                                                                 |
+|                                               |                                | [***Put installation files here***]                                                                             |
+|                                               | Setup.Exe                      | Example Setup executable.                                                                                       |
+|                                               | AppInstaller.msi               | Example Windows Installer MSI file                                                                              |
+| **SupportFiles/**                             |                                |                                                                                                                 |
+|                                               |                                | [***Put optional install support files here***]                                                                 |
+|                                               | PerUserSettings.reg            | Example installation support file.                                                                              |
+| **Assets/**                                   |                                |                                                                                                                 |
+|                                               | AppIcon.png                    | PSADT App Icon. Used to display the application icon, or your organizations logo. Should be a 256x256 PNG file. |
+| **Config/**                                   |                                |                                                                                                                 |
+|                                               | config.psd1                    | PSADT configuration file. Contains settings that control the behavior                                           |
+| **Strings/**                                  |                                |                                                                                                                 |
+|                                               | strings.psd1                   | PSADT User Interface strings file. This changes the text displayed in the PSADT User Interface.                 |
