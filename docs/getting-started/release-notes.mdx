@@ -37,7 +37,7 @@ tags:
 
 - Up until now, it was not possible to display any user interface when deploying an application as SYSTEM using Intune (or any endpoint management tool) without using ServiceUI. Well, now it IS possible:
   - I REPEAT! **You no longer need to use ServiceUI**, EVER AGAIN! 🥳🎉🎊🪅🪩👯‍♂️
-  - In fact, we strongly advise you stop using it as soon as possible. ServiceUI works by manipulating system security tokens in a way that could allow malicious actors to escalate privileges or bypass security controls.
+  - In fact, we strongly advise you stop using it as soon as po1sible. ServiceUI works by manipulating system security tokens in a way that could allow malicious actors to escalate privileges or bypass security controls.
   - We've taken a fresh approach which leverages the Windows security model and separates out user interactions onto a process running in the users' session - we never perform any user interaction or messaging of any kind within the SYSTEM context. This means a more secure and reliable deployment experience.
   - We have also removed the requirement for the 'Allow users to view and interact with the program installation' checkbox in Configuration Manager deployments.
 
@@ -86,8 +86,8 @@ tags:
 - Reworked Invoke-AppDeployToolkit.exe to be more compliant within WDAC environments
 - Added -NoWait support to [Show-ADTDialogBox](../reference/functions/Show-ADTDialogBox.mdx)
 - Added process detection code to enable automatic silent deployments when processes aren't running
-- Added /Debug switch to [Invoke-AppDeployToolkit.exe](../usage/invoke-appdeploytoolkit.mdx) to show terminal output for debugging purposes
-- Added /Core switch to [Invoke-AppDeployToolkit.exe](../usage/invoke-appdeploytoolkit.mdx) to allow PowerShell 7 usage
+- Added /Debug switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit.mdx) to show terminal output for debugging purposes
+- Added /Core switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit.mdx) to allow PowerShell 7 usage
 
 ### 🛠️ Changes
 
@@ -143,8 +143,8 @@ Further changes to the deployment layout are detailed in the [Deployment Structu
 
 | **Old Name**                 | **New Name**                  | **More Information**                                                            |
 |:-----------------------------|:------------------------------|:--------------------------------------------------------------------------------|
-| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../usage/invoke-appdeploytoolkit.mdx)|
-| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../usage/invoke-appdeploytoolkit.mdx)|
+| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit.mdx)|
+| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit.mdx)|
 | `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Configuration Settings](../reference/config-settings.mdx)                   |
 | *Was part of Config file*    | `Strings\Strings.psd1`        | [Language Strings](../reference/language-strings.mdx)                        |
 
