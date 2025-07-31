@@ -32,7 +32,7 @@ The first thing to edit in your deployment script is the session variables. Thes
 | `RequireAdmin` | `$true` | **New in v4.1**. Whether the script requires administrative privileges |
 
 :::warning Breaking Changes in v4.1
-If you are upgrading from v4.0 or earlier, you must move any `RequireAdmin` setting from your config file to the session object in your deployment script, and use `AppProcessesToClose` instead of the old `-CloseApps` parameter.
+If you are upgrading from v4.0 or earlier, you must move any `RequireAdmin` setting from your config file to the session object in your deployment script, and use `AppProcessesToClose` instead of specifying the processes directly on the `-CloseProcesses` parameter of `Show-ADTInstallationWelcome`.
 :::
 
 :::note

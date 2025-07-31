@@ -17,15 +17,16 @@ tags:
 
 ##### 🖥️ 4.1 RC3 Updates - 2025-07-30
 
-- Changed default `-DeployMode` to `Auto`. This is functionally the same as the old `Interactive` mode, where the toolkit will automatically detect if a user is logged on and switch to Silent mode if no user is logged on.
-- Changed `-DeployMode Interactive` to always show interactively. This means the toolkit will always show the dialogs, even if there are no processes to close.
-- Added `$adtSSession.NoOobeDetection` which allows you to bypass OOBE detection if you want to run the toolkit in a non-OOBE environment.
-- Added `$adtSSession.NoSessionDetection` which allows you to bypass session detection if you want to run the toolkit in a non-session environment.
+- Changed default `-DeployMode` to `Auto`. This is functionally the same as the old `Interactive` mode, where the toolkit will automatically switch to Silent mode if the device is in OOBE/ESP phases, there is no user logged on, or (new in 4.1) there are no processes to close.
+- Changed `-DeployMode Interactive` to always show interactively. This means the toolkit will always show the dialogs, bypassing the OOBE/Session/Process detections that occur in `Auto` mode.
+- Added `-NoOobeDetection` option to `Open-ADTSession` to bypass OOBE detection logic when `DeployMode` is set to `Auto`. Use this to show the UI during OOBE / Autopilot ESP phases.
+- Added `-NoSessionDetection` option to `Open-ADTSession` to bypass session detection logic when `DeployMode` is set to `Auto`. Use this to show the UI when no user is logged on and the SYSTEM process is interactive.
+- Added `-NoProcessDetection` option to `Open-ADTSession` to bypass process detection logic when `DeployMode` is set to `Auto`. Use this to show the UI even if there are no processes to close.
 
 ##### 4.1 RC2 Updates - 2025-07-08
 
 - Added [Test-ADTEspActive](../reference/functions/Test-ADTEspActive.mdx) to test for an active Enrollment Status Page (ESP).
-- Added support for running processes from network drives.
+- Added support for detecting processes to close that are running from network drives.
 - Fixed launching processes in the users' session when using certain MDMs, e.g. VMware Workspace ONE.
 - Fixed setting the Accent Color using the ADMX templates.
 - Fixed minimize button not being shown on Fluent Progress and Restart Dialogs.

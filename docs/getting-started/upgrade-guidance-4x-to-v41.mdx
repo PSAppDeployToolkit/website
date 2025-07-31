@@ -15,12 +15,13 @@ tags:
 ## Breaking Changes in v4.1
 
 :::warning
-
-- `RequireAdmin` is no longer set in Config.psd1. It must be set per deployment in your script session object.
-- `AppProcessesToClose` replaces the old process list methods (e.g., `-CloseApps`).
-- Several config options have been removed or renamed. See below for details.
+- `DeployMode` now defaults to a new mode `Auto`, which defaults to interactive but reverts to silent if the device is in OOBE/ESP phases, there is no user logged on, or there are no processes to close.
+- `OOBEDetection` and `SessionDetection` are no longer set in Config.psd1. They can be set per-deployment by adding the `NoOOBEDetection` and `NoSessionDetection` options to the session properties if required.
+- `AppProcessesToClose` is a new session property that allows you to define processes to close during Install/Uninstall/Repair in one place instead of specifying the processes directly on the `-CloseProcesses` parameter of `Show-ADTInstallationWelcome`.
+- `RequireAdmin` is no longer set in Config.psd1. It must be set per-deployment in the session properties.
+- Several config options have been removed or had their default values changed. See below for details.
 - Deprecated functions and parameters are scheduled for removal in 4.2.0. Update your scripts accordingly.
-  :::
+:::
 
 ## Updating an Existing v4.0 Deployment to v4.1
 
@@ -40,13 +41,13 @@ There are 2 new additions to the $adtSession hashtable:
 $adtSession = @{
     # App variables.
 
-    AppProcessesToClose = @('regedit', @{ Name = 'msconfig'; Description = 'System Configuration (msconfig)' })
+    AppProcessesToClose = @('excel', @{ Name = 'winword'; Description = 'Microsoft Word' })
 
     RequireAdmin = $true
 }
 ```
 
-- `AppProcessesToClose` allows you to specify the processes to be closed in one place, saving you from copying the same list to the Uninstall and Repair sections of your script. Also, if `ProcessDetection = $true` is set in `Config.psd1`, the toolkit will automatically switch to `DeployMode = Silent` if none of the defined processes are running when the session is opened. You will either want to comment this line out or set it to an empty value in your own customised template, the example is provided to demonstrate the abiltiy to add proceses by name or as a hashtable with an additional description.
+- `AppProcessesToClose` allows you to specify the processes to be closed in one place, saving you from copying the same list to the Uninstall and Repair sections of your script. If `DeployMode` is set to `Auto` (the default), the toolkit will automatically switch to `Silent` if none of the defined processes are running when the session is opened. This can be disabled by setting the `-NoProcessDetection` option when opening the session.
 - `RequireAdmin` has been moved from the config file to the template, since it is a per-package setting. If set to `$true`, the script will fail at the point of opening the session if the user does not have administrative privileges.
 
 The `Show-ADTInstallationWelcome` example has been updated to use [splatting](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting):
@@ -91,6 +92,12 @@ Changed defaults:
 | MSI.LogPathNoAdminRights |                           | Now uses the same path as Toolkit.LogPathNoAdminRights when empty. |
 | UI.DeferExitCode         | 1602                      | Default exit code for deferred installations.                      |
 
+Removed options:
+
+- Toolkit.OobeDetection
+- Toolkit.SessionDetection
+- Toolkit.RequireAdmin
+
 ## Changes in Strings.psd1
 
 There have been extensive changes to the Strings.psd1 files for each language, too many to list here. Please submit an issue or pull request on GitHub if you are able to improve any of the translations!
@@ -101,4 +108,4 @@ There have been extensive changes to the Strings.psd1 files for each language, t
 
 - Use the migration tools (`Test-ADTCompatibility`, `Convert-ADTDeployment`) to help update your scripts.
 - Review all function and parameter deprecations in the [release notes](../getting-started/release-notes.mdx).
-  :::
+:::
