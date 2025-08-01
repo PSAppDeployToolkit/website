@@ -1,6 +1,6 @@
 ---
-id: Start-ADTMspProcess
-title: Start-ADTMspProcess
+id: Start-ADTMspProcessAsUser
+title: Start-ADTMspProcessAsUser
 hide_title: false
 hide_table_of_contents: false
 ---
@@ -11,18 +11,9 @@ Executes an MSP file using the same logic as Start-ADTMsiProcess.
 
 ## SYNTAX
 
-### Username
-
 ```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] -Username <NTAccount>
+Start-ADTMspProcessAsUser [-FilePath] <String> [[-AdditionalArgumentList] <String[]>] [[-Username] <NTAccount>]
  [-UseLinkedAdminToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [<CommonParameters>]
-```
-
-### UseUnelevatedToken
-
-```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-UseUnelevatedToken]
- [-ExpandEnvironmentVariables] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,7 +29,7 @@ You can use -AdditionalArgumentList to add additional parameters.
 ### EXAMPLE 1
 
 ```powershell
-Start-ADTMspProcess -FilePath 'Adobe_Reader_11.0.3_EN.msp'
+Start-ADTMspProcessAsUser -FilePath 'Adobe_Reader_11.0.3_EN.msp'
 ```
 
 Executes the specified MSP file for Adobe Reader 11.0.3.
@@ -46,7 +37,7 @@ Executes the specified MSP file for Adobe Reader 11.0.3.
 ### EXAMPLE 2
 
 ```powershell
-Start-ADTMspProcess -FilePath 'AcroRdr2017Upd1701130143_MUI.msp' -AdditionalArgumentList 'ALLUSERS=1'
+Start-ADTMspProcessAsUser -FilePath 'AcroRdr2017Upd1701130143_MUI.msp' -AdditionalArgumentList 'ALLUSERS=1'
 ```
 
 Executes the specified MSP file for Acrobat Reader 2017 with additional parameters.
@@ -63,7 +54,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -79,7 +70,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -92,12 +83,12 @@ Only supported while running as the SYSTEM account.
 
 ```yaml
 Type: NTAccount
-Parameter Sets: Username
+Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: Named
-Default value: None
+Required: False
+Position: 3
+Default value: (Get-ADTClientServerUser | Select-Object -ExpandProperty NTAccount)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -108,7 +99,7 @@ Use a user's linked administrative token while running the process under their c
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Username
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -124,26 +115,10 @@ Specifies whether the process running as a user should inherit the SYSTEM accoun
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Username
+Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UseUnelevatedToken
-
-If the current process is elevated, starts the new process unelevated using the user's unelevated linked token.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: UseUnelevatedToken
-Aliases:
-
-Required: True
 Position: Named
 Default value: False
 Accept pipeline input: False
@@ -190,4 +165,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[https://psappdeploytoolkit.com/docs/reference/functions/Start-ADTMspProcess](https://psappdeploytoolkit.com/docs/reference/functions/Start-ADTMspProcess)
+[https://psappdeploytoolkit.com/docs/reference/functions/Start-ADTMspProcessAsUser](https://psappdeploytoolkit.com/docs/reference/functions/Start-ADTMspProcessAsUser)

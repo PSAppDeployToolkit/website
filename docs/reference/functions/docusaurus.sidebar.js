@@ -117,6 +117,7 @@ module.exports = [
     'commands/Start-ADTMsiProcess',
     'commands/Start-ADTMsiProcessAsUser',
     'commands/Start-ADTMspProcess',
+    'commands/Start-ADTMspProcessAsUser',
     'commands/Start-ADTProcess',
     'commands/Start-ADTProcessAsUser',
     'commands/Start-ADTServiceAndDependencies',
