@@ -12,7 +12,7 @@ Block the execution of an application(s).
 ## SYNTAX
 
 ```powershell
-Block-ADTAppExecution [-ProcessName] <String[]> [<CommonParameters>]
+Block-ADTAppExecution [-ProcessName] <String[]> [[-WindowLocation] <DialogPosition>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -51,6 +51,23 @@ Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WindowLocation
+
+The location of the dialog on the screen.
+
+```yaml
+Type: DialogPosition
+Parameter Sets: (All)
+Aliases:
+Accepted values: TopLeft, Top, TopRight, TopCenter, Center, BottomLeft, Bottom, BottomRight, BottomCenter
+
+Required: False
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
