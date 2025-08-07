@@ -17,7 +17,8 @@ Removes one or more applications specified by name, filter script, or InstalledA
 Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-LoggingOptions <String>] [-LogFileName <String>]
  [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
- [-RebootExitCodes <Int32[]>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-ExitOnProcessFailure] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### Search
@@ -27,8 +28,8 @@ Uninstall-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode 
  [-ApplicationType <String>] [-IncludeUpdatesAndHotfixes] [[-FilterScript] <ScriptBlock>]
  [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
  [-LoggingOptions <String>] [-LogFileName <String>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
- [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-ExitOnProcessFailure] [-PassThru]
- [<CommonParameters>]
+ [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
+ [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -333,6 +334,23 @@ Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
+```
+
+### -IgnoreExitCodes
+
+List the exit codes to ignore or * to ignore all exit codes.
+Where possible, please use `-SuccessExitCodes` and/or `-RebootExitCodes` instead.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
 ```
 
 ### -ExitOnProcessFailure
