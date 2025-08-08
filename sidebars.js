@@ -55,10 +55,11 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+        'usage/how-to-deploy',
+        'usage/adding-ui-elements',
         'usage/customizing-deployments',
         'usage/installing-applications',
-        'usage/adding-ui-elements',
-        'usage/how-to-deploy'
+        'usage/admx-templates'
       ]
     }/*,
     {
