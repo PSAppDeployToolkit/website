@@ -19,7 +19,7 @@ This is a great way to change, update, or enforce settings across an orginizatio
 
 ## Config
 
-The Group Policy settings will take precedence over local configs and build-in defaults.
+The Group Policy settings will take precedence over local configs and built-in defaults.
 
 See [Config Settings](../reference/config-settings.mdx) for additional information on what settings are configurable.
 
@@ -67,3 +67,13 @@ Computer Configuration
 ```
 
 ![ADMX Files](../images/psadt-admx-gpme.png)
+
+## Registry
+
+When the Policies apply, the policies can be found in the Registry here:
+
+```
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\PSAppDeployToolkit
+```
+
+![Registry Policy Location](../images/psadt-admx-registry.png)
