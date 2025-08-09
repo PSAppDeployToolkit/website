@@ -61,7 +61,7 @@ const sidebars = {
         'usage/installing-applications',
         'usage/admx-templates'
       ]
-    }/*,
+    },
     {
       type: 'category',
       label: 'Examples',
@@ -69,8 +69,11 @@ const sidebars = {
         type: 'generated-index',
       },
       collapsed: false,
-      items: ['examples/googlechrome-configmgr'],
-    },*/
+      items: [
+        'examples/admxtemplate-LogPath'/*,
+        'examples/googlechrome-configmgr'*/
+      ],
+    },
   ],
   reference: [
     'reference',
