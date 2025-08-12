@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useColorMode } from '@docusaurus/theme-common';
 import styles from './HomepageFeatures.module.css';
-import Newsletter from './Newsletter';
+// import Newsletter from './Newsletter';
 
 const FeatureList = [
   {
@@ -18,7 +18,7 @@ const FeatureList = [
     image: require('@site/static/images/deployment.png').default,
     description: (
       <>
-        Our standardised deployment template ensures app deployments adhere to best practices and follow a standard
+        Our standardized deployment template ensures app deployments adhere to best practices and follow a standard
         workflow.
       </>
     ),
@@ -76,7 +76,7 @@ const CapabilityList = [
 ];
 
 // Not used. remove?
-function Feature({ image, title, description }) {
+function Feature({ image, title, description }: { image: string; title: string; description: React.ReactNode }) {
   return (
     <div className={clsx('col col--4', styles.featureColumns)}>
       <div className="padding-horiz--md">
@@ -202,11 +202,11 @@ export default function HomepageFeatures() {
         </div>
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <div className={clsx('row', styles.blockStyling)}>
           <Newsletter />
         </div>
-      </div>
+      </div> */}
 
       <div className={styles.contrastContainer}>
         <div className={clsx('container')}>
@@ -260,7 +260,7 @@ export default function HomepageFeatures() {
                         <div>
                           <Link to="https://mmsmoa.com/mms2025music"><b>MMS Music City Edition 2025</b></Link>
                         </div>
-                        <div>October 12th to 15th <br/> Nashville, Tennesse, USA</div>
+                        <div>October 12th to 15th <br/> Nashville, Tennessee, USA</div>
                       </li>
                       <li>
                         <div>
