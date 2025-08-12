@@ -23,7 +23,7 @@ jobs:
         node-version: [22]
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: psappdeploytoolkit/website
     - name: Install pnpm
