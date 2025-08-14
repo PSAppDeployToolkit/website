@@ -12,7 +12,7 @@ Gets the value of the specified environment variable.
 ## SYNTAX
 
 ```powershell
-Get-ADTEnvironmentVariable [[-Target] <EnvironmentVariableTarget>] -Variable <String> [<CommonParameters>]
+Get-ADTEnvironmentVariable [-Variable] <String> [[-Target] <EnvironmentVariableTarget>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,6 +39,22 @@ Returns the value of the Path environment variable for the machine.
 
 ## PARAMETERS
 
+### -Variable
+
+The variable to get.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Target
 
 The target of the variable to get.
@@ -51,23 +67,7 @@ Aliases:
 Accepted values: Process, User, Machine
 
 Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Variable
-
-The variable to get.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
