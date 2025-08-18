@@ -22,9 +22,9 @@ Set-ADTActiveSetup -StubExePath <String> [-Arguments <String>] [-Wow6432Node]
 ### CreateNoExecute
 
 ```powershell
-Set-ADTActiveSetup [-Arguments <String>] [-Wow6432Node] [-ExecutionPolicy <ExecutionPolicy>]
- [-Version <String>] [-Locale <String>] [-DisableActiveSetup] [-NoExecuteForCurrentUser] -Key <String>
- [<CommonParameters>]
+Set-ADTActiveSetup -StubExePath <String> [-Arguments <String>] [-Wow6432Node]
+ [-ExecutionPolicy <ExecutionPolicy>] [-Version <String>] [-Locale <String>] [-DisableActiveSetup]
+ [-NoExecuteForCurrentUser] -Key <String> [<CommonParameters>]
 ```
 
 ### Purge
@@ -81,7 +81,7 @@ Note: Place the file you want users to execute in the '\Files' subdirectory of t
 
 ```yaml
 Type: String
-Parameter Sets: Create
+Parameter Sets: Create, CreateNoExecute
 Aliases:
 
 Required: True
