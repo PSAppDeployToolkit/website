@@ -13,7 +13,8 @@ Executes an MSP file using the same logic as Start-ADTMsiProcess.
 
 ```powershell
 Start-ADTMspProcessAsUser [-FilePath] <String> [[-AdditionalArgumentList] <String[]>] [[-Username] <NTAccount>]
- [-UseLinkedAdminToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [<CommonParameters>]
+ [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
+ [-ExpandEnvironmentVariables] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -96,6 +97,22 @@ Accept wildcard characters: False
 ### -UseLinkedAdminToken
 
 Use a user's linked administrative token while running the process under their context.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UseHighestAvailableToken
+
+Use a user's linked administrative token if it's available while running the process under their context.
 
 ```yaml
 Type: SwitchParameter

@@ -13,7 +13,7 @@ Displays a balloon tip notification in the system tray.
 
 ```powershell
 Show-ADTBalloonTip [-BalloonTipText] <String> [-BalloonTipIcon <ToolTipIcon>] [-BalloonTipTime <UInt32>]
- [-NoWait] -BalloonTipTitle <String> [<CommonParameters>]
+ [-NoWait] [-Force] -BalloonTipTitle <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -97,6 +97,22 @@ Accept wildcard characters: False
 ### -NoWait
 
 Creates the balloon tip asynchronously.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+
+Creates the balloon tip irrespective of whether running silently or not.
 
 ```yaml
 Type: SwitchParameter
