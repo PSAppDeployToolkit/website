@@ -11,6 +11,17 @@ Executes msiexec.exe to perform actions such as install, uninstall, patch, repai
 
 ## SYNTAX
 
+### UseUnelevatedToken_FilePath_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+```
+
 ### UseUnelevatedToken_FilePath
 
 ```powershell
@@ -20,7 +31,19 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### Username_FilePath_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_FilePath
@@ -33,7 +56,18 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### FilePath_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
+ [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### FilePath
@@ -45,6 +79,17 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
  [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### UseUnelevatedToken_ProductCode_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
  [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
@@ -57,7 +102,19 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### Username_ProductCode_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_ProductCode
@@ -70,7 +127,18 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### ProductCode_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
+ [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### ProductCode
@@ -82,6 +150,17 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
  [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### UseUnelevatedToken_InstalledApplication_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
  [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
@@ -94,7 +173,19 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### Username_InstalledApplication_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Username_InstalledApplication
@@ -107,7 +198,18 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### InstalledApplication_NoWait
+
+```powershell
+Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
+ [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### InstalledApplication
@@ -119,7 +221,7 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
  [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -201,7 +303,7 @@ The file path to the MSI/MSP file.
 
 ```yaml
 Type: String
-Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath
+Parameter Sets: UseUnelevatedToken_FilePath_NoWait, UseUnelevatedToken_FilePath, Username_FilePath_NoWait, Username_FilePath, FilePath_NoWait, FilePath
 Aliases:
 
 Required: True
@@ -217,7 +319,7 @@ The product code of the installed MSI.
 
 ```yaml
 Type: Guid
-Parameter Sets: UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode
+Parameter Sets: UseUnelevatedToken_ProductCode_NoWait, UseUnelevatedToken_ProductCode, Username_ProductCode_NoWait, Username_ProductCode, ProductCode_NoWait, ProductCode
 Aliases:
 
 Required: True
@@ -233,7 +335,7 @@ The InstalledApplication object of the installed MSI.
 
 ```yaml
 Type: InstalledApplication
-Parameter Sets: UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
+Parameter Sets: UseUnelevatedToken_InstalledApplication_NoWait, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication_NoWait, Username_InstalledApplication, InstalledApplication_NoWait, InstalledApplication
 Aliases:
 
 Required: True
@@ -349,7 +451,7 @@ Only supported while running as the SYSTEM account.
 
 ```yaml
 Type: NTAccount
-Parameter Sets: Username_FilePath, Username_ProductCode, Username_InstalledApplication
+Parameter Sets: Username_FilePath_NoWait, Username_FilePath, Username_ProductCode_NoWait, Username_ProductCode, Username_InstalledApplication_NoWait, Username_InstalledApplication
 Aliases:
 
 Required: True
@@ -365,7 +467,7 @@ Use a user's linked administrative token while running the process under their c
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Username_FilePath, Username_ProductCode, Username_InstalledApplication
+Parameter Sets: Username_FilePath_NoWait, Username_FilePath, Username_ProductCode_NoWait, Username_ProductCode, Username_InstalledApplication_NoWait, Username_InstalledApplication
 Aliases:
 
 Required: False
@@ -381,7 +483,7 @@ Use a user's linked administrative token if it's available while running the pro
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Username_FilePath, Username_ProductCode, Username_InstalledApplication
+Parameter Sets: Username_FilePath_NoWait, Username_FilePath, Username_ProductCode_NoWait, Username_ProductCode, Username_InstalledApplication_NoWait, Username_InstalledApplication
 Aliases:
 
 Required: False
@@ -397,7 +499,7 @@ Specifies whether the process running as a user should inherit the SYSTEM accoun
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Username_FilePath, Username_ProductCode, Username_InstalledApplication
+Parameter Sets: Username_FilePath_NoWait, Username_FilePath, Username_ProductCode_NoWait, Username_ProductCode, Username_InstalledApplication_NoWait, Username_InstalledApplication
 Aliases:
 
 Required: False
@@ -413,7 +515,7 @@ If the current process is elevated, starts the new process unelevated using the 
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: UseUnelevatedToken_FilePath, UseUnelevatedToken_ProductCode, UseUnelevatedToken_InstalledApplication
+Parameter Sets: UseUnelevatedToken_FilePath_NoWait, UseUnelevatedToken_FilePath, UseUnelevatedToken_ProductCode_NoWait, UseUnelevatedToken_ProductCode, UseUnelevatedToken_InstalledApplication_NoWait, UseUnelevatedToken_InstalledApplication
 Aliases:
 
 Required: True
@@ -549,7 +651,7 @@ Defaults to values set during ADTSession initialization, otherwise: 0
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath, UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
 Aliases:
 
 Required: False
@@ -566,7 +668,7 @@ Defaults to values set during ADTSession initialization, otherwise: 1641, 3010
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath, UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
 Aliases:
 
 Required: False
@@ -582,7 +684,7 @@ List the exit codes to ignore or * to ignore all exit codes.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath, UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
 Aliases:
 
 Required: False
@@ -616,7 +718,7 @@ Automatically closes the active deployment session via Close-ADTSession in the e
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath, UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
 Aliases:
 
 Required: False
@@ -648,10 +750,10 @@ Immediately continue after executing the process.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: UseUnelevatedToken_FilePath_NoWait, Username_FilePath_NoWait, FilePath_NoWait, UseUnelevatedToken_ProductCode_NoWait, Username_ProductCode_NoWait, ProductCode_NoWait, UseUnelevatedToken_InstalledApplication_NoWait, Username_InstalledApplication_NoWait, InstalledApplication_NoWait
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: False
 Accept pipeline input: False
