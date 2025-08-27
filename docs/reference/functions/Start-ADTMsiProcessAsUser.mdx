@@ -11,6 +11,18 @@ Executes msiexec.exe to perform actions such as install, uninstall, patch, repai
 
 ## SYNTAX
 
+### FilePath_NoWait
+
+```powershell
+Start-ADTMsiProcessAsUser [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+```
+
 ### FilePath
 
 ```powershell
@@ -21,7 +33,19 @@ Start-ADTMsiProcessAsUser [-Action <String>] -FilePath <String> [-ArgumentList <
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### ProductCode_NoWait
+
+```powershell
+Start-ADTMsiProcessAsUser [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
+ [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
+ [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
+ [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### ProductCode
@@ -34,7 +58,19 @@ Start-ADTMsiProcessAsUser [-Action <String>] -ProductCode <Guid> [-ArgumentList 
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+```
+
+### InstalledApplication_NoWait
+
+```powershell
+Start-ADTMsiProcessAsUser [-Action <String>] -InstalledApplication <InstalledApplication>
+ [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>]
+ [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
+ [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### InstalledApplication
@@ -47,7 +83,7 @@ Start-ADTMsiProcessAsUser [-Action <String>] -InstalledApplication <InstalledApp
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -129,7 +165,7 @@ The file path to the MSI/MSP file.
 
 ```yaml
 Type: String
-Parameter Sets: FilePath
+Parameter Sets: FilePath_NoWait, FilePath
 Aliases:
 
 Required: True
@@ -145,7 +181,7 @@ The product code of the installed MSI.
 
 ```yaml
 Type: Guid
-Parameter Sets: ProductCode
+Parameter Sets: ProductCode_NoWait, ProductCode
 Aliases:
 
 Required: True
@@ -161,7 +197,7 @@ The InstalledApplication object of the installed MSI.
 
 ```yaml
 Type: InstalledApplication
-Parameter Sets: InstalledApplication
+Parameter Sets: InstalledApplication_NoWait, InstalledApplication
 Aliases:
 
 Required: True
@@ -461,7 +497,7 @@ Defaults to values set during ADTSession initialization, otherwise: 0
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: FilePath, ProductCode, InstalledApplication
 Aliases:
 
 Required: False
@@ -478,7 +514,7 @@ Defaults to values set during ADTSession initialization, otherwise: 1641, 3010
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: FilePath, ProductCode, InstalledApplication
 Aliases:
 
 Required: False
@@ -494,7 +530,7 @@ List the exit codes to ignore or * to ignore all exit codes.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: FilePath, ProductCode, InstalledApplication
 Aliases:
 
 Required: False
@@ -528,7 +564,7 @@ Automatically closes the active deployment session via Close-ADTSession in the e
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: FilePath, ProductCode, InstalledApplication
 Aliases:
 
 Required: False
@@ -560,10 +596,10 @@ Immediately continue after executing the process.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: FilePath_NoWait, ProductCode_NoWait, InstalledApplication_NoWait
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: False
 Accept pipeline input: False

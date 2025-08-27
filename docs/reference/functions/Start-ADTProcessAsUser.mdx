@@ -17,9 +17,8 @@ Invokes a process in another user's session.
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>]
- [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
- [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### Default_WindowStyle_Timeout
@@ -41,8 +40,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] -WindowStyle <ProcessWindowStyle>
  [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
- [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### Default_WindowStyle_Wait
@@ -76,9 +74,8 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-CreateNoWindow] [-StreamEncoding <Encoding>]
  [-NoStreamLogging] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
- [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoWait]
- [-PassThru] [<CommonParameters>]
+ [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-NoWait] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### Default_CreateNoWindow_Wait
@@ -111,9 +108,8 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>]
- [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
- [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-NoWait]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -512,7 +508,7 @@ Defaults to values set during ADTSession initialization, otherwise: 0
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
@@ -529,7 +525,7 @@ Defaults to values set during ADTSession initialization, otherwise: 1641, 3010
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
@@ -545,7 +541,7 @@ List the exit codes to ignore or * to ignore all exit codes.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
@@ -579,7 +575,7 @@ Automatically closes the active deployment session via Close-ADTSession in the e
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
