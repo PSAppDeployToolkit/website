@@ -42,7 +42,16 @@ The prompt can also display a system icon and be configured to persist, minimize
 ### EXAMPLE 1
 
 ```powershell
-Show-ADTInstallationPrompt -Message 'Do you want to proceed with the installation?' -ButtonLeftText 'Yes' -ButtonRightText 'No'
+$result = Show-ADTInstallationPrompt -Message 'Do you want to proceed with the installation?' -ButtonLeftText Yes -ButtonRightText No
+switch ($result)
+{
+    Yes {
+        Write-ADTLogEntry "User clicked the [Yes] button."
+    }
+    No {
+        Write-ADTLogEntry "User clicked the [No] button."
+    }
+}
 ```
 
 ### EXAMPLE 2
@@ -318,6 +327,7 @@ Accept wildcard characters: False
 ### -Subtitle
 
 Subtitle of the prompt.
+Optionally used to override the subtitle defined in the strings.psd1 file.
 
 ```yaml
 Type: String
@@ -350,6 +360,7 @@ Accept wildcard characters: False
 ### -Title
 
 Title of the prompt.
+Optionally used to override the active DeploymentSession's InstallTitle value.
 
 ```yaml
 Type: String
