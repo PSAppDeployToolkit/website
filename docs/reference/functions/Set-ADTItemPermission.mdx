@@ -28,7 +28,7 @@ Set-ADTItemPermission -LiteralPath <String> [-EnableInheritance] [<CommonParamet
 ```powershell
 Set-ADTItemPermission -LiteralPath <String> -User <String[]> -Permission <FileSystemRights>
  [-PermissionType <AccessControlType>] [-Inheritance <InheritanceFlags>] [-Propagation <PropagationFlags>]
- [-Method <String>] [<CommonParameters>]
+ [-Method <String>] [-DisableInheritance] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -213,6 +213,22 @@ Aliases: ApplyMethod, ApplicationMethod
 Required: False
 Position: Named
 Default value: AddAccessRule
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DisableInheritance
+
+Disables inheritance, preserving permissions before doing so.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: DisableInheritance
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
