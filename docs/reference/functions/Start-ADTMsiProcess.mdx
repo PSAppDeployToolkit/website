@@ -34,24 +34,24 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
 
-### RunAsActiveUser_FilePath_NoWait
+### Username_FilePath_NoWait
 
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
  [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
-### RunAsActiveUser_FilePath
+### Username_FilePath
 
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
@@ -105,24 +105,24 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
 
-### RunAsActiveUser_ProductCode_NoWait
+### Username_ProductCode_NoWait
 
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
  [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
-### RunAsActiveUser_ProductCode
+### Username_ProductCode
 
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
@@ -176,24 +176,24 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
 
-### RunAsActiveUser_InstalledApplication_NoWait
+### Username_InstalledApplication_NoWait
 
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
  [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
-### RunAsActiveUser_InstalledApplication
+### Username_InstalledApplication
 
 ```powershell
 Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
+ [-Transforms <String[]>] [-Patches <String[]>] -Username <NTAccount> [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
@@ -303,7 +303,7 @@ The file path to the MSI/MSP file.
 
 ```yaml
 Type: String
-Parameter Sets: UseUnelevatedToken_FilePath_NoWait, UseUnelevatedToken_FilePath, RunAsActiveUser_FilePath_NoWait, RunAsActiveUser_FilePath, FilePath_NoWait, FilePath
+Parameter Sets: UseUnelevatedToken_FilePath_NoWait, UseUnelevatedToken_FilePath, Username_FilePath_NoWait, Username_FilePath, FilePath_NoWait, FilePath
 Aliases:
 
 Required: True
@@ -319,7 +319,7 @@ The product code of the installed MSI.
 
 ```yaml
 Type: Guid
-Parameter Sets: UseUnelevatedToken_ProductCode_NoWait, UseUnelevatedToken_ProductCode, RunAsActiveUser_ProductCode_NoWait, RunAsActiveUser_ProductCode, ProductCode_NoWait, ProductCode
+Parameter Sets: UseUnelevatedToken_ProductCode_NoWait, UseUnelevatedToken_ProductCode, Username_ProductCode_NoWait, Username_ProductCode, ProductCode_NoWait, ProductCode
 Aliases:
 
 Required: True
@@ -335,7 +335,7 @@ The InstalledApplication object of the installed MSI.
 
 ```yaml
 Type: InstalledApplication
-Parameter Sets: UseUnelevatedToken_InstalledApplication_NoWait, UseUnelevatedToken_InstalledApplication, RunAsActiveUser_InstalledApplication_NoWait, RunAsActiveUser_InstalledApplication, InstalledApplication_NoWait, InstalledApplication
+Parameter Sets: UseUnelevatedToken_InstalledApplication_NoWait, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication_NoWait, Username_InstalledApplication, InstalledApplication_NoWait, InstalledApplication
 Aliases:
 
 Required: True
@@ -444,13 +444,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -RunAsActiveUser
+### -Username
 
-A RunAsActiveUser object to invoke the process as.
+A username to invoke the process as.
+Only supported while running as the SYSTEM account.
 
 ```yaml
-Type: RunAsActiveUser
-Parameter Sets: RunAsActiveUser_FilePath_NoWait, RunAsActiveUser_FilePath, RunAsActiveUser_ProductCode_NoWait, RunAsActiveUser_ProductCode, RunAsActiveUser_InstalledApplication_NoWait, RunAsActiveUser_InstalledApplication
+Type: NTAccount
+Parameter Sets: Username_FilePath_NoWait, Username_FilePath, Username_ProductCode_NoWait, Username_ProductCode, Username_InstalledApplication_NoWait, Username_InstalledApplication
 Aliases:
 
 Required: True
@@ -466,7 +467,7 @@ Use a user's linked administrative token while running the process under their c
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: RunAsActiveUser_FilePath_NoWait, RunAsActiveUser_FilePath, RunAsActiveUser_ProductCode_NoWait, RunAsActiveUser_ProductCode, RunAsActiveUser_InstalledApplication_NoWait, RunAsActiveUser_InstalledApplication
+Parameter Sets: Username_FilePath_NoWait, Username_FilePath, Username_ProductCode_NoWait, Username_ProductCode, Username_InstalledApplication_NoWait, Username_InstalledApplication
 Aliases:
 
 Required: False
@@ -482,7 +483,7 @@ Use a user's linked administrative token if it's available while running the pro
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: RunAsActiveUser_FilePath_NoWait, RunAsActiveUser_FilePath, RunAsActiveUser_ProductCode_NoWait, RunAsActiveUser_ProductCode, RunAsActiveUser_InstalledApplication_NoWait, RunAsActiveUser_InstalledApplication
+Parameter Sets: Username_FilePath_NoWait, Username_FilePath, Username_ProductCode_NoWait, Username_ProductCode, Username_InstalledApplication_NoWait, Username_InstalledApplication
 Aliases:
 
 Required: False
@@ -498,7 +499,7 @@ Specifies whether the process running as a user should inherit the SYSTEM accoun
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: RunAsActiveUser_FilePath_NoWait, RunAsActiveUser_FilePath, RunAsActiveUser_ProductCode_NoWait, RunAsActiveUser_ProductCode, RunAsActiveUser_InstalledApplication_NoWait, RunAsActiveUser_InstalledApplication
+Parameter Sets: Username_FilePath_NoWait, Username_FilePath, Username_ProductCode_NoWait, Username_ProductCode, Username_InstalledApplication_NoWait, Username_InstalledApplication
 Aliases:
 
 Required: False
@@ -650,7 +651,7 @@ Defaults to values set during ADTSession initialization, otherwise: 0
 
 ```yaml
 Type: Int32[]
-Parameter Sets: UseUnelevatedToken_FilePath, RunAsActiveUser_FilePath, FilePath, UseUnelevatedToken_ProductCode, RunAsActiveUser_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, RunAsActiveUser_InstalledApplication, InstalledApplication
+Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath, UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
 Aliases:
 
 Required: False
@@ -667,7 +668,7 @@ Defaults to values set during ADTSession initialization, otherwise: 1641, 3010
 
 ```yaml
 Type: Int32[]
-Parameter Sets: UseUnelevatedToken_FilePath, RunAsActiveUser_FilePath, FilePath, UseUnelevatedToken_ProductCode, RunAsActiveUser_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, RunAsActiveUser_InstalledApplication, InstalledApplication
+Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath, UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
 Aliases:
 
 Required: False
@@ -683,7 +684,7 @@ List the exit codes to ignore or * to ignore all exit codes.
 
 ```yaml
 Type: String[]
-Parameter Sets: UseUnelevatedToken_FilePath, RunAsActiveUser_FilePath, FilePath, UseUnelevatedToken_ProductCode, RunAsActiveUser_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, RunAsActiveUser_InstalledApplication, InstalledApplication
+Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath, UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
 Aliases:
 
 Required: False
@@ -717,7 +718,7 @@ Automatically closes the active deployment session via Close-ADTSession in the e
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: UseUnelevatedToken_FilePath, RunAsActiveUser_FilePath, FilePath, UseUnelevatedToken_ProductCode, RunAsActiveUser_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, RunAsActiveUser_InstalledApplication, InstalledApplication
+Parameter Sets: UseUnelevatedToken_FilePath, Username_FilePath, FilePath, UseUnelevatedToken_ProductCode, Username_ProductCode, ProductCode, UseUnelevatedToken_InstalledApplication, Username_InstalledApplication, InstalledApplication
 Aliases:
 
 Required: False
@@ -749,7 +750,7 @@ Immediately continue after executing the process.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: UseUnelevatedToken_FilePath_NoWait, RunAsActiveUser_FilePath_NoWait, FilePath_NoWait, UseUnelevatedToken_ProductCode_NoWait, RunAsActiveUser_ProductCode_NoWait, ProductCode_NoWait, UseUnelevatedToken_InstalledApplication_NoWait, RunAsActiveUser_InstalledApplication_NoWait, InstalledApplication_NoWait
+Parameter Sets: UseUnelevatedToken_FilePath_NoWait, Username_FilePath_NoWait, FilePath_NoWait, UseUnelevatedToken_ProductCode_NoWait, Username_ProductCode_NoWait, ProductCode_NoWait, UseUnelevatedToken_InstalledApplication_NoWait, Username_InstalledApplication_NoWait, InstalledApplication_NoWait
 Aliases:
 
 Required: True
