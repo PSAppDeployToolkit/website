@@ -12,7 +12,7 @@ Executes an MSP file using the same logic as Start-ADTMsiProcess.
 ## SYNTAX
 
 ```powershell
-Start-ADTMspProcessAsUser [-FilePath] <String> [[-AdditionalArgumentList] <String[]>] [[-Username] <NTAccount>]
+Start-ADTMspProcessAsUser [[-Username] <NTAccount>] [-FilePath] <String> [[-AdditionalArgumentList] <String[]>]
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
  [-ExpandEnvironmentVariables] [<CommonParameters>]
 ```
@@ -45,6 +45,23 @@ Executes the specified MSP file for Acrobat Reader 2017 with additional paramete
 
 ## PARAMETERS
 
+### -Username
+
+A username to invoke the process as.
+Only supported while running as the SYSTEM account.
+
+```yaml
+Type: NTAccount
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -FilePath
 
 Path to the MSP file.
@@ -55,7 +72,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -71,25 +88,8 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Username
-
-A username to invoke the process as.
-Only supported while running as the SYSTEM account.
-
-```yaml
-Type: NTAccount
-Parameter Sets: (All)
-Aliases:
-
-Required: False
 Position: 3
-Default value: (Get-ADTClientServerUser | Select-Object -ExpandProperty NTAccount)
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -18,10 +18,10 @@ Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-Ex
  [<CommonParameters>]
 ```
 
-### Username
+### RunAsActiveUser
 
 ```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] -Username <NTAccount>
+Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] -RunAsActiveUser <RunAsActiveUser>
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
  [-ExpandEnvironmentVariables] [<CommonParameters>]
 ```
@@ -93,14 +93,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Username
+### -RunAsActiveUser
 
-A username to invoke the process as.
-Only supported while running as the SYSTEM account.
+A RunAsActiveUser object to invoke the process as.
 
 ```yaml
-Type: NTAccount
-Parameter Sets: Username
+Type: RunAsActiveUser
+Parameter Sets: RunAsActiveUser
 Aliases:
 
 Required: True
@@ -116,7 +115,7 @@ Use a user's linked administrative token while running the process under their c
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Username
+Parameter Sets: RunAsActiveUser
 Aliases:
 
 Required: False
@@ -132,7 +131,7 @@ Use a user's linked administrative token if it's available while running the pro
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Username
+Parameter Sets: RunAsActiveUser
 Aliases:
 
 Required: False
@@ -148,7 +147,7 @@ Specifies whether the process running as a user should inherit the SYSTEM accoun
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Username
+Parameter Sets: RunAsActiveUser
 Aliases:
 
 Required: False

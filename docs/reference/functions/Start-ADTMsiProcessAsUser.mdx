@@ -14,9 +14,9 @@ Executes msiexec.exe to perform actions such as install, uninstall, patch, repai
 ### FilePath_NoWait
 
 ```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
- [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
+Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -FilePath <String>
+ [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
@@ -26,9 +26,9 @@ Start-ADTMsiProcessAsUser [-Action <String>] -FilePath <String> [-ArgumentList <
 ### FilePath
 
 ```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
- [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
+Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -FilePath <String>
+ [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
@@ -39,9 +39,9 @@ Start-ADTMsiProcessAsUser [-Action <String>] -FilePath <String> [-ArgumentList <
 ### ProductCode_NoWait
 
 ```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
- [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
+Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -ProductCode <Guid>
+ [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
@@ -51,9 +51,9 @@ Start-ADTMsiProcessAsUser [-Action <String>] -ProductCode <Guid> [-ArgumentList 
 ### ProductCode
 
 ```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
- [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
- [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>] [-UseLinkedAdminToken]
+Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -ProductCode <Guid>
+ [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
@@ -64,9 +64,9 @@ Start-ADTMsiProcessAsUser [-Action <String>] -ProductCode <Guid> [-ArgumentList 
 ### InstalledApplication_NoWait
 
 ```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -InstalledApplication <InstalledApplication>
- [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
- [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>]
+Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
+ -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>]
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
@@ -76,9 +76,9 @@ Start-ADTMsiProcessAsUser [-Action <String>] -InstalledApplication <InstalledApp
 ### InstalledApplication
 
 ```powershell
-Start-ADTMsiProcessAsUser [-Action <String>] -InstalledApplication <InstalledApplication>
- [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
- [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-Username <NTAccount>]
+Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
+ -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>]
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
@@ -141,6 +141,23 @@ Start-ADTMsiProcessAsUser -Action 'Patch' -FilePath 'Adobe_Reader_11.0.3_EN.msp'
 Install an MSP.
 
 ## PARAMETERS
+
+### -Username
+
+A username to invoke the process as.
+Only supported while running as the SYSTEM account.
+
+```yaml
+Type: NTAccount
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Action
 
@@ -302,23 +319,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Username
-
-A username to invoke the process as.
-Only supported while running as the SYSTEM account.
-
-```yaml
-Type: NTAccount
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: (Get-ADTClientServerUser | Select-Object -ExpandProperty NTAccount)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
