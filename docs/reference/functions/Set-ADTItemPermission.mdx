@@ -20,7 +20,7 @@ Set-ADTItemPermission -LiteralPath <String> -AccessControlList <FileSystemSecuri
 ### EnableInheritance
 
 ```powershell
-Set-ADTItemPermission -LiteralPath <String> [-EnableInheritance] [<CommonParameters>]
+Set-ADTItemPermission -LiteralPath <String> [-EnableInheritance] [-RemoveExplicitRules] [<CommonParameters>]
 ```
 
 ### DisableInheritance
@@ -28,7 +28,7 @@ Set-ADTItemPermission -LiteralPath <String> [-EnableInheritance] [<CommonParamet
 ```powershell
 Set-ADTItemPermission -LiteralPath <String> -User <String[]> -Permission <FileSystemRights>
  [-PermissionType <AccessControlType>] [-Inheritance <InheritanceFlags>] [-Propagation <PropagationFlags>]
- [-Method <String>] [<CommonParameters>]
+ [-Method <String>] [-DisableInheritance] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -217,6 +217,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -DisableInheritance
+
+Disables inheritance, preserving permissions before doing so.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: DisableInheritance
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -EnableInheritance
 
 Enables inheritance on the files/folders.
@@ -227,6 +243,22 @@ Parameter Sets: EnableInheritance
 Aliases:
 
 Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RemoveExplicitRules
+
+Removes non-inherited permissions from the object when enabling inheritance.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: EnableInheritance
+Aliases:
+
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
