@@ -11,8 +11,22 @@ Closes the active ADT session.
 
 ## SYNTAX
 
+### None (Default)
+
 ```powershell
-Close-ADTSession [[-ExitCode] <Int32>] [-Force] [<CommonParameters>]
+Close-ADTSession [-ExitCode <Int32>] [-PassThru] [<CommonParameters>]
+```
+
+### Force
+
+```powershell
+Close-ADTSession [-ExitCode <Int32>] [-Force] [-PassThru] [<CommonParameters>]
+```
+
+### NoShellExit
+
+```powershell
+Close-ADTSession [-ExitCode <Int32>] [-NoShellExit] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,8 +64,24 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoShellExit
+
+Doesn't exit PowerShell upon closing of the final session.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: NoShellExit
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -59,6 +89,22 @@ Accept wildcard characters: False
 ### -Force
 
 Forcibly exits PowerShell upon closing of the final session.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Force
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+
+Returns the exit code of the session being closed.
 
 ```yaml
 Type: SwitchParameter
