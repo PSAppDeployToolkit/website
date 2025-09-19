@@ -17,7 +17,8 @@ Displays a custom installation prompt with the toolkit branding and optional but
 Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAlignment>]
  [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>]
  [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout]
- [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
+ [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>]
+ [<CommonParameters>]
 ```
 
 ### ShowInputDialog
@@ -26,7 +27,7 @@ Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAl
 Show-ADTInstallationPrompt [-RequestInput] [-DefaultValue <String>] -Message <String>
  [-MessageAlignment <DialogMessageAlignment>] [-ButtonRightText <String>] [-ButtonLeftText <String>]
  [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
- [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String>
+ [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
  [-Timeout <UInt32>] [<CommonParameters>]
 ```
 
@@ -311,6 +312,22 @@ Accept wildcard characters: False
 ### -AllowMove
 
 Specifies that the user can move the dialog on the screen.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+
+Specifies whether the message box should appear irrespective of an ongoing DeploymentSession's DeployMode.
 
 ```yaml
 Type: SwitchParameter
