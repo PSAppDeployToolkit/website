@@ -14,7 +14,7 @@ Executes an MSP file using the same logic as Start-ADTMsiProcess.
 ```powershell
 Start-ADTMspProcessAsUser [[-Username] <NTAccount>] [-FilePath] <String> [[-AdditionalArgumentList] <String[]>]
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
- [-ExpandEnvironmentVariables] [<CommonParameters>]
+ [-ExpandEnvironmentVariables] [-DenyUserTermination] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -145,6 +145,23 @@ Accept wildcard characters: False
 ### -ExpandEnvironmentVariables
 
 Specifies whether to expand any Windows/DOS-style environment variables in the specified FilePath/ArgumentList.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DenyUserTermination
+
+Specifies that users cannot terminate the process started in their context.
+The user will still be able to terminate the process if they're an administrator, though.
 
 ```yaml
 Type: SwitchParameter

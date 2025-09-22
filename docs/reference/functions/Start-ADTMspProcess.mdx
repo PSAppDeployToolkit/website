@@ -22,7 +22,7 @@ Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-Ex
 
 ```powershell
 Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] -RunAsActiveUser <RunAsActiveUser>
- [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
+ [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
  [-ExpandEnvironmentVariables] [<CommonParameters>]
 ```
 
@@ -144,6 +144,23 @@ Accept wildcard characters: False
 ### -InheritEnvironmentVariables
 
 Specifies whether the process running as a user should inherit the SYSTEM account's environment variables.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: RunAsActiveUser
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DenyUserTermination
+
+Specifies that users cannot terminate the process started in their context.
+The user will still be able to terminate the process if they're an administrator, though.
 
 ```yaml
 Type: SwitchParameter

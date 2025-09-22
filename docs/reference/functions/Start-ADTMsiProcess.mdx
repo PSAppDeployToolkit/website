@@ -40,10 +40,10 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
 Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
  [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
- [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
+ [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_FilePath
@@ -52,9 +52,9 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
 Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
  [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
- [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
+ [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
  [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
@@ -111,10 +111,10 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
 Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
  [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
- [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
+ [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_ProductCode
@@ -123,9 +123,9 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
 Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
  [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
- [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
+ [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
  [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
@@ -182,10 +182,10 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
 Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
  [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
- [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
+ [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_InstalledApplication
@@ -194,9 +194,9 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
 Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>]
  [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-WorkingDirectory <String>]
  [-Transforms <String[]>] [-Patches <String[]>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken]
- [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
+ [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
+ [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
  [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
@@ -495,6 +495,23 @@ Accept wildcard characters: False
 ### -InheritEnvironmentVariables
 
 Specifies whether the process running as a user should inherit the SYSTEM account's environment variables.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: RunAsActiveUser_FilePath_NoWait, RunAsActiveUser_FilePath, RunAsActiveUser_ProductCode_NoWait, RunAsActiveUser_ProductCode, RunAsActiveUser_InstalledApplication_NoWait, RunAsActiveUser_InstalledApplication
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DenyUserTermination
+
+Specifies that users cannot terminate the process started in their context.
+The user will still be able to terminate the process if they're an administrator, though.
 
 ```yaml
 Type: SwitchParameter

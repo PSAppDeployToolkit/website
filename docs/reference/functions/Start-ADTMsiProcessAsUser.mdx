@@ -18,9 +18,9 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -FilePath <
  [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
  [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### FilePath
@@ -30,8 +30,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -FilePath <
  [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
  [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
+ [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
  [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
@@ -43,9 +43,9 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -ProductCod
  [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
  [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### ProductCode
@@ -55,8 +55,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -ProductCod
  [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
  [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>] [-UseLinkedAdminToken]
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
- [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
+ [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
+ [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
  [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
 ```
@@ -68,8 +68,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
  -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>]
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
- [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
- [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
+ [-ExpandEnvironmentVariables] [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>]
+ [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
  [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
@@ -80,10 +80,11 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
  -InstalledApplication <InstalledApplication> [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-Transforms <String[]>] [-Patches <String[]>]
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
- [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
- [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
- [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExpandEnvironmentVariables] [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>]
+ [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
+ [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -374,6 +375,23 @@ Accept wildcard characters: False
 ### -ExpandEnvironmentVariables
 
 Specifies whether to expand any Windows/DOS-style environment variables in the specified FilePath/ArgumentList.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DenyUserTermination
+
+Specifies that users cannot terminate the process started in their context.
+The user will still be able to terminate the process if they're an administrator, though.
 
 ```yaml
 Type: SwitchParameter
