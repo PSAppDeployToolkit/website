@@ -11,34 +11,113 @@ tags:
 
 # Release Notes
 
-#### 4.1 Pre-Release Notes
+## 🖥️ Whats New in v4.1.5  - 2025-09-07
 
-**NOTE**: This is currently a release candidate for PSADT 4.1 which has not yet reached final status. While we are confident that it is rock solid, we are still testing it and may make changes before final release. As such, it is not recommended for production use at this time.
+### 🛠️ Fixes
 
-##### 🖥️ 4.1 RC3 Updates - 2025-07-30
+- Added more error info to assist with troubleshooting issue
+- Fixed issue that prevented the toolkit running under some Intune deployments
+- Added a fallback default icon where we're unable to obtain one from a running process
+- Fixed issue where Get-ADTShortcut hit an error when the icon path contained an environment variable
+- Fixed `OutOfMemoryException` issues within `Resolve-ADTErrorRecord`
 
-- Changed default `-DeployMode` to `Auto`. This is functionally the same as the old `Interactive` mode, where the toolkit will automatically switch to Silent mode if the device is in OOBE/ESP phases, there is no user logged on, or (new in 4.1) there are no processes to close.
-- Changed `-DeployMode Interactive` to always show interactively. This means the toolkit will always show the dialogs, bypassing the OOBE/Session/Process detections that occur in `Auto` mode.
-- Added `-NoOobeDetection` option to `Open-ADTSession` to bypass OOBE detection logic when `DeployMode` is set to `Auto`. Use this to show the UI during OOBE / Autopilot ESP phases.
-- Added `-NoSessionDetection` option to `Open-ADTSession` to bypass session detection logic when `DeployMode` is set to `Auto`. Use this to show the UI when no user is logged on and the SYSTEM process is interactive.
-- Added `-NoProcessDetection` option to `Open-ADTSession` to bypass process detection logic when `DeployMode` is set to `Auto`. Use this to show the UI even if there are no processes to close.
+## 🖥️ Whats New in v4.1.4  - 2025-09-04
 
-##### 4.1 RC2 Updates - 2025-07-08
+### 🎯 Improvements
 
-- Added [Test-ADTEspActive](../reference/functions/Test-ADTEspActive.mdx) to test for an active Enrollment Status Page (ESP).
-- Added support for detecting processes to close that are running from network drives.
-- Fixed launching processes in the users' session when using certain MDMs, e.g. VMware Workspace ONE.
-- Fixed setting the Accent Color using the ADMX templates.
-- Fixed minimize button not being shown on Fluent Progress and Restart Dialogs.
-- Fixed the "Restart Later" button in the Fluent Restart Dialog not being disabled during the warning period.
+- Changed to allow IFEO-blocked processes that get invoked as SYSTEM to execute.
+- Added warning within Block-ADTAppExecution if generated command line is > 255 chars
+- Added -DisableInheritance switch to Set-ADTItemPermission to restore 3.x behaviour for those who want it.
+- Added IsTerminalServer to New-ADTEnvironmentTable exports
+- Updated Show-ADTInstallationWelcome documentation
+- Changed to using GetLastInputInfo() for more accurate console user idle time.
+- Changed Exit-ADTInvocation to expose -NoShellExit parameter on Close-ADTSession.
+- Made the fluent dialogs properly honour right-to-left cultures
 
-## 4.1 Release Notes - 2025-08-xx
+### 🛠️ Fixes
+
+- Fixed quote handling in InstallSource and InstallLocation properties in Get-ADTApplication
+- Set default parameter set for Start-ADTMspProcess.
+- Changed Start-ADTMsiProcessAsUser to ensure it uses a user-writeable log location.
+- Fixed bad parameter set grouping for Start-ADTProcess family of functions.
+- Fixed issue where Set-ADTItemPermissions always needed admin rights to change inheritance options
+- Fixed issue where Set-ADTActiveSetup -PurgeActiveSetupKey would only clean up keys for the active user.
+- Fixed StdOut/StdErr/Interleaved printing within Start-ADTProcess.
+- Changed Start-ADTProcessAsUser to allow operating with any valid user, such as disconnected RDP users.
+- Changed DeploymentSession to handle situations where people put curly braces into InstallTitle.
+- Improved version handling within Set-ADTActiveSetup
+- Fixed dynamic code trust verification issues with iNKORE dlls
+- Fixed access denied issues when querying running processes
+- Fixed "Exception calling TestEffectiveAccess" issue
+- Fixed ShowCloseAppsDialog issue (https://discourse.psappdeploytoolkit.com/t/v4-1-3-show-adtinstallationwelcome-closeprocesses-isnt-working/6904)
+- Fixed ZeroConfig issue
+- Fixed PSADT.AccountManagement.AccountUtilities exception (https://discourse.psappdeploytoolkit.com/t/4-1-3-show-adtballoontip-the-client-process-returned-an-exception-access-denied/6890)
+- Fixed issue with users being able to terminate the PSADT UI (https://discourse.psappdeploytoolkit.com/t/4-1-3-show-adtinstallationrestartprompt-task-manager/6899)
+- Fixed issue with launching ServiceUI.exe via Start-ADTProcess (https://discourse.psappdeploytoolkit.com/t/4-1-3-trying-to-display-a-command-prompt-using-serviceui/6896)
+- Fixed client/server UI permissions issue (https://discourse.psappdeploytoolkit.com/t/4-1-3-adt-ui-system/6905)
+
+## 🖥️ Whats New in v4.1.3  - 2025-08-21
+
+### 🛠️ Fixes
+
+- Fixed CloseProcesses issue introduced in in 4.1.2
+- Fixed issue with variable expansion on `Start-ADTProcessAsUser`
+- Fixed Uninstall-ADTApplication to work with 8.3 names (e.g. C:\PROGRA~2)
+
+## 🖥️ Whats New in v4.1.2  - 2025-08-20
+
+### 🛠️ Fixes
+
+- Fixed issue with `TestEffectiveAccess()` call in `Set-ADTClientServerProcessPermissions` that would fail on some domain-joined devices
+- Fixed setup in `Block-ADTAppExecution` so processes started by SYSTEM don't block at all
+- Fixed issue with `Show-ADTInstallationWelcome` where the buttons would always display in English
+
+## 🖥️ Whats New in v4.1.1  - 2025-08-19
+
+### 🎯 Improvements
+
+- Prevent end users from terminating `PSADT.ClientServer.Client.exe` process
+- Do things to try and make the IFEO command line as short as possible
+- Add better retry support to all modal dialogs to prevent client termination
+- Allow `-ErrorAction` to handle no available user in `Start-ADTProcessAsUser`
+- Address case where some systems seemingly don't have a Win32_BIOS.Version property
+- Add `FileSystemUtilities.TestFileAccess()` for testing whether a user has the relevant permissions
+- Add `FileSystemUtilities.GetEffectiveAccess()` to determine whether a SID has effective access to a path
+- Rework `Set-ADTClientServerProcessPermissions` to test for effective access rather than just attempting to set ACLs
+- Improve setup surrounding `-UseShellExecute` pathway, especially with UIAccess executables
+- Handle situations where we might not have access to the process in `ProcessUtilities.GetRunningProcesses()`
+- Adjust `Set-ADTClientServerProcessPermissions` to not require a client/server user
+- Get all the `*-ADTEnvironmentVariable` functions running through the client/server process when the Target is `User`
+- Run the client/server process elevated if the user has a linked admin token
+- Bump `InvokeBuild` dependency version to latest upstream
+- Ensure log lines from `Show-ADTInstallationProgress` reflect all inputs
+- Improve comment-based help several functions within the module
+- Add missing [SupportsWildcards()] decoration for `Remove-ADTFolder -Path`
+- Ensure there's no duplicate `-AppProcessesToClose` entries, just like `Show-ADTInstallationWelcome` does
+- Uplift `-FilePath` resolution in `Start-ADTProcess` to factor in `DirFiles`/`DirSupportFiles` if `-WorkingDirectory` is not specified
+- No need to be so restrictive on `Start-ADTMsiProcess -LogFileName`
+- Expose `RequireAdmin` publicly within `DeploymentSession` class object
+- Added Bulgarian language strings.
+
+### 🛠️ Fixes
+
+- Adjust setup in `ProcessUtilities.GetRunningProcesses()` to handle bogus command lines
+- Patch bad setup in `Get-ADTClientServerUser` when multiple users are present
+- Fix some incorrectly named languages so they confirm with bcp47 standards
+- Restore `SEE_MASK_NOZONECHECKS` setup in `Start-ADTProcess` as it's needed even for `CreateProcess()`
+- Add missing parentheses within `New-ADTTemplate -Show` pathway
+- Swallow `TaskCanceledException` throws within `ServerInstance.Close()`
+- Properly set the Company field in all compiled file manifests
+- Revise setup surrounding default setting of `$WorkingDirectory` in `Start-ADTProcess`
+- Fixes for Finnish language strings.
+- Fix missing negation on `DisableDefaultMsiProcessList` test
+
+## 🖥️ Whats New in v4.1  - 2025-08-07
 
 ### 🎯 Major Improvements
 
 - Up until now, it was not possible to display any user interface when deploying an application as SYSTEM using Intune (or any endpoint management tool) without using ServiceUI. Well, now it IS possible:
-  - I REPEAT! **You no longer need to use ServiceUI**, EVER AGAIN! 🥳🎉🎊🪅🪩👯‍♂️
-  - In fact, we strongly advise you stop using it as soon as po1sible. ServiceUI works by manipulating system security tokens in a way that could allow malicious actors to escalate privileges or bypass security controls.
+  - In fact, we strongly advise you stop using it as soon as possible. ServiceUI works by manipulating system security tokens in a way that could allow malicious actors to escalate privileges or bypass security controls.
   - We've taken a fresh approach which leverages the Windows security model and separates out user interactions onto a process running in the users' session - we never perform any user interaction or messaging of any kind within the SYSTEM context. This means a more secure and reliable deployment experience.
   - We have also removed the requirement for the 'Allow users to view and interact with the program installation' checkbox in Configuration Manager deployments.
 
@@ -50,13 +129,12 @@ tags:
   - PowerShell ISE compatibility
 
 - Furthermore, the Fluent UI has gained new features:
-  - Due to the rearchitecture of how we handle user interaction with Dialogs, it is now possible to prompt the user for input using [Show-ADTInstallationPrompt](../reference/functions/Show-ADTInstallationPrompt.mdx)'s -InputBox parameter
+  - Due to the rearchitecture of how we handle user interaction with Dialogs, it is now possible to prompt the user for input using [Show-ADTInstallationPrompt](../reference/functions/Show-ADTInstallationPrompt)'s -InputBox parameter
   - Support for formattable text (Bold, Italic & Accent) as well as URL hyperlinks in dialog messages
   - You can now set the % complete of the progress bar in the Progress Dialog (for example, if you are running a custom script that you want to show incremental progress changes for)
   - Ability to set different icons for Light / Dark mode
-  - Custom accent colors via `UI.FluentAccentColor` configuration
 
-- The security rearchitecture required all of our process execution code to be rewritten. This has enabled us to provide a wealth of new capabilities to both [Start-ADTProcess](../reference/functions/Start-ADTProcess.mdx) and [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) using the following new parameters:
+- The security rearchitecture required all of our process execution code to be rewritten. This has enabled us to provide a wealth of new capabilities to both [Start-ADTProcess](../reference/functions/Start-ADTProcess) and [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser) using the following new parameters:
   - -UseUnelevatedToken parameter to force a process run without elevation, for deploying user-context apps with Windows 11 Administrator Protection enabled
   - -WaitForChildProcesses parameter to wait for all child processes to end - useful for installers/uninstallers that hand off to another process and exit early
   - -KillChildProcessesWithParent parameter to close all started child processes once main process has ended - useful when installers start the application post-install, which is typically undesired when running as system
@@ -69,29 +147,35 @@ tags:
 ### 🛠️ New and Enhanced Functions
 
 - Added functions for managing user / machine environment variables:
-  - [Get-ADTEnvironmentVariable](../reference/functions/Get-ADTEnvironmentVariable.mdx) / [Set-ADTEnvironmentVariable](../reference/functions/Set-ADTEnvironmentVariable.mdx) / [Remove-ADTEnvironmentVariable](../reference/functions/Remove-ADTEnvironmentVariable.mdx)
+  - [Get-ADTEnvironmentVariable](../reference/functions/Get-ADTEnvironmentVariable) / [Set-ADTEnvironmentVariable](../reference/functions/Set-ADTEnvironmentVariable) / [Remove-ADTEnvironmentVariable](../reference/functions/Remove-ADTEnvironmentVariable)
 - Added functions for managing INI file sections / values:
-  - [Get-ADTIniSection](../reference/functions/Get-ADTIniSection.mdx) / [Set-ADTIniSection](../reference/functions/Set-ADTIniSection.mdx) / [Remove-ADTIniSection](../reference/functions/Remove-ADTIniSection.mdx)
-  - [Get-ADTIniValue](../reference/functions/Get-ADTIniValue.mdx) / [Set-ADTIniValue](../reference/functions/Set-ADTIniValue.mdx) / [Remove-ADTIniValue](../reference/functions/Remove-ADTIniValue.mdx)
-- Added [Start-ADTMsiProcessAsUser](../reference/functions/Start-ADTMsiProcessAsUser.mdx) for installing / uninstalling user-context MSIs via the System account
-- Added -DeferRunInterval switch to [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome.mdx) to limit retry times from Intune
+  - [Get-ADTIniSection](../reference/functions/Get-ADTIniSection) / [Set-ADTIniSection](../reference/functions/Set-ADTIniSection) / [Remove-ADTIniSection](../reference/functions/Remove-ADTIniSection)
+  - [Get-ADTIniValue](../reference/functions/Get-ADTIniValue) / [Set-ADTIniValue](../reference/functions/Set-ADTIniValue) / [Remove-ADTIniValue](../reference/functions/Remove-ADTIniValue)
+- Added [Start-ADTMsiProcessAsUser](../reference/functions/Start-ADTMsiProcessAsUser) for installing / uninstalling user-context MSIs via the System account
+- Added [Test-ADTEspActive](../reference/functions/Test-ADTEspActive) to test for an active Enrollment Status Page (ESP)
+- Added -DeferRunInterval switch to [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome) to limit retry times from Intune
 - Added -Path / -LiteralPath support to registry functions
-- Added volatile key creation support to [Set-ADTRegistryKey](../reference/functions/Set-ADTRegistryKey.mdx)
-- Added MultiString add / remove support to [Set-ADTRegistryKey](../reference/functions/Set-ADTRegistryKey.mdx)
-- Added -MaximumElapsedTime parameter to [Invoke-ADTCommandWithRetries](../reference/functions/Invoke-ADTCommandWithRetries.mdx)
-- Added -SuccessExitCodes and -RebootExitCodes parameters to [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication.mdx)
+- Added volatile key creation support to [Set-ADTRegistryKey](../reference/functions/Set-ADTRegistryKey)
+- Added MultiString add / remove support to [Set-ADTRegistryKey](../reference/functions/Set-ADTRegistryKey)
+- Added -MaximumElapsedTime parameter to [Invoke-ADTCommandWithRetries](../reference/functions/Invoke-ADTCommandWithRetries)
+- Added -SuccessExitCodes and -RebootExitCodes parameters to [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication)
 
 ### 🛠️ Other Improvements
 
-- [Show-ADTHelpConsole](../reference/functions/Show-ADTHelpConsole.mdx) has been given some love and a facelift with High-DPI awareness, resizability, PowerShell 7 compatibility, and extension module display
+- [Show-ADTHelpConsole](../reference/functions/Show-ADTHelpConsole) has been given some love and a facelift with High-DPI awareness, resizability, PowerShell 7 compatibility, and extension module display
 - Reworked Invoke-AppDeployToolkit.exe to be more compliant within WDAC environments
-- Added -NoWait support to [Show-ADTDialogBox](../reference/functions/Show-ADTDialogBox.mdx)
+- Added -NoWait support to [Show-ADTDialogBox](../reference/functions/Show-ADTDialogBox)
 - Added process detection code to enable automatic silent deployments when processes aren't running
-- Added /Debug switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit.mdx) to show terminal output for debugging purposes
-- Added /Core switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit.mdx) to allow PowerShell 7 usage
+- Added /Debug switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit) to show terminal output for debugging purposes
+- Added /Core switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit) to allow PowerShell 7 usage
+- Added support for running processes from network drives
 
 ### 🛠️ Changes
 
+- Added -NoOobeDetection option to Open-ADTSession to bypass OOBE detection logic when DeployMode is set to Auto. Use this to show the UI during OOBE / Autopilot ESP phases.
+- Added -NoSessionDetection option to Open-ADTSession to bypass session detection logic when DeployMode is set to Auto. Use this to show the UI when no user is logged on and the SYSTEM process is interactive.
+- Added -NoProcessDetection option to Open-ADTSession to bypass process detection logic when DeployMode is set to Auto. Use this to show the UI even if there are no processes to close.
+- Changed -DeployMode Interactive to always show interactively. This means the toolkit will always show the dialogs, bypassing the OOBE/Session/Process detections that occur in Auto mode.
 - Changed default DeferExitCode from 60012 to 1602, since ConfigMgr and Intune recognize this natively as 'User cancelled the installation'
 - Changed toolkit to exit with 3010 if a suppressed reboot was encountered without having to use -AllowRebootPassThru. To mask 3010 return codes and exit with 0, you can now add -SuppressRebootPassThru
 - Changed default msiexec.exe parameters in interactive mode from /qb-! to /qn
@@ -101,12 +185,13 @@ tags:
 
 ### 🛠️ Fixes
 
-- Fixed [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) function to work as expected
-- Fixed [Block-ADTAppExecution](../reference/functions/Block-ADTAppExecution.mdx) to avoid triggering AV solutions
+- Fixed [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser) function to work as expected
+- Fixed [Block-ADTAppExecution](../reference/functions/Block-ADTAppExecution) to avoid triggering AV solutions
 - Fixed dialogs to show correct deployment type Install / Uninstall / Repair
-- Fixed SCCM pending reboot tests within [Get-ADTPendingReboot](../reference/functions/Get-ADTPendingReboot.mdx)
+- Fixed SCCM pending reboot tests within [Get-ADTPendingReboot](../reference/functions/Get-ADTPendingReboot)
 - Fixed MSI repair to default to 'Reinstall' to avoid forced unavoidable reboots when running msiexec /f against an app that is in-use
 - Fixed OOBE detection code to factor in User ESP phase
+- Fixed launching processes in the users' session when using certain MDMs, e.g. VMware Workspace ONE.
 
 ### 📸 Screenshots
 
