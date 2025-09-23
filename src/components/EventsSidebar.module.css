@@ -394,6 +394,83 @@ html[data-theme='dark'] .darkImage {
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .floatingSidebar {
+    width: 99%;
+    max-width: none;
+    top: 75%;
+  }
+
+  .eventsContainer {
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+  }
+
+  .sideEvents {
+    flex: 0.6;
+    min-width: 0;
+  }
+
+  .upNextSection {
+    flex: 1;
+    padding: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .sidebarContent {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .sidebarTitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .upNextTitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .upNextEvent {
+    gap: 0.5rem;
+  }
+
+  .upNextEvent .eventText a {
+    font-size: 0.9rem;
+  }
+
+  html[data-theme='dark'] .upNextEvent .eventText a {
+    font-size: 1rem;
+  }
+
+  .upNextEvent .eventDate {
+    font-size: 0.7rem;
+  }
+
+  .sidebarEvent {
+    min-width: 0;
+    flex: 1;
+    gap: 0.25rem;
+  }
+
+  .eventText a {
+    font-size: 0.75rem;
+  }
+
+  html[data-theme='dark'] .eventText a {
+    font-size: 0.8rem;
+  }
+
+  .eventDate {
+    font-size: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .sidebarImage {
+    width: 30%;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .floatingSidebar {
     width: 95%;
