@@ -1,7 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import clsx from 'clsx';
+// @ts-ignore
+
 import styles from './features.module.css';
+// @ts-ignore
 import Layout from '@theme/Layout';
 
 export default function FeaturesPage() {

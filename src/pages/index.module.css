@@ -6,7 +6,7 @@
 .heroBanner {
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   color: var(--palette-blue-darkest);
   background-image: url('@site/static/images/background-image-light.jpg');
   background-size: cover;
@@ -81,4 +81,8 @@ html[data-theme='dark'] .startedButton a {
 .logoThickText {
   color: var(--palette-blue);
   font-weight: 800 !important;
+}
+
+.mainContent {
+  margin-left: 0;
 }

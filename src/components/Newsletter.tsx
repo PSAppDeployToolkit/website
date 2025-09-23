@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+// @ts-ignore
 import styles from './Newsletter.module.css';
 
 export default function Newsletter() {

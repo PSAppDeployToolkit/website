@@ -1,44 +1,42 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import clsx from 'clsx';
+// @ts-ignore
 import Link from '@docusaurus/Link';
+// @ts-ignore
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+// @ts-ignore
 import { useColorMode } from '@docusaurus/theme-common';
+// @ts-ignore
 import styles from './HomepageFeatures.module.css';
-// import Newsletter from './Newsletter';
+// @ts-ignore
+import Newsletter from './Newsletter';
 
 const FeatureList = [
   {
     title: 'PSAppDeployToolkit',
     image: require('@site/static/images/powershell.png').default,
-    description: <>PSADT is a framework for deploying applications in a business / corporate environment.</>,
-  },
+    description: ('PSADT is a framework for deploying applications in a business / corporate environment.'),
+    },
   {
     title: 'Best Practices',
     image: require('@site/static/images/deployment.png').default,
-    description: (
-      <>
-        Our standardized deployment template ensures app deployments adhere to best practices and follow a standard
-        workflow.
-      </>
-    ),
+    description: ('Our standardized deployment template ensures app deployments adhere to best practices and follow a standard workflow.'),
   },
   {
     title: 'Community Driven',
     image: require('@site/static/images/global.png').default,
-    description: <>PSAppDeployToolkit is a community-oriented project with an emphasis on transparency.</>,
+    description: ('PSAppDeployToolkit is a community-oriented project with an emphasis on transparency.'),
   },
 ];
 
 const CapabilityList = [
   {
-    title: 'Pre-Build Powershell Functions',
+    title: 'Pre-Built PowerShell Functions',
     description: (
       <>
-        Pre-built functions come with automated logging - so you can quickly find problems in your scripts if they
-        occur.
-        <br></br>
-        <br></br>
+        Pre-built functions come with automated logging - so you can quickly find problems in your scripts if they occur.
+        <br />
+        <br />
         Supports installation of applications on Citrix / Remote Desktop Session Host Servers
         <br></br>
         <br></br>
@@ -207,98 +205,6 @@ export default function HomepageFeatures() {
           <Newsletter />
         </div>
       </div> */}
-
-      <div className={styles.contrastContainer}>
-        <div className={clsx('container')}>
-          <div className={clsx('row', styles.blockStyling, styles.upcomingConferences)}>
-          <div className="col col--7">
-        <p className={styles.blockTitle}>
-          <span className={styles.logoThickText}>Upcoming conferences</span> and <span className={styles.logoThickText}>community events</span></p>
-
-        <p>
-          We'll be there to spread the good word about PSAppDeployToolkit and to share our knowledge with you. We're there to help answer your questions and help you be successful. So come talk to us. No really... We're lonely.
-        </p>
-      </div>
-
-
-
-            <div className="col col--7">
-
-              <div className="container">
-                <div className="row">
-                  <div className={clsx('col col--5', styles.blockText)}>
-                    <ul>
-                      <li>
-                        <div>
-                          <Link to="https://www.endpointsummit.com"><b><s>Endpoint Summit 2025</s></b></Link>
-                        </div>
-                        <div><s>23-25 April 2025 <br/> Paris, France</s></div>
-                      </li>
-                      <li>
-                        <div>
-                          <Link to="https://developer.microsoft.com/en-us/reactor/events/25871/?wt.mc_id=3reg_25871_webpage_reactor"><b><s>Workplace Ninjas Toronto 2025</s></b></Link>
-                        </div>
-                        <div><s>June 13th <br/> Toronto, Canada</s></div>
-                      </li>
-                      <li>
-                        <div>
-                          <Link to="https://wpninjas.uk"><b><s>Workplace Ninjas UK 2025</s></b></Link>
-                        </div>
-                        <div><s>June 16th & 17th <br/> Edinburgh, United Kingdom</s></div>
-                      </li>
-                      </ul>
-                      </div>
-                  <div className={clsx('col col--5', styles.blockText)}>
-                      <ul>
-                      <li>
-                        <div>
-                          <Link to="https://appmanagevent.com"><b>AppManagEvent 2025</b></Link>
-                        </div>
-                        <div>October 10th <br/> Utrecht, The Netherlands</div>
-                      </li>
-                      <li>
-                        <div>
-                          <Link to="https://mmsmoa.com/mms2025music"><b>MMS Music City Edition 2025</b></Link>
-                        </div>
-                        <div>October 12th to 15th <br/> Nashville, Tennessee, USA</div>
-                      </li>
-                      <li>
-                        <div>
-                          <Link to="https://workplaceninjas.us"><b>Workplace Ninjas US 2025</b></Link>
-                        </div>
-                        <div>December 9th & 10th <br/> Dallas, Texas, USA</div>
-                      </li>
-                      </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col col--5">
-              <div className={styles.imageContainer}>
-                <img
-                  className={styles.conferencesImage}
-                  src={
-                    useColorMode().colorMode === 'dark'
-                      ? "/images/AME-Banner-DarkBackground.png"
-                      : "/images/AME-Banner-LightBackground.png"
-                  }
-                  alt="AppManage2025"
-                />
-                <img
-                  className={styles.conferencesImage}
-                  src="/images/MMSMusicCity.webp"
-                  alt="MMS: Music City Edition 2025"
-                />
-                <img
-                  className={styles.conferencesImage}
-                  src="/images/WPNinjas.png"
-                  alt="WP Ninjas"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

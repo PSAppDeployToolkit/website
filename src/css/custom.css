@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Roboto+Flex:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Poppins:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -7,6 +7,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  /* Color System - Primary Palette */
   --palette-blue-darkest: #001220;
   --palette-blue-darker: #004466;
   --palette-blue-dark: #0167a2;
@@ -15,38 +16,91 @@
   --palette-blue-lighter: #76d2fd;
   --palette-blue-lightest: #def3fe;
 
-  --ifm-global-radius: 5px;
+  /* Semantic Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: var(--palette-blue);
 
+  /* Spacing Scale */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+
+  /* Border Radius Scale */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --ifm-global-radius: var(--radius-sm);
+
+  /* Primary Color Mapping */
   --ifm-color-primary-darkest: var(--palette-blue-darkest);
   --ifm-color-primary-darker: var(--palette-blue-darker);
   --ifm-color-primary-dark: var(--palette-blue-dark);
   --ifm-color-primary: var(--palette-blue);
-  --ifm-color-primary-dark: var(--palette-blue-dark);
   --ifm-color-primary-light: var(--palette-blue-light);
   --ifm-color-primary-lighter: var(--palette-blue-lighter);
   --ifm-color-primary-lightest: var(--palette-blue-lightest);
 
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
   --image-shadow: 0 5px 61px 5px rgba(34, 34, 34, 0.94);
 
-  --transition-bezier: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+  --transition-bezier: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fastest: 100ms;
 
 
   --ifm-font-family-base:
-    'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  --ifm-font-family-monospace: 'Fira Code', monospace;
+    'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --ifm-font-family-monospace: 'Roboto Mono', monospace;
 
-  /* Typography */
+  /* Typography Scale */
   --ifm-font-size-base: 16px;
-  --ifm-line-height-base: 1.7;
-  --ifm-heading-line-height: 1.3;
-  --ifm-h1-font-size: 2.5rem;
-  --ifm-h2-font-size: 2rem;
-  --ifm-h3-font-size: 1.5rem;
-  --ifm-h4-font-size: 1.25rem;
-  --ifm-h5-font-size: 1.1rem;
-  --ifm-heading-font-weight: 600;
-  --ifm-code-font-size: 0.9em;
+  --ifm-line-height-base: 1.6;
+  --ifm-heading-line-height: 1.2;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+
+  /* Heading Sizes */
+  --ifm-h1-font-size: var(--text-5xl);
+  --ifm-h2-font-size: var(--text-4xl);
+  --ifm-h3-font-size: var(--text-3xl);
+  --ifm-h4-font-size: var(--text-2xl);
+  --ifm-h5-font-size: var(--text-xl);
+  --ifm-h6-font-size: var(--text-lg);
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+
+  --ifm-heading-font-weight: var(--font-semibold);
+  --ifm-code-font-size: 0.875em;
   --ifm-code-padding-vertical: 0.2em 0.4em;
   --ifm-code-background: rgba(0, 0, 0, 0.05);
 
@@ -81,6 +135,7 @@ table {
 
 table thead tr {
   background-color: var(--ifm-color-primary);
+  font-size: 1rem;
   color: white;
   text-align: left;
 }
@@ -174,46 +229,81 @@ html {
 }
 
 [data-theme='dark'] {
+  /* Dark Theme Color Overrides */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-color-primary: var(--palette-blue-light);
-  --ifm-background-color: #1a1b1e;
-  --ifm-background-surface-color: #242526;
+  --ifm-background-color: #0f1419;
+  --ifm-background-surface-color: #1a1b1e;
   --ifm-card-background-color: #242526;
   --ifm-toc-border-color: #2d2d2d;
   --ifm-color-content: #e5e9f0;
   --ifm-color-content-secondary: #d8dee9;
-  --ifm-menu-color-background-active: rgba(47, 129, 247, 0.1);
-  --ifm-menu-color-background-hover: rgba(47, 129, 247, 0.05);
+  --ifm-menu-color-background-active: rgba(47, 189, 250, 0.15);
+  --ifm-menu-color-background-hover: rgba(47, 189, 250, 0.08);
   --ifm-table-border-color: #2d2d2d;
   --ifm-table-stripe-background: rgba(255, 255, 255, 0.02);
-  --prism-background-color: #2e3440;
-  --prism-color: #e5e9f0;
+  --prism-background-color: #1e293b;
+  --prism-color: #e2e8f0;
+
+  /* Enhanced Dark Theme Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* Buttons */
+/* Button System */
 .button {
-  font-weight: 500;
-  border-radius: 2px;
-  transition: all 0.2s ease;
+  font-weight: var(--font-medium);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
   text-transform: none;
-  letter-spacing: 0.3px;
-  border: var(--ifm-button-border-width) solid #1c1e21;
-}
-
-[data-theme='dark'] .button {
-  border-color: #e3e3e3;
+  letter-spacing: 0.025em;
+  border: 1px solid transparent;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
 }
 
 .button--primary {
   background-color: var(--ifm-color-primary);
   border-color: var(--ifm-color-primary);
+  color: white;
 }
 
 .button--primary:hover {
   background-color: var(--palette-blue-dark);
   border-color: var(--palette-blue-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  color: white;
+}
+
+.button--secondary {
+  background-color: transparent;
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.button--secondary:hover {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme='dark'] .button--secondary {
+  border-color: var(--palette-blue-light);
+  color: var(--palette-blue-light);
+}
+
+[data-theme='dark'] .button--secondary:hover {
+  background-color: var(--palette-blue-light);
+  color: var(--palette-blue-darkest);
 }
 
 /* Code blocks */
@@ -233,36 +323,66 @@ html {
   padding: 0 var(--ifm-pre-padding);
 }
 
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Poppins', var(--ifm-font-family-base);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
+/* Typography System */
 h1 {
-  font-weight: 800;
-  margin-bottom: 1.5rem;
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-weight: var(--font-black);
+  font-size: var(--text-5xl);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: var(--space-lg);
 }
 
 h2 {
-  font-weight: 700;
-  margin-top: 2.5rem;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.5rem;
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-weight: var(--font-extrabold);
+  font-size: var(--text-4xl);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
 h3 {
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  font-family: var(--ifm-font-family-base);
+  font-weight: var(--font-bold);
+  font-size: var(--text-3xl);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+h4 {
+  font-family: var(--ifm-font-family-base);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-2xl);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+h5 {
+  font-family: var(--ifm-font-family-base);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-xl);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+h6 {
+  font-family: var(--ifm-font-family-base);
+  font-weight: var(--font-medium);
+  font-size: var(--text-lg);
+  letter-spacing: 0;
+  line-height: 1.4;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 /* Reset font for non-heading elements */
@@ -276,7 +396,7 @@ a,
 .footer__title,
 .footer__item,
 .table-of-contents {
-  font-weight: 500;
+  font-weight: 400;
   font-family: var(--ifm-font-family-base);
 }
 
@@ -385,11 +505,11 @@ table th {
 
 /* Fix for nested menu items */
 .menu__list-item-collapsible .menu__link {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .menu__list-item-collapsible .menu__link--sublist {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* Ensure consistent spacing in sidebar */
@@ -438,7 +558,7 @@ table th {
 
 .navbar__link {
   font-family: 'Poppins', var(--ifm-font-family-base);
-  font-weight: var(--ifm-font-weight-bold);
+  font-weight: 700;
 }
 
 .navbar__brand {
@@ -489,7 +609,7 @@ h1 {
 
 h2 {
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 header h2 a {
@@ -503,7 +623,7 @@ header h2 a:hover {
 
 h3 {
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 h4 {

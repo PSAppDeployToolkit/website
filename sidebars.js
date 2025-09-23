@@ -82,6 +82,7 @@ const sidebars = {
     'reference/module-structure',
     'reference/config-settings',
     'reference/language-strings',
+    'reference/text-formatting',
     'reference/exit-codes',
     'reference/v4-function-mapping',
     {

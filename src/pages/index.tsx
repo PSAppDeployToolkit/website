@@ -1,15 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import clsx from 'clsx';
+// @ts-ignore
 import Layout from '@theme/Layout';
+// @ts-ignore
 import Link from '@docusaurus/Link';
+// @ts-ignore
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+// @ts-ignore
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
+// @ts-ignore
 import Heading from '@theme/Heading';
 
+// @ts-ignore
 import ThemedImage from '@theme/ThemedImage';
 
+// @ts-ignore
 import useBaseUrl from '@docusaurus/useBaseUrl';
 const heroImageDark = `/images/psadt-logo.svg`;
 const heroImageLight = `/images/psadt-logo.svg`;
@@ -23,9 +30,10 @@ function HomepageHeader() {
           <div className="col col--7">
             <p className="hero__subtitle">{siteConfig.tagline}</p>
             <p className={styles.introText}>
-              PSAppDeployToolkit is a versatile solution that streamlines and standardizes the process of software
-              deployment, making it easier than ever to manage your IT environment. It has a comprehensive set of
-              features, such as dynamic logging, user interaction capabilities, and customizable functionality.
+              PSAppDeployToolkit uses a standardized workflow for Windows software deployment, a consistent unified User Experience for every software install, and a library of PowerShell functions to simplify common deployment tasks.
+            </p>
+            <p className={styles.introText}>
+              Combined with rich automated logging of every action, PSADT produces consistently high deployment success rates, and is the de facto standard framework used by organizations for deploying Windows software at scale.
             </p>
 
             {/* <div className={styles.startedButton}>
@@ -56,7 +64,7 @@ export default function Home() {
   return (
     <Layout description="Enterprise app deployment, simplified.">
       <HomepageHeader />
-      <main>
+      <main className={styles.mainContent}>
         <HomepageFeatures />
       </main>
     </Layout>

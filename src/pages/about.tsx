@@ -114,8 +114,10 @@ const AboutPage = () => {
         {/* Founders Block */}
         <div className={clsx('container', styles.foundersBlock)}>
           <Heading as="h2">Development Team</Heading>
+
+          {/* First Row - 3 cards */}
           <div className="row">
-            {founders.map((founder, index) => (
+            {founders.slice(0, 3).map((founder, index) => (
               <div key={founder.name} className="col col--4">
                 <div className={styles.founderCard}>
                   <img src={founder.image} alt={`Image of ${founder.name}`} className={styles.founderImage} />
@@ -132,6 +134,29 @@ const AboutPage = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Second Row - 2 centered cards */}
+          <div className="row">
+            <div className="col col--3"></div>
+            {founders.slice(3, 5).map((founder, index) => (
+              <div key={founder.name} className="col col--3">
+                <div className={styles.founderCard}>
+                  <img src={founder.image} alt={`Image of ${founder.name}`} className={styles.founderImage} />
+                  <p className={styles.founderTitle}>{founder.name}</p>
+                  <p className={styles.founderSubtitle}>{founder.subtitle}</p>
+                  <p className={styles.founderLinks}>
+                    <Link href={founder.github}>
+                      <FaGithub size={32} />
+                    </Link>{' '}
+                    <Link href={founder.linkedin}>
+                      <FaLinkedin size={32} />
+                    </Link>
+                  </p>{' '}
+                </div>
+              </div>
+            ))}
+            <div className="col col--3"></div>
           </div>
         </div>
 

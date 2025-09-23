@@ -12,13 +12,29 @@ tags:
 
 # Deployment Structure
 
+## Understanding PSAppDeployToolkit Architecture
+
+PSAppDeployToolkit v4.1 represents a significant architectural evolution from previous versions, designed with enterprise deployment scenarios in mind. The toolkit operates on a modular, session-based architecture that provides unprecedented flexibility and control over the deployment process.
+
+### Core Architecture Principles
+
+**Session-Based Management**: PSADT v4.1 introduces the `ADTSession` object, which encapsulates all deployment state, configuration, and context. This object-oriented approach provides better isolation, state management, and extensibility compared to the global variable approach used in v3.
+
+**Security-First Design**: The v4.1 architecture separates user interaction from system-level operations, eliminating the need for ServiceUI and providing a more secure deployment experience. User interfaces run in the user's session context, while system operations execute in the appropriate security context.
+
+**Modular Function Library**: The toolkit provides over 200 specialized functions organized into logical categories (Installation, Registry, File System, User Interface, etc.), each designed for specific deployment scenarios.
+
 ## V4 Native Deployment Template
 
-The **v4 native deployment template** is designed to be more modular, flexible, and user-friendly than the v3 structure, while still containing all core PSADT module files.
+The **v4 native deployment template** is designed to be more modular, flexible, and user-friendly than the v3 structure, while still containing all core PSADT module files. This structure represents the recommended approach for new deployments and provides the full feature set of PSADT v4.1.
 
 :::note
 The **v4 native deployment template** structure is considerably more sophisticated than the V3 deployment structure. At first glance, it can seem overly complex and daunting. However, you can avoid getting overwhelmed by focusing on just the files you need to know about.
 :::
+
+### Template Structure
+
+The v4 template follows a clear separation of concerns, with each folder serving a specific purpose in the deployment ecosystem:
 
 | Folder                             | File                        | Purpose                                                                                                         |
 |:-----------------------------------|:----------------------------|:----------------------------------------------------------------------------------------------------------------|
@@ -50,6 +66,137 @@ The v3 compatibility deployment structure is designed to allow you to use an exi
 The structure is laid out similarly to v4, however some file and folder names are kept the same as v3. This is so that we can use leverage any file paths you may have used within your script. And we also leverage the folder structure to impersonate the v3 PSADT framework, while remapping each function to the new v4 equivilent.
 
 This allows you to use your existing v3 deployment scripts with the v4 PSADT framework, taking advantage of the new features and improvements in v4, but without having to make any functional change to your existing script.
+
+### Template Structure Deep Dive
+
+#### Root Directory (`/`)
+The root directory serves as the deployment entry point and contains the essential files needed to launch a PSADT deployment:
+
+- **`Invoke-AppDeployToolkit.ps1`**: This is your primary development file. It contains:
+  - Session variables that define your application metadata
+  - Deployment phase logic (Pre-Install, Install, Post-Install, etc.)
+  - Custom PowerShell code for handling complex deployment scenarios
+  - Error handling and logging configuration
+  - User interface customization
+
+- **`Invoke-AppDeployToolkit.exe`**: A native Windows executable that provides:
+  - Secure PowerShell execution without exposing script content
+  - Command-line parameter support for deployment automation
+  - Debug mode (`/Debug`) for troubleshooting
+  - Architecture selection (`/32` for x86, `/Core` for PowerShell 7)
+  - Custom script execution (`-File` parameter)
+
+#### PSAppDeployToolkit Directory
+This directory contains the complete PSADT v4.1 framework and should never be modified:
+
+- **Core Module Files**: The main PSADT PowerShell module with over 200 specialized functions
+- **UI Components**: Both Classic and Fluent UI frameworks for user interaction
+- **Security Components**: Session management, privilege handling, and security context management
+- **Function Libraries**: Organized collections of functions for installation, registry, file system, and UI operations
+- **Runtime Dependencies**: Required .NET assemblies and supporting libraries
+
+#### Files Directory
+The primary location for application installation media:
+
+- **Supported File Types**:
+  - Executable installers (`.exe`, `.msi`, `.msm`)
+  - Windows Installer patches (`.msp`)
+  - Transform files (`.mst`)
+  - WIM images ()`.wim`)
+  - Archive files (`.zip`, `.7z`)
+  - Configuration files and templates
+
+- **Zero-Config Support**: PSADT can automatically detect and install MSI files and MSI in WIM files without custom scripting
+- **File Organization**: Maintain clear naming conventions for easier maintenance and troubleshooting
+
+#### SupportFiles Directory
+Contains auxiliary files needed during or after installation:
+
+- **Registry Files**: `.reg` files for applying system or user settings
+- **Configuration Templates**: Application configuration files that need customization
+- **Documentation**: User guides, release notes, or other documentation
+- **Shortcuts**: Custom desktop or start menu shortcuts
+- **License Files**: Software licenses or activation files
+
+#### Assets Directory
+Visual elements for UI customization and branding:
+
+- **Icon Requirements**: 256x256 PNG format for optimal quality
+- **Theme Support**: Separate assets for light and dark themes
+- **Branding Elements**: Logos, banners, and other visual components
+- **Accessibility**: High-contrast and high-DPI support
+
+#### Config Directory
+Configuration management for deployment behavior:
+
+- **`config.psd1`**: PowerShell data file containing:
+  - Logging configuration (paths, levels, rotation)
+  - UI preferences (timeouts, dialog behavior)
+  - MSI parameters and execution settings
+  - Security and privilege settings
+  - Performance optimization settings
+
+- **Group Policy Integration**: Settings can be overridden by Group Policy ADMX templates
+- **Hierarchical Configuration**: Built-in defaults → Local config → Group Policy
+
+#### Strings Directory
+Localization and UI text customization:
+
+- **`strings.psd1`**: Contains all user-facing text strings
+- **Multi-language Support**: Separate language sections for international deployments
+- **Customization**: Modify dialog text, error messages, and user prompts
+- **Consistency**: Centralized text management ensures consistent user experience
+
+
+#### Example Deployment Structure
+For large-scale enterprise deployments, a deployment folder structure might look something like this:
+
+```
+YourApp-Deployment/
+├── Invoke-AppDeployToolkit.ps1
+├── Invoke-AppDeployToolkit.exe
+├── PSAppDeployToolkit/            # Core framework
+├── PSAppDeployToolkit.Extensions/ # Custom functions
+├── Files/
+│   ├── YourApp-Setup.exe
+│   ├── YourApp-Setup.msi
+│   ├── YourApp-Patch.msp
+│   └── YourApp-Config.mst
+├── SupportFiles/
+│   ├── UserSettings.reg
+│   ├── SystemSettings.reg
+│   └── Config/
+│       ├── AppConfig.xml
+│       └── UserPreferences.json
+├── Assets/
+│   ├── AppIcon.png
+│   ├── AppIcon-Dark.png
+│   ├── CompanyLogo.png
+│   └── Banner.png
+├── Config/
+│   └── config.psd1
+└── Strings/
+    ├── strings.psd1
+    └── de-DE/
+        └── strings.psd1
+```
+
+#### Example Multi-Architecture Deployment Structure
+For applications with multiple versions or architectures:
+
+```
+YourApp-Deployment/
+├── Files/
+│   ├── x64/
+│   │   ├── YourApp-x64-Setup.exe
+│   │   └── YourApp-x64-Patch.msp
+│   ├── x86/
+│   │   ├── YourApp-x86-Setup.exe
+│   │   └── YourApp-x86-Patch.msp
+│   └── Common/
+│       ├── SharedComponents.msi
+│       └── License.lic
+```
 
 :::note
 The PSADT v4 compatibility deployment template structure is considerably more sophisticated than the V3 deployment structure. At first glance, it can seem overly complex and daunting. However, you can avoid getting overwhelmed by focusing on just the files you need to know about.

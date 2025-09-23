@@ -14,11 +14,21 @@ tags:
 
 The `Invoke-AppDeployToolkit.ps1` script is where you will spend most of your time when using PSAppDeployToolkit. This script is the main entry point of the deployment, responsible for executing the deployment phases.
 
-## Session Variables
+## Understanding the Deployment Script Architecture
 
-The first thing to edit in your deployment script is the session variables. These variables are used to control the behavior of the deployment and are set at the top of your script.
+PSAppDeployToolkit v4 uses a session-based architecture to provide flexible control over the deployment process. Understanding this architecture is crucial for both beginners and advanced users.
 
-| Variable | Example | Description |
+## Core Concepts
+
+### ADTSession Object
+
+The heart of PSADT v4 is the `ADTSession` object, which encapsulates all deployment state, configuration, and context. This object-oriented approach provides better isolation, state management, and extensibility compared to the global variable approach used in v3.
+
+#### Session Properties
+
+These are the first thing to edit in your deployment script and are stored within the `ADTSession` object, providing better encapsulation and state management compared to global variables in v3. Session Properties define your application's metadata, behavior, and deployment requirements.
+
+| Property | Example | Description |
 | -------- | ------- | ----------- |
 | `AppVendor` | `Microsoft` | The vendor name of the application |
 | `AppName` | `Office 365` | The name of the application |
@@ -35,7 +45,7 @@ The first thing to edit in your deployment script is the session variables. Thes
 If you are upgrading from v4.0 or earlier, you must move any `RequireAdmin` setting from your config file to the session object in your deployment script, and use `AppProcessesToClose` instead of specifying the processes directly on the `-CloseProcesses` parameter of `Show-ADTInstallationWelcome`.
 :::
 
-:::note
+:::note New in v4.1: RequireAdmin
 PSADT v4.1 contains a new variable `RequireAdmin` that allows you to check for administrative rights on a per-application basis without needing to modify the PSADT configuration file.
 
 - `RequireAdmin = $true`, will fail the deployment if admin rights are not available.
@@ -55,17 +65,65 @@ AppProcessesToClose = @(@{ Name = 'winword'; Description = 'Microsoft Word' })
 ```
 :::
 
-## Deployment Types & Phases
+### Deployment Types & Phases
 
 There are three types of deployments you can perform using PSAppDeployToolkit.
 
 - **Install**, **Uninstall** and **Repair**.
 
-Each type has its own set of phases that define the tasks to be performed during the deployment process.
+Each deployment type (Install, Uninstall, Repair) follows a structured three-phase approach:
+- **Pre-Phase**: Preparation, validation, and user interaction
+- **Main Phase**: Core deployment operations
+- **Post-Phase**: Cleanup, configuration, and finalization
 
-- **Pre-Install**, **Install**, and **Post-Install**.
-- **Pre-Uninstall**, **Uninstall**, and **Post-Uninstall**.
-- **Pre-Repair**, **Repair**, and **Post-Repair**.
+#### Understanding Deployment Phases
+
+Each deployment phase serves a specific purpose in the deployment lifecycle. Understanding these phases is crucial for creating effective deployment scripts.
+
+##### Pre-Phase Operations
+The Pre-Phase is responsible for preparation, validation, and user interaction:
+
+**Common Pre-Phase Tasks:**
+- Display welcome messages and user notifications
+- Check system requirements and prerequisites
+- Close conflicting applications
+- Handle user deferrals and scheduling
+- Validate installation media and files
+- Check disk space and system resources
+- Uninstall previous versions if required
+
+##### Main Phase Operations
+The Main Phase performs the core deployment operations:
+
+**Install Phase Tasks:**
+- Execute application installer
+- Apply transforms and patches
+- Configure application settings
+- Handle installation errors and rollback
+
+**Uninstall Phase Tasks:**
+- Execute application uninstaller
+- Remove application files and registry entries
+- Clean up user data (if configured)
+- Handle uninstall errors
+
+**Repair Phase Tasks:**
+- Reinstall or repair application components
+- Restore corrupted files
+- Reapply configuration settings
+- Verify installation integrity
+
+##### Post-Phase Operations
+The Post-Phase handles cleanup, configuration, and finalization:
+
+**Common Post-Phase Tasks:**
+- Apply registry settings and configurations
+- Copy additional files and shortcuts
+- Configure user preferences
+- Update system settings
+- Display completion messages
+- Prompt for restart if required
+- Clean up temporary files
 
 ## Script Structure
 

@@ -29,7 +29,7 @@ const config = {
   },
 
   stylesheets: [
-    'https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+    'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap',
   ],
 
   customFields: {
@@ -53,16 +53,16 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: '4.1.0',
+              label: '4.1.x',
               // editUrl: 'https://github.com/psappdeploytoolkit/website/edit/main',
             },
             '4.0.0': {
-              label: '4.0.0',
+              label: '4.0.x',
               path: '4.0.0',
               banner: 'unmaintained'
             },
             '3.10.2': {
-              label: '3.10.2 (Deprecated)',
+              label: '3.10.x',
               path: '3.10.2',
               banner: 'unmaintained'
             },
