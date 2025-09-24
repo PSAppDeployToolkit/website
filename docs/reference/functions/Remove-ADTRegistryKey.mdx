@@ -36,7 +36,7 @@ If the SID parameter is specified, it converts HKEY_CURRENT_USER registry keys t
 ### EXAMPLE 1
 
 ```powershell
-Remove-ADTRegistryKey -Key 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce'
+Remove-ADTRegistryKey -LiteralPath 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce'
 ```
 
 Deletes the specified registry key.
@@ -44,7 +44,7 @@ Deletes the specified registry key.
 ### EXAMPLE 2
 
 ```powershell
-Remove-ADTRegistryKey -Key 'HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'RunAppInstall'
+Remove-ADTRegistryKey -LiteralPath 'HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'RunAppInstall'
 ```
 
 Deletes the specified registry value.
@@ -52,10 +52,26 @@ Deletes the specified registry value.
 ### EXAMPLE 3
 
 ```powershell
-Remove-ADTRegistryKey -Key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Example' -Name '(Default)'
+Remove-ADTRegistryKey -LiteralPath 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Example' -Name '(Default)'
 ```
 
 Deletes the default registry value in the specified key.
+
+### EXAMPLE 4
+
+```powershell
+Remove-ADTRegistryKey -Path 'HKEY_LOCAL_MACHINE\SOFTWARE\MyCustomKey\*' -Recurse
+```
+
+Removes all subkeys from `HKEY_LOCAL_MACHINE\SOFTWARE\MyCustomKey` as requested.
+
+### EXAMPLE 5
+
+```powershell
+Remove-ADTRegistryKey -Path 'HKEY_LOCAL_MACHINE\SOFTWARE\MyCustomKey\*' -Name 'PropertyName'
+```
+
+Removes `PropertyName` from all subkeys of `HKEY_LOCAL_MACHINE\SOFTWARE\MyCustomKey`.
 
 ## PARAMETERS
 
