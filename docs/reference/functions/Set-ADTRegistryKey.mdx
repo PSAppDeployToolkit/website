@@ -27,7 +27,7 @@ This function can also handle registry keys for specific user SIDs and 32-bit re
 ### EXAMPLE 1
 
 ```powershell
-Set-ADTRegistryKey -LiteralPath $blockedAppPath -Name 'Debugger' -Value $blockedAppDebuggerValue
+Set-ADTRegistryKey -Key $blockedAppPath -Name 'Debugger' -Value $blockedAppDebuggerValue
 ```
 
 Creates or sets the 'Debugger' value in the specified registry key.
@@ -35,7 +35,7 @@ Creates or sets the 'Debugger' value in the specified registry key.
 ### EXAMPLE 2
 
 ```powershell
-Set-ADTRegistryKey -LiteralPath 'HKEY_LOCAL_MACHINE\SOFTWARE' -Name 'Application' -Type 'DWord' -Value '1'
+Set-ADTRegistryKey -Key 'HKEY_LOCAL_MACHINE\SOFTWARE' -Name 'Application' -Type 'DWord' -Value '1'
 ```
 
 Creates or sets a DWord value in the specified registry key.
@@ -43,7 +43,7 @@ Creates or sets a DWord value in the specified registry key.
 ### EXAMPLE 3
 
 ```powershell
-Set-ADTRegistryKey -LiteralPath 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce' -Name 'Debugger' -Value $blockedAppDebuggerValue -Type String
+Set-ADTRegistryKey -Key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce' -Name 'Debugger' -Value $blockedAppDebuggerValue -Type String
 ```
 
 Creates or sets a String value in the specified registry key.
@@ -51,7 +51,7 @@ Creates or sets a String value in the specified registry key.
 ### EXAMPLE 4
 
 ```powershell
-Set-ADTRegistryKey -LiteralPath 'HKCU\Software\Microsoft\Example' -Name 'Data' -Value (0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x02,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x02,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x00,0x01,0x01,0x01,0x02,0x02,0x02) -Type 'Binary'
+Set-ADTRegistryKey -Key 'HKCU\Software\Microsoft\Example' -Name 'Data' -Value (0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x02,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x02,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x00,0x01,0x01,0x01,0x02,0x02,0x02) -Type 'Binary'
 ```
 
 Creates or sets a Binary value in the specified registry key.
@@ -59,7 +59,7 @@ Creates or sets a Binary value in the specified registry key.
 ### EXAMPLE 5
 
 ```powershell
-Set-ADTRegistryKey -LiteralPath 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Example' -Name '(Default)' -Value "Text"
+Set-ADTRegistryKey -Key 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Example' -Name '(Default)' -Value "Text"
 ```
 
 Creates or sets the default value in the specified registry key.
