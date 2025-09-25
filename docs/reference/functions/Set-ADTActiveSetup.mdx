@@ -24,7 +24,7 @@ Set-ADTActiveSetup -StubExePath <String> [-Arguments <String>] [-Wow6432Node]
 ```powershell
 Set-ADTActiveSetup -StubExePath <String> [-Arguments <String>] [-Wow6432Node]
  [-ExecutionPolicy <ExecutionPolicy>] [-Version <String>] [-Locale <String>] [-DisableActiveSetup]
- [-NoExecuteForCurrentUser] -Key <String> [<CommonParameters>]
+ [-NoExecuteForCurrentUser] -Key <String> -Description <String> [<CommonParameters>]
 ```
 
 ### Purge
@@ -259,7 +259,7 @@ Defaults to active session InstallName.
 
 ```yaml
 Type: String
-Parameter Sets: Create
+Parameter Sets: Create, CreateNoExecute
 Aliases:
 
 Required: True
