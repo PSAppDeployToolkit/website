@@ -25,7 +25,7 @@ Can correctly handle cases where a value simply has an empty or null value.
 ### EXAMPLE 1
 
 ```powershell
-Test-ADTRegistryValue -Key 'HKLM:SYSTEM\CurrentControlSet\Control\Session Manager' -Name 'PendingFileRenameOperations'
+Test-ADTRegistryValue -Key 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager' -Name 'PendingFileRenameOperations'
 ```
 
 Checks if the registry value 'PendingFileRenameOperations' exists under the specified key.
