@@ -61,8 +61,8 @@ importers:
         specifier: ^3.8.1
         version: 3.8.1(eslint@9.36.0(jiti@1.21.7))(typescript@5.9.2)
       '@docusaurus/module-type-aliases':
-        specifier: 3.8.1
-        version: 3.8.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        specifier: 3.9.2
+        version: 3.9.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@docusaurus/theme-classic':
         specifier: ^3.8.1
         version: 3.8.1(@docusaurus/faster@3.9.1(@docusaurus/types@3.9.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)))(@rspack/core@1.5.8)(@types/react@19.1.13)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2)
