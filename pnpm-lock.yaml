@@ -58,8 +58,8 @@ importers:
         version: 2.17.3
     devDependencies:
       '@docusaurus/eslint-plugin':
-        specifier: ^3.8.1
-        version: 3.8.1(eslint@9.36.0(jiti@1.21.7))(typescript@5.9.2)
+        specifier: ^3.9.2
+        version: 3.9.2(eslint@9.36.0(jiti@1.21.7))(typescript@5.9.2)
       '@docusaurus/module-type-aliases':
         specifier: 3.9.2
         version: 3.9.2(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -1218,9 +1218,9 @@ packages:
     resolution: {integrity: sha512-8gBKup94aGttRduABsj7bpPFTX7kbwu+xh3K9NMCF5K4bWBqTFYW+REKHF6iBVDHRJ4grZdIPbvkiHd/XNKRMQ==}
     engines: {node: '>=20.0'}
 
-  '@docusaurus/eslint-plugin@3.8.1':
-    resolution: {integrity: sha512-moiMzNuUpWaIcoEqZP4FzFGk4j8Gg/fYJYc9lpTWZplsy4GswGZw150rPuFcZ1lW65kuKVeGqu/E60JG37AX5Q==}
-    engines: {node: '>=18.0'}
+  '@docusaurus/eslint-plugin@3.9.2':
+    resolution: {integrity: sha512-LnCrmrR4EtzpSiq6aoSfiY0Lf8P0WslGbBFZJ0olKXJIMxey8dpKevT1K/+tN87Lbn2H/VrdGGSPGlfVKmihAQ==}
+    engines: {node: '>=20.0'}
     peerDependencies:
       eslint: '>=6'
 
@@ -8966,7 +8966,7 @@ snapshots:
       postcss-sort-media-queries: 5.2.0(postcss@8.5.6)
       tslib: 2.8.1
 
-  '@docusaurus/eslint-plugin@3.8.1(eslint@9.36.0(jiti@1.21.7))(typescript@5.9.2)':
+  '@docusaurus/eslint-plugin@3.9.2(eslint@9.36.0(jiti@1.21.7))(typescript@5.9.2)':
     dependencies:
       '@typescript-eslint/utils': 5.62.0(eslint@9.36.0(jiti@1.21.7))(typescript@5.9.2)
       eslint: 9.36.0(jiti@1.21.7)
@@ -10974,7 +10974,7 @@ snapshots:
       debug: 4.4.3
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.7.2
+      semver: 7.7.3
       tsutils: 3.21.0(typescript@5.9.2)
     optionalDependencies:
       typescript: 5.9.2
@@ -11023,7 +11023,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.9.2)
       eslint: 9.36.0(jiti@1.21.7)
       eslint-scope: 5.1.1
-      semver: 7.7.2
+      semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
       - typescript
