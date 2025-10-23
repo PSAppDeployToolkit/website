@@ -41,7 +41,7 @@
     "@docusaurus/eslint-plugin": "^3.8.1",
     "@docusaurus/module-type-aliases": "3.9.2",
     "@docusaurus/preset-classic": "^3.8.1",
-    "@docusaurus/theme-classic": "^3.8.1",
+    "@docusaurus/theme-classic": "^3.9.2",
     "@docusaurus/tsconfig": "^3.8.1",
     "@docusaurus/types": "3.9.1",
     "@fec/remark-a11y-emoji": "^4.0.2",
