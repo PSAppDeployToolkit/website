@@ -32,7 +32,7 @@
     "clsx": "^2.1.1",
     "faster": "^3.5.1",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.1.1",
+    "react": "^19.2.0",
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
     "search-insights": "^2.17.3"
@@ -46,7 +46,7 @@
     "@docusaurus/types": "3.9.2",
     "@fec/remark-a11y-emoji": "^4.0.2",
     "@types/node": "^24.5.2",
-    "@types/react": "^19.1.13",
+    "@types/react": "^19.2.2",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.46.2",
     "eslint": "^9.36.0",
