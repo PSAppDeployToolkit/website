@@ -308,6 +308,7 @@ Accept wildcard characters: False
 ### -FilePath
 
 The file path to the MSI/MSP file.
+If the specified FilePath is just a file name, the function will look within `$adtSession.DirFiles` for the specified file, so long as a session is active.
 
 ```yaml
 Type: String
