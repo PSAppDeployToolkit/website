@@ -18,7 +18,8 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
- [-PriorityClass <ProcessPriorityClass>] [-PassThru] [<CommonParameters>]
+ [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
 ```
 
 ### Default_WindowStyle_Timeout
@@ -528,7 +529,7 @@ Defaults to values set during ADTSession initialization, otherwise: 0
 
 ```yaml
 Type: Int32[]
-Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
@@ -545,7 +546,7 @@ Defaults to values set during ADTSession initialization, otherwise: 1641, 3010
 
 ```yaml
 Type: Int32[]
-Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
@@ -561,7 +562,7 @@ List the exit codes to ignore or * to ignore all exit codes.
 
 ```yaml
 Type: String[]
-Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
@@ -595,7 +596,7 @@ Automatically closes the active deployment session via Close-ADTSession in the e
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
