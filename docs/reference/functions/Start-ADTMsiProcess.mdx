@@ -265,12 +265,20 @@ Install an MSI and stores the result of the execution into a variable by using t
 ### EXAMPLE 4
 
 ```powershell
+$ExecuteMSIResult = Start-ADTMsiProcess -Action 'Install' -FilePath 'Adobe_FlashPlayer_11.2.202.233_x64_EN.msi' -AdditionalArgumentList 'ALLUSERS=1', 'SOMEPROPERTY=TRUE' -PassThru
+```
+
+Install an MSI and stores the result of the execution into a variable by using the -PassThru option, specifically taking advantage of our `-AdditionalArgumentList` array support to avoid escaped quote issues.
+
+### EXAMPLE 5
+
+```powershell
 Start-ADTMsiProcess -Action 'Uninstall' -ProductCode '{26923b43-4d38-484f-9b9e-de460746276c}'
 ```
 
 Uninstall an MSI using a product code.
 
-### EXAMPLE 5
+### EXAMPLE 6
 
 ```powershell
 Start-ADTMsiProcess -Action 'Patch' -FilePath 'Adobe_Reader_11.0.3_EN.msp'
@@ -300,6 +308,7 @@ Accept wildcard characters: False
 ### -FilePath
 
 The file path to the MSI/MSP file.
+If the specified FilePath is just a file name, the function will look within `$adtSession.DirFiles` for the specified file, so long as a session is active.
 
 ```yaml
 Type: String
