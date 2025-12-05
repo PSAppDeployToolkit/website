@@ -32,8 +32,8 @@ The advantage of using this function over ActiveSetup is that a user does not ha
 
 ```powershell
 Invoke-ADTAllUsersRegistryAction -ScriptBlock {
-    Set-ADTRegistryKey -SID $_.SID -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord
-    Set-ADTRegistryKey -SID $_.SID -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord
+    Set-ADTRegistryKey -SID $_.SID -LiteralPath 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord
+    Set-ADTRegistryKey -SID $_.SID -LiteralPath 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord
 }
 ```
 
@@ -44,8 +44,8 @@ Example demonstrating the setting of two values within each user's HKEY_CURRENT_
 
 ```powershell
 Invoke-ADTAllUsersRegistryAction {
-    Set-ADTRegistryKey -SID $_.SID -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord
-    Set-ADTRegistryKey -SID $_.SID -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord
+    Set-ADTRegistryKey -SID $_.SID -LiteralPath 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord
+    Set-ADTRegistryKey -SID $_.SID -LiteralPath 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord
 }
 ```
 
@@ -56,8 +56,8 @@ As the previous example, but showing how to use ScriptBlock as a positional para
 
 ```powershell
 Invoke-ADTAllUsersRegistryAction -UserProfiles (Get-ADTUserProfiles -ExcludeDefaultUser) -ScriptBlock {
-    Set-ADTRegistryKey -SID $_.SID -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord
-    Set-ADTRegistryKey -SID $_.SID -Key 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord
+    Set-ADTRegistryKey -SID $_.SID -LiteralPath 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'qmenable' -Value 0 -Type DWord
+    Set-ADTRegistryKey -SID $_.SID -LiteralPath 'HKCU\Software\Microsoft\Office\14.0\Common' -Name 'updatereliabilitydata' -Value 1 -Type DWord
 }
 ```
 
