@@ -14,23 +14,23 @@ Executes an MSP file using the same logic as Start-ADTMsiProcess.
 ### None (Default)
 
 ```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-ExpandEnvironmentVariables]
- [<CommonParameters>]
+Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-ExpandEnvironmentVariables] [<CommonParameters>]
 ```
 
 ### RunAsActiveUser
 
 ```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] -RunAsActiveUser <RunAsActiveUser>
- [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
- [-ExpandEnvironmentVariables] [<CommonParameters>]
+Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-LoggingOptions <String>]
+ [-LogFileName <String>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken] [-UseHighestAvailableToken]
+ [-InheritEnvironmentVariables] [-DenyUserTermination] [-ExpandEnvironmentVariables] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken
 
 ```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-UseUnelevatedToken]
- [-ExpandEnvironmentVariables] [<CommonParameters>]
+Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -89,6 +89,42 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoggingOptions
+
+Overrides the default logging options specified in the config.psd1 file.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LogFileName
+
+Overrides the default log file name.
+The default log file name is generated from the MSI file name.
+If LogFileName does not end in .log, it will be automatically appended.
+
+For uninstallations, by default the product code is resolved to the DisplayName and version of the application.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

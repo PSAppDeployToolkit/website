@@ -13,8 +13,8 @@ Executes an MSP file using the same logic as Start-ADTMsiProcess.
 
 ```powershell
 Start-ADTMspProcessAsUser [[-Username] <NTAccount>] [-FilePath] <String> [[-AdditionalArgumentList] <String[]>]
- [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
- [-ExpandEnvironmentVariables] [-DenyUserTermination] [<CommonParameters>]
+ [[-LoggingOptions] <String>] [[-LogFileName] <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
+ [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -90,6 +90,42 @@ Aliases:
 Required: False
 Position: 3
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoggingOptions
+
+Overrides the default logging options specified in the config.psd1 file.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LogFileName
+
+Overrides the default log file name.
+The default log file name is generated from the MSI file name.
+If LogFileName does not end in .log, it will be automatically appended.
+
+For uninstallations, by default the product code is resolved to the DisplayName and version of the application.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
