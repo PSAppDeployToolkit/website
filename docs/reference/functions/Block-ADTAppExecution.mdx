@@ -12,7 +12,8 @@ Block the execution of an application(s).
 ## SYNTAX
 
 ```powershell
-Block-ADTAppExecution [-ProcessName] <String[]> [[-WindowLocation] <DialogPosition>] [<CommonParameters>]
+Block-ADTAppExecution [-Processes] <ProcessDefinition[]> [[-WindowLocation] <DialogPosition>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,21 +34,21 @@ The text of this message can be customized in the strings.psd1 file.
 ### EXAMPLE 1
 
 ```powershell
-Block-ADTAppExecution -ProcessName ('winword','excel')
+Block-ADTAppExecution -Processes ('winword','excel')
 ```
 
 This example blocks the execution of Microsoft Word and Excel.
 
 ## PARAMETERS
 
-### -ProcessName
+### -Processes
 
 Name of the process or processes separated by commas.
 
 ```yaml
-Type: String[]
+Type: ProcessDefinition[]
 Parameter Sets: (All)
-Aliases:
+Aliases: ProcessName
 
 Required: True
 Position: 1
