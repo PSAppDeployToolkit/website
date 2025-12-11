@@ -7,7 +7,7 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Tests for an active local network connection; ethernet by default but can test for one or more connection types.
+Tests for an active local network connection; ethernet/Wi-Fi by default but can test for a number of other connection types.
 
 ## SYNTAX
 
@@ -17,8 +17,8 @@ Test-ADTNetworkConnection [[-InterfaceType] <NetworkInterfaceType[]>] [<CommonPa
 
 ## DESCRIPTION
 
-Tests for an active local network connection via Get-NetAdapter; ethernet by default but can test for one or more connection types.
-This function checks if any physical network adapter is in the 'Up' status.
+Tests for an active local network connection via Get-NetAdapter; ethernet/Wi-Fi by default but can test for a number of other connection types.
+This function checks if any of the nominated interface types is in the 'Up' status.
 
 ## EXAMPLES
 
@@ -35,7 +35,7 @@ Checks if there is an active wired network connection and returns true or false.
 ### -InterfaceType
 
 Specifies one or more interface types to test.
-Defaults to `[System.Net.NetworkInformation.NetworkInterfaceType]::Ethernet`.
+Defaults to `Ethernet` and `Wireless80211` (Wi-Fi).
 
 ```yaml
 Type: NetworkInterfaceType[]
@@ -45,7 +45,7 @@ Accepted values: Unknown, Ethernet, TokenRing, Fddi, BasicIsdn, PrimaryIsdn, Ppp
 
 Required: False
 Position: 1
-Default value: Ethernet
+Default value: ([System.Net.NetworkInformation.NetworkInterfaceType]::Ethernet, [System.Net.NetworkInformation.NetworkInterfaceType]::Wireless80211)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
