@@ -7,17 +7,17 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Tests for an active local network connection, excluding wireless and virtual network adapters.
+Tests for an active local network connection; ethernet by default but can test for one or more connection types.
 
 ## SYNTAX
 
 ```powershell
-Test-ADTNetworkConnection [<CommonParameters>]
+Test-ADTNetworkConnection [[-InterfaceType] <NetworkInterfaceType[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Tests for an active local network connection, excluding wireless and virtual network adapters, by querying the Win32_NetworkAdapter WMI class.
+Tests for an active local network connection via Get-NetAdapter; ethernet by default but can test for one or more connection types.
 This function checks if any physical network adapter is in the 'Up' status.
 
 ## EXAMPLES
@@ -31,6 +31,24 @@ Test-ADTNetworkConnection
 Checks if there is an active wired network connection and returns true or false.
 
 ## PARAMETERS
+
+### -InterfaceType
+
+Specifies one or more interface types to test.
+Defaults to `[System.Net.NetworkInformation.NetworkInterfaceType]::Ethernet`.
+
+```yaml
+Type: NetworkInterfaceType[]
+Parameter Sets: (All)
+Aliases:
+Accepted values: Unknown, Ethernet, TokenRing, Fddi, BasicIsdn, PrimaryIsdn, Ppp, Loopback, Ethernet3Megabit, Slip, Atm, GenericModem, FastEthernetT, Isdn, FastEthernetFx, Wireless80211, AsymmetricDsl, RateAdaptDsl, SymmetricDsl, VeryHighSpeedDsl, IPOverAtm, GigabitEthernet, Tunnel, MultiRateSymmetricDsl, HighPerformanceSerialBus, Wman, Wwanpp, Wwanpp2
+
+Required: False
+Position: 1
+Default value: Ethernet
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 

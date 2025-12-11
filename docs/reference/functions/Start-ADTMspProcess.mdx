@@ -14,23 +14,31 @@ Executes an MSP file using the same logic as Start-ADTMsiProcess.
 ### None (Default)
 
 ```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-LoggingOptions <String>]
- [-LogFileName <String>] [-ExpandEnvironmentVariables] [<CommonParameters>]
+Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-SuccessExitCodes <Int32[]>]
+ [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### RunAsActiveUser
 
 ```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-LoggingOptions <String>]
- [-LogFileName <String>] -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-DenyUserTermination] [-ExpandEnvironmentVariables] [<CommonParameters>]
+Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ -RunAsActiveUser <RunAsActiveUser> [-UseLinkedAdminToken] [-UseHighestAvailableToken]
+ [-InheritEnvironmentVariables] [-DenyUserTermination] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
+ [-LogFileName <String>] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken
 
 ```powershell
-Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-LoggingOptions <String>]
- [-LogFileName <String>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables] [<CommonParameters>]
+Start-ADTMspProcess -FilePath <String> [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-UseUnelevatedToken] [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>]
+ [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -93,38 +101,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -LoggingOptions
+### -SecureArgumentList
 
-Overrides the default logging options specified in the config.psd1 file.
+Hides all parameters passed to the MSI or MSP file from the toolkit log file.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: [System.Management.Automation.Language.NullString]::Value
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LogFileName
-
-Overrides the default log file name.
-The default log file name is generated from the MSI file name.
-If LogFileName does not end in .log, it will be automatically appended.
-
-For uninstallations, by default the product code is resolved to the DisplayName and version of the application.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: [System.Management.Automation.Language.NullString]::Value
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -229,6 +217,175 @@ Accept wildcard characters: False
 ### -ExpandEnvironmentVariables
 
 Specifies whether to expand any Windows/DOS-style environment variables in the specified FilePath/ArgumentList.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoggingOptions
+
+Overrides the default logging options specified in the config.psd1 file.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LogFileName
+
+Overrides the default log file name.
+The default log file name is generated from the MSI file name.
+If LogFileName does not end in .log, it will be automatically appended.
+
+For uninstallations, by default the product code is resolved to the DisplayName and version of the application.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SuccessExitCodes
+
+List of exit codes to be considered successful.
+Defaults to values set during ADTSession initialization, otherwise: 0
+
+```yaml
+Type: Int32[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RebootExitCodes
+
+List of exit codes to indicate a reboot is required.
+Defaults to values set during ADTSession initialization, otherwise: 1641, 3010
+
+```yaml
+Type: Int32[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IgnoreExitCodes
+
+List the exit codes to ignore or * to ignore all exit codes.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PriorityClass
+
+Specifies priority class for the process.
+Options: Idle, Normal, High, AboveNormal, BelowNormal, RealTime.
+
+```yaml
+Type: ProcessPriorityClass
+Parameter Sets: (All)
+Aliases:
+Accepted values: Normal, Idle, High, RealTime, BelowNormal, AboveNormal
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExitOnProcessFailure
+
+Automatically closes the active deployment session via Close-ADTSession in the event the process exits with a non-success or non-ignored exit code.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoDesktopRefresh
+
+If specifies, doesn't refresh the desktop and environment after successful MSI installation.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoWait
+
+Immediately continue after executing the process.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+
+Returns ExitCode, StdOut, and StdErr output from the process.
+Note that a failed execution will only return an object if either `-ErrorAction` is set to `SilentlyContinue`/`Ignore`, or if `-IgnoreExitCodes`/`-SuccessExitCodes` are used.
 
 ```yaml
 Type: SwitchParameter
