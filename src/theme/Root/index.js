@@ -15,8 +15,8 @@ export default function Root({ children }) {
   return (
     <>
       {children}
-      // Disabling sidebar for now
-      // <EventsSidebar />
+      {/* Disabling sidebar for now */}
+      {/* <EventsSidebar /> */}
     </>
   );
 }
