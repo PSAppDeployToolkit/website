@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import EventsSidebar from '../../components/EventsSidebar';
+// import EventsSidebar from '../../components/EventsSidebar';
 
 export default function Root({ children }) {
   useEffect(() => {
@@ -15,7 +15,8 @@ export default function Root({ children }) {
   return (
     <>
       {children}
-      <EventsSidebar />
+      // Disabling sidebar for now
+      // <EventsSidebar />
     </>
   );
 }
