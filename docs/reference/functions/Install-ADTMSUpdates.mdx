@@ -8,40 +8,37 @@ hide_table_of_contents: false
 ## SYNOPSIS
 
 Install all Microsoft Updates in a given directory.
-This function has been deprecated and will be removed from PSAppDeployToolkit 4.2.0.
 
 ## SYNTAX
 
 ```powershell
-Install-ADTMSUpdates [-Directory] <String> [<CommonParameters>]
+Install-ADTMSUpdates [-LiteralPath] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Install all Microsoft Updates of type ".exe", ".msu", or ".msp" in a given directory (recursively search directory).
-The function will check if the update is already installed and skip it if it is.
-It handles older redistributables and different types of updates appropriately.
+Install all Microsoft Updates of type ".msu" in a given directory (recursively searches directory).
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Install-ADTMSUpdates -Directory "$($adtSession.DirFiles)\MSUpdates"
+Install-ADTMSUpdates -LiteralPath "$($adtSession.DirFiles)\MSUpdates"
 ```
 
 Installs all Microsoft Updates found in the specified directory.
 
 ## PARAMETERS
 
-### -Directory
+### -LiteralPath
 
 Directory containing the updates.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Directory
 
 Required: True
 Position: 1
