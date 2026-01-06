@@ -12,7 +12,7 @@ Set current user registry settings for all current users and any new users in th
 ## SYNTAX
 
 ```powershell
-Invoke-ADTAllUsersRegistryAction [-ScriptBlock] <ScriptBlock[]> [-UserProfiles <UserProfileInfo[]>]
+Invoke-ADTAllUsersRegistryAction [-ScriptBlock] <ScriptBlock[]> [-UserProfiles <UserProfile[]>]
  [-SkipUnloadedProfiles] [<CommonParameters>]
 ```
 
@@ -88,7 +88,7 @@ Specify the user profiles to modify HKCU registry settings for.
 Default is all user profiles except for system profiles.
 
 ```yaml
-Type: UserProfileInfo[]
+Type: UserProfile[]
 Parameter Sets: (All)
 Aliases:
 
