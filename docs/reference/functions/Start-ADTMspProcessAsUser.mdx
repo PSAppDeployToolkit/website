@@ -1,0 +1,374 @@
+---
+id: Start-ADTMspProcessAsUser
+title: Start-ADTMspProcessAsUser
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Executes an MSP file using the same logic as Start-ADTMsiProcess.
+
+## SYNTAX
+
+```powershell
+Start-ADTMspProcessAsUser [[-Username] <NTAccount>] [-FilePath] <String> [[-AdditionalArgumentList] <String[]>]
+ [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
+ [-ExpandEnvironmentVariables] [[-LoggingOptions] <String>] [[-LogFileName] <String>]
+ [[-SuccessExitCodes] <Int32[]>] [[-RebootExitCodes] <Int32[]>] [[-IgnoreExitCodes] <String[]>]
+ [[-PriorityClass] <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru]
+ [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Reads SummaryInfo targeted product codes in MSP file and determines if the MSP file applies to any installed products.
+If a valid installed product is found, triggers the Start-ADTMsiProcess function to patch the installation.
+
+Uses default config MSI parameters.
+You can use -AdditionalArgumentList to add additional parameters.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Start-ADTMspProcessAsUser -FilePath 'Adobe_Reader_11.0.3_EN.msp'
+```
+
+Executes the specified MSP file for Adobe Reader 11.0.3.
+
+### EXAMPLE 2
+
+```powershell
+Start-ADTMspProcessAsUser -FilePath 'AcroRdr2017Upd1701130143_MUI.msp' -AdditionalArgumentList 'ALLUSERS=1'
+```
+
+Executes the specified MSP file for Acrobat Reader 2017 with additional parameters.
+
+## PARAMETERS
+
+### -Username
+
+A username to invoke the process as.
+Only supported while running as the SYSTEM account.
+
+```yaml
+Type: NTAccount
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: $RunAsActiveUser.UserName
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FilePath
+
+Path to the MSP file.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AdditionalArgumentList
+
+Additional parameters.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UseLinkedAdminToken
+
+Use a user's linked administrative token while running the process under their context.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UseHighestAvailableToken
+
+Use a user's linked administrative token if it's available while running the process under their context.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InheritEnvironmentVariables
+
+Specifies whether the process running as a user should inherit the SYSTEM account's environment variables.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DenyUserTermination
+
+Specifies that users cannot terminate the process started in their context.
+The user will still be able to terminate the process if they're an administrator, though.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExpandEnvironmentVariables
+
+Specifies whether to expand any Windows/DOS-style environment variables in the specified FilePath/ArgumentList.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoggingOptions
+
+Overrides the default logging options specified in the config.psd1 file.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LogFileName
+
+Overrides the default log file name.
+The default log file name is generated from the MSI file name.
+If LogFileName does not end in .log, it will be automatically appended.
+
+For uninstallations, by default the product code is resolved to the DisplayName and version of the application.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: [System.Management.Automation.Language.NullString]::Value
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SuccessExitCodes
+
+List of exit codes to be considered successful.
+Defaults to values set during ADTSession initialization, otherwise: 0
+
+```yaml
+Type: Int32[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RebootExitCodes
+
+List of exit codes to indicate a reboot is required.
+Defaults to values set during ADTSession initialization, otherwise: 1641, 3010
+
+```yaml
+Type: Int32[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 7
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IgnoreExitCodes
+
+List the exit codes to ignore or * to ignore all exit codes.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 8
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PriorityClass
+
+Specifies priority class for the process.
+Options: Idle, Normal, High, AboveNormal, BelowNormal, RealTime.
+
+```yaml
+Type: ProcessPriorityClass
+Parameter Sets: (All)
+Aliases:
+Accepted values: Normal, Idle, High, RealTime, BelowNormal, AboveNormal
+
+Required: False
+Position: 9
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExitOnProcessFailure
+
+Automatically closes the active deployment session via Close-ADTSession in the event the process exits with a non-success or non-ignored exit code.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoDesktopRefresh
+
+If specifies, doesn't refresh the desktop and environment after successful MSI installation.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoWait
+
+Immediately continue after executing the process.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+
+Returns ExitCode, StdOut, and StdErr output from the process.
+Note that a failed execution will only return an object if either `-ErrorAction` is set to `SilentlyContinue`/`Ignore`, or if `-IgnoreExitCodes`/`-SuccessExitCodes` are used.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not generate any output.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Start-ADTMspProcessAsUser](https://psappdeploytoolkit.com/docs/reference/functions/Start-ADTMspProcessAsUser)

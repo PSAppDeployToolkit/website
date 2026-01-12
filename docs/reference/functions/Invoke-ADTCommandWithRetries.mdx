@@ -13,8 +13,8 @@ Drop-in replacement for any cmdlet/function where a retry is desirable due to tr
 
 ```powershell
 Invoke-ADTCommandWithRetries [-Command] <Object> [-Retries <UInt32>] [-SleepDuration <TimeSpan>]
- [-MaximumElapsedTime <TimeSpan>] [-Parameters <System.Collections.Generic.IReadOnlyList`1[System.Object]>]
- [<CommonParameters>]
+ [-MaximumElapsedTime <TimeSpan>] [-SleepSeconds <UInt32>]
+ [-Parameters <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -115,6 +115,23 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SleepSeconds
+
+This parameter is obsolete and will be removed in PSAppDeployToolkit 4.2.0.
+Please use `-SleepDuration` instead.
+
+```yaml
+Type: UInt32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 5
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
