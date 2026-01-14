@@ -24,12 +24,6 @@ Get-ADTUserProfiles [-ExcludeNTAccount <NTAccount[]>] [-IncludeSystemProfiles] [
 Get-ADTUserProfiles [-FilterScript] <ScriptBlock> [-LoadProfilePaths] [<CommonParameters>]
 ```
 
-### Specific
-
-```powershell
-Get-ADTUserProfiles -SID <SecurityIdentifier[]> [-LoadProfilePaths] [<CommonParameters>]
-```
-
 ## DESCRIPTION
 
 Get the User Profile Path, User Account SID, and the User Account Name for all users that log onto the machine and also the Default User (which does not log on).
@@ -76,22 +70,6 @@ Aliases:
 
 Required: True
 Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SID
-
-Specifies the SID to get rather than returning all user profiles.
-
-```yaml
-Type: SecurityIdentifier[]
-Parameter Sets: Specific
-Aliases:
-
-Required: True
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -205,9 +183,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### PSADT.Types.UserProfileInfo
+### PSADT.Types.UserProfile
 
-### Returns a PSADT.Types.UserProfileInfo object with the following properties:
+### Returns a PSADT.Types.UserProfile object with the following properties:
 ### - NTAccount
 ### - SID
 ### - ProfilePath
