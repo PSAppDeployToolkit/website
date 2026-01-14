@@ -25,7 +25,7 @@ Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePa
 ```powershell
 Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
  [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- -UserProfiles <UserProfile[]> [-ContinueFileCopyOnError] [<CommonParameters>]
+ -UserProfiles <UserProfileInfo[]> [-ContinueFileCopyOnError] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -204,7 +204,7 @@ Accept wildcard characters: False
 Specifies one or more UserProfile objects to copy files into.
 
 ```yaml
-Type: UserProfile[]
+Type: UserProfileInfo[]
 Parameter Sets: SpecifiedProfiles
 Aliases:
 
