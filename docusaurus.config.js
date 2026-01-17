@@ -194,7 +194,7 @@ const config = {
               },
               {
                 label: 'Documentation',
-                to: 'https://psappdeploytoolkit.com/docs',
+                to: 'https://psappdeploytoolkit.com/docs/introduction',
               },
               {
                 label: 'Reference',
