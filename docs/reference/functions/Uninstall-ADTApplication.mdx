@@ -14,11 +14,11 @@ Removes one or more applications specified by name, filter script, or InstalledA
 ### InstalledApplication
 
 ```powershell
-Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-ArgumentList <String[]>]
- [-AdditionalArgumentList <String[]>] [-SecureArgumentList] [-LoggingOptions <String>] [-LogFileName <String>]
- [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
- [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-ExitOnProcessFailure] [-PassThru]
- [<CommonParameters>]
+Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-ForceUninstallString]
+ [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-LoggingOptions <String>] [-LogFileName <String>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
+ [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
+ [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
 ```
 
 ### Search
@@ -26,7 +26,7 @@ Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-Argume
 ```powershell
 Uninstall-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode <Guid[]>]
  [-ApplicationType <String>] [-IncludeUpdatesAndHotfixes] [[-FilterScript] <ScriptBlock>]
- [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
+ [-ForceUninstallString] [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
  [-LoggingOptions <String>] [-LogFileName <String>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
  [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
@@ -37,6 +37,9 @@ Uninstall-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode 
 Removes one or more applications specified by name, filter script, or InstalledApplication object from Get-ADTApplication.
 
 Enumerates the registry for installed applications via Get-ADTApplication, matching the specified application name and uninstalls that application using its uninstall string, with the ability to specify additional uninstall parameters also.
+
+The application will be uninstalled using its QuietUninstallString where possible.
+If it doesn't exist, is null, is invalid, or `-ForceUninstallString` is specified, the UninstallString will be used.
 
 ## EXAMPLES
 
@@ -180,6 +183,22 @@ Aliases:
 Required: False
 Position: 1
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ForceUninstallString
+
+Forcibly uses the UninstallString instead of QuietUninstallString.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
