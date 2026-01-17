@@ -15,7 +15,8 @@ Get the User Profile Path, User Account SID, and the User Account Name for all u
 
 ```powershell
 Get-ADTUserProfiles [-ExcludeNTAccount <NTAccount[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles]
- [-IncludeIISAppPoolProfiles] [-ExcludeDefaultUser] [-LoadProfilePaths] [<CommonParameters>]
+ [-IncludeIISAppPoolProfiles] [-IncludeEpmProfiles] [-ExcludeDefaultUser] [-LoadProfilePaths]
+ [<CommonParameters>]
 ```
 
 ### FilterScript
@@ -148,6 +149,23 @@ Accept wildcard characters: False
 ### -IncludeIISAppPoolProfiles
 
 Include IIS AppPool profiles.
+Excluded by default as they don't parse well.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: All
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeEpmProfiles
+
+Include Endpoint Privilege Management (EPM) profiles.
 Excluded by default as they don't parse well.
 
 ```yaml
