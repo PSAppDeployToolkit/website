@@ -80,6 +80,7 @@ module.exports = [
     'commands/Out-ADTPowerShellEncodedCommand',
     'commands/Register-ADTDll',
     'commands/Remove-ADTContentFromCache',
+    'commands/Remove-ADTDesktopShortcut',
     'commands/Remove-ADTEdgeExtension',
     'commands/Remove-ADTEnvironmentVariable',
     'commands/Remove-ADTFile',

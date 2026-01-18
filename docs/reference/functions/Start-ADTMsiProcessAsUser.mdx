@@ -20,7 +20,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -FilePath <
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### FilePath
@@ -33,7 +34,7 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -FilePath <
  [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ProductCode_NoWait
@@ -45,7 +46,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -ProductCod
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### ProductCode
@@ -58,7 +60,7 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -ProductCod
  [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### InstalledApplication_NoWait
@@ -70,7 +72,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
  [-ExpandEnvironmentVariables] [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>]
  [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### InstalledApplication
@@ -83,8 +86,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
  [-ExpandEnvironmentVariables] [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>]
  [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru]
- [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -641,6 +644,39 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -660,6 +696,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### - StdErr
 ## NOTES
 An active ADT session is NOT required to use this function.
+
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

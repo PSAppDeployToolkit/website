@@ -18,7 +18,7 @@ Uninstall-ADTApplication -InstalledApplication <InstalledApplication[]> [-ForceU
  [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
  [-LoggingOptions <String>] [-LogFileName <String>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Search
@@ -29,7 +29,7 @@ Uninstall-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode 
  [-ForceUninstallString] [-ArgumentList <String[]>] [-AdditionalArgumentList <String[]>] [-SecureArgumentList]
  [-LoggingOptions <String>] [-LogFileName <String>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-ExitOnProcessFailure] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -404,6 +404,39 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -425,6 +458,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 An active ADT session is NOT required to use this function.
 
 More reading on how to create filterscripts https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-5.1#description
+
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
