@@ -20,6 +20,8 @@ Set-ADTIniValue [-FilePath] <String> [-Section] <String> [-Key] <String> [-Value
 
 Opens an INI file and sets the value of the specified section and key.
 
+Please note that the INI file provided cannot have a byte order mark (BOM) present as the underlying Win32 API cannot process it correctly.
+
 ## EXAMPLES
 
 ### EXAMPLE 1

@@ -20,6 +20,8 @@ Set-ADTIniSection [-FilePath] <String> [-Section] <String> [-Content] <IDictiona
 
 Opens an INI file and sets the values of the specified section.
 
+Please note that the INI file provided cannot have a byte order mark (BOM) present as the underlying Win32 API cannot process it correctly.
+
 ## EXAMPLES
 
 ### EXAMPLE 1

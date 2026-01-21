@@ -19,6 +19,8 @@ Get-ADTIniSection [-FilePath] <String> [-Section] <String> [<CommonParameters>]
 
 Parses an INI file and returns the specified section as an ordered hashtable of key value pairs.
 
+Please note that the INI file provided cannot have a byte order mark (BOM) present as the underlying Win32 API cannot process it correctly.
+
 ## EXAMPLES
 
 ### EXAMPLE 1
