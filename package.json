@@ -45,7 +45,7 @@
     "@docusaurus/tsconfig": "^3.9.2",
     "@docusaurus/types": "3.9.2",
     "@fec/remark-a11y-emoji": "^4.0.2",
-    "@types/node": "^25.0.9",
+    "@types/node": "^25.0.10",
     "@types/react": "^19.2.9",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.53.1",
