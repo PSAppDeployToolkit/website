@@ -1,48 +1,51 @@
 ---
-id: Get-ADTSession
-title: Get-ADTSession
+id: New-ADTLogFileName
+title: New-ADTLogFileName
 hide_title: false
 hide_table_of_contents: false
 ---
 
 ## SYNOPSIS
 
-Retrieves the most recent ADT session.
+Generates a new log file name based off the current deployment session's properties.
 
 ## SYNTAX
 
 ```powershell
-Get-ADTSession [<CommonParameters>]
+New-ADTLogFileName [-Discriminator] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The Get-ADTSession function returns the most recent session from the ADT module data.
-If no sessions are found, it throws an error indicating that an ADT session should be opened using Open-ADTSession before calling this function.
+Generates a new log file name based off the current deployment session's properties, using the same default format that PSAppDeployTookit uses itself.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Get-ADTSession
+New-ADTLogFileName -Discriminator Setup
 ```
 
-This example retrieves the most recent ADT session.
-
-### EXAMPLE 2
-
-```powershell
-$adtSession = Get-ADTSession
-...
-Close-ADTSession
-$adtSession.GetExitCode()
-```
-
-
-This example retrieves the given deployment session's exit code after the session has closed.
+This example returns a pre-formatted string that can be used as a log file name.
 
 ## PARAMETERS
+
+### -Discriminator
+
+The identifier to pre-format the log file name with.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 
@@ -55,9 +58,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### PSAppDeployToolkit.SessionManagement.DeploymentSession
+### System.String
 
-### Returns the most recent session object from the ADT module data.
+### Returns a pre-formatted string with the specified discriminator.
 ## NOTES
 An active ADT session is required to use this function.
 
@@ -70,4 +73,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTSession](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTSession)
+[https://psappdeploytoolkit.com/docs/reference/functions/New-ADTLogFileName](https://psappdeploytoolkit.com/docs/reference/functions/New-ADTLogFileName)
