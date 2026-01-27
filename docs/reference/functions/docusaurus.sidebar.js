@@ -71,7 +71,6 @@ module.exports = [
     'commands/Mount-ADTWimFile',
     'commands/New-ADTErrorRecord',
     'commands/New-ADTFolder',
-    'commands/New-ADTLogFileName',
     'commands/New-ADTMsiTransform',
     'commands/New-ADTShortcut',
     'commands/New-ADTTemplate',
