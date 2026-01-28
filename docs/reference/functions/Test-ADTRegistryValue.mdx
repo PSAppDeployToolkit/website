@@ -12,8 +12,7 @@ Test if a registry value exists.
 ## SYNTAX
 
 ```powershell
-Test-ADTRegistryValue [-Key] <String> [-Name] <Object> [[-SID] <SecurityIdentifier>] [-Wow6432Node]
- [<CommonParameters>]
+Test-ADTRegistryValue [-Key] <String> [-Name] <Object> [[-SID] <String>] [-Wow6432Node] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -73,13 +72,13 @@ Specifying this parameter will convert a HKEY_CURRENT_USER registry key to the H
 Specify this parameter from the Invoke-ADTAllUsersRegistryAction function to read/edit HKCU registry settings for all users on the system.
 
 ```yaml
-Type: SecurityIdentifier
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: 3
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
