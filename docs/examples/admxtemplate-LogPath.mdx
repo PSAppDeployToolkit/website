@@ -17,7 +17,7 @@ tags:
 In this example, we will create a Group Policy Object to define the log path for our PSADT 4.1.x package deployments.
 
 This provides the benefit of:
-- Standardizing your PSADT deployments logging location
+- Standardizing your PSADT deployment logging location
 - Not having to config each deployment package with the correct log path
 
 Assumptions:
@@ -70,14 +70,14 @@ Computer Configuration
 
 ## Link the GPO
 
-Now that we have the GPO created and configured, lets Link it to the domain or desired OU.
+Now that we have the GPO created and configured, lets link it to the domain or desired OU.
 
 - Navigate to the Desired location you want to link the GPO
 - Right-Click and select `Link an Existing GPO...`
 
 ![Link Policy](../images/example-admx-LogPath-05-GPO-new.png)
 
-- Select the previous created and configured policy and then click `OK`
+- Select the previously created and configured policy and then click `OK`
 
 ![Select Link Policy](../images/example-admx-LogPath-06-GPO-new.png)
 
@@ -87,7 +87,7 @@ Now that we have the GPO created and configured, lets Link it to the domain or d
 
 ## Update Group Policy
 
-On a machine that is scoped for the police, run the below command to update Group Policy
+On a machine that is scoped for the policy, run the below command to update Group Policy
 
 ```
 gpupdate /force
@@ -117,7 +117,7 @@ Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\PSAppDeployToolkit\Config\Toolkit
 
 ## Run a Deployment
 
-Now when a deployment is ran, PSAppDeployToolkit will import any settings in Group Policy as it initializes.
+Now when a deployment is run, PSAppDeployToolkit will import any settings in Group Policy as it initializes.
 
 Below we can see that the deployment is running and the log file was created in the `ProgramData\Microsoft\IntuneManagementExtension\Logs` folder
 
