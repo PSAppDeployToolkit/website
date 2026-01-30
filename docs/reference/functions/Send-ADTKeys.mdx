@@ -43,20 +43,12 @@ Send the sequence of keys "Hello world" to the application titled "foobar - Note
 ### EXAMPLE 2
 
 ```powershell
-Send-ADTKeys -WindowTitle 'foobar - Notepad' -Keys 'Hello world' WaitDuration 00:00:05
-```
-
-Send the sequence of keys "Hello world" to the application titled "foobar - Notepad" and wait 5 seconds.
-
-### EXAMPLE 3
-
-```powershell
 Send-ADTKeys -WindowTitle 'foobar - Notepad' -Keys 'Hello world' WaitDuration (New-TimeSpan -Seconds 5)
 ```
 
 Send the sequence of keys "Hello world" to the application titled "foobar - Notepad" and wait 5 seconds.
 
-### EXAMPLE 4
+### EXAMPLE 3
 
 ```powershell
 Send-ADTKeys -WindowHandle ([IntPtr]17368294) -Keys 'Hello World'

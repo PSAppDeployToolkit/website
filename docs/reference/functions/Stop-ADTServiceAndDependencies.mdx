@@ -40,22 +40,6 @@ Stop-ADTServiceAndDependencies -Name 'wuauserv'
 
 Stops the Windows Update service and its dependencies.
 
-### EXAMPLE 2
-
-```powershell
-Stop-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait 00:01:00
-```
-
-Stops the Windows Update service and its dependencies, waiting 1 minute for the service to stop.
-
-### EXAMPLE 3
-
-```powershell
-Stop-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait (New-TimeSpan -Minutes 1)
-```
-
-Stops the Windows Update service and its dependencies, waiting 1 minute for the service to stop.
-
 ## PARAMETERS
 
 ### -Name
