@@ -14,33 +14,17 @@ Copy one or more items to each user profile on the system.
 ### CalculatedProfiles (Default)
 
 ```powershell
-Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten]
- [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles] [-ExcludeDefaultUser]
- [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### Path
-
-```powershell
 Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
  [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### LiteralPath
-
-```powershell
-Copy-ADTFileToUserProfiles [-LiteralPath] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
- [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
+ [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles] [-ExcludeDefaultUser]
  [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### SpecifiedProfiles
 
 ```powershell
-Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten]
- [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
+Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
+ [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
  -UserProfiles <UserProfileInfo[]> [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -91,30 +75,14 @@ The path of the file or folder to copy.
 
 ```yaml
 Type: String[]
-Parameter Sets: Path
-Aliases:
-
-Required: True
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: True
-```
-
-### -LiteralPath
-
-The literal path of the file or folder to copy.
-
-```yaml
-Type: String[]
-Parameter Sets: LiteralPath
+Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 2
 Default value: None
 Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -Destination
@@ -369,7 +337,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String[]
 
-### You can pipe in string values for $LiteralPath.
+### You can pipe in string values for $Path.
 ## OUTPUTS
 
 ### None
