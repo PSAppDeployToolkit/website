@@ -11,8 +11,18 @@ Copies files and directories from a source to a destination.
 
 ## SYNTAX
 
+### Path
+
 ```powershell
 Copy-ADTFile [-Path] <String[]> [-Destination] <String> [-Recurse] [-Flatten] [-ContinueFileCopyOnError]
+ [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### LiteralPath
+
+```powershell
+Copy-ADTFile [-LiteralPath] <String[]> [-Destination] <String> [-Recurse] [-Flatten] [-ContinueFileCopyOnError]
  [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
@@ -65,7 +75,7 @@ Multiple paths can be specified.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: Path
 Aliases:
 
 Required: True
@@ -73,6 +83,23 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: True
+```
+
+### -LiteralPath
+
+Literal path of the file to copy.
+Multiple paths can be specified.
+
+```yaml
+Type: String[]
+Parameter Sets: LiteralPath
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
 ```
 
 ### -Destination
