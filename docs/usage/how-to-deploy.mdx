@@ -35,8 +35,8 @@ The following parameters are accepted by `Invoke-AppDeployToolkit.ps1` and `Invo
 
 | Parameter | Values | Description |
 | --------- | ------ | ----------- |
-| `-DeploymentType`| Install&nbsp;*(default)*<br/>Uninstall<br/>Repair | Specifies the deployment type. |
-| `-DeployMode` | Interactive&nbsp;*(default)*<br/>Silent<br/>NonInteractive | Controls dialog display behavior. NonInteractive allows progress dialogs but suppresses any UI elements requiring interaction. |
+| `-DeploymentType` | Install&nbsp;*(default)*<br/>Uninstall<br/>Repair | Specifies the deployment type. |
+| `-DeployMode` | Auto&nbsp;*(default)*<br/>Interactive<br/>Silent<br/>NonInteractive | Controls dialog display behavior. NonInteractive allows progress dialogs but suppresses any UI elements requiring interaction. |
 | <span style={{whiteSpace: "nowrap"}}>`-SuppressRebootPassThru`</span> | | Suppresses return of 3010 'Reboot Required' exit codes and returns 0 instead. |
 | `-TerminalServerMode` | | Changes to user install mode for RDS/Citrix servers. |
 | `-DisableLogging` | | Disables logging to file. |
@@ -49,7 +49,6 @@ In addition, Invoke-AppDeployToolkit.exe supports the following parameters:
 | `/32` | | Launches the script using PowerShell x86. This is useful for compatibility with x86 libraries or components. |
 | `/Core` | | Launches the script using PowerShell Core (pwsh.exe). |
 | `-File` | *.ps1 | Specify a custom script file to run instead of the default Invoke-AppDeployToolkit.ps1. |
-| `*.ps1` | | Specify a custom script file to run instead of the default Invoke-AppDeployToolkit.ps1. |
 
 ### Examples
 
