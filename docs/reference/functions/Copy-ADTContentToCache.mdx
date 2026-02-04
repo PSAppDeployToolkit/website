@@ -46,7 +46,7 @@ Aliases: Path, PSPath
 
 Required: False
 Position: 1
-Default value: "$((Get-ADTConfig).Toolkit.CachePath)\\$((Get-ADTSession).InstallName)"
+Default value: "$((& $Script:CommandTable.'Get-ADTConfig').Toolkit.CachePath)\\$((& $Script:CommandTable.'Get-ADTSession').InstallName)"
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
