@@ -1,6 +1,6 @@
 ---
-id: Get-ADTEnvironmentTable
-title: Get-ADTEnvironmentTable
+id: Get-ADTEnvironment
+title: Get-ADTEnvironment
 hide_title: false
 hide_table_of_contents: false
 ---
@@ -8,25 +8,28 @@ hide_table_of_contents: false
 ## SYNOPSIS
 
 Retrieves the environment data for the ADT module.
+This function has been replaced by [Get-ADTEnvironmentTable]. Please migrate your scripts as this will be removed in PSAppDeployToolkit 4.2.0.
 
 ## SYNTAX
 
 ```powershell
-Get-ADTEnvironmentTable [<CommonParameters>]
+Get-ADTEnvironment [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The Get-ADTEnvironmentTable function retrieves the environment data for the ADT module.
+The Get-ADTEnvironment function retrieves the environment data for the ADT module.
 This function ensures that the ADT module has been initialized before attempting to retrieve the environment data.
 If the module is not initialized, it throws an error.
+
+This function has been replaced by [Get-ADTEnvironmentTable]. Please migrate your scripts as this will be removed in PSAppDeployToolkit 4.2.0.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-$environment = Get-ADTEnvironmentTable
+$environment = Get-ADTEnvironment
 ```
 
 This example retrieves the environment data for the ADT module and stores it in the $environment variable.
@@ -57,4 +60,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTEnvironmentTable](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTEnvironmentTable)
+[https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTEnvironment](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTEnvironment)

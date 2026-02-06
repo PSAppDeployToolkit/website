@@ -11,20 +11,9 @@ Copies files and directories from a source to a destination.
 
 ## SYNTAX
 
-### Path
-
 ```powershell
 Copy-ADTFile [-Path] <String[]> [-Destination] <String> [-Recurse] [-Flatten] [-ContinueFileCopyOnError]
- [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
-```
-
-### LiteralPath
-
-```powershell
-Copy-ADTFile [-LiteralPath] <String[]> [-Destination] <String> [-Recurse] [-Flatten] [-ContinueFileCopyOnError]
- [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,7 +34,7 @@ Copies the file 'file.txt' from 'C:\Path' to 'D:\Destination'.
 ### EXAMPLE 2
 
 ```powershell
-Copy-ADTFile -Path 'C:\Path\Folder' -Destination 'D:\Destination' -Recurse
+Copy-ADTFile -Path 'C:\Path\Folder' -Destination 'D:\Destination\Folder' -Recurse
 ```
 
 Recursively copies the folder 'Folder' from 'C:\Path' to 'D:\Destination'.
@@ -75,7 +64,7 @@ Multiple paths can be specified.
 
 ```yaml
 Type: String[]
-Parameter Sets: Path
+Parameter Sets: (All)
 Aliases:
 
 Required: True
@@ -83,23 +72,6 @@ Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: True
-```
-
-### -LiteralPath
-
-Literal path of the file to copy.
-Multiple paths can be specified.
-
-```yaml
-Type: String[]
-Parameter Sets: LiteralPath
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
 ```
 
 ### -Destination
@@ -217,39 +189,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WhatIf
-
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -267,11 +206,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
-
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

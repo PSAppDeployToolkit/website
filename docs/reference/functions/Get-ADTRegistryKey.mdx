@@ -14,14 +14,14 @@ Retrieves value names and value data for a specified registry key or optionally,
 ### Path
 
 ```powershell
-Get-ADTRegistryKey -Path <String> [-Name <String>] [-Wow6432Node] [-SID <SecurityIdentifier>]
- [-ReturnEmptyKeyIfExists] [-DoNotExpandEnvironmentNames] [<CommonParameters>]
+Get-ADTRegistryKey -Path <String> [-Name <String>] [-Wow6432Node] [-SID <String>] [-ReturnEmptyKeyIfExists]
+ [-DoNotExpandEnvironmentNames] [<CommonParameters>]
 ```
 
 ### LiteralPath
 
 ```powershell
-Get-ADTRegistryKey -LiteralPath <String> [-Name <String>] [-Wow6432Node] [-SID <SecurityIdentifier>]
+Get-ADTRegistryKey -LiteralPath <String> [-Name <String>] [-Wow6432Node] [-SID <String>]
  [-ReturnEmptyKeyIfExists] [-DoNotExpandEnvironmentNames] [<CommonParameters>]
 ```
 
@@ -148,13 +148,13 @@ Specifying this parameter will convert a HKEY_CURRENT_USER registry key to the H
 Specify this parameter from the Invoke-ADTAllUsersRegistryAction function to read/edit HKCU registry settings for all users on the system.
 
 ```yaml
-Type: SecurityIdentifier
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: [System.Management.Automation.Language.NullString]::Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -210,7 +210,7 @@ An active ADT session is NOT required to use this function.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
