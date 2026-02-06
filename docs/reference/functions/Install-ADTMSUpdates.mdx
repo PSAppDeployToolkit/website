@@ -8,43 +8,73 @@ hide_table_of_contents: false
 ## SYNOPSIS
 
 Install all Microsoft Updates in a given directory.
-This function has been deprecated and will be removed from PSAppDeployToolkit 4.2.0.
 
 ## SYNTAX
 
 ```powershell
-Install-ADTMSUpdates [-Directory] <String> [<CommonParameters>]
+Install-ADTMSUpdates [-LiteralPath] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Install all Microsoft Updates of type ".exe", ".msu", or ".msp" in a given directory (recursively search directory).
-The function will check if the update is already installed and skip it if it is.
-It handles older redistributables and different types of updates appropriately.
+Install all Microsoft Updates of type ".msu" in a given directory (recursively searches directory).
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Install-ADTMSUpdates -Directory "$($adtSession.DirFiles)\MSUpdates"
+Install-ADTMSUpdates -LiteralPath "$($adtSession.DirFiles)\MSUpdates"
 ```
 
 Installs all Microsoft Updates found in the specified directory.
 
 ## PARAMETERS
 
-### -Directory
+### -LiteralPath
 
 Directory containing the updates.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Directory
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -67,9 +97,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

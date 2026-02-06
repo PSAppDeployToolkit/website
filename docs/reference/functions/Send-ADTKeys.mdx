@@ -14,15 +14,13 @@ Send a sequence of keys to one or more application windows.
 ### WindowTitle
 
 ```powershell
-Send-ADTKeys -WindowTitle <String> -Keys <String> [-WaitSeconds <Int32>] [-WaitDuration <TimeSpan>]
- [<CommonParameters>]
+Send-ADTKeys -WindowTitle <String> -Keys <String> [-WaitDuration <TimeSpan>] [<CommonParameters>]
 ```
 
 ### WindowHandle
 
 ```powershell
-Send-ADTKeys -WindowHandle <IntPtr> -Keys <String> [-WaitSeconds <Int32>] [-WaitDuration <TimeSpan>]
- [<CommonParameters>]
+Send-ADTKeys -WindowHandle <IntPtr> -Keys <String> [-WaitDuration <TimeSpan>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,12 +43,20 @@ Send the sequence of keys "Hello world" to the application titled "foobar - Note
 ### EXAMPLE 2
 
 ```powershell
-Send-ADTKeys -WindowTitle 'foobar - Notepad' -Keys 'Hello world' WaitDuration (New-TimeSpan -Seconds 5)
+Send-ADTKeys -WindowTitle 'foobar - Notepad' -Keys 'Hello world' WaitDuration 00:00:05
 ```
 
 Send the sequence of keys "Hello world" to the application titled "foobar - Notepad" and wait 5 seconds.
 
 ### EXAMPLE 3
+
+```powershell
+Send-ADTKeys -WindowTitle 'foobar - Notepad' -Keys 'Hello world' WaitDuration (New-TimeSpan -Seconds 5)
+```
+
+Send the sequence of keys "Hello world" to the application titled "foobar - Notepad" and wait 5 seconds.
+
+### EXAMPLE 4
 
 ```powershell
 Send-ADTKeys -WindowHandle ([IntPtr]17368294) -Keys 'Hello World'
@@ -109,23 +115,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WaitSeconds
-
-This parameter is obsolete and will be removed in PSAppDeployToolkit 4.2.0.
-Please use `-WaitDuration` instead.
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -WaitDuration
 
 An optional amount of time to wait after the sending of the keys.
@@ -161,7 +150,7 @@ An active ADT session is NOT required to use this function.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

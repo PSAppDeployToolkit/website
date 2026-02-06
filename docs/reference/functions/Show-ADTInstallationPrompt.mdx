@@ -21,14 +21,33 @@ Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAl
  [<CommonParameters>]
 ```
 
-### ShowInputDialog
+### ShowInputDialog_SecureInput
 
 ```powershell
-Show-ADTInstallationPrompt [-RequestInput] [-DefaultValue <String>] -Message <String>
+Show-ADTInstallationPrompt [-RequestInput] [-SecureInput] -Message <String>
  [-MessageAlignment <DialogMessageAlignment>] [-ButtonRightText <String>] [-ButtonLeftText <String>]
  [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
  [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
  [-Timeout <UInt32>] [<CommonParameters>]
+```
+
+### ShowInputDialog_DefaultValue
+
+```powershell
+Show-ADTInstallationPrompt [-RequestInput] -DefaultValue <String> -Message <String>
+ [-MessageAlignment <DialogMessageAlignment>] [-ButtonRightText <String>] [-ButtonLeftText <String>]
+ [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
+ [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
+ [-Timeout <UInt32>] [<CommonParameters>]
+```
+
+### ShowInputDialog
+
+```powershell
+Show-ADTInstallationPrompt [-RequestInput] -Message <String> [-MessageAlignment <DialogMessageAlignment>]
+ [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>]
+ [-WindowLocation <DialogPosition>] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost]
+ [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -87,7 +106,7 @@ Show a text box for the user to provide an answer.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ShowInputDialog
+Parameter Sets: ShowInputDialog_SecureInput, ShowInputDialog_DefaultValue, ShowInputDialog
 Aliases:
 
 Required: True
@@ -103,12 +122,29 @@ The default value to show in the text box.
 
 ```yaml
 Type: String
-Parameter Sets: ShowInputDialog
+Parameter Sets: ShowInputDialog_DefaultValue
 Aliases:
 
-Required: False
+Required: True
 Position: Named
-Default value: [System.Management.Automation.Language.NullString]::Value
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SecureInput
+
+Indicates input should be masked (i.e.
+for password use).
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ShowInputDialog_SecureInput
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -124,7 +160,7 @@ Aliases:
 
 Required: True
 Position: Named
-Default value: [System.Management.Automation.Language.NullString]::Value
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -410,7 +446,7 @@ An active ADT session is NOT required to use this function.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

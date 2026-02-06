@@ -12,7 +12,7 @@ Copies the toolkit content to a cache folder on the local machine and sets the $
 ## SYNTAX
 
 ```powershell
-Copy-ADTContentToCache [[-LiteralPath] <String>] [<CommonParameters>]
+Copy-ADTContentToCache [[-LiteralPath] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -46,7 +46,40 @@ Aliases: Path, PSPath
 
 Required: False
 Position: 1
-Default value: "$((Get-ADTConfig).Toolkit.CachePath)\\$((Get-ADTSession).InstallName)"
+Default value: "$((& $Script:CommandTable.'Get-ADTConfig').Toolkit.CachePath)\\$((& $Script:CommandTable.'Get-ADTSession').InstallName)"
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -75,9 +108,11 @@ Since this cache folder is effectively unmanaged, it is important to cleanup the
 
 This can be done using `Remove-ADTFile -LiteralPath "(Get-ADTConfig).Toolkit.CachePath\$($adtSession.InstallName)" -Recurse -ErrorAction Ignore`.
 
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

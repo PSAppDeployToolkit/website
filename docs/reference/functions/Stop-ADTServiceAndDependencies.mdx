@@ -15,14 +15,14 @@ Stop a Windows service and its dependencies.
 
 ```powershell
 Stop-ADTServiceAndDependencies -Name <String> [-SkipDependentServices] [-PendingStatusWait <TimeSpan>]
- [-PassThru] [<CommonParameters>]
+ [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### InputObject
 
 ```powershell
 Stop-ADTServiceAndDependencies -InputObject <ServiceController> [-SkipDependentServices]
- [-PendingStatusWait <TimeSpan>] [-PassThru] [<CommonParameters>]
+ [-PendingStatusWait <TimeSpan>] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,6 +39,22 @@ Stop-ADTServiceAndDependencies -Name 'wuauserv'
 ```
 
 Stops the Windows Update service and its dependencies.
+
+### EXAMPLE 2
+
+```powershell
+Stop-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait 00:01:00
+```
+
+Stops the Windows Update service and its dependencies, waiting 1 minute for the service to stop.
+
+### EXAMPLE 3
+
+```powershell
+Stop-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait (New-TimeSpan -Minutes 1)
+```
+
+Stops the Windows Update service and its dependencies, waiting 1 minute for the service to stop.
 
 ## PARAMETERS
 
@@ -123,6 +139,39 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -140,9 +189,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

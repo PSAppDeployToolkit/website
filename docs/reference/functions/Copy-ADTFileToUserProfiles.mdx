@@ -14,18 +14,34 @@ Copy one or more items to each user profile on the system.
 ### CalculatedProfiles (Default)
 
 ```powershell
+Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten]
+ [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
+ [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles] [-ExcludeDefaultUser]
+ [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Path
+
+```powershell
 Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
  [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles] [-ExcludeDefaultUser]
- [-ContinueFileCopyOnError] [<CommonParameters>]
+ [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### LiteralPath
+
+```powershell
+Copy-ADTFileToUserProfiles [-LiteralPath] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
+ [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
+ [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### SpecifiedProfiles
 
 ```powershell
-Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
- [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- -UserProfiles <UserProfile[]> [-ContinueFileCopyOnError] [<CommonParameters>]
+Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten]
+ [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
+ -UserProfiles <UserProfileInfo[]> [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -75,14 +91,30 @@ The path of the file or folder to copy.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: Path
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -LiteralPath
+
+The literal path of the file or folder to copy.
+
+```yaml
+Type: String[]
+Parameter Sets: LiteralPath
 Aliases:
 
 Required: True
 Position: 2
 Default value: None
 Accept pipeline input: True (ByValue)
-Accept wildcard characters: True
+Accept wildcard characters: False
 ```
 
 ### -Destination
@@ -204,7 +236,7 @@ Accept wildcard characters: False
 Specifies one or more UserProfile objects to copy files into.
 
 ```yaml
-Type: UserProfile[]
+Type: UserProfileInfo[]
 Parameter Sets: SpecifiedProfiles
 Aliases:
 
@@ -296,6 +328,39 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -304,7 +369,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String[]
 
-### You can pipe in string values for $Path.
+### You can pipe in string values for $LiteralPath.
 ## OUTPUTS
 
 ### None
@@ -313,9 +378,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

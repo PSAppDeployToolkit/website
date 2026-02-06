@@ -1,45 +1,44 @@
 ---
-id: Remove-ADTModuleCallback
-title: Remove-ADTModuleCallback
+id: New-ADTLogFileName
+title: New-ADTLogFileName
 hide_title: false
 hide_table_of_contents: false
 ---
 
 ## SYNOPSIS
 
-Removes a callback function from the nominated hooking point.
+Generates a new log file name based off the current deployment session's properties.
 
 ## SYNTAX
 
 ```powershell
-Remove-ADTModuleCallback [-Hookpoint] <CallbackType> [-Callback] <CommandInfo[]> [<CommonParameters>]
+New-ADTLogFileName [-Discriminator] <String> [-FileNameOnly] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-This function removes a specified callback function from the nominated hooking point.
+Generates a new log file name based off the current deployment session's properties, using the same default format that PSAppDeployTookit uses itself.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Remove-ADTModuleCallback -Hookpoint PostOpen -Callback (Get-Command -Name 'MyCallbackFunction')
+New-ADTLogFileName -Discriminator Setup
 ```
 
-Removes the specified callback function from being invoked after a DeploymentSession has opened.
+This example returns a pre-formatted string that can be used as a log file name.
 
 ## PARAMETERS
 
-### -Hookpoint
+### -Discriminator
 
-Where you wish for the callback to be removed from.
+The identifier to pre-format the log file name with.
 
 ```yaml
-Type: CallbackType
+Type: String
 Parameter Sets: (All)
 Aliases:
-Accepted values: OnInit, OnStart, PreOpen, PostOpen, OnDefer, PreClose, PostClose, OnFinish, OnExit
 
 Required: True
 Position: 1
@@ -48,18 +47,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Callback
+### -FileNameOnly
 
-The callback function to remove from the nominated hooking point.
+If specified, just returns a log file name without and preceeding path.
 
 ```yaml
-Type: CommandInfo[]
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 2
-Default value: None
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -75,11 +74,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### None
+### System.String
 
-### This function does not generate any output.
+### Returns a pre-formatted string with the specified discriminator.
 ## NOTES
-An active ADT session is NOT required to use this function.
+An active ADT session is required to use this function.
+
+Requires: PSADT session should be initialized using Open-ADTSession
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
@@ -88,4 +89,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTModuleCallback](https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTModuleCallback)
+[https://psappdeploytoolkit.com/docs/reference/functions/New-ADTLogFileName](https://psappdeploytoolkit.com/docs/reference/functions/New-ADTLogFileName)

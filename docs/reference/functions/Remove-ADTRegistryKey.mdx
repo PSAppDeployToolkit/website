@@ -14,15 +14,15 @@ Deletes the specified registry key or value.
 ### Path
 
 ```powershell
-Remove-ADTRegistryKey -Path <String> [-Name <String>] [-Wow6432Node] [-Recurse] [-SID <String>]
- [<CommonParameters>]
+Remove-ADTRegistryKey -Path <String> [-Name <String>] [-Wow6432Node] [-Recurse] [-SID <SecurityIdentifier>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### LiteralPath
 
 ```powershell
-Remove-ADTRegistryKey -LiteralPath <String> [-Name <String>] [-Wow6432Node] [-Recurse] [-SID <String>]
- [<CommonParameters>]
+Remove-ADTRegistryKey -LiteralPath <String> [-Name <String>] [-Wow6432Node] [-Recurse]
+ [-SID <SecurityIdentifier>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -163,9 +163,42 @@ Specifying this parameter will convert a HKEY_CURRENT_USER registry key to the H
 Specify this parameter from the Invoke-ADTAllUsersRegistryAction function to read/edit HKCU registry settings for all users on the system.
 
 ```yaml
-Type: String
+Type: SecurityIdentifier
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
 
 Required: False
 Position: Named
@@ -191,9 +224,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

@@ -13,7 +13,7 @@ Adds an extension for Microsoft Edge using the ExtensionSettings policy.
 
 ```powershell
 Add-ADTEdgeExtension [-ExtensionID] <String> [-UpdateUrl] <String> [-InstallationMode] <String>
- [[-MinimumVersionRequired] <String>] [<CommonParameters>]
+ [[-MinimumVersionRequired] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +22,7 @@ This function adds an extension for Microsoft Edge using the ExtensionSettings p
 
 This enables Edge Extensions to be installed and managed like applications, enabling extensions to be pushed to specific devices or users alongside existing GPO/Intune extension policies.
 
-This should not be used in conjunction with Edge Management Service which leverages the same registry key to configure Edge extensions.
+This should not be used in conjunction with Edge Management Service or "Configure extension management settings" as configured via Group Policy or Intune as they leverage the same registry key to configure Edge extensions.
 
 ## EXAMPLES
 
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 ### -InstallationMode
 
 The installation mode of the extension.
-Allowed values: blocked, allowed, removed, force_installed, normal_installed.
+Allowed values: `blocked`, `allowed`, `removed`, `force_installed`, `normal_installed`.
 
 ```yaml
 Type: String
@@ -102,6 +102,39 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -119,9 +152,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

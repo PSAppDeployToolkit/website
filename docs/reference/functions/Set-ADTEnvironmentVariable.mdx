@@ -11,9 +11,25 @@ Sets the value for the specified environment variable.
 
 ## SYNTAX
 
+### None (Default)
+
 ```powershell
-Set-ADTEnvironmentVariable [-Variable] <String> [-Value] <String> [[-Target] <EnvironmentVariableTarget>]
- [<CommonParameters>]
+Set-ADTEnvironmentVariable -Variable <String> -Value <String> [-Target <EnvironmentVariableTarget>]
+ [-Expandable] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Append
+
+```powershell
+Set-ADTEnvironmentVariable -Variable <String> -Value <String> [-Target <EnvironmentVariableTarget>] [-Append]
+ [-Expandable] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Remove
+
+```powershell
+Set-ADTEnvironmentVariable -Variable <String> -Value <String> [-Target <EnvironmentVariableTarget>] [-Remove]
+ [-Expandable] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,7 +66,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -66,7 +82,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 2
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -84,7 +100,88 @@ Aliases:
 Accepted values: Process, User, Machine
 
 Required: False
-Position: 3
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Append
+
+Specifies the value should be appended to an existing value if present.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Append
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Remove
+
+Specifies the value should be removed from an existing value if present.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Remove
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Expandable
+
+Indicates that the environment variable should be written to the registry using a REG_EXPAND_SZ type to support environment variables.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -107,9 +204,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

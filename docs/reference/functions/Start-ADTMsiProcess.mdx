@@ -19,7 +19,7 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_FilePath
@@ -31,7 +31,7 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_FilePath_NoWait
@@ -43,7 +43,8 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_FilePath
@@ -56,7 +57,7 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### FilePath_NoWait
@@ -67,7 +68,7 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### FilePath
@@ -79,7 +80,7 @@ Start-ADTMsiProcess [-Action <String>] -FilePath <String> [-ArgumentList <String
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
  [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
- [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_ProductCode_NoWait
@@ -90,7 +91,7 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_ProductCode
@@ -102,7 +103,7 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_ProductCode_NoWait
@@ -114,7 +115,8 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_ProductCode
@@ -127,7 +129,7 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ProductCode_NoWait
@@ -138,7 +140,7 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ProductCode
@@ -150,7 +152,7 @@ Start-ADTMsiProcess [-Action <String>] -ProductCode <Guid> [-ArgumentList <Strin
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
  [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
- [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_InstalledApplication_NoWait
@@ -161,7 +163,7 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-Transforms <String[]>] [-Patches <String[]>] [-UseUnelevatedToken] [-ExpandEnvironmentVariables]
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### UseUnelevatedToken_InstalledApplication
@@ -173,7 +175,7 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource]
  [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_InstalledApplication_NoWait
@@ -185,7 +187,8 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### RunAsActiveUser_InstalledApplication
@@ -198,7 +201,7 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-ExpandEnvironmentVariables] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### InstalledApplication_NoWait
@@ -209,7 +212,7 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-Transforms <String[]>] [-Patches <String[]>] [-ExpandEnvironmentVariables] [-LoggingOptions <String>]
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### InstalledApplication
@@ -221,7 +224,7 @@ Start-ADTMsiProcess [-Action <String>] -InstalledApplication <InstalledApplicati
  [-LogFileName <String>] [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck]
  [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
  [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
- [-NoDesktopRefresh] [-PassThru] [<CommonParameters>]
+ [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -802,6 +805,39 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -822,9 +858,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
