@@ -1,88 +1,355 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
+/* ─── Hero ─── */
 .heroBanner {
-  text-align: center;
   position: relative;
-  overflow: visible;
-  color: var(--palette-blue-darkest);
-  background-image: url('@site/static/images/background-image-light.jpg');
-  background-size: cover;
-  padding: 4.5rem 0 3.5rem;
+  overflow: hidden;
+  padding: 6rem 0 4rem;
 }
 
-html[data-theme='dark'] .heroBanner {
-  background-image: url('@site/static/images/background-image-dark.jpg');
-  color: #f3f3f3;
-}
-
-.logo {
-  width: 350px;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-}
-
-.subtitle {
-  margin: 0 auto 2rem;
-}
-
-.startedButton {
-  display: flex;
+.heroRow {
   align-items: center;
+  row-gap: var(--psadt-space-2xl);
+}
+
+.heroTextCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--psadt-space-md);
+}
+
+.heroTitle {
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-weight: var(--ifm-font-weight-semibold);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.25;
+  margin-bottom: 0;
+}
+
+.heroAccent {
+  color: var(--ifm-color-primary);
+  font-weight: var(--ifm-font-weight-extrabold);
+}
+
+.heroSubtitle {
+  font-size: var(--ifm-font-size-xl);
+  color: var(--ifm-color-content-secondary);
+  max-width: 52ch;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.heroCtas {
+  display: flex;
+  gap: var(--psadt-space-md);
+  flex-wrap: wrap;
+  padding-top: var(--psadt-space-sm);
+}
+
+/* ─── Hero Visual / Screenshots ─── */
+.heroVisualCol {
+  display: flex;
   justify-content: center;
 }
 
-.startedButton a {
-  font-weight: 500;
-  padding: 0.8rem 1.5rem;
-  border: 1px solid #f3f3f3;
-  border-radius: var(--ifm-global-radius);
-  color: #f3f3f3;
+.screenshotContainer {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  min-height: clamp(360px, 44vw, 520px);
+  perspective: 800px;
 }
 
-html[data-theme='dark'] .startedButton a {
-  color: #fff;
+.heroWatermark {
+  position: absolute;
+  inset: -15% -10%;
+  width: 120%;
+  height: 120%;
+  object-fit: contain;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.introText {
-  text-align: left;
-  font-size: 1rem;
+.screenshot {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+  will-change: transform, opacity, filter;
+}
+
+.screenshotLight {
+  top: 0%;
+  left: 0%;
+  z-index: 1;
+}
+
+.screenshotDark {
+  top: 15%;
+  left: 9%;
+  z-index: 2;
+}
+
+/* ─── What Is PSADT ─── */
+.whatIsSection {
+  padding-block: var(--psadt-space-3xl);
+}
+
+.whatIsRow {
+  align-items: flex-start;
+  row-gap: var(--psadt-space-2xl);
+}
+
+.whatIsText {
+  padding-right: var(--psadt-space-2xl);
+}
+
+.sectionHeading {
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: var(--ifm-h2-font-size);
+  margin-bottom: var(--psadt-space-md);
+}
+
+.sectionDescription {
+  font-size: var(--ifm-font-size-lg);
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.7;
+  max-width: 65ch;
+}
+
+.sectionDescriptionCenter {
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: var(--psadt-space-2xl);
+}
+
+.valuePropGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--psadt-space-lg);
+}
+
+.valuePropCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--psadt-space-md);
+  padding: var(--psadt-space-lg);
+  border-radius: var(--psadt-card-radius);
+  background: var(--psadt-card-background);
+  border: 1px solid var(--psadt-card-border-color);
+  transition:
+    box-shadow var(--psadt-transition-normal),
+    border-color var(--psadt-transition-normal);
+}
+
+.valuePropCard:hover {
+  box-shadow: var(--psadt-card-shadow-hover);
+  border-color: var(--psadt-card-border-color-hover);
+}
+
+.valuePropIcon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.valuePropTitle {
   display: block;
-  margin: 1rem auto 2.5rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  margin-bottom: var(--psadt-space-xs);
 }
 
+.valuePropDescription {
+  margin: 0;
+  font-size: var(--ifm-font-size-sm);
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.5;
+}
+
+/* ─── Highlights Strip ─── */
+.highlightsSection {
+  padding-block: var(--psadt-space-2xl);
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--psadt-space-lg);
+  text-align: center;
+}
+
+.highlightItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--psadt-space-xs);
+  padding: var(--psadt-space-lg) var(--psadt-space-md);
+}
+
+.highlightStat {
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-size: var(--ifm-font-size-4xl);
+  font-weight: var(--ifm-font-weight-extrabold);
+  color: var(--ifm-color-primary);
+  line-height: 1.1;
+}
+
+.highlightLabel {
+  font-weight: var(--ifm-font-weight-semibold);
+  font-size: var(--ifm-font-size-lg);
+  color: var(--ifm-color-content);
+}
+
+.highlightDetail {
+  font-size: var(--ifm-font-size-sm);
+  color: var(--ifm-color-content-secondary);
+}
+
+/* ─── Feature Preview ─── */
+.featureSection {
+  padding-block: var(--psadt-space-3xl);
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--psadt-space-lg);
+}
+
+.featureCard {
+  padding: var(--psadt-space-xl);
+  border-radius: var(--psadt-card-radius);
+  background: var(--psadt-card-background);
+  border: 1px solid var(--psadt-card-border-color);
+  transition:
+    box-shadow var(--psadt-transition-normal),
+    border-color var(--psadt-transition-normal),
+    transform var(--psadt-transition-normal);
+}
+
+.featureCard:hover {
+  box-shadow: var(--psadt-card-shadow-hover);
+  border-color: var(--psadt-card-border-color-hover);
+  transform: translateY(-2px);
+}
+
+.featureIcon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: var(--psadt-space-md);
+}
+
+.featureCardTitle {
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-size: var(--ifm-font-size-lg) !important;
+  font-weight: var(--ifm-font-weight-semibold);
+  margin-bottom: var(--psadt-space-sm);
+}
+
+.featureCardDescription {
+  margin: 0;
+  font-size: var(--ifm-font-size-sm);
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+}
+
+.featureCtaRow {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--psadt-space-2xl);
+}
+
+/* ─── Newsletter ─── */
+.newsletterSection {
+  padding-block: var(--psadt-space-2xl);
+}
+
+/* ─── Responsive: Tablet ─── */
 @media screen and (max-width: 996px) {
-  .heroBanner .container {
-    padding: 2rem;
+  .heroBanner {
+    padding: 3rem 0 2rem;
   }
 
-  .logo {
-    max-width: 200px;
+  .heroRow {
+    flex-direction: column-reverse;
   }
 
-  .introText {
+  .heroTextCol {
+    align-items: center;
     text-align: center;
-    font-size: 0.9rem;
-    margin: 2rem 5vw 1rem;
+  }
+
+  .heroSubtitle {
+    text-align: center;
+  }
+
+  .heroCtas {
+    justify-content: center;
+  }
+
+  .screenshotContainer {
+    max-width: 360px;
+    margin-inline: auto;
+    min-height: clamp(320px, 58vw, 460px);
+  }
+
+  .whatIsText {
+    padding-right: 0;
+  }
+
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .highlightsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.logoThinText {
-  font-size: 1.5rem;
-  color: #fff;
-  text-align: left;
-  font-weight: 300;
-  letter-spacing: -0.8px;
-}
+/* ─── Responsive: Mobile ─── */
+@media screen and (max-width: 768px) {
+  .heroBanner {
+    padding: 2rem 0 1.5rem;
+  }
 
-.logoThickText {
-  color: var(--palette-blue);
-  font-weight: 800 !important;
-}
+  .heroTitle {
+    font-size: 2rem;
+  }
 
-.mainContent {
-  margin-left: 0;
+  .screenshotContainer {
+    max-width: 300px;
+  }
+
+  .screenshot {
+    position: relative;
+    width: 100%;
+    top: auto;
+    left: auto;
+  }
+
+  .screenshotContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--psadt-space-md);
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+
+  .heroWatermark {
+    display: none;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlightsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .whatIsRow {
+    flex-direction: column;
+  }
 }

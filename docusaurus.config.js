@@ -9,7 +9,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   future: {
-    v4: true
+    v4: true,
     // experimental_router: 'hash',
   },
   title: 'PSAppDeployToolkit',
@@ -22,15 +22,19 @@ const config = {
   projectName: 'website', // Usually your repo name.
   titleDelimiter: '·',
   onBrokenLinks: 'throw',
+  markdown: {
+    hooks: {
   onBrokenMarkdownLinks: 'warn',
+    },
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
 
   stylesheets: [
-    'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap',
-  ],
+	'https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Expletus+Sans:ital,wght@0,400..700;1,400..700&family=Funnel+Display:wght@300..800&family=Fustat:wght@200..800&family=Gantari:ital,wght@0,100..900;1,100..900&family=Geologica:wght,CRSV@100..900,0&family=Golos+Text:wght@400..900&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=League+Spartan:wght@100..900&family=Liter&family=Manrope:wght@200..800&family=Onest:wght@100..900&family=Outfit:wght@100..900&family=Oxygen:wght@300;400;700&family=PT+Sans+Caption:wght@400;700&family=Parkinsans:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sen:wght@400..800&family=Sometype+Mono:ital,wght@0,400..700;1,400..700&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap',
+    ],
 
   customFields: {
     meta: {
@@ -49,27 +53,38 @@ const config = {
           customCss: require.resolve('./src/css/custom.css'),
         },
         docs: {
+	  exclude: ['**/docs/plans/**'],
           sidebarPath: require.resolve('./sidebars.js'),
-          lastVersion: 'current',
+          lastVersion: '4.1.x',
           versions: {
             current: {
-              label: '4.1.x',
+              label: '4.2.x (In Development)',
+              path: '/',
+              banner: 'unreleased',
               // editUrl: 'https://github.com/psappdeploytoolkit/website/edit/main',
             },
-            '4.0.0': {
+            '4.1.x': {
+              label: '4.1.x (Stable)',
+              path: '4.1.x',
+            },
+            '4.0.x': {
               label: '4.0.x',
-              path: '4.0.0',
-              banner: 'unmaintained'
+              path: '4.0.x',
+              banner: 'unmaintained',
             },
             '3.10.2': {
               label: '3.10.x',
               path: '3.10.2',
-              banner: 'unmaintained'
+              banner: 'unmaintained',
             },
           },
         },
         blog: {
-          showReadingTime: false,
+          showReadingTime: true,
+          blogSidebarTitle: 'Recent Posts',
+          blogSidebarCount: 'ALL',
+          authorsMapPath: 'authors.yml',
+          onInlineAuthors: 'ignore',
         },
         sitemap: {
           ignorePatterns: ['/blog/tags/**', '/docs/tags/**', '/error/'],
@@ -113,14 +128,6 @@ const config = {
         minHeadingLevel: 2,
         maxHeadingLevel: 2,
       },
-      // announcementBar: {
-      // id: 'support_us',
-      // content:
-      //   'Watch the <a target="_blank" rel="noopener noreferrer" href="https://patchmypc.com/psappdeploytoolkit-v4-launch-webinar">PSADT v4 launch webinar</a> to see the new features and changes, then find out how to download the new version in our <a target="_blank" rel="noopener noreferrer" href="https://psappdeploytoolkit.com/docs/category/getting-started">Getting Started</a> guide.',
-      // backgroundColor: '#0081c6',
-      // textColor: '#fff',
-      // isCloseable: true,
-      // },
       navbar: {
         title: 'PSAppDeployToolkit',
         logo: {
@@ -130,21 +137,7 @@ const config = {
         },
         items: [
           { to: 'features', label: 'Features', position: 'left' },
-          // {
-          //   label: "Docs",
-          //   to: "/docs",
-          //   items: [
-          //       {
-          //       label: "Getting Started",
-          //         to: "/docs/getting-started/requirements",
-          //       },
-          //       {
-          //         label: "Reference",
-          //         to: "/docs/reference",
-          //       },
-          //   ],
-          //   position: "left"
-          // },
+          { to: 'ecosystem', label: 'Ecosystem', position: 'left' },
           {
             type: 'doc',
             position: 'left',
@@ -157,19 +150,10 @@ const config = {
             docId: 'reference',
             label: 'Reference',
           },
-          // {
-          //   href: 'https://github.com/psappdeploytoolkit/psappdeploytoolkit/releases',
-          //   label: 'Download',
-          //   position: 'left',
-          // },
+          { to: 'training', label: 'Training', position: 'left' },
           { to: 'blog', label: 'News', position: 'left' },
           { to: 'about', label: 'About', position: 'left' },
 
-          {
-            type: 'docsVersionDropdown',
-            position: 'right',
-            dropdownActiveClassDisabled: true,
-          },
           {
             type: 'search',
             position: 'right',
@@ -178,6 +162,7 @@ const config = {
           {
             href: 'https://github.com/psappdeploytoolkit/psappdeploytoolkit',
             className: 'header-github-link',
+            'aria-label': 'GitHub repository',
             position: 'right',
           },
         ],
@@ -190,19 +175,31 @@ const config = {
             items: [
               {
                 label: 'Features',
-                to: 'https://psappdeploytoolkit.com/features',
+                to: '/features',
+              },
+              {
+                label: 'Ecosystem',
+                to: '/ecosystem',
               },
               {
                 label: 'Documentation',
-                to: 'https://psappdeploytoolkit.com/docs/introduction',
+                to: '/docs/introduction',
               },
               {
                 label: 'Reference',
-                to: 'https://psappdeploytoolkit.com/docs/reference',
+                to: '/docs/reference',
+              },
+              {
+                label: 'Training',
+                to: '/training',
               },
               {
                 label: 'News',
-                to: 'https://psappdeploytoolkit.com/blog',
+                to: '/blog',
+              },
+              {
+                label: 'About',
+                to: '/about',
               },
             ],
           },

@@ -1,22 +1,11 @@
-import React, { useEffect } from 'react';
-// import EventsSidebar from '../../components/EventsSidebar';
+import { useEffect } from 'react';
 
 export default function Root({ children }) {
   useEffect(() => {
-    // Safety check to prevent gtag errors
     if (typeof window !== 'undefined' && !window.gtag) {
-      window.gtag = function() {
-        // No-op function to prevent errors
-        console.log('gtag not loaded yet, skipping call');
-      };
+      window.gtag = function() {};
     }
   }, []);
 
-  return (
-    <>
-      {children}
-      {/* Disabling sidebar for now */}
-      {/* <EventsSidebar /> */}
-    </>
-  );
+  return <>{children}</>;
 }

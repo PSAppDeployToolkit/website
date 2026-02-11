@@ -1,0 +1,30 @@
+/**
+ * Swizzled DocCategoryGeneratedIndexPage styles.
+ * Original styles preserved + breadcrumbRow for version selector alignment.
+ */
+
+@media (min-width: 997px) {
+  .generatedIndexPage {
+    max-width: 75% !important;
+  }
+}
+
+/* Duplicated from .markdown h1 */
+.title {
+  --ifm-h1-font-size: 3rem;
+  margin-bottom: calc(1.25 * var(--ifm-leading));
+}
+
+.breadcrumbRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  gap: var(--psadt-space-md);
+  flex-wrap: wrap;
+}
+
+.breadcrumbRow :global(.theme-doc-breadcrumbs) {
+  margin-bottom: 0;
+}
+
