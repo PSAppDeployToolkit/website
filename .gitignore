@@ -112,3 +112,5 @@ dist
 
 # VSCode History
 .history/
+
+.worktrees/

@@ -1,0 +1,35 @@
+/**
+ * Swizzled DocItem/Layout styles.
+ * Original styles preserved + breadcrumbRow for version selector alignment.
+ */
+
+.docItemContainer header + *,
+.docItemContainer article > *:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 997px) {
+  .docItemCol {
+    max-width: 75% !important;
+  }
+}
+
+.breadcrumbRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  gap: var(--psadt-space-md);
+  flex-wrap: wrap;
+}
+
+/* Remove default bottom margin from breadcrumbs inside the row */
+.breadcrumbRow :global(.theme-doc-breadcrumbs) {
+  margin-bottom: 0;
+}
+
+.docVersionBannerOffset {
+  margin-top: 10px;
+  margin-bottom: 28px;
+}
+
