@@ -1,0 +1,24 @@
+﻿---
+sidebar_position: 5
+sidebar_label: 'Exit Codes'
+title: 'Exit Codes'
+description: 'PSAppDeployToolkit has a number of internal exit codes for any issues that may occur.'
+slug: /reference/exit-codes
+tags:
+  - Exit Codes
+  - Reference
+---
+
+# Exit Codes
+
+PSAppDeployToolkit uses pre-defined exit codes to indicate whether a deployment succeeds or fails. You can use these codes to control deployment flow or to understand what occurred.
+
+| Exit Code     | Description                                                                                                                       |
+|:--------------|:----------------------------------------------------------------------------------------------------------------------------------|
+| 60000 - 68999 | Reserved for built-in exit codes in _Invoke-AppDeployToolkit.ps1_, _Invoke-AppDeployToolkit.exe_, and _AppDeployToolkitMain.ps1_. |
+| 60001         | An error occurred in `Invoke-AppDeployToolkit.ps1`. Check your script syntax use.                                                 |
+| 60008         | Failure when importing the module or opening a new session.                                                                       |
+| 60010         | `Invoke-AppDeployToolkit.exe` failed before PowerShell.exe process could be launched.                                             |
+| 60011         | `Invoke-AppDeployToolkit.exe` failed to execute the PowerShell.exe process.                                                       |
+| 69000 - 69999 | Recommended for user customized exit codes in `Invoke-AppDeployToolkit.ps1`.                                                      |
+| 70000 - 79999 | Recommended for user customized exit codes in PSAppDeployToolkit.Extensions module..                                              |

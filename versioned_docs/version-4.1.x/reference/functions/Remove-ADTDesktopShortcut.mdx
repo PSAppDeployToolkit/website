@@ -1,0 +1,172 @@
+---
+id: Remove-ADTDesktopShortcut
+title: Remove-ADTDesktopShortcut
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Removes desktop shortcuts from the common desktop folder or logged on user's desktop.
+
+## SYNTAX
+
+### FilterScript
+
+```powershell
+Remove-ADTDesktopShortcut [-Scope <String[]>] -FilterScript <ScriptBlock> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### RemoveAllShortcuts
+
+```powershell
+Remove-ADTDesktopShortcut [-Scope <String[]>] [-RemoveAllShortcuts] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### SinceSessionStart
+
+```powershell
+Remove-ADTDesktopShortcut [-Scope <String[]>] [-SinceSessionStart] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Removes desktop shortcuts from the common desktop folder or logged on user's desktop, either all since the commencement of the session, all shortcuts in general, or based on a custom FilterScript.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Remove-ADTDesktopShortcut -SinceSessionStart
+```
+
+This example removes all shortcuts created after the active deployment session started from the common desktop folder.
+
+## PARAMETERS
+
+### -Scope
+
+The scope of which to target (common desktop and/or logged on user's desktop).
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: AllUsersDesktop
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SinceSessionStart
+
+Removes all shortcuts created after the active deployment session commenced.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: SinceSessionStart
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RemoveAllShortcuts
+
+Removes all shortcuts in the nominated scope(s).
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: RemoveAllShortcuts
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FilterScript
+
+Removes all shortcuts that match the given FilterScript (filtration on any FileInfo property/method is available).
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: FilterScript
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function returns no output.
+## NOTES
+An active ADT session is required to use this function.
+
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTDesktopShortcut](https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTDesktopShortcut)

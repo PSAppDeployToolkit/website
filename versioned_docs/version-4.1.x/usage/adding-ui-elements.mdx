@@ -1,0 +1,97 @@
+---
+sidebar_position: 2
+title: 'Adding UI Elements'
+description: 'How to add UI elements to a deployment script.'
+slug: /usage/adding-ui-elements
+tags:
+  - Usage
+  - User Interface
+---
+
+# Adding User Interface Elements
+
+The user interface consists of several components described below. It can be branded with a custom logo (Fluent UI) or a banner (Classic UI).
+
+All UI components include customizable message text in `strings.psd1`, which has been localized into 25 languages.
+
+The language is selected automatically based on the operating system settings. However, you can override it by specifying `LanguageOverride` in `config.psd1`.
+
+The user interface can be suppressed by specifying the deploy mode parameter as follows:
+
+```powershell
+Invoke-AppDeployToolkit.ps1 -DeployMode Silent
+```
+
+### Installation Progress
+
+The installation progress message displays an indeterminate progress ring to indicate an installation is in progress and display status messages to the end user. This is invoked using the [Show-ADTInstallationProgress](../reference/functions/Show-ADTInstallationProgress.mdx) Function.
+
+![Installation Progress (Light Mode)](../images/psadt-inprogress_light.png)
+
+![Installation Progress (Dark Mode)](../images/psadt-inprogress_dark.png)
+
+The progress message can be updated dynamically to show the installation stage or display custom messages, using the [Show-ADTInstallationProgress](../reference/functions/Show-ADTInstallationProgress.mdx) function.
+
+![Dynamic Progress Updating (Light Mode)](../images/psadt-customprogress_light.png)
+
+![Dynamic Progress Updating (Dark Mode)](../images/psadt-customprogress_dark.png)
+
+### Installation Welcome Prompt
+
+The application welcome prompt can be used to display applications that need to be closed, an option to defer and a countdown to closing applications automatically. Use the [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome.mdx) function to display the prompts shown below.
+
+Welcome Prompt with the ability to defer a number of times:
+
+![Installation Welcome With Defer (Light Mode)](../images/psadt-welcome_light.png)
+
+![Installation Welcome With Defer (Dark Mode)](../images/psadt-welcome_dark.png)
+
+Welcome Prompt with the ability to close open programs:
+
+![Installation Welcome With Close (Light Mode)](../images/psadt-closeapps_light.png)
+
+![Installation Welcome With Close (Dark Mode)](../images/psadt-closeapps_dark.png)
+
+### Block Application Execution
+
+If the block execution option is enabled (see [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome.mdx)), the user will be prompted that they cannot launch the specified application(s) while the installation is in progress. The application will be unblocked again once the installation has completed.
+
+![Block Execution (Light Mode)](../images/psadt-blockexecution_light.png)
+
+![Block Execution (Dark Mode)](../images/psadt-blockexecution_dark.png)
+
+### Custom Installation Prompt
+
+A custom prompt with PSAppDeployToolkit branding can be displayed using [Show-ADTInstallationPrompt](../reference/functions/Show-ADTInstallationPrompt.mdx). The title and text can be customized, and up to 3 buttons can be included.
+
+![3 Buttons being used in a custom message box (Light Mode)](../images/psadt-3buttonmsgbox_light.png)
+
+![3 Buttons being used in a custom message box (Dark Mode)](../images/psadt-3buttonmsgbox_dark.png)
+
+Additionally, the prompt can be displayed asynchronously, e.g. to display a message at the end of the installation but allow the installation to return the exit code to the parent process without waiting for the user to respond to the message.
+
+![Async custom message box (Light Mode)](../images/psadt-custommsg_light.png)
+
+![Async custom message box (Dark Mode)](../images/psadt-custommsg_dark.png)
+
+### Installation Restart Prompt
+
+A restart prompt can be displayed with a countdown to automatic restart using the [Show-ADTInstallationRestartPrompt](../reference/functions/Show-ADTInstallationRestartPrompt.mdx). Since the restart prompt is executed in a separate PowerShell session, the PSAppDeployToolkit will still return the appropriate exit code to the parent process.
+
+![Installation Restart Prompt (Light Mode)](../images/psadt-restarttimer_light.png)
+
+![Installation Restart Prompt (Dark Mode)](../images/psadt-restarttimer_dark.png)
+
+### Custom Dialog box
+
+A generic dialog box to display custom messages to the user without the PSAppDeployToolkit branding using the function [Show-ADTDialogBox](../reference/functions/Show-ADTDialogBox.mdx). This can be customized with different system icons and buttons.
+
+![Custom Dialog (Light Mode)](../images/psadt-custommsg_light.png)
+
+![Custom Dialog (Dark Mode)](../images/psadt-custommsg_dark.png)
+
+### Toolkit Help Console
+
+The PowerShell App Deployment Toolkit Help Console can be invoked by running the `Show-ADTHelpConsole` command.
+
+![PowerShell App Deployment Toolkit Help Console](../images/psadt-helpconsole.png)

@@ -1,0 +1,77 @@
+---
+id: Test-ADTNetworkConnection
+title: Test-ADTNetworkConnection
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Tests for an active local network connection; ethernet/Wi-Fi by default but can test for a number of other connection types.
+
+## SYNTAX
+
+```powershell
+Test-ADTNetworkConnection [[-InterfaceType] <NetworkInterfaceType[]>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Tests for an active local network connection via Get-NetAdapter; ethernet/Wi-Fi by default but can test for a number of other connection types.
+This function checks if any of the nominated interface types is in the 'Up' status.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Test-ADTNetworkConnection
+```
+
+Checks if there is an active wired network connection and returns true or false.
+
+## PARAMETERS
+
+### -InterfaceType
+
+Specifies one or more interface types to test.
+Defaults to `Ethernet` and `Wireless80211` (Wi-Fi).
+
+```yaml
+Type: NetworkInterfaceType[]
+Parameter Sets: (All)
+Aliases:
+Accepted values: Unknown, Ethernet, TokenRing, Fddi, BasicIsdn, PrimaryIsdn, Ppp, Loopback, Ethernet3Megabit, Slip, Atm, GenericModem, FastEthernetT, Isdn, FastEthernetFx, Wireless80211, AsymmetricDsl, RateAdaptDsl, SymmetricDsl, VeryHighSpeedDsl, IPOverAtm, GigabitEthernet, Tunnel, MultiRateSymmetricDsl, HighPerformanceSerialBus, Wman, Wwanpp, Wwanpp2
+
+Required: False
+Position: 1
+Default value: ([System.Net.NetworkInformation.NetworkInterfaceType]::Ethernet, [System.Net.NetworkInformation.NetworkInterfaceType]::Wireless80211)
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.Boolean
+
+### Returns $true if a wired network connection is detected, otherwise returns $false.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Test-ADTNetworkConnection](https://psappdeploytoolkit.com/docs/reference/functions/Test-ADTNetworkConnection)

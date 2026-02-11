@@ -1,0 +1,111 @@
+---
+id: Remove-ADTContentFromCache
+title: Remove-ADTContentFromCache
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Removes the toolkit content from the cache folder on the local machine and reverts the $adtSession.DirFiles and $adtSession.SupportFiles directory.
+
+## SYNTAX
+
+```powershell
+Remove-ADTContentFromCache [[-LiteralPath] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+This function removes the toolkit content from the cache folder on the local machine.
+It also reverts the $adtSession.DirFiles and $adtSession.SupportFiles directory to their original state.
+If the specified cache folder does not exist, it logs a message and exits.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Remove-ADTContentFromCache -LiteralPath "$envWinDir\Temp\PSAppDeployToolkit"
+```
+
+Removes the toolkit content from the specified cache folder.
+
+## PARAMETERS
+
+### -LiteralPath
+
+The path to the software cache folder.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: Path, PSPath
+
+Required: False
+Position: 1
+Default value: "$((& $Script:CommandTable.'Get-ADTConfig').Toolkit.CachePath)\\$((& $Script:CommandTable.'Get-ADTSession').InstallName)"
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not return objects.
+## NOTES
+An active ADT session is required to use this function.
+
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTContentFromCache](https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTContentFromCache)
