@@ -1,0 +1,216 @@
+---
+id: Set-ADTEnvironmentVariable
+title: Set-ADTEnvironmentVariable
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Sets the value for the specified environment variable.
+
+## SYNTAX
+
+### None (Default)
+
+```powershell
+Set-ADTEnvironmentVariable -Variable <String> -Value <String> [-Target <EnvironmentVariableTarget>]
+ [-Expandable] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Append
+
+```powershell
+Set-ADTEnvironmentVariable -Variable <String> -Value <String> [-Target <EnvironmentVariableTarget>] [-Append]
+ [-Expandable] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Remove
+
+```powershell
+Set-ADTEnvironmentVariable -Variable <String> -Value <String> [-Target <EnvironmentVariableTarget>] [-Remove]
+ [-Expandable] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+This function sets the value for the specified environment variable.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Set-ADTEnvironmentVariable -Variable Path -Value C:\Windows
+```
+
+Sets the value of the Path environment variable to C:\Windows.
+
+### EXAMPLE 2
+
+```powershell
+Set-ADTEnvironmentVariable -Variable Path -Value C:\Windows -Target Machine
+```
+
+Sets the value of the Path environment variable to C:\Windows for the machine.
+
+## PARAMETERS
+
+### -Variable
+
+The variable to set.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Value
+
+The value to set to variable to.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Target
+
+The target of the variable to set.
+This can be the machine, user, or process.
+
+```yaml
+Type: EnvironmentVariableTarget
+Parameter Sets: (All)
+Aliases:
+Accepted values: Process, User, Machine
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Append
+
+Specifies the value should be appended to an existing value if present.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Append
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Remove
+
+Specifies the value should be removed from an existing value if present.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Remove
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Expandable
+
+Indicates that the environment variable should be written to the registry using a REG_EXPAND_SZ type to support environment variables.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not return any output.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Set-ADTEnvironmentVariable](https://psappdeploytoolkit.com/docs/reference/functions/Set-ADTEnvironmentVariable)
