@@ -13,7 +13,7 @@ Creates or sets a registry key name, value, and value data.
 
 ```powershell
 Set-ADTRegistryKey [-LiteralPath] <String> [[-Name] <String>] [[-Value] <Object>] [[-Type] <RegistryValueKind>]
- [[-MultiStringValueMode] <String>] [-Wow6432Node] [[-RegistryOptions] <RegistryOptions>]
+ [[-MultiStringValueMode] <MultiStringValueMode>] [-Wow6432Node] [[-RegistryOptions] <RegistryOptions>]
  [[-SID] <SecurityIdentifier>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -136,12 +136,13 @@ Accept wildcard characters: False
 ### -MultiStringValueMode
 
 The mode to operate when working with MultiString objects.
-The default is Replace, but Add and Remove modes are supported also.
+The default is replace, but add and remove modes are supported also.
 
 ```yaml
-Type: String
+Type: MultiStringValueMode
 Parameter Sets: (All)
 Aliases:
+Accepted values: Replace, Add, Remove
 
 Required: False
 Position: 5

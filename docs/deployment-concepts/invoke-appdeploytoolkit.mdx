@@ -1,9 +1,8 @@
----
+﻿---
 sidebar_position: 2
 title: 'Invoke-AppDeployToolkit'
 description: 'Understanding how a PSAppDeployToolkit deployment is structured.'
 slug: /deployment-concepts/invoke-appdeploytoolkit
-hide_title: true
 tags:
   - Usage
   - Invoke-AppDeployToolkit
@@ -129,7 +128,7 @@ The Post-Phase handles cleanup, configuration, and finalization:
 
 The script is broken down into the following sections:
 
-| **Install Type**          | **Phase**        | **Deployment Tasks**                                                                |
+| Install Type              | Phase            | Deployment Tasks                                                                    |
 | :------------------------ | :----------------| :---------------------------------------------------------------------------------- |
 | `Install-ADTDeployment`   | `Pre-Install`    | Prompt to close processes, allow defer, uninstall / clean-up previous versions      |
 |                           | `Install`        | Install application                                                                 |

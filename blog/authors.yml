@@ -2,6 +2,7 @@ sintaxasn:
   name: Dan Cunningham
   title: PSAppDeployToolkit Co-Founder
   image_url: https://gravatar.com/userimage/600867/699009a13cdc7113e0d584e51c26a588.jpeg?size=256
+  page: true
   socials:
     x: sintaxasn
     linkedin: sintaxasn
@@ -11,8 +12,14 @@ seanlillis:
   name: Sean Lillis
   title: PSAppDeployToolkit Co-Founder
   url: https://github.com/slillis
+  page: true
+  socials:
+    github: slillis
 
 mmashwani:
   name: Muhammad Mashwani
   title: PSAppDeployToolkit Developer
   url: https://github.com/mmashwani
+  page: true
+  socials:
+    github: mmashwani

@@ -3,7 +3,6 @@ sidebar_position: 1
 title: 'How to Deploy'
 description: 'How to deploy the toolkit using the command line / ConfigMgr / Intune.'
 slug: /usage/how-to-deploy
-hide_title: true
 tags:
   - Usage
   - How to Deploy
@@ -35,8 +34,8 @@ The following parameters are accepted by `Invoke-AppDeployToolkit.ps1` and `Invo
 
 | Parameter | Values | Description |
 | --------- | ------ | ----------- |
-| `-DeploymentType` | Install&nbsp;*(default)*<br/>Uninstall<br/>Repair | Specifies the deployment type. |
-| `-DeployMode` | Auto&nbsp;*(default)*<br/>Interactive<br/>Silent<br/>NonInteractive | Controls dialog display behavior. NonInteractive allows progress dialogs but suppresses any UI elements requiring interaction. |
+| `-DeploymentType`| Install&nbsp;*(default)*<br/>Uninstall<br/>Repair | Specifies the deployment type. |
+| `-DeployMode` | Interactive&nbsp;*(default)*<br/>Silent<br/>NonInteractive | Controls dialog display behavior. NonInteractive allows progress dialogs but suppresses any UI elements requiring interaction. |
 | <span style={{whiteSpace: "nowrap"}}>`-SuppressRebootPassThru`</span> | | Suppresses return of 3010 'Reboot Required' exit codes and returns 0 instead. |
 | `-TerminalServerMode` | | Changes to user install mode for RDS/Citrix servers. |
 | `-DisableLogging` | | Disables logging to file. |

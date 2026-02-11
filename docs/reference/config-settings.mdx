@@ -11,9 +11,9 @@ tags:
 
 # Configuration Settings
 
-PSAppDeployToolkit v4.1 provides comprehensive configuration management through multiple layers: Group Policy (highest precedence), local configuration files, and built-in defaults.
+PSAppDeployToolkit provides comprehensive configuration management through multiple layers: Group Policy (highest precedence), local configuration files, and built-in defaults.
 
-PSAppDeployToolkit v4.1 introduces **Group Policy ADMX templates** for centralized enterprise configuration management. Group Policy settings override local configuration files.
+In PSADT v4.1, we've introduced **Group Policy ADMX templates** for centralized enterprise configuration management. Group Policy settings override local configuration files.
 
 **Configuration Precedence (Highest to Lowest):**
 
@@ -25,11 +25,11 @@ PSAppDeployToolkit v4.1 introduces **Group Policy ADMX templates** for centraliz
 
 ## Assets
 
-| Setting           | Description                       | Group Policy |
-| :---------------- | :-------------------------------- | :----------- |
-| `Assets.Banner`   | Specifies the banner asset.       | ✅           |
-| `Assets.Logo`     | Specifies the logo asset.         | ✅           |
-| `Assets.LogoDark` | Path to the dark mode logo image. | ✅           |
+| Setting           | Description                       |
+|:------------------|:----------------------------------|
+| `Assets.Banner`   | Specifies the banner asset.       |
+| `Assets.Logo`     | Specifies the logo asset.         |
+| `Assets.LogoDark` | Path to the dark mode logo image. |
 
 :::note Dark Mode Support
 `Assets.LogoDark` enables different logos for light and dark themes in the modern Fluent UI framework.
@@ -37,30 +37,30 @@ PSAppDeployToolkit v4.1 introduces **Group Policy ADMX templates** for centraliz
 
 ## Toolkit Settings
 
-| Setting                             | Description                                                                                                                                                                                      | Group Policy |
-| :---------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- |
-| `Toolkit.CachePath`                 | Specifies where the toolkit caches files.                                                                                                                                                        | ✅           |
-| `Toolkit.CompanyName`               | Company name to use in default dialog subtitles. Replaces UI.BalloonTitle.                                                                                                                       | ✅           |
-| `Toolkit.CompressLogs`              | Determines if log files should be compressed.                                                                                                                                                    | ✅           |
-| `Toolkit.FileCopyMode`              | Specifies the file copy mode for the toolkit.                                                                                                                                                    | ✅           |
-| `Toolkit.LogAppend`                 | Indicates if logs should be appended.                                                                                                                                                            | ✅           |
-| `Toolkit.LogDebugMessage`           | Enables or disables debug message logging.                                                                                                                                                       | ✅           |
-| `Toolkit.LogHostOutputToStdStreams` | Logs host output to standard streams.                                                                                                                                                            | ✅           |
-| `Toolkit.LogMaxHistory`             | Sets the maximum history for logs.                                                                                                                                                               | ✅           |
-| `Toolkit.LogMaxSize`                | Defines the maximum size for logs.                                                                                                                                                               | ✅           |
-| `Toolkit.LogPath`                   | Specifies the path where logs are stored.                                                                                                                                                        | ✅           |
-| `Toolkit.LogPathNoAdminRights`      | Specifies the log path when no admin rights are available.                                                                                                                                       | ✅           |
-| `Toolkit.LogStyle`                  | Sets the style for logging.                                                                                                                                                                      | ✅           |
-| `Toolkit.LogToHierarchy`            | Log to a hierarchical structure of AppVendor\AppName\AppVersion.                                                                                                                                 | ✅           |
-| `Toolkit.LogToSubfolder`            | Log to a subfolder based on InstallName.                                                                                                                                                         | ✅           |
-| `Toolkit.LogWriteToHost`            | Determines if logs should be written to the host.                                                                                                                                                | ✅           |
-| `Toolkit.OobeDetection`             | Detects Out-of-Box Experience (OOBE) state. If enabled, the toolkit will check if the device has completed OOBE (including User ESP phase as of 4.1) and may switch DeployMode to Silent if not. | ✅           |
-| `Toolkit.ProcessDetection`          | Auto-change DeployMode if there are no processes to close.                                                                                                                                       | ✅           |
-| `Toolkit.RegPath`                   | Specifies the registry path for the toolkit.                                                                                                                                                     | ✅           |
-| `Toolkit.RegPathNoAdminRights`      | Specifies the registry path when no admin rights are available.                                                                                                                                  | ✅           |
-| `Toolkit.SessionDetection`          | Detects user session state. If enabled, the toolkit will check for an active user session and may switch DeployMode to Silent if none is found.                                                  | ✅           |
-| `Toolkit.TempPath`                  | Specifies the temporary path for the toolkit.                                                                                                                                                    | ✅           |
-| `Toolkit.TempPathNoAdminRights`     | Specifies the temporary path when no admin rights are available.                                                                                                                                 | ✅           |
+| Setting                             | Description                                                                                                                                                                                      |
+| :---------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Toolkit.CachePath`                 | Specifies where the toolkit caches files.                                                                                                                                                        |
+| `Toolkit.CompanyName`               | Company name to use in default dialog subtitles. Replaces UI.BalloonTitle.                                                                                                                       |
+| `Toolkit.CompressLogs`              | Determines if log files should be compressed.                                                                                                                                                    |
+| `Toolkit.FileCopyMode`              | Specifies the file copy mode for the toolkit.                                                                                                                                                    |
+| `Toolkit.LogAppend`                 | Indicates if logs should be appended.                                                                                                                                                            |
+| `Toolkit.LogDebugMessage`           | Enables or disables debug message logging.                                                                                                                                                       |
+| `Toolkit.LogHostOutputToStdStreams` | Logs host output to standard streams.                                                                                                                                                            |
+| `Toolkit.LogMaxHistory`             | Sets the maximum history for logs.                                                                                                                                                               |
+| `Toolkit.LogMaxSize`                | Defines the maximum size for logs.                                                                                                                                                               |
+| `Toolkit.LogPath`                   | Specifies the path where logs are stored.                                                                                                                                                        |
+| `Toolkit.LogPathNoAdminRights`      | Specifies the log path when no admin rights are available.                                                                                                                                       |
+| `Toolkit.LogStyle`                  | Sets the style for logging.                                                                                                                                                                      |
+| `Toolkit.LogToHierarchy`            | Log to a hierarchical structure of AppVendor\AppName\AppVersion.                                                                                                                                 |
+| `Toolkit.LogToSubfolder`            | Log to a subfolder based on InstallName.                                                                                                                                                         |
+| `Toolkit.LogWriteToHost`            | Determines if logs should be written to the host.                                                                                                                                                |
+| `Toolkit.OobeDetection`             | Detects Out-of-Box Experience (OOBE) state. If enabled, the toolkit will check if the device has completed OOBE (including User ESP phase as of 4.1) and may switch DeployMode to Silent if not. |
+| `Toolkit.ProcessDetection`          | Auto-change DeployMode if there are no processes to close.                                                                                                                                       |
+| `Toolkit.RegPath`                   | Specifies the registry path for the toolkit.                                                                                                                                                     |
+| `Toolkit.RegPathNoAdminRights`      | Specifies the registry path when no admin rights are available.                                                                                                                                  |
+| `Toolkit.SessionDetection`          | Detects user session state. If enabled, the toolkit will check for an active user session and may switch DeployMode to Silent if none is found.                                                  |
+| `Toolkit.TempPath`                  | Specifies the temporary path for the toolkit.                                                                                                                                                    |
+| `Toolkit.TempPathNoAdminRights`     | Specifies the temporary path when no admin rights are available.                                                                                                                                 |
 
 :::tip Automatic Silent Switching
 When `Toolkit.ProcessDetection` is enabled and no processes from `AppProcessesToClose` are running, deployments automatically switch to Silent mode for optimal user experience.
@@ -68,30 +68,30 @@ When `Toolkit.ProcessDetection` is enabled and no processes from `AppProcessesTo
 
 ## Windows Installer (MSI) Execution Settings
 
-| Setting                    | Description                                                                                                             | Group Policy |
-| :------------------------- | :---------------------------------------------------------------------------------------------------------------------- | :----------- |
-| `MSI.InstallParams`        | Defines the installation parameters for MSI. **Default changed to `/qn REBOOT=ReallySuppress`**                         | ✅           |
-| `MSI.LoggingOptions`       | Specifies the logging options for MSI.                                                                                  | ✅           |
-| `MSI.LogPath`              | Specifies the log path for MSI. **Now uses Toolkit.LogPath when empty**                                                 | ✅           |
-| `MSI.LogPathNoAdminRights` | Specifies the log path for MSI when no admin rights are available. **Now uses Toolkit.LogPathNoAdminRights when empty** | ✅           |
-| `MSI.MutexWaitTime`        | Sets the mutex wait time for MSI.                                                                                       | ✅           |
-| `MSI.SilentParams`         | Defines the silent parameters for MSI.                                                                                  | ✅           |
-| `MSI.UninstallParams`      | Defines the uninstall parameters for MSI.                                                                               | ✅           |
+| Setting                    | Description                                                                                                             |
+| :------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| `MSI.InstallParams`        | Defines the installation parameters for MSI. **Default changed to `/qn REBOOT=ReallySuppress`**                         |
+| `MSI.LoggingOptions`       | Specifies the logging options for MSI.                                                                                  |
+| `MSI.LogPath`              | Specifies the log path for MSI. **Now uses Toolkit.LogPath when empty**                                                 |
+| `MSI.LogPathNoAdminRights` | Specifies the log path for MSI when no admin rights are available. **Now uses Toolkit.LogPathNoAdminRights when empty** |
+| `MSI.MutexWaitTime`        | Sets the mutex wait time for MSI.                                                                                       |
+| `MSI.SilentParams`         | Defines the silent parameters for MSI.                                                                                  |
+| `MSI.UninstallParams`      | Defines the uninstall parameters for MSI.                                                                               |
 
 ## User Interface Settings
 
-| Setting                           | Description                                                               | Group Policy |
-| :-------------------------------- | :------------------------------------------------------------------------ | :----------- |
-| `UI.BalloonNotifications`         | Enables or disables balloon notifications.                                | ✅           |
-| `UI.DefaultExitCode`              | Specifies the default exit code for the UI.                               | ✅           |
-| `UI.DefaultPromptPersistInterval` | Sets the default interval for prompt persistence.                         | ✅           |
-| `UI.DefaultTimeout`               | Defines the default timeout for the UI.                                   | ✅           |
-| `UI.DeferExitCode`                | Specifies the exit code for deferred actions. **Default changed to 1602** | ✅           |
-| `UI.DialogStyle`                  | Defines the appearance of dialogs.                                        | ✅           |
-| `UI.FluentAccentColor`            | Specifies the accent color for Fluent UI dialogs.                         | ✅           |
-| `UI.LanguageOverride`             | Overrides the language for the UI.                                        | ✅           |
-| `UI.PromptToSaveTimeout`          | Controls how long the user has to respond before a prompt closes.         | ✅           |
-| `UI.RestartPromptPersistInterval` | Sets the interval for restart prompt persistence.                         | ✅           |
+| Setting                           | Description                                                               |
+| :-------------------------------- | :-----------------------------------------------------------------------: |
+| `UI.BalloonNotifications`         | Enables or disables balloon notifications.                                |
+| `UI.DefaultExitCode`              | Specifies the default exit code for the UI.                               |
+| `UI.DefaultPromptPersistInterval` | Sets the default interval for prompt persistence.                         |
+| `UI.DefaultTimeout`               | Defines the default timeout for the UI.                                   |
+| `UI.DeferExitCode`                | Specifies the exit code for deferred actions. **Default changed to 1602** |
+| `UI.DialogStyle`                  | Defines the appearance of dialogs.                                        |
+| `UI.FluentAccentColor`            | Specifies the accent color for Fluent UI dialogs.                         |
+| `UI.LanguageOverride`             | Overrides the language for the UI.                                        |
+| `UI.PromptToSaveTimeout`          | Controls how long the user has to respond before a prompt closes.         |
+| `UI.RestartPromptPersistInterval` | Sets the interval for restart prompt persistence.                         |
 
 :::tip Custom Branding
 Use `UI.FluentAccentColor` to match your organization's branding in modern Fluent UI dialogs. Supports standard color names and hex values.

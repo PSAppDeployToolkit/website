@@ -1,9 +1,8 @@
----
+﻿---
 sidebar_position: 4
 title: 'Installing Applications'
 description: 'Guidance for installing applications with PSAppDeployToolkit.'
 slug: /usage/installing applications
-hide_title: true
 tags:
   - Usage
 ---
@@ -16,7 +15,7 @@ The `Start-ADTProcess` function can be used to execute a typical setup.exe insta
 ### Parameters
 Full parameter descriptions can be found in the [Start-ADTProcess](../reference/functions/Start-ADTProcess.mdx) documentation, but here are some of the most commonly used parameters:
 
-| **Parameter** | **Description** |
+| Parameter | Description |
 | ------------- | --------------- |
 | -FilePath | Path to the file to be executed. If the file is located directly in the **Files** directory, only the filename needs to be specified. |
 | -ArgumentList | Arguments to be passed to the executable. |
@@ -56,7 +55,7 @@ The `Start-ADTProcessAsUser` function is used to run a process in the context of
 This function is actually a wrapper around `Start-ADTProcess`, which also accepts a `-Username` parameter on top of the options listed above, therefore the parameters available are almost identical.
 Full parameter descriptions can be found in the [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser.mdx) documentation, but here are some of the most commonly used ones that are only available when starting processes as a user:
 
-| **Parameter** | **Description** |
+| Parameter | Description |
 | ------------- | --------------- |
 | -UseLinkedAdminToken | Run the process with the user's admin token if available. |
 | -InheritEnvironmentVariables | Inherit environment variables from the current deployment process; user environment variables such as APPDATA are always layered on top so take precedence. |
@@ -75,7 +74,7 @@ For installing / uninstalling / repairing MSI files, use the `Start-ADTMsiProces
 Again this wraps `Start-ADTProcess` and provides a lot of the same parameters, but also includes some additional parameters specific to MSI installations.
 Full parameter descriptions can be found in the [Start-ADTMsiProcess](../reference/functions/Start-ADTMsiProcess.mdx) documentation, but here are some of the most commonly used parameters specific to this function:
 
-| **Parameter** | **Description** |
+| Parameter | Description |
 | ------------- | --------------- |
 | -Action | The action to perform on the MSI file. Options: Install, Uninstall, Repair, Patch. Defaults to Install. |
 | -FilePath | Path to the MSI file to be executed. If the file is located directly in the **Files** directory, only the filename needs to be specified. |
