@@ -1,0 +1,183 @@
+---
+id: Remove-ADTFolder
+title: Remove-ADTFolder
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Remove folder and files if they exist.
+
+## SYNTAX
+
+### Path
+
+```powershell
+Remove-ADTFolder -Path <String[]> [-DisableRecursion] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### LiteralPath
+
+```powershell
+Remove-ADTFolder -LiteralPath <String[]> [-DisableRecursion] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### InputObject
+
+```powershell
+Remove-ADTFolder -InputObject <DirectoryInfo> [-DisableRecursion] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+This function removes a folder and all files within it, with or without recursion, in a given path.
+If the specified folder does not exist, it logs a warning instead of throwing an error.
+The function can also delete items recursively if the DisableRecursion parameter is not specified.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Remove-ADTFolder -Path "$envWinDir\Downloaded Program Files"
+```
+
+Deletes all files and subfolders in the Windows\Downloaded Program Files folder.
+
+### EXAMPLE 2
+
+```powershell
+Remove-ADTFolder -Path "$envTemp\MyAppCache" -DisableRecursion
+```
+
+Deletes all files in the Temp\MyAppCache folder but does not delete any subfolders.
+
+## PARAMETERS
+
+### -Path
+
+A path to the folder to remove.
+Can contain wildcards.
+
+```yaml
+Type: String[]
+Parameter Sets: Path
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -LiteralPath
+
+A literal path to the folder to remove.
+
+```yaml
+Type: String[]
+Parameter Sets: LiteralPath
+Aliases: PSPath
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InputObject
+
+A DirectoryInfo object to remove.
+Available for pipelining.
+
+```yaml
+Type: DirectoryInfo
+Parameter Sets: InputObject
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -DisableRecursion
+
+Disables recursion while deleting.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not generate any output.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTFolder](https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTFolder)

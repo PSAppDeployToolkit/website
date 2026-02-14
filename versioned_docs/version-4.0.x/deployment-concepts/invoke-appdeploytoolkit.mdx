@@ -1,0 +1,44 @@
+---
+sidebar_position: 2
+title: 'Invoke-AppDeployToolkit'
+description: 'Understanding how a PSAppDeployToolkit deployment is structured.'
+slug: /deployment-concepts/invoke-appdeploytoolkit
+tags:
+  - Usage
+  - Invoke-AppDeployToolkit
+  - Deployment Concepts
+---
+
+# Deployment Script
+
+The `Invoke-AppDeployToolkit.ps1` script is where you will spend most of your time when using PSAppDeployToolkit. This script is the main entry point of the deployment, responsible for executing the deployment phases.
+
+## Deployment Types
+
+The script is broken down into three main deployment types:
+
+- `Install`
+- `Uninstall`
+- `Repair`
+
+## Deployment Phases
+
+Use `Pre-InstallType`, `InstallType`, and `Post-InstallType` phases to organize tasks for installation, uninstallation, or repair.
+
+## Script
+
+The script is broken down into the following sections:
+
+| **Install Type**          | **Phase**        | **Deployment Tasks**                                                                |
+| :------------------------ | :----------------| :---------------------------------------------------------------------------------- |
+| `Install-ADTDeployment`   | `Pre-Install`    | Prompt to close processes, allow defer, uninstall / clean-up previous versions      |
+|                           | `Install`        | Install application                                                                 |
+|                           | `Post-Install`   | Drop additional files, registry tweaks, cleanup, prompt for restart                 |
+|                           |                  |                                                                                     |
+| `Uninstall-ADTDeployment` | `Pre-Uninstall`  | Display end user messaging, close processes                                         |
+|                           | `Uninstall`      | Uninstall application                                                               |
+|                           | `Post-Uninstall` | Prompt for restart                                                                  |
+|                           |                  |                                                                                     |
+| `Repair-ADTDeployment`    | `Pre-Repair`     | Display end user messaging, close processes, uninstall / clean up previous versions |
+|                           | `Repair`         | Repair application                                                                  |
+|                           | `Post-Repair`    | Drop additional files, registry tweaks, reset settings, prompt for restart          |

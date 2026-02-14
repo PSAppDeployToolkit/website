@@ -1,182 +1,161 @@
-/* Desktop styling */
-.featureColumns {
-  border: 3px solid rgb(0, 0, 0, 0.1);
-  background-color: #fff;
-  border-radius: var(--ifm-global-radius);
-  padding: 2.5rem 2.5rem 1.5rem;
-  margin: 0 0 2.5rem;
+/* ─── Page Header ─── */
+.featuresPage {
+  padding-bottom: var(--psadt-space-3xl);
 }
 
-.featureColumns h3 {
-  font-size: 1.8rem;
-  padding-bottom: 1rem;
-  text-align: center;
+.pageHeader {
+  text-align: left;
+  margin-bottom: var(--psadt-space-3xl);
 }
 
-.featureImage {
-  width: 75px;
-  padding: 1rem;
-  border-radius: var(--ifm-global-radius);
-  margin-bottom: 1.5rem;
-  background-color: rgba(16, 36, 69, 0.05);
+.pageTitle {
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: var(--ifm-h1-font-size);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: var(--ifm-h1-font-size);
+  color: var(--ifm-color-primary);
+  margin-bottom: var(--psadt-space-md);
 }
 
-.featureHeader {
-  font-size: 1.2rem;
-  font-weight: 500;
+.pageSubtitle {
+  font-size: var(--ifm-font-size-xl);
+  color: var(--ifm-color-content-secondary);
+  max-width: 50ch;
+  line-height: 1.6;
 }
 
-.capabilityHeader {
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding-bottom: 1rem;
+/* ─── Feature Group List ─── */
+.groupList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--psadt-space-2xl);
 }
 
-.capabilitiesContainer {
-  padding: 0 var(--ifm-spacing-horizontal) 7rem;
+/* ─── Feature Group Card ─── */
+.groupCard {
+  padding: var(--psadt-space-lg) var(--psadt-space-xl);
+  border-radius: var(--psadt-card-radius);
+  background: var(--psadt-card-background);
+  border: 1px solid var(--psadt-card-border-color);
+  transition:
+    box-shadow var(--psadt-transition-normal),
+    border-color var(--psadt-transition-normal);
 }
 
-.featureText ul {
-  padding: 0 6px 0 0;
-  list-style-type: none;
+.groupCard:hover {
+  box-shadow: var(--psadt-card-shadow-hover);
+  border-color: var(--psadt-card-border-color-hover);
 }
 
-.featureText li {
-  padding: 0 0 1rem;
+.groupHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--psadt-space-lg);
+  margin-bottom: var(--psadt-space-md);
+}
+
+.groupIcon {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.groupHeaderText {
+  flex: 1;
+  min-width: 0;
+}
+
+.groupTitle {
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: var(--ifm-h3-font-size);
+  margin-bottom: var(--psadt-space-xs);
+}
+
+.groupDescription {
+  font-size: var(--ifm-font-size-base);
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─── Feature Items Grid ─── */
+.itemsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--psadt-space-sm) var(--psadt-space-sm);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--psadt-space-sm);
+  padding: var(--psadt-space-sm) 0;
+}
+
+.checkIcon {
+  flex-shrink: 1;
+  color: var(--ifm-color-success);
+  margin-top: 2px;
 }
 
 .featureText {
-  font-size: 0.9rem;
+  font-size: var(--ifm-font-size-md);
+  line-height: 1.5;
+  color: var(--ifm-color-content);
 }
 
-.introHeader {
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.5rem;
+.versionBadge {
+  display: inline-block;
+  margin-left: var(--psadt-space-sm);
+  padding: 1px 8px;
+  font-size: 0.7rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  border-radius: 999px;
+  background-color: var(--ifm-color-primary-lighter);
+  color: var(--ifm-color-primary-darkest);
+  vertical-align: middle;
+  line-height: 1.6;
 }
 
-.introText {
-  text-align: center;
-  width: 60%;
-  font-size: 0.9rem;
-  display: block;
-  margin: 2rem auto 2.5rem;
+html[data-theme='dark'] .versionBadge {
+  background-color: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-primary-lightest);
 }
 
-.blockStyling {
-  margin: 4rem 0 8rem;
-}
-
-.blockTitle {
-  text-align: left;
-  font-weight: 500;
-  font-size: 2.2em;
-  padding: 0rem 0 1rem;
-  line-height: 1.3em;
-  margin: 0 0 0.8rem;
-}
-
-.capabilitiesContainer .blockTitle {
-  text-align: center;
-}
-
-.capabilitiesTitle {
-  text-align: center;
-  font-weight: 500;
-  font-size: 2.2em;
-  padding: 2rem 0 0.5rem;
-  line-height: 1.3em;
-  margin: 0 0 0.8rem;
-}
-
-.logoThickText {
-  color: var(--palette-blue);
-  font-weight: 800 !important;
-}
-
-.blockText {
-  text-align: left;
-  font-size: 1.1rem;
-}
-
-.blockImage {
-  max-height: 400px;
-}
-
-main.features {
-  align-items: center;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-.blockText ul {
-  list-style-image: url('@site/static/images/checkmark.svg');
-  font-size: 1rem;
-  padding: 0 6pxpx 0 15px;
-}
-
-.blockText li::marker {
-  font-size: 1.8em;
-  line-height: 0.1;
-}
-
-/* Forced Desktop styling only */
-@media (min-width: 997px) {
-  .capabilityColumns {
-    padding: 3rem 1.5rem 0;
-  }
-
-  html[data-theme='dark'] .featureImage {
-    background-color: rgba(255, 255, 255, 0.1);
+/* ─── Responsive: Tablet ─── */
+@media screen and (max-width: 996px) {
+  .groupCard {
+    padding: var(--psadt-space-xl);
   }
 }
 
-/* Tablet and Phone styling */
-@media (max-width: 996px) {
-  .featureColumns {
-    padding: 2rem 2rem 1.5rem;
-    display: block;
-  }
-
-  .capabilityColumns {
-    padding: 3rem 2rem 2rem;
-    margin: 1rem auto;
-  }
-
-  .blockStyling {
-    margin: 1.5rem 0 5rem;
-  }
-
-  .featureImage {
-    width: 50%;
-  }
-
-  .introText {
-    width: 90% !important;
-    font-size: 0.9rem;
-    display: block;
-    margin: 2rem auto 2.5rem;
-  }
-
-  .blockImage {
-    display: none;
-  }
-
-  .featureText ul {
-    margin: 0;
-  }
-
-  .capabilitiesContainer .blockTitle {
+/* ─── Responsive: Mobile ─── */
+@media screen and (max-width: 768px) {
+  .groupHeader {
+    flex-direction: column;
+    align-items: left;
     text-align: left;
   }
 
-  .featureColumns h3 {
-    text-align: left;
+  .groupIcon {
+    width: 48px;
+    height: 48px;
   }
-}
 
-/* Dark Theme Styling */
-html[data-theme='dark'] .featureColumns {
-  background-color: var(--ifm-navbar-background-color);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  .itemsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .groupCard {
+    padding: var(--psadt-space-lg);
+  }
 }

@@ -1,0 +1,208 @@
+---
+sidebar_position: 10
+sidebar_label: 'Text Formatting'
+title: 'Text Formatting'
+description: 'Learn how to use rich text formatting in PSAppDeployToolkit dialogs'
+slug: /reference/text-formatting
+tags:
+  - Text Formatting
+  - UI Customization
+  - Reference
+---
+
+# Text Formatting
+
+PSAppDeployToolkit v4.1 supports rich text formatting in dialog messages, allowing you to create more visually appealing and informative user interfaces. This feature works with the Fluent dialog style and supports nested formatting for complex text styling.
+
+The text formatting system allows you to apply various styles to text displayed in dialogs using simple markup tags. These tags can be:
+- Used individually for simple formatting
+- Combined for cumulative effects
+
+## Supported Formatting Tags
+
+### Basic Formatting
+
+| Tag | Description | Example |
+|-----|-------------|---------|
+| `[bold]...[/bold]` | Makes text bold | `[bold]Important text[/bold]` |
+| `[italic]...[/italic]` | Makes text italic | `[italic]Emphasized text[/italic]` |
+| `[accent]...[/accent]` | Applies accent color and bold | `[accent]Highlighted text[/accent]` |
+| `[url]...[/url]` | Creates a simple clickable hyperlink | `[url]https://psappdeploytoolkit.com[/url]` |
+| `[url=...]Link Description[/url]` | Creates a clickable hyperlink with a link description instead of the URL | `[url=https://psappdeploytoolkit.com]PSAppDeployToolkit Homepage[/url]` |
+
+The formatting system automatically adapts to the user's theme:
+- Accent colors adjust for optimal contrast
+- Hyperlinks use theme-appropriate colors
+- Bold and italic formatting remain consistent
+
+### Nested Formatting
+
+The formatting system supports nesting tags for combined effects:
+
+```text
+[bold]This is bold [accent]and this is bold with accent color[/accent][/bold]
+
+[italic]Italic text with [bold]bold emphasis[/bold] inside[/italic]
+
+[bold][accent][italic]All three formats combined![/italic][/accent][/bold]
+```
+
+### Accent Color Configuration
+
+The accent color used by `[accent]` tags can be configured in your deployment:
+
+```powershell
+# In Config\config.psd1
+@{
+    UI = @{
+        FluentAccentColor = 0xFF0078D4  # Blue accent
+    }
+}
+```
+
+## Usage in Dialogs
+
+### Configuration Strings
+
+Text formatting can be used in your `Strings\strings.psd1` configuration:
+
+```powershell
+@{
+    Fluent = @{
+        DialogMessage = @{
+            Install = "[accent]Please wait[/accent] while we install this application. This process will take approximately [italic]5-10 minutes[/italic]."
+            Uninstall = "[accent]Warning:[/accent] All application data will be [italic]permanently removed[/italic]."
+        }
+    }
+}
+```
+### Custom Messages
+
+You can use formatting tags in custom messages passed to dialogs:
+
+```powershell
+Show-ADTInstallationPrompt -Message "[bold]Installation Notice[/bold]
+
+[accent]Important:[/accent] Please save your work before continuing.
+
+For help, visit [url]https://support.company.com[/url]" -ButtonText "OK"
+```
+
+## Best Practices
+
+### 1. Use Formatting Sparingly
+
+While formatting enhances readability, overuse can make text difficult to read:
+
+❌ **Bad:**
+```text
+[bold][italic][accent]Everything[/accent][/italic][/bold] is [bold]formatted[/bold] [italic]differently[/italic]!
+```
+
+✅ **Good:**
+```text
+[bold]Important:[/bold] Please [accent]save your work[/accent] before continuing.
+```
+
+### 2. Maintain Consistency
+
+Use formatting consistently throughout your deployment:
+
+- **[bold]** for headings and important labels
+- **[accent]** for critical information or warnings
+- **[italic]** for supplementary information or examples
+- **[url]** for support links and resources
+
+### 3. Consider Accessibility
+
+- Ensure sufficient contrast between accent colors and backgrounds
+- Don't rely solely on formatting to convey critical information
+- Test your formatted text in both light and dark themes
+
+### 4. Close Tags Properly
+
+Always close tags in the reverse order they were opened:
+
+❌ **Incorrect:**
+```text
+[bold][italic]Text[/bold][/italic]
+```
+
+✅ **Correct:**
+```text
+[bold][italic]Text[/italic][/bold]
+```
+
+## URL Formatting Examples
+
+### Simple URL Format
+
+Use the simple format when you want to display the actual URL:
+
+```text
+Need help? Visit [url]https://support.company.com[/url]
+Email us at [url]support@company.com[/url]
+```
+
+### Descriptive URL Format
+
+Use the descriptive format when you want to display custom text instead of the URL:
+
+```text
+For help, visit our [url=https://support.company.com]Support Portal[/url]
+Download the latest version from [url=https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases]GitHub Releases[/url]
+Contact [url=mailto:admin@company.com]IT Support[/url] for assistance
+```
+
+### Mixed URL Formats
+
+You can combine both formats in the same text:
+
+```text
+[bold]Resources Available:[/bold]
+
+• Documentation: [url=https://psappdeploytoolkit.com/docs]Official Documentation[/url]
+• Community Support: [url]https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/discussions[/url]
+• Report Issues: [url=https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/issues]Submit a Bug Report[/url]
+```
+
+## Complex Formatting Examples
+
+### Corporate Deployment Message
+
+```text
+[bold]Software Deployment Notice[/bold]
+
+[accent]Action Required:[/accent] Microsoft Office 365 Installation
+
+Your computer has been selected for the [bold]Microsoft Office 365[/bold] upgrade.
+This installation will:
+
+• Replace [italic]Office 2016[/italic] with [bold][accent]Office 365[/accent][/bold]
+• Migrate all your settings and preferences
+• Install the latest security updates
+
+[accent]Important Notes:[/accent]
+• The installation takes approximately [bold]20-30 minutes[/bold]
+• Your computer will [italic]restart automatically[/italic] when complete
+• All Office applications must be closed
+
+For more information, visit our [url]https://intranet.company.com/office365[/url]
+
+[italic]Thank you for your cooperation.[/italic]
+```
+
+### Security Update Notification
+
+```text
+[bold][accent]SECURITY UPDATE REQUIRED[/accent][/bold]
+
+A [accent]critical security vulnerability[/accent] has been identified in your current software version.
+
+This update addresses:
+• [accent]CVE-2023-26369[/accent] - Critical vulnerability
+• Performance improvements
+• Stability enhancements
+
+Learn more: [url]https://adobe.com/security[/url]
+```

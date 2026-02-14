@@ -2,7 +2,7 @@
 title: PSADT has a new home
 authors: [sintaxasn]
 tags: [psappdeploytoolkit, powershell, website]
-description: This is our 1st post on the new PSADT website!
+description: PSAppDeployToolkit gets a fresh new website with improved documentation flow and a comprehensive reference guide.
 ---
 
 ## New Website

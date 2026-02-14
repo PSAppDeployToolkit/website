@@ -1,0 +1,92 @@
+---
+id: New-ADTLogFileName
+title: New-ADTLogFileName
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Generates a new log file name based off the current deployment session's properties.
+
+## SYNTAX
+
+```powershell
+New-ADTLogFileName [-Discriminator] <String> [-FileNameOnly] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Generates a new log file name based off the current deployment session's properties, using the same default format that PSAppDeployTookit uses itself.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+New-ADTLogFileName -Discriminator Setup
+```
+
+This example returns a pre-formatted string that can be used as a log file name.
+
+## PARAMETERS
+
+### -Discriminator
+
+The identifier to pre-format the log file name with.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FileNameOnly
+
+If specified, just returns a log file name without and preceeding path.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### System.String
+
+### Returns a pre-formatted string with the specified discriminator.
+## NOTES
+An active ADT session is required to use this function.
+
+Requires: PSADT session should be initialized using Open-ADTSession
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/New-ADTLogFileName](https://psappdeploytoolkit.com/docs/reference/functions/New-ADTLogFileName)

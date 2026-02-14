@@ -1,0 +1,60 @@
+---
+id: Update-ADTEnvironmentPsProvider
+title: Update-ADTEnvironmentPsProvider
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Updates the environment variables for the current PowerShell session with any environment variable changes that may have occurred during script execution.
+
+## SYNTAX
+
+```powershell
+Update-ADTEnvironmentPsProvider [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Environment variable changes that take place during script execution are not visible to the current PowerShell session.
+
+Use this function to refresh the current PowerShell session with all environment variable settings.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Update-ADTEnvironmentPsProvider
+```
+
+Refreshes the current PowerShell session with all environment variable settings.
+
+## PARAMETERS
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not return any objects.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Update-ADTEnvironmentPsProvider](https://psappdeploytoolkit.com/docs/reference/functions/Update-ADTEnvironmentPsProvider)

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Creating a sidebar enables you to:
  - create an ordered group of docs
  - render a sidebar for each doc of that group
@@ -31,8 +31,8 @@ const sidebars = {
         'getting-started/release-notes',
         'getting-started/upgrade-guidance-4x-to-v41',
         'getting-started/upgrade-guidance-v3x-to-v41',
-        'getting-started/faq'
-      ]
+        'getting-started/faq',
+      ],
     },
     {
       type: 'category',
@@ -44,8 +44,8 @@ const sidebars = {
       items: [
         'deployment-concepts/deployment-structure',
         'deployment-concepts/invoke-appdeploytoolkit',
-        'deployment-concepts/zero-config-deployment'
-      ]
+        'deployment-concepts/zero-config-deployment',
+      ],
     },
     {
       type: 'category',
@@ -59,8 +59,8 @@ const sidebars = {
         'usage/adding-ui-elements',
         'usage/customizing-deployments',
         'usage/installing-applications',
-        'usage/admx-templates'
-      ]
+        'usage/admx-templates',
+      ],
     },
     {
       type: 'category',
@@ -70,8 +70,8 @@ const sidebars = {
       },
       collapsed: false,
       items: [
-        'examples/admxtemplate-LogPath'/*,
-        'examples/googlechrome-configmgr'*/
+        'examples/admxtemplate-LogPath' /*,
+        'examples/googlechrome-configmgr'*/,
       ],
     },
   ],

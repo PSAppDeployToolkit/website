@@ -1,0 +1,50 @@
+/**
+ * Swizzled DocCard styles — matches the about page card pattern
+ * using project design tokens from custom.css.
+ */
+
+.cardContainer {
+  --ifm-link-hover-decoration: none;
+
+  display: block;
+  padding: var(--psadt-space-lg);
+  border-radius: var(--psadt-card-radius);
+  border: 1px solid var(--psadt-card-border-color);
+  background: var(--psadt-card-background);
+  box-shadow: var(--psadt-card-shadow);
+  overflow: hidden;
+  color: var(--ifm-color-content);
+  transition: border-color var(--psadt-transition-normal), box-shadow var(--psadt-transition-normal);
+}
+
+.cardContainer:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--psadt-card-shadow-hover);
+  color: var(--ifm-color-content);
+  text-decoration: none;
+}
+
+.cardContainer *:last-child {
+  margin-bottom: 0;
+}
+
+.cardTitle {
+  font-size: var(--ifm-font-size-lg);
+  font-weight: var(--ifm-font-weight-bold);
+  color: var(--ifm-color-emphasis-900);
+  border-bottom: none;
+  margin-top: 0;
+  margin-bottom: var(--psadt-space-xs);
+  padding-bottom: 0;
+}
+
+.cardContainer:hover .cardTitle {
+  color: var(--ifm-color-primary);
+}
+
+.cardDescription {
+  font-size: var(--ifm-font-size-sm);
+  color: var(--ifm-color-content-secondary);
+}
+
+

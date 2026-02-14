@@ -1,20 +1,36 @@
-.aboutPage {
-  padding: 2rem 0;
-}
-
-.headerBlock {
-  text-align: center;
-  margin-bottom: 2rem;
-
-  h1 {
-    font-size: 18px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+.aboutPage {
+  animation: fadeInUp 0.5s var(--psadt-ease-standard) both;
+}
+
+.headerBlock {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.headerBlock h1 {
+  font-size: var(--ifm-h1-font-size);
+}
+
+.accent {
+  font-family: 'Poppins', var(--ifm-font-family-base);
+  color: var(--ifm-color-primary);
+  font-weight: var(--ifm-font-weight-extrabold);
+}
+
 .heroBlock {
-  text-align: center;
+  text-align: left;
   padding: 4rem 0;
-  background-color: var(--ifm-color-gray-800);
 
   h2 {
     font-size: 2rem;
@@ -23,55 +39,94 @@
 }
 
 .introBlock {
-  margin: 4rem auto;
+  margin: 0 auto;
+  display: flex;
+  gap: var(--psadt-space-2xl);
+  align-items: flex-start;
+}
+
+.introBody {
+  flex: 2.5;
+  min-width: 0;
+
+  font-size: var(--ifm-font-size-base);}
+
+.introTestimonials {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--psadt-space-lg);
+  align-self: stretch;
+}
+
+.testimonialCard {
+  border-radius: var(--psadt-card-radius);
+  border: 1px solid var(--psadt-card-border-color);
+  background: var(--psadt-card-background);
+  box-shadow: var(--psadt-card-shadow);
+  overflow: hidden;
+  padding: var(--psadt-space-lg);
+  transition: box-shadow var(--psadt-transition-normal), border-color var(--psadt-transition-normal);
+  justify-content: center;
+}
+
+.testimonialCard:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--psadt-card-shadow-hover);
+}
+
+.testimonialQuote {
+  font-size: var(--ifm-font-size-lg);
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0 0 var(--psadt-space-md);
+  color: var(--ifm-color-content);
+}
+
+.testimonialAttribution {
+  font-size: var(--ifm-font-size-sm);
+  color: var(--ifm-color-content-secondary);
+}
+
+.testimonialAttribution strong {
+  font-size: var(--ifm-font-size-lg);
+  color: var(--ifm-color-primary);
+  font-weight: var(--ifm-font-weight-bold);
 }
 
 .foundersBlock {
-  margin: 2rem auto;
-  text-align: center;
-  display: flexbox;
+  margin: 4rem auto;
+  text-align: left;
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  justify-content: left;
 
   h2 {
-    margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: var(--ifm-h2-font-size);
+    margin-bottom: var(--psadt-space-2xl);
+    font-weight: var(--ifm-font-weight-bold);
+    border-bottom: none;
+
+    accent {
+      color: var(--ifm-color-primary);
+    }
   }
 
   .founderCard {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    margin: var(--space-lg) 0;
-    padding: var(--space-2xl) var(--space-lg);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    text-align: center;
+    border-radius: var(--psadt-card-radius);
+    border: 1px solid var(--psadt-card-border-color);
+    background: var(--psadt-card-background);
+    box-shadow: var(--psadt-card-shadow);
+    margin: 0;
+    padding: var(--psadt-space-xl);
+    text-align: left;
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--psadt-space-sm);
     align-items: center;
-    transition: all var(--transition-normal) var(--transition-bezier);
-    position: relative;
     overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--palette-blue), var(--palette-blue-dark));
-      border-radius: 20px 20px 0 0;
-    }
-
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-xl);
-      border-color: var(--palette-blue);
-    }
+    transition: box-shadow var(--psadt-transition-normal), border-color var(--psadt-transition-normal);
 
     p,
     h2,
@@ -79,110 +134,157 @@
       margin: 0;
     }
 
-    .founderImage {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 0.5rem;
-      background: white;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      object-fit: cover;
+    &:hover {
+      box-shadow: var(--psadt-card-shadow-hover);
+      border-color: var(--ifm-color-primary);
     }
 
-    &:hover .founderImage {
-      transform: scale(1.05);
-      border-color: var(--palette-blue);
+    .founderImage {
+      width: 128px;
+      height: 128px;
+      border-radius: var(--psadt-card-radius);
+      margin-bottom: var(--psadt-space-sm);
+      border: 1px solid var(--psadt-card-border-color);
+      box-shadow: var(--psadt-card-image-shadow);
+      background: var(--psadt-card-image-background);
     }
 
     .founderTitle {
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-family: 'Poppins', var(--ifm-font-family-base);
+      font-size: var(--ifm-font-size-xl);
+      font-weight: var(--ifm-font-weight-bold);
       color: var(--ifm-color-emphasis-900);
-      margin-bottom: 0.25rem;
+      margin: 0;
     }
 
     .founderSubtitle {
-      font-weight: 600;
-      color: var(--palette-blue);
-      font-size: 1rem;
-      margin-bottom: 1rem;
+      font-weight: var(--ifm-font-weight-bold);
+      color: var(--ifm-color-primary);
+      font-size: var(--ifm-font-size-base);
+      margin: 0 0 var(--psadt-space-sm);
+    }
+
+    .founderLinks a {
+      color: var(--ifm-color-content-secondary);
+      margin: 0 0.5rem 0 .5rem;
+      transition: color var(--psadt-transition-normal);
+    }
+
+    .founderLinks a:hover {
+      color: var(--ifm-color-primary);
     }
   }
 }
 
+
+.founderGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--psadt-space-xl);
+
+}
+
 .contributorsBlock {
-  margin: 2rem auto;
-  text-align: center;
-  display: flexbox;
+  margin: 0 auto;
+  text-align: left;
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
 
   h2 {
-    margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: var(--ifm-h2-font-size);
+    margin-bottom: var(--psadt-space-2xl);
+    border-bottom: none;
   }
 }
 
-.founderLinks a {
-  color: var(--ifm-color-primary-darker);
-  margin: 0 0.5rem;
-  transition: color 0.2s;
+/* ─── Contributor Card Grid ─── */
+
+.contributorGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--psadt-space-md);
+  width: 100%;
 }
 
-.founderLinks a:hover {
+.contributorCard {
+  border-radius: var(--psadt-card-radius);
+  border: 1px solid var(--psadt-card-border-color);
+  background: var(--psadt-card-background);
+  box-shadow: var(--psadt-card-shadow);
+  padding: var(--psadt-space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--psadt-space-md);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color var(--psadt-transition-normal), box-shadow var(--psadt-transition-normal);
+  min-height: 130px;
+}
+
+.contributorCard:hover {
+  text-decoration: none;
+  color: inherit;
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--psadt-card-shadow-hover);
+}
+
+.contributorAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 25%;
+  object-fit: cover;
+  border: 1px solid var(--psadt-card-border-color);
+  box-shadow: var(--psadt-card-image-shadow);
+}
+
+.contributorName {
+  font-size: var(--ifm-font-size-md);
+  font-weight: var(--ifm-font-weight-medium);
+  color: var(--ifm-color-content-secondary);
+  margin: 0;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  transition: color var(--psadt-transition-normal);
+}
+
+.contributorCard:hover .contributorName {
   color: var(--ifm-color-primary);
-}
-
-/* Dark theme support for founder cards */
-html[data-theme='dark'] .founderCard {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-html[data-theme='dark'] .founderCard:hover {
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-  border-color: var(--palette-blue);
-}
-
-html[data-theme='dark'] .founderCard .founderImage {
-  border: 4px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-html[data-theme='dark'] .founderCard:hover .founderImage {
-  border-color: var(--palette-blue);
-}
-
-html[data-theme='dark'] .founderCard .founderTitle {
-  color: white;
 }
 
 /* Responsive adjustments */
 @media screen and (max-width: 996px) {
-  .foundersBlock .row {
-    display: flex;
+  .introBlock {
     flex-direction: column;
-    align-items: center;
+    gap: var(--psadt-space-xl);
   }
 
-  .foundersBlock .col {
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 2rem;
+  .introTestimonials {
+    align-self: stretch;
   }
 
-  .founderCard {
-    margin: 1rem 0;
-    padding: 2rem 1rem;
+  .founderGrid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+
+  .contributorGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media screen and (max-width: 768px) {
+  .founderGrid {
+    grid-template-columns: 1fr;
+  }
+
   .founderCard {
-    padding: 1.5rem 1rem;
+    padding: var(--psadt-space-xl) var(--psadt-space-md);
   }
 
   .founderImage {
@@ -195,6 +297,11 @@ html[data-theme='dark'] .founderCard .founderTitle {
   }
 
   .founderSubtitle {
-    font-size: 0.9rem;
+    font-size: var(--ifm-font-size-sm);
+  }
+
+  .contributorGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--psadt-space-sm);
   }
 }
