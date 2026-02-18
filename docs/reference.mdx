@@ -1,18 +1,27 @@
----
+﻿---
 sidebar_position: 1
 title: 'Reference'
-description: 'A handy reference to the Exit Codes used by PSAppDeployToolkit, as well as the Variables and Functions made available for you to use.'
+description: 'A handy reference to the PSAppDeployToolkit library of functions, ADTSession object properties, and exit codes.'
 id: reference
+hide_title: true
 tags:
   - Reference
 ---
 
-# Reference
+## Reference
 
-PSAppDeployToolkit has an extensive library of functions to simplify common deployment tasks. Every function adheres to the same security standards and best pratices, including documentation. You can find a complete list of functions in the sidebar, or alternatiively,  or by using the search bar.
+You can find extensive details on all of the available Functions, `ADTSession` properties, Variables, Configuration Settings, Langauge Strings, Text Formatting and Exit Codes in the sidebar or by using the search bar.
 
-Pre-defined **Exit Codes** are used to indicate the success or failure of a deployment and can be used to control the flow of your deployment logic, or just to understand what happened during a deployment. You can find a list of Exit Codes, Functions, and ADT Session properties in the sidebar or by using the search bar.
+----
 
-## Something missing?
+- PSAppDeployToolkit has an **extensive library of functions** to simplify common deployment tasks. Every function adheres to the same security standards and best practices, including documentation.
+- The **`ADTSession`** object is a core component of PSAppDeployToolkit, managing the state and information throughout a deployment session. It gathers essential details about the deployment environment and provides convenient properties and methods for use in scripts.
+- When you open an `ADTSession` several useful **Variables** are created. These include hardware information, system and user paths, and Active Directory domain details, among others.
+- PSADT provides comprehensive **Configuration Settings** through multiple layers.
+- You can customize all of the User Interface text strings for English or any other language using **Language Strings**.
+- PSADT supports rich **Text Formatting** in dialog messages, allowing you to create more visually appealing and informative user interfaces.
+- Pre-defined **Exit Codes** are used to indicate the success or failure of a deployment and can be used to control the flow of your deployment logic, or just to understand what happened during a deployment.
+
+### Something missing?
 
 If you find issues with the documentation or have suggestions on how to improve the documentation or the project in general, please [file an issue](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/issues) for us.

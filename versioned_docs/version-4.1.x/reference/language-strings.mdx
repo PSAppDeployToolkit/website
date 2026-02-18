@@ -4,31 +4,32 @@ sidebar_label: 'Language Strings'
 title: 'Language Strings'
 description: 'PSAppDeployToolkit exposes all of the text used in the UI.'
 slug: /reference/language-strings
+hide_title: true
 tags:
   - Language Strings
   - Reference
 ---
 
-# Language Strings
+## Language Strings
 
 Each setting in the config.psd1 is exposed through the `Get-ADTConfig` function, allowing you to retrieve text used by the UI.
 
-# Settings
+### Settings
 
-## General Strings
+#### General Strings
 
-## Close Prompts
+#### Close Prompts
 
 | Setting                      | Description                                  |
-|:-----------------------------|:---------------------------------------------|
+| :--------------------------- | :------------------------------------------- |
 | `ClosePrompt.ButtonClose`    | Button text for closing the prompt.          |
 | `ClosePrompt.ButtonContinue` | Button text for continuing the close prompt. |
 | `ClosePrompt.ButtonDefer`    | Button text for deferring the close prompt.  |
 
-## Progress Messages
+#### Progress Messages
 
 | Setting                           | Description                                       |
-|:----------------------------------|:--------------------------------------------------|
+| :-------------------------------- | :------------------------------------------------ |
 | `Progress.MessageInstall`         | Message displayed during installation.            |
 | `Progress.MessageInstallDetail`   | Detailed message displayed during installation.   |
 | `Progress.MessageRepair`          | Message displayed during repair.                  |
@@ -36,47 +37,47 @@ Each setting in the config.psd1 is exposed through the `Get-ADTConfig` function,
 | `Progress.MessageUninstall`       | Message displayed during uninstallation.          |
 | `Progress.MessageUninstallDetail` | Detailed message displayed during uninstallation. |
 
-## Disk Space
+#### Disk Space
 
-| Setting             | Description                                 |
-|:--------------------|:--------------------------------------------|
-| `DiskSpace.Message` | Message displayed when checking disk space. |
+| Setting             | Descriptionm                                 |
+| :------------------ | :------------------------------------------- |
+| `DiskSpace.Message` | Message displayed when checking disk  space. |
 
-## Deployment Types
+#### Deployment Types
 
 | Setting                    | Description                         |
-|:---------------------------|:------------------------------------|
+| :------------------------- | :---------------------------------- |
 | `DeploymentType.Install`   | Text for install deployment type.   |
 | `DeploymentType.Repair`    | Text for repair deployment type.    |
 | `DeploymentType.Uninstall` | Text for uninstall deployment type. |
 
-## Welcome Prompts
+#### Welcome Prompts
 
-| Setting                 | Description                   |
-|:------------------------|:------------------------------|
+| Setting | Description |
+| :------ | :-- -------- |
 | `WelcomePrompt.Classic` | Classic style welcome prompt. |
-| `WelcomePrompt.Fluent`  | Fluent style welcome prompt.  |
+| `WelcomePrompt.Fluent` | Fluent style welcome prompt. |
 
-## Block Execution
+### Block Execution
 
 | Setting                  | Description                                  |
-|:-------------------------|:---------------------------------------------|
+| :----------------------- | :------------------------------------------- |
 | `BlockExecution.Message` | Message displayed when execution is blocked. |
 
-## Balloon Texts
+### Balloon Texts
 
 | Setting                       | Description                        |
-|:------------------------------|:-----------------------------------|
+| :---------------------------- | :--------------------------------- |
 | `BalloonText.Complete`        | Balloon text for completion.       |
 | `BalloonText.Error`           | Balloon text for errors.           |
 | `BalloonText.FastRetry`       | Balloon text for fast retry.       |
 | `BalloonText.RestartRequired` | Balloon text for restart required. |
 | `BalloonText.Start`           | Balloon text for start.            |
 
-## Restart Prompts
+#### Restart Prompts
 
 | Setting                            | Description                                   |
-|:-----------------------------------|:----------------------------------------------|
+| :--------------------------------- | :-------------------------------------------- |
 | `RestartPrompt.ButtonRestartLater` | Button text for restarting later.             |
 | `RestartPrompt.ButtonRestartNow`   | Button text for restarting now.               |
 | `RestartPrompt.Message`            | General restart prompt message.               |
@@ -85,10 +86,10 @@ Each setting in the config.psd1 is exposed through the `Get-ADTConfig` function,
 | `RestartPrompt.TimeRemaining`      | Time remaining message for restart.           |
 | `RestartPrompt.Title`              | Title for restart prompt.                     |
 
-## Defer Prompts
+#### Defer Prompts
 
 | Setting                          | Description                                   |
-|:---------------------------------|:----------------------------------------------|
+| :------------------------------- | :-------------------------------------------- |
 | `DeferPrompt.Deadline`           | Deadline message for defer prompt.            |
 | `DeferPrompt.ExpiryMessage`      | Expiry message for defer prompt.              |
 | `DeferPrompt.RemainingDeferrals` | Remaining deferrals message for defer prompt. |

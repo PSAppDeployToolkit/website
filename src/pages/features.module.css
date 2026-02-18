@@ -1,5 +1,6 @@
-/* ─── Page Header ─── */
+/* Page Header */
 .featuresPage {
+  padding: 3rem 0 4rem;
   padding-bottom: var(--psadt-space-3xl);
 }
 
@@ -9,41 +10,35 @@
 }
 
 .pageTitle {
-  font-family: 'Poppins', var(--ifm-font-family-base);
   font-weight: var(--ifm-font-weight-bold);
-  font-size: var(--ifm-h1-font-size);
   letter-spacing: -0.025em;
-  line-height: 1.1;
-  font-family: 'Poppins', var(--ifm-font-family-base);
-  font-weight: var(--ifm-font-weight-bold);
-  font-size: var(--ifm-h1-font-size);
   color: var(--ifm-color-primary);
-  margin-bottom: var(--psadt-space-md);
+  margin: 0 0 var(--psadt-space-md);
 }
 
 .pageSubtitle {
-  font-size: var(--ifm-font-size-xl);
+  font-size: var(--ifm-h4-font-size);
   color: var(--ifm-color-content-secondary);
   max-width: 50ch;
   line-height: 1.6;
+  margin: 0;
 }
 
-/* ─── Feature Group List ─── */
+/* Feature Group List */
 .groupList {
   display: flex;
   flex-direction: column;
   gap: var(--psadt-space-2xl);
 }
 
-/* ─── Feature Group Card ─── */
+/* Feature Group Card */
 .groupCard {
   padding: var(--psadt-space-lg) var(--psadt-space-xl);
   border-radius: var(--psadt-card-radius);
-  background: var(--psadt-card-background);
+  background: var(--psadt-sidebar-glass-surface);
   border: 1px solid var(--psadt-card-border-color);
-  transition:
-    box-shadow var(--psadt-transition-normal),
-    border-color var(--psadt-transition-normal);
+  box-shadow: var(--psadt-card-shadow);
+  transition: box-shadow var(--ifm-transition-slow), border-color var(--ifm-transition-slow);
 }
 
 .groupCard:hover {
@@ -71,24 +66,22 @@
 }
 
 .groupTitle {
-  font-family: 'Poppins', var(--ifm-font-family-base);
   font-weight: var(--ifm-font-weight-bold);
-  font-size: var(--ifm-h3-font-size);
-  margin-bottom: var(--psadt-space-xs);
+  margin: 0 0 var(--psadt-space-sm);
 }
 
 .groupDescription {
-  font-size: var(--ifm-font-size-base);
+  font-size: var(--ifm-h5-font-size);
   color: var(--ifm-color-content-secondary);
   line-height: 1.6;
   margin: 0;
 }
 
-/* ─── Feature Items Grid ─── */
+/* Feature Items Grid */
 .itemsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--psadt-space-sm) var(--psadt-space-sm);
+  gap: var(--psadt-space-sm);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -102,47 +95,45 @@
 }
 
 .checkIcon {
-  flex-shrink: 1;
+  flex-shrink: 0;
   color: var(--ifm-color-success);
   margin-top: 2px;
 }
 
 .featureText {
-  font-size: var(--ifm-font-size-md);
+  font-size: var(--ifm-h5-font-size);
   line-height: 1.5;
   color: var(--ifm-color-content);
 }
 
+/* Version badge (light-mode only) */
 .versionBadge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   margin-left: var(--psadt-space-sm);
   padding: 1px 8px;
   font-size: 0.7rem;
   font-weight: var(--ifm-font-weight-semibold);
   border-radius: 999px;
-  background-color: var(--ifm-color-primary-lighter);
-  color: var(--ifm-color-primary-darkest);
+  background: var(--ifm-color-primary-contrast-background);
+  color: var(--ifm-color-primary-contrast-foreground);
+  border: 1px solid rgba(var(--psadt-color-blue-950-rgb) / 0.10);
   vertical-align: middle;
   line-height: 1.6;
 }
 
-html[data-theme='dark'] .versionBadge {
-  background-color: var(--ifm-color-primary-darkest);
-  color: var(--ifm-color-primary-lightest);
-}
-
-/* ─── Responsive: Tablet ─── */
+/* Responsive */
 @media screen and (max-width: 996px) {
   .groupCard {
     padding: var(--psadt-space-xl);
   }
 }
 
-/* ─── Responsive: Mobile ─── */
 @media screen and (max-width: 768px) {
   .groupHeader {
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
     text-align: left;
   }
 
@@ -158,4 +149,8 @@ html[data-theme='dark'] .versionBadge {
   .groupCard {
     padding: var(--psadt-space-lg);
   }
+}
+
+html[data-theme='dark'] .versionBadge {
+  border-color: rgba(255, 255, 255, 0.12);
 }

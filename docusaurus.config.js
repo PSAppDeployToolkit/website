@@ -24,7 +24,7 @@ const config = {
   onBrokenLinks: 'throw',
   markdown: {
     hooks: {
-  onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownLinks: 'warn',
     },
   },
   i18n: {
@@ -33,8 +33,8 @@ const config = {
   },
 
   stylesheets: [
-	'https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Expletus+Sans:ital,wght@0,400..700;1,400..700&family=Funnel+Display:wght@300..800&family=Fustat:wght@200..800&family=Gantari:ital,wght@0,100..900;1,100..900&family=Geologica:wght,CRSV@100..900,0&family=Golos+Text:wght@400..900&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=League+Spartan:wght@100..900&family=Liter&family=Manrope:wght@200..800&family=Onest:wght@100..900&family=Outfit:wght@100..900&family=Oxygen:wght@300;400;700&family=PT+Sans+Caption:wght@400;700&family=Parkinsans:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sen:wght@400..800&family=Sometype+Mono:ital,wght@0,400..700;1,400..700&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap',
-    ],
+    'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@6..144,1..1000,0..100&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+  ],
 
   customFields: {
     meta: {
@@ -53,18 +53,18 @@ const config = {
           customCss: require.resolve('./src/css/custom.css'),
         },
         docs: {
-	  exclude: ['**/docs/plans/**'],
+          exclude: ['plans/**'],
           sidebarPath: require.resolve('./sidebars.js'),
           lastVersion: '4.1.x',
           versions: {
             current: {
-              label: '4.2.x (In Development)',
+              label: '4.2.x dev',
               path: '/',
               banner: 'unreleased',
               // editUrl: 'https://github.com/psappdeploytoolkit/website/edit/main',
             },
             '4.1.x': {
-              label: '4.1.x (Stable)',
+              label: '4.1.x current',
               path: '4.1.x',
             },
             '4.0.x': {
@@ -128,12 +128,14 @@ const config = {
         minHeadingLevel: 2,
         maxHeadingLevel: 2,
       },
+      docs: {
+        versionPersistence: 'localStorage'
+      },
       navbar: {
         title: 'PSAppDeployToolkit',
         logo: {
           alt: 'PSAppDeployToolkit',
-          src: '/images/psadt-light-navheader.svg',
-          srcDark: '/images/psadt-dark-navheader.svg',
+          src: '/images/psadt-logo.svg',
         },
         items: [
           { to: 'features', label: 'Features', position: 'left' },

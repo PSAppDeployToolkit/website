@@ -3,6 +3,7 @@ sidebar_position: 1
 title: 'ADMX Templates'
 description: 'How to customize deployments using admx templates'
 slug: /usage/admx/admx-templates
+hide_title: true
 tags:
   - Usage
   - Customizing
@@ -10,51 +11,52 @@ tags:
   - ADMX Template
 ---
 
-# Group Policy ADMX Templates
+## Group Policy ADMX Templates
 
 Another way to customize your deployments is with the supplied ADMX templates.
 
-This is a great way to change, update, or enforce settings across an orginization.
+This is a great way to change, update, or enforce settings across an organization.
 
-## Config
+### Config
 
 The Group Policy settings will take precedence over local configs and built-in defaults.
 
 See [Config Settings](../reference/config-settings.mdx) for additional information on what settings are configurable.
 
-## ADMX Template Files
+### ADMX Template Files
 
 The ADMX Template files are located in the `ADMX` folder of either the Module, or the Deployment Template
 
-### Module Folder
+#### Module Folder
 
 The `ADMX` folder is located in the root of the module folder:
 
 ![ADMX folder in the Module](../images/psadt-admx-files-module.png)
 
-### Deployment Template Folder
+#### Deployment Template Folder
 
 The `ADMX` folder is located in the `PSAppDeployToolkit` folder of a deployment template:
 
 ![ADMX folder in a Deployment Template](../images/psadt-admx-files-deployment-template.png)
 
-### Files
+#### Files
 
 The `ADMX` folder contains both the `.admx` and `.adml` files. Use these files to import into either your Central Store or Intune
 
-| Folder                  | File                    | Purpose                                 |
-|:------------------------|:------------------------|:----------------------------------------|
-| **ADMX/**               |                         |                                         |
-|                         | PSAppDeployToolkit.admx | Language neutal policy settings file    |
-| **en-US/**              |                         |                                         |
-|                         | PSAppDeployToolkit.adml | en-US language policy descriptions file |
+| Folder     | File                    | Purpose                                 |
+| :--------- | :---------------------- | :-------------------------------------- |
+| **ADMX/**  |                         |                                         |
+|            | PSAppDeployToolkit.admx | Language neutal policy settings file    |
+| **en-US/** |                         |                                         |
+|            | PSAppDeployToolkit.adml | en-US language policy descriptions file |
 
 ![ADMX Files](../images/psadt-admx-files.png)
 
-## Group Policy Management Editor
+### Group Policy Management Editor
 
 After importing the files into your central store, you can view the settings under:
-```
+
+```text
 Computer Configuration
 └───Policies
     └───Administrative Templates: Policy definitions
@@ -67,11 +69,11 @@ Computer Configuration
 
 ![ADMX Files](../images/psadt-admx-gpme.png)
 
-## Registry
+### Registry
 
 When the Policies apply, the policies can be found in the Registry here:
 
-```
+```text
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\PSAppDeployToolkit
 ```
 

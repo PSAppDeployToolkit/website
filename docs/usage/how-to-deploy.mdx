@@ -3,12 +3,13 @@ sidebar_position: 1
 title: 'How to Deploy'
 description: 'How to deploy the toolkit using the command line / ConfigMgr / Intune.'
 slug: /usage/how-to-deploy
+hide_title: true
 tags:
   - Usage
   - How to Deploy
 ---
 
-# How to Deploy
+## How to Deploy
 
 There are two ways to launch the PSAppDeployToolkit for deployment of applications.
 
@@ -16,76 +17,90 @@ There are two ways to launch the PSAppDeployToolkit for deployment of applicatio
 `%SystemRoot%\System32\WindowsPowerShell\v1.0\PowerShell.exe -ExecutionPolicy Bypass -NoProfile -File Invoke-AppDeployToolkit.ps1`
 - Run `Invoke-AppDeployToolkit.exe` to launch `Invoke-AppDeployToolkit.ps1` in a hidden PowerShell window.
 
-:::note
+:::info
 Additionally, as of v4.1.0:
+
 - If deploying via **Intune**, there is no longer any reqirement to use `ServiceUI.exe` workarounds to display the UI.
 - If deploying via **Configuration Manager**, the **'Allow users to view and interact with the program installation'** option is no longer required to display the UI.
 - Invoke-ServiceUI.ps1 has been removed from the toolkit as it is no longer required.
+
 :::
 
 :::warning
+
 - If you want to deploy an installer interactively, you can include ServiceUI.exe in your package and use that to trigger your installer.
 - However, this is a security risk since any file dialogs or hyperlinks can be abused by the user to gain access as local system.
+
 :::
 
 ### Available parameters
 
 The following parameters are accepted by `Invoke-AppDeployToolkit.ps1` and `Invoke-AppDeployToolkit.exe`:
 
-| Parameter | Values | Description |
-| --------- | ------ | ----------- |
-| `-DeploymentType`| Install&nbsp;*(default)*<br/>Uninstall<br/>Repair | Specifies the deployment type. |
-| `-DeployMode` | Interactive&nbsp;*(default)*<br/>Silent<br/>NonInteractive | Controls dialog display behavior. NonInteractive allows progress dialogs but suppresses any UI elements requiring interaction. |
-| <span style={{whiteSpace: "nowrap"}}>`-SuppressRebootPassThru`</span> | | Suppresses return of 3010 'Reboot Required' exit codes and returns 0 instead. |
-| `-TerminalServerMode` | | Changes to user install mode for RDS/Citrix servers. |
-| `-DisableLogging` | | Disables logging to file. |
+| Parameter                                                             | Values                                                     | Description                                                                                                                    |
+| --------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `-DeploymentType`                                                     | Install&nbsp;*(default)*<br/>Uninstall<br/>Repair          | Specifies the deployment type.                                                                                                 |
+| `-DeployMode`                                                         | Interactive&nbsp;*(default)*<br/>Silent<br/>NonInteractive | Controls dialog display behavior. NonInteractive allows progress dialogs but suppresses any UI elements requiring interaction. |
+| <span style={{whiteSpace: "nowrap"}}>`-SuppressRebootPassThru`</span> |                                                            | Suppresses return of 3010 'Reboot Required' exit codes and returns 0 instead.                                                  |
+| `-TerminalServerMode`                                                 |                                                            | Changes to user install mode for RDS/Citrix servers.                                                                           |
+| `-DisableLogging`                                                     |                                                            | Disables logging to file.                                                                                                      |
 
 In addition, Invoke-AppDeployToolkit.exe supports the following parameters:
 
-| Parameter | Values | Description |
-| --------- | ------ | ----------- |
-| `/Debug` | | Launches the script in a visible window displaying live logging output on-screen. |
-| `/32` | | Launches the script using PowerShell x86. This is useful for compatibility with x86 libraries or components. |
-| `/Core` | | Launches the script using PowerShell Core (pwsh.exe). |
-| `-File` | *.ps1 | Specify a custom script file to run instead of the default Invoke-AppDeployToolkit.ps1. |
-| `*.ps1` | | Specify a custom script file to run instead of the default Invoke-AppDeployToolkit.ps1. |
+| Parameter | Values | Description                                                                                                  |
+| --------- | ------ | ------------------------------------------------------------------------------------------------------------ |
+| `/Debug`  |        | Launches the script in a visible window displaying live logging output on-screen.                            |
+| `/32`     |        | Launches the script using PowerShell x86. This is useful for compatibility with x86 libraries or components. |
+| `/Core`   |        | Launches the script using PowerShell Core (pwsh.exe).                                                        |
+| `-File`   | *.ps1  | Specify a custom script file to run instead of the default Invoke-AppDeployToolkit.ps1.                      |
+| `*.ps1`   |        | Specify a custom script file to run instead of the default Invoke-AppDeployToolkit.ps1.                      |
 
 ### Examples
 
 Deploy an application for installation in interactive mode:
+
 ```powershell
 Invoke-AppDeployToolkit.exe
 ```
+
 or:
+
 ```powershell
 Invoke-AppDeployToolkit.exe -DeploymentType Install -DeployMode Interactive
 ```
-<br/>
+
 Deploy an application in silent mode with 3010 reboot codes suppressed:
+
 ```powershell
 Invoke-AppDeployToolkit.exe -DeploymentType Install -DeployMode Silent -SuppressRebootPassThru
 ```
-<br/>
+
 Deploy an application for uninstallation in non-interactive mode:
+
 ```powershell
 Invoke-AppDeployToolkit.ps1 -DeploymentType Uninstall -DeployMode NonInteractive
 ```
-<br/>
+
 Deploy an application for silent installation using PowerShell x86 in debug mode:
+
 ```powershell
 Invoke-AppDeployToolkit.exe /32 /Debug -DeploymentType Install -DeployMode Silent
 ```
-<br/>
+
 Deploy an application for silent installation using PowerShell Core:
+
 ```powershell
 Invoke-AppDeployToolkit.exe /Core -DeploymentType Install -DeployMode Silent
 ```
-<br/>
+
 Deploy an application with a custom script name:
+
 ```powershell
 Invoke-AppDeployToolkit.exe Custom-Script.ps1
 ```
+
 or:
+
 ```powershell
 Invoke-AppDeployToolkit.exe -File Custom-Script.ps1
 ```

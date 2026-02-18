@@ -8,13 +8,16 @@ import styles from './features.module.css';
 
 function PageHeader() {
   const prefersReducedMotion = useReducedMotion();
+  const spring = prefersReducedMotion
+    ? { duration: 0 }
+    : { type: 'spring' as const, duration: 0.35, bounce: 0 };
 
   return (
     <motion.header
       className={styles.pageHeader}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
+      initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      transition={spring}
     >
       <Heading as="h1" className={styles.pageTitle}>
         Features
@@ -26,6 +29,9 @@ function PageHeader() {
 
 function FeatureGroupCard({ group, index }: { readonly group: FeatureGroup; readonly index: number }) {
   const prefersReducedMotion = useReducedMotion();
+  const spring = prefersReducedMotion
+    ? { duration: 0 }
+    : { type: 'spring' as const, duration: 0.35, bounce: 0 };
 
   const itemContainer = {
     hidden: {},
@@ -33,20 +39,27 @@ function FeatureGroupCard({ group, index }: { readonly group: FeatureGroup; read
   };
 
   const itemVariant = {
-    hidden: { opacity: 0, x: -10 },
-    show: { opacity: 1, x: 0, transition: { duration: prefersReducedMotion ? 0 : 0.3 } },
+    hidden: { opacity: 0, x: -8, filter: 'blur(4px)' },
+    show: {
+      opacity: 1,
+      x: 0,
+      filter: 'blur(0px)',
+      transition: prefersReducedMotion
+        ? { duration: 0 }
+        : { type: 'spring' as const, duration: 0.3, bounce: 0 },
+    },
   };
 
   return (
     <motion.div
       className={styles.groupCard}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: prefersReducedMotion ? 0 : 0.5, delay: prefersReducedMotion ? 0 : index * 0.05 }}
+      initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      transition={{ ...spring, delay: prefersReducedMotion ? 0 : index * 0.05 }}
       viewport={{ once: true, amount: 0.15 }}
     >
       <div className={styles.groupHeader}>
-        <img src={group.icon} alt="" className={styles.groupIcon} aria-hidden="true" />
+        <img src={group.icon} alt="" className={styles.groupIcon} />
         <div className={styles.groupHeaderText}>
           <Heading as="h2" className={styles.groupTitle}>
             {group.title}

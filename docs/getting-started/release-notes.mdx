@@ -3,16 +3,116 @@ sidebar_position: 5
 title: 'Release Notes'
 description: 'Release notes for PSAppDeployToolkit v4.1'
 slug: /getting-started/release-notes
+hide_title: true
 tags:
   - Changes
   - Getting Started
 ---
 
-# Release Notes
+## Release Notes
 
-## v4.1.5 (2025-09-07)
+### v4.1.8 (2026-01-14)
 
-### Fixes
+#### Highlights
+
+This release strengthens Windows Installer (.msi) and Patch (.msp) deployment reliability, improves process and handle safety, enhances dialog behavior, and hardens serialization and exception reporting. It also modernizes dependencies and standardizes UTF-8 handling.
+
+#### Added
+
+- Added automatic MSP logging within `Start-ADTMsiProcess`
+- Added support for MSI patches that target multiple product codes
+- Added `-PassThru` result for `Start-ADTMsiProcess` when an MSI isn't installed on the system
+- Added `Start-ADTMsiProcess` logging parameters to `Start-ADTMspProcess`
+- Added automatic dialog repositioning when screen resolution changes
+- Added `IsAdmin` property to `RunAsActiveUser` object
+
+#### Changed
+
+- Changed `Test-ADTNetworkConnection` to include Wi-Fi connections by default
+- Changed `Start-ADTMsiProcess` and `Start-ADTMspProcess` parameters to be fully harmonized
+- Changed PowerShell InformationStream to use `Write-Host` again for transcription support
+- Changed `Show-ADTInstallationPrompt` command in template to remove `-Icon` parameter (not supported in Fluent UI)
+- Changed ESP detection to not require `CloudAssignedTenantId` (to support Windows 365 devices)
+- Changed permissions checks to occur earlier in `ProcessManager.CreateProcessUsingToken()`
+- Changed `FileHandleManager.GetOpenHandles()` to use ordinal string comparison for object names
+- Changed `FileHandleManager.GetOpenHandles()` to only test for disk file handles
+- Changed child processes to no longer inherit duplicated handles
+- Changed `ProcessUtilities.GetProcessImageName()` to improve exception reporting
+- Changed `ProcessUtilities.GetProcessArgv()` to improve error capturing
+
+#### Fixed
+
+- Fixed `Start-ADTMsiProcess` checking if `$msiDefaultParams` exist before adding to `$msiArgs`
+- Fixed `Start-ADTMsiProcess` exception caused by `InstalledApplication` object handling
+- Fixed Zero-Config MSI code to use the `FileName` column
+- Fixed outer-quoted command line arguments incorrectly parsing as key/value pairs
+- Fixed `ProcessManager.LaunchAsync()` disposal issues
+- Fixed `ProcessManager.LaunchAsync()` exit code handling
+- Fixed module file encoding to use UTF-8 with BOM
+- Fixed deserialization checks to handle missing data
+- Fixed handling of malformed input in `DataSerialization.SerializeToString()`
+- Fixed `SafeThreadHandle` implementation where the handle was not releasing
+- Fixed `DialogManager.ShowBalloonTip()` disposal
+- Fixed `Start-ADTMsiProcess` to handle MSI files without `ProductVersion`
+- Fixed `MsiUtilities.GetMessageFromMsiExitCode()` null terminator handling
+- Fixed `Block-ADTAppExecution` to work on `ProcessDefinition` objects
+- Fixed `Invoke-ADTAllUsersRegistryAction` help to use `-LiteralPath` instead of `-Key`
+- Fixed arithmetic overflow in error handling utilities
+- Fixed `SafeHandle` disposal for processes we don't own
+- Fixed desktop icon cache refresh
+- Fixed `DeploymentSession.AppVendor` field for Zero-Config MSI deployments
+- Fixed `AssemblyPermissions.Remediate()` exception details
+- Fixed `process.HasExited` checks within `ProcessUtilities.GetRunningProcesses()`
+- Fixed Turkish locale issues with case conversion (invariant `ToUpper`/`ToLower`)
+- Fixed `Close-ADTSession` break behavior in breakable statements
+- Fixed `Show-ADTInstallationWelcome` infinite dialog loop when processes can't be closed by user
+- Fixed `/Debug` mode to only work in user interactive processes
+- Fixed `Start-ADTProcessAsUser` missing `Default_CreateWindow_Wait` parameter set
+- Fixed hidden files/folders not being copied when referenced directly
+- Fixed `Get-ADTUserNotificationState` return type
+- Fixed `Copy-ADTContentToCache` error on re-run when source and destination are the same
+- Fixed `hStdInput` handle to use `INVALID_HANDLE_VALUE` when not in use
+- Fixed `FileHandleManager.GetOpenHandles()` to skip invalid file handles
+
+### v4.1.7 (2025-10-21)
+
+#### Fixes
+
+- Hotfix to resolve issue where PSAppDeployToolkit 4.1.6 did not work in PowerShell 7
+
+### v4.1.6 (2025-10-17)
+
+#### Improvements
+
+- Added the ability to format URLs with a description using tags in dialog strings, e.g. `[url=https://contoso.com/security]Click here for the IT Security Policy[/url]`
+- Added support for nested tags for UI text formatting
+- Changed `-TerminalServerMode` switch behavior so that if not running in a terminal server, no action is taken
+- Changed Fluent Dialogs to use software rendering-mode which resolves issues with remote assistance / control tools, e.g. ScreenConnect
+
+#### Fixes
+
+- Fixed an issue where the UI may fail to be displayed when `explorer.exe` is being elevated by an EPM rule using BeyondTrust EPM, Microsoft EPM, or other EPM tool
+- Fixed an issue where `Get-ADTApplication` could error out if `InstallSource` / `InstallLocation` properties were malformed
+- Fixed an issue where `Get-ADTLoggedOnUser` would not return any output when pipelined, unless it was encapsulated in a subexpression
+- Fixed `Start-ADTProcessAsUser` to work with the callers' username even if it doesn't have an active session
+- Fixed issue where tags specified in dialog strings were incorrectly being displayed in Classic Dialogs
+- Fixed passing parameters from the command-line to a v3 compatibility template
+- Fixed Fluent Window dialog position to factor in the default offset if changed
+- Fixed a number of issues found in example documentation for `Show-ADTInstallationPrompt`, `Get-ADTExecutableInfo` and `Start-ADTProcess`
+- Fixed `Start-ADTProcess -ArgumentList` parameter incorrectly resolving custom `$adtSession` property to `True`
+- Fixed `Test-ADTOobeCompleted` and `Test-ADTEspActive` not working
+- Fixed `Set-ADTServiceStartMode` error handling bug
+- Fixed `Set-ADTActiveSetup -Description` parameter could not be specified in parameter set `CreateNoExecute`
+- Fixed unexpected error output when reading a HKLM key in SID context
+- Fixed all known `Copy-ADTFile` issues
+- Fixed `New-ADTZipFile` not working
+- Fixed issue where `Start-ADTMsiProcess` could fail to uninstall an installed MSI
+- Fixed `Remove-ADTEnvironmentVariable` just removing the variable's value, not the variable itself
+- Fixed `Get-ADTShortcut` no longer working for URL shortcuts
+
+### v4.1.5 (2025-09-07)
+
+#### Fixes
 
 - Added more error info to assist with troubleshooting issue
 - Fixed issue that prevented the toolkit running under some Intune deployments
@@ -20,9 +120,9 @@ tags:
 - Fixed issue where `Get-ADTShortcut` hit an error when the icon path contained an environment variable
 - Fixed `OutOfMemoryException` issues within `Resolve-ADTErrorRecord`
 
-## v4.1.4 (2025-09-04)
+### v4.1.4 (2025-09-04)
 
-### Improvements
+#### Improvements
 
 - Changed to allow IFEO-blocked processes that get invoked as SYSTEM to execute.
 - Added warning within `Block-ADTAppExecution` if generated command line is > 255 chars
@@ -33,7 +133,7 @@ tags:
 - Changed `Exit-ADTInvocation` to expose `-NoShellExit` parameter on `Close-ADTSession`.
 - Made the fluent dialogs properly honour right-to-left cultures
 
-### Fixes
+#### Fixes
 
 - Fixed quote handling in `InstallSource` and `InstallLocation` properties in `Get-ADTApplication`
 - Set default parameter set for `Start-ADTMspProcess`.
@@ -48,32 +148,32 @@ tags:
 - Fixed dynamic code trust verification issues with iNKORE dlls
 - Fixed access denied issues when querying running processes
 - Fixed "Exception calling TestEffectiveAccess" issue
-- Fixed `ShowCloseAppsDialog` issue https://discourse.psappdeploytoolkit.com/t/v4-1-3-show-adtinstallationwelcome-closeprocesses-isnt-working/6904
+- Fixed `ShowCloseAppsDialog` issue [#6904](https://discourse.psappdeploytoolkit.com/t/v4-1-3-show-adtinstallationwelcome-closeprocesses-isnt-working/6904)
 - Fixed `ZeroConfig` issue
-- Fixed `PSADT.AccountManagement.AccountUtilities` exception https://discourse.psappdeploytoolkit.com/t/4-1-3-show-adtballoontip-the-client-process-returned-an-exception-access-denied/6890
-- Fixed issue with users being able to terminate the PSADT UI https://discourse.psappdeploytoolkit.com/t/4-1-3-show-adtinstallationrestartprompt-task-manager/6899
-- Fixed issue with launching `ServiceUI.exe` via `Start-ADTProcess` https://discourse.psappdeploytoolkit.com/t/4-1-3-trying-to-display-a-command-prompt-using-serviceui/6896
-- Fixed client/server UI permissions issue https://discourse.psappdeploytoolkit.com/t/4-1-3-adt-ui-system/6905
+- Fixed `PSADT.AccountManagement.AccountUtilities` exception [#6890](https://discourse.psappdeploytoolkit.com/t/4-1-3-show-adtballoontip-the-client-process-returned-an-exception-access-denied/6890)
+- Fixed issue with users being able to terminate the PSADT UI [#6899](https://discourse.psappdeploytoolkit.com/t/4-1-3-show-adtinstallationrestartprompt-task-manager/6899)
+- Fixed issue with launching `ServiceUI.exe` via `Start-ADTProcess` [#6896](https://discourse.psappdeploytoolkit.com/t/4-1-3-trying-to-display-a-command-prompt-using-serviceui/6896)
+- Fixed client/server UI permissions issue [#6905](https://discourse.psappdeploytoolkit.com/t/4-1-3-adt-ui-system/6905)
 
-## v4.1.3 (2025-08-21)
+### v4.1.3 (2025-08-21)
 
-### Fixes
+#### Fixes
 
 - Fixed `CloseProcesses` issue introduced in in 4.1.2
 - Fixed issue with variable expansion on `Start-ADTProcessAsUser`
 - Fixed `Uninstall-ADTApplication` to work with 8.3 names (e.g. `C:\PROGRA~2`)
 
-## v4.1.2 (2025-08-20)
+### v4.1.2 (2025-08-20)
 
-### Fixes
+#### Fixes
 
 - Fixed issue with `TestEffectiveAccess()` call in `Set-ADTClientServerProcessPermissions` that would fail on some domain-joined devices
 - Fixed setup in `Block-ADTAppExecution` so processes started by `SYSTEM` don't block at all
 - Fixed issue with `Show-ADTInstallationWelcome` where the buttons would always display in English
 
-## v4.1.1 (2025-08-19)
+### v4.1.1 (2025-08-19)
 
-### Improvements
+#### Improvements
 
 - Prevent end users from terminating `PSADT.ClientServer.Client.exe` process
 - Do things to try and make the IFEO command line as short as possible
@@ -98,7 +198,7 @@ tags:
 - Expose `RequireAdmin` publicly within `DeploymentSession` class object
 - Added Bulgarian language strings.
 
-###️ Fixes
+#### ️ Fixes
 
 - Adjust setup in `ProcessUtilities.GetRunningProcesses()` to handle bogus command lines
 - Patch bad setup in `Get-ADTClientServerUser` when multiple users are present
@@ -111,9 +211,9 @@ tags:
 - Fixes for Finnish language strings.
 - Fix missing negation on `DisableDefaultMsiProcessList` test
 
-## v4.1 (2025-08-07)
+### v4.1 (2025-08-07)
 
-### Major Improvements
+#### Major Improvements
 
 - Up until now, it was not possible to display any user interface when deploying an application as SYSTEM using Intune (or any endpoint management tool) without using ServiceUI. Well, now it IS possible:
   - In fact, we strongly advise you stop using it as soon as possible. ServiceUI works by manipulating system security tokens in a way that could allow malicious actors to escalate privileges or bypass security controls.
@@ -143,7 +243,7 @@ tags:
   - `-PassThru` output now has a new `interleaved` property that combines `stdout`/`stderr` in order
 - It's now possible to set PSADT configuration settings via Group Policy using the included ADMX templates, which will override any settings in the `config.psd1` file. This allows you to change, update or enforce settings across an organization.
 
-###️ New and Enhanced Functions
+#### ️ New and Enhanced Functions
 
 - Added functions for managing user / machine environment variables:
   - [Get-ADTEnvironmentVariable](../reference/functions/Get-ADTEnvironmentVariable) / [Set-ADTEnvironmentVariable](../reference/functions/Set-ADTEnvironmentVariable) / [Remove-ADTEnvironmentVariable](../reference/functions/Remove-ADTEnvironmentVariable)
@@ -159,7 +259,7 @@ tags:
 - Added `-MaximumElapsedTime` parameter to [Invoke-ADTCommandWithRetries](../reference/functions/Invoke-ADTCommandWithRetries)
 - Added `-SuccessExitCodes` and `-RebootExitCodes` parameters to [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication)
 
-###️ Other Improvements
+#### ️ Other Improvements
 
 - [Show-ADTHelpConsole](../reference/functions/Show-ADTHelpConsole) has been given some love and a facelift with High-DPI awareness, resizability, PowerShell 7 compatibility, and extension module display
 - Reworked `Invoke-AppDeployToolkit.exe` to be more compliant within `WDAC` environments
@@ -169,7 +269,7 @@ tags:
 - Added `/Core` switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit) to allow PowerShell 7 usage
 - Added support for running processes from network drives
 
-###️ Changes
+#### ️ Changes
 
 - Added `-NoOobeDetection` option to `Open-ADTSession` to bypass `OOBE` detection logic when `DeployMode` is set to `Auto`. Use this to show the UI during `OOBE` / Autopilot `ESP` phases.
 - Added `-NoSessionDetection` option to `Open-ADTSession` to bypass session detection logic when `DeployMode` is set to `Auto`. Use this to show the UI when no user is logged on and the `SYSTEM` process is interactive.
@@ -182,7 +282,7 @@ tags:
 - Changed the 'Processes to close' in the `Invoke-AppDeployToolkit` template to the `AppProcessesToClose` `ADTSession` parameter, where they can be re-used over Install / Uninstall / Repair
 - Changed installation failure to be silent as it was in v3.x; however, you can still uncomment a line to get the full detailed stack trace as used in v4.0.x, or a new minimal example using the Fluent UI
 
-### Fixes
+#### Fixes
 
 - Fixed [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser) function to work as expected
 - Fixed [Block-ADTAppExecution](../reference/functions/Block-ADTAppExecution) to avoid triggering AV solutions
@@ -192,21 +292,21 @@ tags:
 - Fixed `OOBE` detection code to factor in User `ESP` phase
 - Fixed launching processes in the users' session when using certain MDMs, e.g. VMware Workspace ONE.
 
-### Screenshots
+#### Screenshots
 
 |               Light Mode               |               Dark Mode               |
-|:--------------------------------------:|:-------------------------------------:|
+| :------------------------------------: | :-----------------------------------: |
 | ![LightMode](../images/psadt-41-1.png) | ![DarkMode](../images/psadt-41-2.png) |
 |                                        |                                       |
 
 |         Custom Accent in Light Mode          |          Custom Accent in Dark Mode           |
-|:--------------------------------------------:|:---------------------------------------------:|
+| :------------------------------------------: | :-------------------------------------------: |
 | ![CustomLightMode](../images/psadt-41-3.png) |  ![CustomDarkMode](../images/psadt-41-4.png)  |
 |                                              | ![CustomLightMode2](../images/psadt-41-5.png) |
 
-## v4.0
+### v4.0
 
-### Overview
+#### Overview
 
 - Added modern Fluent user interface
 - Added digitally signed PowerShell module
@@ -221,24 +321,24 @@ tags:
 - Added support for overriding config via the registry
 - Added backwards-compatibility with v3 deployment scripts
 
-### Key Filename Changes
+#### Key Filename Changes
 
 :::info
 Further changes to the deployment layout are detailed in the [Deployment Structure](../deployment-concepts/deployment-structure.mdx) page.
 :::
 
-| Old Name                 | New Name                  | More Information                                                            |
-|:-----------------------------|:------------------------------|:--------------------------------------------------------------------------------|
-| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit.mdx)|
-| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit.mdx)|
-| `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Configuration Settings](../reference/config-settings.mdx)                   |
-| *Was part of Config file*    | `Strings\Strings.psd1`        | [Language Strings](../reference/language-strings.mdx)                        |
+| Old Name                     | New Name                      | More Information                                                              |
+| :--------------------------- | :---------------------------- | :---------------------------------------------------------------------------- |
+| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit.mdx) |
+| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit.mdx) |
+| `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Configuration Settings](../reference/config-settings.mdx)                    |
+| *Was part of Config file*    | `Strings\Strings.psd1`        | [Language Strings](../reference/language-strings.mdx)                         |
 
-### New Configuration Format
+#### New Configuration Format
 
 - Changed to .psd1 as the native PowerShell config file format. See [Customizing Deployments](../usage/customizing-deployments.mdx) for more information.
 
-### Key Function Name Changes
+#### Key Function Name Changes
 
 :::info
 For a detailed mapping of all v3 to v4 functions, see the [Function Mapping](../reference/v4-function-mapping.mdx) page.
@@ -246,24 +346,24 @@ For a detailed mapping of all v3 to v4 functions, see the [Function Mapping](../
 
 - Changed certain function names to avoid collisions with other scripts or modules.
 
-| Old Name      | New Name / Details                                             |
-|:------------------|:-------------------------------------------------------------------|
+| Old Name          | New Name / Details                                                  |
+| :---------------- | :------------------------------------------------------------------ |
 | `Copy-File`       | [`Copy-ADTFile`](../reference/functions/Copy-ADTFile.mdx)           |
 | `Execute-Process` | [`Start-ADTProcess`](../reference/functions/Start-ADTProcess.mdx)   |
 | `Write-Log`       | [`Write-ADTLogEntry`](../reference/functions/Write-ADTLogEntry.mdx) |
 
-### Variables
+#### Variables
 
 - Changed standard toolkit environment variables, such as `$envProgramFiles`, to become available once an [ADTSession](../reference/adtsession-object.mdx) is opened or after the `Export-ADTEnvironmentTableToSessionState` command is executed
 - Changed variables specific to a particular deployment (for example, `$appName`) to be found within the [ADTSession](../reference/adtsession-object.mdx) object (for example, `$adtSession.AppName`)
 
-### Booleans Replaced with Switches
+#### Booleans Replaced with Switches
 
 Changed from many Boolean parameters in v3 (some defaulting to `true` and others to `false`) to a clearer switch-based system. It was not always clear what the default behavior was without referencing documentation.
 
 - Changed from `TopMost` `$true` or `-TopMost` `$false` to a single optional switch, `-NotTopMost`, which clarifies that the default behavior is `TopMost`
 
-### Standardized Filtering
+#### Standardized Filtering
 
 Changed the `Remove-MsiApplications` command from v3 that used `-FilterApplication` and `-ExcludeFromUninstall` parameters with a complex syntax. In the new function, [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication.mdx), these have been **replaced** with a single `-FilterScript`, similar to PowerShell's `Where-Object`:
 
@@ -271,7 +371,7 @@ Changed the `Remove-MsiApplications` command from v3 that used `-FilterApplicati
 -FilterScript { $_.Publisher -eq 'Oracle Corporation' -and $_.DisplayVersion -notmatch 'Java 8 Update 45' }
 ```
 
-### ScriptBlock Variables
+#### ScriptBlock Variables
 
 Changed from `Invoke-HKCURegistrySettingsForAllUsers` in v3 that required a `$UserProfile` variable. In v4, [Invoke-ADTAllUsersRegistryAction](../reference/functions/Invoke-ADTAllUsersRegistryAction.mdx) pipes user profile objects to the provided scriptblock, so you can use `$_`:
 
@@ -281,7 +381,7 @@ Invoke-ADTAllUsersRegistryAction -ScriptBlock {
 }
 ```
 
-### Standardized Array Inputs
+#### Standardized Array Inputs
 
 Changed functions that accept multiple values to take arrays rather than comma-delimited strings. For example, **instead of**:
 
@@ -295,21 +395,21 @@ you can specify:
 Show-ADTInstallationWelcome -CloseProcesses iexplore, winword, excel
 ```
 
-### Error Handling
+#### Error Handling
 
 Changed from many commands in v3 that used a `-ContinueOnError` parameter. In v4, you use the standard PowerShell `-ErrorAction` parameter:
 
 - Changed from `-ContinueOnError` `$true` or `$false` to `-ErrorAction` `Stop` or `-ErrorAction` `SilentlyContinue`
 
-### Uninstallation of EXE Apps
+#### Uninstallation of EXE Apps
 
 Added support for [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication.mdx) to uninstall **EXE** apps in addition to **MSI**. Specify the `-ApplicationType` parameter to focus on one type or the other. The `-ArgumentList` parameter replaces any detected arguments in the registry, and `-AdditionalArgumentList` appends to them.
 
-### User Profile Paths
+#### User Profile Paths
 
 Added `-LoadProfilePaths` switch to [Get-ADTUserProfiles](../reference/functions/Get-ADTUserProfiles.mdx) to discover common folders within user profiles, such as **Documents** and **Desktop**. You can use [Copy-ADTFileToUserProfiles](../reference/functions/Copy-ADTFileToUserProfiles.mdx) to copy files directly to these locations.
 
-### WIM Support
+#### WIM Support
 
 Added support for compressing file content into a `WIM` archive and mounting it during installation. You can manage this manually using [Mount-ADTWimFile](../reference/functions/Mount-ADTWimFile.mdx) and [Dismount-ADTWimFile](../reference/functions/Dismount-ADTWimFile.mdx), or you can use the `-ForceWimDetection` switch with [Open-ADTSession](../reference/functions/Open-ADTSession.mdx) to auto-mount and dismount any `WIM` files found.
 

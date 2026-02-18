@@ -1,19 +1,9 @@
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .trainingPage {
-  animation: fadeInUp 0.5s var(--psadt-ease-standard) both;
+  padding: 3rem 0 4rem;
+  animation: fadeInUp 0.5s var(--ifm-transition-timing-default) both;
 }
 
-/* ─── Hero ─── */
+/* Hero */
 
 .hero {
   padding-bottom: var(--psadt-space-xl);
@@ -29,7 +19,7 @@
 .heroTitle {
   font-size: var(--ifm-h1-font-size);
   line-height: 1.1;
-  margin-bottom: var(--psadt-space-lg);
+  margin: 0 0 var(--psadt-space-lg);
   max-width: 22ch;
 }
 
@@ -39,11 +29,12 @@
 }
 
 .heroTagline {
-  font-size: var(--ifm-font-size-lg);
+  font-size: var(--ifm-h4-font-size);
   color: var(--ifm-color-content-secondary);
   line-height: 1.6;
-  margin-bottom: var(--psadt-space-md);
-  max-width: 500px;}
+  margin: 0 0 var(--psadt-space-md);
+  max-width: 500px;
+}
 
 .heroCtas {
   display: flex;
@@ -54,7 +45,7 @@
 }
 
 .heroBadge {
-  font-size: var(--ifm-font-size-lg);
+  font-size: var(--ifm-h4-font-size);
   color: var(--ifm-color-content-secondary);
   font-weight: var(--ifm-font-weight-medium);
 }
@@ -71,16 +62,16 @@
   object-fit: contain;
 }
 
-/* ─── Section Titles ─── */
+/* Section Titles */
 
 .sectionTitle {
   text-align: center;
-  font-size: var(--ifm-font-size-4xl);
+  font-size: var(--ifm-h2-font-size);
   margin-bottom: var(--psadt-space-xl);
   border-bottom: none;
 }
 
-/* ─── Highlights ─── */
+/* Highlights */
 
 .highlightsSection {
   padding-top: var(--psadt-space-xl);
@@ -95,37 +86,37 @@
 }
 
 .highlightItem {
-  background: var(--psadt-card-background);
-  border: 1px solid var(--psadt-card-border-color);
+  background: var(--psadt-card-flat-background);
+  border: 1px solid var(--psadt-card-flat-border);
   border-radius: var(--psadt-card-radius);
   padding: var(--psadt-space-md) var(--psadt-space-lg);
-  box-shadow: var(--psadt-card-shadow);
+  box-shadow: var(--psadt-card-flat-shadow);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: var(--psadt-space-xs);
+  gap: var(--psadt-space-sm);
   height: 100%;
   text-align: center;
-  transition: box-shadow var(--psadt-transition-normal), border-color var(--psadt-transition-normal);
+  transition: box-shadow var(--ifm-transition-slow), border-color var(--ifm-transition-slow);
 }
 
 .highlightItem:hover {
-  border-color: var(--ifm-color-primary);
+  border-color: var(--psadt-card-border-color-hover);
   box-shadow: var(--psadt-card-shadow-hover);
 }
 
 .highlightItem strong {
-  font-size: var(--ifm-font-size-base);
+  font-size: var(--ifm-h5-font-size);
   color: var(--ifm-color-primary);
 }
 
 .highlightItem span {
-  font-size: var(--ifm-font-size-sm);
+  font-size: var(--ifm-h6-font-size);
   color: var(--ifm-color-content-secondary);
   line-height: 1.5;
 }
 
-/* ─── Course Content ─── */
+/* Course Content */
 
 .courseSection {
   padding-top: var(--psadt-space-3xl);
@@ -135,29 +126,29 @@
 .courseIntro {
   text-align: left;
   margin: 0 auto var(--psadt-space-xl);
-  font-size: var(--ifm-font-size-base);
+  font-size: var(--ifm-h5-font-size);
   color: var(--ifm-color-content-secondary);
   line-height: 1.7;
 }
 
 .moduleCard {
-  background: var(--psadt-card-background);
+  background: var(--psadt-sidebar-glass-surface);
   border: 1px solid var(--psadt-card-border-color);
   border-radius: var(--psadt-card-radius);
   padding: var(--psadt-space-xl) var(--psadt-space-lg);
   margin-bottom: var(--psadt-space-lg);
   box-shadow: var(--psadt-card-shadow);
   overflow: hidden;
-  transition: box-shadow var(--psadt-transition-normal), border-color var(--psadt-transition-normal);
+  transition: box-shadow var(--ifm-transition-slow), border-color var(--ifm-transition-slow);
 }
 
 .moduleCard:hover {
-  border-color: var(--ifm-color-primary);
+  border-color: var(--psadt-card-border-color-hover);
   box-shadow: var(--psadt-card-shadow-hover);
 }
 
 .moduleTitle {
-  font-size: var(--ifm-font-size-lg);
+  font-size: var(--ifm-h4-font-size);
   font-weight: var(--ifm-font-weight-bold);
   margin: 0 0 var(--psadt-space-md);
   border-bottom: none;
@@ -166,20 +157,20 @@
 .moduleTopics {
   margin: 0 0 var(--psadt-space-md);
   padding-left: var(--psadt-space-lg);
-  font-size: var(--ifm-font-size-sm);
+  font-size: var(--ifm-h6-font-size);
   color: var(--ifm-color-content-secondary);
   line-height: 1.8;
 }
 
 .moduleLab {
-  font-size: var(--ifm-font-size-sm);
+  font-size: var(--ifm-h6-font-size);
   color: var(--ifm-color-content);
   margin: 0;
   padding-top: var(--psadt-space-sm);
   border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
-/* ─── Prerequisites ─── */
+/* Prerequisites */
 
 .prereqSection {
   padding-top: 0;
@@ -190,12 +181,12 @@
   max-width: 640px;
   margin: 0 auto;
   padding-left: var(--psadt-space-lg);
-  font-size: var(--ifm-font-size-base);
+  font-size: var(--ifm-h5-font-size);
   color: var(--ifm-color-content-secondary);
   line-height: 2;
 }
 
-/* ─── Instructors ─── */
+/* Instructors */
 
 .instructorsSection {
   padding-top: var(--psadt-space-2xl);
@@ -205,15 +196,15 @@
 
 .instructorsTitle {
   text-align: center;
-  font-size: var(--ifm-font-size-4xl);
+  font-size: var(--ifm-h2-font-size);
   margin-bottom: var(--psadt-space-2xl);
   border-bottom: none;
 }
 
 .instructorCard {
   border-radius: var(--psadt-card-radius);
-  border: 1px solid var(--psadt-card-border-color);
-  background: var(--psadt-card-background);
+  border: 1px solid var(--psadt-card-elevated-border);
+  background: var(--psadt-card-elevated-background);
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -221,14 +212,14 @@
   overflow: hidden;
   box-shadow: var(--psadt-card-shadow);
   flex-shrink: 0;
-  padding: var(--psadt-space-lg) var(--psadt-space-lg);
+  padding: var(--psadt-space-lg);
   gap: var(--psadt-space-sm);
-  transition: box-shadow var(--psadt-transition-normal), border-color var(--psadt-transition-normal);
+  transition: box-shadow var(--ifm-transition-slow), border-color var(--ifm-transition-slow);
 }
 
 .instructorCard:hover {
   box-shadow: var(--psadt-card-shadow-hover);
-  border-color: var(--ifm-color-primary);
+  border-color: var(--psadt-card-border-color-hover);
 }
 
 .instructorImage {
@@ -243,7 +234,7 @@
 }
 
 .instructorName {
-  font-size: var(--ifm-font-size-xl);
+  font-size: var(--ifm-h4-font-size);
   font-weight: var(--ifm-font-weight-bold);
   color: var(--ifm-color-emphasis-900);
   margin: 0;
@@ -252,50 +243,60 @@
 .instructorRole {
   font-weight: var(--ifm-font-weight-semibold);
   color: var(--ifm-color-primary);
-  font-size: var(--ifm-font-size-base);
+  font-size: var(--ifm-h5-font-size);
   margin: 0 0 var(--psadt-space-sm);
 }
 
 .instructorBio {
-  font-size: var(--ifm-font-size-base);
+  font-size: var(--ifm-h5-font-size);
   color: var(--ifm-color-content);
   margin: 0;
 }
 
 .instructorLinks a {
   color: var(--ifm-color-content-secondary);
-  margin: 1 1rem 0 0;
-  transition: color var(--psadt-transition-normal);
+  margin: 0 0.25rem 0 0;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--ifm-transition-slow);
 }
 
 .instructorLinks a:hover {
   color: var(--ifm-color-primary);
 }
 
-
-/* ─── Final CTA ─── */
+/* Final CTA */
 
 .ctaSection {
   padding-top: var(--psadt-space-2xl);
   padding-bottom: var(--psadt-space-3xl);
   text-align: center;
-  color: var(--ifm-color-primary);
 }
 
 .ctaTitle {
   font-size: var(--ifm-h2-font-size);
-  margin-bottom: var(--psadt-space-lg);
+  margin: 0 0 var(--psadt-space-lg);
   border-bottom: none;
+  color: var(--ifm-color-primary);
 }
 
 .ctaText {
-  font-size: var(--ifm-font-size-lg);
+  font-size: var(--ifm-h4-font-size);
   color: var(--ifm-color-content-secondary);
   max-width: 600px;
   margin: 0 auto var(--psadt-space-xl);
 }
 
-/* ─── Responsive: Tablet ─── */
+/* Responsive */
+
+@media screen and (max-width: 1200px) {
+  .highlightsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 
 @media screen and (max-width: 996px) {
   .heroImageCol {
@@ -303,15 +304,11 @@
   }
 
   .heroTitle {
-    font-size: var(--ifm-font-size-4xl);
+    font-size: var(--ifm-h2-font-size);
   }
 
   .heroTagline {
     max-width: 100%;
-  }
-
-  .heroCtas {
-    justify-content: flex-start;
   }
 
   .hero {
@@ -331,26 +328,17 @@
   .highlightsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
 }
-
-/* ─── Responsive: Mobile ─── */
 
 @media screen and (max-width: 768px) {
   .heroTitle {
-    font-size: var(--ifm-font-size-3xl);
+    font-size: var(--ifm-h3-font-size);
   }
 
-  .sectionTitle {
-    font-size: var(--ifm-font-size-3xl);
-  }
-
-  .ctaTitle {
-    font-size: var(--ifm-font-size-3xl);
-  }
-
+  .sectionTitle,
+  .ctaTitle,
   .instructorsTitle {
-    font-size: var(--ifm-font-size-3xl);
+    font-size: var(--ifm-h3-font-size);
   }
 
   .instructorCard {
@@ -368,7 +356,7 @@
   }
 
   .instructorRole {
-    font-size: var(--ifm-font-size-sm);
+    font-size: var(--ifm-h6-font-size);
   }
 
   .highlightItem {
@@ -380,4 +368,4 @@
   }
 }
 
-
+/* Dark-mode note: this module inherits global tokens; no additional overrides required. */

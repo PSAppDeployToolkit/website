@@ -3,17 +3,18 @@ sidebar_position: 7
 title: 'Upgrade Guidance: v3.x to v4.1'
 description: 'Upgrade guidance for those coming from v3.'
 slug: /getting-started/upgrade-guidance-v3x-to-v41
+hide_title: true
 tags:
   - Usage
   - Migration
   - Getting Started
 ---
 
-# Upgrade Guidance: v3.x to v4.1
+## Upgrade Guidance: v3.x to v4.1
 
-Before proceeding, ensure that you have reviewed the changes in the [release notes(../getting-started/release-notes.mdx)
+Before proceeding, ensure that you have reviewed the changes in the [release notes](../getting-started/release-notes.mdx).
 
-## Using v4 in v3 Compatibility Mode
+### Using v4 in v3 Compatibility Mode
 
 See the [Creating a new deployment](../getting-started/creating-a-new-deployment.mdx) page for instructions on creating a v3-compatible deployment template or downloading one from GitHub.
 
@@ -23,7 +24,7 @@ This layout allows you to drop in your existing v3 **Deploy-Application.ps1** sc
 - Copy your custom banner to **Assets\Banner.Classic.png**.
 - Compatibility mode does not support the new Fluent UI.
 
-## Migration Tools in PSAppDeployToolkit.Tools
+### Migration Tools in PSAppDeployToolkit.Tools
 
 [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) provides the following commands to help you migrate from v3:
 
@@ -32,7 +33,7 @@ This layout allows you to drop in your existing v3 **Deploy-Application.ps1** sc
 
 The [Downloading](../getting-started/download.mdx) page covers how to download and install this additional module.
 
-### Test-ADTCompatibility
+#### Test-ADTCompatibility
 
 Example command usage:
 
@@ -42,18 +43,20 @@ Test-ADTCompatibility -FilePath .\Deploy-Application.ps1 -Format Grid
 
 This command analyzes **Deploy-Application.ps1** and displays the results in a grid view.
 
-### Convert-ADTDeployment
+#### Convert-ADTDeployment
 
 Example command usage:
 
 ```powershell
 Convert-ADTDeployment -Path .\Deploy-Application.ps1
 ```
+
 This command converts **Deploy-Application.ps1** to **Invoke-AppDeployToolkit.ps1** in the same folder.
 
 ```powershell
 Convert-ADTDeployment -Path .\PackageFolder
 ```
+
 This command converts **PackageFolder** to **PackageFolder_Converted** in the same folder.
 
 Conversion limitations:
