@@ -7,11 +7,13 @@
 }
 
 .label {
-  font-size: var(--ifm-font-size-base);
+  font-size: var(--ifm-h5-font-size);
   font-weight: var(--ifm-font-weight-semibold);
   color: var(--ifm-color-content-secondary);
   white-space: nowrap;
 }
+
+/* ── Trigger button ── */
 
 .trigger {
   display: inline-flex;
@@ -19,73 +21,93 @@
   gap: var(--psadt-space-sm);
   padding: 0.5rem 0.75rem;
   background-color: var(--ifm-color-primary);
-  color: var(--ifm-color-content);
+  color: var(--ifm-color-content-inverse);
   border: 1px solid var(--ifm-color-primary-dark);
   border-radius: var(--psadt-radius-sm);
-  box-shadow: var(--psadt-shadow-sm);
-  font-size: var(--ifm-font-size-sm);
+  box-shadow: var(--ifm-global-shadow-lw);
+  font-size: var(--ifm-h6-font-size);
   font-weight: var(--ifm-font-weight-semibold);
   font-family: var(--ifm-font-family-base);
   cursor: pointer;
-  transition: background-color var(--psadt-transition-fast), border-color var(--psadt-transition-fast), box-shadow var(--psadt-transition-fast);
+  transition: background-color var(--ifm-transition-fast),
+              border-color var(--ifm-transition-fast),
+              box-shadow var(--ifm-transition-fast);
   line-height: 1.25;
 }
 
 .trigger:hover {
-  background-color: var(--ifm-color-primary-light);
-  box-shadow: var(--psadt-shadow-md);
+  background-color: var(--ifm-color-primary-dark);
+  box-shadow: var(--ifm-global-shadow-md);
 }
 
+[data-theme='dark'] .trigger {
+  background-color: var(--ifm-color-primary-darker);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-content-inverse);
+}
+
+[data-theme='dark'] .trigger:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+/* ── Chevron ── */
 
 .chevron {
-  transition: transform var(--psadt-transition-fast);
+  transition: transform var(--ifm-transition-fast);
 }
 
 .chevronOpen {
   transform: rotate(180deg);
 }
 
+/* ── Dropdown panel ── */
+
 .dropdown {
   position: absolute;
   right: 0;
-  top: calc(100%);
+  top: calc(100% + 4px);
   min-width: 140px;
   margin: 0;
-  padding: var(--psadt-space-xs) 0;
+  padding: var(--psadt-space-sm) 0;
   list-style: none;
-  background-color: var(--ifm-color-white);
-  border: 1px solid var(--ifm-color-content);
+  background-color: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: var(--psadt-radius-sm);
-  box-shadow: var(--psadt-shadow-lg);
+  box-shadow: var(--ifm-global-shadow-tl);
   z-index: 100;
-  opacity: 1;
-  -webkit-backdrop-filter: none;
   backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 [data-theme='dark'] .dropdown {
-  background-color: var(--ifm-color-emphasis-200);
-  border-color: var(--ifm-color-emphasis-300);
+  background-color: var(--ifm-color-emphasis-100);
+  border-color: rgba(var(--psadt-color-blue-400-rgb) / 0.30);
 }
+
+/* ── Dropdown items ── */
 
 .item {
   display: block;
   padding: 0.4rem 0.75rem;
-  font-size: var(--ifm-font-size-sm);
+  font-size: var(--ifm-h6-font-size);
   font-weight: var(--ifm-font-weight-normal);
-  color: var(--ifm-color-content-inverse);
+  color: var(--ifm-color-content);
   cursor: pointer;
-  transition: background-color var(--psadt-transition-normal);
+  transition: background-color var(--ifm-transition-fast),
+              color var(--ifm-transition-fast);
 }
 
 .item:hover {
-  background-color: var(--ifm-color-primary-dark);
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-color-content-inverse);
 }
 
+/* ── Active item ── */
+
 .itemActive {
-  color: var(--ifm-color-content-inverse);
   font-weight: var(--ifm-font-weight-bold);
   background-color: var(--ifm-color-primary);
+  color: var(--ifm-color-content-inverse);
 }
 
 .itemActive:hover {
@@ -93,15 +115,17 @@
   color: var(--ifm-color-content-inverse);
 }
 
-
+/* ── Focus ── */
 
 .trigger:focus-visible,
 .item:focus-visible {
-  outline: 2px solid var(--ifm-color-primary-lightest);
+  outline: 2px solid var(--ifm-color-primary);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(25, 25, 25, 0.3);
+  box-shadow: 0 0 0 3px rgba(var(--psadt-color-blue-600-rgb) / 0.35);
 }
 
-[data-theme='dark'] .itemActive:hover {
-  background-color: var(--ifm-color-primary-dark);
+[data-theme='dark'] .trigger:focus-visible,
+[data-theme='dark'] .item:focus-visible {
+  outline-color: var(--ifm-color-primary-light);
+  box-shadow: 0 0 0 3px rgba(var(--psadt-color-blue-400-rgb) / 0.35);
 }

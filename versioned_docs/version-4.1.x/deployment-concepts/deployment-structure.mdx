@@ -3,31 +3,32 @@ sidebar_position: 1
 title: 'Deployment Structure'
 description: 'The file / folder structure a PSADT deployment explained.'
 slug: /deployment-concepts/deployment-structure
+hide_title: true
 tags:
   - Usage
   - Archive
   - Deployment Concepts
 ---
 
-# Deployment Structure
+## Deployment Structure
 
-## Understanding PSAppDeployToolkit Architecture
+### Understanding PSAppDeployToolkit Architecture
 
 PSAppDeployToolkit v4.1 represents a significant architectural evolution from previous versions, designed with enterprise deployment scenarios in mind. The toolkit operates on a modular, session-based architecture that provides unprecedented flexibility and control over the deployment process.
 
-### Core Architecture Principles
+#### Core Architecture Principles
 
-**Session-Based Management**: PSADT v4.1 introduces the `ADTSession` object, which encapsulates all deployment state, configuration, and context. This object-oriented approach provides better isolation, state management, and extensibility compared to the global variable approach used in v3.
+**Session-Based Management**: PSADT v4.1 **introduces the `ADTSession` object**, which encapsulates all deployment state, configuration, and context. This object-oriented approach provides better isolation, state management, and extensibility compared to the global variable approach used in v3.
 
-**Security-First Design**: The v4.1 architecture separates user interaction from system-level operations, eliminating the need for ServiceUI and providing a more secure deployment experience. User interfaces run in the user's session context, while system operations execute in the appropriate security context.
+**Security-First Design**: The v4.1 architecture **separates user interaction from system-level operations**, eliminating the need for ServiceUI and providing a more secure deployment experience. User interfaces run in the user's session context, while system operations execute in the appropriate security context.
 
-**Modular Function Library**: The toolkit provides over 200 specialized functions organized into logical categories (Installation, Registry, File System, User Interface, etc.), each designed for specific deployment scenarios.
+**Modular Function Library**: The toolkit provides **130+ specialized functions** organized into logical categories (Installation, Registry, File System, User Interface, etc.), each designed for specific deployment scenarios.
 
 ## V4 Native Deployment Template
 
 The **v4 native deployment template** is designed to be more modular, flexible, and user-friendly than the v3 structure, while still containing all core PSADT module files. This structure represents the recommended approach for new deployments and provides the full feature set of PSADT v4.1.
 
-:::note
+:::info
 The **v4 native deployment template** structure is considerably more sophisticated than the V3 deployment structure. At first glance, it can seem overly complex and daunting. However, you can avoid getting overwhelmed by focusing on just the files you need to know about.
 :::
 
@@ -35,28 +36,27 @@ The **v4 native deployment template** structure is considerably more sophisticat
 
 The v4 template follows a clear separation of concerns, with each folder serving a specific purpose in the deployment ecosystem:
 
-| Folder                             | File                        | Purpose                                                                                                         |
-|:-----------------------------------|:----------------------------|:----------------------------------------------------------------------------------------------------------------|
-| **/**                              |                             |                                                                                                                 |
-|                                    | Invoke-AppDeployToolkit.ps1 | PSADT Deployment PowerShell script. This is the main entry point for your deployment.                           |
-|                                    | Invoke-AppDeployToolkit.exe | PSADT Deployment executable. This is a wrapper around the above script to easily launch it.                     |
-| **PSAppDeployToolkit/**            |                             |                                                                                                                 |
-|                                    |                             | PSADT core module files. Please do not modify anything under this folder.                                       |
-| **PSAppDeployToolkit.Extensions/** |                             |                                                                                                                 |
-|                                    |                             | PSADT optional extensions. Ignore this folder if you are not using any custom functions.                        |
-| **Files/**                         |                             |                                                                                                                 |
-|                                    |                             | [***Put installation files here***]                                                                             |
-|                                    | Setup.Exe                   | Example Setup executable.                                                                                       |
-|                                    | AppInstaller.msi            | Example Windows Installer MSI file                                                                              |
-| **SupportFiles/**                  |                             |                                                                                                                 |
-|                                    |                             | [***Put optional install support files here***]                                                                 |
-|                                    | PerUserSettings.reg         | Example installation support file.                                                                              |
-| **Assets/**                        |                             |                                                                                                                 |
-|                                    | AppIcon.png                 | PSADT App Icon. Used to display the application icon, or your organizations logo. Should be a 256x256 PNG file. |
-| **Config/**                        |                             |                                                                                                                 |
-|                                    | config.psd1                 | PSADT configuration file. Contains settings that control the behavior                                           |
-| **Strings/**                       |                             |                                                                                                                 |
-|                                    | strings.psd1                | PSADT User Interface strings file. This changes the text displayed in the PSADT User Interface.                 |
+| Folder                              | File                         | Purpose                                                                                                         |
+| :---------------------------------- | :--------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| **/**                               | Invoke- AppDeployToolkit.ps1 | PSADT Deployment PowerShell script. This is the main entry point for your deployment.                           |
+|                                     | Invoke- AppDeployToolkit.exe | PSADT Deployment executable. This is a wrapper around the above script to easily launch it.                     |
+|                                     | **PSAppDeployToolkit/**      |                                                                                                                 |
+|                                     |                              | PSADT core module files. Please do not modify anything under this folder.                                       |
+| **PSAppDeployToolkit. Extensions/** |                              |                                                                                                                 |
+|                                     |                              | PSADT optional extensions. Ignore this folder if you are not using any custom functions.                        |
+| **Files/**                          |                              |                                                                                                                 |
+|                                     |                              | [***Put installation files here***]                                                                             |
+|                                     | Setup.Exe                    | Example Setup executable.                                                                                       |
+|                                     | AppInstaller.msi             | Example Windows Installer MSI                                                                                   |
+| **SupportFiles/**                   |                              |                                                                                                                 |
+|                                     |                              | [***Put optional install support files here***]                                                                 |
+|                                     | PerUserSettings.reg          | Example installation support file.                                                                              |
+| **Assets/**                         |                              |                                                                                                                 |
+|                                     | AppIcon.png                  | PSADT App Icon. Used to display the application icon, or your organizations logo. Should be a 256x256 PNG file. |
+| **Config/**                         |                              |                                                                                                                 |
+|                                     | config.psd1                  | PSADT configuration file. Contains settings that control the behavior                                           |
+| **Strings/**                        |                              |                                                                                                                 |
+|                                     | strings.psd1                 | PSADT User Interface strings file. This changes the text displayed in the PSADT User Interface.                 |
 
 ## V3 Compatibility Deployment Template
 
@@ -69,6 +69,7 @@ This allows you to use your existing v3 deployment scripts with the v4 PSADT fra
 ### Template Structure Deep Dive
 
 #### Root Directory (`/`)
+
 The root directory serves as the deployment entry point and contains the essential files needed to launch a PSADT deployment:
 
 - **`Invoke-AppDeployToolkit.ps1`**: This is your primary development file. It contains:
@@ -86,6 +87,7 @@ The root directory serves as the deployment entry point and contains the essenti
   - Custom script execution (`-File` parameter)
 
 #### PSAppDeployToolkit Directory
+
 This directory contains the complete PSADT v4.1 framework and should never be modified:
 
 - **Core Module Files**: The main PSADT PowerShell module with over 200 specialized functions
@@ -95,6 +97,7 @@ This directory contains the complete PSADT v4.1 framework and should never be mo
 - **Runtime Dependencies**: Required .NET assemblies and supporting libraries
 
 #### Files Directory
+
 The primary location for application installation media:
 
 - **Supported File Types**:
@@ -109,6 +112,7 @@ The primary location for application installation media:
 - **File Organization**: Maintain clear naming conventions for easier maintenance and troubleshooting
 
 #### SupportFiles Directory
+
 Contains auxiliary files needed during or after installation:
 
 - **Registry Files**: `.reg` files for applying system or user settings
@@ -118,6 +122,7 @@ Contains auxiliary files needed during or after installation:
 - **License Files**: Software licenses or activation files
 
 #### Assets Directory
+
 Visual elements for UI customization and branding:
 
 - **Icon Requirements**: 256x256 PNG format for optimal quality
@@ -126,6 +131,7 @@ Visual elements for UI customization and branding:
 - **Accessibility**: High-contrast and high-DPI support
 
 #### Config Directory
+
 Configuration management for deployment behavior:
 
 - **`config.psd1`**: PowerShell data file containing:
@@ -139,6 +145,7 @@ Configuration management for deployment behavior:
 - **Hierarchical Configuration**: Built-in defaults → Local config → Group Policy
 
 #### Strings Directory
+
 Localization and UI text customization:
 
 - **`strings.psd1`**: Contains all user-facing text strings
@@ -146,11 +153,11 @@ Localization and UI text customization:
 - **Customization**: Modify dialog text, error messages, and user prompts
 - **Consistency**: Centralized text management ensures consistent user experience
 
-
 #### Example Deployment Structure
+
 For large-scale enterprise deployments, a deployment folder structure might look something like this:
 
-```
+```text
 YourApp-Deployment/
 ├── Invoke-AppDeployToolkit.ps1
 ├── Invoke-AppDeployToolkit.exe
@@ -181,9 +188,10 @@ YourApp-Deployment/
 ```
 
 #### Example Multi-Architecture Deployment Structure
+
 For applications with multiple versions or architectures:
 
-```
+```text
 YourApp-Deployment/
 ├── Files/
 │   ├── x64/
@@ -197,30 +205,24 @@ YourApp-Deployment/
 │       └── License.lic
 ```
 
-:::note
+:::info
 The PSADT v4 compatibility deployment template structure is considerably more sophisticated than the V3 deployment structure. At first glance, it can seem overly complex and daunting. However, you can avoid getting overwhelmed by focusing on just the files you need to know about.
 :::
 
-| Folder                                        | File                           | Purpose                                                                                                         |
-|:----------------------------------------------|:-------------------------------|:----------------------------------------------------------------------------------------------------------------|
-| **/**                                         |                                |                                                                                                                 |
-|                                               | Deploy-Application.ps1         | PSADT Deployment PowerShell script. This is the main entry point for your deployment.                           |
-|                                               | Deploy-Application.exe         | PSADT Deployment executable. This is a wrapper around the above script to easily launch it.                     |
-| **AppDeployToolkit/**                         |                                |                                                                                                                 |
-|                                               | AppDeployToolkitMain.ps1       | PSADT compatibility shim script. Used to restore v3 function wrappers.                                          |
-|                                               | AppDeployToolkitExtensions.ps1 | PSADT compatibility extensions scripts. Used for your custom v3 functions.                                      |
-| **AppDeployToolkit/** **PSAppDeployToolkit/** |                                |                                                                                                                 |
-|                                               |                                | PSADT core module files. Please do not modify anything under this folder.                                       |
-| **Files/**                                    |                                |                                                                                                                 |
-|                                               |                                | [***Put installation files here***]                                                                             |
-|                                               | Setup.Exe                      | Example Setup executable.                                                                                       |
-|                                               | AppInstaller.msi               | Example Windows Installer MSI file                                                                              |
-| **SupportFiles/**                             |                                |                                                                                                                 |
-|                                               |                                | [***Put optional install support files here***]                                                                 |
-|                                               | PerUserSettings.reg            | Example installation support file.                                                                              |
-| **Assets/**                                   |                                |                                                                                                                 |
-|                                               | AppIcon.png                    | PSADT App Icon. Used to display the application icon, or your organizations logo. Should be a 256x256 PNG file. |
-| **Config/**                                   |                                |                                                                                                                 |
-|                                               | config.psd1                    | PSADT configuration file. Contains settings that control the behavior                                           |
-| **Strings/**                                  |                                |                                                                                                                 |
-|                                               | strings.psd1                   | PSADT User Interface strings file. This changes the text displayed in the PSADT User Interface.                 |
+| Folder                                    | File             | Purpose                                                                                                         |
+| :---------------------------------------- | :--------------- | :-------------------------------------------------------------------------------------------------------------- |
+| **/**                                     |                  | Compatibility shim script. Used to restore v3 function wrappers.                                                |
+|                                           |                  | Communityextensions scripts. Used for your custom v3 functions.                                                 |
+| **AppDeployToolkit/ PSAppDeployToolkit/** |                  |                                                                                                                 |
+|                                           |                  | PSADT core module files. Please do not modify anything under this folder.                                       |
+| **Files/**                                |                  | [***Put installation files here***]                                                                             |
+|                                           | Setup.Exe        | Example Setup executable1.                                                                                      |
+|                                           | AppInstaller.msi | Example Windows Installer MSI file                                                                              |
+| **SupportFiles/**                         |                  |                                                                                                                 |
+|                                           |                  | [***Put optional install support files here***]                                                                 |
+| **Assets/**                               |                  |                                                                                                                 |
+|                                           | AppIcon.png      | PSADT App Icon. Used to display the application icon, or your organizations logo. Should be a 256x256 PNG file. |
+| **Config/**                               |                  |                                                                                                                 |
+|                                           | config.psd1      | PSADT configuration file. Contains settings that control the behavior                                           |
+| **Strings/**                              |                  |                                                                                                                 |
+|                                           | strings.psd1     | PSADT User Interface strings file. This changes the text displayed in the PSADT User Interface.                 |

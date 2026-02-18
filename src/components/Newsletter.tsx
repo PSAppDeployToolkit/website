@@ -12,7 +12,7 @@ export default function Newsletter() {
 
         <p>
           PSAppDeployToolkit officially has a newsletter to keep you in the loop with all the latest updates, features,
-          and improvements designed to make patch management even smoother. You'll also hear about upcoming events and
+          and improvements designed to make application deployment even smoother. You'll also hear about upcoming events and
           webinars where you can connect with experts and sharpen your skills. Subscribe to by filling out the form.
         </p>
       </div>
@@ -75,13 +75,12 @@ const HubSpotForm: React.FC = () => {
 
   if (!isProduction) {
     return (
-      <div className="col col--7">
+      <>
         <h3 className={styles.blockTitle}>Newsletter Form</h3>
         <p>Only runs in Production Mode.</p>
-      </div>
-
+      </>
     );
   }
 
-  return <div id="hubspotForm"></div>;
+  return <div id="hubspotForm" aria-label="Newsletter signup form" role="region"></div>;
 };

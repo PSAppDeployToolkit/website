@@ -4,12 +4,13 @@ sidebar_label: 'Variables'
 title: 'Variables'
 description: 'Variables available for use within PSAppDeployToolkit.'
 slug: /reference/variables
+hide_title: true
 tags:
   - Variables
   - Reference
 ---
 
-# Variables
+## Variables
 
 When you open an ADTSession (automatically handled in Invoke-AppDeployToolkit.ps1), several useful variables are created. These include hardware information, system and user paths, and Active Directory domain details, among others.
 
@@ -17,31 +18,31 @@ These variables can also be instantiated without opening a session by calling th
 
 Variables specific to a particular deployment, such as `$appName` and `$appVersion`, have been moved inside the **ADTSession** object. For more information, see the [ADTSession Object](./adtsession-object.mdx) page.
 
-## Toolkit Name
+### Toolkit Name
 
 | Variable                           | Description                           |
-|:-----------------------------------|:--------------------------------------|
+| :--------------------------------- | :------------------------------------ |
 | `$appDeployMainScriptFriendlyName` | Full name of toolkit including spaces |
 | `$appDeployToolkitName`            | Short-name of toolkit without spaces  |
 
-## Script Info
+### Script Info
 
 | Variable                      | Description                              |
-|:------------------------------|:-----------------------------------------|
+| :---------------------------- | :--------------------------------------- |
 | `$appDeployMainScriptVersion` | Version number of the PSAppDeployToolkit |
 
-## Culture
+### Culture
 
 | Variable             | Description                                                               |
-|:---------------------|:--------------------------------------------------------------------------|
+| :------------------- | :------------------------------------------------------------------------ |
 | `$culture`           | Object which contains all of the current Windows culture settings         |
 | `$currentLanguage`   | Current Windows two letter ISO language name (e.g. EN, FR, DE, JA etc)    |
 | `$currentUILanguage` | Current Windows two letter UI ISO language name (e.g. EN, FR, DE, JA etc) |
 
-## Environment Variables
+### Environment Variables
 
 | Variable                      | Description                                                                                                                                                                                                                                                                                                                        |
-|:------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$envAllUsersProfile`         | %ALLUSERSPROFILE%, e.g. `C:\ProgramData`                                                                                                                                                                                                                                                                                           |
 | `$envAppData`                 | %APPDATA%, e.g. `C:\Users\%USERNAME%\AppData\Roaming`                                                                                                                                                                                                                                                                              |
 | `$envArchitecture`            | %PROCESSOR_ARCHITECTURE%, e.g. AMD64/IA64/x86.<br />Note - This doesn't tell you the architecture of the processor but only of the current process, so it returns "x86" for a 32-bit WOW process running on 64-bit Windows.                                                                                                        |
@@ -51,7 +52,7 @@ Variables specific to a particular deployment, such as `$appName` and `$appVersi
 | `$envCommonProgramFilesX86`   | %COMMONPROGRAMFILES(x86)%, e.g. `C:\Program Files (x86)\Common Files`                                                                                                                                                                                                                                                              |
 | `$envCommonStartMenu`         | e.g. `C:\ProgramData\Microsoft\Windows\Start Menu`                                                                                                                                                                                                                                                                                 |
 | `$envCommonStartMenuPrograms` | e.g. `C:\ProgramData\Microsoft\Windows\Start Menu\Programs`                                                                                                                                                                                                                                                                        |
-| `$envCommonStartUp`           | e.g. `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup`                                                                                                                                                                                                                                                              |
+| `$envCommonStartUp`           | e.g. `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup`                                                                                                                                                                                                                                                                |
 | `$envCommonTemplates`         | e.g. `C:\ProgramData\Microsoft\Windows\Templates`                                                                                                                                                                                                                                                                                  |
 | `$envComputerName`            | $COMPUTERNAME%, e.g. Computer1                                                                                                                                                                                                                                                                                                     |
 | `$envComputerNameFQDN`        | Fully qualified computer name, e.g. computer1.contoso.com                                                                                                                                                                                                                                                                          |
@@ -83,10 +84,10 @@ Variables specific to a particular deployment, such as `$appName` and `$appVersi
 | `$envUserStartUp`             | `C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`                                                                                                                                                                                                                                                |
 | `$envWinDir`                  | %WINDIR%, e.g. `C:\Windows`                                                                                                                                                                                                                                                                                                        |
 
-## Domain Membership
+### Domain Membership
 
 | Variable                   | Description                                                            |
-|:---------------------------|:-----------------------------------------------------------------------|
+| :------------------------- | :--------------------------------------------------------------------- |
 | `$envLogonServer`          | FQDN of %LOGONSERVER% used for authenticating logged in user           |
 | `$envMachineADDomain`      | Root AD domain name for machine, e.g. domain.contoso.com               |
 | `$envMachineDNSDomain`     | Full Domain name for machine, e.g. &lt;name&gt;.contoso.com            |
@@ -96,10 +97,10 @@ Variables specific to a particular deployment, such as `$appName` and `$appVersi
 | `$IsMachinePartOfDomain`   | Is machine joined to a domain, e.g. $true/$false                       |
 | `$MachineDomainController` | FQDN of an AD domain controller used for authentication                |
 
-## Operating System
+### Operating System
 
 | Variable                | Description                                                                                                 |
-|:------------------------|:------------------------------------------------------------------------------------------------------------|
+| :---------------------- | :---------------------------------------------------------------------------------------------------------- |
 | `$envOS`                | Object that contains details about the operating system                                                     |
 | `$envOSArchitecture`    | Represents the OS architecture (e.g. 32-Bit/64-Bit)                                                         |
 | `$envOSName`            | Name of the operating system (e.g. Microsoft Windows 8.1 Pro)                                               |
@@ -116,17 +117,17 @@ Variables specific to a particular deployment, such as `$appName` and `$appVersi
 | `$IsServerOS`           | Is server OS? (e.g. $true/$false)                                                                           |
 | `$IsWorkStationOS`      | Is workstation OS? (e.g. $true/$false)                                                                      |
 
-## Current Process Architecture
+### Current Process Architecture
 
 | Variable          | Description                                                |
-|:------------------|:-----------------------------------------------------------|
+| :---------------- | :--------------------------------------------------------- |
 | `$Is64BitProcess` | Is the current process 64-bits? (e.g. $true/$false)        |
 | `$psArchitecture` | Represents the current process architecture (e.g. x86/x64) |
 
-## PowerShell And CLR (.NET) Versions
+### PowerShell And CLR (.NET) Versions
 
 | Variable                 | Description                                                                                                  |
-|:-------------------------|:-------------------------------------------------------------------------------------------------------------|
+| :----------------------- | :----------------------------------------------------------------------------------------------------------- |
 | `$envCLRVersion`         | Full version number of .NET used by PS (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)     |
 | `$envCLRVersionBuild`    | Build portion of PS .NET version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)    |
 | `$envCLRVersionMajor`    | Major portion of PS .NET version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)    |
@@ -140,10 +141,10 @@ Variables specific to a particular deployment, such as `$appName` and `$appVersi
 | `$envPSVersionRevision`  | Revision portion of PS version number (e.g. &lt;major&gt;.&lt;minor&gt;.&lt;build&gt;.&lt;revision&gt;)      |
 | `$envPSVersionTable`     | Object containing PowerShell version details from PS variable `$PSVersionTable`                              |
 
-## Permissions / Accounts
+### Permissions / Accounts
 
 | Variable                    | Description                                                                                                                                       |
-|:----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `$CurrentProcessSID`        | Object that represents the current process account SID (e.g. S-1-5-32-544)                                                                        |
 | `$CurrentProcessToken`      | Object that represents the current processes Windows Identity user token. Contains all details regarding user permissions.                        |
 | `$IsAdmin`                  | Is the current process running with elevated admin privileges? (e.g. $true/$false)                                                                |
@@ -157,43 +158,42 @@ Variables specific to a particular deployment, such as `$appName` and `$appVersi
 | `$ProcessNTAccountSID`      | Current process account SID (e.g. S-1-5-32-544)                                                                                                   |
 | `$SessionZero`              | Is the current process currently in session zero? In session zero isolation, process is not able to display a user interface. (e.g. $true/$false) |
 
-## RegEx Patterns
+### RegEx Patterns
 
 | Variable                      | Description                                                  |
-|:------------------------------|:-------------------------------------------------------------|
+| :---------------------------- | :----------------------------------------------------------- |
 | `$MSIProductCodeRegExPattern` | Contains the regex pattern used to detect a MSI product code |
 
-## COM Objects
+### COM Objects
 
 | Variable    | Description                                                   |
-|:------------|:--------------------------------------------------------------|
+| :---------- | :------------------------------------------------------------ |
 | `$Shell`    | Represents and allows use of the WScript.Shell COM object     |
 | `$ShellApp` | Represents and allows use of the Shell.Application COM object |
 
-
-## Logged On Users
+### Logged On Users
 
 | Variable                      | Description                                                                                                                                                                                                                                 |
-|:------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `$CurrentConsoleUserSession`  | Objects that contains the account and session details of the console user (user with control of the physical monitor, keyboard, and mouse). This is the object from `$LoggedOnUserSessions` where the `IsConsoleSession` property is $true. |
 | `$CurrentLoggedOnUserSession` | Object that contains account and session details for the current process if it is running as a logged in user. This is the object from `$LoggedOnUserSessions` where the `IsCurrentSession` property is $true.                              |
 | `$LoggedOnUserSessions`       | Object that contains account and session details for all users                                                                                                                                                                              |
 | `$RunAsActiveUser`            | The active console user. If no console user exists but users are logged in, such as on terminal servers, then the first logged-in non-console user.                                                                                         |
 | `$UsersLoggedOn`              | Array that contains all of the NTAccount names of logged in users                                                                                                                                                                           |
 
-## Microsoft Office
+### Microsoft Office
 
 | Variable           | Description                                                           |
-|:-------------------|:----------------------------------------------------------------------|
+| :----------------- | :-------------------------------------------------------------------- |
 | `envOfficeBitness` | Architecture of current Office installation, e.g. x86 or x64          |
 | `envOfficeChannel` | Current Office Channel, e.g. 'Monthly Enterprise'                     |
 | `envOfficeVars`    | Properties of HKLM\SOFTWARE\Microsoft\Office\ClickToRun\Configuration |
 | `envOfficeVersion` | Microsoft Office version, e.g. 16.0.x.x                               |
 
-## Miscellaneous
+### Miscellaneous
 
 | Variable                    | Description                                                                                                  |
-|:----------------------------|:-------------------------------------------------------------------------------------------------------------|
+| :-------------------------- | :----------------------------------------------------------------------------------------------------------- |
 | `$invalidFileNameChars`     | Array of all invalid file name characters used to sanitize variables which may be used to create file names. |
 | `$LocalAdministratorsGroup` | Returns the name of the local Administrators group, typically `BUILTIN\Administrators`                       |
 | `$LocalUsersGroup`          | Returns the name of the local Users group, typically `BUILTIN\Users`                                         |

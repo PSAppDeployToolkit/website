@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import { useColorMode } from '@docusaurus/theme-common';
+import { motion, useReducedMotion } from 'framer-motion';
 import styles from './ecosystem.module.css';
 import { solutions, SOLUTION_CATEGORIES } from '../data/ecosystem';
 import type { Solution } from '../data/ecosystem';
@@ -32,7 +33,7 @@ function SolutionCard({ solution }: { solution: Solution }) {
             loading="lazy"
           />
         ) : (
-          <div className={styles.logoFallback}>{initial}</div>
+          <div className={styles.logoFallback} role="img" aria-label={`${solution.name} logo`}>{initial}</div>
         )}
       </div>
       <p className={styles.cardName}>
@@ -80,6 +81,10 @@ function SolutionCard({ solution }: { solution: Solution }) {
 }
 
 export default function EcosystemPage() {
+  const prefersReducedMotion = useReducedMotion();
+  const spring = prefersReducedMotion
+    ? { duration: 0 }
+    : { type: 'spring' as const, duration: 0.35, bounce: 0 };
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('all');
   const [selectedWorksWith, setSelectedWorksWith] = useState<Set<string>>(new Set());
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
@@ -143,27 +148,40 @@ export default function EcosystemPage() {
       title="Ecosystem"
       description="Explore the PSAppDeployToolkit ecosystem of partner solutions, integrations, and tools for enterprise application packaging and deployment."
     >
-      <section className={styles.ecosystemPage}>
-        <div className={clsx('container', styles.headerBlock)}>
-          <Heading as="h1">Ecosystem</Heading>
+      <section className={clsx(styles.ecosystemPage, 'page-shell')}>
+        <motion.div
+          className={clsx('container', styles.headerBlock)}
+          initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={spring}
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          <Heading as="h1" className={styles.heroTitle}>Eco<span className={styles.accent}>system</span></Heading>
           <p className={styles.subtitle}>
             Explore the PSADT ecosystem of partner solutions, integrations, and tools for application packaging and
             deployment.
           </p>
-        </div>
+        </motion.div>
 
-        <div className={clsx('container', styles.pageLayout)}>
+        <motion.div
+          className={clsx('container', styles.pageLayout)}
+          initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ ...spring, delay: prefersReducedMotion ? 0 : 0.08 }}
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {/* Filter Sidebar */}
           <aside className={styles.filterSidebar}>
             <div className={styles.filterSection}>
-              <div className={styles.filterLabel}>License</div>
-              <div className={styles.filterButtons}>
+              <div className={styles.filterLabel} id="filter-license-label">License</div>
+              <div className={styles.filterButtons} role="group" aria-labelledby="filter-license-label">
                 {(['all', 'commercial', 'free'] as const).map((type) => (
                   <button
                     key={type}
                     className={clsx(styles.filterButton, typeFilter === type && styles.filterButtonActive)}
                     onClick={() => setTypeFilter(type)}
                     type="button"
+                    aria-pressed={typeFilter === type}
                   >
                     {type === 'all' ? 'All' : type === 'commercial' ? 'Commercial' : 'Free'}
                   </button>
@@ -172,14 +190,15 @@ export default function EcosystemPage() {
             </div>
 
             <div className={styles.filterSection}>
-              <div className={styles.filterLabel}>Works With</div>
-              <div className={styles.filterButtons}>
+              <div className={styles.filterLabel} id="filter-workswith-label">Works With</div>
+              <div className={styles.filterButtons} role="group" aria-labelledby="filter-workswith-label">
                 {WORKS_WITH_OPTIONS.map((option) => (
                   <button
                     key={option}
                     className={clsx(styles.filterButton, selectedWorksWith.has(option) && styles.filterButtonActive)}
                     onClick={() => toggleWorksWith(option)}
                     type="button"
+                    aria-pressed={selectedWorksWith.has(option)}
                   >
                     {option}
                   </button>
@@ -188,14 +207,15 @@ export default function EcosystemPage() {
             </div>
 
             <div className={styles.filterSection}>
-              <div className={styles.filterLabel}>Capabilities</div>
-              <div className={styles.filterButtons}>
+              <div className={styles.filterLabel} id="filter-capabilities-label">Capabilities</div>
+              <div className={styles.filterButtons} role="group" aria-labelledby="filter-capabilities-label">
                 {SOLUTION_CATEGORIES.map((category) => (
                   <button
                     key={category}
                     className={clsx(styles.filterButton, selectedCategories.has(category) && styles.filterButtonActive)}
                     onClick={() => toggleCategory(category)}
                     type="button"
+                    aria-pressed={selectedCategories.has(category)}
                   >
                     {category}
                   </button>
@@ -225,9 +245,15 @@ export default function EcosystemPage() {
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
 
-        <div className={clsx('container', styles.footerBlock)}>
+        <motion.div
+          className={clsx('container', styles.footerBlock)}
+          initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={spring}
+          viewport={{ once: true, amount: 0.15 }}
+        >
           <p className={styles.subtitle}>
             Want to see your solution added to this page?
             <b>
@@ -237,7 +263,7 @@ export default function EcosystemPage() {
               </a>
             </b>
           </p>
-        </div>
+        </motion.div>
       </section>
     </Layout>
   );

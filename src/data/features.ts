@@ -40,7 +40,7 @@ export const featureGroups: readonly FeatureGroup[] = [
       { text: 'Application discovery by name, version, publisher, or architecture' },
       { text: 'Bulk uninstallation with flexible matching and wildcards' },
       { text: 'Application blocking via IFEO to prevent launch during deployment' },
-      { text: 'Zero-config deployment \u2014 auto-detect MSI or WIM in Files directory' },
+      { text: 'Zero-config deployment - auto-detect MSI or WIM in Files directory' },
     ],
   },
   {
@@ -137,26 +137,19 @@ export const featureGroups: readonly FeatureGroup[] = [
         version: 'v4',
       },
       {
-        text: 'No ServiceUI dependency \u2014 eliminates privilege escalation risks',
+        text: 'No ServiceUI dependency - eliminates privilege escalation risks',
         version: 'v4',
-      },
-      {
-        text: 'Per-app RequireAdmin setting with automatic modal dialog retry',
-        version: 'v4.1',
       },
       {
         text: 'ADMX Group Policy templates for centralized enterprise control',
         version: 'v4.1',
       },
+      { text: 'Full Support for ARM64 architecture' },
+      { text: 'Developed to be PowerShell Strict Mode v3 compliant' },
       {
         text: 'PowerShell 5.1 and 7 dual support with digitally signed module',
         version: 'v4',
-      },
-      { text: 'Config.psd1 with precedence hierarchy and extension module callbacks' },
-      {
-        text: 'Template scaffolding and Invoke-AppDeployToolkit.exe with /Debug switch',
-        version: 'v4.1',
-      },
+      }
     ],
   },
 ];

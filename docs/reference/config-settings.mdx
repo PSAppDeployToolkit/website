@@ -1,15 +1,16 @@
----
+﻿---
 sidebar_position: 3
 sidebar_label: 'Configuration Settings'
 title: 'Configuration Settings'
 description: 'PSAppDeployToolkit uses ADTSession to govern each deployment. You can find more information here'
 slug: /reference/config-settings
+hide_title: true
 tags:
   - Configuration Settings
   - Reference
 ---
 
-# Configuration Settings
+## Configuration Settings
 
 PSAppDeployToolkit provides comprehensive configuration management through multiple layers: Group Policy (highest precedence), local configuration files, and built-in defaults.
 
@@ -21,21 +22,21 @@ In PSADT v4.1, we've introduced **Group Policy ADMX templates** for centralized 
 2. **Local Config.psd1** files
 3. **Built-in Defaults**
 
-# Settings
+### Settings
 
-## Assets
+#### Assets
 
 | Setting           | Description                       |
-|:------------------|:----------------------------------|
+| :---------------- | :-------------------------------- |
 | `Assets.Banner`   | Specifies the banner asset.       |
 | `Assets.Logo`     | Specifies the logo asset.         |
 | `Assets.LogoDark` | Path to the dark mode logo image. |
 
-:::note Dark Mode Support
+:::info Dark Mode Support
 `Assets.LogoDark` enables different logos for light and dark themes in the modern Fluent UI framework.
 :::
 
-## Toolkit Settings
+#### Toolkit Settings
 
 | Setting                             | Description                                                                                                                                                                                      |
 | :---------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -62,11 +63,11 @@ In PSADT v4.1, we've introduced **Group Policy ADMX templates** for centralized 
 | `Toolkit.TempPath`                  | Specifies the temporary path for the toolkit.                                                                                                                                                    |
 | `Toolkit.TempPathNoAdminRights`     | Specifies the temporary path when no admin rights are available.                                                                                                                                 |
 
-:::tip Automatic Silent Switching
+:::info Automatic Silent Switching
 When `Toolkit.ProcessDetection` is enabled and no processes from `AppProcessesToClose` are running, deployments automatically switch to Silent mode for optimal user experience.
 :::
 
-## Windows Installer (MSI) Execution Settings
+#### Windows Installer (MSI) Execution Settings
 
 | Setting                    | Description                                                                                                             |
 | :------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
@@ -78,10 +79,10 @@ When `Toolkit.ProcessDetection` is enabled and no processes from `AppProcessesTo
 | `MSI.SilentParams`         | Defines the silent parameters for MSI.                                                                                  |
 | `MSI.UninstallParams`      | Defines the uninstall parameters for MSI.                                                                               |
 
-## User Interface Settings
+#### User Interface Settings
 
 | Setting                           | Description                                                               |
-| :-------------------------------- | :-----------------------------------------------------------------------: |
+| :-------------------------------- | :------------------------------------------------------------------------ |
 | `UI.BalloonNotifications`         | Enables or disables balloon notifications.                                |
 | `UI.DefaultExitCode`              | Specifies the default exit code for the UI.                               |
 | `UI.DefaultPromptPersistInterval` | Sets the default interval for prompt persistence.                         |
@@ -93,6 +94,6 @@ When `Toolkit.ProcessDetection` is enabled and no processes from `AppProcessesTo
 | `UI.PromptToSaveTimeout`          | Controls how long the user has to respond before a prompt closes.         |
 | `UI.RestartPromptPersistInterval` | Sets the interval for restart prompt persistence.                         |
 
-:::tip Custom Branding
+:::info Custom Branding
 Use `UI.FluentAccentColor` to match your organization's branding in modern Fluent UI dialogs. Supports standard color names and hex values.
 :::

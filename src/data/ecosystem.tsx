@@ -157,7 +157,8 @@ export const solutions: Solution[] = [
   {
     name: 'Deployment Editor',
     featured: false,
-    logo: '/images/solutions/deployment_editor.png',
+    logo: '/images/solutions/deploymenteditor_light.png',
+    logoDark: '/images/solutions/deploymenteditor_dark.png',
     url: 'https://blog.tugi.ch/deployment-editor-download',
     type: 'free',
     description: 'Package Windows applications or create any task for enterprise deployment. No coding needed. 😊',

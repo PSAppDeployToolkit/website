@@ -3,34 +3,37 @@ sidebar_position: 6
 title: 'Upgrade Guidance: v4 to v4.1'
 description: 'Upgrade guidance for those coming from v4.0.'
 slug: /getting-started/upgrade-guidance-4x-to-v41
+hide_title: true
 tags:
   - Usage
   - Migration
   - Getting Started
 ---
 
-# Upgrade Guidance: v4 to v4.1
+## Upgrade Guidance: v4 to v4.1
 
-## Breaking Changes in v4.1
+### Breaking Changes in v4.1
 
 :::warning
+
 - `DeployMode` now defaults to a new mode `Auto`, which defaults to interactive but reverts to silent if the device is in OOBE/ESP phases, there is no user logged on, or there are no processes to close.
 - `OOBEDetection` and `SessionDetection` are no longer set in Config.psd1. They can be set per-deployment by adding the `NoOOBEDetection` and `NoSessionDetection` options to the session properties if required.
 - `AppProcessesToClose` is a new session property that allows you to define processes to close during Install/Uninstall/Repair in one place instead of specifying the processes directly on the `-CloseProcesses` parameter of `Show-ADTInstallationWelcome`.
 - `RequireAdmin` is no longer set in Config.psd1. It must be set per-deployment in the session properties.
 - Several config options have been removed or had their default values changed. See below for details.
 - Deprecated functions and parameters are scheduled for removal in 4.2.0. Update your scripts accordingly.
+
 :::
 
-## Updating an Existing v4.0 Deployment to v4.1
+### Updating an Existing v4.0 Deployment to v4.1
 
 For patch releases (e.g. v4.0.5 to v4.0.6), all that is normally required is to replace the PSAppDeployToolkit folder within the package.
 
 However there are a number of changes to various toolkit files in 4.1 to be aware of.
 
-## Changes in Invoke-AppDeployToolkit.ps1
+### Changes in Invoke-AppDeployToolkit.ps1
 
-:::note
+:::info
 `AppProcessesToClose` and `RequireAdmin` are now set in the `$adtSession` object. This is a breaking change from previous versions. See the examples below for the new pattern.
 :::
 
@@ -74,13 +77,13 @@ The last important change is this line that calls `Remove-ADTHashtableNullOrEmpt
     $adtSession = Open-ADTSession @adtSession @iadtParams -PassThru
 ```
 
-## OOBE and Session Detection Changes
+### OOBE and Session Detection Changes
 
 :::warning
 OOBE and session detection logic has changed in 4.1. OOBE detection now includes the User ESP phase, and you can now bypass OOBE or session detection per deployment using the new `NoOobeDetection` and `NoSessionDetection` session parameters. Review your scripts and config if you rely on the old behavior.
 :::
 
-## Changes in Config.psd1
+### Changes in Config.psd1
 
 Changed defaults:
 
@@ -97,14 +100,15 @@ Removed options:
 - Toolkit.SessionDetection
 - Toolkit.RequireAdmin
 
-## Changes in Strings.psd1
+### Changes in Strings.psd1
 
 There have been extensive changes to the Strings.psd1 files for each language, too many to list here. Please submit an issue or pull request on GitHub if you are able to improve any of the translations!
 
-## Additional Migration Notes
+### Additional Migration Notes
 
-:::note
+:::info
 
 - Use the migration tools (`Test-ADTCompatibility`, `Convert-ADTDeployment`) to help update your scripts.
 - Review all function and parameter deprecations in the [release notes](../getting-started/release-notes.mdx).
+
 :::
