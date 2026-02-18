@@ -12,13 +12,12 @@ Performs a gpupdate command to refresh Group Policies on the local machine.
 ## SYNTAX
 
 ```powershell
-Update-ADTGroupPolicy [<CommonParameters>]
+Update-ADTGroupPolicy [[-Target] <String[]>] [-Force] [-NoWait] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
 This function performs a gpupdate command to refresh Group Policies on the local machine.
-It updates both Computer and User policies by forcing a refresh using the gpupdate.exe utility.
 
 ## EXAMPLES
 
@@ -31,6 +30,56 @@ Update-ADTGroupPolicy
 Performs a gpupdate command to refresh Group Policies on the local machine.
 
 ## PARAMETERS
+
+### -Target
+
+Specifies that only User or only Computer policy settings are updated.
+By default, both User and Computer policy settings are updated.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: ('Computer', 'User')
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+
+Reapplies all policy settings.
+By default, only policy settings that have changed are applied.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoWait
+
+Starts the underlying gpupdate.exe call without waiting for it to finish.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
 

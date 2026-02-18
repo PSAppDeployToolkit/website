@@ -50,6 +50,16 @@ Show-ADTInstallationPrompt [-RequestInput] -Message <String> [-MessageAlignment 
  [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
 ```
 
+### ShowListSelectionDialog
+
+```powershell
+Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAlignment>]
+ [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>]
+ -ListItems <String[]> -DefaultIndex <UInt32> [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt]
+ [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
+ [-Timeout <UInt32>] [<CommonParameters>]
+```
+
 ## DESCRIPTION
 
 Displays a custom installation prompt with the toolkit branding and optional buttons.
@@ -97,6 +107,14 @@ Show-ADTInstallationPrompt -RequestInput -Message 'Tell us why you think PSADT i
 ```powershell
 Show-ADTInstallationPrompt -RequestInput -DefaultValue 'XXXX' -Message 'Please type in your favourite beer.' -ButtonRightText 'Submit'
 ```
+
+### EXAMPLE 6
+
+```powershell
+$result = Show-ADTInstallationPrompt -Message 'Select your preferred configuration:' -ListItems @('Default', 'Minimal', 'Full', 'Custom') -DefaultIndex 0 -ButtonRightText 'OK'
+```
+
+Write-ADTLogEntry "User selected: $($result.SelectedItem)"
 
 ## PARAMETERS
 
@@ -247,6 +265,41 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ListItems
+
+An array of strings to display as a dropdown list for user selection.
+When specified, a ListSelectionDialog is shown with a ComboBox containing these items.
+The selected item is included in the returned ListSelectionDialogResult object.
+
+```yaml
+Type: String[]
+Parameter Sets: ShowListSelectionDialog
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DefaultIndex
+
+The default selected item index for the dropdown list.
+This value must be equal or greater than zero, and less than the count of ListItems.
+
+```yaml
+Type: UInt32
+Parameter Sets: ShowListSelectionDialog
+Aliases:
+
+Required: True
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WindowLocation
 
 The location of the dialog on the screen.
@@ -270,7 +323,7 @@ Presents the dialog in a separate, independent thread so that the main process i
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ShowCustomDialog
+Parameter Sets: ShowCustomDialog, ShowListSelectionDialog
 Aliases:
 
 Required: False
