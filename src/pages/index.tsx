@@ -57,6 +57,36 @@ function HeroBanner() {
               </Heading>
             </motion.div>
 
+            {/* Mobile-only screenshots: shown between title and subtitle on small screens */}
+            <motion.div variants={fadeUp} className={styles.mobileScreenshotWrapper}>
+              <div className={styles.screenshotContainer}>
+                <motion.img
+                  src="/images/screenshots/app_screenshot_lightmode.png"
+                  alt="PSADT Fluent UI light mode"
+                  className={clsx(styles.screenshot, styles.screenshotLight)}
+                  initial={{ opacity: 0, x: 500, filter: 'blur(8px)' }}
+                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                  transition={
+                    prefersReducedMotion
+                      ? { duration: 0 }
+                      : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0 }
+                  }
+                />
+                <motion.img
+                  src="/images/screenshots/app_screenshot_darkmode.png"
+                  alt="PSADT Fluent UI dark mode"
+                  className={clsx(styles.screenshot, styles.screenshotDark)}
+                  initial={{ opacity: 0, x: 500, filter: 'blur(8px)' }}
+                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                  transition={
+                    prefersReducedMotion
+                      ? { duration: 0 }
+                      : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }
+                  }
+                />
+              </div>
+            </motion.div>
+
             <motion.p variants={fadeUp} className={styles.heroSubtitle}>
               A PowerShell-based framework to simplify and standardize deploying software to Windows, at scale.
             </motion.p>

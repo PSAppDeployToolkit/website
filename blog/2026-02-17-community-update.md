@@ -9,17 +9,17 @@ description: The latest community update from the PSAppDeployToolkit team.
 
 The past year has been an important one for PSADT - not just in terms of features shipped, but in how the toolkit has continued to evolve alongside the people who actually rely on it day to day. As the project matures, the goal hasn't changed: build a dependable, flexible deployment framework shaped by our own real-world experience, and the feedback we receive from our phenomenal, ever-growing and strong community.
 
-This update is a little later than I originally planned. It was important that we take the time to get the website updated - there's been a substantial number of changes and improvements - we wanted to get our Ecosystem section up, and the documentation given some more polish, anod call out our training series! Now that it's all done, I wanted to step back, look at where things have come from since v4.0, where they are now, and where the next phase of PSADT is heading.
+This update is a little later than I originally planned. It was important that we take the time to get the website updated - there's been a substantial number of changes and improvements - we wanted to get our Ecosystem section up, and the documentation given some more polish, and call out our training series! Now that it's all done, I wanted to step back, look at where things have come from since v4.0, where they are now, and where the next phase of PSADT is heading.
 
 <!-- truncate -->
 
 ### Built on Real-World Requirements
 
-Depending on the day, I'll give you one of two answers for why PSADT exists. The first is that there were so many gaps left to fill in SCCM & Intune! The second - and probably the more honest one - is that real application deployments are messy.
+Depending on the day, I'll give you one of two answers for why PSADT exists. The first is that there were so many gaps left to fill in for ConfigMgr & Intune! The second - and probably the more honest one - is that real application deployments are messy.
 
 SYSTEM context versus user sessions. Timing issues. Processes that refuse to close. Installers that behave unpredictably. Environments that never quite match the lab. Inconsistent or broken user interfaces. The toolkit didn't come from abstract design goals; it grew out of the need to ensure our customers (end users) were protected from the latest threats, could do their job relatively uninterrupted, that when software was deployed or updated, it didn't knock them offline, and should the absolute worst happen and the deployment failed - we had all the information we needed to quickly get to the root cause and fix it.
 
-Tooling around application packaging hasn't fundamentally shifted as much as many of us expected. I was sure we'd have no installers at all. Or maybe installers that self-healed, and updated themselves with tiny delta patches, and made me coffee - truly lived up to the title, Install Wizard... Instead, we still tend to see vendors offload complexity onto customers and the same problems crop up. PSADT is still very relevant.
+Tooling around application packaging hasn't fundamentally shifted as much as many of us expected. I was sure we'd have no installers at all... or maybe installers that self-healed, and updated themselves with tiny delta patches, and made me coffee - truly lived up to the title, Install Wizard... Instead, we still tend to see vendors offload complexity onto customers and the same problems crop up. PSADT is still very relevant.
 
 What has changed though, is how PSADT is being used. It's no longer just a helper script. For many organizations it's become a consistent execution layer that sits between your deployment platform and the harsh reality of managing a Windows endpoint environment. Whether that's Intune, ConfigMgr, Autopilot, hybrid environments, or other endpoint management platforms like Tanium, NinjaOne and PDQ. PSADT just keeps being used as the "glue" that makes deployments behave.
 
@@ -31,7 +31,7 @@ And people continue to use it in ways none of us initially predicted. PSADT is n
 
 In August of last year we released PSADT v4.1. This was an even more important release than v4.0 in terms of ambition. There were several long-standing roadmap challenges / goals that we wanted to solve, and one of the biggest was moving away from ServiceUI.
 
-For years, displaying a User Interface during an SCCM or Intune deployment required you to leverage an unsupported Microsoft component called ServiceUI. It worked, and it helped solve a real problem, but it was never ideal from a security or maintainability standpoint. With 4.1, the toolkit moved to a proper client / server interaction model - separating execution from user interaction so the UI runs directly in the user session where it belongs.
+For years, displaying a User Interface during a ConfigMgr or Intune deployment required you to leverage an unsupported Microsoft component called ServiceUI. It worked, and it helped solve a real problem, but it was never ideal from a security or maintainability standpoint. With 4.1, the toolkit moved to a proper client / server interaction model - separating execution from user interaction so the UI runs directly in the user session where it belongs.
 
 That architectural shift unlocked a number of things:
 

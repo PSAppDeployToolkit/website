@@ -42,6 +42,16 @@ const TrainingPage = () => {
               <Heading as="h1" className={styles.heroTitle}>
                 <span className={styles.accent}>PSADT v4 Essentials</span> Training Course
               </Heading>
+              {/* Mobile-only image: shown between title and tagline on smaller screens */}
+              <div className={styles.heroImageMobile}>
+                <div className="media-frame media-frame--hero">
+                  <img
+                    src="/images/features/construction_workers_classroom.png"
+                    alt="Classroom illustration"
+                    className={styles.heroImage}
+                  />
+                </div>
+              </div>
               <p className={styles.heroTagline}>
                 Free online training built in close collaboration with the PSAppDeployToolkit creators. Master PSADT v4.1
                 with hands-on labs, real-world workflows, and official certification.
@@ -108,7 +118,7 @@ const TrainingPage = () => {
           </Heading>
           <div className="row">
             {instructors.map((instructor, i) => (
-              <div key={instructor.name} className="col col--4">
+              <div key={instructor.name} className={clsx('col col--4', styles.instructorCol)}>
                 <motion.div
                   className={clsx(styles.instructorCard, 'calm-card')}
                   initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}

@@ -62,6 +62,25 @@
   object-fit: contain;
 }
 
+/* Mobile-only hero image (shown between title and tagline on mobile) */
+.heroImageMobile {
+  display: none;
+}
+
+@media screen and (max-width: 996px) {
+  .heroImageMobile {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: var(--psadt-space-lg) 0;
+  }
+
+  .heroImageMobile img {
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
 /* Section Titles */
 
 .sectionTitle {
@@ -341,9 +360,13 @@
     font-size: var(--ifm-h3-font-size);
   }
 
+  .instructorCol {
+    margin-bottom: 2rem;
+  }
+
   .instructorCard {
     padding: var(--psadt-space-xl) var(--psadt-space-md);
-    margin: var(--psadt-space-sm) auto;
+    margin: 0 auto;
   }
 
   .instructorImage {

@@ -39,7 +39,7 @@
   --ifm-color-warning: #fbe924;
   --ifm-color-danger:  #ef4444;
 
-  --ifm-color-success-contrast-background: rgba(115, 255, 115, 0.95);
+  --ifm-color-success-contrast-background: rgba(138, 255, 171, 0.95);
   --ifm-color-success-contrast-foreground: #064e3b;
   --ifm-color-info-contrast-background:    rgba(220, 246, 255, 0.95);
   --ifm-color-info-contrast-foreground:    #0e6275;
@@ -336,6 +336,46 @@ html[data-theme='dark'] .navbar::before {
 
   html[data-theme='dark'] .navbar-sidebar {
     background: rgba(25, 25, 25, 0.98);
+  }
+
+  /* Brand fades out and collapses when search is focused */
+  .navbar__brand {
+    max-width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 1;
+    pointer-events: auto;
+    transition:
+      opacity var(--ifm-transition-fast),
+      max-width var(--ifm-transition-slow);
+  }
+
+  .navbar__inner:has(.navbar__search-input:focus) .navbar__brand {
+    opacity: 0;
+    max-width: 0;
+    pointer-events: none;
+  }
+
+  .navbar__inner:has(.navbar__search-input:focus) .navbar__items:not(.navbar__items--right) {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .navbar__inner:has(.navbar__search-input:focus) .navbar__items--right {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .navbar__search {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .navbar__search-input {
+    width: 100%;
+    min-width: 0;
   }
 
 }

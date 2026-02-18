@@ -261,6 +261,11 @@
   }
 }
 
+/* Mobile screenshot wrapper (hidden on desktop, shown on mobile between title and subtitle) */
+.mobileScreenshotWrapper {
+  display: none;
+}
+
 /* Responsive: Mobile */
 @media screen and (max-width: 768px) {
   .heroBanner {
@@ -271,19 +276,46 @@
     font-size: 2rem;
   }
 
-  .screenshotContainer {
-    max-width: 300px;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--psadt-space-md);
+  /* Hide desktop visual col – mobile wrapper inside heroTextCol takes over */
+  .heroVisualCol {
+    display: none;
   }
 
-  .screenshot {
-    position: relative;
+  /* Show mobile screenshot wrapper between title and subtitle */
+  .mobileScreenshotWrapper {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    top: auto;
-    left: auto;
+    overflow: hidden;
+    padding: var(--psadt-space-md) 0 var(--psadt-space-2xl);
+  }
+
+  /* Keep overlapping layout (do NOT convert to flex-column) */
+  .mobileScreenshotWrapper .screenshotContainer {
+    display: block;
+    max-width: 300px;
+    min-height: 480px;
+    flex-direction: unset;
+    gap: 0;
+    margin-inline: auto;
+  }
+
+  /* Restore absolute positioning for overlapping screenshots inside mobile wrapper */
+  .mobileScreenshotWrapper .screenshot {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .mobileScreenshotWrapper .screenshotLight {
+    top: 0;
+    left: 0;
+  }
+
+  .mobileScreenshotWrapper .screenshotDark {
+    top: 28%;
+    left: 26%;
   }
 
   .testimonialGrid {
