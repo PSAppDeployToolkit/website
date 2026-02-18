@@ -19,8 +19,8 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn] [-PassThru]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Default_WindowStyle_Timeout
@@ -32,8 +32,8 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
  [-KillChildProcessesWithParent] -Timeout <TimeSpan> [-TimeoutAction <ActionPreference>]
  [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Default_WindowStyle_NoWait
@@ -43,8 +43,8 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination]
  -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
- [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-NoWait] [-PassThru] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+ [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn]
+ [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Default_WindowStyle_Wait
@@ -55,8 +55,8 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination]
  -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
  [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-PassThru]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Default_CreateNoWindow_Timeout
@@ -69,7 +69,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-WaitForChildProcesses] [-KillChildProcessesWithParent] -Timeout <TimeSpan>
  [-TimeoutAction <ActionPreference>] [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Default_CreateNoWindow_NoWait
@@ -78,9 +78,10 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-CreateNoWindow]
- [-StreamEncoding <Encoding>] [-NoStreamLogging] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>]
- [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-NoWait]
- [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-StreamEncoding <Encoding>] [-StandardInput <String[]>] [-NoStreamLogging] [-WaitForMsiExec]
+ [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
+ [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn] [-NoWait] [-PassThru] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ### Default_CreateNoWindow_Wait
@@ -89,10 +90,11 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-CreateNoWindow]
- [-StreamEncoding <Encoding>] [-NoStreamLogging] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>]
- [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
- [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-StreamEncoding <Encoding>] [-StandardInput <String[]>] [-NoStreamLogging] [-WaitForMsiExec]
+ [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
+ [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn] [-PassThru]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Default_CreateWindow_Timeout
@@ -104,7 +106,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent] -Timeout <TimeSpan>
  [-TimeoutAction <ActionPreference>] [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### Default_CreateWindow_NoWait
@@ -114,7 +116,8 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
  [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
- [-PriorityClass <ProcessPriorityClass>] [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn] [-NoWait] [-PassThru] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -614,6 +617,22 @@ Automatically closes the active deployment session via Close-ADTSession in the e
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ContinueWhenNoUserLoggedOn
+
+When specified, if no user is logged on, the condition is logged and the function returns without throwing an exception.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
 Aliases:
 
 Required: False
