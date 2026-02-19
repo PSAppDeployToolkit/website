@@ -102,6 +102,10 @@ html[data-theme='dark'] .screenshotDark {
 }
 
 
+.logoLight {
+  display: block;
+}
+
 .logoDark {
   display: none;
 }
