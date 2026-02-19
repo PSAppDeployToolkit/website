@@ -22,20 +22,33 @@ const communityLinks = [
 function HeroBanner() {
   const prefersReducedMotion = useReducedMotion();
 
+  // Read data-theme directly from the DOM. Docusaurus injects a blocking <script>
+  // in <head> that sets data-theme before React hydrates, so this is always
+  // correct at animation time — no useColorMode hydration race condition.
+  const isDark =
+    typeof document !== 'undefined'
+      ? document.documentElement.getAttribute('data-theme') === 'dark'
+      : false;
+
+  // Top screenshot always animates first (delay 0), bottom second (delay 0.55).
+  // CSS swaps which image is visually top/bottom based on the theme.
+  const lightDelay = isDark ? 0.55 : 0;
+  const darkDelay  = isDark ? 0    : 0.55;
+
   const container = {
     hidden: {},
     show: { transition: { staggerChildren: prefersReducedMotion ? 0 : 0.1 } },
   };
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
+    hidden: { opacity: 0, x: -80, filter: 'blur(4px)' },
     show: {
       opacity: 1,
-      y: 0,
+      x: 0,
       filter: 'blur(0px)',
       transition: prefersReducedMotion
         ? { duration: 0 }
-        : { type: 'spring' as const, duration: 0.4, bounce: 0 },
+        : { type: 'spring' as const, duration: 0.55, bounce: 0 },
     },
   };
 
@@ -69,7 +82,7 @@ function HeroBanner() {
                   transition={
                     prefersReducedMotion
                       ? { duration: 0 }
-                      : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0 }
+                      : { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: lightDelay }
                   }
                 />
                 <motion.img
@@ -81,7 +94,7 @@ function HeroBanner() {
                   transition={
                     prefersReducedMotion
                       ? { duration: 0 }
-                      : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0 }
+                      : { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: darkDelay }
                   }
                 />
               </div>
@@ -112,7 +125,7 @@ function HeroBanner() {
                 transition={
                   prefersReducedMotion
                     ? { duration: 0 }
-                    : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0 }
+                    : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: lightDelay }
                 }
               />
 
@@ -125,7 +138,7 @@ function HeroBanner() {
                 transition={
                   prefersReducedMotion
                     ? { duration: 0 }
-                    : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0 }
+                    : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: darkDelay }
                 }
               />
             </div>
@@ -143,12 +156,12 @@ function LogoBanner() {
     <motion.section
       aria-label="PSAppDeployToolkit"
       className={styles.logoBanner}
-      initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, x: -80, filter: 'blur(4px)' }}
+      animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
       transition={
         prefersReducedMotion
           ? { duration: 0 }
-          : { type: 'spring' as const, duration: 0.4, bounce: 0 }
+          : { type: 'spring' as const, duration: 0.55, bounce: 0 }
       }
     >
       <div className="container">
