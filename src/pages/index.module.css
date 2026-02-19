@@ -34,8 +34,9 @@
 .heroSubtitle {
   font-size: var(--ifm-h3-font-size);
   color: var(--ifm-color-content-secondary);
-  width: 80%;
+  max-width: 80%;
   line-height: 1.6;
+  margin: 0;
 }
 
 .heroCtas {
@@ -58,15 +59,16 @@
 
 .screenshot {
   display: block;
+  width: 100%;
+  height: auto;
   will-change: transform, opacity, filter;
-  border-radius: var(--psadt-radius-sm);
-  box-shadow:
-    0 10px 28px rgba(0, 0, 0, 0.24),
-    0 2px 8px rgba(0, 0, 0, 0.16);
+  border-radius: var(--psadt-radius-md);
+  box-shadow: var(--ifm-global-shadow-tl);
 }
 
 .screenshotLight {
   display: block;
+  border: 1px solid rgba(var(--psadt-color-blue-600-rgb) / 1);
 }
 
 .screenshotDark {
@@ -79,6 +81,7 @@ html[data-theme='dark'] .screenshotLight {
 
 html[data-theme='dark'] .screenshotDark {
   display: block;
+  border: 1px solid rgba(var(--psadt-color-blue-400-rgb) / 1);
 }
 
 /* ── Logo Banner ── */
@@ -86,19 +89,14 @@ html[data-theme='dark'] .screenshotDark {
 .logoBanner {
   width: 100%;
   padding: var(--psadt-space-lg) 0;
-  display: flex;
 }
 
 
 .psadtLogo {
+  display: block;
   width: 80%;
   height: auto;
-  justify-content: center;
-  align-items: center;
-  will-change: transform, opacity, filter;
   margin: 0 auto;
-    display: block;
-
 }
 
 
@@ -280,6 +278,7 @@ html[data-theme='dark'] .logoDark {
   .heroSubtitle {
     text-align: center;
     max-width: 100%;
+    width: 100%;
   }
 
   .heroCtas {
@@ -315,7 +314,7 @@ html[data-theme='dark'] .logoDark {
     font-size: 2rem;
   }
 
-  /* Hide desktop visual col – mobile wrapper inside heroTextCol takes over */
+  /* Hide desktop visual col - mobile wrapper inside heroTextCol takes over */
   .heroVisualCol {
     display: none;
   }
@@ -341,12 +340,4 @@ html[data-theme='dark'] .logoDark {
   .communityRow {
     gap: var(--psadt-space-xl);
   }
-}
-
-html[data-theme='dark'] .screenshot {
-  border-color: rgba(255, 255, 255, 0.10);
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.60),
-    0 2px 10px rgba(0, 0, 0, 0.40),
-    0 0 0 1px rgba(var(--psadt-color-blue-400-rgb) / 0.10);
 }

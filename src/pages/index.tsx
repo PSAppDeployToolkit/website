@@ -141,6 +141,7 @@ function LogoBanner() {
 
   return (
     <motion.section
+      aria-label="PSAppDeployToolkit"
       className={styles.logoBanner}
       initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -308,9 +309,9 @@ function NewsletterSection() {
 export default function Home() {
   return (
     <Layout description="Enterprise app deployment, simplified.">
-      <LogoBanner />
-      <HeroBanner />
       <main className="page-shell">
+        <LogoBanner />
+        <HeroBanner />
         <FeatureHighlights />
         <Testimonials />
         <CommunityBar />

@@ -578,7 +578,7 @@ html[class*='docs-doc-id-getting-started/creating-a-new-deployment'] .theme-admo
 
 .markdown_image {
   display: block;
-  max-width: 75%;
+  max-width: 90%;
   margin: 2rem auto;
   box-shadow: var(--ifm-global-shadow-tl);
   border-radius: var(--psadt-radius-md);
