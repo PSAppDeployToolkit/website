@@ -44,7 +44,7 @@ function HeroBanner() {
       <div className="container">
         <div className={clsx('row', styles.heroRow)}>
           <motion.div
-            className={clsx('col col--7', styles.heroTextCol)}
+            className={clsx('col col--6', styles.heroTextCol)}
             variants={container}
             initial="hidden"
             animate="show"
@@ -81,7 +81,7 @@ function HeroBanner() {
                   transition={
                     prefersReducedMotion
                       ? { duration: 0 }
-                      : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }
+                      : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0 }
                   }
                 />
               </div>
@@ -101,7 +101,7 @@ function HeroBanner() {
             </motion.div>
           </motion.div>
 
-          <div className={clsx('col col--4', styles.heroVisualCol)}>
+          <div className={clsx('col col--6', styles.heroVisualCol)}>
             <div className={styles.screenshotContainer}>
               <motion.img
                 src="/images/screenshots/app_screenshot_lightmode.png"
@@ -125,7 +125,7 @@ function HeroBanner() {
                 transition={
                   prefersReducedMotion
                     ? { duration: 0 }
-                    : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }
+                    : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0 }
                 }
               />
             </div>
@@ -133,6 +133,36 @@ function HeroBanner() {
         </div>
       </div>
     </header>
+  );
+}
+
+function LogoBanner() {
+  const prefersReducedMotion = useReducedMotion();
+
+  return (
+    <motion.section
+      className={styles.logoBanner}
+      initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      transition={
+        prefersReducedMotion
+          ? { duration: 0 }
+          : { type: 'spring' as const, duration: 0.4, bounce: 0 }
+      }
+    >
+      <div className="container">
+        <img
+          src="/images/psadt-light-navheader.png"
+          alt="PSAppDeployToolkit"
+          className={clsx(styles.psadtLogo, styles.logoLight)}
+        />
+        <img
+          src="/images/psadt-dark-navheader.png"
+          alt="PSAppDeployToolkit"
+          className={clsx(styles.psadtLogo, styles.logoDark)}
+        />
+      </div>
+    </motion.section>
   );
 }
 
@@ -278,6 +308,7 @@ function NewsletterSection() {
 export default function Home() {
   return (
     <Layout description="Enterprise app deployment, simplified.">
+      <LogoBanner />
       <HeroBanner />
       <main className="page-shell">
         <FeatureHighlights />

@@ -2,7 +2,7 @@
 .heroBanner {
   position: relative;
   overflow: hidden;
-  padding: 6rem 0 4rem;
+  padding: 2dvh 0 2rem;
 }
 
 .heroRow {
@@ -23,7 +23,6 @@
   font-weight: var(--ifm-font-weight-black);
   font-style: italic;
   color: var(--ifm-color-primary);
-  margin: 0;
 }
 
 .heroAccent {
@@ -35,9 +34,8 @@
 .heroSubtitle {
   font-size: var(--ifm-h3-font-size);
   color: var(--ifm-color-content-secondary);
-  max-width: 75%;
+  width: 80%;
   line-height: 1.6;
-  margin: 0;
 }
 
 .heroCtas {
@@ -56,40 +54,70 @@
 .screenshotContainer {
   position: relative;
   width: 100%;
-  max-width: clamp(340px, 34vw, 520px);
-  min-height: clamp(420px, 48vw, 620px);
-  perspective: 800px;
 }
 
 .screenshot {
-  position: absolute;
-  width: 100%;
-  object-fit: cover;
+  display: block;
   will-change: transform, opacity, filter;
-  border-radius: var(--psadt-radius-md);
-  border: 1px solid rgba(var(--psadt-color-blue-950-rgb) / 0.12);
+  border-radius: var(--psadt-radius-sm);
   box-shadow:
     0 10px 28px rgba(0, 0, 0, 0.24),
     0 2px 8px rgba(0, 0, 0, 0.16);
 }
 
 .screenshotLight {
-  top: 0;
-  left: 0;
-  z-index: 1;
+  display: block;
 }
 
 .screenshotDark {
-  top: 28%;
-  left: 26%;
-  z-index: 2;
-  transform: rotateY(-2deg);
+  display: none;
+}
+
+html[data-theme='dark'] .screenshotLight {
+  display: none;
+}
+
+html[data-theme='dark'] .screenshotDark {
+  display: block;
+}
+
+/* ── Logo Banner ── */
+
+.logoBanner {
+  width: 100%;
+  padding: var(--psadt-space-lg) 0;
+  display: flex;
+}
+
+
+.psadtLogo {
+  width: 80%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  will-change: transform, opacity, filter;
+  margin: 0 auto;
+    display: block;
+
+}
+
+
+.logoDark {
+  display: none;
+}
+
+html[data-theme='dark'] .logoLight {
+  display: none;
+}
+
+html[data-theme='dark'] .logoDark {
+  display: block;
 }
 
 /* ── Feature Highlights ── */
 
 .featureHighlights {
-  padding-block: var(--psadt-space-xl);
+  padding-block: var(--psadt-space-md);
 }
 
 .featureGrid {
@@ -228,8 +256,12 @@
 
 /* Responsive: Tablet */
 @media screen and (max-width: 996px) {
+  .logoBanner {
+    padding: var(--psadt-space-lg) 0;
+  }
+
   .heroBanner {
-    padding: 4.5rem 0 4rem;
+    padding: 1rem 0 1rem;
   }
 
   .heroRow {
@@ -253,7 +285,6 @@
   .screenshotContainer {
     max-width: 360px;
     margin-inline: auto;
-    min-height: clamp(320px, 58vw, 460px);
   }
 
   .featureGrid {
@@ -268,8 +299,12 @@
 
 /* Responsive: Mobile */
 @media screen and (max-width: 768px) {
+  .logoBanner {
+    padding: var(--psadt-space-md) 0;
+  }
+
   .heroBanner {
-    padding: 3.5rem 0 3rem;
+    padding: 1.5rem 0 1rem;
   }
 
   .heroTitle {
@@ -290,32 +325,9 @@
     padding: var(--psadt-space-md) 0 var(--psadt-space-2xl);
   }
 
-  /* Keep overlapping layout (do NOT convert to flex-column) */
   .mobileScreenshotWrapper .screenshotContainer {
-    display: block;
-    max-width: 300px;
-    min-height: 480px;
-    flex-direction: unset;
-    gap: 0;
+    max-width: 400px;
     margin-inline: auto;
-  }
-
-  /* Restore absolute positioning for overlapping screenshots inside mobile wrapper */
-  .mobileScreenshotWrapper .screenshot {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }
-
-  .mobileScreenshotWrapper .screenshotLight {
-    top: 0;
-    left: 0;
-  }
-
-  .mobileScreenshotWrapper .screenshotDark {
-    top: 28%;
-    left: 26%;
   }
 
   .testimonialGrid {

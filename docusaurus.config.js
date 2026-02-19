@@ -171,6 +171,12 @@ const config = {
       },
       footer: {
         style: 'dark',
+        logo: {
+          alt: 'PSAppDeployToolkit',
+          src: '/images/psadt-dark-sxs.svg',
+          href: '/',
+          width: 160,
+        },
         links: [
           {
             title: 'PSAppDeployToolkit',
