@@ -2,7 +2,7 @@
 .heroBanner {
   position: relative;
   overflow-x: clip;
-  padding: 2dvh 0 2rem;
+  padding: 2dvh 0 5rem;
 }
 
 .heroRow {
