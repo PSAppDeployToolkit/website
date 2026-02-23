@@ -12,7 +12,7 @@ Updates the environment variables for the current PowerShell session with any en
 ## SYNTAX
 
 ```powershell
-Update-ADTEnvironmentPsProvider [<CommonParameters>]
+Update-ADTEnvironmentPsProvider [-LoadLoggedOnUserEnvironmentVariables] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,6 +33,23 @@ Refreshes the current PowerShell session with all environment variable settings.
 
 ## PARAMETERS
 
+### -LoadLoggedOnUserEnvironmentVariables
+
+If script is running in SYSTEM context, this option allows loading environment variables from the active console user.
+If no console user exists but users are logged in, such as on terminal servers, then the first logged-in non-console user.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -52,7 +69,7 @@ An active ADT session is NOT required to use this function.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

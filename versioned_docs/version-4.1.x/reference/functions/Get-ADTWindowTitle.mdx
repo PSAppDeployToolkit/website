@@ -13,7 +13,7 @@ Search for an open window title and return details about the window.
 
 ```powershell
 Get-ADTWindowTitle [[-WindowTitle] <String[]>] [[-WindowHandle] <IntPtr[]>] [[-ParentProcess] <String[]>]
- [[-ParentProcessId] <Int32[]>] [[-ParentProcessMainWindowHandle] <IntPtr[]>] [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,8 +26,8 @@ Returns the following properties for each window:
 - WindowTitle
 - WindowHandle
 - ParentProcess
-- ParentProcessId
 - ParentProcessMainWindowHandle
+- ParentProcessId
 
 Function does not work in SYSTEM context unless launched with "psexec.exe -s -i" to run it as an interactive process under the SYSTEM account.
 
@@ -107,38 +107,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ParentProcessId
-
-One or more process ids of the application window to search for.
-
-```yaml
-Type: Int32[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 4
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ParentProcessMainWindowHandle
-
-One more process main window handles of the application window to search for.
-
-```yaml
-Type: IntPtr[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 5
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -156,8 +124,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### - WindowTitle
 ### - WindowHandle
 ### - ParentProcess
-### - ParentProcessId
 ### - ParentProcessMainWindowHandle
+### - ParentProcessId
 ## NOTES
 An active ADT session is NOT required to use this function.
 
@@ -165,7 +133,7 @@ Function does not work in SYSTEM context unless launched with "psexec.exe -s -i"
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS

@@ -15,20 +15,13 @@ Get the User Profile Path, User Account SID, and the User Account Name for all u
 
 ```powershell
 Get-ADTUserProfiles [-ExcludeNTAccount <NTAccount[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles]
- [-IncludeIISAppPoolProfiles] [-IncludeEpmProfiles] [-ExcludeDefaultUser] [-LoadProfilePaths]
- [<CommonParameters>]
+ [-IncludeIISAppPoolProfiles] [-ExcludeDefaultUser] [-LoadProfilePaths] [<CommonParameters>]
 ```
 
 ### FilterScript
 
 ```powershell
 Get-ADTUserProfiles [-FilterScript] <ScriptBlock> [-LoadProfilePaths] [<CommonParameters>]
-```
-
-### Specific
-
-```powershell
-Get-ADTUserProfiles -SID <SecurityIdentifier[]> [-LoadProfilePaths] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -77,22 +70,6 @@ Aliases:
 
 Required: True
 Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SID
-
-Specifies the SID to get rather than returning all user profiles.
-
-```yaml
-Type: SecurityIdentifier[]
-Parameter Sets: Specific
-Aliases:
-
-Required: True
-Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -163,23 +140,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeEpmProfiles
-
-Include Endpoint Privilege Management (EPM) profiles.
-Excluded by default as they don't parse well.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: All
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -ExcludeDefaultUser
 
 Exclude the Default User.
@@ -223,9 +183,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### PSADT.Types.UserProfileInfo
+### PSADT.Types.UserProfile
 
-### Returns a PSADT.Types.UserProfileInfo object with the following properties:
+### Returns a PSADT.Types.UserProfile object with the following properties:
 ### - NTAccount
 ### - SID
 ### - ProfilePath
@@ -234,7 +194,7 @@ An active ADT session is NOT required to use this function.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
-Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
 License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
