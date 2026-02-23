@@ -16,8 +16,8 @@ Start-ADTMspProcessAsUser [[-Username] <NTAccount>] [-FilePath] <String> [[-Addi
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-DenyUserTermination]
  [-ExpandEnvironmentVariables] [[-LoggingOptions] <String>] [[-LogFileName] <String>]
  [[-SuccessExitCodes] <Int32[]>] [[-RebootExitCodes] <Int32[]>] [[-IgnoreExitCodes] <String[]>]
- [[-PriorityClass] <ProcessPriorityClass>] [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn]
- [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [[-PriorityClass] <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoDesktopRefresh] [-NoWait] [-PassThru]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -285,22 +285,6 @@ Accept wildcard characters: False
 ### -ExitOnProcessFailure
 
 Automatically closes the active deployment session via Close-ADTSession in the event the process exits with a non-success or non-ignored exit code.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ContinueWhenNoUserLoggedOn
-
-When specified, if no user is logged on, the condition is logged and the function returns without throwing an exception.
 
 ```yaml
 Type: SwitchParameter
