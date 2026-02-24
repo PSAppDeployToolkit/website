@@ -75,5 +75,10 @@
   "description": "PSAppDeployToolkit Website",
   "workspaces": [
     "."
-  ]
+  ],
+  "pnpm": {
+    "overrides": {
+      "minimatch": "^10.2.1"
+    }
+  }
 }
