@@ -12,7 +12,7 @@ Scans for outstanding SCCM updates to be installed and installs the pending upda
 ## SYNTAX
 
 ```powershell
-Install-ADTSCCMSoftwareUpdates [[-SoftwareUpdatesScanWaitInSeconds] <Int32>]
+Install-ADTSCCMSoftwareUpdates [[-SoftwareUpdatesScanWaitInSeconds] <UInt32>]
  [[-WaitForPendingUpdatesTimeout] <TimeSpan>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -56,7 +56,7 @@ Scans for outstanding SCCM updates and installs the pending updates with a 30 mi
 The amount of time to wait in seconds for the software updates scan to complete.
 
 ```yaml
-Type: Int32
+Type: UInt32
 Parameter Sets: (All)
 Aliases:
 

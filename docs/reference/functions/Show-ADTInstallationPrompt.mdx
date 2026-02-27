@@ -55,7 +55,7 @@ Show-ADTInstallationPrompt [-RequestInput] -Message <String> [-MessageAlignment 
 ```powershell
 Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAlignment>]
  [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>]
- -ListItems <String[]> -DefaultIndex <UInt32> [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt]
+ -ListItems <String[]> [-DefaultIndex <UInt32>] [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt]
  [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
  [-Timeout <UInt32>] [<CommonParameters>]
 ```
@@ -293,9 +293,9 @@ Type: UInt32
 Parameter Sets: ShowListSelectionDialog
 Aliases:
 
-Required: True
+Required: False
 Position: Named
-Default value: 0
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

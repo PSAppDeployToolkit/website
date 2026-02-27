@@ -1,0 +1,98 @@
+---
+id: Add-ADTFont
+title: Add-ADTFont
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Installs a font file to the system.
+
+## SYNTAX
+
+```powershell
+Add-ADTFont [-Path] <String[]> [-Recurse] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Installs a font file to the system by copying it to the Windows Fonts directory, registering it with the system, and creating the registry entry.
+
+Supports .ttf, .ttc, and .otf file types.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Add-ADTFont -Path "$($adtSession.DirFiles)\MyFont.ttf"
+```
+
+Installs the MyFont.ttf font file.
+
+### EXAMPLE 2
+
+```powershell
+Add-ADTFont -Path "$($adtSession.DirFiles)\Fonts" -Recurse
+```
+
+Installs all font files in the Fonts directory and its subdirectories.
+
+## PARAMETERS
+
+### -Path
+
+The path to the font file or directory containing font files.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: True
+```
+
+### -Recurse
+
+Recursively search for font files in subdirectories.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+## OUTPUTS
+
+### None
+
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Add-ADTFont](https://psappdeploytoolkit.com/docs/reference/functions/Add-ADTFont)

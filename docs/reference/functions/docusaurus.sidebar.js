@@ -10,6 +10,7 @@
 
 module.exports = [
     'commands/Add-ADTEdgeExtension',
+    'commands/Add-ADTFont',
     'commands/Add-ADTModuleCallback',
     'commands/Block-ADTAppExecution',
     'commands/Clear-ADTModuleCallback',
@@ -87,6 +88,7 @@ module.exports = [
     'commands/Remove-ADTFile',
     'commands/Remove-ADTFileFromUserProfiles',
     'commands/Remove-ADTFolder',
+    'commands/Remove-ADTFont',
     'commands/Remove-ADTHashtableNullOrEmptyValues',
     'commands/Remove-ADTIniSection',
     'commands/Remove-ADTIniValue',

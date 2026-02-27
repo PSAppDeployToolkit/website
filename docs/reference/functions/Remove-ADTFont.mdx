@@ -1,0 +1,72 @@
+---
+id: Remove-ADTFont
+title: Remove-ADTFont
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Removes a font from the system.
+
+## SYNTAX
+
+```powershell
+Remove-ADTFont [-Name] <String[]> [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Removes a font from the system by removing the font resource, deleting the registry entry, and removing the file from the Windows Fonts directory.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Remove-ADTFont -Name 'MyFont.ttf'
+```
+
+Removes the MyFont.ttf font.
+
+## PARAMETERS
+
+### -Name
+
+The name of the font file (e.g., 'arial.ttf') or the font name as it appears in the registry.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+## OUTPUTS
+
+### None
+
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2025 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTFont](https://psappdeploytoolkit.com/docs/reference/functions/Remove-ADTFont)

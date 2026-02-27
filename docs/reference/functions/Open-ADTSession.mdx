@@ -23,8 +23,8 @@ Open-ADTSession [[-SessionState] <SessionState>] [[-DeploymentType] <DeploymentT
  [[-AppProcessesToClose] <ProcessDefinition[]>] [-RequireAdmin] [[-ScriptDirectory] <String[]>]
  [[-DirFiles] <String>] [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
  [[-DefaultMspFiles] <String[]>] [-DisableDefaultMsiProcessList] [-ForceMsiDetection] [-ForceWimDetection]
- [-NoSessionDetection] [-NoOobeDetection] [-NoProcessDetection] [-AllowWowProcess] [-PassThru]
- [[-LogName] <String>] [[-SessionClass] <Type>]
+ [-NoSessionDetection] [-NoOobeDetection] [-NoProcessDetection] [-ExitWithMsiCodes] [-AllowWowProcess]
+ [-PassThru] [[-LogName] <String>] [[-SessionClass] <Type>]
  [[-UnboundArguments] <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
 ```
 
@@ -611,6 +611,22 @@ Accept wildcard characters: False
 ### -NoProcessDetection
 
 When DeployMode is not specified or is Auto, bypasses DeployMode adjustment when there's no processes to close in the specified AppProcessesToClose list.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExitWithMsiCodes
+
+When specified, the session will always exit with 0 upon success and 3010 upon reboot required so Intune/ConfigMgr requires no specific adjustment.
 
 ```yaml
 Type: SwitchParameter

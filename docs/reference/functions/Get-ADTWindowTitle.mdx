@@ -13,7 +13,7 @@ Search for an open window title and return details about the window.
 
 ```powershell
 Get-ADTWindowTitle [[-WindowTitle] <String[]>] [[-WindowHandle] <IntPtr[]>] [[-ParentProcess] <String[]>]
- [[-ParentProcessId] <Int32[]>] [[-ParentProcessMainWindowHandle] <IntPtr[]>] [<CommonParameters>]
+ [[-ParentProcessId] <UInt32[]>] [[-ParentProcessMainWindowHandle] <IntPtr[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -112,7 +112,7 @@ Accept wildcard characters: False
 One or more process ids of the application window to search for.
 
 ```yaml
-Type: Int32[]
+Type: UInt32[]
 Parameter Sets: (All)
 Aliases:
 

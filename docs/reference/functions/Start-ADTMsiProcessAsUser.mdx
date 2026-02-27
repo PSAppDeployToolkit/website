@@ -20,8 +20,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -FilePath <
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn] [-NoDesktopRefresh] [-NoWait]
+ [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### FilePath
@@ -34,7 +34,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -FilePath <
  [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### ProductCode_NoWait
@@ -46,8 +47,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -ProductCod
  [-UseHighestAvailableToken] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn] [-NoDesktopRefresh] [-NoWait]
+ [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### ProductCode
@@ -60,7 +61,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>] -ProductCod
  [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>] [-RepairMode <String>]
  [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
- [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn] [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### InstalledApplication_NoWait
@@ -72,8 +74,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
  [-UseLinkedAdminToken] [-UseHighestAvailableToken] [-InheritEnvironmentVariables]
  [-ExpandEnvironmentVariables] [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>]
  [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
- [-PriorityClass <ProcessPriorityClass>] [-NoDesktopRefresh] [-NoWait] [-PassThru] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn] [-NoDesktopRefresh] [-NoWait]
+ [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### InstalledApplication
@@ -86,8 +88,8 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
  [-ExpandEnvironmentVariables] [-DenyUserTermination] [-LoggingOptions <String>] [-LogFileName <String>]
  [-RepairMode <String>] [-RepairFromSource] [-SkipMSIAlreadyInstalledCheck] [-IncludeUpdatesAndHotfixes]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
- [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-NoDesktopRefresh] [-PassThru] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+ [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn]
+ [-NoDesktopRefresh] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -548,6 +550,7 @@ Accept wildcard characters: False
 ### -IgnoreExitCodes
 
 List the exit codes to ignore or * to ignore all exit codes.
+Where possible, please use `-SuccessExitCodes` and/or `-RebootExitCodes` instead, or `-ErrorAction SilentlyContinue` as this parameter is deprecated and will be removed in PSAppDeployToolkit 4.3.0.
 
 ```yaml
 Type: String[]
@@ -595,6 +598,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ContinueWhenNoUserLoggedOn
+
+When specified, if no user is logged on, the condition is logged and the function returns without throwing an exception.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -NoDesktopRefresh
 
 If specifies, doesn't refresh the desktop and environment after successful MSI installation.
@@ -630,7 +649,7 @@ Accept wildcard characters: False
 ### -PassThru
 
 Returns ExitCode, StdOut, and StdErr output from the process.
-Note that a failed execution will only return an object if either `-ErrorAction` is set to `SilentlyContinue`/`Ignore`, or if `-IgnoreExitCodes`/`-SuccessExitCodes` are used.
+Note that a failed execution will only return an object if either `-ErrorAction` is set to `SilentlyContinue`/`Ignore`, or if `-SuccessExitCodes` is used.
 
 ```yaml
 Type: SwitchParameter
