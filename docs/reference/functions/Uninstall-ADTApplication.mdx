@@ -71,7 +71,7 @@ Remove all EXE applications starting with the name 'Vim' followed by a space, us
 
 ### -InstalledApplication
 
-Specifies the [PSADT.Types.InstalledApplication] object to remove.
+Specifies the [PSADT.AppManagement.InstalledApplication] object to remove.
 This parameter is typically used when piping Get-ADTApplication to this function.
 
 ```yaml
@@ -263,7 +263,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: [System.Management.Automation.Language.NullString]::Value
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -283,7 +283,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: [System.Management.Automation.Language.NullString]::Value
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -443,7 +443,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### PSADT.Types.InstalledApplication
+### PSADT.AppManagement.InstalledApplication
 
 ### This function can receive one or more InstalledApplication objects for uninstallation.
 ## OUTPUTS
