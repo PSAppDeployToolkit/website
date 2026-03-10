@@ -61,7 +61,6 @@ module.exports = [
     'commands/Get-ADTWindowTitle',
     'commands/Initialize-ADTFunction',
     'commands/Initialize-ADTModule',
-    'commands/Initialize-ADTModuleIfUnitialized',
     'commands/Install-ADTMSUpdates',
     'commands/Install-ADTSCCMSoftwareUpdates',
     'commands/Invoke-ADTAllUsersRegistryAction',
