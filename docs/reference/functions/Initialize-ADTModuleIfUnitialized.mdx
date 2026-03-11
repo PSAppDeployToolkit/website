@@ -1,0 +1,91 @@
+---
+id: Initialize-ADTModuleIfUnitialized
+title: Initialize-ADTModuleIfUnitialized
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Convenience function to initialize the module if required, optionally returning the active session if available.
+
+## SYNTAX
+
+```powershell
+Initialize-ADTModuleIfUnitialized [-Cmdlet] <PSCmdlet> [-PassThruActiveSession] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+Convenience function to initialize the module if required, optionally returning the active session if available.
+This is available as a shorthand function for extension module developers and will likely serve no benefit for regular deployment scripts.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Initialize-ADTModuleIfUnitialized -Cmdlet $PSCmdlet
+```
+
+Initializes the ADT module with the default settings and configurations if it is uninitialized.
+
+## PARAMETERS
+
+### -Cmdlet
+
+The cmdlet that is being initialized.
+
+```yaml
+Type: PSCmdlet
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThruActiveSession
+
+Returns the active DeploymentSession if available.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### PSAppDeployToolkit.Foundation.DeploymentSession
+
+### Returns the most recent session object from the ADT module data.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Initialize-ADTModuleIfUnitialized](https://psappdeploytoolkit.com/docs/reference/functions/Initialize-ADTModuleIfUnitialized)
