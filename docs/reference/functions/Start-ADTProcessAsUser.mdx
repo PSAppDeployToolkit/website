@@ -16,7 +16,7 @@ Invokes a process in another user's session.
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-WaitForMsiExec]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
  [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn] [-PassThru]
@@ -28,7 +28,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
  [-KillChildProcessesWithParent] -Timeout <TimeSpan> [-TimeoutAction <ActionPreference>]
  [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
@@ -41,7 +41,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
  [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn]
  [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
@@ -52,7 +52,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
  -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
  [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
  [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
@@ -64,7 +64,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-CreateNoWindow]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-CreateNoWindow]
  [-StreamEncoding <Encoding>] [-StandardInput <String[]>] [-NoStreamLogging] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent] -Timeout <TimeSpan>
  [-TimeoutAction <ActionPreference>] [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>]
@@ -77,7 +77,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-CreateNoWindow]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-CreateNoWindow]
  [-StreamEncoding <Encoding>] [-StandardInput <String[]>] [-NoStreamLogging] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn] [-NoWait] [-PassThru] [-WhatIf]
@@ -89,7 +89,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-CreateNoWindow]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-CreateNoWindow]
  [-StreamEncoding <Encoding>] [-StandardInput <String[]>] [-NoStreamLogging] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>]
@@ -102,7 +102,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-WaitForMsiExec]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent] -Timeout <TimeSpan>
  [-TimeoutAction <ActionPreference>] [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>]
  [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
@@ -114,7 +114,7 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
 ```powershell
 Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
  [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-DenyUserTermination] [-WaitForMsiExec]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables] [-WaitForMsiExec]
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn] [-NoWait] [-PassThru] [-WhatIf]
  [-Confirm] [<CommonParameters>]
@@ -295,6 +295,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -DenyUserTermination
+
+Specifies that users cannot terminate the process started in their context.
+The user will still be able to terminate the process if they're an administrator, though.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -InheritEnvironmentVariables
 
 Specifies whether the process running as a user should inherit the SYSTEM account's environment variables.
@@ -314,23 +331,6 @@ Accept wildcard characters: False
 ### -ExpandEnvironmentVariables
 
 Specifies whether to expand any Windows/DOS-style environment variables in the specified FilePath/ArgumentList.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -DenyUserTermination
-
-Specifies that users cannot terminate the process started in their context.
-The user will still be able to terminate the process if they're an administrator, though.
 
 ```yaml
 Type: SwitchParameter

@@ -13,8 +13,9 @@ Modifies a .lnk or .url type shortcut.
 
 ```powershell
 Set-ADTShortcut [-LiteralPath] <String> [-TargetPath <String>] [-Arguments <String>] [-IconLocation <String>]
- [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>] [-WindowStyle <String>]
- [-RunAsAdmin] [-Hotkey <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>]
+ [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -154,13 +155,14 @@ Accept wildcard characters: False
 Sets the shortcut's window style to be minimised, maximised, etc.
 
 ```yaml
-Type: String
+Type: ShortcutWindowStyle
 Parameter Sets: (All)
 Aliases:
+Accepted values: Hidden, Normal, Minimized, Maximized, NormalNoActivate, NormalNoRestore, MinimizedActivateRecent, MinimizedNoActivate, NormalNoRestoreNoActivate, Restore, ProcessDefault, ForceMinimized
 
 Required: False
 Position: Named
-Default value: DontChange
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -194,6 +196,22 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+
+Forces creation of the shortcut if it doesn't exist.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

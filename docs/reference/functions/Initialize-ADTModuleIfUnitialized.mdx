@@ -12,7 +12,8 @@ Convenience function to initialize the module if required, optionally returning 
 ## SYNTAX
 
 ```powershell
-Initialize-ADTModuleIfUnitialized [-Cmdlet] <PSCmdlet> [-PassThruActiveSession] [<CommonParameters>]
+Initialize-ADTModuleIfUnitialized [-Cmdlet] <PSCmdlet> [[-ScriptDirectory] <String[]>]
+ [[-AdditionalEnvironmentVariables] <IDictionary>] [-PassThruActiveSession] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,6 +44,38 @@ Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ScriptDirectory
+
+An override directory to use for config and string loading.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AdditionalEnvironmentVariables
+
+A dictionary of key/value pairs to inject into the generated environment table.
+
+```yaml
+Type: IDictionary
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

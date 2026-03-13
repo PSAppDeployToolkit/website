@@ -13,8 +13,9 @@ Creates a new .lnk or .url type shortcut.
 
 ```powershell
 New-ADTShortcut [-LiteralPath] <String> -TargetPath <String> [-Arguments <String>] [-IconLocation <String>]
- [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>] [-WindowStyle <String>]
- [-RunAsAdmin] [-Hotkey <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>]
+ [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -155,9 +156,10 @@ Windows style of the application.
 Options: Normal, Maximized, Minimized.
 
 ```yaml
-Type: String
+Type: ShortcutWindowStyle
 Parameter Sets: (All)
 Aliases:
+Accepted values: Hidden, Normal, Minimized, Maximized, NormalNoActivate, NormalNoRestore, MinimizedActivateRecent, MinimizedNoActivate, NormalNoRestoreNoActivate, Restore, ProcessDefault, ForceMinimized
 
 Required: False
 Position: Named
@@ -196,6 +198,22 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+
+Forces deletion of a pre-existing shortcut.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
