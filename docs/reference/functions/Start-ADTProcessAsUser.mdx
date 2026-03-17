@@ -23,42 +23,6 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### Default_WindowStyle_Timeout
-
-```powershell
-Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
- [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
- [-KillChildProcessesWithParent] -Timeout <TimeSpan> [-TimeoutAction <ActionPreference>]
- [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
- [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### Default_WindowStyle_NoWait
-
-```powershell
-Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
- [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
- [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn]
- [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### Default_WindowStyle_Wait
-
-```powershell
-Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
- [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
- [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
- -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
- [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
- [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
- [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
 ### Default_CreateNoWindow_Timeout
 
 ```powershell
@@ -97,6 +61,42 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
+### Default_WindowStyle_Timeout
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
+ -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
+ [-KillChildProcessesWithParent] -Timeout <TimeSpan> [-TimeoutAction <ActionPreference>]
+ [-NoTerminateOnTimeout] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Default_WindowStyle_NoWait
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
+ -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
+ [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn]
+ [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### Default_WindowStyle_Wait
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-UseLinkedAdminToken] [-UseHighestAvailableToken]
+ [-DenyUserTermination] [-InheritEnvironmentVariables] [-ExpandEnvironmentVariables]
+ -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
+ [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
 ### Default_CreateWindow_Timeout
 
 ```powershell
@@ -118,6 +118,69 @@ Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList
  [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses] [-KillChildProcessesWithParent]
  [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn] [-NoWait] [-PassThru] [-WhatIf]
  [-Confirm] [<CommonParameters>]
+```
+
+### UseShellExecute_CreateNoWindow_NoWait
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-ExpandEnvironmentVariables] [-UseShellExecute]
+ [-Verb <String>] [-CreateNoWindow] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
+ [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn]
+ [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### UseShellExecute_CreateNoWindow_Wait
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-ExpandEnvironmentVariables] [-UseShellExecute]
+ [-Verb <String>] [-CreateNoWindow] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
+ [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### UseShellExecute_WindowStyle_NoWait
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-ExpandEnvironmentVariables] [-UseShellExecute]
+ [-Verb <String>] -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>]
+ [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>]
+ [-ContinueWhenNoUserLoggedOn] [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### UseShellExecute_WindowStyle_Wait
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-ExpandEnvironmentVariables] [-UseShellExecute]
+ [-Verb <String>] -WindowStyle <ProcessWindowStyle> [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>]
+ [-WaitForChildProcesses] [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>]
+ [-RebootExitCodes <Int32[]>] [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>]
+ [-ExitOnProcessFailure] [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### UseShellExecute_CreateWindow_NoWait
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-ExpandEnvironmentVariables] [-UseShellExecute]
+ [-Verb <String>] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
+ [-KillChildProcessesWithParent] [-PriorityClass <ProcessPriorityClass>] [-ContinueWhenNoUserLoggedOn]
+ [-NoWait] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### UseShellExecute_CreateWindow_Wait
+
+```powershell
+Start-ADTProcessAsUser [-Username <NTAccount>] -FilePath <String> [-ArgumentList <String[]>]
+ [-SecureArgumentList] [-WorkingDirectory <String>] [-ExpandEnvironmentVariables] [-UseShellExecute]
+ [-Verb <String>] [-WaitForMsiExec] [-MsiExecWaitTime <TimeSpan>] [-WaitForChildProcesses]
+ [-KillChildProcessesWithParent] [-SuccessExitCodes <Int32[]>] [-RebootExitCodes <Int32[]>]
+ [-IgnoreExitCodes <String[]>] [-PriorityClass <ProcessPriorityClass>] [-ExitOnProcessFailure]
+ [-ContinueWhenNoUserLoggedOn] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -269,7 +332,7 @@ Use a user's linked administrative token while running the process under their c
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Default_CreateWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_NoWait, Default_CreateNoWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_NoWait, Default_WindowStyle_Wait, Default_CreateWindow_Timeout, Default_CreateWindow_NoWait
 Aliases:
 
 Required: False
@@ -285,7 +348,7 @@ Use a user's linked administrative token if it's available while running the pro
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Default_CreateWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_NoWait, Default_CreateNoWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_NoWait, Default_WindowStyle_Wait, Default_CreateWindow_Timeout, Default_CreateWindow_NoWait
 Aliases:
 
 Required: False
@@ -302,7 +365,7 @@ The user will still be able to terminate the process if they're an administrator
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Default_CreateWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_NoWait, Default_CreateNoWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_NoWait, Default_WindowStyle_Wait, Default_CreateWindow_Timeout, Default_CreateWindow_NoWait
 Aliases:
 
 Required: False
@@ -318,7 +381,7 @@ Specifies whether the process running as a user should inherit the SYSTEM accoun
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Default_CreateWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_NoWait, Default_CreateNoWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_NoWait, Default_WindowStyle_Wait, Default_CreateWindow_Timeout, Default_CreateWindow_NoWait
 Aliases:
 
 Required: False
@@ -344,6 +407,50 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -UseShellExecute
+
+Specifies whether to use the operating system shell to start the process.
+$true if the shell should be used when starting the process; $false if the process should be created directly from the executable file.
+
+The word "Shell" in this context refers to a graphical shell (similar to the Windows shell) rather than command shells (for example, bash or sh) and lets users launch graphical applications or open documents.
+It lets you open a file or a url and the Shell will figure out the program to open it with.
+
+The WorkingDirectory property behaves differently depending on the value of the UseShellExecute property.
+When UseShellExecute is true, the WorkingDirectory property specifies the location of the executable.
+When UseShellExecute is false, the WorkingDirectory property is not used to find the executable.
+Instead, it is used only by the process that is started and has meaning only within the context of the new process.
+
+If you set UseShellExecute to $true, there will be no available output from the process.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: UseShellExecute_CreateNoWindow_NoWait, UseShellExecute_CreateNoWindow_Wait, UseShellExecute_WindowStyle_NoWait, UseShellExecute_WindowStyle_Wait, UseShellExecute_CreateWindow_NoWait, UseShellExecute_CreateWindow_Wait
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Verb
+
+The verb to use when doing a ShellExecute invocation.
+Common usages are "runas" to trigger a UAC elevation of the process.
+
+```yaml
+Type: String
+Parameter Sets: UseShellExecute_CreateNoWindow_NoWait, UseShellExecute_CreateNoWindow_Wait, UseShellExecute_WindowStyle_NoWait, UseShellExecute_WindowStyle_Wait, UseShellExecute_CreateWindow_NoWait, UseShellExecute_CreateWindow_Wait
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -WindowStyle
 
 Style of the window of the process executed.
@@ -357,7 +464,7 @@ They can choose to ignore it.
 
 ```yaml
 Type: ProcessWindowStyle
-Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_NoWait, Default_WindowStyle_Wait
+Parameter Sets: Default_WindowStyle_Timeout, Default_WindowStyle_NoWait, Default_WindowStyle_Wait, UseShellExecute_WindowStyle_NoWait, UseShellExecute_WindowStyle_Wait
 Aliases:
 Accepted values: Normal, Hidden, Minimized, Maximized
 
@@ -374,7 +481,7 @@ Specifies whether the process should be started with a new window to contain it.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Default_CreateNoWindow_Timeout, Default_CreateNoWindow_NoWait, Default_CreateNoWindow_Wait
+Parameter Sets: Default_CreateNoWindow_Timeout, Default_CreateNoWindow_NoWait, Default_CreateNoWindow_Wait, UseShellExecute_CreateNoWindow_NoWait, UseShellExecute_CreateNoWindow_Wait
 Aliases:
 
 Required: True
@@ -506,7 +613,7 @@ How long to wait for the process before timing out.
 
 ```yaml
 Type: TimeSpan
-Parameter Sets: Default_WindowStyle_Timeout, Default_CreateNoWindow_Timeout, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateNoWindow_Timeout, Default_WindowStyle_Timeout, Default_CreateWindow_Timeout
 Aliases:
 
 Required: True
@@ -523,7 +630,7 @@ Follows ErrorAction if not specified.
 
 ```yaml
 Type: ActionPreference
-Parameter Sets: Default_WindowStyle_Timeout, Default_CreateNoWindow_Timeout, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateNoWindow_Timeout, Default_WindowStyle_Timeout, Default_CreateWindow_Timeout
 Aliases:
 Accepted values: SilentlyContinue, Stop, Continue, Inquire, Ignore, Suspend
 
@@ -541,7 +648,7 @@ Only supported for GUI-based applications, or when -CreateNoWindow isn't specifi
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Default_WindowStyle_Timeout, Default_CreateNoWindow_Timeout, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateNoWindow_Timeout, Default_WindowStyle_Timeout, Default_CreateWindow_Timeout
 Aliases:
 
 Required: False
@@ -558,7 +665,7 @@ Defaults to values set during ADTSession initialization, otherwise: 0
 
 ```yaml
 Type: Int32[]
-Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateWindow_Timeout, UseShellExecute_CreateNoWindow_Wait, UseShellExecute_WindowStyle_Wait, UseShellExecute_CreateWindow_Wait
 Aliases:
 
 Required: False
@@ -575,7 +682,7 @@ Defaults to values set during ADTSession initialization, otherwise: 1641, 3010
 
 ```yaml
 Type: Int32[]
-Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateWindow_Timeout, UseShellExecute_CreateNoWindow_Wait, UseShellExecute_WindowStyle_Wait, UseShellExecute_CreateWindow_Wait
 Aliases:
 
 Required: False
@@ -592,7 +699,7 @@ Where possible, please use `-SuccessExitCodes` and/or `-RebootExitCodes` instead
 
 ```yaml
 Type: String[]
-Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateWindow_Timeout, UseShellExecute_CreateNoWindow_Wait, UseShellExecute_WindowStyle_Wait, UseShellExecute_CreateWindow_Wait
 Aliases:
 
 Required: False
@@ -626,7 +733,7 @@ Automatically closes the active deployment session via Close-ADTSession in the e
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Default_CreateWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_CreateWindow_Timeout
+Parameter Sets: Default_CreateWindow_Wait, Default_CreateNoWindow_Timeout, Default_CreateNoWindow_Wait, Default_WindowStyle_Timeout, Default_WindowStyle_Wait, Default_CreateWindow_Timeout, UseShellExecute_CreateNoWindow_Wait, UseShellExecute_WindowStyle_Wait, UseShellExecute_CreateWindow_Wait
 Aliases:
 
 Required: False
@@ -658,7 +765,7 @@ Immediately continue after executing the process.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Default_WindowStyle_NoWait, Default_CreateNoWindow_NoWait, Default_CreateWindow_NoWait
+Parameter Sets: Default_CreateNoWindow_NoWait, Default_WindowStyle_NoWait, Default_CreateWindow_NoWait, UseShellExecute_CreateNoWindow_NoWait, UseShellExecute_WindowStyle_NoWait, UseShellExecute_CreateWindow_NoWait
 Aliases:
 
 Required: True

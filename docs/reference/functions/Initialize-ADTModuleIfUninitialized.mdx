@@ -1,6 +1,6 @@
 ---
-id: Initialize-ADTModuleIfUnitialized
-title: Initialize-ADTModuleIfUnitialized
+id: Initialize-ADTModuleIfUninitialized
+title: Initialize-ADTModuleIfUninitialized
 hide_title: false
 hide_table_of_contents: false
 ---
@@ -12,7 +12,7 @@ Convenience function to initialize the module if required, optionally returning 
 ## SYNTAX
 
 ```powershell
-Initialize-ADTModuleIfUnitialized [-Cmdlet] <PSCmdlet> [[-ScriptDirectory] <String[]>]
+Initialize-ADTModuleIfUninitialized [-Cmdlet] <PSCmdlet> [[-ScriptDirectory] <String[]>]
  [[-AdditionalEnvironmentVariables] <IDictionary>] [-PassThruActiveSession] [<CommonParameters>]
 ```
 
@@ -26,7 +26,7 @@ This is available as a shorthand function for extension module developers and wi
 ### EXAMPLE 1
 
 ```powershell
-Initialize-ADTModuleIfUnitialized -Cmdlet $PSCmdlet
+Initialize-ADTModuleIfUninitialized -Cmdlet $PSCmdlet
 ```
 
 Initializes the ADT module with the default settings and configurations if it is uninitialized.
@@ -121,4 +121,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 ## RELATED LINKS
 
-[https://psappdeploytoolkit.com/docs/reference/functions/Initialize-ADTModuleIfUnitialized](https://psappdeploytoolkit.com/docs/reference/functions/Initialize-ADTModuleIfUnitialized)
+[https://psappdeploytoolkit.com/docs/reference/functions/Initialize-ADTModuleIfUninitialized](https://psappdeploytoolkit.com/docs/reference/functions/Initialize-ADTModuleIfUninitialized)

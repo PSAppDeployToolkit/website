@@ -12,7 +12,7 @@ Search for an open window title and return details about the window.
 ## SYNTAX
 
 ```powershell
-Get-ADTWindowTitle [[-WindowTitle] <String[]>] [[-WindowHandle] <IntPtr[]>] [[-ParentProcess] <String[]>]
+Get-ADTWindowTitle [[-WindowTitle] <String>] [[-WindowHandle] <IntPtr[]>] [[-ParentProcess] <String[]>]
  [[-ParentProcessId] <UInt32[]>] [[-ParentProcessMainWindowHandle] <IntPtr[]>] [<CommonParameters>]
 ```
 
@@ -61,10 +61,10 @@ Get details for all windows belonging to Microsoft Word process with name "WINWO
 
 ### -WindowTitle
 
-One or more titles of the application window to search for using regex matching.
+The title of the application window to search for using regex matching.
 
 ```yaml
-Type: String[]
+Type: String
 Parameter Sets: (All)
 Aliases:
 

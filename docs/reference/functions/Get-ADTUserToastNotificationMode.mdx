@@ -1,0 +1,58 @@
+---
+id: Get-ADTUserToastNotificationMode
+title: Get-ADTUserToastNotificationMode
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Gets the user's toast notification mode.
+
+## SYNTAX
+
+```powershell
+Get-ADTUserToastNotificationMode [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+This function gets, returning the mode, or null if the API is unavailble (older OS, etc).
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Get-ADTUserToastNotificationMode
+```
+
+Returns the logged on user's toast notification state.
+
+## PARAMETERS
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### PSADT.Interop.ToastNotificationMode
+
+### Returns the determined mode.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTUserToastNotificationMode](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTUserToastNotificationMode)
