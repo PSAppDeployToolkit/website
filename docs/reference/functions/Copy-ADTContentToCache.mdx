@@ -12,7 +12,8 @@ Copies the toolkit content to a cache folder on the local machine and sets the $
 ## SYNTAX
 
 ```powershell
-Copy-ADTContentToCache [[-LiteralPath] <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Copy-ADTContentToCache [[-LiteralPath] <String>] [[-Exclude] <String[]>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,6 +34,22 @@ Copy-ADTContentToCache -LiteralPath "$envWinDir\Temp\PSAppDeployToolkit"
 
 This example copies the toolkit content to the specified cache folder.
 
+### EXAMPLE 2
+
+```powershell
+Copy-ADTContentToCache -Exclude Files,SupportFiles
+```
+
+This example copies the toolkit content to the default cache folder, excluding the Files and SupportFiles folders and leaving DirFiles and DirSupportFiles pointing at the original location.
+
+### EXAMPLE 3
+
+```powershell
+Copy-ADTContentToCache -Exclude Toolkit
+```
+
+This example copies only the Files and SupportFiles folders to the default cache folder, excluding all other content.
+
 ## PARAMETERS
 
 ### -LiteralPath
@@ -47,6 +64,27 @@ Aliases: Path, PSPath
 Required: False
 Position: 1
 Default value: "$((& $Script:CommandTable.'Get-ADTConfig').Toolkit.CachePath)\\$((& $Script:CommandTable.'Get-ADTSession').InstallName)"
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Exclude
+
+Specifies one or more content categories to exclude from the cache copy.
+Acceptable values are 'Files', 'SupportFiles', and 'Toolkit'.
+
+- Files: Excludes the Files folder and does not remap the DirFiles session property.
+- SupportFiles: Excludes the SupportFiles folder and does not remap the DirSupportFiles session property.
+- Toolkit: Excludes all content other than the Files and SupportFiles folders.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
