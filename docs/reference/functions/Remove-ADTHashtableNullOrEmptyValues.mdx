@@ -7,7 +7,7 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Removes any key/value pairs from the supplied hashtable where the value is null.
+Removes any key/value pairs from the supplied hashtable where the value is null, empty, or consists only of whitespace.
 
 ## SYNTAX
 
@@ -17,14 +17,15 @@ Remove-ADTHashtableNullOrEmptyValues [-Hashtable] <Hashtable> [-Recurse] [<Commo
 
 ## DESCRIPTION
 
-This function removes any key/value pairs from the supplied hashtable where the value is null.
+This function returns a new hashtable that contains only entries whose values not null, empty, or consist only of whitespace.
+When the **-Recurse** switch is specified, the function will also traverse any nested hashtables and apply the same filtering to them.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Remove-ADTHashtableNullOrEmptyValues -Hashtable
+Remove-ADTHashtableNullOrEmptyValues -Hashtable @{ Key1 = 'Value1'; Key2 = $null }
 ```
 
 Returns a new hashtable with only key/values where the value isn't null.
