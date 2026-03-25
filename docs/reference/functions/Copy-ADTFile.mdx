@@ -14,17 +14,17 @@ Copies files and directories from a source to a destination.
 ### Path
 
 ```powershell
-Copy-ADTFile [-Path] <String[]> [-Destination] <String> [-Recurse] [-Flatten] [-ContinueFileCopyOnError]
- [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Copy-ADTFile [-Path] <String[]> [-Destination] <String> [-Recurse] [-Flatten] [-NoClobber]
+ [-ContinueFileCopyOnError] [-FileCopyMode <String>] [-RobocopyParams <String>]
+ [-RobocopyAdditionalParams <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### LiteralPath
 
 ```powershell
-Copy-ADTFile [-LiteralPath] <String[]> [-Destination] <String> [-Recurse] [-Flatten] [-ContinueFileCopyOnError]
- [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Copy-ADTFile [-LiteralPath] <String[]> [-Destination] <String> [-Recurse] [-Flatten] [-NoClobber]
+ [-ContinueFileCopyOnError] [-FileCopyMode <String>] [-RobocopyParams <String>]
+ [-RobocopyAdditionalParams <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,6 +65,14 @@ Copy-ADTFile -Path "$($adtSession.DirFiles)\*" -Destination C:\some\random\file\
 ```
 
 Copies all files within the active session's Files folder to 'C:\some\random\file\path', overwriting the destination file if it exists.
+
+### EXAMPLE 5
+
+```powershell
+Copy-ADTFile -Path "$($adtSession.DirFiles)\*" -Destination C:\some\random\file\path -NoClobber
+```
+
+Copies files from the active session's Files folder that do not already exist at the destination.
 
 ## PARAMETERS
 
@@ -137,6 +145,23 @@ Accept wildcard characters: False
 ### -Flatten
 
 Flattens the files into the root destination directory.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoClobber
+
+Prevents overwriting existing files at the destination.
+When specified, files that already exist at the destination path are skipped.
 
 ```yaml
 Type: SwitchParameter

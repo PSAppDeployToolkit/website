@@ -14,7 +14,7 @@ Copy one or more items to each user profile on the system.
 ### CalculatedProfiles (Default)
 
 ```powershell
-Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten]
+Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten] [-NoClobber]
  [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
  [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles] [-ExcludeDefaultUser]
  [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
@@ -24,22 +24,22 @@ Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recu
 
 ```powershell
 Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
- [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Flatten] [-NoClobber] [-FileCopyMode <String>] [-RobocopyParams <String>]
+ [-RobocopyAdditionalParams <String>] [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### LiteralPath
 
 ```powershell
 Copy-ADTFileToUserProfiles [-LiteralPath] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
- [-Flatten] [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Flatten] [-NoClobber] [-FileCopyMode <String>] [-RobocopyParams <String>]
+ [-RobocopyAdditionalParams <String>] [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### SpecifiedProfiles
 
 ```powershell
-Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten]
+Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten] [-NoClobber]
  [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
  -UserProfiles <UserProfileInfo[]> [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
@@ -168,6 +168,23 @@ Accept wildcard characters: False
 ### -Flatten
 
 Flattens the files into the root destination directory.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoClobber
+
+Prevents overwriting existing files at the destination.
+When specified, files that already exist at the destination path are skipped.
 
 ```yaml
 Type: SwitchParameter
