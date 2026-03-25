@@ -11,8 +11,16 @@ Removes any key/value pairs from the supplied hashtable where the value is null,
 
 ## SYNTAX
 
+### Default (Default)
+
 ```powershell
-Remove-ADTHashtableNullOrEmptyValues [-Hashtable] <Hashtable> [-Recurse] [<CommonParameters>]
+Remove-ADTHashtableNullOrEmptyValues [-Hashtable] <Hashtable> [<CommonParameters>]
+```
+
+### Recurse
+
+```powershell
+Remove-ADTHashtableNullOrEmptyValues [-Hashtable] <Hashtable> [-Recurse] [-Depth <UInt32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,12 +62,29 @@ Specifies to recursively remove nested hashtable values that are null, empty, or
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Recurse
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Depth
+
+Specifies how many recursive levels to remove null, empty, or whitespace values.
+The default value is 5.
+
+```yaml
+Type: UInt32
+Parameter Sets: Recurse
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: 5
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
