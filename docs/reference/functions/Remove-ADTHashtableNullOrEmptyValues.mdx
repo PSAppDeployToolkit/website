@@ -7,7 +7,7 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Removes any key/value pairs from the supplied hashtable where the value is null, empty, or consists only of whitespace.
+Returns a new hashtable that contains entries from the source where the value is not null, empty, or consists only of whitespace.
 
 ## SYNTAX
 
@@ -25,7 +25,7 @@ Remove-ADTHashtableNullOrEmptyValues [-Hashtable] <Hashtable> [-Recurse] [-Depth
 
 ## DESCRIPTION
 
-This function returns a new hashtable that contains only entries whose values not null, empty, or consist only of whitespace.
+This function returns a new hashtable that contains entries from the source where the value is not null, empty, or consists only of whitespace..
 When the **-Recurse** switch is specified, the function will also traverse any nested hashtables and apply the same filtering to them.
 
 ## EXAMPLES

@@ -1,0 +1,108 @@
+---
+id: Select-ADTUniqueObject
+title: Select-ADTUniqueObject
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Provides a consistent way to get unique objects from the given input, with consistent StringComparer equality between Windows PowerShell and PowerShell 7.
+
+## SYNTAX
+
+```powershell
+Select-ADTUniqueObject [-InputObject] <Object[]> [[-CaseSensitivity] <StringComparison>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+This function provides a consistent way to get unique objects from the given input, with consistent StringComparer equality between Windows PowerShell and PowerShell 7.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+1, 2, 2, 3 | Select-ADTUniqueObject
+```
+
+Returns a unique array of integers to the caller.
+
+### EXAMPLE 2
+
+```powershell
+'string1', 'string2', 'String2', 'string3' | Select-ADTUniqueObject
+```
+
+Returns a unique array of integers to the caller, irrespective of case.
+
+### EXAMPLE 3
+
+```powershell
+'string1', 'string2', 'String2', 'string3' | Select-ADTUniqueObject -CaseSensitivity Ordinal
+```
+
+Returns a unique array of integers to the caller, preserving strings of different casing.
+
+## PARAMETERS
+
+### -InputObject
+
+The input to process for uniqueness.
+Can be pipelined input or an array objects.
+
+```yaml
+Type: Object[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -CaseSensitivity
+
+The StringComparison value to use when checking for string equality.
+
+```yaml
+Type: StringComparison
+Parameter Sets: (All)
+Aliases:
+Accepted values: CurrentCulture, CurrentCultureIgnoreCase, InvariantCulture, InvariantCultureIgnoreCase, Ordinal, OrdinalIgnoreCase
+
+Required: False
+Position: 2
+Default value: OrdinalIgnoreCase
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### System.Object
+
+### One or more objects that will be collected for processing their uniqueness.
+## OUTPUTS
+
+### System.Object[]
+
+### An array of unique objects derived from the provided input.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Select-ADTUniqueObject](https://psappdeploytoolkit.com/docs/reference/functions/Select-ADTUniqueObject)

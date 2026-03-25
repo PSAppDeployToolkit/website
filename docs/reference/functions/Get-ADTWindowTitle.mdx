@@ -36,23 +36,23 @@ Function does not work in SYSTEM context unless launched with "psexec.exe -s -i"
 ### EXAMPLE 1
 
 ```powershell
+Get-ADTWindowTitle
+```
+
+Gets details for all windows with a title.
+
+### EXAMPLE 2
+
+```powershell
 Get-ADTWindowTitle -WindowTitle 'Microsoft Word'
 ```
 
 Gets details for each window that has the words "Microsoft Word" in the title.
 
-### EXAMPLE 2
-
-```powershell
-Get-ADTWindowTitle -GetAllWindowTitles
-```
-
-Gets details for all windows with a title.
-
 ### EXAMPLE 3
 
 ```powershell
-Get-ADTWindowTitle -GetAllWindowTitles | Where-Object { $_.ParentProcess -eq 'WINWORD' }
+Get-ADTWindowTitle | Where-Object { $_.ParentProcess -eq 'WINWORD' }
 ```
 
 Get details for all windows belonging to Microsoft Word process with name "WINWORD".

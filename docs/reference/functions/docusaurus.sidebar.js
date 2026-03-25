@@ -99,6 +99,7 @@ module.exports = [
     'commands/Remove-ADTRegistryKey',
     'commands/Reset-ADTDeferHistory',
     'commands/Resolve-ADTErrorRecord',
+    'commands/Select-ADTUniqueObject',
     'commands/Send-ADTKeys',
     'commands/Set-ADTActiveSetup',
     'commands/Set-ADTDeferHistory',
