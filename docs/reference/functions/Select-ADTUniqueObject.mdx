@@ -35,7 +35,7 @@ Returns a unique array of integers to the caller.
 'string1', 'string2', 'String2', 'string3' | Select-ADTUniqueObject
 ```
 
-Returns a unique array of integers to the caller, irrespective of case.
+Returns a unique array of strings to the caller, irrespective of case.
 
 ### EXAMPLE 3
 
@@ -43,14 +43,14 @@ Returns a unique array of integers to the caller, irrespective of case.
 'string1', 'string2', 'String2', 'string3' | Select-ADTUniqueObject -CaseSensitivity Ordinal
 ```
 
-Returns a unique array of integers to the caller, preserving strings of different casing.
+Returns a unique array of strings to the caller, preserving strings of different casing.
 
 ## PARAMETERS
 
 ### -InputObject
 
 The input to process for uniqueness.
-Can be pipelined input or an array objects.
+Can be pipelined input or an array of objects.
 
 ```yaml
 Type: Object[]
