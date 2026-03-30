@@ -24,7 +24,7 @@ Open-ADTSession [[-SessionState] <SessionState>] [[-DeploymentType] <DeploymentT
  [[-DirFiles] <String>] [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
  [[-DefaultMspFiles] <String[]>] [-DisableDefaultMsiProcessList] [-ForceMsiDetection] [-ForceWimDetection]
  [-NoSessionDetection] [-NoOobeDetection] [-NoProcessDetection] [-ExitWithMsiCodes] [-AllowWowProcess]
- [-PassThru] [[-LogName] <String>] [[-SessionClass] <Type>]
+ [-PassThru] [[-LogName] <String>] [[-AdditionalEnvironmentVariables] <IDictionary>] [[-SessionClass] <Type>]
  [[-UnboundArguments] <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
 ```
 
@@ -688,6 +688,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -AdditionalEnvironmentVariables
+
+A dictionary of key/value pairs to inject into the generated environment table.
+This only applies if this function initialises the module also.
+
+```yaml
+Type: IDictionary
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 28
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -SessionClass
 
 Specifies an override for PSAppDeployToolkit.Foundation.DeploymentSession class.
@@ -699,7 +716,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 28
+Position: 29
 Default value: PSAppDeployToolkit.Foundation.DeploymentSession
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -708,6 +725,7 @@ Accept wildcard characters: False
 ### -UnboundArguments
 
 Captures any additional arguments passed to the function.
+Do not directly use this parameter on the command line or in your scripts.
 
 ```yaml
 Type: System.Collections.Generic.IReadOnlyList`1[System.Object]
@@ -715,7 +733,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 29
+Position: 30
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
