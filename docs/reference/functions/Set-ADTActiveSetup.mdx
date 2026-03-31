@@ -14,7 +14,7 @@ Creates an Active Setup entry in the registry to execute a file for each user up
 ### Create (Default)
 
 ```powershell
-Set-ADTActiveSetup -StubExePath <String> [-Arguments <String>] [-Wow6432Node]
+Set-ADTActiveSetup -StubExePath <String> [-ArgumentList <String[]>] [-Wow6432Node]
  [-ExecutionPolicy <ExecutionPolicy>] [-Version <String>] [-Locale <String>] [-DisableActiveSetup] [-PassThru]
  [-WhatIf] [-Confirm] -Key <String> -Description <String> [<CommonParameters>]
 ```
@@ -22,7 +22,7 @@ Set-ADTActiveSetup -StubExePath <String> [-Arguments <String>] [-Wow6432Node]
 ### CreateNoExecute
 
 ```powershell
-Set-ADTActiveSetup -StubExePath <String> [-Arguments <String>] [-Wow6432Node]
+Set-ADTActiveSetup -StubExePath <String> [-ArgumentList <String[]>] [-Wow6432Node]
  [-ExecutionPolicy <ExecutionPolicy>] [-Version <String>] [-Locale <String>] [-DisableActiveSetup]
  [-NoExecuteForCurrentUser] [-WhatIf] [-Confirm] -Key <String> -Description <String> [<CommonParameters>]
 ```
@@ -55,13 +55,13 @@ This Function:
 ### EXAMPLE 1
 
 ```powershell
-Set-ADTActiveSetup -StubExePath 'C:\Users\Public\Company\ProgramUserConfig.vbs' -Arguments '/Silent' -Description 'Program User Config' -Key 'ProgramUserConfig' -Locale 'en'
+Set-ADTActiveSetup -StubExePath 'C:\Users\Public\Company\ProgramUserConfig.vbs' -ArgumentList '/Silent' -Description 'Program User Config' -Key 'ProgramUserConfig' -Locale 'en'
 ```
 
 ### EXAMPLE 2
 
 ```powershell
-Set-ADTActiveSetup -StubExePath "$envWinDir\regedit.exe" -Arguments "/S `"%SystemDrive%\Program Files (x86)\PS App Deploy\PSAppDeployHKCUSettings.reg`"" -Description 'PS App Deploy Config' -Key 'PS_App_Deploy_Config'
+Set-ADTActiveSetup -StubExePath "$envWinDir\regedit.exe" -ArgumentList "/S", "%SystemDrive%\Program Files (x86)\PS App Deploy\PSAppDeployHKCUSettings.reg" -Description 'PS App Deploy Config' -Key 'PS_App_Deploy_Config'
 ```
 
 ### EXAMPLE 3
@@ -92,14 +92,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Arguments
+### -ArgumentList
 
 Arguments to pass to the file being executed.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: Create, CreateNoExecute
-Aliases:
+Aliases: Arguments
 
 Required: False
 Position: Named
