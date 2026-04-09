@@ -15,7 +15,7 @@ Get all of the properties from a Windows Installer database table or the Summary
 
 ```powershell
 Get-ADTMsiTableProperty -LiteralPath <String> [-TransformPath <String[]>] [-Table <String>]
- [-TablePropertyNameColumnNum <Int32>] [-TablePropertyValueColumnNum <Int32>] [<CommonParameters>]
+ [-TablePropertyNameColumnNum <UInt32>] [-TablePropertyValueColumnNum <UInt32>] [<CommonParameters>]
 ```
 
 ### SummaryInfo
@@ -111,7 +111,7 @@ Accept wildcard characters: False
 Specify the table column number which contains the name of the properties.
 
 ```yaml
-Type: Int32
+Type: UInt32
 Parameter Sets: TableInfo
 Aliases:
 
@@ -127,7 +127,7 @@ Accept wildcard characters: False
 Specify the table column number which contains the value of the properties.
 
 ```yaml
-Type: Int32
+Type: UInt32
 Parameter Sets: TableInfo
 Aliases:
 
