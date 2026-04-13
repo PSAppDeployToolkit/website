@@ -165,4 +165,14 @@ export const solutions: Solution[] = [
     worksWith: ['Standalone', 'Intune'],
     categories: ['Package Authoring', 'Deployment Automation'],
   },
+  {
+    name: 'CANCOM Packaging PowerBench',
+    featured: false,
+    logo: '/images/solutions/cancom_ppb.png',
+    url: 'https://www.cancom.de/en/solutions/cancom-products/cancom-packaging-powerbench/',
+    type: 'commercial',
+    description: 'Graphical No-Code / Low-Code package authoring. Convert Ivanti DSM packages to PowerShell. Automate Winget package creation.',
+    worksWith: ['Standalone', 'Intune', 'ConfigMgr'],
+    categories: ['Package Authoring', 'Deployment Automation', 'App Repackaging', 'Software Update Catalog'],
+  },
 ];
