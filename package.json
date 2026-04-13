@@ -46,7 +46,7 @@
     "@docusaurus/types": "3.9.2",
     "@eslint/markdown": "^8.0.1",
     "@fec/remark-a11y-emoji": "^4.0.2",
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@typescript-eslint/eslint-plugin": "^8.58.0",
     "@typescript-eslint/parser": "^8.58.0",
