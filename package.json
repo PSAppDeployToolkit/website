@@ -39,7 +39,7 @@
     "search-insights": "^2.17.3"
   },
   "devDependencies": {
-    "@docusaurus/eslint-plugin": "^3.9.2",
+    "@docusaurus/eslint-plugin": "^3.10.0",
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/theme-classic": "^3.9.2",
     "@docusaurus/tsconfig": "^3.9.2",
