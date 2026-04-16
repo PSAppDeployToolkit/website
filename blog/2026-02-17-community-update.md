@@ -58,7 +58,7 @@ Some of the themes shaping 4.2 include:
 
 - **Ground-up redesign of the build system**. The build time had creeped up to about 15 minutes. The majority of the build tooling have been replaced by a single custom purpose-built PSADT ModuleBuilder, optimized for caching and to avoid repeating tasks. Our builds are down to 7 minutes.
 
-- **Increased flexibility around User Experience**. Organizations want built-in dialogs that still allow them to define what happens next. We're adding new dialog types, as well as looking at ways to make deferral anuling logic more composable without increasing complexity. We're also adding the ability to break out of the Windows ESP to display per-application installation progress - so you aren't left wondering whether an installation has hung, and to help you troubleshoot if it is.
+- **Increased flexibility around User Experience**. Organizations want built-in dialogs that still allow them to define what happens next. We're adding new dialog types, as well as looking at ways to make deferral handling logic more composable without increasing complexity. We're also adding the ability to break out of the Windows ESP to display per-application installation progress - so you aren't left wondering whether an installation has hung, and to help you troubleshoot if it is.
 
 As always, deprecations are approached carefully. We communicate early where changes could impact existing workflows and automations - and community feedback will continue to drive final decisions. Look out for this shipping within the next two or three months.
 

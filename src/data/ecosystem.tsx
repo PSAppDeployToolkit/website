@@ -34,7 +34,7 @@ export const solutions: Solution[] = [
     url: 'https://patchmypc.com/',
     description: 'Automation of 3rd party software updates for ConfigMgr and Intune. Stewards of PSAppDeployToolkit.',
     type: 'commercial',
-    worksWith: ['ConfigMgr', 'Intune'],
+    worksWith: ['configMgr', 'intune'],
     categories: ['Software Update Catalog', 'Deployment Automation'],
   },
   {
@@ -44,7 +44,7 @@ export const solutions: Solution[] = [
     url: 'https://www.masterpackager.com',
     description: 'Everything you need to create professional, modern Windows installer packages.',
     type: 'free',
-    worksWith: ['ConfigMgr', 'Intune', 'Standalone'],
+    worksWith: ['configMgr', 'intune', 'standalone'],
     categories: ['App Repackaging', 'Package Authoring'],
   },
   {
@@ -55,7 +55,7 @@ export const solutions: Solution[] = [
     url: 'https://devicie.com',
     type: 'commercial',
     description: 'Intune Automation, Management & Visibility Platform which leverages PSADT for App Deployment.',
-    worksWith: ['SCCM', 'Intune'],
+    worksWith: ['configMgr', 'intune'],
     categories: ['Software Update Catalog', 'Deployment Automation', 'Packaging Services'],
   },
   {
@@ -66,7 +66,7 @@ export const solutions: Solution[] = [
     type: 'commercial',
     description:
       'Windows-based tool designed for centralized post-packaging configuration and deployment. Part of Advanced Installer suite.',
-    worksWith: ['ConfigMgr', 'Intune'],
+    worksWith: ['configMgr', 'intune'],
     categories: ['App Repackaging', 'Package Authoring'],
   },
   {
