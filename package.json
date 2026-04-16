@@ -69,6 +69,13 @@
       "last 5 safari version"
     ]
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "core-js",
+      "core-js-pure"
+    ]
+  },
   "engines": {
     "node": ">=20.0"
   },
