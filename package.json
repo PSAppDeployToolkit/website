@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "prettier": "prettier --config .prettierrc --write \"**/*.{js,ts,tsx,css}\"",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint --ext .js,.jsx,.ts,.tsx . --fix",
+    "lint": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "prettier:diff": "prettier --config .prettierrc --list-different \"**/*.{js,ts,tsx,css}\"",
     "prettier-docs": "prettier --config .prettierrc --write \"**/*.{md,mdx}\""
