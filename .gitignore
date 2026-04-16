@@ -45,6 +45,10 @@ build/Release
 node_modules/
 jspm_packages/
 
+# Non-pnpm lockfiles
+package-lock.json
+yarn.lock
+
 # TypeScript v1 declaration files
 typings/
 
