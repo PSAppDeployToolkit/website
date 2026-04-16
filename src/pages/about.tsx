@@ -68,7 +68,7 @@ const AboutPage = () => {
         } catch {
           // sessionStorage may be unavailable
         }
-      } catch (err) {
+      } catch {
         setError('Unable to load contributors at this time.');
       } finally {
         setIsLoading(false);

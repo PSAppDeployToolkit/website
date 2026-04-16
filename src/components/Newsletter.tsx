@@ -12,7 +12,7 @@ export default function Newsletter() {
 
         <p>
           PSAppDeployToolkit officially has a newsletter to keep you in the loop with all the latest updates, features,
-          and improvements designed to make application deployment even smoother. You'll also hear about upcoming events and
+          and improvements designed to make application deployment even smoother. You&apos;ll also hear about upcoming events and
           webinars where you can connect with experts and sharpen your skills. Subscribe to by filling out the form.
         </p>
       </div>
