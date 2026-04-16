@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "prettier": "prettier --config .prettierrc --write \"**/*.{js,ts,tsx,css}\"",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx . --fix",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint --ext .js,.jsx,.ts,.tsx . --fix",
     "typecheck": "tsc --noEmit",
     "prettier:diff": "prettier --config .prettierrc --list-different \"**/*.{js,ts,tsx,css}\"",
     "prettier-docs": "prettier --config .prettierrc --write \"**/*.{md,mdx}\""
@@ -45,7 +45,7 @@
     "@types/react": "^19.2.14",
     "@typescript-eslint/eslint-plugin": "^8.58.0",
     "@typescript-eslint/parser": "^8.58.0",
-    "eslint": "^10.2.0",
+    "eslint": "^9.7.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
