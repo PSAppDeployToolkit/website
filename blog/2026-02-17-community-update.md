@@ -11,7 +11,7 @@ The past year has been an important one for PSADT - not just in terms of feature
 
 This update is a little later than I originally planned. It was important that we take the time to get the website updated - there's been a substantial number of changes and improvements - we wanted to get our Ecosystem section up, and the documentation given some more polish, and call out our training series! Now that it's all done, I wanted to step back, look at where things have come from since v4.0, where they are now, and where the next phase of PSADT is heading.
 
-<!-- truncate -->
+{/* truncate */}
 
 ### Built on Real-World Requirements
 
