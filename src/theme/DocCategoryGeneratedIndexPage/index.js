@@ -4,7 +4,6 @@
  *
  * Based on @docusaurus/theme-classic DocCategoryGeneratedIndexPage.
  */
-import React from 'react';
 import {PageMetadata} from '@docusaurus/theme-common';
 import {useCurrentSidebarCategory} from '@docusaurus/plugin-content-docs/client';
 import useBaseUrl from '@docusaurus/useBaseUrl';

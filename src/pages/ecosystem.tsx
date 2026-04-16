@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback } from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
 import { motion, useReducedMotion } from 'framer-motion';
 import styles from './ecosystem.module.css';
@@ -37,9 +38,9 @@ function SolutionCard({ solution }: { solution: Solution }) {
         )}
       </div>
       <p className={styles.cardName}>
-        <a href={solution.url} target="_blank" rel="noopener noreferrer">
+        <Link href={solution.url} target="_blank" rel="noopener noreferrer">
           {solution.name}
-        </a>
+        </Link>
       </p>
       <p className={styles.cardDescription}>{solution.description}</p>
       <div className={styles.badgeGroups}>
@@ -257,10 +258,10 @@ export default function EcosystemPage() {
           <p className={styles.subtitle}>
             Want to see your solution added to this page?
             <b>
-              <a href={EditPage} target="_blank" rel="noopener noreferrer" className={styles.gitHubLink}>
+              <Link href={EditPage} target="_blank" rel="noopener noreferrer" className={styles.gitHubLink}>
                 {' '}
                 Add and submit a PR on GitHub.
-              </a>
+              </Link>
             </b>
           </p>
         </motion.div>

@@ -164,10 +164,10 @@ const AboutPage = () => {
         >
           <Heading as="h2">Development Team</Heading>
           <p className={styles.foundersHeading}>
-            This is the ragtag bunch who have been flying the PSADT flag for 14+ years. Some haven't been around as
-            long, some aren't as active these days - but we've all put in countless hours building this, implementing
+            This is the ragtag bunch who have been flying the PSADT flag for 14+ years. Some haven&apos;t been around as
+            long, some aren&apos;t as active these days - but we&apos;ve all put in countless hours building this, implementing
             requested features, providing support, attended conferences and given talks. We all have a deep passion for
-            this project and are proud of what we've built together.
+            this project and are proud of what we&apos;ve built together.
           </p>
           <div className={styles.founderGrid}>
             {devteam.slice(0, 6).map((member, i) => (
