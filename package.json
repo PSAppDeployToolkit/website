@@ -20,11 +20,11 @@
     "prettier-docs": "prettier --config .prettierrc --write \"**/*.{md,mdx}\""
   },
   "dependencies": {
-    "@docusaurus/core": "^3.9.2",
-    "@docusaurus/faster": "^3.9.2",
-    "@docusaurus/plugin-content-docs": "^3.9.2",
-    "@docusaurus/preset-classic": "^3.9.2",
-    "@docusaurus/theme-common": "^3.9.2",
+    "@docusaurus/core": "^3.10.0",
+    "@docusaurus/faster": "^3.10.0",
+    "@docusaurus/plugin-content-docs": "^3.10.0",
+    "@docusaurus/preset-classic": "^3.10.0",
+    "@docusaurus/theme-common": "^3.10.0",
     "@docusaurus/types": "^3.10.0",
     "@easyops-cn/docusaurus-search-local": "^0.55.1",
     "@eslint/markdown": "^8.0.1",
@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@docusaurus/eslint-plugin": "^3.10.0",
-    "@docusaurus/module-type-aliases": "^3.9.2",
-    "@docusaurus/theme-classic": "^3.9.2",
+    "@docusaurus/module-type-aliases": "^3.10.0",
+    "@docusaurus/theme-classic": "^3.10.0",
     "@docusaurus/tsconfig": "^3.10.0",
     "@docusaurus/types": "3.10.0",
     "@eslint/markdown": "^8.0.1",
