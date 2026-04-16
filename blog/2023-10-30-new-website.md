@@ -11,7 +11,7 @@ Oh wow, this has been a long time coming! Oh ... I'm not talking about the long 
 
 PSAppDeployToolkit is feeling revitalized, and kinda cute, so it was only fair that we apply a fresh coat of paint to the site. And it's not just a little bit of paint, we've been working on this for a while now.
 
-<!-- truncate -->
+{/* truncate */}
 
 ### What's New?
 
