@@ -75,11 +75,5 @@
   "description": "PSAppDeployToolkit Website",
   "workspaces": [
     "."
-  ],
-  "pnpm": {
-    "overrides": {
-      "minimatch": "^10.2.1",
-      "serialize-javascript": "^7.0.5"
-    }
-  }
+  ]
 }
