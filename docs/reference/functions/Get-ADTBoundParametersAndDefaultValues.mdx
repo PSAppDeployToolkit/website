@@ -7,7 +7,7 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Returns a hashtable with the output of $PSBoundParameters and default-valued parameters for the given InvocationInfo.
+Returns a hashtable with the output of `$PSBoundParameters` and default-valued parameters for the given InvocationInfo.
 
 ## SYNTAX
 
@@ -18,7 +18,7 @@ Get-ADTBoundParametersAndDefaultValues [-Invocation] <InvocationInfo> [[-Paramet
 
 ## DESCRIPTION
 
-This function processes the provided InvocationInfo and combines the results of $PSBoundParameters and default-valued parameters via the InvocationInfo's ScriptBlock AST (Abstract Syntax Tree).
+The `Get-ADTBoundParametersAndDefaultValues` function processes the provided InvocationInfo and combines the results of `$PSBoundParameters` and default-valued parameters via the InvocationInfo's ScriptBlock AST (Abstract Syntax Tree).
 
 ## EXAMPLES
 
@@ -34,7 +34,7 @@ Returns a $PSBoundParameters-compatible dictionary with the bound parameters and
 
 ### -Invocation
 
-The script or function's InvocationInfo ($MyInvocation) to process.
+The script or function's InvocationInfo (`$MyInvocation`) to process.
 
 ```yaml
 Type: InvocationInfo
@@ -125,7 +125,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Collections.Generic.Dictionary[System.String, System.Object]
 
-### Get-ADTBoundParametersAndDefaultValues returns a dictionary of the same base type as $PSBoundParameters for API consistency.
+### `Get-ADTBoundParametersAndDefaultValues` returns a dictionary of the same base type as `$PSBoundParameters` for API consistency.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

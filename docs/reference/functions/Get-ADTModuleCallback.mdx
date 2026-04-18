@@ -17,7 +17,7 @@ Get-ADTModuleCallback [-Hookpoint] <CallbackType> [<CommonParameters>]
 
 ## DESCRIPTION
 
-This function returns all callbacks from the nominated hooking point.
+The `Get-ADTModuleCallback` function returns all callbacks from the nominated hooking point.
 
 ## EXAMPLES
 
@@ -71,9 +71,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### None
+### System.Collections.ObjectModel.ReadOnlyCollection[System.Management.Automation.CommandInfo]
 
-### This function does not generate any output.
+### The callback commands for the hookpoint specified.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

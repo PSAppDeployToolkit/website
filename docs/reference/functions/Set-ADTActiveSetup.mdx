@@ -45,10 +45,10 @@ If the "Version" value of the Active Setup entry in HKLM is higher than the vers
 This Function:
 
 - Creates the registry entries in "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\$($adtSession.InstallName)".
-- Creates StubPath value depending on the file extension of the $StubExePath parameter.
+- Creates StubPath value depending on the file extension of the `-StubExePath` parameter.
 - Handles Version value with YYYYMMDDHHMMSS granularity to permit re-installs on the same day and still trigger Active Setup after Version increase.
-- Copies/overwrites the StubPath file to $StubExePath destination path if file exists in 'Files' subdirectory of script directory.
-- Executes the StubPath file for the current user based on $NoExecuteForCurrentUser (no need to logout/login to trigger Active Setup).
+- Copies/overwrites the StubPath file to `-StubExePath` destination path if file exists in 'Files' subdirectory of script directory.
+- Executes the StubPath file for the current user based on the value of the `-NoExecuteForCurrentUser` parameter (no need to logout/login to trigger Active Setup).
 
 ## EXAMPLES
 
@@ -126,7 +126,7 @@ Accept wildcard characters: False
 
 ### -ExecutionPolicy
 
-Specifies the ExecutionPolicy to set when StubExePath is a PowerShell script.
+Specifies the ExecutionPolicy to set when `-StubExePath` is a PowerShell script.
 
 ```yaml
 Type: ExecutionPolicy
@@ -152,7 +152,7 @@ Note:
     - Do not use this parameter if it is not necessary.
 PSADT will handle this parameter automatically using the time of the installation as the version number.
     - In Windows 10, scripts and executables might be blocked by AppLocker.
-Ensure that the path given to -StubExePath will permit end users to run scripts and executables unelevated.
+Ensure that the path given to `-StubExePath` will permit end users to run scripts and executables unelevated.
 
 ```yaml
 Type: String
@@ -187,7 +187,7 @@ Accept wildcard characters: False
 ### -DisableActiveSetup
 
 Disables the Active Setup entry so that the StubPath file will not be executed.
-This also enables -NoExecuteForCurrentUser.
+This also enables `-NoExecuteForCurrentUser`.
 
 ```yaml
 Type: SwitchParameter
@@ -221,7 +221,7 @@ Accept wildcard characters: False
 
 ### -NoExecuteForCurrentUser
 
-Specifies whether the StubExePath should be executed for the current user.
+Specifies whether the `-StubExePath` value should be executed for the current user.
 Since this user is already logged in, the user won't have the application started without logging out and logging back in.
 
 ```yaml
@@ -331,15 +331,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### PSADT.ProcessManagement.ProcessResult
+### None
 
+### By default, this function returns no output.
+### PSADT.ProcessManagement.ProcessResult
 ### This function returns a ProcessResult from the execution of the ActiveSetup configuration for the current user if `-PassThru` is provided.
 ## NOTES
 An active ADT session is NOT required to use this function.
 
 Original code borrowed from: Denis St-Pierre (Ottawa, Canada), Todd MacNaught (Ottawa, Canada)
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

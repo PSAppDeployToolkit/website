@@ -17,7 +17,7 @@ Test-ADTMicrophoneInUse [<CommonParameters>]
 
 ## DESCRIPTION
 
-Tests whether someone is using the microphone on their device.
+The `Test-ADTMicrophoneInUse` function tests whether someone is using the the primary audio capture device (microphone) on the device.
 This could be within Teams, Zoom, a game, or any other app that uses a microphone.
 
 ## EXAMPLES
@@ -28,7 +28,7 @@ This could be within Teams, Zoom, a game, or any other app that uses a microphon
 Test-ADTMicrophoneInUse
 ```
 
-Checks if the microphone is in use and returns true or false.
+Checks if the microphone is in use and returns `$true` or `$false`.
 
 ## PARAMETERS
 
@@ -45,7 +45,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Boolean
 
-### Returns $true if the microphone is in use, otherwise returns $false.
+### Returns `$true` if the microphone is in use, otherwise returns `$false`.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

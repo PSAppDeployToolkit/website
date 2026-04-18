@@ -25,10 +25,10 @@ Remove-ADTFile -LiteralPath <String[]> [-Recurse] [-WhatIf] [-Confirm] [<CommonP
 
 ## DESCRIPTION
 
-This function removes one or more items from a given path on the filesystem.
+The `Remove-ADTFile` function removes one or more items from a given path on the filesystem.
 It can handle both wildcard paths and literal paths.
 If the specified path does not exist, it logs a warning instead of throwing an error.
-The function can also delete items recursively if the Recurse parameter is specified.
+The function can also delete items recursively if the `-Recurse` parameter is specified.
 
 ## EXAMPLES
 
@@ -71,7 +71,7 @@ Accept wildcard characters: True
 ### -LiteralPath
 
 Specifies the file on the filesystem to be removed.
-The value of LiteralPath is used exactly as it is typed; no characters are interpreted as wildcards.
+The value of `-LiteralPath` is used exactly as it is typed; no characters are interpreted as wildcards.
 Will accept an array of values.
 
 ```yaml
@@ -155,7 +155,7 @@ An active ADT session is NOT required to use this function.
 This function continues on received errors by default.
 To have the function stop on an error, please provide `-ErrorAction Stop` on the end of your call.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

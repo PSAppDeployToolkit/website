@@ -19,7 +19,7 @@ Set-ADTRegistryKey [-LiteralPath] <String> [[-Name] <String>] [[-Value] <Object>
 
 ## DESCRIPTION
 
-Creates a registry key name, value, and value data; it sets the same if it already exists.
+The `Set-ADTRegistryKey` function creates a registry key name, value, and value data; it sets the same if it already exists.
 This function can also handle registry keys for specific user SIDs and 32-bit registry on 64-bit systems.
 
 ## EXAMPLES
@@ -189,7 +189,7 @@ Accept wildcard characters: False
 The security identifier (SID) for a user.
 Specifying this parameter will convert a HKEY_CURRENT_USER registry key to the HKEY_USERS\$SID format.
 
-Specify this parameter from the Invoke-ADTAllUsersRegistryAction function to read/edit HKCU registry settings for all users on the system.
+Specify this parameter from the `Invoke-ADTAllUsersRegistryAction` function to read/edit HKCU registry settings for all users on the system.
 
 ```yaml
 Type: SecurityIdentifier
@@ -253,7 +253,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

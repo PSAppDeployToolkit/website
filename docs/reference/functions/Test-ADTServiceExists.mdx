@@ -17,8 +17,8 @@ Test-ADTServiceExists [-Name] <String> [-UseCIM] [-PassThru] [<CommonParameters>
 
 ## DESCRIPTION
 
-Check to see if a service exists.
-The UseCIM switch can be used in conjunction with PassThru to return WMI objects for PSADT v3.x compatibility, however, this method fails in Windows Sandbox.
+The `Test-ADTServiceExists` function checks to see if a service exists.
+The `-UseCIM` switch can be used in conjunction with `-PassThru` to return WMI objects for PSADT v3.x compatibility, however, this method fails in Windows Sandbox.
 
 ## EXAMPLES
 
@@ -36,7 +36,7 @@ Checks if the service 'wuauserv' exists.
 Test-ADTServiceExists -Name testservice -UseCIM -PassThru | Invoke-CimMethod -MethodName Delete
 ```
 
-Checks if a service exists and then deletes it by using the -PassThru parameter.
+Checks if a service exists and then deletes it by using the `-PassThru` parameter.
 
 ## PARAMETERS
 
@@ -44,7 +44,7 @@ Checks if a service exists and then deletes it by using the -PassThru parameter.
 
 Specify the name of the service.
 
-Note: Service name can be found by executing "Get-Service | Format-Table -AutoSize -Wrap" or by using the properties screen of a service in services.msc.
+Note: Service name can be found by executing `Get-Service | Format-Table -AutoSize -Wrap` or by using the properties screen of a service in services.msc.
 
 ```yaml
 Type: String
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ### -PassThru
 
 Return the WMI service object.
-To see all the properties use: Test-ADTServiceExists -Name 'spooler' -PassThru | Get-Member
+To see all the properties use: `Test-ADTServiceExists -Name 'spooler' -PassThru | Get-Member`
 
 ```yaml
 Type: SwitchParameter
@@ -105,7 +105,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Boolean
 
-### Returns $true if the service exists, otherwise returns $false.
+### By default, this function returns `$true` if the service exists, otherwise returns `$false`.
+### System.ServiceProcess.ServiceController
+### When the `-PassThru` parameter is provided and the service specified exists, a ServiceController object representing the service is returned, otherwise `$null`.
+### Microsoft.Management.Infrastructure.CimInstance
+### When the `-PassThru` and `-UseCIM` parameters are provided and the service specified exists, a Win32_Service or Win32_BaseService CimInstance object representing the service is returned, otherwise `$null`.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

@@ -27,7 +27,7 @@ Mount-ADTWimFile -ImagePath <FileInfo> -Path <DirectoryInfo> -Index <UInt32> [-F
 
 ## DESCRIPTION
 
-Mounts a WIM file to a specified directory.
+The `Mount-ADTWimFile` function mounts a WIM file to a specified directory.
 The function supports mounting by image index or image name.
 It also provides options to forcefully remove existing directories and return the mounted image details.
 
@@ -200,13 +200,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### Microsoft.Dism.Commands.ImageObject
+### None
 
-### Returns the mounted image details if the PassThru parameter is specified.
+### By default, this function returns no output.
+### Microsoft.Dism.Commands.ImageObject
+### When the `-PassThru` parameter is provided, this function returns an ImageObject object representing the mounted WIM file.
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

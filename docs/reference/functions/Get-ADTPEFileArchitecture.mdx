@@ -31,7 +31,7 @@ Get-ADTPEFileArchitecture -InputObject <FileInfo> [-PassThru] [<CommonParameters
 
 ## DESCRIPTION
 
-Determine if a PE file is a 32-bit or a 64-bit file by examining the file's image file header.
+The `Get-ADTPEFileArchitecture` function determines if a PE file is a 32-bit or a 64-bit file by examining the file's image file header.
 
 PE file extensions: .exe, .dll, .ocx, .drv, .sys, .scr, .efi, .cpl, .fon
 
@@ -121,9 +121,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Accepts a FileInfo object from the pipeline.
 ## OUTPUTS
 
-### System.String
+### PSADT.Interop.IMAGE_FILE_MACHINE
 
-### Returns a string indicating the file binary type.
+### Returns an IMAGE_FILE_MACHINE enum value indicating the file binary type.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

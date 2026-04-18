@@ -17,7 +17,7 @@ Invoke-ADTRegSvr32 [-FilePath] <String> [-Action] <String> [-WhatIf] [-Confirm] 
 
 ## DESCRIPTION
 
-Register or unregister a DLL file using regsvr32.exe.
+The `Invoke-ADTRegSvr32` function registers or unregisters a DLL file using regsvr32.exe.
 This function determines the bitness of the DLL file and uses the appropriate version of regsvr32.exe to perform the action.
 It supports both 32-bit and 64-bit DLL files on corresponding operating systems.
 
@@ -123,7 +123,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

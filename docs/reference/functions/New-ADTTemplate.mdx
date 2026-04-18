@@ -153,7 +153,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### None
 
-### This function does not generate any output.
+### By default, this function returns no output.
+### System.IO.DirectoryInfo
+### When the `-PassThru` parameter is specified, this function returns a DirectoryInfo object representing the directory containing the new PSADT template.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

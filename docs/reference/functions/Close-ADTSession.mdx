@@ -31,7 +31,7 @@ Close-ADTSession [-ExitCode <Int32>] [-NoShellExit] [-PassThru] [<CommonParamete
 
 ## DESCRIPTION
 
-The Close-ADTSession function closes the active ADT session, updates the session's exit code if provided, invokes all registered callbacks, and cleans up the session state.
+The `Close-ADTSession` function closes the active ADT session, updates the session's exit code if provided, invokes all registered callbacks, and cleans up the session state.
 If this is the last session, it flags the module as uninitialized and exits the process with the last exit code.
 
 ## EXAMPLES
@@ -131,7 +131,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### None
 
-### This function does not generate any output.
+### By default, this function returns no output.
+### System.Int32
+### When the `-PassThru` parameter is provided, this function returns an Int32 value representing the exit code the deployment session was closed with.
 ## NOTES
 An active ADT session is required to use this function.
 

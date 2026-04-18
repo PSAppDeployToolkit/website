@@ -7,7 +7,7 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Removes the toolkit content from the cache folder on the local machine and reverts the $adtSession.DirFiles and $adtSession.SupportFiles directory.
+Removes the toolkit content from the cache folder on the local machine and reverts the `$adtSession.DirFiles` and `$adtSession.SupportFiles` directory.
 
 ## SYNTAX
 
@@ -17,8 +17,8 @@ Remove-ADTContentFromCache [[-LiteralPath] <String>] [-WhatIf] [-Confirm] [<Comm
 
 ## DESCRIPTION
 
-This function removes the toolkit content from the cache folder on the local machine.
-It also reverts the $adtSession.DirFiles and $adtSession.SupportFiles directory to their original state.
+The `Remove-ADTContentFromCache` function removes the toolkit content from the cache folder on the local machine.
+It also reverts the `$adtSession.DirFiles` and `$adtSession.SupportFiles` directory to their original state.
 If the specified cache folder does not exist, it logs a message and exits.
 
 ## EXAMPLES
@@ -99,7 +99,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

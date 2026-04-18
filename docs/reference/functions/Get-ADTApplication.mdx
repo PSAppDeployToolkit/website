@@ -18,7 +18,7 @@ Get-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode <Guid[
 
 ## DESCRIPTION
 
-Retrieves information about installed applications by querying the registry.
+The `Get-ADTApplication` function retrieves information about installed applications by querying the registry.
 You can specify an application name, a product code, or both.
 Returns information about application publisher, name & version, product code, uninstall string, install source, location, date, and application architecture.
 
@@ -180,7 +180,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### PSADT.AppManagement.InstalledApplication
 
-### Returns a custom type with information about an installed application:
+### Returns a InstalledApplication object with information about an installed application:
 ### - PSPath
 ### - PSParentPath
 ### - PSChildName

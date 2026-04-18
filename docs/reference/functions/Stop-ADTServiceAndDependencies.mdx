@@ -27,7 +27,7 @@ Stop-ADTServiceAndDependencies -InputObject <ServiceController> [-SkipDependentS
 
 ## DESCRIPTION
 
-This function stops a specified Windows service and its dependencies.
+The `Stop-ADTServiceAndDependencies` function stops a specified Windows service and its dependencies.
 It provides options to skip stopping dependent services, wait for a service to get out of a pending state, and return the service object.
 
 ## EXAMPLES
@@ -183,13 +183,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### System.ServiceProcess.ServiceController
+### None
 
-### Returns the service object.
+### By default, this function returns no output.
+### System.ServiceProcess.ServiceController
+### When the `-PassThru` parameter is provided, this function returns a ServiceController object representing the service that was stopped.
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

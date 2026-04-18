@@ -17,7 +17,7 @@ Convert-ADTValueType [-Value] <Int64> [-To] <ValueTypes> [<CommonParameters>]
 
 ## DESCRIPTION
 
-This function uses C# code to cast the provided value to the requested type.
+The `Convert-ADTValueType` function uses C# code to cast the provided value to the requested type.
 This avoids errors from PowerShell when values exceed the casted value type's range.
 
 ## EXAMPLES
@@ -28,7 +28,7 @@ This avoids errors from PowerShell when values exceed the casted value type's ra
 Convert-ADTValueType -Value 256 -To SByte
 ```
 
-Invokes the Convert-ADTValueType function and returns the value as a byte, which would equal 0.
+Invokes the `Convert-ADTValueType` function and returns the value as a byte, which would equal 0.
 
 ## PARAMETERS
 
@@ -73,12 +73,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Int64
 
-### Convert-ADTValueType will accept any value type as a signed 64-bit integer, then cast to the requested type.
+### This function accepts any value type as a signed 64-bit integer, then cast to the requested type.
 ## OUTPUTS
 
 ### System.ValueType
 
-### Convert-ADTValueType will convert the piped input to this type if specified by the caller.
+### This function converts the provided input to the type specified in the `-To` parameter.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

@@ -33,7 +33,7 @@ Get-ADTUserProfiles -SID <SecurityIdentifier[]> [-LoadProfilePaths] [<CommonPara
 
 ## DESCRIPTION
 
-Get the User Profile Path, User Account SID, and the User Account Name for all users that log onto the machine and also the Default User (which does not log on).
+The `Get-ADTUserProfiles` function gets the User Profile Path, User Account SID, and the User Account Name for all users that log onto the machine and also the Default User (which does not log on).
 
 Please note that the NTAccount property may be empty for some user profiles but the SID and ProfilePath properties will always be populated.
 
@@ -45,7 +45,7 @@ Please note that the NTAccount property may be empty for some user profiles but 
 Get-ADTUserProfiles
 ```
 
-Return the following properties for each user profile on the system: NTAccount, SID, ProfilePath.
+Return a UserProfileInfo object for each user profile on the system.
 
 ### EXAMPLE 2
 
@@ -53,7 +53,7 @@ Return the following properties for each user profile on the system: NTAccount, 
 Get-ADTUserProfiles -ExcludeNTAccount CONTOSO\Robot,CONTOSO\ntadmin
 ```
 
-Return the following properties for each user profile on the system, except for 'Robot' and 'ntadmin': NTAccount, SID, ProfilePath.
+Return a UserProfileInfo object for each user profile on the system, except for 'Robot' and 'ntadmin'.
 
 ### EXAMPLE 3
 
@@ -68,7 +68,7 @@ This information can then be used to make modifications under the user profile o
 
 ### -FilterScript
 
-Allows filtration of the returned result by any property in a UserProfile object.
+Allows filtration of the returned result by any property in a UserProfileInfo object.
 
 ```yaml
 Type: ScriptBlock
@@ -225,10 +225,19 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### PSADT.AccountManagement.UserProfileInfo
 
-### Returns a PSADT.AccountManagement.UserProfileInfo object with the following properties:
+### Returns a UserProfileInfo object with the following properties:
 ### - NTAccount
 ### - SID
 ### - ProfilePath
+### - AppDataPath
+### - LocalAppDataPath
+### - DesktopPath
+### - DocumentsPath
+### - StartMenuPath
+### - TempPath
+### - OneDrivePath
+### - OneDriveCommercialPath
+### - UserLocale
 ## NOTES
 An active ADT session is NOT required to use this function.
 

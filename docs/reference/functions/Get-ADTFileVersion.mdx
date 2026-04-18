@@ -17,8 +17,8 @@ Get-ADTFileVersion [-File] <FileInfo> [-ProductVersion] [<CommonParameters>]
 
 ## DESCRIPTION
 
-The Get-ADTFileVersion function retrieves the version information of the specified file.
-By default, it returns the FileVersion, but it can also return the ProductVersion if the -ProductVersion switch is specified.
+The `Get-ADTFileVersion` function retrieves the version information of the specified file.
+By default, it returns the FileVersion, but it can also return the ProductVersion if the `-ProductVersion` switch is specified.
 
 ## EXAMPLES
 
@@ -52,7 +52,7 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -78,9 +78,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.IO.FileInfo
 
-### You cannot pipe objects to this function.
+### The file to get the version info from.
 ## OUTPUTS
 
 ### System.String

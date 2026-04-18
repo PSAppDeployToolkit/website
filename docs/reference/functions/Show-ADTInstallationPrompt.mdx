@@ -62,7 +62,7 @@ Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAl
 
 ## DESCRIPTION
 
-Displays a custom installation prompt with the toolkit branding and optional buttons.
+The `Show-ADTInstallationPrompt` function displays a custom installation prompt with the toolkit branding and optional buttons.
 Any combination of Left, Middle, or Right buttons can be displayed.
 The return value of the button clicked by the user is the button text specified.
 The prompt can also display a system icon and be configured to persist, minimize other windows, or timeout after a specified period.
@@ -112,9 +112,8 @@ Show-ADTInstallationPrompt -RequestInput -DefaultValue 'XXXX' -Message 'Please t
 
 ```powershell
 $result = Show-ADTInstallationPrompt -Message 'Select your preferred configuration:' -ListItems @('Default', 'Minimal', 'Full', 'Custom') -DefaultIndex 0 -ButtonRightText 'OK'
-```
-
 Write-ADTLogEntry "User selected: $($result.SelectedItem)"
+```
 
 ## PARAMETERS
 
@@ -335,7 +334,7 @@ Accept wildcard characters: False
 
 ### -PersistPrompt
 
-Specify whether to make the prompt persist in the center of the screen every couple of seconds, specified in the config.psd1 file.
+Specify whether to make the prompt persist, reappearing in the specified `-WindowLocation` at the interval specified in the `config.psd1` file.
 The user will have no option but to respond to the prompt.
 
 ```yaml
