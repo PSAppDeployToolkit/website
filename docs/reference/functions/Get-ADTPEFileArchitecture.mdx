@@ -96,7 +96,7 @@ Accept wildcard characters: False
 
 ### -PassThru
 
-Get the file object, attach a property indicating the file binary type, and write to pipeline.
+Returns a FileInfo object with an additional "BinaryType" property containing the PE file architecture, rather than a IMAGE_FILE_MACHINE enum value.
 
 ```yaml
 Type: SwitchParameter
@@ -123,7 +123,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### PSADT.Interop.IMAGE_FILE_MACHINE
 
-### Returns an IMAGE_FILE_MACHINE enum value indicating the file binary type.
+### By default, this function returns an IMAGE_FILE_MACHINE enum value indicating the file binary type.
+### System.IO.FileInfo
+### When the `-PassThru` parameter is provided, a FileInfo object is returned with an additional "BinaryType" property containing the PE file architecture as an IMAGE_FILE_MACHINE enum value.
 ## NOTES
 An active ADT session is NOT required to use this function.
 
