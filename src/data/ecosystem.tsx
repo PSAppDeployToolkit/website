@@ -175,4 +175,15 @@ export const solutions: Solution[] = [
     worksWith: ['Standalone', 'Intune', 'ConfigMgr'],
     categories: ['Package Authoring', 'Deployment Automation', 'App Repackaging', 'Software Update Catalog'],
   },
+    {
+    name: 'PSADT-Package Forge',
+    featured: false,
+    logo: 'https://www.psadt-packageforge.com/wp-content/uploads/images/products/psadt-packageforge/psadt-packageforge_light.png',
+    logoDark: 'https://www.psadt-packageforge.com/wp-content/uploads/images/products/psadt-packageforge/psadt-packageforge_dark.png',
+    url: 'https://www.psadt-packageforge.com/pricing/',
+    type: 'commercial',
+    description: 'PSADT – Package Forge offers an efficient and modern solution for anyone who wants to create PSAppDeployToolkit packages quickly, reliably, and to the highest quality standards.',
+    worksWith: ['Standalone', 'Intune'],
+    categories: ['App Repackaging','Package Authoring','Deployment Automation','Readiness & Testing'],
+  },
 ];
