@@ -175,7 +175,7 @@ export const solutions: Solution[] = [
     worksWith: ['Standalone', 'Intune', 'ConfigMgr'],
     categories: ['Package Authoring', 'Deployment Automation', 'App Repackaging', 'Software Update Catalog'],
   },
-    {
+  {
     name: 'PSADT-Package Forge',
     featured: false,
     logo: '/images/solutions/psadt-packageforge_light.png',
