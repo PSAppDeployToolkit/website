@@ -178,8 +178,8 @@ export const solutions: Solution[] = [
     {
     name: 'PSADT-Package Forge',
     featured: false,
-    logo: 'https://www.psadt-packageforge.com/wp-content/uploads/images/products/psadt-packageforge/psadt-packageforge_light.png',
-    logoDark: 'https://www.psadt-packageforge.com/wp-content/uploads/images/products/psadt-packageforge/psadt-packageforge_dark.png',
+    logo: '/images/solutions/psadt-packageforge_light.png',
+    logoDark: '/images/solutions/psadt-packageforge_dark.png',
     url: 'https://www.psadt-packageforge.com/pricing/',
     type: 'commercial',
     description: 'PSADT – Package Forge offers an efficient and modern solution for anyone who wants to create PSAppDeployToolkit packages quickly, reliably, and to the highest quality standards.',
