@@ -129,7 +129,7 @@ const config = {
         maxHeadingLevel: 2,
       },
       docs: {
-        versionPersistence: 'localStorage'
+        versionPersistence: 'localStorage',
       },
       navbar: {
         title: 'PSAppDeployToolkit',
