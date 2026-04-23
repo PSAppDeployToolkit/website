@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
+import Heading from '@theme/Heading';
 import styles from './Newsletter.module.css';
 
 export default function Newsletter() {
   return (
     <>
       <div className="col col--7">
-        <h2 className={styles.blockTitle}>
+        <Heading as="h2" className={styles.blockTitle}>
           Stay on top of the latest <span className={styles.logoThickText}>updates from PSAppDeployToolkit</span> with
           our newsletter
-        </h2>
+        </Heading>
 
         <p>
           PSAppDeployToolkit officially has a newsletter to keep you in the loop with all the latest updates, features,
-          and improvements designed to make application deployment even smoother. You'll also hear about upcoming events and
+          and improvements designed to make application deployment even smoother. You&apos;ll also hear about upcoming events and
           webinars where you can connect with experts and sharpen your skills. Subscribe to by filling out the form.
         </p>
       </div>
@@ -76,7 +77,7 @@ const HubSpotForm: React.FC = () => {
   if (!isProduction) {
     return (
       <>
-        <h3 className={styles.blockTitle}>Newsletter Form</h3>
+        <Heading as="h3" className={styles.blockTitle}>Newsletter Form</Heading>
         <p>Only runs in Production Mode.</p>
       </>
     );

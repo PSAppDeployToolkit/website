@@ -14,21 +14,19 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "prettier": "prettier --config .prettierrc --write \"**/*.{js,ts,tsx,css}\"",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx . --fix",
+    "lint": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "prettier:diff": "prettier --config .prettierrc --list-different \"**/*.{js,ts,tsx,css}\"",
     "prettier-docs": "prettier --config .prettierrc --write \"**/*.{md,mdx}\""
   },
   "dependencies": {
-    "@docusaurus/core": "^3.9.2",
-    "@docusaurus/faster": "^3.9.2",
-    "@docusaurus/plugin-content-docs": "^3.9.2",
-    "@docusaurus/preset-classic": "^3.9.2",
-    "@docusaurus/theme-common": "^3.9.2",
-    "@docusaurus/types": "^3.9.2",
+    "@docusaurus/core": "^3.10.0",
+    "@docusaurus/faster": "^3.10.0",
+    "@docusaurus/plugin-content-docs": "^3.10.0",
+    "@docusaurus/preset-classic": "^3.10.0",
+    "@docusaurus/theme-common": "^3.10.0",
+    "@docusaurus/types": "^3.10.0",
     "@easyops-cn/docusaurus-search-local": "^0.55.1",
-    "@eslint/markdown": "^8.0.1",
-    "@fec/remark-a11y-emoji": "^4.0.2",
     "@mdx-js/react": "^3.1.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
@@ -39,23 +37,20 @@
     "search-insights": "^2.17.3"
   },
   "devDependencies": {
-    "@docusaurus/eslint-plugin": "^3.9.2",
-    "@docusaurus/module-type-aliases": "^3.9.2",
-    "@docusaurus/theme-classic": "^3.9.2",
-    "@docusaurus/tsconfig": "^3.9.2",
-    "@docusaurus/types": "3.9.2",
-    "@eslint/markdown": "^8.0.1",
-    "@fec/remark-a11y-emoji": "^4.0.2",
-    "@types/node": "^25.5.2",
+    "@docusaurus/eslint-plugin": "^3.10.0",
+    "@docusaurus/module-type-aliases": "^3.10.0",
+    "@docusaurus/theme-classic": "^3.10.0",
+    "@docusaurus/tsconfig": "^3.10.0",
+    "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@typescript-eslint/eslint-plugin": "^8.58.0",
-    "@typescript-eslint/parser": "^8.58.0",
-    "eslint": "^10.2.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "prettier": "^3.8.1",
-    "typescript": "^6.0.2"
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "prettier": "^3.8.2",
+    "typescript": "^6.0.3"
   },
   "browserslist": {
     "production": [
@@ -69,17 +64,12 @@
       "last 5 safari version"
     ]
   },
+  "packageManager": "pnpm@10.33.0",
   "engines": {
     "node": ">=20.0"
   },
   "description": "PSAppDeployToolkit Website",
   "workspaces": [
     "."
-  ],
-  "pnpm": {
-    "overrides": {
-      "minimatch": "^10.2.1",
-      "serialize-javascript": "^7.0.5"
-    }
-  }
+  ]
 }

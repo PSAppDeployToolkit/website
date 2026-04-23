@@ -1,9 +1,16 @@
-ignoredBuiltDependencies:
-  - '@swc/core'
-  - core-js-pure
+overrides:
+  serialize-javascript: ^7.0.5
+
+peerDependencyRules:
+  allowedVersions:
+    # @docusaurus/eslint-plugin internally uses @typescript-eslint/utils@5.x
+    # which only declares eslint ^6-8, but the plugin itself works fine with 9.
+    eslint: "9"
 
 onlyBuiltDependencies:
+  - '@swc/core'
   - core-js
+  - core-js-pure
 
 packages:
   - .

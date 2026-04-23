@@ -17,7 +17,7 @@ Convert-ADTRegistryPath [-Key] <String> [[-SID] <SecurityIdentifier>] [-Wow6432N
 
 ## DESCRIPTION
 
-Converts the specified registry key path to a format that is compatible with built-in PowerShell cmdlets.
+The `Convert-ADTRegistryPath` function converts the specified registry key path to a format that is compatible with built-in PowerShell cmdlets.
 
 Converts registry key hives to their full paths.
 Example: HKLM is converted to "Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE".
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 The security identifier (SID) for a user.
 Specifying this parameter will convert a HKEY_CURRENT_USER registry key to the HKEY_USERS\$SID format.
 
-Specify this parameter from the Invoke-ADTAllUsersRegistryAction function to read/edit HKCU registry settings for all users on the system.
+Specify this parameter from the `Invoke-ADTAllUsersRegistryAction` function to read/edit HKCU registry settings for all users on the system.
 
 ```yaml
 Type: SecurityIdentifier

@@ -18,7 +18,7 @@ Resolve-ADTErrorRecord [-ErrorRecord] <ErrorRecord> [[-Property] <String[]>] [-E
 
 ## DESCRIPTION
 
-Enumerates an ErrorRecord, or a collection of ErrorRecord properties.
+The `Resolve-ADTErrorRecord` function enumerates an ErrorRecord, or a collection of ErrorRecord properties.
 This function can filter and display specific properties of the ErrorRecord, and can exclude certain parts of the error details.
 
 ## EXAMPLES
@@ -60,8 +60,11 @@ Enumerates the details of the last ErrorRecord, excluding the invocation informa
 ### -ErrorRecord
 
 The ErrorRecord to resolve.
-For usage in a catch block, you'd use the automatic variable `$PSItem`.
-For usage out of a catch block, you can access the global $Error array's first error (on index 0).
+For usage in a catch block, you'd use the automatic variable `$_` or `$PSItem`.
+For usage outside of a catch block, you can access the global `$Error` variable's first ErrorRecord (usually index 0).
+
+Note: The `$Error` ArrayList can contain both ErrorRecord and Exception objects.
+For this reason, you should validate that the object returned from the `$Error` variable is an ErrorRecord before passing it to this function, e.g., `$Error | Where-Object { $_ -is [System.Management.Automation.ErrorRecord] } | Select-Object -First 1`
 
 ```yaml
 Type: ErrorRecord
@@ -110,7 +113,7 @@ Accept wildcard characters: False
 
 ### -ExcludeErrorInvocation
 
-Exclude ErrorRecord invocation information as represented by $ErrorRecord.InvocationInfo.
+Exclude ErrorRecord invocation information as represented by `$ErrorRecord.InvocationInfo`.
 
 ```yaml
 Type: SwitchParameter
@@ -126,7 +129,7 @@ Accept wildcard characters: False
 
 ### -ExcludeErrorException
 
-Exclude ErrorRecord exception details as represented by $ErrorRecord.Exception.
+Exclude ErrorRecord exception details as represented by `$ErrorRecord.Exception`.
 
 ```yaml
 Type: SwitchParameter
@@ -142,7 +145,7 @@ Accept wildcard characters: False
 
 ### -IncludeErrorInnerException
 
-Includes further ErrorRecord inner exception details as represented by $ErrorRecord.Exception.InnerException.
+Includes further ErrorRecord inner exception details as represented by `$ErrorRecord.Exception.InnerException`.
 Will retrieve all inner exceptions if there is more than one.
 
 ```yaml

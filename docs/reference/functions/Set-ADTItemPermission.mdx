@@ -7,7 +7,7 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Allows you to easily change permissions on files or folders.
+Changes permissions on files or folders.
 
 ## SYNTAX
 
@@ -35,7 +35,7 @@ Set-ADTItemPermission -LiteralPath <String> -User <String[]> -Permission <FileSy
 
 ## DESCRIPTION
 
-Allows you to easily change permissions on files or folders for a given user or group.
+The `Set-ADTItemPermission` function allows you to easily change permissions on files or folders for a given user or group.
 You can add, remove or replace permissions, set inheritance and propagation.
 
 ## EXAMPLES
@@ -100,8 +100,8 @@ Accept wildcard characters: False
 
 ### -User
 
-One or more user names (ex: BUILTIN\Users, DOMAIN\Admin) to give the permissions to.
-If you want to use SID, prefix it with an asterisk * (ex: *S-1-5-18)
+One or more user names (ex: BUILTIN\Users, DOMAIN\Admin) to assign the permissions to.
+If you want to use a SID, prefix it with an asterisk (*), i.e., *S-1-5-18
 
 ```yaml
 Type: String[]
@@ -319,7 +319,7 @@ An active ADT session is NOT required to use this function.
 
 Original Author: Julian DA CUNHA - dacunha.julian@gmail.com, used with permission.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

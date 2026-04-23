@@ -93,7 +93,7 @@ const config = {
           trackingID: 'G-KK2LXQPHKC',
         },
         googleTagManager: {
-          containerId: 'GTM-KG8TQPX',
+          containerId: 'GTM-P5VL3SXV',
         },
       }),
     ],
@@ -129,7 +129,7 @@ const config = {
         maxHeadingLevel: 2,
       },
       docs: {
-        versionPersistence: 'localStorage'
+        versionPersistence: 'localStorage',
       },
       navbar: {
         title: 'PSAppDeployToolkit',

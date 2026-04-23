@@ -7,7 +7,7 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Unblocks the execution of applications performed by the Block-ADTAppExecution function.
+Unblocks the execution of applications that were blocked by the `Block-ADTAppExecution` function.
 
 ## SYNTAX
 
@@ -17,8 +17,8 @@ Unblock-ADTAppExecution [[-Tasks] <CimInstance[]>] [<CommonParameters>]
 
 ## DESCRIPTION
 
-This function is called by the Close-ADTSession function.
-It undoes the actions performed by Block-ADTAppExecution, allowing previously blocked applications to execute.
+The `Unblock-ADTAppExecution` function is called by the `Close-ADTSession` function.
+It undoes the actions performed by `Block-ADTAppExecution`, allowing previously blocked applications to execute.
 
 ## EXAMPLES
 
@@ -28,7 +28,7 @@ It undoes the actions performed by Block-ADTAppExecution, allowing previously bl
 Unblock-ADTAppExecution
 ```
 
-Unblocks the execution of applications that were previously blocked by Block-ADTAppExecution.
+Unblocks the execution of applications that were previously blocked by `Block-ADTAppExecution`.
 
 ## PARAMETERS
 
@@ -43,7 +43,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: All scheduled tasks wildcard matching [PSAppDeployToolkit_*_BlockedApps].
+Default value: All scheduled tasks matching the wildcard pattern `PSAppDeployToolkit_*_BlockedApps`.
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -65,9 +65,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-It is used when the -BlockExecution parameter is specified with the Show-ADTInstallationWelcome function to undo the actions performed by Block-ADTAppExecution.
+It is used when the `-BlockExecution` parameter is specified with the `Show-ADTInstallationWelcome` function to undo the actions performed by `Block-ADTAppExecution`.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

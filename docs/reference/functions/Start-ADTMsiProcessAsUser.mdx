@@ -94,12 +94,12 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
 
 ## DESCRIPTION
 
-This function utilizes msiexec.exe to handle various operations on MSI and MSP files, as well as MSI product codes.
+The `Start-ADTMsiProcessAsUser` function utilizes msiexec.exe to handle various operations on MSI and MSP files, as well as MSI product codes.
 The operations include installation, uninstallation, patching, repair, and setting up active configurations.
 
-If the -Action parameter is set to "Install" and the MSI is already installed, the function will terminate without performing any actions.
+If the `-Action` parameter is set to "Install" and the MSI is already installed, the function will terminate without performing any actions.
 
-The function automatically sets default switches for msiexec based on preferences defined in the config.psd1 file.
+The function automatically sets default arguments for msiexec based on preferences defined in the `config.psd1` file.
 Additionally, it generates a log file name and creates a verbose log for all msiexec operations, ensuring detailed tracking.
 
 The MSI or MSP file is expected to reside in the "Files" subdirectory of the App Deploy Toolkit, with transform files expected to be in the same directory as the MSI file.
@@ -232,7 +232,7 @@ Accept wildcard characters: False
 
 ### -ArgumentList
 
-Overrides the default parameters specified in the config.psd1 file.
+Overrides the default arguments specified in the `config.psd1` file.
 
 ```yaml
 Type: String[]
@@ -248,7 +248,7 @@ Accept wildcard characters: False
 
 ### -AdditionalArgumentList
 
-Adds additional parameters to the default set specified in the config.psd1 file.
+Adds additional arguments to the default set specified in the `config.psd1` file.
 
 ```yaml
 Type: String[]
@@ -264,7 +264,7 @@ Accept wildcard characters: False
 
 ### -SecureArgumentList
 
-Hides all parameters passed to the MSI or MSP file from the toolkit log file.
+Hides all arguments passed to the MSI or MSP file from the toolkit log file.
 
 ```yaml
 Type: SwitchParameter
@@ -379,7 +379,7 @@ Accept wildcard characters: False
 
 ### -ExpandEnvironmentVariables
 
-Specifies whether to expand any Windows/DOS-style environment variables in the specified FilePath/ArgumentList.
+Specifies whether to expand any Windows/DOS-style environment variables in the specified `-FilePath`, `-ArgumentList`, and `-AdditionalArgumentList` parameters.
 
 ```yaml
 Type: SwitchParameter
@@ -412,7 +412,7 @@ Accept wildcard characters: False
 
 ### -LoggingOptions
 
-Overrides the default logging options specified in the config.psd1 file.
+Overrides the default logging options specified in the `config.psd1` file.
 
 ```yaml
 Type: String
@@ -430,7 +430,7 @@ Accept wildcard characters: False
 
 Overrides the default log file name.
 The default log file name is generated from the MSI file name.
-If LogFileName does not end in .log, it will be automatically appended.
+If the value of `-LogFileName` does not end in a common log file extension (.log, .logx, .txt, or .out), '.log' will be automatically appended.
 
 For uninstallations, by default the product code is resolved to the DisplayName and version of the application.
 
@@ -584,7 +584,7 @@ Accept wildcard characters: False
 
 ### -ExitOnProcessFailure
 
-Automatically closes the active deployment session via Close-ADTSession in the event the process exits with a non-success or non-ignored exit code.
+Automatically closes the active deployment session via `Close-ADTSession` in the event the process exits with a non-success or non-ignored exit code.
 
 ```yaml
 Type: SwitchParameter
@@ -648,7 +648,8 @@ Accept wildcard characters: False
 
 ### -PassThru
 
-Returns ExitCode, StdOut, and StdErr output from the process.
+If `-NoWait` is not specified, returns an object with ExitCode, StdOut, and StdErr output from the process.
+If `-NoWait` is specified, returns a task that can be awaited.
 Note that a failed execution will only return an object if either `-ErrorAction` is set to `SilentlyContinue`/`Ignore`, or if `-SuccessExitCodes` is used.
 
 ```yaml
@@ -707,16 +708,28 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### PSADT.Types.ProcessResult
+### None
 
-### Returns an object with the results of the installation if -PassThru is specified.
+### By default, this function returns no output.
+### PSADT.ProcessManagement.ProcessResult
+### Returns an object with the results of the installation if `-PassThru` is specified.
+### - Process
+### - LaunchInfo
+### - CommandLine
 ### - ExitCode
 ### - StdOut
 ### - StdErr
+### - Interleaved
+### PSADT.ProcessManagement.ProcessHandle
+### Returns an object with the handle of the installation process if `-PassThru` and `-NoWait` are specified.
+### - Process
+### - LaunchInfo
+### - CommandLine
+### - Task
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

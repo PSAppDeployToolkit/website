@@ -17,7 +17,7 @@ Get-ADTLoggedOnUser [<CommonParameters>]
 
 ## DESCRIPTION
 
-The Get-ADTLoggedOnUser function retrieves session details for all local and RDP logged on users using Win32 APIs.
+The `Get-ADTLoggedOnUser` function retrieves session details for all local and RDP logged on users using Win32 APIs.
 It provides information such as NTAccount, SID, UserName, DomainName, SessionId, SessionName, ConnectState, IsCurrentSession, IsConsoleSession, IsUserSession, IsActiveUserSession, IsRdpSession, IsLocalAdmin, LogonTime, IdleTime, DisconnectTime, ClientName, ClientProtocolType, ClientDirectory, and ClientBuildNumber.
 
 ## EXAMPLES
@@ -43,9 +43,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### PSADT.Types.UserSessionInfo
+### PSADT.TerminalServices.SessionInfo
 
-### Returns a custom type with information about user sessions:
+### Returns a SessionInfo object with information about user sessions:
 ### - NTAccount
 ### - SID
 ### - UserName

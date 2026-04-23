@@ -29,7 +29,7 @@ Copy-ADTFile [-LiteralPath] <String[]> [-Destination] <String> [-Recurse] [-Flat
 
 ## DESCRIPTION
 
-Copies files and directories from a source to a destination.
+The `Copy-ADTFile` function copies files and directories from a source to a destination.
 This function supports recursive copying, overwriting existing files, and returning the copied items.
 
 ## EXAMPLES
@@ -195,7 +195,7 @@ Accept wildcard characters: False
 ### -FileCopyMode
 
 Select from 'Native' or 'Robocopy'.
-Default is configured in config.psd1.
+Default is configured in `config.psd1`.
 Note that Robocopy supports * in file names, but not folders, in source paths.
 
 ```yaml
@@ -292,7 +292,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

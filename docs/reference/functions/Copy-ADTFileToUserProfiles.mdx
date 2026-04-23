@@ -46,7 +46,7 @@ Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recu
 
 ## DESCRIPTION
 
-The Copy-ADTFileToUserProfiles function copies one or more items to each user profile on the system.
+The `Copy-ADTFileToUserProfiles` function copies one or more items to each user profile on the system.
 It supports various options such as recursion, flattening files, and using Robocopy to overcome the 260 character limit.
 
 ## EXAMPLES
@@ -201,7 +201,7 @@ Accept wildcard characters: False
 ### -FileCopyMode
 
 Select from 'Native' or 'Robocopy'.
-Default is configured in config.psd1.
+Default is configured in `config.psd1`.
 Note that Robocopy supports * in file names, but not folders, in source paths.
 
 ```yaml
@@ -386,7 +386,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String[]
 
-### You can pipe in string values for $LiteralPath.
+### You can pipe in string values for the `-LiteralPath` parameter.
 ## OUTPUTS
 
 ### None
@@ -395,7 +395,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

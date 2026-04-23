@@ -31,7 +31,7 @@ Get-ADTPEFileArchitecture -InputObject <FileInfo> [-PassThru] [<CommonParameters
 
 ## DESCRIPTION
 
-Determine if a PE file is a 32-bit or a 64-bit file by examining the file's image file header.
+The `Get-ADTPEFileArchitecture` function determines if a PE file is a 32-bit or a 64-bit file by examining the file's image file header.
 
 PE file extensions: .exe, .dll, .ocx, .drv, .sys, .scr, .efi, .cpl, .fon
 
@@ -96,7 +96,7 @@ Accept wildcard characters: False
 
 ### -PassThru
 
-Get the file object, attach a property indicating the file binary type, and write to pipeline.
+Returns a FileInfo object with an additional "BinaryType" property containing the PE file architecture, rather than a IMAGE_FILE_MACHINE enum value.
 
 ```yaml
 Type: SwitchParameter
@@ -121,9 +121,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Accepts a FileInfo object from the pipeline.
 ## OUTPUTS
 
-### System.String
+### PSADT.Interop.IMAGE_FILE_MACHINE
 
-### Returns a string indicating the file binary type.
+### By default, this function returns an IMAGE_FILE_MACHINE enum value indicating the file binary type.
+### System.IO.FileInfo
+### When the `-PassThru` parameter is provided, a FileInfo object is returned with an additional "BinaryType" property containing the PE file architecture as an IMAGE_FILE_MACHINE enum value.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

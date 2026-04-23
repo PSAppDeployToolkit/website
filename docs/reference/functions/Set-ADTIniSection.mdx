@@ -18,7 +18,7 @@ Set-ADTIniSection [-FilePath] <String> [-Section] <String> [-Content] <IDictiona
 
 ## DESCRIPTION
 
-Opens an INI file and sets the values of the specified section.
+The `Set-ADTIniSection` function opens an INI file and sets the values of the specified section.
 
 Please note that the INI file provided cannot have a byte order mark (BOM) present as the underlying Win32 API cannot process it correctly.
 
@@ -46,7 +46,7 @@ Overwrites the 'Notes' section to only contain the content specified.
 Set-ADTIniSection -FilePath "$env:ProgramFilesX86\IBM\Notes\notes.ini" -Section 'Notes' -Content $null -Overwrite
 ```
 
-Sets the 'Notes' section to be empty by sending null content in combination with the -Overwrite switch.
+Sets the 'Notes' section to be empty by sending null content in combination with the `-Overwrite` switch.
 
 ## PARAMETERS
 
@@ -87,7 +87,7 @@ Accept wildcard characters: False
 A hashtable or dictionary object containing the key-value pairs to set in the specified section.
       Supply an ordered hashtable to preserve the order of supplied entries.
 Values can be strings, numbers, booleans, enums, or null.
-      Supply $null or an empty hashtable in combination with -Overwrite to empty an entire section.
+      Supply `$null` or an empty hashtable in combination with `-Overwrite` to empty an entire section.
 
 ```yaml
 Type: IDictionary
@@ -183,7 +183,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 An active ADT session is NOT required to use this function.
 
-This function supports the -WhatIf and -Confirm parameters for testing changes before applying them.
+This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />

@@ -30,7 +30,7 @@ Open-ADTSession [[-SessionState] <SessionState>] [[-DeploymentType] <DeploymentT
 
 ## DESCRIPTION
 
-This function initializes and opens a new ADT session with the specified parameters.
+The `Open-ADTSession` function initializes and opens a new ADT session with the specified parameters.
 It handles the setup of the session environment and processes any callbacks defined for the session.
 If the session fails to open, it handles the error and closes the session if necessary.
 
@@ -48,7 +48,7 @@ Opens a new ADT session with the specified parameters.
 
 ### -SessionState
 
-Defaults to $PSCmdlet.SessionState to get the caller's SessionState, so only required if you need to override this.
+Defaults to `$PSCmdlet.SessionState` to get the caller's SessionState, so only required if you need to override this.
 
 ```yaml
 Type: SessionState
@@ -610,7 +610,7 @@ Accept wildcard characters: False
 
 ### -NoProcessDetection
 
-When DeployMode is not specified or is Auto, bypasses DeployMode adjustment when there's no processes to close in the specified AppProcessesToClose list.
+When DeployMode is not specified or is Auto, bypasses DeployMode adjustment when there's no processes to close in the specified `-AppProcessesToClose` list.
 
 ```yaml
 Type: SwitchParameter
@@ -750,9 +750,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### You cannot pipe objects to this function.
 ## OUTPUTS
 
-### PSAppDeployToolkit.Foundation.DeploymentSession
+### None
 
-### This function returns the session object if -PassThru is specified.
+### By default, this function returns no output.
+### PSAppDeployToolkit.Foundation.DeploymentSession
+### This function returns the session object if `-PassThru` is specified.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

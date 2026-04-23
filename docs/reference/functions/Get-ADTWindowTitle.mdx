@@ -29,8 +29,6 @@ Returns the following properties for each window:
 - ParentProcessId
 - ParentProcessMainWindowHandle
 
-Function does not work in SYSTEM context unless launched with "psexec.exe -s -i" to run it as an interactive process under the SYSTEM account.
-
 ## EXAMPLES
 
 ### EXAMPLE 1
@@ -152,7 +150,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### PSADT.WindowManagement.WindowInfo
 
-### Returns a PSADT.WindowManagement.WindowInfo object with the following properties:
+### Returns a WindowInfo object with the following properties:
 ### - WindowTitle
 ### - WindowHandle
 ### - ParentProcess
@@ -160,8 +158,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### - ParentProcessMainWindowHandle
 ## NOTES
 An active ADT session is NOT required to use this function.
-
-Function does not work in SYSTEM context unless launched with "psexec.exe -s -i" to run it as an interactive process under the SYSTEM account.
 
 Tags: psadt<br />
 Website: https://psappdeploytoolkit.com<br />
