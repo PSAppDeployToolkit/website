@@ -11,10 +11,21 @@ Modifies a .lnk or .url type shortcut.
 
 ## SYNTAX
 
+### LiteralPath
+
 ```powershell
 Set-ADTShortcut [-LiteralPath] <String> [-TargetPath <String>] [-Arguments <String>] [-IconLocation <String>]
  [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>]
- [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-Force] [-WhatIf] [-Confirm]
+ [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-Force] [-PassThru] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
+```
+
+### InputObject
+
+```powershell
+Set-ADTShortcut -InputObject <IShortcutLinkInfo> [-TargetPath <String>] [-Arguments <String>]
+ [-IconLocation <String>] [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>]
+ [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-PassThru] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -33,6 +44,14 @@ Set-ADTShortcut -LiteralPath "$envCommonDesktop\Application.lnk" -TargetPath "$e
 
 Creates a shortcut on the All Users desktop named 'Application', targeted to '$envProgramFiles\Application\application.exe'.
 
+### EXAMPLE 2
+
+```powershell
+Get-ADTShortcut -LiteralPath "$envCommonDesktop\Application.lnk" | Set-ADTShortcut -WindowStyle Maximized
+```
+
+Modifies the shortcut on the All Users desktop named 'Application' to launch maximized.
+
 ## PARAMETERS
 
 ### -LiteralPath
@@ -41,13 +60,29 @@ Path to the shortcut to be changed.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: LiteralPath
 Aliases: Path
 
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -InputObject
+
+An existing IShortcutLinkInfo object to modify.
+
+```yaml
+Type: IShortcutLinkInfo
+Parameter Sets: InputObject
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -206,6 +241,22 @@ Forces creation of the shortcut if it doesn't exist.
 
 ```yaml
 Type: SwitchParameter
+Parameter Sets: LiteralPath
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+
+Returns an IShortcutLinkInfo snapshot of the shortcut.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -255,14 +306,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### PSADT.ShortcutManagement.IShortcutLinkInfo
 
-### You cannot pipe objects to this function.
+### You can pipe a IShortcutLinkInfo object into this function to specify the shortcut to modify.
+### When piping a IShortcutLinkInfo object into this function, the only properties modified are the ones explicitly specified via this function's parameters.
 ## OUTPUTS
 
 ### None
 
-### This function does not generate any output.
+### By default, this function does not return any output.
+### PSADT.ShortcutManagement.IShortcutLinkInfo
+### When the `-PassThru` parameter is provided, this function returns a IShortcutLinkInfo object representing the modified shortcut.
 ## NOTES
 An active ADT session is NOT required to use this function.
 
