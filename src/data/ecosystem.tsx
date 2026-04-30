@@ -11,9 +11,9 @@ export interface Solution {
 }
 
 export const SOLUTION_WORKS_WITH = [
-  'configMgr',
-  'intune',
-  'standalone'
+  'ConfigMgr',
+  'Intune',
+  'Standalone'
 ] as const;
 
 export const SOLUTION_CATEGORIES = [
@@ -55,7 +55,7 @@ export const solutions: Solution[] = [
     url: 'https://devicie.com',
     type: 'commercial',
     description: 'Intune Automation, Management & Visibility Platform which leverages PSADT for App Deployment.',
-    worksWith: ['SCCM', 'Intune'],
+    worksWith: ['ConfigMgr', 'Intune'],
     categories: ['Software Update Catalog', 'Deployment Automation', 'Packaging Services'],
   },
   {
