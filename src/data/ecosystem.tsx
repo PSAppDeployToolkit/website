@@ -1,4 +1,4 @@
-// cspell:words Devicie
+// cspell:words Device
 export const SOLUTION_WORKS_WITH = [
   'ConfigMgr',
   'Intune',
