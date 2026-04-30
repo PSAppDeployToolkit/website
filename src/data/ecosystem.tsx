@@ -185,7 +185,7 @@ export const solutions: Solution[] = [
     logoDark: '/images/solutions/psadt-packageforge_dark.png',
     url: 'https://www.psadt-packageforge.com/pricing/',
     type: 'commercial',
-    description: 'PSADT - Package Forge offers an efficient and modern solution for anyone who wants to create PSAppDeployToolkit packages quickly, reliably, and to the highest quality standards.', // The text portion 'PSADT - Package Forge' is the precise vendor spelling as per their website. The description text deliberately differs from the "name" property.
+    description: 'PSADT - Package Forge offers an efficient and modern solution for anyone who wants to create PSAppDeployToolkit packages quickly, reliably, and to the highest quality standards.',
     worksWith: ['Standalone', 'Intune'],
     categories: ['App Repackaging', 'Package Authoring', 'Deployment Automation', 'Readiness & Testing'],
   },
