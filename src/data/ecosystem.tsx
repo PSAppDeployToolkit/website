@@ -184,6 +184,6 @@ export const solutions: Solution[] = [
     type: 'commercial',
     description: 'PSADT – Package Forge offers an efficient and modern solution for anyone who wants to create PSAppDeployToolkit packages quickly, reliably, and to the highest quality standards.',
     worksWith: ['Standalone', 'Intune'],
-    categories: ['App Repackaging','Package Authoring','Deployment Automation','Readiness & Testing'],
+    categories: ['App Repackaging', 'Package Authoring', 'Deployment Automation', 'Readiness & Testing'],
   },
 ];
