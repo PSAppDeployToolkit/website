@@ -1,15 +1,3 @@
-export interface Solution {
-  name: string;
-  featured: boolean;
-  logo?: string;
-  logoDark?: string;
-  url: string;
-  description: string;
-  type: 'commercial' | 'free';
-  worksWith: string[];
-  categories: string[];
-}
-
 export const SOLUTION_WORKS_WITH = [
   'ConfigMgr',
   'Intune',
@@ -24,6 +12,21 @@ export const SOLUTION_CATEGORIES = [
   'Readiness & Testing',
   'Packaging Services',
 ] as const;
+
+type SolutionWorksWith = (typeof SOLUTION_WORKS_WITH)[number];
+type SolutionCategory = (typeof SOLUTION_CATEGORIES)[number];
+
+export interface Solution {
+  name: string;
+  featured: boolean;
+  logo?: string;
+  logoDark?: string;
+  url: string;
+  description: string;
+  type: 'commercial' | 'free';
+  worksWith: SolutionWorksWith[];
+  categories: SolutionCategory[];
+}
 
 export const solutions: Solution[] = [
   {
