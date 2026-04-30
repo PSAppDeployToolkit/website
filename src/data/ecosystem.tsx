@@ -1,4 +1,3 @@
-// cspell:words Device
 export const SOLUTION_WORKS_WITH = [
   'ConfigMgr',
   'Intune',
@@ -52,7 +51,7 @@ export const solutions: Solution[] = [
     categories: ['App Repackaging', 'Package Authoring'],
   },
   {
-    name: 'Devicie',
+    name: 'Devicie', // cspell:disable-line
     featured: false,
     logo: '/images/solutions/devicie_light.png',
     logoDark: '/images/solutions/devicie_dark.png',
