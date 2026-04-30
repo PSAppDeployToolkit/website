@@ -48,7 +48,7 @@ export const solutions: Solution[] = [
     categories: ['App Repackaging', 'Package Authoring'],
   },
   {
-    name: 'Devicle',
+    name: 'Devicie', // cspell:disable-line - correct spelling of the product name
     featured: false,
     logo: '/images/solutions/devicie_light.png',
     logoDark: '/images/solutions/devicie_dark.png',
