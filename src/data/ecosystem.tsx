@@ -161,7 +161,7 @@ export const solutions: Solution[] = [
     logoDark: '/images/solutions/deploymenteditor_dark.png',
     url: 'https://blog.tugi.ch/deployment-editor-download',
     type: 'free',
-    description: 'Package Windows applications or create any task for enterprise deployment. No coding needed. 😊',
+    description: 'Package Windows applications or create any task for enterprise deployment. No coding needed.',
     worksWith: ['Standalone', 'Intune'],
     categories: ['Package Authoring', 'Deployment Automation'],
   },
