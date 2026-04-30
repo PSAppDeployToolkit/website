@@ -179,13 +179,13 @@ export const solutions: Solution[] = [
     categories: ['Package Authoring', 'Deployment Automation', 'App Repackaging', 'Software Update Catalog'],
   },
   {
-    name: 'PSADT-Package Forge',
+    name: 'PSADT-Package Forge', // cspell:disable-line
     featured: false,
     logo: '/images/solutions/psadt-packageforge_light.png',
     logoDark: '/images/solutions/psadt-packageforge_dark.png',
     url: 'https://www.psadt-packageforge.com/pricing/',
     type: 'commercial',
-    description: 'PSADT - Package Forge offers an efficient and modern solution for anyone who wants to create PSAppDeployToolkit packages quickly, reliably, and to the highest quality standards.', // cspell:disable-line
+    description: 'PSADT – Package Forge offers an efficient and modern solution for anyone who wants to create PSAppDeployToolkit packages quickly, reliably, and to the highest quality standards.', // cspell:disable-line
     worksWith: ['Standalone', 'Intune'],
     categories: ['App Repackaging', 'Package Authoring', 'Deployment Automation', 'Readiness & Testing'],
   },
