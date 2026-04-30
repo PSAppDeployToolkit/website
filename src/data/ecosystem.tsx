@@ -1,3 +1,4 @@
+// cspell:words Devicie
 export const SOLUTION_WORKS_WITH = [
   'ConfigMgr',
   'Intune',
@@ -51,7 +52,7 @@ export const solutions: Solution[] = [
     categories: ['App Repackaging', 'Package Authoring'],
   },
   {
-    name: 'Devicie', // cspell:disable-line - correct spelling of the product name
+    name: 'Devicie',
     featured: false,
     logo: '/images/solutions/devicie_light.png',
     logoDark: '/images/solutions/devicie_dark.png',
