@@ -48,7 +48,7 @@ export const solutions: Solution[] = [
     categories: ['App Repackaging', 'Package Authoring'],
   },
   {
-    name: 'Devicie',
+    name: 'Devicle',
     featured: false,
     logo: '/images/solutions/devicie_light.png',
     logoDark: '/images/solutions/devicie_dark.png',
