@@ -12,7 +12,13 @@ Creates a new folder containing a template front end and module folder, ready to
 ## SYNTAX
 
 ```powershell
-New-ADTTemplate [[-Destination] <String>] [[-Name] <String>] [[-Version] <Int32>] [-Show] [-Force] [-PassThru]
+New-ADTTemplate [[-Destination] <String>] [[-Name] <String>] [[-Version] <Int32>]
+ [[-SessionProperties] <IDictionary>] [[-Config] <IDictionary>] [[-PreInstallScriptBlock] <ScriptBlock>]
+ [[-InstallScriptBlock] <ScriptBlock>] [[-PostInstallScriptBlock] <ScriptBlock>]
+ [[-PreUninstallScriptBlock] <ScriptBlock>] [[-UninstallScriptBlock] <ScriptBlock>]
+ [[-PostUninstallScriptBlock] <ScriptBlock>] [[-PreRepairScriptBlock] <ScriptBlock>]
+ [[-RepairScriptBlock] <ScriptBlock>] [[-PostRepairScriptBlock] <ScriptBlock>] [[-Assets] <String[]>]
+ [[-Files] <String[]>] [[-SupportFiles] <String[]>] [-Show] [-ZeroConfig] [-Force] [-PassThru]
  [<CommonParameters>]
 ```
 
@@ -38,6 +44,38 @@ New-ADTTemplate -Destination 'C:\Temp' -Name 'PSAppDeployToolkitv3' -Version 3
 ```
 
 Creates a new v3 compatibility mode template named PSAppDeployToolkitv3 under C:\Temp.
+
+### EXAMPLE 3
+
+```powershell
+New-ADTTemplate -Destination 'C:\Temp' -SessionProperties @{ AppVendor = 'Contoso'; AppName = 'MyApp'; AppVersion = '6.7'; RequireAdmin = $false; AppProcessesToClose = @('notepad', @{ Name = 'calc'; Description = 'Calculator' }) }
+```
+
+Creates a new v4 template with the specified session properties pre-populated in the $adtSession hashtable.
+
+### EXAMPLE 4
+
+```powershell
+New-ADTTemplate -Destination 'C:\Temp' -Config @{ Toolkit = @{ LogPath = '$env:ProgramData\Microsoft\IntuneManagementExtension\Logs' } }
+```
+
+Creates a new v4 template with a custom log folder.
+
+### EXAMPLE 5
+
+```powershell
+New-ADTTemplate -Destination 'C:\Temp' -Assets 'C:\Assets\AppIconLight.png', 'C:\Assets\AppIconDark.png' -Config @{ Assets = @{ Logo = '..\Assets\AppIconLight.png'; LogoDark = '..\Assets\AppIconDark.png' } }
+```
+
+Creates a new v4 template with custom icons copied to Assets and config.psd1 updated configured to use them.
+
+### EXAMPLE 6
+
+```powershell
+New-ADTTemplate -Destination 'C:\Temp' -SessionProperties @{ AppVendor = 'Contoso'; AppName = 'MyApp'; AppVersion = '6.7' } -Files 'C:\Installers\Setup.msi' -InstallScriptBlock { Start-ADTMsiProcess -Action Install -FilePath 'Setup.msi' } -UninstallScriptBlock {  Start-ADTMsiProcess -Action Uninstall -FilePath 'Setup.msi' }
+```
+
+Creates a new v4 template with session properties defined, an MSI copied to Files and install/uninstall commands added.
 
 ## PARAMETERS
 
@@ -92,9 +130,269 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -SessionProperties
+
+A dictionary of key-value pairs to inject into the $adtSession hashtable of the generated Invoke-AppDeployToolkit.ps1.
+Accepts [hashtable], [ordered], or any [System.Collections.IDictionary] type.
+Only supported when -Version is 4.
+
+```yaml
+Type: IDictionary
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Config
+
+A dictionary of key-value pairs to override or add to the generated Config\config.psd1.
+The dictionary structure must mirror the config file's nested hashtable layout (e.g.
+@{ MSI = @{ InstallParams = 'REBOOT=ReallySuppress /QB-!' } }).
+Existing keys are overridden in place.
+New keys or sections that do not exist in the default config are appended at the end of the relevant hashtable level.
+
+```yaml
+Type: IDictionary
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PreInstallScriptBlock
+
+A ScriptBlock whose content will replace the Pre-Install phase of the Install-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 6
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InstallScriptBlock
+
+A ScriptBlock whose content will replace the Install phase of the Install-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 7
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PostInstallScriptBlock
+
+A ScriptBlock whose content will replace the Post-Install phase of the Install-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 8
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PreUninstallScriptBlock
+
+A ScriptBlock whose content will replace the Pre-Uninstall phase of the Uninstall-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 9
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UninstallScriptBlock
+
+A ScriptBlock whose content will replace the Uninstall phase of the Uninstall-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 10
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PostUninstallScriptBlock
+
+A ScriptBlock whose content will replace the Post-Uninstall phase of the Uninstall-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 11
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PreRepairScriptBlock
+
+A ScriptBlock whose content will replace the Pre-Repair phase of the Repair-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 12
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RepairScriptBlock
+
+A ScriptBlock whose content will replace the Repair phase of the Repair-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 13
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PostRepairScriptBlock
+
+A ScriptBlock whose content will replace the Post-Repair phase of the Repair-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
+Only supported when -Version is 4.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 14
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Assets
+
+An array of file or folder paths to copy into the Assets folder of the generated template.
+Paths are passed to Copy-Item with -Recurse.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 15
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -Files
+
+An array of file or folder paths to copy into the Files folder of the generated template.
+Paths are passed to Copy-Item with -Recurse.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 16
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -SupportFiles
+
+An array of file or folder paths to copy into the SupportFiles folder of the generated template.
+Paths are passed to Copy-Item with -Recurse.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 17
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
 ### -Show
 
 Opens the newly created folder in Windows Explorer.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ZeroConfig
+
+When specified, injects a default MSI scriptblock into the Install, Uninstall, and Repair phases that executes the detected default MSI.
+If InstallScriptBlock, UninstallScriptBlock, or RepairScriptBlock are also provided, the zero-config content is prepended to the user-supplied scriptblock.
+Only supported when -Version is 4.
 
 ```yaml
 Type: SwitchParameter
