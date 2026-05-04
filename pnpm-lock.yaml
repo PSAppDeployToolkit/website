@@ -68,8 +68,8 @@ importers:
         specifier: ^3.10.0
         version: 3.10.0(@docusaurus/faster@3.10.0(@docusaurus/types@3.10.0(@swc/core@1.15.26)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)))(@rspack/core@1.7.11)(@swc/core@1.15.26)(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(typescript@6.0.3)
       '@docusaurus/tsconfig':
-        specifier: ^3.10.0
-        version: 3.10.0
+        specifier: ^3.10.1
+        version: 3.10.1
       '@types/node':
         specifier: ^25.6.0
         version: 25.6.0
@@ -1319,8 +1319,8 @@ packages:
     resolution: {integrity: sha512-L9IbFLwTc5+XdgH45iQYufLn0SVZd6BUNelDbKIFlH+E4hhjuj/XHWAFMX/w2K59rfy8wak9McOaei7BSUfRPA==}
     engines: {node: '>=20.0'}
 
-  '@docusaurus/tsconfig@3.10.0':
-    resolution: {integrity: sha512-TXdC3WXuPrdQAexLvjUJfnYf3YKEgEqAs5nK0Q88pRBCW7t7oN4ILvWYb3A5Z1wlSXyXGWW/mCUmLEhdWsjnDQ==}
+  '@docusaurus/tsconfig@3.10.1':
+    resolution: {integrity: sha512-rYvB7yqkdqWIpAbDzQljGfM4cDBkLTbhmagZBEcsyj6oPUsz47lmW2pYdN1j+7sGFgltbAmQH62xfbrij4Eh6Q==}
 
   '@docusaurus/types@3.10.0':
     resolution: {integrity: sha512-F0dOt3FOoO20rRaFK7whGFQZ3ggyrWEdQc/c8/UiRuzhtg4y1w9FspXH5zpCT07uMnJKBPGh+qNazbNlCQqvSw==}
@@ -8590,7 +8590,7 @@ snapshots:
       fs-extra: 11.3.4
       tslib: 2.8.1
 
-  '@docusaurus/tsconfig@3.10.0': {}
+  '@docusaurus/tsconfig@3.10.1': {}
 
   '@docusaurus/types@3.10.0(@swc/core@1.15.26)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
