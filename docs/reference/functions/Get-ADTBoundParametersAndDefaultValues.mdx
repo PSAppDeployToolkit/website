@@ -13,7 +13,8 @@ Returns a hashtable with the output of `$PSBoundParameters` and default-valued p
 
 ```powershell
 Get-ADTBoundParametersAndDefaultValues [-Invocation] <InvocationInfo> [[-ParameterSetName] <String>]
- [[-HelpMessage] <String>] [[-Exclude] <String[]>] [-CommonParameters] [<CommonParameters>]
+ [[-HelpMessage] <String>] [[-Exclude] <String[]>] [[-Include] <String[]>] [-CommonParameters]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -84,6 +85,8 @@ Accept wildcard characters: False
 
 One or more parameter names to exclude from the results.
 
+Note: When a parameter name appears in both `-Include` and `-Exclude`, the `-Exclude` filter takes precedence and the parameter is excluded.
+
 ```yaml
 Type: String[]
 Parameter Sets: (All)
@@ -91,6 +94,25 @@ Aliases:
 
 Required: False
 Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Include
+
+One or more parameter names to explicitly include in the results.
+All other parameter names will be excluded.
+
+Note: When a parameter name appears in both `-Include` and `-Exclude`, the `-Exclude` filter takes precedence and the parameter is excluded.
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
