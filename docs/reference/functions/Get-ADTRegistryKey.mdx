@@ -30,7 +30,7 @@ Get-ADTRegistryKey -LiteralPath <String> [-Name <String>] [-Wow6432Node] [-SID <
 The `Get-ADTRegistryKey` function retrieves value names and value data for a specified registry key or optionally, a specific value.
 If the registry key does not exist or contain any values, the function will return `$null`.
 
-To test for the existence of a registry key path, use built-in `Test-Path` cmdlet.
+To test for the existence of a registry key path, use the built-in `Test-Path` cmdlet.
 To test for the existence of a registry key value, use the `Test-ADTRegistryValue` function.
 
 ## EXAMPLES
@@ -127,7 +127,7 @@ Accept wildcard characters: False
 
 ### -Wow6432Node
 
-Specify this switch to read the 32-bit registry (Wow6432Node) on 64-bit systems.
+Specify this switch to read the 32-bit registry (WOW6432Node) on 64-bit systems.
 
 ```yaml
 Type: SwitchParameter

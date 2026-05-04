@@ -262,7 +262,7 @@ Path to the file to be executed.
 If the file is located directly in the "Files" directory of the App Deploy Toolkit, only the file name needs to be specified.
 
 Otherwise, the full path of the file must be specified.
-If the files is in a subdirectory of "Files", use the "$($adtSession.DirFiles)" variable as shown in the example.
+If the files is in a subdirectory of "Files", use the `$($adtSession.DirFiles)` variable, as shown in the example.
 
 ```yaml
 Type: String
@@ -294,7 +294,7 @@ Accept wildcard characters: False
 
 ### -SecureArgumentList
 
-Hides all parameters passed to the executable from the Toolkit log file.
+Hides all arguments passed to the executable from the Toolkit log file.
 
 ```yaml
 Type: SwitchParameter
@@ -361,7 +361,8 @@ Accept wildcard characters: False
 ### -DenyUserTermination
 
 Specifies that users cannot terminate the process started in their context.
-The user will still be able to terminate the process if they're an administrator, though.
+
+Note: This will not prevent the user from terminating the process if they are a member of the built-in Administrators group.
 
 ```yaml
 Type: SwitchParameter
@@ -694,7 +695,7 @@ Accept wildcard characters: False
 
 ### -IgnoreExitCodes
 
-List the exit codes to ignore or * to ignore all exit codes.
+List the exit codes to ignore or `*` to ignore all exit codes.
 Where possible, please use `-SuccessExitCodes` and/or `-RebootExitCodes` instead, or `-ErrorAction SilentlyContinue` as this parameter is deprecated and will be removed in PSAppDeployToolkit 4.3.0.
 
 ```yaml
@@ -712,7 +713,7 @@ Accept wildcard characters: True
 ### -PriorityClass
 
 Specifies priority class for the process.
-Options: Idle, Normal, High, AboveNormal, BelowNormal, RealTime.
+Options: `Idle`, `Normal`, `High`, `AboveNormal`, `BelowNormal`, `RealTime`.
 
 ```yaml
 Type: ProcessPriorityClass

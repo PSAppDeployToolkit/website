@@ -86,8 +86,13 @@ Accept wildcard characters: False
 ### -NameMatch
 
 Specifies the type of match to perform on the application name.
-Valid values are 'Contains', 'Exact', 'Wildcard', and 'Regex'.
-The default value is 'Contains'.
+The default value for this parameter is `Contains`.
+
+Valid values for this parameter are:
+- `Contains`: Equivalent to `$appDisplayName -like "*$Name*"`.
+- `Exact`: Equivalent to `$appDisplayName -eq $Name`.
+- `Wildcard`: Equivalent to `$appDisplayName -like $Name`.
+- `Regex`: Equivalent to `$appDisplayName -match $Name`.
 
 ```yaml
 Type: String
@@ -120,8 +125,8 @@ Accept wildcard characters: False
 ### -ApplicationType
 
 Specifies the type of application to remove.
-Valid values are 'All', 'MSI', and 'EXE'.
-The default value is 'All'.
+Valid values are `All`, `MSI`, and `EXE`.
+The default value is `All`.
 
 ```yaml
 Type: String

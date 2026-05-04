@@ -42,9 +42,9 @@ A registry key is created in the HKLM registry hive which gets replicated to the
 
 If the "Version" value of the Active Setup entry in HKLM is higher than the version value in HKCU, the file referenced in "StubPath" is executed.
 
-This Function:
+This function:
 
-- Creates the registry entries in "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\$($adtSession.InstallName)".
+- Creates registry entries in: `HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\$($adtSession.InstallName)`.
 - Creates StubPath value depending on the file extension of the `-StubExePath` parameter.
 - Handles Version value with YYYYMMDDHHMMSS granularity to permit re-installs on the same day and still trigger Active Setup after Version increase.
 - Copies/overwrites the StubPath file to `-StubExePath` destination path if file exists in 'Files' subdirectory of script directory.
@@ -110,7 +110,7 @@ Accept wildcard characters: False
 
 ### -Wow6432Node
 
-Specify this switch to use Active Setup entry under Wow6432Node on a 64-bit OS.
+Specify this switch to use Active Setup entry under WOW6432Node on a 64-bit OS.
 
 ```yaml
 Type: SwitchParameter
@@ -148,11 +148,8 @@ Specify version for Active setup entry.
 Due to a Windows Active Setup/registry limitation, the entry is not triggered if the Version value contains a sequence of more than 8 digits without separators.
 Use separators such as commas in the version string (for example, `1,0,20240101`) to break up long digit sequences and work around this limitation.
 
-Note:
-    - Do not use this parameter if it is not necessary.
+Note: Do not use this parameter if it is not necessary.
 PSADT will handle this parameter automatically using the time of the installation as the version number.
-    - In Windows 10, scripts and executables might be blocked by AppLocker.
-Ensure that the path given to `-StubExePath` will permit end users to run scripts and executables unelevated.
 
 ```yaml
 Type: String

@@ -7,7 +7,7 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Creates a new ErrorRecord for script validation errors.
+Creates a new ErrorRecord for use in the ValidateScript parameter validation attribute.
 
 ## SYNTAX
 
@@ -18,7 +18,7 @@ New-ADTValidateScriptErrorRecord [-ParameterName] <String> [-ProvidedValue] <Obj
 
 ## DESCRIPTION
 
-The `New-ADTValidateScriptErrorRecord` function creates a new ErrorRecord object for script validation errors.
+The `New-ADTValidateScriptErrorRecord` function creates a new ErrorRecord object for use in the ValidateScript parameter validation attribute.
 It takes the parameter name, provided value, exception message, and an optional inner exception to build a detailed error record.
 This helps in identifying and handling invalid parameter values in scripts.
 
@@ -35,6 +35,22 @@ New-ADTValidateScriptErrorRecord -ParameterName $paramName -ProvidedValue $provi
 
 
 Creates a new ErrorRecord for a validation error with the specified parameters.
+
+### EXAMPLE 2
+
+```powershell
+[Parameter(Mandatory = $true)]
+    [ValidateScript({
+        if (!(Test-Path -LiteralPath $_ -PathType Leaf))
+        {
+            $PSCmdlet.ThrowTerminatingError((New-ADTValidateScriptErrorRecord -ParameterName FilePath -ProvidedValue $_ -ExceptionMessage 'The specified file does not exist.'))
+        }
+        return ![System.String]::IsNullOrWhiteSpace($_)
+    })]
+[System.String]$FilePath
+```
+
+Creates a new ErrorRecord and throws it when the specified file path does not exist.
 
 ## PARAMETERS
 
@@ -57,6 +73,7 @@ Accept wildcard characters: False
 ### -ProvidedValue
 
 The value provided for the parameter that caused the validation error.
+Within a ValidateScript attribute, this will usually be `$_`.
 
 ```yaml
 Type: Object

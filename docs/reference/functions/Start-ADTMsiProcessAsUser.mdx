@@ -97,7 +97,7 @@ Start-ADTMsiProcessAsUser [-Username <NTAccount>] [-Action <String>]
 The `Start-ADTMsiProcessAsUser` function utilizes msiexec.exe to handle various operations on MSI and MSP files, as well as MSI product codes.
 The operations include installation, uninstallation, patching, repair, and setting up active configurations.
 
-If the `-Action` parameter is set to "Install" and the MSI is already installed, the function will terminate without performing any actions.
+If the `-Action` parameter is set to `Install` and the MSI is already installed, the function will terminate without performing any actions.
 
 The function automatically sets default arguments for msiexec based on preferences defined in the `config.psd1` file.
 Additionally, it generates a log file name and creates a verbose log for all msiexec operations, ensuring detailed tracking.
@@ -168,7 +168,15 @@ Accept wildcard characters: False
 ### -Action
 
 Specifies the action to be performed.
-Available options: Install, Uninstall, Patch, Repair, ActiveSetup.
+
+The valid values for this parameter are:
+- `Install`: Installs a MSI.
+When this action is selected, the `-ProductCode` parameter cannot be used.
+- `Uninstall`: Uninstalls an MSI.
+- `Patch`: Patches a MSI by applying the MSP patch files specified to the `-Patches` parameter.
+- `Repair`: Repairs a MSI using the repair mode specified in the `-RepairMode` parameter.
+- `ActiveSetup`: Performs a partial repair of a MSI, repairing missing files, user-specific registry entries, and shortcuts.
+Equivalent to: `msiexec.exe /i /fups`
 
 ```yaml
 Type: String
@@ -185,6 +193,7 @@ Accept wildcard characters: False
 ### -FilePath
 
 The file path to the MSI/MSP file.
+If the specified FilePath is just a file name, the function will look within `$adtSession.DirFiles` for the specified file, so long as a session is active.
 
 ```yaml
 Type: String
@@ -232,7 +241,7 @@ Accept wildcard characters: False
 
 ### -ArgumentList
 
-Overrides the default arguments specified in the `config.psd1` file.
+Overrides the default MSI arguments specified in the `config.psd1` file.
 
 ```yaml
 Type: String[]
@@ -248,7 +257,7 @@ Accept wildcard characters: False
 
 ### -AdditionalArgumentList
 
-Adds additional arguments to the default set specified in the `config.psd1` file.
+Adds additional arguments to the default MSI arguments specified in the `config.psd1` file.
 
 ```yaml
 Type: String[]
@@ -280,8 +289,8 @@ Accept wildcard characters: False
 
 ### -WorkingDirectory
 
-Overrides the working directory.
-The working directory is set to the location of the MSI file.
+Overrides the default working directory.
+The default working directory is the location of the MSI file.
 
 ```yaml
 Type: String
@@ -314,7 +323,7 @@ Accept wildcard characters: False
 
 ### -Patches
 
-The name(s) of the patch (MSP) file(s) to be applied to the MSI for the "Install" action.
+The name(s) of the patch (MSP) file(s) to be applied to the MSI for the `Install` action.
 The patch files should be in the same directory as the MSI file.
 
 ```yaml
@@ -396,7 +405,8 @@ Accept wildcard characters: False
 ### -DenyUserTermination
 
 Specifies that users cannot terminate the process started in their context.
-The user will still be able to terminate the process if they're an administrator, though.
+
+Note: This will not prevent the user from terminating the process if they are a member of the built-in Administrators group.
 
 ```yaml
 Type: SwitchParameter
@@ -448,9 +458,13 @@ Accept wildcard characters: False
 
 ### -RepairMode
 
-Specifies the mode of repair.
-Choosing `Repair` will repair via `msiexec.exe /p` (which can trigger unsuppressable reboots).
-Choosing `Reinstall` will reinstall by adding `REINSTALL=ALL REINSTALLMODE=omus` to the standard InstallParams.
+Specifies the how the MSI will be repaired.
+The default value for this parameter is `Reinstall`.
+
+Valid values for this parameter are:
+- `Repair`: Repairs the MSI using the command `msiexec.exe /f`.
+Note: Repairing an MSI using this mode can trigger unsuppressable reboots.
+- `Reinstall`: Reinstalls the MSI using the command `msiexec.exe /i` and appending `REINSTALL=ALL REINSTALLMODE=omus` to the default MSI InstallParams/SilentParams, configured in the `config.psd1` file.
 
 ```yaml
 Type: String
@@ -549,7 +563,7 @@ Accept wildcard characters: False
 
 ### -IgnoreExitCodes
 
-List the exit codes to ignore or * to ignore all exit codes.
+List the exit codes to ignore or `*` to ignore all exit codes.
 Where possible, please use `-SuccessExitCodes` and/or `-RebootExitCodes` instead, or `-ErrorAction SilentlyContinue` as this parameter is deprecated and will be removed in PSAppDeployToolkit 4.3.0.
 
 ```yaml
@@ -567,7 +581,7 @@ Accept wildcard characters: False
 ### -PriorityClass
 
 Specifies priority class for the process.
-Options: Idle, Normal, High, AboveNormal, BelowNormal, RealTime.
+Options: `Idle`, `Normal`, `High`, `AboveNormal`, `BelowNormal`, `RealTime`.
 
 ```yaml
 Type: ProcessPriorityClass

@@ -20,7 +20,7 @@ New-ADTShortcut [-LiteralPath] <String> -TargetPath <String> [-Arguments <String
 
 ## DESCRIPTION
 
-The `New-ADTShortcut` function creates a new shortcut .lnk or .url file, with configurable options.
+The `New-ADTShortcut` function creates a new .lnk or .url shortcut file, with the configured options.
 This function allows you to specify various parameters such as the target path, arguments, icon location, description, working directory, window style, run as administrator, and hotkey.
 
 ## EXAMPLES
@@ -170,8 +170,8 @@ Accept wildcard characters: False
 
 ### -RunAsAdmin
 
-Set shortcut to run program as administrator.
-This option will prompt user to elevate when executing shortcut.
+Specifies that the command executed by the shortcut should be done so with elevated permissions.
+Setting this option will prompt the user to elevate when the shortcut is executed.
 
 ```yaml
 Type: SwitchParameter
@@ -204,7 +204,7 @@ Accept wildcard characters: False
 
 ### -Force
 
-Forces deletion of a pre-existing shortcut.
+Specifies that an existing shortcut should be overwritten.
 
 ```yaml
 Type: SwitchParameter

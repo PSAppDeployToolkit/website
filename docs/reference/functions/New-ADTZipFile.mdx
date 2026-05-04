@@ -92,6 +92,12 @@ Accept wildcard characters: False
 
 The level of compression to apply to the zip file.
 
+Valid values for this parameter are:
+- `Fastest`: Use the fastest compression method available to reduce processing time.
+Faster compression can result in larger file sizes.
+- `NoCompression`: Doesn't compress the source files.
+- `Optimal`: Processing time is dependent on file size.
+
 ```yaml
 Type: String
 Parameter Sets: (All)
