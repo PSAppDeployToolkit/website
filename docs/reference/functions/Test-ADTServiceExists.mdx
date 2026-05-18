@@ -11,14 +11,21 @@ Check to see if a service exists.
 
 ## SYNTAX
 
+### Name
+
 ```powershell
-Test-ADTServiceExists [-Name] <String> [-UseCIM] [-PassThru] [<CommonParameters>]
+Test-ADTServiceExists -Name <String> [-UseCIM] [-PassThru] [<CommonParameters>]
+```
+
+### DisplayName
+
+```powershell
+Test-ADTServiceExists -DisplayName <String> [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
 The `Test-ADTServiceExists` function checks to see if a service exists.
-The `-UseCIM` switch can be used in conjunction with `-PassThru` to return WMI objects for PSADT v3.x compatibility, however, this method fails in Windows Sandbox.
 
 ## EXAMPLES
 
@@ -33,39 +40,77 @@ Checks if the service 'wuauserv' exists.
 ### EXAMPLE 2
 
 ```powershell
+Test-ADTServiceExists -DisplayName 'Windows Update'
+```
+
+Checks if the Windows Update service exists.
+
+### EXAMPLE 3
+
+```powershell
 Test-ADTServiceExists -Name testservice -UseCIM -PassThru | Invoke-CimMethod -MethodName Delete
 ```
 
 Checks if a service exists and then deletes it by using the `-PassThru` parameter.
+
+### EXAMPLE 4
+
+```powershell
+if ((($service = Test-ADTServiceExists -Name 'ScreenConnect*' -PassThru) | Get-ADTServiceStartMode) -ne 'Automatic')
+{
+    Set-ADTServiceStartMode -InputObject $service -StartMode 'Automatic'
+}
+```
+
+Sets the ScreenConnect service start mode to automatic, if it exists and has its start mode is not automatic.
 
 ## PARAMETERS
 
 ### -Name
 
 Specify the name of the service.
+When `-UseCIM` is not specified, this parameter supports wildcards.
 
 Note: Service name can be found by executing `Get-Service | Format-Table -AutoSize -Wrap` or by using the properties screen of a service in services.msc.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Name
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
+```
+
+### -DisplayName
+
+Specifies the display name of the service to test the existence of.
+This parameter supports wildcards.
+This parameter is not compaitble with `-UseCIM`.
+
+```yaml
+Type: String
+Parameter Sets: DisplayName
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
 ```
 
 ### -UseCIM
 
 Use CIM/WMI to check for the service.
-This is useful for compatibility with PSADT v3.x.
+This parameter is deprecated and will be removed in PSAppDeployToolkit 4.3.0.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Name
 Aliases: UseWMI
 
 Required: False
@@ -77,8 +122,9 @@ Accept wildcard characters: False
 
 ### -PassThru
 
-Return the WMI service object.
-To see all the properties use: `Test-ADTServiceExists -Name 'spooler' -PassThru | Get-Member`
+Returns the service object, if one exists.
+By default, the service object returned is a `ServiceController`.
+When the `-UseCIM` parameter is provided, a Win32_Service or Win32_ServiceBase `CimInstance` is returned.
 
 ```yaml
 Type: SwitchParameter
@@ -107,9 +153,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### By default, this function returns `$true` if the service exists, otherwise returns `$false`.
 ### System.ServiceProcess.ServiceController
-### When the `-PassThru` parameter is provided and the service specified exists, a ServiceController object representing the service is returned, otherwise `$null`.
+### When the `-PassThru` parameter is provided and the service specified exists, a `ServiceController` object representing the service is returned, otherwise `$null`.
 ### Microsoft.Management.Infrastructure.CimInstance
-### When the `-PassThru` and `-UseCIM` parameters are provided and the service specified exists, a Win32_Service or Win32_BaseService CimInstance object representing the service is returned, otherwise `$null`.
+### When the `-PassThru` and `-UseCIM` parameters are provided and the service specified exists, a Win32_Service or Win32_BaseService `CimInstance` object representing the service is returned, otherwise `$null`.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

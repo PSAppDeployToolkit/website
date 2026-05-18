@@ -11,8 +11,22 @@ Retrieves the startup mode of a specified service.
 
 ## SYNTAX
 
+### Name
+
 ```powershell
-Get-ADTServiceStartMode [-Service] <ServiceController> [<CommonParameters>]
+Get-ADTServiceStartMode -Name <String> [<CommonParameters>]
+```
+
+### DisplayName
+
+```powershell
+Get-ADTServiceStartMode -DisplayName <String> [<CommonParameters>]
+```
+
+### InputObject
+
+```powershell
+Get-ADTServiceStartMode -InputObject <ServiceController> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,26 +39,85 @@ This function checks the service's start type and adjusts the result if the serv
 ### EXAMPLE 1
 
 ```powershell
-Get-ADTServiceStartMode -Service (Get-Service -Name 'wuauserv')
+Get-ADTServiceStartMode -Name 'wuauserv'
 ```
 
 Retrieves the startup mode of the 'wuauserv' service.
 
+### EXAMPLE 2
+
+```powershell
+Get-ADTServiceStartMode -DisplayName 'Windows Update'
+```
+
+Retrieves the startup mode of the Windows Update service.
+
+### EXAMPLE 3
+
+```powershell
+Get-ADTServiceStartMode -InputObject (Get-Service -Name 'wuauserv')
+```
+
+Retrieves the startup mode of the 'wuauserv' service.
+
+### EXAMPLE 4
+
+```powershell
+if ((($service = Test-ADTServiceExists -Name 'ScreenConnect*' -PassThru) | Get-ADTServiceStartMode) -ne 'Automatic')
+{
+    Set-ADTServiceStartMode -InputObject $service -StartMode 'Automatic'
+}
+```
+
+Sets the ScreenConnect service start mode to automatic, if it exists and has its start mode is not automatic.
+
 ## PARAMETERS
 
-### -Service
+### -Name
 
-Specify the service object to retrieve the startup mode for.
+Specifies the service name of the service to retrieve the start mode for.
 
 ```yaml
-Type: ServiceController
-Parameter Sets: (All)
+Type: String
+Parameter Sets: Name
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DisplayName
+
+Specifies the display name of the service to retrieve the start mode for.
+
+```yaml
+Type: String
+Parameter Sets: DisplayName
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InputObject
+
+Specify the `ServiceController` object to retrieve the start mode for.
+
+```yaml
+Type: ServiceController
+Parameter Sets: InputObject
+Aliases: Service
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -54,9 +127,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.ServiceProcess.ServiceController
 
-### You cannot pipe objects to this function.
+### You can pipe `ServiceController` objects to this function.
 ## OUTPUTS
 
 ### System.String

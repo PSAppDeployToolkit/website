@@ -7,27 +7,34 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Stop a Windows service and its dependencies.
+Stop a Windows service and any service(s) that depend on it.
 
 ## SYNTAX
 
 ### Name
 
 ```powershell
-Stop-ADTServiceAndDependencies -Name <String> [-SkipDependentServices] [-PendingStatusWait <TimeSpan>]
+Stop-ADTServiceAndDependencies -Name <String[]> [-SkipDependentServices] [-PendingStatusWait <TimeSpan>]
+ [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### DisplayName
+
+```powershell
+Stop-ADTServiceAndDependencies -DisplayName <String[]> [-SkipDependentServices] [-PendingStatusWait <TimeSpan>]
  [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### InputObject
 
 ```powershell
-Stop-ADTServiceAndDependencies -InputObject <ServiceController> [-SkipDependentServices]
+Stop-ADTServiceAndDependencies -InputObject <ServiceController[]> [-SkipDependentServices]
  [-PendingStatusWait <TimeSpan>] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `Stop-ADTServiceAndDependencies` function stops a specified Windows service and its dependencies.
+The `Stop-ADTServiceAndDependencies` function stops a specified Windows service and any service(s) that depend on it.
 It provides options to skip stopping dependent services, wait for a service to get out of a pending state, and return the service object.
 
 ## EXAMPLES
@@ -38,32 +45,41 @@ It provides options to skip stopping dependent services, wait for a service to g
 Stop-ADTServiceAndDependencies -Name 'wuauserv'
 ```
 
-Stops the Windows Update service and its dependencies.
+Stops the Windows Update service and any service(s) that depend on it.
 
 ### EXAMPLE 2
+
+```powershell
+Stop-ADTServiceAndDependencies -DisplayName 'Windows Update'
+```
+
+Stops the Windows Update service and any service(s) that depend on it.
+
+### EXAMPLE 3
 
 ```powershell
 Stop-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait 00:01:00
 ```
 
-Stops the Windows Update service and its dependencies, waiting 1 minute for the service to stop.
+Stops the Windows Update service and any service(s) that depend on it, waiting 1 minute for the service to stop.
 
-### EXAMPLE 3
+### EXAMPLE 4
 
 ```powershell
 Stop-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait (New-TimeSpan -Minutes 1)
 ```
 
-Stops the Windows Update service and its dependencies, waiting 1 minute for the service to stop.
+Stops the Windows Update service and any service(s) that depend on it, waiting 1 minute for the service to stop.
 
 ## PARAMETERS
 
 ### -Name
 
-Specify the name of the service.
+Specifies the service name(s) of services to be stopped.
+Wildcards are permitted.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: Name
 Aliases: Service
 
@@ -71,28 +87,45 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
-### -InputObject
+### -DisplayName
 
-A ServiceController object to stop.
+Specifies the display name(s) of services to be stopped.
+Wildcards are permitted.
 
 ```yaml
-Type: ServiceController
-Parameter Sets: InputObject
+Type: String[]
+Parameter Sets: DisplayName
 Aliases:
 
 Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -InputObject
+
+Specifies `ServiceController` object(s) representing the services to be stopped.
+
+```yaml
+Type: ServiceController[]
+Parameter Sets: InputObject
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
 ### -SkipDependentServices
 
-Choose to skip checking for and stopping dependent services.
+Specifies whether a service will be stopped if services that depend on it are running.
 
 ```yaml
 Type: SwitchParameter
@@ -125,7 +158,7 @@ Accept wildcard characters: False
 
 ### -PassThru
 
-Return the System.ServiceProcess.ServiceController service object.
+Return the `ServiceController` service object.
 
 ```yaml
 Type: SwitchParameter
@@ -178,16 +211,16 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.ServiceProcess.ServiceController
 
-### You cannot pipe objects to this function.
+### You can pipe `ServiceController` objects to this function.
 ## OUTPUTS
 
 ### None
 
 ### By default, this function returns no output.
 ### System.ServiceProcess.ServiceController
-### When the `-PassThru` parameter is provided, this function returns a ServiceController object representing the service that was stopped.
+### When the `-PassThru` parameter is provided, this function returns a `ServiceController` object representing the service that was stopped.
 ## NOTES
 An active ADT session is NOT required to use this function.
 

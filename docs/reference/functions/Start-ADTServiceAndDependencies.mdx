@@ -7,27 +7,34 @@ hide_table_of_contents: false
 
 ## SYNOPSIS
 
-Start a Windows service and its dependencies.
+Start a Windows service and any service(s) that depend on it.
 
 ## SYNTAX
 
 ### Name
 
 ```powershell
-Start-ADTServiceAndDependencies -Name <String> [-SkipDependentServices] [-PendingStatusWait <TimeSpan>]
+Start-ADTServiceAndDependencies -Name <String[]> [-SkipDependentServices] [-PendingStatusWait <TimeSpan>]
  [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### DisplayName
+
+```powershell
+Start-ADTServiceAndDependencies -DisplayName <String[]> [-SkipDependentServices]
+ [-PendingStatusWait <TimeSpan>] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### InputObject
 
 ```powershell
-Start-ADTServiceAndDependencies -InputObject <ServiceController> [-SkipDependentServices]
+Start-ADTServiceAndDependencies -InputObject <ServiceController[]> [-SkipDependentServices]
  [-PendingStatusWait <TimeSpan>] [-PassThru] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `Start-ADTServiceAndDependencies` function starts a specified Windows service and its dependencies.
+The `Start-ADTServiceAndDependencies` function starts a specified Windows service and any service(s) that depend on it.
 It provides options to skip starting dependent services, wait for a service to get out of a pending state, and return the service object.
 
 ## EXAMPLES
@@ -38,32 +45,41 @@ It provides options to skip starting dependent services, wait for a service to g
 Start-ADTServiceAndDependencies -Name 'wuauserv'
 ```
 
-Starts the Windows Update service and its dependencies.
+Starts the Windows Update service and any service(s) that depend on it.
 
 ### EXAMPLE 2
+
+```powershell
+Start-ADTServiceAndDependencies -DisplayName 'Windows Update'
+```
+
+Starts the Windows Update service and any service(s) that depend on it.
+
+### EXAMPLE 3
 
 ```powershell
 Start-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait 00:01:00
 ```
 
-Starts the Windows Update service and its dependencies, waiting 1 minute for the serivce to start.
+Starts the Windows Update service and any service(s) that depend on it, waiting 1 minute for the serivce to start.
 
-### EXAMPLE 3
+### EXAMPLE 4
 
 ```powershell
 Start-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait (New-TimeSpan -Minutes 1)
 ```
 
-Starts the Windows Update service and its dependencies, waiting 1 minute for the serivce to start.
+Starts the Windows Update service and any service(s) that depend on it, waiting 1 minute for the serivce to start.
 
 ## PARAMETERS
 
 ### -Name
 
-Specify the name of the service.
+Specifies the service name(s) of services to be stopped.
+Wildcards are permitted.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: Name
 Aliases: Service
 
@@ -71,28 +87,45 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
-### -InputObject
+### -DisplayName
 
-A ServiceController object to start.
+Specifies the display name(s) of services to be stopped.
+Wildcards are permitted.
 
 ```yaml
-Type: ServiceController
-Parameter Sets: InputObject
+Type: String[]
+Parameter Sets: DisplayName
 Aliases:
 
 Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -InputObject
+
+Specifies `ServiceController` object(s) representing the services to be started.
+
+```yaml
+Type: ServiceController[]
+Parameter Sets: InputObject
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
 ### -SkipDependentServices
 
-Choose to skip checking for and starting dependent services.
+Specifies whether to skip checking for and starting dependent services.
 
 ```yaml
 Type: SwitchParameter
@@ -125,7 +158,7 @@ Accept wildcard characters: False
 
 ### -PassThru
 
-Return the System.ServiceProcess.ServiceController service object.
+Return the `ServiceController` service object.
 
 ```yaml
 Type: SwitchParameter
@@ -178,9 +211,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.ServiceProcess.ServiceController
 
-### You cannot pipe objects to this function.
+### You can pipe `ServiceController` objects to this function.
 ## OUTPUTS
 
 ### None

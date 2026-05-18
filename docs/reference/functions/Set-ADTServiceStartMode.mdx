@@ -11,8 +11,24 @@ Set the service startup mode.
 
 ## SYNTAX
 
+### Name
+
 ```powershell
-Set-ADTServiceStartMode [-Service] <ServiceController> [-StartMode] <String> [-WhatIf] [-Confirm]
+Set-ADTServiceStartMode -Name <String[]> -StartMode <String> [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### DisplayName
+
+```powershell
+Set-ADTServiceStartMode -DisplayName <String[]> -StartMode <String> [-PassThru] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### InputObject
+
+```powershell
+Set-ADTServiceStartMode -InputObject <ServiceController[]> -StartMode <String> [-PassThru] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -27,33 +43,86 @@ The startup modes available are: Automatic, Automatic (Delayed Start), Manual, D
 ### EXAMPLE 1
 
 ```powershell
-Set-ADTServiceStartMode -Service 'wuauserv' -StartMode 'Automatic (Delayed Start)'
+Set-ADTServiceStartMode -Name 'wuauserv' -StartMode 'Automatic (Delayed Start)'
 ```
 
 Sets the 'wuauserv' service to start automatically with a delayed start.
 
+### EXAMPLE 2
+
+```powershell
+Set-ADTServiceStartMode -DisplayName 'Windows Update' -StartMode 'Manual'
+```
+
+Sets the Windows Update service to start manually.
+
+### EXAMPLE 3
+
+```powershell
+if ((($service = Test-ADTServiceExists -Name 'ScreenConnect*' -PassThru) | Get-ADTServiceStartMode) -ne 'Automatic')
+{
+    Set-ADTServiceStartMode -InputObject $service -StartMode 'Automatic'
+}
+```
+
+Sets the ScreenConnect service start mode to automatic, if it exists and has its start mode is not automatic.
+
 ## PARAMETERS
 
-### -Service
+### -Name
 
-Specify the name of the service.
+Specifies the service name(s) of the services to set the start mode for.
+Wildcards are permitted.
 
 ```yaml
-Type: ServiceController
-Parameter Sets: (All)
+Type: String[]
+Parameter Sets: Name
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -DisplayName
+
+Specifies the display name(s) of services to set the start mode for.
+Wildcards are permitted.
+
+```yaml
+Type: String[]
+Parameter Sets: DisplayName
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: True
+```
+
+### -InputObject
+
+Specifies `ServiceController` object(s) representing the services to be started.
+
+```yaml
+Type: ServiceController[]
+Parameter Sets: InputObject
+Aliases: Service
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
 ### -StartMode
 
 Specify startup mode for the service.
-Options: Automatic, Automatic (Delayed Start), Manual, Disabled, Boot, System.
+Valid values for this parameter are: `Automatic`, `Automatic (Delayed Start)`, `Manual`, `Disabled`, `Boot`, `System`
 
 ```yaml
 Type: String
@@ -61,8 +130,24 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 2
+Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+
+Returns the `ServiceController` service object.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -106,14 +191,16 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### System.ServiceProcess.ServiceController
 
-### You cannot pipe objects to this function.
+### You can pipe `ServiceController` objects to this function.
 ## OUTPUTS
 
 ### None
 
-### This function does not return any output.
+### By default, this function does not return any output.
+### System.ServiceProcess.ServiceController
+### When the `-PassThru` parameter is provided, this function returns a `ServiceController` object representing the service that was started.
 ## NOTES
 An active ADT session is NOT required to use this function.
 
