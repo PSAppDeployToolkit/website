@@ -41,7 +41,7 @@
     "@docusaurus/module-type-aliases": "^3.10.1",
     "@docusaurus/theme-classic": "^3.10.1",
     "@docusaurus/tsconfig": "^3.10.1",
-    "@types/node": "^25.7.0",
+    "@types/node": "^25.9.0",
     "@types/react": "^19.2.14",
     "@typescript-eslint/eslint-plugin": "^8.59.2",
     "@typescript-eslint/parser": "^8.59.3",
