@@ -61,7 +61,7 @@ Starts the Windows Update service and any service(s) that depend on it.
 Start-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait 00:01:00
 ```
 
-Starts the Windows Update service and any service(s) that depend on it, waiting 1 minute for the serivce to start.
+Starts the Windows Update service and any service(s) that depend on it, waiting 1 minute for the service to start.
 
 ### EXAMPLE 4
 
@@ -69,13 +69,13 @@ Starts the Windows Update service and any service(s) that depend on it, waiting 
 Start-ADTServiceAndDependencies -Name 'wuauserv' -PendingStatusWait (New-TimeSpan -Minutes 1)
 ```
 
-Starts the Windows Update service and any service(s) that depend on it, waiting 1 minute for the serivce to start.
+Starts the Windows Update service and any service(s) that depend on it, waiting 1 minute for the service to start.
 
 ## PARAMETERS
 
 ### -Name
 
-Specifies the service name(s) of services to be stopped.
+Specifies the service name(s) of services to be started.
 Wildcards are permitted.
 
 ```yaml
@@ -92,7 +92,7 @@ Accept wildcard characters: True
 
 ### -DisplayName
 
-Specifies the display name(s) of services to be stopped.
+Specifies the display name(s) of services to be started.
 Wildcards are permitted.
 
 ```yaml

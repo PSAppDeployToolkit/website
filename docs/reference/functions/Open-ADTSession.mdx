@@ -11,21 +11,61 @@ Opens a new ADT session.
 
 ## SYNTAX
 
+### None (Default)
+
 ```powershell
-Open-ADTSession [[-SessionState] <SessionState>] [[-DeploymentType] <DeploymentType>]
- [[-DeployMode] <DeployMode>] [-SuppressRebootPassThru] [-TerminalServerMode] [-DisableLogging]
- [[-AppVendor] <String>] [[-AppName] <String>] [[-AppVersion] <String>] [[-AppArch] <String>]
- [[-AppLang] <String>] [[-AppRevision] <String>] [[-AppScriptVersion] <Version>] [[-AppScriptDate] <DateTime>]
- [[-AppScriptAuthor] <String>] [[-InstallName] <String>] [[-InstallTitle] <String>]
- [[-DeployAppScriptFriendlyName] <String>] [[-DeployAppScriptVersion] <Version>]
- [[-DeployAppScriptParameters] <System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]>]
- [[-AppSuccessExitCodes] <Int32[]>] [[-AppRebootExitCodes] <Int32[]>]
- [[-AppProcessesToClose] <ProcessDefinition[]>] [-RequireAdmin] [[-ScriptDirectory] <String[]>]
- [[-DirFiles] <String>] [[-DirSupportFiles] <String>] [[-DefaultMsiFile] <String>] [[-DefaultMstFile] <String>]
- [[-DefaultMspFiles] <String[]>] [-DisableDefaultMsiProcessList] [-ForceMsiDetection] [-ForceWimDetection]
+Open-ADTSession [-DeploymentType <DeploymentType>] [-DeployMode <DeployMode>] [-SuppressRebootPassThru]
+ [-TerminalServerMode] [-DisableLogging] [-AppVendor <String>] [-AppName <String>] [-AppVersion <String>]
+ [-AppArch <String>] [-AppLang <String>] [-AppRevision <String>] [-AppSuccessExitCodes <Int32[]>]
+ [-AppRebootExitCodes <Int32[]>] [-AppProcessesToClose <ProcessDefinition[]>] [-AppScriptVersion <Version>]
+ [-AppScriptDate <DateTime>] [-AppScriptAuthor <String>] [-DeployAppScriptFriendlyName <String>]
+ [-DeployAppScriptVersion <Version>]
+ [-DeployAppScriptParameters <System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]>]
+ [-DeployAppScriptSessionState <SessionState>] [-ScriptDirectory <String[]>] [-DirFiles <String>]
+ [-DirSupportFiles <String>] [-DefaultMsiFile <String>] [-DefaultMstFile <String>]
+ [-DefaultMspFiles <String[]>] [-DisableDefaultMsiProcessList] [-ForceMsiDetection] [-ForceWimDetection]
+ [-NoOobeDetection] [-NoProcessDetection] [-ExitWithMsiCodes] [-AllowWowProcess] [-RequireAdmin] [-PassThru]
+ [-InstallTitle <String>] [-InstallName <String>] [-LogName <String>]
+ [-AdditionalEnvironmentVariables <IDictionary>] [-SessionClass <Type>]
+ [-UnboundArguments <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
+```
+
+### NoSessionDetection
+
+```powershell
+Open-ADTSession [-DeploymentType <DeploymentType>] [-DeployMode <DeployMode>] [-SuppressRebootPassThru]
+ [-TerminalServerMode] [-DisableLogging] [-AppVendor <String>] [-AppName <String>] [-AppVersion <String>]
+ [-AppArch <String>] [-AppLang <String>] [-AppRevision <String>] [-AppSuccessExitCodes <Int32[]>]
+ [-AppRebootExitCodes <Int32[]>] [-AppProcessesToClose <ProcessDefinition[]>] [-AppScriptVersion <Version>]
+ [-AppScriptDate <DateTime>] [-AppScriptAuthor <String>] [-DeployAppScriptFriendlyName <String>]
+ [-DeployAppScriptVersion <Version>]
+ [-DeployAppScriptParameters <System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]>]
+ [-DeployAppScriptSessionState <SessionState>] [-ScriptDirectory <String[]>] [-DirFiles <String>]
+ [-DirSupportFiles <String>] [-DefaultMsiFile <String>] [-DefaultMstFile <String>]
+ [-DefaultMspFiles <String[]>] [-DisableDefaultMsiProcessList] [-ForceMsiDetection] [-ForceWimDetection]
  [-NoSessionDetection] [-NoOobeDetection] [-NoProcessDetection] [-ExitWithMsiCodes] [-AllowWowProcess]
- [-PassThru] [[-LogName] <String>] [[-AdditionalEnvironmentVariables] <IDictionary>] [[-SessionClass] <Type>]
- [[-UnboundArguments] <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
+ [-RequireAdmin] [-PassThru] [-InstallTitle <String>] [-InstallName <String>] [-LogName <String>]
+ [-AdditionalEnvironmentVariables <IDictionary>] [-SessionClass <Type>]
+ [-UnboundArguments <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
+```
+
+### ProcessInteractivityDetection
+
+```powershell
+Open-ADTSession [-DeploymentType <DeploymentType>] [-DeployMode <DeployMode>] [-SuppressRebootPassThru]
+ [-TerminalServerMode] [-DisableLogging] [-AppVendor <String>] [-AppName <String>] [-AppVersion <String>]
+ [-AppArch <String>] [-AppLang <String>] [-AppRevision <String>] [-AppSuccessExitCodes <Int32[]>]
+ [-AppRebootExitCodes <Int32[]>] [-AppProcessesToClose <ProcessDefinition[]>] [-AppScriptVersion <Version>]
+ [-AppScriptDate <DateTime>] [-AppScriptAuthor <String>] [-DeployAppScriptFriendlyName <String>]
+ [-DeployAppScriptVersion <Version>]
+ [-DeployAppScriptParameters <System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]>]
+ [-DeployAppScriptSessionState <SessionState>] [-ScriptDirectory <String[]>] [-DirFiles <String>]
+ [-DirSupportFiles <String>] [-DefaultMsiFile <String>] [-DefaultMstFile <String>]
+ [-DefaultMspFiles <String[]>] [-DisableDefaultMsiProcessList] [-ForceMsiDetection] [-ForceWimDetection]
+ [-NoOobeDetection] [-NoProcessDetection] [-ProcessInteractivityDetection] [-ExitWithMsiCodes]
+ [-AllowWowProcess] [-RequireAdmin] [-PassThru] [-InstallTitle <String>] [-InstallName <String>]
+ [-LogName <String>] [-AdditionalEnvironmentVariables <IDictionary>] [-SessionClass <Type>]
+ [-UnboundArguments <System.Collections.Generic.IReadOnlyList`1[System.Object]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -46,22 +86,6 @@ Opens a new ADT session with the specified parameters.
 
 ## PARAMETERS
 
-### -SessionState
-
-Defaults to `$PSCmdlet.SessionState` to get the caller's SessionState, so only required if you need to override this.
-
-```yaml
-Type: SessionState
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -DeploymentType
 
 Specifies the type of deployment.
@@ -73,7 +97,7 @@ Aliases:
 Accepted values: Install, Uninstall, Repair
 
 Required: False
-Position: 2
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -90,7 +114,7 @@ Aliases:
 Accepted values: Auto, Interactive, NonInteractive, Silent
 
 Required: False
-Position: 3
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -154,7 +178,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 4
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -170,7 +194,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -186,7 +210,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 6
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -202,7 +226,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 7
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -218,7 +242,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 8
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -234,135 +258,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 9
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AppScriptVersion
-
-Specifies the application script version.
-
-```yaml
-Type: Version
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 10
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AppScriptDate
-
-Specifies the application script date.
-
-```yaml
-Type: DateTime
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 11
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AppScriptAuthor
-
-Specifies the application script author.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 12
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InstallName
-
-Specifies the install name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 13
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InstallTitle
-
-Specifies the install title.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 14
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -DeployAppScriptFriendlyName
-
-Specifies the friendly name of the deploy application script.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 15
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -DeployAppScriptVersion
-
-Specifies the version of the deploy application script.
-
-```yaml
-Type: Version
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 16
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -DeployAppScriptParameters
-
-Specifies the parameters for the deploy application script.
-
-```yaml
-Type: System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 17
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -378,7 +274,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 18
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -394,7 +290,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 19
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -410,24 +306,120 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 20
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -RequireAdmin
+### -AppScriptVersion
 
-Specifies that this deployment requires administrative permissions.
+Specifies the application script version.
 
 ```yaml
-Type: SwitchParameter
+Type: Version
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppScriptDate
+
+Specifies the application script date.
+
+```yaml
+Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AppScriptAuthor
+
+Specifies the application script author.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DeployAppScriptFriendlyName
+
+Specifies the friendly name of the deploy application script.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DeployAppScriptVersion
+
+Specifies the version of the deploy application script.
+
+```yaml
+Type: Version
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DeployAppScriptParameters
+
+Specifies the parameters for the deploy application script.
+
+```yaml
+Type: System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.Object]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DeployAppScriptSessionState
+
+Defaults to `$PSCmdlet.SessionState` to get the caller's SessionState, so only required if you need to override this.
+
+```yaml
+Type: SessionState
+Parameter Sets: (All)
+Aliases: SessionState
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -442,7 +434,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 21
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -458,7 +450,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 22
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -474,7 +466,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 23
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -490,7 +482,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 24
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -506,7 +498,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 25
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -522,7 +514,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 26
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -582,10 +574,10 @@ When DeployMode is not specified or is Auto, bypasses DeployMode adjustment when
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: NoSessionDetection
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: False
 Accept pipeline input: False
@@ -624,6 +616,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ProcessInteractivityDetection
+
+When DeployMode is not specified or is Auto, tests whether the process running this session is interactive or not and uses that as part of the DeployMode determination.
+This is mostly for ConfigMgr users who want silent deployments during Task Sequences, but interactive at other times.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ProcessInteractivityDetection
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ExitWithMsiCodes
 
 When specified, the session will always exit with 0 upon success and 3010 upon reboot required so Intune/ConfigMgr requires no specific adjustment.
@@ -656,6 +665,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -RequireAdmin
+
+Specifies that this deployment requires administrative permissions.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -PassThru
 
 Passes the session object through the pipeline.
@@ -672,6 +697,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -InstallTitle
+
+Specifies an override for the default-generated install title.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InstallName
+
+Specifies an override for the default-generated install name.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -LogName
 
 Specifies an override for the default-generated log file name.
@@ -682,7 +739,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 27
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -699,7 +756,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 28
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -716,7 +773,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 29
+Position: Named
 Default value: PSAppDeployToolkit.Foundation.DeploymentSession
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -733,7 +790,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 30
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
