@@ -1,0 +1,92 @@
+---
+id: Show-ADTNotifyIcon
+title: Show-ADTNotifyIcon
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Displays a notification icon in the system tray.
+
+## SYNTAX
+
+```powershell
+Show-ADTNotifyIcon [-Force] -ToolTipText <String> [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+The `Show-ADTNotifyIcon` function displays a notification icon in the system tray.
+
+For Windows 10 and above, balloon tips from notification icons automatically get translated by the system into toast notifications.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Show-ADTNotifyIcon
+```
+
+Creates a notification icon with the configured icon and session title.
+
+## PARAMETERS
+
+### -Force
+
+Creates the notification icon irrespective of whether running silently or not.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ToolTipText
+
+Tool tip text for the notification icon.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not return any output.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTNotifyIcon](https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTNotifyIcon)

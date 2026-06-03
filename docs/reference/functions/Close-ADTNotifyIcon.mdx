@@ -1,0 +1,59 @@
+---
+id: Close-ADTNotifyIcon
+title: Close-ADTNotifyIcon
+hide_title: false
+hide_table_of_contents: false
+---
+
+## SYNOPSIS
+
+Closes the notification icon created by `Show-ADTNotifyIcon`.
+
+## SYNTAX
+
+```powershell
+Close-ADTNotifyIcon [<CommonParameters>]
+```
+
+## DESCRIPTION
+
+The `Close-ADTNotifyIcon` function closes the notification icon created by `Show-ADTNotifyIcon`.
+This function is called by the `Close-ADTSession` function to close an open notification icon if found.
+
+## EXAMPLES
+
+### EXAMPLE 1
+
+```powershell
+Close-ADTNotifyIcon
+```
+
+This example closes the dialog created by `Show-ADTNotifyIcon`.
+
+## PARAMETERS
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+### You cannot pipe objects to this function.
+## OUTPUTS
+
+### None
+
+### This function does not generate any output.
+## NOTES
+An active ADT session is NOT required to use this function.
+
+Tags: psadt<br />
+Website: https://psappdeploytoolkit.com<br />
+Copyright: (C) 2026 PSAppDeployToolkit Team (Sean Lillis, Dan Cunningham, Muhammad Mashwani, Mitch Richters, Dan Gough).<br />
+License: https://opensource.org/license/lgpl-3-0
+
+## RELATED LINKS
+
+[https://psappdeploytoolkit.com/docs/reference/functions/Close-ADTNotifyIcon](https://psappdeploytoolkit.com/docs/reference/functions/Close-ADTNotifyIcon)

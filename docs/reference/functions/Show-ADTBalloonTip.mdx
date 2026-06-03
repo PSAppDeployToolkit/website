@@ -12,8 +12,8 @@ Displays a balloon tip notification in the system tray.
 ## SYNTAX
 
 ```powershell
-Show-ADTBalloonTip [-BalloonTipText] <String> [-BalloonTipIcon <ToolTipIcon>] [-BalloonTipTime <UInt32>]
- [-NoWait] [-Force] -BalloonTipTitle <String> [<CommonParameters>]
+Show-ADTBalloonTip [-Text] <String> [-Icon <ToolTipIcon>] [-Timeout <UInt32>] [-NoWait] [-Force]
+ -Title <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ For Windows 10 and above, balloon tips automatically get translated by the syste
 ### EXAMPLE 1
 
 ```powershell
-Show-ADTBalloonTip -BalloonTipText 'Installation Started' -BalloonTipTitle 'Application Name'
+Show-ADTBalloonTip -Text 'Installation Started' -Title 'Application Name'
 ```
 
 Displays a balloon tip with the text 'Installation Started' and the title 'Application Name'.
@@ -36,21 +36,21 @@ Displays a balloon tip with the text 'Installation Started' and the title 'Appli
 ### EXAMPLE 2
 
 ```powershell
-Show-ADTBalloonTip -BalloonTipIcon 'Info' -BalloonTipText 'Installation Started' -BalloonTipTitle 'Application Name'
+Show-ADTBalloonTip -Icon 'Info' -Text 'Installation Started' -Title 'Application Name'
 ```
 
 Displays a balloon tip with the info icon, the text 'Installation Started', and the title 'Application Name'
 
 ## PARAMETERS
 
-### -BalloonTipText
+### -Text
 
 Text of the balloon tip.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: BalloonTipText
 
 Required: True
 Position: 1
@@ -59,7 +59,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -BalloonTipIcon
+### -Icon
 
 Icon to be used.
 Valid values for this parameter are: `Error`, `Info`, `None`, `Warning`.
@@ -67,7 +67,7 @@ Valid values for this parameter are: `Error`, `Info`, `None`, `Warning`.
 ```yaml
 Type: ToolTipIcon
 Parameter Sets: (All)
-Aliases:
+Aliases: BalloonTipIcon
 Accepted values: None, Info, Warning, Error
 
 Required: False
@@ -77,26 +77,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -BalloonTipTime
+### -Timeout
 
-Time in milliseconds to display the balloon tip.
-Default: 10000.
+This parameter has had no effect since Windows Vista and will be removed in PSAppDeployToolkit 4.3.0.
 
 ```yaml
 Type: UInt32
 Parameter Sets: (All)
-Aliases:
+Aliases: BalloonTipTime
 
 Required: False
 Position: Named
-Default value: 10000
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -NoWait
 
-Creates the balloon tip asynchronously.
+This parameter has had no effect since Windows Vista and will be removed in PSAppDeployToolkit 4.3.0.
 
 ```yaml
 Type: SwitchParameter
@@ -126,14 +125,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -BalloonTipTitle
+### -Title
 
 Title of the balloon tip.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: BalloonTipTitle
 
 Required: True
 Position: Named
