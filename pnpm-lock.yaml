@@ -17,6 +17,11 @@ overrides:
   '@babel/plugin-transform-modules-systemjs': '>=7.29.4'
   ws: 8.21.0
 
+patchedDependencies:
+  gray-matter@4.0.3:
+    hash: 82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f
+    path: patches/gray-matter@4.0.3.patch
+
 importers:
 
   .:
@@ -8653,7 +8658,7 @@ snapshots:
       fs-extra: 11.3.5
       github-slugger: 1.5.0
       globby: 11.1.0
-      gray-matter: 4.0.3
+      gray-matter: 4.0.3(patch_hash=82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f)
       jiti: 1.21.7
       js-yaml: 4.2.0
       lodash: 4.18.1
@@ -8694,7 +8699,7 @@ snapshots:
       fs-extra: 11.3.5
       github-slugger: 1.5.0
       globby: 11.1.0
-      gray-matter: 4.0.3
+      gray-matter: 4.0.3(patch_hash=82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f)
       jiti: 1.21.7
       js-yaml: 4.2.0
       lodash: 4.18.1
@@ -11528,7 +11533,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  gray-matter@4.0.3:
+  gray-matter@4.0.3(patch_hash=82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f):
     dependencies:
       js-yaml: 4.2.0
       kind-of: 6.0.3
