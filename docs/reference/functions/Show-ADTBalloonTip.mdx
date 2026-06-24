@@ -12,7 +12,7 @@ Displays a balloon tip notification in the system tray.
 ## SYNTAX
 
 ```powershell
-Show-ADTBalloonTip [-Text] <String> [-Icon <ToolTipIcon>] [-Timeout <UInt32>] [-NoWait] [-Force]
+Show-ADTBalloonTip [-Text] <String> [-Icon <BalloonTipIcon>] [-Timeout <UInt32>] [-NoWait] [-Force]
  -Title <String> [<CommonParameters>]
 ```
 
@@ -65,7 +65,7 @@ Icon to be used.
 Valid values for this parameter are: `Error`, `Info`, `None`, `Warning`.
 
 ```yaml
-Type: ToolTipIcon
+Type: BalloonTipIcon
 Parameter Sets: (All)
 Aliases: BalloonTipIcon
 Accepted values: None, Info, Warning, Error

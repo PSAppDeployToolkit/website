@@ -12,7 +12,7 @@ Gets the processes that are running from a list of process objects.
 ## SYNTAX
 
 ```powershell
-Get-ADTRunningProcesses [-ProcessObjects] <ProcessDefinition[]> [<CommonParameters>]
+Get-ADTRunningProcesses [-ProcessDefinition] <ProcessDefinition[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,7 +24,7 @@ The `Get-ADTRunningProcesses` function returns the processes that are running fr
 ### EXAMPLE 1
 
 ```powershell
-Get-ADTRunningProcesses -ProcessObjects $processObjects
+Get-ADTRunningProcesses -ProcessDefinition $processObjects
 ```
 
 Returns a list of running processes.
@@ -32,14 +32,14 @@ If nothing is found, nothing will be returned.
 
 ## PARAMETERS
 
-### -ProcessObjects
+### -ProcessDefinition
 
 One or more process objects to search for.
 
 ```yaml
 Type: ProcessDefinition[]
 Parameter Sets: (All)
-Aliases:
+Aliases: ProcessObjects
 
 Required: True
 Position: 1

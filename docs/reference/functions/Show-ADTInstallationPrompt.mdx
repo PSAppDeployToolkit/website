@@ -15,10 +15,10 @@ Displays a custom installation prompt with the toolkit branding and optional but
 
 ```powershell
 Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAlignment>]
- [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>]
- [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout]
- [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>]
- [<CommonParameters>]
+ [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>]
+ [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>] [-NoWait]
+ [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String>
+ -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
 ```
 
 ### ShowInputDialog_SecureInput
@@ -26,9 +26,9 @@ Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAl
 ```powershell
 Show-ADTInstallationPrompt [-RequestInput] [-SecureInput] -Message <String>
  [-MessageAlignment <DialogMessageAlignment>] [-ButtonRightText <String>] [-ButtonLeftText <String>]
- [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
- [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
- [-Timeout <UInt32>] [<CommonParameters>]
+ [-ButtonMiddleText <String>] [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>]
+ [-WindowLocation <DialogPosition>] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost]
+ [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
 ```
 
 ### ShowInputDialog_DefaultValue
@@ -36,28 +36,30 @@ Show-ADTInstallationPrompt [-RequestInput] [-SecureInput] -Message <String>
 ```powershell
 Show-ADTInstallationPrompt [-RequestInput] -DefaultValue <String> -Message <String>
  [-MessageAlignment <DialogMessageAlignment>] [-ButtonRightText <String>] [-ButtonLeftText <String>]
- [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
- [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
- [-Timeout <UInt32>] [<CommonParameters>]
+ [-ButtonMiddleText <String>] [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>]
+ [-WindowLocation <DialogPosition>] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost]
+ [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
 ```
 
 ### ShowInputDialog
 
 ```powershell
 Show-ADTInstallationPrompt [-RequestInput] -Message <String> [-MessageAlignment <DialogMessageAlignment>]
- [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>]
- [-WindowLocation <DialogPosition>] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost]
- [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
+ [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>]
+ [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>]
+ [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String>
+ -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
 ```
 
 ### ShowListSelectionDialog
 
 ```powershell
 Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAlignment>]
- [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>] [-Icon <DialogSystemIcon>]
- -ListItems <String[]> [-DefaultIndex <UInt32>] [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt]
- [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
- [-Timeout <UInt32>] [<CommonParameters>]
+ [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>]
+ [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>] -ListItems <String[]>
+ [-DefaultIndex <UInt32>] [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt] [-MinimizeWindows]
+ [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -239,6 +241,23 @@ Show a button in the middle of the prompt with the specified text.
 Type: String
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DefaultButton
+
+Specifies the default button to accent within the user interface.
+
+```yaml
+Type: DialogDefaultButton
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, Left, Middle, Right
 
 Required: False
 Position: Named

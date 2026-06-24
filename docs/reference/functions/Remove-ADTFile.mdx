@@ -23,6 +23,12 @@ Remove-ADTFile -Path <String[]> [-Recurse] [-WhatIf] [-Confirm] [<CommonParamete
 Remove-ADTFile -LiteralPath <String[]> [-Recurse] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
+### InputObject
+
+```powershell
+Remove-ADTFile -InputObject <FileInfo> [-Recurse] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
 ## DESCRIPTION
 
 The `Remove-ADTFile` function removes one or more items from a given path on the filesystem.
@@ -83,6 +89,23 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InputObject
+
+A FileInfo object to remove.
+Available for pipelining.
+
+```yaml
+Type: FileInfo
+Parameter Sets: InputObject
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

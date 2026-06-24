@@ -11,22 +11,40 @@ Remove folder and files if they exist.
 
 ## SYNTAX
 
-### Path
+### Path (Default)
+
+```powershell
+Remove-ADTFolder -Path <String[]> [-OnlyIfEmpty] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### PathNoRecursion
 
 ```powershell
 Remove-ADTFolder -Path <String[]> [-DisableRecursion] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### LiteralPath
+### LiteralPathNoRecursion
 
 ```powershell
 Remove-ADTFolder -LiteralPath <String[]> [-DisableRecursion] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### InputObject
+### LiteralPath
+
+```powershell
+Remove-ADTFolder -LiteralPath <String[]> [-OnlyIfEmpty] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### InputObjectNoRecursion
 
 ```powershell
 Remove-ADTFolder -InputObject <DirectoryInfo> [-DisableRecursion] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### InputObject
+
+```powershell
+Remove-ADTFolder -InputObject <DirectoryInfo> [-OnlyIfEmpty] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,6 +52,7 @@ Remove-ADTFolder -InputObject <DirectoryInfo> [-DisableRecursion] [-WhatIf] [-Co
 The `Remove-ADTFolder` function removes a folder and all files within it, with or without recursion, in a given path.
 If the specified folder does not exist, it logs a warning instead of throwing an error.
 The function can also delete items recursively if the `-DisableRecursion` parameter is not specified.
+The `-OnlyIfEmpty` parameter removes the folder only when it contains no items other than folders that are themselves empty, or contain only empty folders.
 
 ## EXAMPLES
 
@@ -53,6 +72,14 @@ Remove-ADTFolder -Path "$envTemp\MyAppCache" -DisableRecursion
 
 Deletes all files in the Temp\MyAppCache folder but does not delete any subfolders.
 
+### EXAMPLE 3
+
+```powershell
+Remove-ADTFolder -Path "$envTemp\MyAppCache" -OnlyIfEmpty
+```
+
+Deletes the Temp\MyAppCache folder only if it and all nested folders contain no files.
+
 ## PARAMETERS
 
 ### -Path
@@ -62,7 +89,7 @@ Can contain wildcards.
 
 ```yaml
 Type: String[]
-Parameter Sets: Path
+Parameter Sets: Path, PathNoRecursion
 Aliases:
 
 Required: True
@@ -78,7 +105,7 @@ A literal path to the folder to remove.
 
 ```yaml
 Type: String[]
-Parameter Sets: LiteralPath
+Parameter Sets: LiteralPathNoRecursion, LiteralPath
 Aliases: PSPath
 
 Required: True
@@ -95,7 +122,7 @@ Available for pipelining.
 
 ```yaml
 Type: DirectoryInfo
-Parameter Sets: InputObject
+Parameter Sets: InputObjectNoRecursion, InputObject
 Aliases:
 
 Required: True
@@ -111,7 +138,23 @@ Disables recursion while deleting.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: PathNoRecursion, LiteralPathNoRecursion, InputObjectNoRecursion
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OnlyIfEmpty
+
+Removes the folder only if it contains no files and all nested folders are empty.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Path, LiteralPath, InputObject
 Aliases:
 
 Required: False

@@ -15,8 +15,8 @@ Show a welcome dialog prompting the user with information about the deployment a
 
 ```powershell
 Show-ADTInstallationWelcome [-WindowLocation <DialogPosition>] [-PersistPrompt] [-ContinueOnProcessClosure]
- [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText] [-PassThru] -Title <String>
- -Subtitle <String> [<CommonParameters>]
+ [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>]
+ [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Silent, with processes to close, and a free disk space check.
@@ -40,8 +40,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  [-AllowDeferCloseProcesses] -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>]
  [-DeferDays <Double>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows]
- [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>]
- [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>] [-CheckDiskSpace]
+ [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a close processes countdown irrespective of whether the user can defer or not.
@@ -51,8 +51,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  [-AllowDeferCloseProcesses] -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>]
  [-DeferDays <Double>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows]
- [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>] [-PassThru]
+ -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed only if the processes to close are open, with a close processes countdown if the user has no available deferrals, and a free disk space check.
@@ -62,8 +62,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  [-AllowDeferCloseProcesses] -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NotTopMost] [-AllowMove]
- [-AllowMinimize] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String>
- -Subtitle <String> [<CommonParameters>]
+ [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>] [-CheckDiskSpace]
+ [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a close processes countdown if the user has no available deferrals.
@@ -73,7 +73,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  [-AllowDeferCloseProcesses] -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NotTopMost] [-AllowMove]
- [-AllowMinimize] [-CustomText] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed only if the processes to close are open, with a continue/defer countdown depending on whether processes to close are open or not, and a free disk space check.
@@ -83,8 +84,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  [-AllowDeferCloseProcesses] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NotTopMost] [-AllowMove]
- [-AllowMinimize] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String>
- -Subtitle <String> [<CommonParameters>]
+ [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>] [-CheckDiskSpace]
+ [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a continue/defer countdown depending on whether processes to close are open or not.
@@ -94,7 +95,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  [-AllowDeferCloseProcesses] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-MinimizeWindows] [-NotTopMost] [-AllowMove]
- [-AllowMinimize] [-CustomText] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed only if the processes to close are open, and a free disk space check.
@@ -103,9 +105,9 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  [-AllowDeferCloseProcesses] [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
- [-PersistPrompt] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-PersistPrompt] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String>
+ -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, and with deferral allowed only if the processes to close are open.
@@ -114,8 +116,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  [-AllowDeferCloseProcesses] [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
- [-PersistPrompt] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText] [-PassThru]
- -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-PersistPrompt] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a close processes countdown irrespective of whether the user can defer or not, and a free disk space check.
@@ -125,8 +127,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows]
- [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>]
- [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>] [-CheckDiskSpace]
+ [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a close processes countdown irrespective of whether the user can defer or not.
@@ -136,8 +138,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  -ForceCloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>]
  [-BlockExecution] [-PromptToSave] [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows]
- [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>] [-PassThru]
+ -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a close processes countdown if the user has no available deferrals, and a free disk space check.
@@ -147,8 +149,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize]
- [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-CustomMessage] [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru]
+ -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a close processes countdown if the user has no available deferrals.
@@ -158,7 +160,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  -CloseProcessesCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize]
- [-CustomText] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-CustomMessage] [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a continue/defer countdown depending on whether processes to close are open or not, and a free disk space check.
@@ -168,8 +171,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize]
- [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-CustomMessage] [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru]
+ -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a continue/defer countdown depending on whether processes to close are open or not.
@@ -179,7 +182,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
  -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>]
  [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize]
- [-CustomText] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-CustomMessage] [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and a free disk space check.
@@ -188,9 +192,9 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
  [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt]
- [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String>
+ -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, and with deferral allowed irrespective of whether processes to close are open.
@@ -199,8 +203,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton] [-AllowDefer]
  [-DeferTimes <UInt32>] [-DeferDays <Double>] [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt]
- [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with a close processes countdown irrespective of whether the user can defer or not, and a free disk space check.
@@ -209,8 +213,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  -ForceCloseProcessesCountdown <UInt32> [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize]
- [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-CustomMessage] [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru]
+ -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, and with a close processes countdown irrespective of whether the user can defer or not.
@@ -219,7 +223,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  -ForceCloseProcessesCountdown <UInt32> [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize]
- [-CustomText] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-CustomMessage] [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, with a close processes countdown if the user has no available deferrals, and a free disk space check.
@@ -228,8 +233,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  -CloseProcessesCountdown <UInt32> [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize]
- [-CustomText] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-CustomMessage] [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru]
+ -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, and with a close processes countdown if the user has no available deferrals.
@@ -238,7 +243,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  -CloseProcessesCountdown <UInt32> [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave]
  [-PersistPrompt] [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize]
- [-CustomText] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-CustomMessage] [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ### Interactive, with processes to close, and a free disk space check.
@@ -246,9 +252,9 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt]
- [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String>
+ -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, and with processes to close.
@@ -256,8 +262,8 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 ```powershell
 Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseButton]
  [-WindowLocation <DialogPosition>] [-BlockExecution] [-PromptToSave] [-PersistPrompt]
- [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with deferral allowed, with a continue countdown irrespective of deferrals, and a free disk space check.
@@ -265,9 +271,9 @@ Show-ADTInstallationWelcome -CloseProcesses <ProcessDefinition[]> [-HideCloseBut
 ```powershell
 Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
- [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String>
+ -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with deferral allowed, and with a continue countdown irrespective of deferrals.
@@ -275,8 +281,8 @@ Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes 
 ```powershell
 Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
- [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, with deferral allowed, and a free disk space check.
@@ -284,9 +290,9 @@ Show-ADTInstallationWelcome [-AllowDefer] -ForceCountdown <UInt32> [-DeferTimes 
 ```powershell
 Show-ADTInstallationWelcome [-AllowDefer] [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
- [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String>
+ -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Interactive, and with deferral allowed.
@@ -294,8 +300,8 @@ Show-ADTInstallationWelcome [-AllowDefer] [-DeferTimes <UInt32>] [-DeferDays <Do
 ```powershell
 Show-ADTInstallationWelcome [-AllowDefer] [-DeferTimes <UInt32>] [-DeferDays <Double>]
  [-DeferDeadline <DateTime>] [-DeferRunInterval <TimeSpan>] [-WindowLocation <DialogPosition>] [-PersistPrompt]
- [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText]
- [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-ContinueOnProcessClosure] [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage]
+ [-CustomMessageText <String>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### Silent, and with a free disk space check.
@@ -315,8 +321,9 @@ Show-ADTInstallationWelcome [-Silent] -Title <String> -Subtitle <String> [<Commo
 
 ```powershell
 Show-ADTInstallationWelcome [-WindowLocation <DialogPosition>] [-PersistPrompt] [-ContinueOnProcessClosure]
- [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomText] [-CheckDiskSpace]
- [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-MinimizeWindows] [-NotTopMost] [-AllowMove] [-AllowMinimize] [-CustomMessage] [-CustomMessageText <String>]
+ [-CheckDiskSpace] [-RequiredDiskSpace <UInt32>] [-PassThru] -Title <String> -Subtitle <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -535,7 +542,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 0
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -751,7 +758,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CustomText
+### -CustomMessage
 
 Specify whether to display a custom message as specified in the `strings.psd1` file below the main preamble.
 Custom message must be populated for each language section in the `strings.psd1` file.
@@ -759,11 +766,27 @@ Custom message must be populated for each language section in the `strings.psd1`
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Interactive, with no modifying options., Interactive, with processes to close, with deferral allowed only if the processes to close are open, with a close processes countdown irrespective of whether the user can defer or not, and a free disk space check., Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a close processes countdown irrespective of whether the user can defer or not., Interactive, with processes to close, with deferral allowed only if the processes to close are open, with a close processes countdown if the user has no available deferrals, and a free disk space check., Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a close processes countdown if the user has no available deferrals., Interactive, with processes to close, with deferral allowed only if the processes to close are open, with a continue/defer countdown depending on whether processes to close are open or not, and a free disk space check., Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a continue/defer countdown depending on whether processes to close are open or not., Interactive, with processes to close, with deferral allowed only if the processes to close are open, and a free disk space check., Interactive, with processes to close, and with deferral allowed only if the processes to close are open., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a close processes countdown irrespective of whether the user can defer or not, and a free disk space check., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a close processes countdown irrespective of whether the user can defer or not., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a close processes countdown if the user has no available deferrals, and a free disk space check., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a close processes countdown if the user has no available deferrals., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a continue/defer countdown depending on whether processes to close are open or not, and a free disk space check., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a continue/defer countdown depending on whether processes to close are open or not., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and a free disk space check., Interactive, with processes to close, and with deferral allowed irrespective of whether processes to close are open., Interactive, with processes to close, with a close processes countdown irrespective of whether the user can defer or not, and a free disk space check., Interactive, with processes to close, and with a close processes countdown irrespective of whether the user can defer or not., Interactive, with processes to close, with a close processes countdown if the user has no available deferrals, and a free disk space check., Interactive, with processes to close, and with a close processes countdown if the user has no available deferrals., Interactive, with processes to close, and a free disk space check., Interactive, and with processes to close., Interactive, with deferral allowed, with a continue countdown irrespective of deferrals, and a free disk space check., Interactive, with deferral allowed, and with a continue countdown irrespective of deferrals., Interactive, with deferral allowed, and a free disk space check., Interactive, and with deferral allowed., Interactive, and with a free disk space check.
-Aliases:
+Aliases: CustomText
 
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CustomMessageText
+
+Specifies a literal custom message to display, ignoring the custom message specified in the `strings.psd1` file.
+
+```yaml
+Type: String
+Parameter Sets: Interactive, with no modifying options., Interactive, with processes to close, with deferral allowed only if the processes to close are open, with a close processes countdown irrespective of whether the user can defer or not, and a free disk space check., Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a close processes countdown irrespective of whether the user can defer or not., Interactive, with processes to close, with deferral allowed only if the processes to close are open, with a close processes countdown if the user has no available deferrals, and a free disk space check., Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a close processes countdown if the user has no available deferrals., Interactive, with processes to close, with deferral allowed only if the processes to close are open, with a continue/defer countdown depending on whether processes to close are open or not, and a free disk space check., Interactive, with processes to close, with deferral allowed only if the processes to close are open, and with a continue/defer countdown depending on whether processes to close are open or not., Interactive, with processes to close, with deferral allowed only if the processes to close are open, and a free disk space check., Interactive, with processes to close, and with deferral allowed only if the processes to close are open., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a close processes countdown irrespective of whether the user can defer or not, and a free disk space check., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a close processes countdown irrespective of whether the user can defer or not., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a close processes countdown if the user has no available deferrals, and a free disk space check., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a close processes countdown if the user has no available deferrals., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, with a continue/defer countdown depending on whether processes to close are open or not, and a free disk space check., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and with a continue/defer countdown depending on whether processes to close are open or not., Interactive, with processes to close, with deferral allowed irrespective of whether processes to close are open, and a free disk space check., Interactive, with processes to close, and with deferral allowed irrespective of whether processes to close are open., Interactive, with processes to close, with a close processes countdown irrespective of whether the user can defer or not, and a free disk space check., Interactive, with processes to close, and with a close processes countdown irrespective of whether the user can defer or not., Interactive, with processes to close, with a close processes countdown if the user has no available deferrals, and a free disk space check., Interactive, with processes to close, and with a close processes countdown if the user has no available deferrals., Interactive, with processes to close, and a free disk space check., Interactive, and with processes to close., Interactive, with deferral allowed, with a continue countdown irrespective of deferrals, and a free disk space check., Interactive, with deferral allowed, and with a continue countdown irrespective of deferrals., Interactive, with deferral allowed, and a free disk space check., Interactive, and with deferral allowed., Interactive, and with a free disk space check.
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
