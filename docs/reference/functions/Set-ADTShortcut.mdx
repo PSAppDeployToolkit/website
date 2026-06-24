@@ -16,8 +16,8 @@ Modifies a .lnk or .url type shortcut.
 ```powershell
 Set-ADTShortcut [-LiteralPath] <String> [-TargetPath <String>] [-Arguments <String>] [-IconLocation <String>]
  [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>]
- [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-Force] [-PassThru] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+ [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-Clear <String[]>] [-Force] [-PassThru]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### InputObject
@@ -25,8 +25,8 @@ Set-ADTShortcut [-LiteralPath] <String> [-TargetPath <String>] [-Arguments <Stri
 ```powershell
 Set-ADTShortcut -InputObject <IShortcutLinkInfo> [-TargetPath <String>] [-Arguments <String>]
  [-IconLocation <String>] [-IconIndex <UInt32>] [-Description <String>] [-WorkingDirectory <String>]
- [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-PassThru] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-WindowStyle <ShortcutWindowStyle>] [-RunAsAdmin] [-Hotkey <String>] [-Clear <String[]>] [-PassThru]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -226,6 +226,23 @@ Sets the hotkey to launch the shortcut, e.g.
 
 ```yaml
 Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Clear
+
+Clears one or more shortcut properties.
+Only clears if the corresponding parameter isn't specified.
+
+```yaml
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 
