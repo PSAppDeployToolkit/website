@@ -42,18 +42,18 @@ These are the first thing to edit in your deployment script and are stored withi
 | `AppProcessesToClose` | `@(@{ Name = 'winword'; Description = 'Microsoft Word' })` | **New in v4.1**. Processes that should be closed before install / uninstall / repair. |
 | `RequireAdmin`        | `$true`                                                    | **New in v4.1**. Whether the script requires administrative privileges                |
 
-:::warning Breaking Changes in v4.1
+:::warning[Breaking Changes in v4.1]
 If you are upgrading from v4.0 or earlier, you must move any `RequireAdmin` setting from your config file to the session object in your deployment script, and use `AppProcessesToClose` instead of specifying the processes directly on the `-CloseProcesses` parameter of `Show-ADTInstallationWelcome`.
 :::
 
-:::info New in v4.1: RequireAdmin
+:::info[New in v4.1: RequireAdmin]
 PSADT v4.1 contains a new variable `RequireAdmin` that allows you to check for administrative rights on a per-application basis without needing to modify the PSADT configuration file.
 
 - `RequireAdmin = $true`, will fail the deployment if admin rights are not available.
 - `RequireAdmin = $false`, will run in the users context without requiring administrative rights.
 :::
 
-:::info New in v4.1: AppProcessesToClose
+:::info[New in v4.1: AppProcessesToClose]
 PSADT v4.1 contains a new variable `AppProcessesToClose` that allows you to specify processes to be closed before the installation, uninstallation, or repair phases. This replaces the previous method of using the -CloseApps parameter on `Show-InstallationWelcome`
 
 - `AppProcessesToClose = <populated>`, will automatically close the specified processes before proceeding with the deployment.
