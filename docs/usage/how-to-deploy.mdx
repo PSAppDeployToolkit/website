@@ -17,20 +17,21 @@ There are two ways to launch the PSAppDeployToolkit for deployment of applicatio
 `%SystemRoot%\System32\WindowsPowerShell\v1.0\PowerShell.exe -ExecutionPolicy Bypass -NoProfile -File Invoke-AppDeployToolkit.ps1`
 - Run `Invoke-AppDeployToolkit.exe` to launch `Invoke-AppDeployToolkit.ps1` in a hidden PowerShell window.
 
-:::info
+:::info[Elevation]
+If your script uses `RequireAdmin = $true`, you will need to run it as admin; the launcher will not prompt for elevation by itself.
+:::
+
+:::info[ServiceUI]
 Additionally, as of v4.1.0:
 
 - If deploying via **Intune**, there is no longer any reqirement to use `ServiceUI.exe` workarounds to display the UI.
 - If deploying via **Configuration Manager**, the **'Allow users to view and interact with the program installation'** option is no longer required to display the UI.
 - Invoke-ServiceUI.ps1 has been removed from the toolkit as it is no longer required.
-
 :::
 
 :::warning
-
 - If you want to deploy an installer interactively, you can include ServiceUI.exe in your package and use that to trigger your installer.
 - However, this is a security risk since any file dialogs or hyperlinks can be abused by the user to gain access as local system.
-
 :::
 
 ### Available parameters
