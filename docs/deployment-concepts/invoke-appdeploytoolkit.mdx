@@ -42,6 +42,10 @@ These are the first thing to edit in your deployment script and are stored withi
 | `AppProcessesToClose` | `@(@{ Name = 'winword'; Description = 'Microsoft Word' })` | **New in v4.1**. Processes that should be closed before install / uninstall / repair. |
 | `RequireAdmin`        | `$true`                                                    | **New in v4.1**. Whether the script requires administrative privileges                |
 
+:::warning[PSAppDeployToolkit variables]
+If trying to use a PSAppDeployToolkit variables such as $envProgramFiles in this section, it will not work because the module has typically not been imported and initialized this early on in the script.
+:::
+
 :::warning[Breaking Changes in v4.1]
 If you are upgrading from v4.0 or earlier, you must move any `RequireAdmin` setting from your config file to the session object in your deployment script, and use `AppProcessesToClose` instead of specifying the processes directly on the `-CloseProcesses` parameter of `Show-ADTInstallationWelcome`.
 :::
