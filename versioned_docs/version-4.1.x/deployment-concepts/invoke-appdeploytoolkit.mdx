@@ -54,7 +54,9 @@ If you are upgrading from v4.0 or earlier, you must move any `RequireAdmin` sett
 PSADT v4.1 contains a new variable `RequireAdmin` that allows you to check for administrative rights on a per-application basis without needing to modify the PSADT configuration file.
 
 - `RequireAdmin = $true`, will fail the deployment if admin rights are not available.
-- `RequireAdmin = $false`, will run in the users context without requiring administrative rights.
+- `RequireAdmin = $false`, will not check for admin rights.
+
+Note that Invoke-AppDeployToolkit.exe no longer checks this value to figure out if it needs to relaunch itself elevated. If your deployment requires admin rights, you must ensure that the launcher is run elevated.
 :::
 
 :::info[New in v4.1: AppProcessesToClose]
