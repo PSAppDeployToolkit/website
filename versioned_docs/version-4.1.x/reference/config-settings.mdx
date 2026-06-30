@@ -50,15 +50,15 @@ In PSADT v4.1, we've introduced **Group Policy ADMX templates** for centralized 
 | `Toolkit.LogMaxHistory`             | Sets the maximum history for logs.                                                                                                                                                               |
 | `Toolkit.LogMaxSize`                | Defines the maximum size for logs.                                                                                                                                                               |
 | `Toolkit.LogPath`                   | Specifies the path where logs are stored.                                                                                                                                                        |
-| `Toolkit.LogPathNoAdminRights`      | Specifies the log path when no admin rights are available.                                                                                                                                       |
+| `Toolkit.LogPathNoAdminRights`      | Specifies the log path when no administrative privileges are available.                                                                                                                                       |
 | `Toolkit.LogStyle`                  | Sets the style for logging.                                                                                                                                                                      |
 | `Toolkit.LogToHierarchy`            | Log to a hierarchical structure of AppVendor\AppName\AppVersion.                                                                                                                                 |
 | `Toolkit.LogToSubfolder`            | Log to a subfolder based on InstallName.                                                                                                                                                         |
 | `Toolkit.LogWriteToHost`            | Determines if logs should be written to the host.                                                                                                                                                |
 | `Toolkit.RegPath`                   | Specifies the registry path for the toolkit.                                                                                                                                                     |
-| `Toolkit.RegPathNoAdminRights`      | Specifies the registry path when no admin rights are available.                                                                                                                                  |
+| `Toolkit.RegPathNoAdminRights`      | Specifies the registry path when no administrative privileges are available.                                                                                                                                  |
 | `Toolkit.TempPath`                  | Specifies the temporary path for the toolkit.                                                                                                                                                    |
-| `Toolkit.TempPathNoAdminRights`     | Specifies the temporary path when no admin rights are available.                                                                                                                                 |
+| `Toolkit.TempPathNoAdminRights`     | Specifies the temporary path when no administrative privileges are available.                                                                                                                                 |
 
 #### Windows Installer (MSI) Execution Settings
 
@@ -67,7 +67,7 @@ In PSADT v4.1, we've introduced **Group Policy ADMX templates** for centralized 
 | `MSI.InstallParams`        | Defines the installation parameters for MSI. **Default changed to `/qn REBOOT=ReallySuppress`**                         |
 | `MSI.LoggingOptions`       | Specifies the logging options for MSI.                                                                                  |
 | `MSI.LogPath`              | Specifies the log path for MSI. **Now uses Toolkit.LogPath when empty**                                                 |
-| `MSI.LogPathNoAdminRights` | Specifies the log path for MSI when no admin rights are available. **Now uses Toolkit.LogPathNoAdminRights when empty** |
+| `MSI.LogPathNoAdminRights` | Specifies the log path for MSI when no administrative privileges are available. **Now uses Toolkit.LogPathNoAdminRights when empty** |
 | `MSI.MutexWaitTime`        | Sets the mutex wait time for MSI.                                                                                       |
 | `MSI.SilentParams`         | Defines the silent parameters for MSI.                                                                                  |
 | `MSI.UninstallParams`      | Defines the uninstall parameters for MSI.                                                                               |
