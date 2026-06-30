@@ -20,7 +20,7 @@ tags:
 - `OOBEDetection` and `SessionDetection` are no longer set in Config.psd1. They can be set per-deployment by adding the `NoOOBEDetection` and `NoSessionDetection` options to the session properties if required.
 - `AppProcessesToClose` is a new session property that allows you to define processes to close during Install/Uninstall/Repair in one place instead of specifying the processes directly on the `-CloseProcesses` parameter of `Show-ADTInstallationWelcome`.
 - `RequireAdmin` is no longer set in Config.psd1. It must be set per-deployment in the session properties.
-- Invoke-AppDeployToolkit.exe no longer requests elevation if RequireAdmin is set; you must elevate this yourself.
+- `Invoke-AppDeployToolkit.exe` no longer requests elevation if RequireAdmin is set; you must elevate this yourself.
 - Several config options have been removed or had their default values changed. See below for details.
 - Deprecated functions and parameters are scheduled for removal in 4.2.0. Update your scripts accordingly.
 
