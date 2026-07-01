@@ -16,7 +16,7 @@ Displays a restart prompt with a countdown to a forced restart.
 ```powershell
 Show-ADTInstallationRestartPrompt [-CountdownSeconds <UInt32>] [-CountdownNoHideSeconds <UInt32>]
  [-ShutdownReasonText <String>] [-WindowLocation <DialogPosition>] [-PersistPrompt] [-CustomMessage]
- [-CustomMessageText <String>] [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String>
+ [-CustomMessageText <String>] [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String> -Subtitle <String>
  [<CommonParameters>]
 ```
 
@@ -25,7 +25,7 @@ Show-ADTInstallationRestartPrompt [-CountdownSeconds <UInt32>] [-CountdownNoHide
 ```powershell
 Show-ADTInstallationRestartPrompt [-NoCountdown] [-ShutdownReasonText <String>]
  [-WindowLocation <DialogPosition>] [-PersistPrompt] [-CustomMessage] [-CustomMessageText <String>]
- [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String> [<CommonParameters>]
+ [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ### SilentRestart
@@ -257,6 +257,22 @@ Specifies that the user can move the dialog on the screen.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowCancel
+
+Specifies that a Cancel button is displayed alongside the restart options, allowing the user to dismiss the prompt without restarting.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Countdown, NoCountdown
 Aliases:
 
 Required: False
