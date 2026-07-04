@@ -12,7 +12,7 @@ Unregister a DLL file.
 ## SYNTAX
 
 ```powershell
-Unregister-ADTDll [-FilePath] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Unregister-ADTDll [-FilePath] <String> [-AsUser] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,6 +30,14 @@ Unregister-ADTDll -FilePath "C:\Test\DcTLSFileToDMSComp.dll"
 
 Unregisters the specified DLL file.
 
+### EXAMPLE 2
+
+```powershell
+Unregister-ADTDll -FilePath "C:\Test\DcTLSFileToDMSComp.dll" -AsUser
+```
+
+Unregisters the specified DLL file for the currently logged on user only.
+
 ## PARAMETERS
 
 ### -FilePath
@@ -44,6 +52,24 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AsUser
+
+Specifies that the DLL should be unregistered for the current user only by calling its DllInstall entry point with the 'user' argument (regsvr32.exe /u /n /i:user).
+If this function is running under the SYSTEM account, regsvr32.exe is executed in the context of the currently logged on user.
+Note that the DLL must support per-user registration via a DllInstall export for this to work.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

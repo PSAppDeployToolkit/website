@@ -12,7 +12,7 @@ Register a DLL file.
 ## SYNTAX
 
 ```powershell
-Register-ADTDll [-FilePath] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Register-ADTDll [-FilePath] <String> [-AsUser] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,6 +31,14 @@ Register-ADTDll -FilePath "C:\Test\DcTLSFileToDMSComp.dll"
 
 Registers the specified DLL file.
 
+### EXAMPLE 2
+
+```powershell
+Register-ADTDll -FilePath "C:\Test\DcTLSFileToDMSComp.dll" -AsUser
+```
+
+Registers the specified DLL file for the currently logged on user only.
+
 ## PARAMETERS
 
 ### -FilePath
@@ -45,6 +53,24 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AsUser
+
+Specifies that the DLL should be registered for the current user only by calling its DllInstall entry point with the 'user' argument (regsvr32.exe /n /i:user).
+If this function is running under the SYSTEM account, regsvr32.exe is executed in the context of the currently logged on user.
+Note that the DLL must support per-user registration via a DllInstall export for this to work.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

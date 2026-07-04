@@ -12,7 +12,7 @@ Register or unregister a DLL file.
 ## SYNTAX
 
 ```powershell
-Invoke-ADTRegSvr32 [-FilePath] <String> [-Action] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-ADTRegSvr32 [-FilePath] <String> [-Action] <String> [-AsUser] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,6 +38,14 @@ Invoke-ADTRegSvr32 -FilePath "C:\Test\DcTLSFileToDMSComp.dll" -Action 'Unregiste
 ```
 
 Unregisters the specified DLL file.
+
+### EXAMPLE 3
+
+```powershell
+Invoke-ADTRegSvr32 -FilePath "C:\Test\DcTLSFileToDMSComp.dll" -Action 'Register' -AsUser
+```
+
+Registers the specified DLL file for the currently logged on user only.
 
 ## PARAMETERS
 
@@ -69,6 +77,24 @@ Aliases:
 Required: True
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AsUser
+
+Specifies that the DLL should be registered for the current user only by calling its DllInstall entry point with the 'user' argument (regsvr32.exe /n /i:user).
+If this function is running under the SYSTEM account, regsvr32.exe is executed in the context of the currently logged on user.
+Note that the DLL must support per-user registration via a DllInstall export for this to work.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
