@@ -19,7 +19,7 @@ The `ADTSession` object is a core component of **PSAppDeployToolkit**, managing 
 When you start a deployment script, initialize the `ADTSession` with the `Open-ADTSession` function:
 
 ```powershell
-$adtSession = Open-ADTSession -AppName "YourAppName" -AppVersion "1.0.0" -AppVendor "YourVendor" -DeploymentType "Install" -SessionState $ExecutionContext.SessionState -PassThru
+$adtSession = Open-ADTSession -AppName "YourAppName" -AppVersion "1.0.0" -AppVendor "YourVendor" -DeploymentType "Install" -PassThru
 ```
 
 This initializes the session and gathers information about the deployment, user, and computer, providing an object with several helpful properties you can use.
@@ -58,25 +58,29 @@ The following properties are settable via parameters of the `Open-ADTSession` fu
 
 ### Deployment Settings
 
-| Property                       | Description                                                                                                                                               |
-| :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `AppRebootExitCodes`           | An array of exit codes that indicate a reboot is required after installation or uninstallation.                                                           |
-| `AppSuccessExitCodes`          | An array of exit codes that indicate a successful installation or uninstallation.                                                                         |
-| `AppProcessesToClose`          | An array of process names or hashtables (with Name/Description) to be closed before install/uninstall/repair.                                             |
-| `ForceWimDetection`            | Auto-mount a WIM image file if found in DirFiles.                                                                                                         |
-| `NoOobeDetection`              | Bypasses OOBE detection logic when DeployMode is set to Auto. Use this to show the UI during OOBE / Autopilot ESP phases.                                 |
-| `NoProcessDetection`           | Bypasses process detection logic when DeployMode is set to Auto. Use this to show the UI even if there are no processes to close.                         |
-| `NoSessionDetection`           | Bypasses session detection logic when DeployMode is set to Auto. Use this to show the UI when no user is logged on and the SYSTEM process is interactive. |
-| `DisableDefaultMsiProcessList` | Disables extraction of the default process list from the MSI.                                                                                             |
-| `TerminalServerMode`           | Enables Terminal Server installation mode.                                                                                                                |
-| `ForceMsiDetection`            | Force use of zero-config MSI detection even if the AppName is already set.                                                                                |
-| `SuppressRebootPassThru`       | Indicates if reboot exit codes (e.g. 3010) should be converted to 0 (i.e. Success) when closing the session.                                              |
-| `DeploymentType`               | Indicates if the deployment is an "Install", "Uninstall", or "Repair".                                                                                    |
-| `DefaultMsiFile`               | The default MSI file used for installation if none is specified.                                                                                          |
-| `DefaultMspFiles`              | The default MSP files used for installation if none are specified.                                                                                        |
-| `DefaultMstFile`               | The default MST file used for installation if none are specified.                                                                                         |
-| `DeployMode`                   | The mode in which the deployment is running (e.g., "Auto", "Interactive", "NonInteractive", "Silent").                                                    |
-| `RequireAdmin`                 | Whether the deployment requires administrative privileges.                                                                                                |
+| Property                         | Description                                                                                                                                               |
+| :------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AdditionalEnvironmentVariables` | A dictionary of key/value pairs to inject into the generated environment table.                                                                           |
+| `AllowWowProcess`                | Allow execution within 32-bit PowerShell on a 64-bit OS.                                                                                                  |
+| `AppRebootExitCodes`             | An array of exit codes that indicate a reboot is required after installation or uninstallation.                                                           |
+| `AppSuccessExitCodes`            | An array of exit codes that indicate a successful installation or uninstallation.                                                                         |
+| `AppProcessesToClose`            | An array of process names or hashtables (with Name/Description) to be closed before install/uninstall/repair.                                             |
+| `DeploymentType`                 | Indicates if the deployment is an "Install", "Uninstall", or "Repair".                                                                                    |
+| `DeployMode`                     | The mode in which the deployment is running (e.g., "Auto", "Interactive", "NonInteractive", "Silent").                                                    |
+| `DefaultMsiFile`                 | The default MSI file used for installation if none is specified.                                                                                          |
+| `DefaultMspFiles`                | The default MSP files used for installation if none are specified.                                                                                        |
+| `DefaultMstFile`                 | The default MST file used for installation if none are specified.                                                                                         |
+| `DisableDefaultMsiProcessList`   | Disables extraction of the default process list from the MSI.                                                                                             |
+| `ExitWithMsiCodes`               | Always exit 0 upon success and 3010 upon reboot required so Intune/ConfigMgr requires no specific adjustment of return code handling.                     |
+| `ForceMsiDetection`              | Force use of zero-config MSI detection even if the AppName is already set.                                                                                |
+| `ForceWimDetection`              | Auto-mount a WIM image file if found in DirFiles.                                                                                                         |
+| `NoOobeDetection`                | Bypasses OOBE detection logic when DeployMode is set to Auto. Use this to show the UI during OOBE / Autopilot ESP phases.                                 |
+| `NoProcessDetection`             | Bypasses process detection logic when DeployMode is set to Auto. Use this to show the UI even if there are no processes to close.                         |
+| `NoSessionDetection`             | Bypasses session detection logic when DeployMode is set to Auto. Use this to show the UI when no user is logged on and the SYSTEM process is interactive. |
+| `ProcessInteractivityDetection`  | Bypasses process interactivity detection logic when DeployMode is set to Auto. Use this to suppress the UI during OSD task sequences.                     |
+| `RequireAdmin`                   | Whether the deployment requires administrative privileges.                                                                                                |
+| `SuppressRebootPassThru`         | Indicates if reboot exit codes (e.g. 3010) should be converted to 0 (i.e. Success) when closing the session.                                              |
+| `TerminalServerMode`             | Enables Terminal Server installation mode.                                                                                                                |
 
 ### Path Settings
 
@@ -102,6 +106,26 @@ The following properties are not parameters of `Open-ADTSession`, but are availa
 | `CurrentDate`     | The current date.                                                                                              |
 | `CurrentDateTime` | The current date and time.                                                                                     |
 | `CurrentTime`     | The current time.                                                                                              |
+| `DirWimMountPath` | The mount path of the WIM file, if mounted.                                                                    |
 | `InstallPhase`    | The current phase of the installation process (e.g., "Pre-Installation", "Installation", "Post-Installation"). |
 | `LogPath`         | The path used for logging.                                                                                     |
 | `UseDefaultMsi`   | Indicates whether the toolkit is running in zero-config mode.                                                  |
+
+### Additional Methods
+
+The following methods can also be run on the `ADTSession` object:
+
+| Method               | Description                                                       |
+| :------------------- | :---------------------------------------------------------------- |
+| `GetDeferHistory`    | Returns the defer history.                                        |
+| `GetDeploymentStatus | Returns the current deployment status.                            |
+| `GetExitCode`        | Returns the current exit code.                                    |
+| `GetLogBuffer`       | Returns the entire log buffer.                                    |
+| `IsClosed`           | Indicates whether the session is closed.                          |
+| `IsNonInteractive`   | Indicates whether the session is running in non-interactive mode. |
+| `IsSilent`           | Indicates whether the session is running in silent mode.          |
+| `NewLogFileName`     | Generates a new log file name.                                    |
+| `ResetDeferHistory`  | Resets the defer history.                                         |
+| `SetDeferHistory`    | Sets the defer history.                                           |
+| `SetExitCode`        | Sets the exit code.                                               |
+| `WriteLogEntry`      | Writes an entry to the log.                                       |

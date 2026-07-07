@@ -18,15 +18,15 @@ PSAppDeployToolkit v4.1 represents a significant architectural evolution from pr
 
 #### Core Architecture Principles
 
-**Session-Based Management**: PSADT v4.1 **introduces the `ADTSession` object**, which encapsulates all deployment state, configuration, and context. This object-oriented approach provides better isolation, state management, and extensibility compared to the global variable approach used in v3.
+**Session-Based Management**: PSADT v4 **introduces the `ADTSession` object**, which encapsulates all deployment state, configuration, and context. This object-oriented approach provides better isolation, state management, and extensibility compared to the global variable approach used in v3.
 
-**Security-First Design**: The v4.1 architecture **separates user interaction from system-level operations**, eliminating the need for ServiceUI and providing a more secure deployment experience. User interfaces run in the user's session context, while system operations execute in the appropriate security context.
+**Security-First Design**: The v4.1+ architecture **separates user interaction from system-level operations**, eliminating the need for ServiceUI and providing a more secure deployment experience. User interfaces run in the user's session context, while system operations execute in the appropriate security context.
 
-**Modular Function Library**: The toolkit provides **130+ specialized functions** organized into logical categories (Installation, Registry, File System, User Interface, etc.), each designed for specific deployment scenarios.
+**Modular Function Library**: The toolkit provides **140+ specialized functions** organized into logical categories (Installation, Registry, File System, User Interface, etc.), each designed for specific deployment scenarios.
 
 ## V4 Native Deployment Template
 
-The **v4 native deployment template** is designed to be more modular, flexible, and user-friendly than the v3 structure, while still containing all core PSADT module files. This structure represents the recommended approach for new deployments and provides the full feature set of PSADT v4.1.
+The **v4 native deployment template** is designed to be more modular, flexible, and user-friendly than the v3 structure, while still containing all core PSADT module files. This structure represents the recommended approach for new deployments and provides the full feature set of PSADT v4.2.
 
 :::info
 The **v4 native deployment template** structure is considerably more sophisticated than the V3 deployment structure. At first glance, it can seem overly complex and daunting. However, you can avoid getting overwhelmed by focusing on just the files you need to know about.
@@ -88,9 +88,9 @@ The root directory serves as the deployment entry point and contains the essenti
 
 #### PSAppDeployToolkit Directory
 
-This directory contains the complete PSADT v4.1 framework and should never be modified:
+This directory contains the complete PSADT module and should never be modified:
 
-- **Core Module Files**: The main PSADT PowerShell module with over 200 specialized functions
+- **Core Module Files**: The main PSADT PowerShell module with over 140 specialized functions
 - **UI Components**: Both Classic and Fluent UI frameworks for user interaction
 - **Security Components**: Session management, privilege handling, and security context management
 - **Function Libraries**: Organized collections of functions for installation, registry, file system, and UI operations
@@ -100,7 +100,7 @@ This directory contains the complete PSADT v4.1 framework and should never be mo
 
 The primary location for application installation media:
 
-- **Supported File Types**:
+- **Example File Types**:
   - Executable installers (`.exe`, `.msi`, `.msm`)
   - Windows Installer patches (`.msp`)
   - Transform files (`.mst`)
@@ -185,24 +185,6 @@ YourApp-Deployment/
     ├── strings.psd1
     └── de-DE/
         └── strings.psd1
-```
-
-#### Example Multi-Architecture Deployment Structure
-
-For applications with multiple versions or architectures:
-
-```text
-YourApp-Deployment/
-├── Files/
-│   ├── x64/
-│   │   ├── YourApp-x64-Setup.exe
-│   │   └── YourApp-x64-Patch.msp
-│   ├── x86/
-│   │   ├── YourApp-x86-Setup.exe
-│   │   └── YourApp-x86-Patch.msp
-│   └── Common/
-│       ├── SharedComponents.msi
-│       └── License.lic
 ```
 
 :::info

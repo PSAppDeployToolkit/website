@@ -30,8 +30,9 @@ Full parameter descriptions can be found in the [Start-ADTProcess](../reference/
 | -WaitForChildProcesses        | Wait for all child processes to complete. Useful for installers or uninstallers that exit early and hand off to a child process.                                                                               |
 | -KillChildProcessesWithParent | Terminate all child processes once the main process closes - useful when an installer launches the application once complete and you want it closed.                                                           |
 | -UseUnelevatedToken           | Force the process to be started with the user's unelevated token. Useful when installing user-context apps that refuse to install when elevated, or to work around Windows 11 Administrator Protection issues. |
-| -Verb                         | Use `-Verb RunAs` to force the process to run elevated. Note that this does not magically make standard users into admins.                                                                                     |
+| -Verb                         | The verb to use when doing a ShellExecute invocation. Common usages are "runas" to trigger a UAC elevation of the process. Note that this does not magically make standard users into admins.                  |
 | -UseShellExecute              | Useful for opening a file or URL and letting the Windows shell figure out which application to open it with.                                                                                                   |
+| -ExpandEnvironmentVariables  | Expand environment variables such as %APPDATA% in the file path, arguments, and working directory.                                                                                                              |
 | -NoWait                       | Do not wait for the process to complete. This is useful for launching processes that run in the background or when you do not need to wait for the process to finish before continuing with the script.        |
 | -Timeout                      | Specifies the maximum time to wait for the process to complete.                                                                                                                                                |
 | -TimeoutAction                | Specifies the action to take if the process does not complete within the specified timeout period.                                                                                                             |
@@ -62,9 +63,10 @@ Full parameter descriptions can be found in the [Start-ADTProcessAsUser](../refe
 
 | Parameter                    | Description                                                                                                                                                 |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -UseLinkedAdminToken         | Run the process with the user's admin token if available.                                                                                                   |
+| -DenyUserTermination         | Prevent non-administrative userss from terminating the process.                                                                                             |
 | -InheritEnvironmentVariables | Inherit environment variables from the current deployment process; user environment variables such as APPDATA are always layered on top so take precedence. |
-| -ExpandEnvironmentVariables  | Expand environment variables such as %APPDATA% in the file path, arguments, and working directory.                                                          |
+| -UseLinkedAdminToken         | Run the process with the user's admin token (will fail if the user has no administrative privileges).                                                       |
+| -UseHighestAvailableToken    | Run the process with the user's admin token if available.                                                                                                   |
 
 #### Example Usage
 

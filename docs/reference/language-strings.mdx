@@ -12,86 +12,149 @@ tags:
 
 ## Language Strings
 
-Each setting in the config.psd1 is exposed through the `Get-ADTConfig` function, allowing you to retrieve text used by the UI.
+Language strings are exposed through the `Get-ADTSStringTable` function.
 
-### Settings
+The string table mirrors the nested structure below. Where a setting has `Install`, `Repair`, and `Uninstall` child values, each value is specific to that deployment type.
 
-#### General Strings
-
-#### Close Prompts
-
-| Setting                      | Description                                  |
-| :--------------------------- | :------------------------------------------- |
-| `ClosePrompt.ButtonClose`    | Button text for closing the prompt.          |
-| `ClosePrompt.ButtonContinue` | Button text for continuing the close prompt. |
-| `ClosePrompt.ButtonDefer`    | Button text for deferring the close prompt.  |
-
-#### Progress Messages
-
-| Setting                           | Description                                       |
-| :-------------------------------- | :------------------------------------------------ |
-| `Progress.MessageInstall`         | Message displayed during installation.            |
-| `Progress.MessageInstallDetail`   | Detailed message displayed during installation.   |
-| `Progress.MessageRepair`          | Message displayed during repair.                  |
-| `Progress.MessageRepairDetail`    | Detailed message displayed during repair.         |
-| `Progress.MessageUninstall`       | Message displayed during uninstallation.          |
-| `Progress.MessageUninstallDetail` | Detailed message displayed during uninstallation. |
-
-#### Disk Space
-
-| Setting             | Descriptionm                                 |
-| :------------------ | :------------------------------------------- |
-| `DiskSpace.Message` | Message displayed when checking disk  space. |
-
-#### Deployment Types
-
-| Setting                    | Description                         |
-| :------------------------- | :---------------------------------- |
-| `DeploymentType.Install`   | Text for install deployment type.   |
-| `DeploymentType.Repair`    | Text for repair deployment type.    |
-| `DeploymentType.Uninstall` | Text for uninstall deployment type. |
-
-#### Welcome Prompts
+ #### BalloonTip
 
 | Setting | Description |
-| :------ | :-- -------- |
-| `WelcomePrompt.Classic` | Classic style welcome prompt. |
-| `WelcomePrompt.Fluent` | Fluent style welcome prompt. |
+| :------ | :---------- |
+| `Start.Install` | Text displayed in the balloon tip for the start of an installation. |
+| `Start.Repair` | Text displayed in the balloon tip for the start of a repair. |
+| `Start.Uninstall` | Text displayed in the balloon tip for the start of an uninstallation. |
+| `Complete.Install` | Text displayed in the balloon tip for successful completion of an installation. |
+| `Complete.Repair` | Text displayed in the balloon tip for successful completion of a repair. |
+| `Complete.Uninstall` | Text displayed in the balloon tip for successful completion of an uninstallation. |
+| `RestartRequired.Install` | Text displayed in the balloon tip when an installation completes and requires a restart. |
+| `RestartRequired.Repair` | Text displayed in the balloon tip when a repair completes and requires a restart. |
+| `RestartRequired.Uninstall` | Text displayed in the balloon tip when an uninstallation completes and requires a restart. |
+| `FastRetry.Install` | Text displayed in the balloon tip for a fast retry of an installation. |
+| `FastRetry.Repair` | Text displayed in the balloon tip for a fast retry of a repair. |
+| `FastRetry.Uninstall` | Text displayed in the balloon tip for a fast retry of an uninstallation. |
+| `Error.Install` | Text displayed in the balloon tip for a failed installation. |
+| `Error.Repair` | Text displayed in the balloon tip for a failed repair. |
+| `Error.Uninstall` | Text displayed in the balloon tip for a failed uninstallation. |
 
-### Block Execution
+ #### BlockExecutionText
 
-| Setting                  | Description                                  |
-| :----------------------- | :------------------------------------------- |
-| `BlockExecution.Message` | Message displayed when execution is blocked. |
+| Setting | Description |
+| :------ | :---------- |
+| `Message.Install` | Text displayed when prompting that an application has been blocked during an installation. |
+| `Message.Repair` | Text displayed when prompting that an application has been blocked during a repair. |
+| `Message.Uninstall` | Text displayed when prompting that an application has been blocked during an uninstallation. |
+| `Subtitle.Install` | Subtitle shown underneath the install title for Fluent dialogs during an installation. |
+| `Subtitle.Repair` | Subtitle shown underneath the install title for Fluent dialogs during a repair. |
+| `Subtitle.Uninstall` | Subtitle shown underneath the install title for Fluent dialogs during an uninstallation. |
 
-### Balloon Texts
+ #### DiskSpaceText
 
-| Setting                       | Description                        |
-| :---------------------------- | :--------------------------------- |
-| `BalloonText.Complete`        | Balloon text for completion.       |
-| `BalloonText.Error`           | Balloon text for errors.           |
-| `BalloonText.FastRetry`       | Balloon text for fast retry.       |
-| `BalloonText.RestartRequired` | Balloon text for restart required. |
-| `BalloonText.Start`           | Balloon text for start.            |
+| Setting | Description |
+| :------ | :---------- |
+| `Message.Install` | Text displayed when there is not enough free disk space to complete an installation. |
+| `Message.Repair` | Text displayed when there is not enough free disk space to complete a repair. |
+| `Message.Uninstall` | Text displayed when there is not enough free disk space to complete an uninstallation. |
 
-#### Restart Prompts
+ #### InstallationPrompt
 
-| Setting                            | Description                                   |
-| :--------------------------------- | :-------------------------------------------- |
-| `RestartPrompt.ButtonRestartLater` | Button text for restarting later.             |
-| `RestartPrompt.ButtonRestartNow`   | Button text for restarting now.               |
-| `RestartPrompt.Message`            | General restart prompt message.               |
-| `RestartPrompt.MessageRestart`     | Message displayed when a restart is required. |
-| `RestartPrompt.MessageTime`        | Time message for restart prompt.              |
-| `RestartPrompt.TimeRemaining`      | Time remaining message for restart.           |
-| `RestartPrompt.Title`              | Title for restart prompt.                     |
+| Setting | Description |
+| :------ | :---------- |
+| `Subtitle.Install` | Subtitle shown underneath the install title for Fluent dialogs during an installation. |
+| `Subtitle.Repair` | Subtitle shown underneath the install title for Fluent dialogs during a repair. |
+| `Subtitle.Uninstall` | Subtitle shown underneath the install title for Fluent dialogs during an uninstallation. |
 
-#### Defer Prompts
+ #### ListSelectionPrompt
 
-| Setting                          | Description                                   |
-| :------------------------------- | :-------------------------------------------- |
-| `DeferPrompt.Deadline`           | Deadline message for defer prompt.            |
-| `DeferPrompt.ExpiryMessage`      | Expiry message for defer prompt.              |
-| `DeferPrompt.RemainingDeferrals` | Remaining deferrals message for defer prompt. |
-| `DeferPrompt.WarningMessage`     | Warning message for defer prompt.             |
-| `DeferPrompt.WelcomeMessage`     | Welcome message for defer prompt.             |
+| Setting | Description |
+| :------ | :---------- |
+| `ListSelectionMessage` | Default message displayed next to the list selection dropdown. |
+
+ #### ProgressPrompt
+
+| Setting | Description |
+| :------ | :---------- |
+| `Message.Install` | Default message displayed in the progress bar during an installation. |
+| `Message.Repair` | Default message displayed in the progress bar during a repair. |
+| `Message.Uninstall` | Default message displayed in the progress bar during an uninstallation. |
+| `MessageDetail.Install` | Default detail message displayed in the progress bar during an installation. |
+| `MessageDetail.Repair` | Default detail message displayed in the progress bar during a repair. |
+| `MessageDetail.Uninstall` | Default detail message displayed in the progress bar during an uninstallation. |
+| `Subtitle.Install` | Subtitle shown underneath the install title for Fluent dialogs during an installation. |
+| `Subtitle.Repair` | Subtitle shown underneath the install title for Fluent dialogs during a repair. |
+| `Subtitle.Uninstall` | Subtitle shown underneath the install title for Fluent dialogs during an uninstallation. |
+
+ #### RestartPrompt
+
+| Setting | Description |
+| :------ | :---------- |
+| `ButtonRestartLater` | Button text for allowing the user to restart later. |
+| `ButtonRestartNow` | Button text for restarting the device now. |
+| `ButtonCancel` | Button text for cancelling the restart. |
+| `Message.Install` | Text displayed when a restart is required after an installation. |
+| `Message.Repair` | Text displayed when a restart is required after a repair. |
+| `Message.Uninstall` | Text displayed when a restart is required after an uninstallation. |
+| `CustomMessage` | Custom message displayed in the restart window. Defaults to `$null`. |
+| `MessageRestart` | Text displayed to indicate that the device will be restarted automatically. |
+| `MessageTime` | Text displayed as a prefix to the remaining time, reminding users to save their work. |
+| `TimeRemaining` | Text displayed to indicate the amount of time remaining until a restart occurs. |
+| `Title` | Title used by the restart prompt window. |
+| `Subtitle.Install` | Subtitle shown underneath the install title for Fluent dialogs during an installation. |
+| `Subtitle.Repair` | Subtitle shown underneath the install title for Fluent dialogs during a repair. |
+| `Subtitle.Uninstall` | Subtitle shown underneath the install title for Fluent dialogs during an uninstallation. |
+
+ #### CloseAppsPrompt.Classic
+
+| Setting | Description |
+| :------ | :---------- |
+| `WelcomeMessage.Install` | Text displayed when only the deferral dialog is shown and an installation is about to start. |
+| `WelcomeMessage.Repair` | Text displayed when only the deferral dialog is shown and a repair is about to start. |
+| `WelcomeMessage.Uninstall` | Text displayed when only the deferral dialog is shown and an uninstallation is about to start. |
+| `CloseAppsMessage.Install` | Text displayed when prompting the user to close running programs before an installation can continue. |
+| `CloseAppsMessage.Repair` | Text displayed when prompting the user to close running programs before a repair can continue. |
+| `CloseAppsMessage.Uninstall` | Text displayed when prompting the user to close running programs before an uninstallation can continue. |
+| `ExpiryMessage.Install` | Text displayed when a deferral option is available for an installation. |
+| `ExpiryMessage.Repair` | Text displayed when a deferral option is available for a repair. |
+| `ExpiryMessage.Uninstall` | Text displayed when a deferral option is available for an uninstallation. |
+| `DeferralsRemaining` | Text displayed when there are a specific number of deferrals remaining. |
+| `DeferralDeadline` | Text displayed when there is a specific deferral deadline. |
+| `ExpiryWarning` | Text displayed after the deferral options to warn that deferral will no longer be available after expiry. |
+| `CountdownDefer.Install` | Countdown message shown when an installation will automatically continue if the user does not respond. |
+| `CountdownDefer.Repair` | Countdown message shown when a repair will automatically continue if the user does not respond. |
+| `CountdownDefer.Uninstall` | Countdown message shown when an uninstallation will automatically continue if the user does not respond. |
+| `CountdownClose.Install` | Countdown message shown when programs will be automatically closed before an installation. |
+| `CountdownClose.Repair` | Countdown message shown when programs will be automatically closed before a repair. |
+| `CountdownClose.Uninstall` | Countdown message shown when programs will be automatically closed before an uninstallation. |
+| `ButtonClose` | Text displayed on the button that closes running programs. |
+| `ButtonDefer` | Text displayed on the button that defers the deployment. |
+| `ButtonContinue` | Text displayed on the button that continues the deployment. |
+| `ButtonContinueTooltip` | Tooltip text displayed on the continue button. |
+
+ #### CloseAppsPrompt.Fluent
+
+| Setting | Description |
+| :------ | :---------- |
+| `DialogMessage.Install` | Message prompting the user to save work before applications are closed for an installation. |
+| `DialogMessage.Repair` | Message prompting the user to save work before applications are closed for a repair. |
+| `DialogMessage.Uninstall` | Message prompting the user to save work before applications are closed for an uninstallation. |
+| `DialogMessageNoProcesses.Install` | Message shown when there are no running processes and the user can continue with an installation. |
+| `DialogMessageNoProcesses.Repair` | Message shown when there are no running processes and the user can continue with a repair. |
+| `DialogMessageNoProcesses.Uninstall` | Message shown when there are no running processes and the user can continue with an uninstallation. |
+| `AutomaticStartCountdown` | Label used to describe the automatic start countdown. |
+| `DeferralsRemaining` | Text displayed when there are a specific number of deferrals remaining. |
+| `DeferralDeadline` | Text displayed when there is a specific deferral deadline. |
+| `ButtonLeftText.Install` | Button text describing the process of closing applications and starting an installation. |
+| `ButtonLeftText.Repair` | Button text describing the process of closing applications and starting a repair. |
+| `ButtonLeftText.Uninstall` | Button text describing the process of closing applications and starting an uninstallation. |
+| `ButtonLeftNoProcessesText.Install` | Button text describing the process of starting an installation when there are no running processes. |
+| `ButtonLeftNoProcessesText.Repair` | Button text describing the process of starting a repair when there are no running processes. |
+| `ButtonLeftNoProcessesText.Uninstall` | Button text describing the process of starting an uninstallation when there are no running processes. |
+| `ButtonRightText` | Button text describing the process of deferring a deployment. |
+| `Subtitle.Install` | Subtitle shown underneath the install title for Fluent dialogs during an installation. |
+| `Subtitle.Repair` | Subtitle shown underneath the install title for Fluent dialogs during a repair. |
+| `Subtitle.Uninstall` | Subtitle shown underneath the install title for Fluent dialogs during an uninstallation. |
+
+ #### CloseAppsPrompt
+
+| Setting | Description |
+| :------ | :---------- |
+| `CustomMessage` | Custom message displayed at the welcome screen window. Defaults to `$null`. |

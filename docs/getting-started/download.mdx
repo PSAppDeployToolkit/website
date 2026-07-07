@@ -20,21 +20,33 @@ You can install the PSAppDeployToolkit module from the PowerShell Gallery by run
 ```powershell
 Install-Module -Name PSAppDeployToolkit -Scope CurrentUser
 ```
+To install a pre-release version:
+
+```powershell
+Install-Module -Name PSAppDeployToolkit -Scope CurrentUser -AllowPreRelease
+```
+
+If this produces an error that the -AllowPreRelease parameter is not recognized, then first update PowerShellGet and then restart your PowerShell console:
+
+```powershell
+Install-Module PowerShellGet -Force -Scope CurrentUser
+```
 
 ### Grabbing the archive / zip files from GitHub releases
 
 Alternatively, you can download the release assets:
 
-- [PSAppDeployToolkit Latest Release](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases)
+- [PSAppDeployToolkit Releases](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases)
 
 Here you will see the latest release of PSAppDeployToolkit. Click the `Assets` dropdown to view the available downloads. You should see the following:
 
-| Filename                             | Description                                                                                   |
-|--------------------------------------|-----------------------------------------------------------------------------------------------|
-| `PSAppDeployToolkit_ModuleOnly.zip`  | Zip file containing the latest version of the module. At a minimum, you should download this. |
-| `PSAppDeployToolkit_Template_v3.zip` | Zip file containing the v3 template. Contains the scaffold for a v3 compatible deployment.    |
-| `PSAppDeployToolkit_Template_v4.zip` | Zip file containing the v4 template. Contains the scaffold for a v4 native deployment.        |
-| `Source code (zip)`                  | Zip file containing the source code.                                                          |
+| Filename                                        | Description                                                                                                                                                          |
+|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `PSAppDeployToolkit_ModuleOnly.zip`             | Zip file containing the latest version of the module. At a minimum, you should download this.                                                                        |
+| `PSAppDeployToolkit_Template_v3.zip`            | Zip file containing the v3 template. Contains the scaffold for a v3 compatible deployment.                                                                           |
+| `PSAppDeployToolkit_Template_v4.zip`            | Zip file containing the v4 template. Contains the scaffold for a v4 native deployment.                                                                               |
+| `PSAppDeployToolkit_Template_v4_ZeroConfig.zip` | Zip file containing the v4 template. Contains the scaffold for a v4 native deployment with [Zero Config](../deployment-concepts/zero-config-deployment.mdx) support. |
+| `Source code (zip)`                             | Zip file containing the source code.                                                                                                                                 |
 
 Once extracted, you will see a file and folder structure similar to the one described on the next page.
 
@@ -48,12 +60,6 @@ At present, this is in pre-release status, so installing from the PowerShell Gal
 Install-Module PSAppDeployToolkit.Tools -Scope CurrentUser -AllowPreRelease
 ```
 
-If this produces an error that the -AllowPreRelease parameter is not recognized, then first update PowerShellGet and then restart your PowerShell console:
-
-```powershell
-Install-Module PowerShellGet -Force -Scope CurrentUser
-```
-
 Alternatively, you can download the release assets:
 
-- [PSAppDeployToolkit.Tools Latest Release](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools/releases/latest)
+- [PSAppDeployToolkit.Tools Releases](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools/releases)

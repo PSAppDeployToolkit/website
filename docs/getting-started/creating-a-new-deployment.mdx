@@ -34,15 +34,22 @@ To create a new deployment using the PSADT v4 native deployment template, run:
 New-ADTTemplate -Destination C:\Temp -Name "PSAppDeployToolkitv4"
 ```
 
+To create a new deployment using the PSADT v4 native deployment template with [Zero Config](../deployment-concepts/zero-config-deployment.mdx) support, run:
+
+```powershell
+New-ADTTemplate -Destination C:\Temp -Name "PSAppDeployToolkitv4_ZeroConfig" -ZeroConfig
+```
+
 ### Using the downloadable templates
 
 The PSAppDeployToolkit GitHub Releases page includes several templates for creating a new deployment.
 
 - `PSAppDeployToolkit_Template_v4.zip` - PSADT v4 native deployment template
+- `PSAppDeployToolkit_Template_v4_ZeroConfig.zip` - PSADT v4 native deployment template with [Zero Config](../deployment-concepts/zero-config-deployment.mdx) support
 - `PSAppDeployToolkit_Template_v3.zip` - PSADT v3 compatible deployment template
 
 To create a new deployment using the templates, follow these steps:
 
-1. Download the PSAppDeployToolkit template you require from the [PSAppDeployToolkit GitHub Releases page](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases/latest).
+1. Download the PSAppDeployToolkit template you require from the [PSAppDeployToolkit GitHub Releases page](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases).
 2. Extract the contents to a folder on your computer.
 3. Open the folder and review the contents. We will discuss the contents in the next section.
