@@ -23,3 +23,13 @@ mmashwani:
   page: true
   socials:
     github: mmashwani
+
+dangough:
+  name: Dan Gough
+  title: PSAppDeployToolkit Developer
+  image_url: https://gravatar.com/userimage/26791919/fdd6ec3a3e1eaff78deb15781aba4665.jpeg?&size=256
+  page: true
+  socials:
+    x: packageologist
+    linkedin: danielgough
+    github: dangough
