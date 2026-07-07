@@ -20,8 +20,8 @@ export const featureGroups: readonly FeatureGroup[] = [
       { text: 'Classic UI option for backward compatibility' },
       { text: 'Welcome dialog with app-close prompts, deferrals, and countdown timers' },
       {
-        text: 'Custom dialogs with buttons, icons, input boxes, and secure password fields',
-        version: 'v4.1',
+        text: 'Custom dialogs with buttons, icons, input boxes, secure password fields* and dropdown selection boxes*',
+        version: '*v4.2',
       },
       { text: 'Progress bar with real-time percentage tracking', version: 'v4.1' },
       { text: 'Restart prompts with countdown, snooze, and deadline enforcement' },
@@ -79,6 +79,7 @@ export const featureGroups: readonly FeatureGroup[] = [
       { text: 'INI file section and value management', version: 'v4.1' },
       { text: 'Environment variable and DLL registration management', version: 'v4.1' },
       { text: 'File and folder ACL/permission management', version: 'v4.1' },
+      { text: 'Font management', version: 'v4.2' },
     ],
   },
   {
@@ -124,6 +125,7 @@ export const featureGroups: readonly FeatureGroup[] = [
       { text: 'Active user session and Terminal Server/Citrix detection' },
       { text: 'Network connectivity testing' },
       { text: 'Service management with dependency resolution and startup type control' },
+      { text: 'User focus mode detection', version: 'v4.2' },
     ],
   },
   {

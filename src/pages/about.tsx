@@ -130,7 +130,7 @@ const AboutPage = () => {
               maintain and enhance the framework, with regular releases and new features based on community feedback.
             </p>
             <p>
-              <b>v4.2 is currently in development and slated for Q2 2026</b>.
+              <b>v4.2 is currently in development and slated for Q3 2026</b>.
             </p>
           </div>
           <div className={styles.introTestimonials}>
