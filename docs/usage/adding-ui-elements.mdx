@@ -17,11 +17,7 @@ All UI components include customizable message text in `strings.psd1`, which has
 
 The language is selected automatically based on the operating system settings. However, you can override it by specifying `LanguageOverride` in `config.psd1`.
 
-The user interface can be suppressed by specifying the deploy mode parameter as follows:
-
-```powershell
-Invoke-AppDeployToolkit.ps1 -DeployMode Silent
-```
+The user interface functions will only display when the toolkit is running in **Interactive** mode (although progress dialogs can be displayed in **NonInteractive** mode). The default mode, **Auto**, will by default only be interactive if there are no processes that need to be closed.
 
 ### Installation Progress
 

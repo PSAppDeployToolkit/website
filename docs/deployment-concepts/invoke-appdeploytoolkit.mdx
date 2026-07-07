@@ -29,49 +29,27 @@ The heart of PSADT v4 is the `ADTSession` object, which encapsulates all deploym
 
 These are the first thing to edit in your deployment script and are stored within the `ADTSession` object, providing better encapsulation and state management compared to global variables in v3. Session Properties define your application's metadata, behavior, and deployment requirements.
 
-| Property              | Example                                                    | Description                                                                           |
-| :-------------------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------ |
-| `AppVendor`           | `Microsoft`                                                | The vendor name of the application                                                    |
-| `AppName`             | `Office 365`                                               | The name of the application                                                           |
-| `AppVersion`          | `16.0`                                                     | The version of the application                                                        |
-| `AppArch`             | `x64`                                                      | The architecture of the application (x86 or x64)                                      |
-| `AppLang`             | `EN`                                                       | The language of the application                                                       |
-| `AppRevision`         | `01`                                                       | The revision of the application package                                               |
-| `AppSuccessExitCodes` | `@(0)`                                                     | Exit codes that indicate success                                                      |
-| `AppRebootExitCodes`  | `@(1641, 3010)`                                            | Exit codes that indicate a reboot is required                                         |
-| `AppProcessesToClose` | `@(@{ Name = 'winword'; Description = 'Microsoft Word' })` | **New in v4.1**. Processes that should be closed before install / uninstall / repair. |
-| `RequireAdmin`        | `$true`                                                    | **New in v4.1**. Whether the script requires administrative privileges                |
+| Property              | Example                                                    | Description                                                          |
+| :-------------------- | :--------------------------------------------------------- | :------------------------------------------------------------------- |
+| `AppVendor`           | `Microsoft`                                                | The vendor name of the application                                   |
+| `AppName`             | `Office 365`                                               | The name of the application                                          |
+| `AppVersion`          | `16.0`                                                     | The version of the application                                       |
+| `AppArch`             | `x64`                                                      | The architecture of the application (x86 or x64)                     |
+| `AppRevision`         | `01`                                                       | The revision of the application package                              |
+| `AppSuccessExitCodes` | `@(0)`                                                     | Exit codes that indicate success                                     |
+| `AppRebootExitCodes`  | `@(1641, 3010)`                                            | Exit codes that indicate a reboot is required                        |
+| `AppProcessesToClose` | `@(@{ Name = 'winword'; Description = 'Microsoft Word' })` | Processes that should be closed before install / uninstall / repair. |
 
 :::warning[PSAppDeployToolkit variables]
-If trying to use a PSAppDeployToolkit variables such as $envProgramFiles in this section, it will not work because the module has typically not been imported and initialized this early on in the script.
+If trying to use a PSAppDeployToolkit variables such as $envProgramFiles in this section, they will not work because the module has typically not been imported and initialized this early on in the script.
 :::
 
-:::warning[Breaking Changes in v4.1]
-If you are upgrading from v4.0 or earlier, you must move any `RequireAdmin` setting from your config file to the session object in your deployment script, and use `AppProcessesToClose` instead of specifying the processes directly on the `-CloseProcesses` parameter of `Show-ADTInstallationWelcome`.
-:::
-
-:::info[New in v4.1: RequireAdmin]
-PSADT v4.1 contains a new variable `RequireAdmin` that allows you to check for administrative privileges on a per-application basis without needing to modify the PSADT configuration file.
-
-- `RequireAdmin = $true`, will fail the deployment if administrative privileges are not available.
-- `RequireAdmin = $false`, will not check for administrative privileges.
-
-Note that `Invoke-AppDeployToolkit.exe` no longer checks this value to figure out if it needs to relaunch itself elevated. If your deployment requires administrative privileges, you must ensure that the launcher is run elevated.
-:::
-
-:::info[New in v4.1: AppProcessesToClose]
-PSADT v4.1 contains a new variable `AppProcessesToClose` that allows you to specify processes to be closed before the installation, uninstallation, or repair phases. This replaces the previous method of using the -CloseApps parameter on `Show-InstallationWelcome`
-
-- `AppProcessesToClose = <populated>`, will automatically close the specified processes before proceeding with the deployment.
-:::
-
-:::info
-Use hashtable objects on `AppProcessesToClose` with `Name` and `Description` properties for better user experience.
-
+:::info[AppProcessesToClose]
+`AppProcessesToClose` allows you to specify processes to be closed before the installation, uninstallation, or repair phases. You can either supply just process names (without the .exe extension), or use the hashtable format to override the default description for the process.
 ```PowerShell
 AppProcessesToClose = @(@{ Name = 'winword'; Description = 'Microsoft Word' })
 ```
-
+Default behaviour when `DeployMode` is `Auto` is that the deployment will only be interactive if one or more of these processes are running.
 :::
 
 ### Deployment Types & Phases
