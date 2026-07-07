@@ -245,14 +245,25 @@ body {
 /* ── Tables ── */
 
 table {
-  max-width: 100%;
-  display: block;
-  width: fit-content;
-  margin: 2rem;
+  display: table;
+  width: calc(100% - 2rem);
+  max-width: calc(100% - 2rem);
+  margin: 2rem 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
   border-radius: 8px 8px 0 0;
   border-color: var(--psadt-card-border-color);
   background: var(--psadt-card-elevated-background);
   box-shadow: var(--ifm-global-shadow-md);
+}
+
+/* Keep names in the first column (e.g. parameters and variables) on a single
+   line so hyphenated tokens like -KillChildProcessesWithParent aren't split. */
+table td:first-child,
+table th:first-child {
+  white-space: nowrap;
+  word-break: keep-all;
 }
 
 table thead tr {
