@@ -14,19 +14,19 @@ Closes the active ADT session.
 ### None (Default)
 
 ```powershell
-Close-ADTSession [-ExitCode <Int32>] [-PassThru] [<CommonParameters>]
+Close-ADTSession [-ExitCode <Int32>] [-ExitMessage <String>] [-PassThru] [<CommonParameters>]
 ```
 
 ### Force
 
 ```powershell
-Close-ADTSession [-ExitCode <Int32>] [-Force] [-PassThru] [<CommonParameters>]
+Close-ADTSession [-ExitCode <Int32>] [-ExitMessage <String>] [-Force] [-PassThru] [<CommonParameters>]
 ```
 
 ### NoShellExit
 
 ```powershell
-Close-ADTSession [-ExitCode <Int32>] [-NoShellExit] [-PassThru] [<CommonParameters>]
+Close-ADTSession [-ExitCode <Int32>] [-ExitMessage <String>] [-NoShellExit] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,6 +60,22 @@ The exit code to set for the session.
 
 ```yaml
 Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExitMessage
+
+A specific exit message to incorporate upon closure.
+
+```yaml
+Type: String
 Parameter Sets: (All)
 Aliases:
 
