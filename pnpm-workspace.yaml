@@ -3,7 +3,7 @@ overrides:
   qs: ^6.15.2
   joi: 17.13.4
   body-parser: ^1.20.6
-  brace-expansion@^1.1.7: ^1.1.16
+  brace-expansion@^1.1.7: ^5.0.8
   brace-expansion@^5.0.2: ^5.0.8
   fast-uri: ^3.1.4
   js-yaml: 4.3.0
@@ -14,7 +14,7 @@ overrides:
   svgo: ^3.3.4
   "@babel/plugin-transform-modules-systemjs": ">=7.29.4"
   webpack-dev-server: ^5.2.6
-  websocket-driver: ^0.7.6
+  websocket-driver: ^0.7.5
   ws: 8.21.0
 
 patchedDependencies:
