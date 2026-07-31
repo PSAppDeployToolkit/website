@@ -17,9 +17,9 @@ You can upgrade an existing deployment package simply by replacing the PSAppDepl
 ### Breaking Changes in v4.2
 
 :::warning[DeployMode Process Detection]
-In v4.1, the default `DeployMode` value of `Auto` will switch to a silent install if none of the defined processes are running; but only when processes are defined.
+In v4.1, the default `DeployMode` value of `Auto` will switch to a silent install if none of the defined processes are running; but *only when processes are defined*.
 
-In v4.2, it will now switch to a silent install by default if no processes are defined.
+In v4.2, it will now switch to a silent install by default *even if no processes are defined*.
 
 As before, you can prevent this by adding `NoProcessDetection = $true` to the `$adtSession` properties.
 :::
@@ -64,26 +64,23 @@ In the rare case where launching in 32-bit PowerShell is intentional, you can al
 The default template has had a major overhaul; however the old v4.1 templates will still work and there is no forced requirement to migrate them to the new format.
 :::
 
-- ZeroConfig code not included by default, there is a separate ZeroConfig template now.
+- ZeroConfig code not included by default; there is a separate ZeroConfig template now.
 - `TerminalServerMode` and `DisableLogging` parameters have been removed.
 - `RequireAdmin` removed from $adtSession block - it was more of a hindrance than a help as it always needed changing for user context deployments. It can be added back in manually if required.
 - `InstallName` / `InstallTitle` removed - some users were always filling this in as they did not realise they were optional fields - by default the toolkit generate these values from the AppName etc.
 - Install phases are now defined as scriptblock variables rather than functions.
 
-### Changes in Config.psd1
-
-New elements:
+### Additions to Config.psd1
 
 - Assets
   - TaskbarIcon
 - Toolkit
+  - CachePathNoAdminRights
   - LogMaxHierarchy
 - UI
   - FluentAccentColorDark
 
-### Changes in Strings.psd1
-
-New elements:
+### Additions to Strings.psd1
 
 - ListSelectionPrompt
   - ListSelectionMessage
