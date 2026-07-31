@@ -12,7 +12,7 @@ Copies the toolkit content to a cache folder on the local machine and sets the `
 ## SYNTAX
 
 ```powershell
-Copy-ADTContentToCache [[-LiteralPath] <String>] [[-Exclude] <String[]>] [-WhatIf] [-Confirm]
+Copy-ADTContentToCache [[-LiteralPath] <String>] [[-Content] <String[]>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ It is important to clean up the cache in the uninstall section for the current v
 ### EXAMPLE 1
 
 ```powershell
-Copy-ADTContentToCache -LiteralPath "$envWinDir\Temp\PSAppDeployToolkit"
+Copy-ADTContentToCache -LiteralPath "$envWinDir\Temp\PSAppDeployToolkit\$((Get-ADTSession).InstallName)"
 ```
 
 This example copies the toolkit content to the specified cache folder.
@@ -37,7 +37,7 @@ This example copies the toolkit content to the specified cache folder.
 ### EXAMPLE 2
 
 ```powershell
-Copy-ADTContentToCache -Exclude Files,SupportFiles
+Copy-ADTContentToCache -Content Toolkit
 ```
 
 This example copies the toolkit content to the default cache folder, excluding the Files and SupportFiles folders and leaving DirFiles and DirSupportFiles pointing at the original location.
@@ -45,7 +45,7 @@ This example copies the toolkit content to the default cache folder, excluding t
 ### EXAMPLE 3
 
 ```powershell
-Copy-ADTContentToCache -Exclude Toolkit
+Copy-ADTContentToCache -Content Files, SupportFiles
 ```
 
 This example copies only the Files and SupportFiles folders to the default cache folder, excluding all other content.
@@ -55,6 +55,9 @@ This example copies only the Files and SupportFiles folders to the default cache
 ### -LiteralPath
 
 The path to the software cache folder.
+Folder should be application specific since it is erased and recreated on each run to prevent mixing with stale or maliciously planted content.
+
+Defaults to the cache folder defined by `(Get-ADTConfig).Toolkit.CachePath` with a subfolder named after the current session's InstallName.
 
 ```yaml
 Type: String
@@ -68,14 +71,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Exclude
+### -Content
 
-Specifies one or more content categories to exclude from the cache copy.
+Specifies one or more content categories to copy.
+Copies all by default.
 
 Valid values for this parameter are:
-- `Files`: Excludes the Files folder and does not remap the DirFiles session property.
-- `SupportFiles`: Excludes the SupportFiles folder and does not remap the DirSupportFiles session property.
-- `Toolkit`: Excludes all content other than the Files and SupportFiles folders.
+- `Files`: Copies only the Files folder and remaps the DirFiles session property.
+- `SupportFiles`: Copies only the SupportFiles folder and remaps the DirSupportFiles session property.
+- `Toolkit`: Copies all other content except the Files and SupportFiles folders.
 
 ```yaml
 Type: String[]
@@ -84,7 +88,7 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: None
+Default value: @('Files', 'SupportFiles', 'Toolkit')
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -145,6 +149,9 @@ Intune is lacking this functionality whereas ConfigMgr includes this functionali
 Since this cache folder is effectively unmanaged, it is important to cleanup the cache in the uninstall section for the current version and potentially also in the pre-installation section for previous versions.
 
 This can be done using `Remove-ADTFile -LiteralPath "(Get-ADTConfig).Toolkit.CachePath\$($adtSession.InstallName)" -Recurse -ErrorAction Ignore`.
+
+For security, the destination cache folder is erased and recreated on each run so that stale or maliciously planted content cannot be picked up.
+Additionally, when running with admin rights, the machine-wide cache folder defined by `(Get-ADTConfig).Toolkit.CachePath` has its ownership reclaimed and its permissions reset to inherit from its parent, mitigating the risk of a standard user pre-creating the folder to gain write access.
 
 This function supports the `-WhatIf` and `-Confirm` parameters for testing changes before applying them.
 

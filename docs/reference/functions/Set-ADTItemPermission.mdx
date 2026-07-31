@@ -11,18 +11,24 @@ Changes permissions on files or folders.
 
 ## SYNTAX
 
+### OwnerOnly
+
+```powershell
+Set-ADTItemPermission -LiteralPath <String> -Owner <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
 ### AccessControlList
 
 ```powershell
-Set-ADTItemPermission -LiteralPath <String> -AccessControlList <FileSystemSecurity> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-ADTItemPermission -LiteralPath <String> -AccessControlList <FileSystemSecurity> [-Owner <String>] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ### EnableInheritance
 
 ```powershell
-Set-ADTItemPermission -LiteralPath <String> [-EnableInheritance] [-RemoveExplicitRules] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-ADTItemPermission -LiteralPath <String> [-EnableInheritance] [-RemoveExplicitRules] [-Owner <String>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### DisableInheritance
@@ -30,7 +36,7 @@ Set-ADTItemPermission -LiteralPath <String> [-EnableInheritance] [-RemoveExplici
 ```powershell
 Set-ADTItemPermission -LiteralPath <String> -User <String[]> -Permission <FileSystemRights>
  [-PermissionType <AccessControlType>] [-Inheritance <InheritanceFlags>] [-Propagation <PropagationFlags>]
- [-Method <String>] [-DisableInheritance] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Method <String>] [-DisableInheritance] [-Owner <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -63,6 +69,14 @@ Set-ADTItemPermission -LiteralPath 'C:\Temp\Private' -User 'DOMAIN\John' -Permis
 ```
 
 Will remove all permissions to 'John' on 'C:\Temp\Private'.
+
+### EXAMPLE 4
+
+```powershell
+Set-ADTItemPermission -LiteralPath 'C:\Temp' -Owner 'BUILTIN\Administrators'
+```
+
+Will set 'BUILTIN\Administrators' as the owner of 'C:\Temp' without modifying its access rules.
 
 ## PARAMETERS
 
@@ -101,7 +115,7 @@ Accept wildcard characters: False
 ### -User
 
 One or more user names (ex: BUILTIN\Users, DOMAIN\Admin) to assign the permissions to.
-If you want to use a SID, prefix it with an asterisk (`*`), i.e., *S-1-5-18
+If you want to use a SID, prefix it with an asterisk (`*`), i.e., '*S-1-5-18'
 
 ```yaml
 Type: String[]
@@ -266,6 +280,36 @@ Aliases:
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Owner
+
+The user or group to set as the owner of the item (ex: BUILTIN\Administrators, DOMAIN\Admin).
+If you want to use a SID, prefix it with an asterisk (`*`), i.e., '*S-1-5-18'.
+The owner is changed before any permissions are modified.
+
+```yaml
+Type: String
+Parameter Sets: OwnerOnly
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+```yaml
+Type: String
+Parameter Sets: AccessControlList, EnableInheritance, DisableInheritance
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
