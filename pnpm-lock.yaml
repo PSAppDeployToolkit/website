@@ -25,7 +25,7 @@ overrides:
 
 patchedDependencies:
   gray-matter@4.0.3:
-    hash: 82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f
+    hash: 98353f0a10ca229a2cd27622e762c611b1fc5851e0ce1b9b10299ae74b15446f
     path: patches/gray-matter@4.0.3.patch
 
 importers:
@@ -115,8 +115,8 @@ importers:
         specifier: ^7.1.1
         version: 7.1.1(eslint@9.39.4(jiti@1.21.7))
       prettier:
-        specifier: ^3.9.4
-        version: 3.9.4
+        specifier: ^3.9.6
+        version: 3.9.6
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -5436,8 +5436,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.9.4:
-    resolution: {integrity: sha512-yWG/o/4oJfo036EKAfK6ACAoDOfHeRHx4tuxkfBZiauURiaSmYwlpOr5LQqKtIkRD2z1PLteme2WoxEnj4tHTg==}
+  prettier@3.9.6:
+    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -8813,7 +8813,7 @@ snapshots:
       fs-extra: 11.4.0
       github-slugger: 1.5.0
       globby: 11.1.0
-      gray-matter: 4.0.3(patch_hash=82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f)
+      gray-matter: 4.0.3(patch_hash=98353f0a10ca229a2cd27622e762c611b1fc5851e0ce1b9b10299ae74b15446f)
       jiti: 1.21.7
       js-yaml: 4.3.0
       lodash: 4.18.1
@@ -11614,7 +11614,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  gray-matter@4.0.3(patch_hash=82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f):
+  gray-matter@4.0.3(patch_hash=98353f0a10ca229a2cd27622e762c611b1fc5851e0ce1b9b10299ae74b15446f):
     dependencies:
       js-yaml: 4.3.0
       kind-of: 6.0.3
@@ -13652,7 +13652,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.9.4: {}
+  prettier@3.9.6: {}
 
   pretty-error@4.0.0:
     dependencies:
