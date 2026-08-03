@@ -25,7 +25,7 @@ overrides:
 
 patchedDependencies:
   gray-matter@4.0.3:
-    hash: 82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f
+    hash: 98353f0a10ca229a2cd27622e762c611b1fc5851e0ce1b9b10299ae74b15446f
     path: patches/gray-matter@4.0.3.patch
 
 importers:
@@ -60,8 +60,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       framer-motion:
-        specifier: ^12.42.2
-        version: 12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: ^12.43.0
+        version: 12.43.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       prism-react-renderer:
         specifier: ^2.4.1
         version: 2.4.1(react@19.2.8)
@@ -3627,8 +3627,8 @@ packages:
   fraction.js@5.3.4:
     resolution: {integrity: sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==}
 
-  framer-motion@12.42.2:
-    resolution: {integrity: sha512-5XY9luDiu0oHfHBjpDthFMh0ES+122w6p/papSJBweMkO8Sn+PW2QaEgRblQBpWFnuvZS5qvarpt/hO2pjGmnw==}
+  framer-motion@12.43.0:
+    resolution: {integrity: sha512-1eaL3RvR/kAlbG7UYcpMptEyzPoENO0c6w7ZnB3/hh2vSAz/6uGAFn6fdoqTBguNstf3MsFhJHsD/0DHiclG+g==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -4765,8 +4765,8 @@ packages:
       uglify-js:
         optional: true
 
-  motion-dom@12.42.2:
-    resolution: {integrity: sha512-5gIMWLp/PycBtJRJWRgjxke5n8dlvkSn2DrYW+tr3XcqAZY1xZh6BJyooJXCM8wdfM7wfMjkBJNLge1CKPUIRA==}
+  motion-dom@12.43.0:
+    resolution: {integrity: sha512-azKON4d9S65PEoFUiQTMTgPheEmzf2QngdRc50AKfJp9Q9mmcBVw22c8eMq9k8kxOFHdL7+WZY7N/5F/lwiDag==}
 
   motion-utils@12.39.0:
     resolution: {integrity: sha512-8nadJAJjTtqRkmRF36FoJTrywK9nnFmnPwnSMyxaOCU7GDjN9RTMJIxx9De8ErM+vpPhMccr/6fo5WciyQLnMQ==}
@@ -8813,7 +8813,7 @@ snapshots:
       fs-extra: 11.4.0
       github-slugger: 1.5.0
       globby: 11.1.0
-      gray-matter: 4.0.3(patch_hash=82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f)
+      gray-matter: 4.0.3(patch_hash=98353f0a10ca229a2cd27622e762c611b1fc5851e0ce1b9b10299ae74b15446f)
       jiti: 1.21.7
       js-yaml: 4.3.0
       lodash: 4.18.1
@@ -11481,9 +11481,9 @@ snapshots:
 
   fraction.js@5.3.4: {}
 
-  framer-motion@12.42.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+  framer-motion@12.43.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
-      motion-dom: 12.42.2
+      motion-dom: 12.43.0
       motion-utils: 12.39.0
       tslib: 2.8.1
     optionalDependencies:
@@ -11614,7 +11614,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  gray-matter@4.0.3(patch_hash=82198c3ee34e2823c4e9793c5209cf97bd566d5610c3f6582dc3f044ca423d6f):
+  gray-matter@4.0.3(patch_hash=98353f0a10ca229a2cd27622e762c611b1fc5851e0ce1b9b10299ae74b15446f):
     dependencies:
       js-yaml: 4.3.0
       kind-of: 6.0.3
@@ -12926,7 +12926,7 @@ snapshots:
       html-minifier-terser: 7.2.0
       postcss: 8.5.25
 
-  motion-dom@12.42.2:
+  motion-dom@12.43.0:
     dependencies:
       motion-utils: 12.39.0
 
