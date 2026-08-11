@@ -105,6 +105,7 @@ Accept wildcard characters: False
 ### -SleepDuration
 
 How long to sleep between retries.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
 Type: TimeSpan
@@ -122,6 +123,7 @@ Accept wildcard characters: False
 
 The maximum elapsed time allowed to pass while attempting retries.
 If the maximum elapsed time has passed and there are still attempts remaining they will be discarded.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 If this parameter is supplied and the `-Retries` parameter isn't, this command will continue to retry the provided command until the time limit runs out.
 

@@ -12,7 +12,7 @@ Scans for outstanding Configuration Manager/SCCM software updates to be installe
 ## SYNTAX
 
 ```powershell
-Install-ADTSCCMSoftwareUpdates [[-SoftwareUpdatesScanWaitInSeconds] <UInt32>]
+Install-ADTSCCMSoftwareUpdates [[-SoftwareUpdatesScanWait] <TimeSpan>]
  [[-WaitForPendingUpdatesTimeout] <TimeSpan>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -52,18 +52,19 @@ Scans for outstanding Configuration Manager/SCCM updates and installs the pendin
 
 ## PARAMETERS
 
-### -SoftwareUpdatesScanWaitInSeconds
+### -SoftwareUpdatesScanWait
 
-The amount of time to wait in seconds for the software updates scan to complete.
+The amount of time to wait for the software updates scan to complete.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
-Type: UInt32
+Type: TimeSpan
 Parameter Sets: (All)
-Aliases:
+Aliases: SoftwareUpdatesScanWaitInSeconds
 
 Required: False
 Position: 1
-Default value: 180
+Default value: [System.TimeSpan]::FromSeconds(180)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -71,6 +72,7 @@ Accept wildcard characters: False
 ### -WaitForPendingUpdatesTimeout
 
 The amount of time to wait for missing and pending updates to install before exiting the function.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
 Type: TimeSpan

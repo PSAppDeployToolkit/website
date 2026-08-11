@@ -561,7 +561,8 @@ Accept wildcard characters: False
 
 ### -MsiExecWaitTime
 
-Specify the length of time in seconds to wait for the msiexec engine to become available.
+Specify the length of time to wait for the msiexec engine to become available.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
 Type: TimeSpan
@@ -611,6 +612,7 @@ Accept wildcard characters: False
 ### -Timeout
 
 How long to wait for the process before timing out.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
 Type: TimeSpan

@@ -14,7 +14,7 @@ Displays a restart prompt with a countdown to a forced restart.
 ### Countdown (Default)
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-CountdownSeconds <UInt32>] [-CountdownNoHideSeconds <UInt32>]
+Show-ADTInstallationRestartPrompt [-Countdown <TimeSpan>] [-CountdownNoHide <TimeSpan>]
  [-ShutdownReasonText <String>] [-WindowLocation <DialogPosition>] [-PersistPrompt] [-CustomMessage]
  [-CustomMessageText <String>] [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String> -Subtitle <String>
  [<CommonParameters>]
@@ -31,7 +31,7 @@ Show-ADTInstallationRestartPrompt [-NoCountdown] [-ShutdownReasonText <String>]
 ### SilentRestart
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-SilentRestart] [-SilentCountdownSeconds <UInt32>]
+Show-ADTInstallationRestartPrompt [-SilentRestart] [-SilentCountdown <TimeSpan>]
  [-WindowLocation <DialogPosition>] [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String>
  [<CommonParameters>]
 ```
@@ -55,7 +55,7 @@ Displays a restart prompt without a countdown.
 ### EXAMPLE 2
 
 ```powershell
-Show-ADTInstallationRestartPrompt -CountdownSeconds 300
+Show-ADTInstallationRestartPrompt -Countdown 300
 ```
 
 Displays a restart prompt with a 300-second countdown.
@@ -63,7 +63,7 @@ Displays a restart prompt with a 300-second countdown.
 ### EXAMPLE 3
 
 ```powershell
-Show-ADTInstallationRestartPrompt -CountdownSeconds 600 -CountdownNoHideSeconds 60
+Show-ADTInstallationRestartPrompt -Countdown 600 -CountdownNoHide 60
 ```
 
 Displays a restart prompt with a 600-second countdown, removing the ability to hide/minimise the dialog for the last 60 seconds.
@@ -86,34 +86,36 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CountdownSeconds
+### -Countdown
 
-Specifies the number of seconds to display the restart prompt.
+Specifies how long to display the restart prompt.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
-Type: UInt32
+Type: TimeSpan
 Parameter Sets: Countdown
-Aliases:
+Aliases: CountdownSeconds
 
 Required: False
 Position: Named
-Default value: 60
+Default value: [System.TimeSpan]::FromSeconds(60)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CountdownNoHideSeconds
+### -CountdownNoHide
 
-Specifies the number of seconds to display the restart prompt without allowing the window to be hidden.
+Specifies how long to display the restart prompt without allowing the window to be hidden.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
-Type: UInt32
+Type: TimeSpan
 Parameter Sets: Countdown
-Aliases:
+Aliases: CountdownNoHideSeconds
 
 Required: False
 Position: Named
-Default value: 30
+Default value: [System.TimeSpan]::FromSeconds(30)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -134,18 +136,19 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SilentCountdownSeconds
+### -SilentCountdown
 
-Specifies number of seconds to countdown for the restart when the toolkit is running in silent mode and `-SilentRestart` is specified.
+Specifies how long to countdown for the restart when the toolkit is running in silent mode and `-SilentRestart` is specified.
+Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
-Type: UInt32
+Type: TimeSpan
 Parameter Sets: SilentRestart
-Aliases:
+Aliases: SilentCountdownSeconds
 
 Required: False
 Position: Named
-Default value: 5
+Default value: [System.TimeSpan]::FromSeconds(5)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

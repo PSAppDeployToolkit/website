@@ -18,7 +18,7 @@ Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAl
  [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>]
  [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>] [-NoWait]
  [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String>
- -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
+ -Subtitle <String> [-Timeout <TimeSpan>] [<CommonParameters>]
 ```
 
 ### ShowInputDialog_SecureInput
@@ -28,7 +28,7 @@ Show-ADTInstallationPrompt [-RequestInput] [-SecureInput] -Message <String>
  [-MessageAlignment <DialogMessageAlignment>] [-ButtonRightText <String>] [-ButtonLeftText <String>]
  [-ButtonMiddleText <String>] [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>]
  [-WindowLocation <DialogPosition>] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost]
- [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
+ [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <TimeSpan>] [<CommonParameters>]
 ```
 
 ### ShowInputDialog_DefaultValue
@@ -38,7 +38,7 @@ Show-ADTInstallationPrompt [-RequestInput] -DefaultValue <String> -Message <Stri
  [-MessageAlignment <DialogMessageAlignment>] [-ButtonRightText <String>] [-ButtonLeftText <String>]
  [-ButtonMiddleText <String>] [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>]
  [-WindowLocation <DialogPosition>] [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost]
- [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
+ [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <TimeSpan>] [<CommonParameters>]
 ```
 
 ### ShowInputDialog
@@ -48,7 +48,7 @@ Show-ADTInstallationPrompt [-RequestInput] -Message <String> [-MessageAlignment 
  [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>]
  [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>] [-WindowLocation <DialogPosition>]
  [-PersistPrompt] [-MinimizeWindows] [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String>
- -Subtitle <String> [-Timeout <UInt32>] [<CommonParameters>]
+ -Subtitle <String> [-Timeout <TimeSpan>] [<CommonParameters>]
 ```
 
 ### ShowListSelectionDialog
@@ -58,8 +58,8 @@ Show-ADTInstallationPrompt -Message <String> [-MessageAlignment <DialogMessageAl
  [-ButtonRightText <String>] [-ButtonLeftText <String>] [-ButtonMiddleText <String>]
  [-DefaultButton <DialogDefaultButton>] [-Icon <DialogSystemIcon>] -ListItems <String[]>
  [-DefaultIndex <UInt32>] [-WindowLocation <DialogPosition>] [-NoWait] [-PersistPrompt] [-MinimizeWindows]
- [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String> [-Timeout <UInt32>]
- [<CommonParameters>]
+ [-NoExitOnTimeout] [-NotTopMost] [-AllowMove] [-Force] -Title <String> -Subtitle <String>
+ [-Timeout <TimeSpan>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -95,7 +95,7 @@ Show-ADTInstallationPrompt -Title 'Funny Prompt' -Message 'How are you feeling t
 ### EXAMPLE 3
 
 ```powershell
-Show-ADTInstallationPrompt -Message 'You can customize text to appear at the end of an install, or remove it completely for unattended installations.' -ButtonLeftText 'OK' -Icon Information -NoWait
+Show-ADTInstallationPrompt -Message 'You can customize text to appear at the end of an install, or remove it completely for unattended installations.' -ButtonLeftText 'OK' -Icon Information -NoWait -Timeout (New-TimeSpan -Hours 1)
 ```
 
 ### EXAMPLE 4
@@ -470,7 +470,7 @@ Accept wildcard characters: False
 Specifies how long to show the message prompt before aborting.
 
 ```yaml
-Type: UInt32
+Type: TimeSpan
 Parameter Sets: (All)
 Aliases:
 
