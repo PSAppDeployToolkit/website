@@ -13,7 +13,7 @@ Retrieves information about installed applications.
 
 ```powershell
 Get-ADTApplication [-Name <String[]>] [-NameMatch <String>] [-ProductCode <Guid[]>] [-ApplicationType <String>]
- [-IncludeUpdatesAndHotfixes] [[-FilterScript] <ScriptBlock>] [<CommonParameters>]
+ [-IncludeUpdatesAndHotfixes] [[-FilterScript] <ScriptBlock>] [-Force] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -172,6 +172,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Force
+
+Returns all found applications, even if marked as a system component.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
@@ -202,6 +218,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### - EstimatedSize
 ### - SystemComponent
 ### - WindowsInstaller
+### - NoRemove
 ### - Is64BitApplication
 ## NOTES
 An active ADT session is NOT required to use this function.
