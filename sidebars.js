@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Creating a sidebar enables you to:
  - create an ordered group of docs
  - render a sidebar for each doc of that group
@@ -7,6 +7,10 @@
  The sidebars can be generated from the filesystem, or explicitly defined here.
 
  Create as many sidebars as you want.
+
+ The documentation sidebar follows the Diataxis framework (https://diataxis.fr):
+ tutorials teach, how-to guides solve a specific problem, explanation provides
+ understanding, and reference (the separate sidebar below) describes the machinery.
  */
 
 // @ts-check
@@ -18,73 +22,82 @@ const sidebars = {
     'introduction',
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Tutorials',
       link: {
         type: 'generated-index',
+        description:
+          'Lessons that take you through building a working deployment, start to finish. Follow them in order if you are new to PSAppDeployToolkit.',
+      },
+      collapsed: false,
+      items: ['tutorials/your-first-deployment', 'tutorials/adding-a-user-experience'],
+    },
+    {
+      type: 'category',
+      label: 'How-to Guides',
+      link: {
+        type: 'generated-index',
+        description:
+          'Recipes for specific goals, for when you already know what you want to achieve.',
       },
       collapsed: false,
       items: [
-        'getting-started/licensing',
-        'getting-started/requirements',
-        'getting-started/download',
-        'getting-started/creating-a-new-deployment',
-        'getting-started/release-notes',
-        'getting-started/upgrade-guidance-4x-to-v41',
-        'getting-started/upgrade-guidance-v3x-to-v41',
-        'getting-started/faq',
+        'how-to/install-the-toolkit',
+        'how-to/create-a-deployment',
+        'how-to/run-a-deployment',
+        'how-to/deploy-an-msi-with-zero-config',
+        'how-to/install-applications',
+        'how-to/close-apps-and-allow-deferral',
+        'how-to/brand-the-user-interface',
+        'how-to/customize-a-deployment',
+        'how-to/extend-the-toolkit-with-custom-functions',
+        'how-to/deploy-with-intune',
+        'how-to/deploy-with-configmgr',
+        'how-to/deploy-google-chrome-with-configmgr',
+        'how-to/configure-with-group-policy',
+        'how-to/set-the-log-path-with-group-policy',
+        'how-to/troubleshoot-a-deployment',
+        'how-to/upgrade-from-v4-0',
+        'how-to/upgrade-from-v3',
       ],
     },
     {
       type: 'category',
-      label: 'Deployment Concepts',
+      label: 'Explanation',
       link: {
         type: 'generated-index',
+        description:
+          'Background and reasoning, for when you want to understand why the toolkit behaves the way it does.',
       },
       collapsed: false,
       items: [
-        'deployment-concepts/deployment-structure',
-        'deployment-concepts/invoke-appdeploytoolkit',
-        'deployment-concepts/zero-config-deployment',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Usage',
-      link: {
-        type: 'generated-index',
-      },
-      collapsed: false,
-      items: [
-        'usage/how-to-deploy',
-        'usage/adding-ui-elements',
-        'usage/customizing-deployments',
-        'usage/installing-applications',
-        'usage/admx-templates',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Examples',
-      link: {
-        type: 'generated-index',
-      },
-      collapsed: false,
-      items: [
-        'examples/admxtemplate-LogPath' /*,
-        'examples/googlechrome-configmgr'*/,
+        'explanation/architecture',
+        'explanation/the-deployment-script',
+        'explanation/deployment-modes',
+        'explanation/configuration',
+        'explanation/logging',
+        'explanation/user-interface',
       ],
     },
   ],
   reference: [
     'reference',
-    'reference/adtsession-object',
-    'reference/variables',
+    'reference/requirements',
+    'reference/deployment-template',
     'reference/module-structure',
+    'reference/adtsession-object',
+    'reference/command-line-parameters',
+    'reference/variables',
     'reference/config-settings',
     'reference/language-strings',
     'reference/text-formatting',
+    'reference/dialogs',
     'reference/exit-codes',
+    'reference/troubleshooting',
+    'reference/process-execution',
     'reference/v4-function-mapping',
+    'reference/faq',
+    'reference/release-notes',
+    'reference/licensing',
     {
       type: 'category',
       label: 'Functions',
@@ -100,18 +113,6 @@ const sidebars = {
       ],
     },
   ],
-  // But you can create a sidebar manually
-  /*
-  tutorialSidebar: [
-    'intro',
-    'hello',
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: ['tutorial-basics/create-a-document'],
-    },
-  ],
-   */
 };
 
 export default sidebars;
