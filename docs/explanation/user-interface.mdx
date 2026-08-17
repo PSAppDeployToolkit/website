@@ -52,11 +52,15 @@ Two dialog sets ship with the toolkit.
 banner, an accent colour, and support for
 [rich text formatting](../reference/text-formatting.mdx) in messages. New deployments should use it.
 
+<img src={require('../images/welcomedialog_fluent.png').default} alt="The Welcome dialog in the Fluent style" class="markdown_image" />
+
 **Classic** reproduces the v3 dialogs. It exists for two reasons: estates that have standardized on
 that look and do not want a visual change mid-rollout, and v3 compatibility mode, where it is the
 only option. The v3 functions do not accept parameters the Fluent dialogs need, `SubTitle` being one
 example, so compatibility mode cannot offer Fluent without changing the v3 function signatures, which
 would defeat the purpose of compatibility mode.
+
+<img src={require('../images/welcomedialog_classic.png').default} alt="The same Welcome dialog in the Classic style" class="markdown_image" />
 
 Which set is used is set by `UI.DialogStyle`. Branding differs between them: Fluent uses a logo,
 Classic uses a banner, and each ignores the other's asset. See
