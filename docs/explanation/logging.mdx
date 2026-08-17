@@ -1,0 +1,94 @@
+---
+sidebar_position: 5
+title: 'Logging'
+description: 'What the toolkit logs, where it goes, and why it is shaped that way.'
+slug: /explanation/logging
+hide_title: true
+tags:
+  - Logging
+  - Explanation
+---
+
+## Logging
+
+A deployment runs unattended, as SYSTEM, on a machine you cannot see, and usually fails for the first
+time in front of somebody else. The log is the only account of what happened, so the toolkit logs by
+default and logs a lot.
+
+## Everything is logged, without being asked
+
+Every toolkit command writes to the deployment log as a matter of course: what it was called with,
+what it found, what it returned, and how long it took. That is why `Copy-ADTFile` is preferable to
+`Copy-Item` inside a deployment. The copy shows up in the log with the rest of the story.
+
+The same applies to your own code, provided it uses
+[`Write-ADTLogEntry`](../reference/functions/Write-ADTLogEntry.mdx) rather than `Write-Host`, and
+that custom functions are built on the toolkit's function skeleton. See
+[extending the toolkit](../how-to/extend-the-toolkit-with-custom-functions.mdx).
+
+## One log per package, one per MSI action
+
+The deployment log is named after the package, so it sorts alongside its siblings on a shared log
+share:
+
+```text
+Oracle_JavaRuntime_1.7.0.17_EN_01_PSAppDeployToolkit.log
+```
+
+MSI operations are logged separately by Windows Installer, one file per action:
+
+```text
+Oracle_JavaRuntimeEnvironmentx86_1.7.0.17_EN_01_Install.log
+Oracle_JavaRuntimeEnvironmentx86_1.7.0.17_EN_01_Repair.log
+Oracle_JavaRuntimeEnvironmentx86_1.7.0.17_EN_01_Patch.log
+Oracle_JavaRuntimeEnvironmentx86_1.7.0.17_EN_01_Uninstall.log
+```
+
+For an uninstall, the product code is resolved back to the application name and version so the
+filename matches the pattern used at install time, which means the same application produces the same
+filename regardless of which action ran.
+
+Logs default to `C:\Windows\Logs\Software`. Where they actually go depends on the configuration
+layers, since a Group Policy setting overrides the package's own. See
+[Configuration](./configuration.mdx).
+
+## Why there is a separate path for non-admin runs
+
+`Toolkit.LogPathNoAdminRights` exists because a deployment that runs in a user's context cannot
+write to `C:\Windows\Logs`. Rather than failing, or silently losing the log, the toolkit falls back
+to a location the user can write to. The same reasoning gives the toolkit separate registry and
+temporary paths for non-admin runs.
+
+## Why log compression exists
+
+Set `Toolkit.CompressLogs` and all logs are written to a temporary folder instead, exposed as
+`$adtSession.LogTempFolder` and defaulting to `$envTemp\$installName`. When the session closes they
+are zipped into the configured log folder and the temporary folder is removed.
+
+This matters when a deployment produces more than one log: the toolkit's, the MSI's, and whatever
+the vendor's installer writes. Anything your script drops into `LogTempFolder` is collected too, so
+a support request becomes one file rather than a scavenger hunt. The zip is named for the deployment
+type and timestamped, so consecutive attempts do not overwrite each other.
+
+The cost is that nothing is readable in the usual location until the run finishes, which is why it is
+not on by default.
+
+## Reading the log
+
+`Toolkit.LogStyle` selects between CMTrace format and plain text. CMTrace format carries severity and
+component metadata that CMTrace and OneTrace render as colour and columns, which is worth having
+where those tools are already in use.
+
+`Toolkit.LogDebugMessage` adds the toolkit's internal diagnostics. It is off by default because it is
+noise during normal operation and indispensable during a failure.
+
+Other settings govern rotation and structure. `LogMaxSize`, `LogMaxHistory` and `LogAppend` control
+how long logs live and whether they are overwritten. `LogToSubfolder` and `LogToHierarchy` will file
+logs under `InstallName`, or under `AppVendor\AppName\AppVersion`, when a flat folder becomes
+unmanageable.
+
+## Related
+
+- [Configuration Settings reference](../reference/config-settings.mdx)
+- [How to troubleshoot a deployment](../how-to/troubleshoot-a-deployment.mdx)
+- [How to set the log path with Group Policy](../how-to/set-the-log-path-with-group-policy.mdx)

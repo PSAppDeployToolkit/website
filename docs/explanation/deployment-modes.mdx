@@ -1,0 +1,101 @@
+---
+sidebar_position: 3
+title: 'Deployment modes'
+description: 'What DeployMode does, and how Auto decides between interactive and silent.'
+slug: /explanation/deployment-modes
+hide_title: true
+tags:
+  - DeployMode
+  - Explanation
+---
+
+## Deployment modes
+
+`DeployMode` answers one question: how much may this deployment involve the user? It gets blamed for
+"the dialogs didn't appear" more often than anything else, and in most of those cases it is doing
+exactly what it was asked to do.
+
+## The four modes
+
+| Mode             | Behaviour                                                                                            |
+| :--------------- | :---------------------------------------------------------------------------------------------------- |
+| `Interactive`    | All dialogs shown, including those that ask the user to do something.                                |
+| `NonInteractive` | Dialogs that only inform, such as progress, are shown. Anything requiring input is suppressed.       |
+| `Silent`         | No dialogs at all.                                                                                   |
+| `Auto`           | Resolved at runtime to one of the three above. This is the default.                                  |
+
+`NonInteractive` exists for the case where a user is present but must not be asked to make a
+decision. Autopilot enrolment is the usual example: a prompt would block provisioning, but progress
+is still worth showing.
+
+## Why Auto is the default
+
+A package is written once and then runs everywhere: on a device with a user at the keyboard, on a
+device in a bare provisioning phase, on a server with nobody logged on, and from a task sequence.
+Hard-coding a mode means the package is wrong in at least one of those situations.
+
+Before v4.1, packagers worked around this by passing `-DeployMode Silent` from the management system
+for some deployments and not others, or by branching in the script. `Auto` moves that decision to
+where the facts are: the device, at the moment the session opens.
+
+## How Auto resolves
+
+When the session opens, the toolkit works through the following checks in order. The **first** check
+that applies sets the mode; later checks are logged but do not override it. Explicitly setting
+`DeployMode` to anything other than `Auto` disables all of them.
+
+1. **Is the device still in the OOBE?** If so, the mode becomes `NonInteractive`. Bypass with the
+   `NoOobeDetection` session property.
+2. **Is the device in the ESP user account setup phase?** Detected via the `WWAHost` process and the
+   enrolment's first-sync state for the logged-on user. If so, the mode becomes `NonInteractive`.
+   Also bypassed by `NoOobeDetection`.
+3. **Is this session 0?** If the process cannot present a user interface, or if there is no logged-on
+   user and the process is non-interactive, the mode becomes `Silent`. If a user is logged on, the
+   mode is left alone, because there is somebody to talk to. Bypass with the `NoSessionDetection`
+   session property.
+4. **Are the declared processes running?** If `AppProcessesToClose` is populated but none of those
+   processes is currently running, the mode becomes `Silent`. There is nothing to ask the user to
+   close, so there is no reason to interrupt them. Bypass with the `NoProcessDetection` session
+   property.
+5. **Were no processes declared at all?** From template version 4.2.0 onward, a deployment that
+   declares no processes to close resolves to `Silent` for the same reason. Packages built on
+   earlier templates keep the older behaviour, so upgrading the module alone does not change how
+   they run. An older template can buy into the newer silent-when-empty behaviour by setting
+   `DeployAppScriptVersion` to 4.2.0 or higher.
+6. **Still `Auto`?** The mode becomes `Interactive`.
+
+There is one further adjustment after the fact: a deployment set to `NonInteractive` with no suitable
+logged-on user and a non-interactive process is downgraded to `Silent`, since there is no session to
+draw a progress dialog in.
+
+Every one of these decisions is written to the log, with the reason. When a deployment ran more
+quietly than you expected, the log tells you which check fired.
+
+## When to override
+
+Set an explicit mode when the deployment's audience is known in advance and does not match what the
+checks would infer:
+
+- `Silent` for anything genuinely unattended, where a dialog would be an error rather than a
+  courtesy.
+- `Interactive` for a self-service install the user launched themselves.
+- `NonInteractive` when you want progress shown but no decisions asked.
+
+Prefer the bypass properties over an explicit mode when only one check is wrong. Wanting the UI
+during ESP is a reason to set `NoOobeDetection`, not a reason to abandon `Auto` and lose the other
+three checks.
+
+## Consequences elsewhere
+
+- `Silent` implies `NonInteractive`; both suppress prompts, and `Silent` additionally suppresses
+  informational dialogs.
+- A user cannot defer a deployment that never shows them a dialog. Deferral is an interactive
+  feature; see [closing apps and allowing deferral](../how-to/close-apps-and-allow-deferral.mdx).
+- Mode affects the user experience only. It does not change what gets installed, or the exit code.
+
+## Related
+
+- [Command-Line Parameters](../reference/command-line-parameters.mdx)
+- [ADTSession Object reference](../reference/adtsession-object.mdx), covering `NoOobeDetection`,
+  `NoSessionDetection` and `NoProcessDetection`
+- [The user interface](./user-interface.mdx)

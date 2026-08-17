@@ -1,0 +1,82 @@
+---
+sidebar_position: 4
+title: 'Configuration'
+description: 'The configuration layers, and what belongs in each of them.'
+slug: /explanation/configuration
+hide_title: true
+tags:
+  - Configuration
+  - Explanation
+---
+
+## Configuration
+
+A deployment's behaviour comes from three places, and knowing which one a given setting belongs in
+saves a lot of time later.
+
+## Three layers, in order
+
+| Layer                   | Lives in                                    | Scope                       |
+| :---------------------- | :------------------------------------------ | :-------------------------- |
+| Built-in defaults       | `config.psd1` inside the module folder      | Every deployment, everywhere |
+| Package configuration   | `Config\config.psd1` in the deployment      | One package                 |
+| Group Policy            | `HKLM\SOFTWARE\Policies\PSAppDeployToolkit` | Every deployment on the device |
+
+Later layers win. Group Policy beats the package, and the package beats the built-in defaults. Each
+layer only needs to state what it changes; anything it omits falls through to the layer beneath.
+
+That ordering is deliberate. The organization's decisions about where logs go, what the accent colour
+is, and how long a prompt persists should not be re-litigated by every packager, and should not be
+overridable by a package that predates the decision. A packager, meanwhile, should not have to ask for
+a policy change to alter something that only affects their own application.
+
+## Why the module's copy is off-limits
+
+The module ships its own `config.psd1` holding the defaults. It is there to be read, not edited.
+Editing it means the next module update silently reverts your change, and means two packages using
+the same module version behave differently depending on when they were built.
+
+Put changes in the deployment's `Config\config.psd1` instead (see
+[how to customize a deployment](../how-to/customize-a-deployment.mdx)), or in Group Policy if they
+should apply everywhere.
+
+## Configuration is not session properties
+
+The two are easy to confuse, because both are "settings".
+
+- **Configuration** describes the *environment*: where logs are written, what MSI parameters to use
+  by default, how the dialogs look. It is the same for every application in an estate, so it lives in
+  a config file or a policy.
+- **Session properties** describe the *package*: what it is called, which processes it conflicts
+  with, whether it needs administrative rights. They belong to one application, so they live in
+  `Invoke-AppDeployToolkit.ps1`.
+
+v4.1 moved three settings across this line. `RequireAdmin`, `OobeDetection` and `SessionDetection`
+went from config to session properties, because they describe the package rather than the
+environment. A single config file cannot say "this application needs admin rights and that one does
+not". See [how to upgrade from v4.0](../how-to/upgrade-from-v4-0.mdx).
+
+## Why PowerShell data files
+
+`config.psd1` and `strings.psd1` are PowerShell data files, not the XML that v3 used. A `.psd1` is a
+restricted subset of PowerShell that declares data and cannot execute anything, so it is safe to
+load, and it is the same syntax packagers already write in the deployment script. Nested settings
+read as nested hashtables, which is how they are addressed in code and in this documentation:
+`Toolkit.LogPath`, `UI.DeferExitCode`.
+
+The cost is that config changes do not migrate automatically from v3's `config.xml`. There is no
+converter for it; the settings must be re-applied by hand.
+
+## Text is configured separately
+
+User-facing text lives in `strings.psd1`, not `config.psd1`, and ships pre-translated into 25
+languages. Keeping it separate means a package can be re-branded or re-worded without touching
+behavioural settings, and that a translation update is a file swap. The language is selected from the
+operating system unless `UI.LanguageOverride` says otherwise.
+
+## Related
+
+- [Configuration Settings reference](../reference/config-settings.mdx)
+- [Language Strings reference](../reference/language-strings.mdx)
+- [How to configure the toolkit with Group Policy](../how-to/configure-with-group-policy.mdx)
+- [Logging](./logging.mdx)

@@ -1,0 +1,116 @@
+---
+sidebar_position: 2
+title: 'The deployment script'
+description: 'How Invoke-AppDeployToolkit.ps1 is organized, and why.'
+slug: /deployment-concepts/invoke-appdeploytoolkit
+hide_title: true
+tags:
+  - Invoke-AppDeployToolkit
+  - Explanation
+---
+
+## The deployment script
+
+`Invoke-AppDeployToolkit.ps1` is where you will spend nearly all of your time. It is the entry point
+of a deployment, and the only file in the template that is unambiguously yours to write.
+
+It has three parts: the properties that describe the deployment, the script blocks that do the work,
+and a fixed block at the bottom that opens the session, runs the right blocks, and closes the
+session again. Only the first two are meant to be edited.
+
+## The properties describe, they do not execute
+
+The `$adtSession` hashtable at the top of the script is data, not logic. It is assembled before the
+module is imported and handed to
+[`Open-ADTSession`](../reference/functions/Open-ADTSession.mdx), which turns it into the session
+object the rest of the deployment reads from.
+
+This is why toolkit variables such as `$envProgramFiles` do not work up there: at that point the
+module has not been imported and nothing has been populated. Anything that needs to inspect the
+machine belongs inside a phase block, which runs after the session is open.
+
+The full list of properties is in the
+[ADTSession Object reference](../reference/adtsession-object.mdx). Two of them are worth
+understanding rather than just looking up:
+
+**`AppProcessesToClose`** declares the applications that must not be running. Declaring them here
+rather than passing them to each dialog call means the same list is used for install, uninstall and
+repair. It also means the session sees the list when it opens, so it can decide whether a user needs
+to be involved at all. Give each entry a `Name` and a `Description` where the process name would mean
+nothing to a user:
+
+```powershell
+AppProcessesToClose = @(@{ Name = 'winword'; Description = 'Microsoft Word' })
+```
+
+**`RequireAdmin`** states whether the deployment needs administrative rights. It is a property of the
+package, not of the environment, which is why it moved out of the config file in v4.1. When it is
+`$true` and the process is not elevated, the session refuses to open. Note that
+`Invoke-AppDeployToolkit.exe` does not elevate itself on the strength of this setting. That is the
+caller's job.
+
+Both properties are new in v4.1; if you are coming from v4.0, see
+[how to upgrade](../how-to/upgrade-from-v4-0.mdx).
+
+## Three deployment types, three phases each
+
+A deployment is one of **Install**, **Uninstall** or **Repair**, chosen by `-DeploymentType` at
+launch. Each is expressed as three script blocks:
+
+| Deployment type | Blocks                                       |
+| :-------------- | :------------------------------------------- |
+| Install         | `Pre-Install`, `Install`, `Post-Install`     |
+| Uninstall       | `Pre-Uninstall`, `Uninstall`, `Post-Uninstall` |
+| Repair          | `Pre-Repair`, `Repair`, `Post-Repair`        |
+
+At runtime the script looks up the three blocks matching the deployment type, sets
+`$adtSession.InstallPhase` to each block's name, and runs them in order. Nothing else is executed, so
+code that belongs to an uninstall cannot accidentally run during an install.
+
+The split into three separates work that has different failure consequences:
+
+- **Pre** is everything that happens *before* the system is changed: telling the user what is about
+  to happen, closing conflicting applications, checking disk space, removing an older version.
+  Failing here is cheap, because nothing has been modified yet. This is also where a user gets the
+  chance to defer.
+- **The main phase** is the change itself: running the installer or uninstaller. It should be as
+  small as possible, because this is the part that cannot be cleanly abandoned halfway.
+- **Post** is everything that only makes sense once the change succeeded: registry tweaks, dropping
+  configuration files, removing unwanted shortcuts, telling the user it is done, prompting for a
+  restart.
+
+Because `InstallPhase` is recorded in the log as each block starts, a failure in the log is
+immediately attributable to one of the three.
+
+## The initialization block
+
+The block at the bottom of the script is deliberately uninteresting, and deliberately fixed. It:
+
+1. Imports the module, using the copy bundled in the package if there is one and otherwise the
+   installed one, pinned to a specific version and GUID.
+2. Strips empty values out of `$adtSession` and opens the session, capturing the returned object back
+   into `$adtSession`.
+3. Imports any `PSAppDeployToolkit.*` extension modules sitting alongside the script.
+4. Runs the three blocks for the deployment type.
+5. Calls [`Close-ADTSession`](../reference/functions/Close-ADTSession.mdx), which decides the exit
+   code.
+
+If step 1 or 2 fails there is no session and therefore no log, so the script exits with `60008` and
+writes the error to the console. That is why
+[`/Debug`](../reference/command-line-parameters.mdx) is the first thing to reach for when a
+deployment dies immediately. An unhandled error anywhere in steps 3 to 4 is logged and the session is
+closed with `60001`.
+
+## What this shape buys you
+
+Every package built this way has the same skeleton. Someone who has never seen your package can open
+it, read the properties to learn what it deploys, and jump straight to the phase that matters. The
+log they get back is in the same format, with the same phase names, as every other package in the
+estate.
+
+## Related
+
+- [Deployment Modes](./deployment-modes.mdx), on how `DeployMode` resolves at runtime
+- [Deployment Template reference](../reference/deployment-template.mdx), on the folders around the
+  script
+- [How to create a new deployment](../how-to/create-a-deployment.mdx)
