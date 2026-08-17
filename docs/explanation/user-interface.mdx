@@ -1,0 +1,87 @@
+---
+sidebar_position: 6
+title: 'The user interface'
+description: 'Why the toolkit UI runs in its own process, and what Fluent and Classic mean.'
+slug: /explanation/user-interface
+hide_title: true
+tags:
+  - User Interface
+  - Explanation
+---
+
+## The user interface
+
+Showing a dialog from a deployment is harder than it sounds, because the deployment and the person
+who needs to see the dialog are not in the same place.
+
+## The session 0 problem
+
+An application deployed by Intune or Configuration Manager runs as SYSTEM in session 0. Interactive
+users log on to session 1 and above. Windows isolates session 0 from user sessions deliberately: a
+window drawn there is not shown to anybody, and if it were, it would be a window drawn by a
+privileged process on a desktop that an unprivileged user controls.
+
+v3's answer was `ServiceUI.exe`, which relaunched the deployment inside the user's session so its
+windows would be visible. It worked, but it moved the *whole* deployment across the boundary,
+including the parts that had to be SYSTEM, and it left an interactive window belonging to a
+privileged process where a user could reach it. Any file dialog, any hyperlink, any "open containing
+folder" is a route from there to a SYSTEM command prompt.
+
+## What v4.1 does instead
+
+The deployment stays in session 0. When a dialog is needed, the toolkit launches a separate process
+in the user's session whose only job is to display it and report the answer back. The privileged work
+never crosses the boundary, and the process the user can interact with holds no privileges worth
+stealing.
+
+The consequences are visible in day-to-day use:
+
+- Intune deployments show dialogs with no `ServiceUI` workaround.
+- Configuration Manager deployments no longer need **Allow users to view and interact with the
+  program installation**.
+- `Invoke-ServiceUI.ps1` was removed from the toolkit, because there is nothing left for it to do.
+
+You can still ship `ServiceUI.exe` in a package and use it to launch an installer interactively. The
+security cost described above is unchanged, and is now a choice rather than a requirement.
+
+## Fluent and Classic
+
+Two dialog sets ship with the toolkit.
+
+**Fluent** is the current one: modern Windows styling, light and dark themes, a logo rather than a
+banner, an accent colour, and support for
+[rich text formatting](../reference/text-formatting.mdx) in messages. New deployments should use it.
+
+**Classic** reproduces the v3 dialogs. It exists for two reasons: estates that have standardized on
+that look and do not want a visual change mid-rollout, and v3 compatibility mode, where it is the
+only option. The v3 functions do not accept parameters the Fluent dialogs need, `SubTitle` being one
+example, so compatibility mode cannot offer Fluent without changing the v3 function signatures, which
+would defeat the purpose of compatibility mode.
+
+Which set is used is set by `UI.DialogStyle`. Branding differs between them: Fluent uses a logo,
+Classic uses a banner, and each ignores the other's asset. See
+[how to brand the user interface](../how-to/brand-the-user-interface.mdx).
+
+## Dialogs do not change the outcome
+
+Nothing about a deployment's result depends on a dialog being shown. The same package installs the
+same software whether the user saw a welcome prompt or not. The dialogs affect when the work happens
+and how much warning the user gets, not what is installed. Whether they appear at all is decided by
+[the deployment mode](./deployment-modes.mdx).
+
+The one exception is deferral, which is a genuine decision the user makes. A deferred deployment
+exits with `UI.DeferExitCode`, and the management system decides what happens next, which is why that
+exit code needs mapping. See
+[closing apps and allowing deferral](../how-to/close-apps-and-allow-deferral.mdx).
+
+## Localization
+
+All dialog text comes from `strings.psd1`, pre-translated into 25 languages, selected from the
+operating system's settings unless `UI.LanguageOverride` overrides it. Because the text is
+externalized, a package built in one language works in another without being rebuilt.
+
+## Related
+
+- [Dialogs reference](../reference/dialogs.mdx), covering every dialog with screenshots
+- [Language Strings reference](../reference/language-strings.mdx)
+- [Text Formatting reference](../reference/text-formatting.mdx)

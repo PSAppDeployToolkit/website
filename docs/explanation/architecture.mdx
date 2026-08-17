@@ -1,0 +1,107 @@
+---
+sidebar_position: 1
+title: 'Architecture'
+description: 'Why PSAppDeployToolkit v4 is built the way it is.'
+slug: /explanation/architecture
+hide_title: true
+tags:
+  - Architecture
+  - Explanation
+---
+
+## Architecture
+
+PSAppDeployToolkit v4 is a rewrite rather than an evolution of v3. Three changes account for most of
+the differences: state lives in an object, the user interface runs in its own process, and the
+toolkit ships as a PowerShell module that packages consume rather than a script library they copy.
+
+## State lives in a session object
+
+In v3, a deployment's state was a large collection of global variables. Any function could read or
+write them, nothing was namespaced, and two deployments could not sensibly coexist in one process.
+
+v4 replaces that with the `ADTSession` object, created by
+[`Open-ADTSession`](../reference/functions/Open-ADTSession.mdx) and closed by
+[`Close-ADTSession`](../reference/functions/Close-ADTSession.mdx). Everything about the deployment in
+progress hangs off that object: the application metadata, the resolved deployment mode, the log path,
+and the current phase.
+
+The practical consequences:
+
+- Deployment-specific values are addressed explicitly, as `$adtSession.AppName` rather than
+  `$appName`, so it is obvious where a value came from.
+- The session has a defined lifetime. Opening it is when detection runs and the log begins; closing
+  it is when the exit code is decided.
+- More than one session can exist during a run. The module tracks open sessions as a list and
+  [`Get-ADTSession`](../reference/functions/Get-ADTSession.mdx) returns the current one, which is what
+  makes multi-part deployments workable: a dependency first, then the application.
+
+Environment-level values such as `$envProgramFiles` and `$envOSVersion` are not session state and
+remain plain variables, populated when a session opens or on demand via
+[`Export-ADTEnvironmentTableToSessionState`](../reference/functions/Export-ADTEnvironmentTableToSessionState.mdx).
+The split is deliberate. Facts about the machine are not facts about the deployment.
+
+Further reading: [The deployment script](./the-deployment-script.mdx),
+[ADTSession Object reference](../reference/adtsession-object.mdx).
+
+## The user interface is a separate process
+
+A deployment normally runs as SYSTEM, in session 0. A process in session 0 cannot draw a window that
+a logged-on user will see. v3 worked around this with `ServiceUI.exe`, which relaunched the whole
+deployment in the user's session, including the parts that needed to be SYSTEM.
+
+v4 inverts that. The deployment stays where it belongs, and only the dialogs are launched into the
+user's session as a separate process. Nothing privileged crosses the boundary.
+
+This is why, from v4.1, Intune packages need no `ServiceUI` workaround and Configuration Manager
+packages need no "allow users to interact" setting. It also means the surface a user can reach is
+much smaller. A file dialog in a SYSTEM-context installer is a well-known route to a SYSTEM command
+prompt, and that route no longer exists by default.
+
+Further reading: [The user interface](./user-interface.mdx).
+
+## The toolkit is a module, not a copied script library
+
+v3 packages carried a folder of scripts that each package could modify, and often did. Upgrading
+meant reconciling local edits against a new version.
+
+In v4 the toolkit is a signed PowerShell module. The package either bundles the module folder or
+relies on it being installed on the endpoint, and in both cases the module is treated as read-only.
+Everything a package needs to change lives outside it:
+
+| Concern             | Where it lives              |
+| ------------------- | --------------------------- |
+| Deployment logic    | `Invoke-AppDeployToolkit.ps1` |
+| Settings            | `Config\config.psd1`          |
+| User-facing text    | `Strings\strings.psd1`        |
+| Branding            | `Assets\`                     |
+| Your own functions  | `PSAppDeployToolkit.Extensions\` |
+
+Because none of these are inside the module folder, updating the toolkit in an existing package is
+usually a folder swap, which is the reason for the separation.
+
+The cost is a folder structure that looks more complicated than v3's at first glance. Most of it is
+not yours to touch; see the [Deployment Template reference](../reference/deployment-template.mdx).
+
+## A consistent set of commands
+
+The module exposes more than 130 commands covering process execution, registry and file operations,
+user and session queries, dialogs, and logging. They share a common shape: consistent parameter
+naming, structured error handling, and logging to the deployment log by default.
+
+A deployment script that uses `Copy-ADTFile` rather than `Copy-Item` gains logging and error handling
+for free, and anyone reading the log later sees the same format regardless of which package produced
+it. The same conventions are available to your own code; see
+[extending the toolkit](../how-to/extend-the-toolkit-with-custom-functions.mdx).
+
+## What this means when things go wrong
+
+Each decision above shows up in troubleshooting:
+
+- Session state means the log records what the session resolved to, and why, including the deployment
+  mode.
+- The separate UI process means "no dialogs appeared" is usually a mode decision, not a UI failure.
+- The read-only module means a package that misbehaves after an upgrade is nearly always a config or
+  script issue, not a modified toolkit.
+
+See [How to troubleshoot a deployment](../how-to/troubleshoot-a-deployment.mdx).
