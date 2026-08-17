@@ -1,0 +1,71 @@
+---
+sidebar_position: 2
+title: 'How to create a new deployment'
+description: 'How to create a new deployment folder from a PSAppDeployToolkit template.'
+slug: /getting-started/creating-a-new-deployment
+hide_title: true
+tags:
+  - Template
+  - Scaffold
+  - How-to
+---
+
+## How to create a new deployment
+
+A **deployment** is a self-contained folder holding your application source files, the deployment
+script that drives the install, and the PSAppDeployToolkit module and its configuration. You create
+one from a template, then edit it.
+
+## Prerequisites
+
+- PSAppDeployToolkit [installed](./install-the-toolkit.mdx), or a downloaded template archive.
+
+## Create from the module
+
+If you installed the module, use [`New-ADTTemplate`](../reference/functions/New-ADTTemplate.mdx).
+
+For a v4 native deployment, which is what all new work should use:
+
+```powershell
+New-ADTTemplate -Destination C:\Temp -Name 'PSAppDeployToolkitv4'
+```
+
+For a v3 compatibility deployment, which you only need when dropping in an existing v3
+`Deploy-Application.ps1`:
+
+```powershell
+New-ADTTemplate -Destination C:\Temp -Name 'PSAppDeployToolkitv3' -Version 3
+```
+
+## Create from a downloaded template
+
+1. Download `PSAppDeployToolkit_Template_v4.zip` (or `_v3.zip`) from the
+   [releases page](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases/latest).
+2. Extract the contents to a folder on your packaging machine.
+3. Unblock the extracted files if they were flagged by Windows:
+
+   ```powershell
+   Get-ChildItem -Path C:\Temp\PSAppDeployToolkitv4 -Recurse -File | Unblock-File
+   ```
+
+## Add your application
+
+1. Copy your installer and its media into the `Files` folder.
+2. Copy any additional assets into `SupportFiles`: `.reg` files, configuration files, licence files.
+3. Open `Invoke-AppDeployToolkit.ps1` and fill in the `$adtSession` properties at the top of the
+   script (`AppVendor`, `AppName`, `AppVersion`, and so on).
+4. Add your install, uninstall and repair logic to the matching script blocks.
+
+Refer to the [Deployment Template reference](../reference/deployment-template.mdx) for what each
+folder is for, and to the [ADTSession Object reference](../reference/adtsession-object.mdx) for
+every property you can set.
+
+:::tip
+If your package installs a single MSI, you may not need to write any script logic at all. See
+[Deploy an MSI with zero-config](./deploy-an-msi-with-zero-config.mdx).
+:::
+
+## Next steps
+
+- [Install applications](./install-applications.mdx)
+- [Run a deployment](./run-a-deployment.mdx)

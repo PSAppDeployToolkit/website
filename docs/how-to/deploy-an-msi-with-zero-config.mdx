@@ -1,0 +1,54 @@
+---
+sidebar_position: 4
+title: 'How to deploy an MSI with zero-config'
+description: 'How to install an MSI with no deployment script logic at all.'
+slug: /deployment-concepts/zero-config-deployment
+hide_title: true
+tags:
+  - Zero-Config Deployment
+  - How-to
+---
+
+## How to deploy an MSI with zero-config
+
+Zero-config mode installs a single MSI without you writing any script logic. The toolkit finds the
+MSI in the `Files` folder and builds the install, uninstall and repair actions from it.
+
+## Steps
+
+1. Leave `AppName` empty in the `$adtSession` hashtable in `Invoke-AppDeployToolkit.ps1`. An empty
+   `AppName` is what activates zero-config mode.
+2. Put your MSI into the `Files` folder. Only one MSI is supported; if more than one is present, the
+   first is used.
+3. If you have a transform, put the MST into `Files` as well, named identically to the MSI. For
+   `test01.msi` the transform must be `test01.mst`.
+4. If you have patches, put the MSP files into `Files`. Multiple patches are supported; they are
+   applied in alphabetical order, so name them accordingly.
+5. Run the deployment as normal. See [How to run a deployment](./run-a-deployment.mdx).
+
+## Using a WIM instead
+
+You can compress the MSI and any supporting content into a `.wim` file and place that in `Files`
+instead. The toolkit mounts it automatically and treats its contents as the source.
+
+To force WIM detection even when `AppName` is set, add `ForceWimDetection = $true` to the session
+properties.
+
+## Forcing zero-config on a named package
+
+Zero-config is normally suppressed once `AppName` is set. To keep your app metadata *and* have the
+toolkit derive the MSI actions, set `ForceMsiDetection = $true` in the session properties.
+
+Both properties are listed in the
+[ADTSession Object reference](../reference/adtsession-object.mdx).
+
+## Troubleshooting
+
+### The wrong MSI is installed
+
+More than one MSI is present in `Files`. Remove the extras, or set `AppName` and call
+[`Start-ADTMsiProcess`](../reference/functions/Start-ADTMsiProcess.mdx) explicitly instead.
+
+### The transform is ignored
+
+The MST filename does not match the MSI filename exactly.
