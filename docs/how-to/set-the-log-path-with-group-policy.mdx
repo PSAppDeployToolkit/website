@@ -1,0 +1,115 @@
+---
+sidebar_position: 8
+title: 'How to set the log path with Group Policy'
+description: 'How to define the Toolkit LogPath centrally using a Group Policy Object.'
+slug: /examples/admxtemplate-LogPath
+hide_title: true
+tags:
+  - Group Policy
+  - ADMX Template
+  - How-to
+---
+
+## How to set the log path with Group Policy
+
+This guide creates a Group Policy Object that defines the log path for every PSAppDeployToolkit
+deployment in scope, so you do not have to configure `config.psd1` in each package.
+
+## Prerequisites
+
+- The [ADMX templates are imported](./configure-with-group-policy.mdx) into your Central Store.
+- Rights to create and link Group Policy Objects.
+
+## 1. Create the Group Policy Object
+
+Open the Group Policy Management Editor, right-click **Group Policy Objects** and select **New**.
+
+![Create New GPO](../images/example-admx-LogPath-00-GPO-new.png)
+
+Give it a name. `PSADT 4.1` is used here.
+
+![Create New GPO - Name](../images/example-admx-LogPath-01-GPO-new.png)
+
+## 2. Configure the LogPath policy
+
+Find the new GPO under **Group Policy Objects**, right-click it and select **Edit**.
+
+![Edit GPO](../images/example-admx-LogPath-02-GPO-new.png)
+
+Navigate to **Toolkit**, right-click **LogPath** and select **Edit**:
+
+```text
+Computer Configuration
+└───Policies
+    └───Administrative Templates: Policy definitions
+        └───PSAppDeployToolkit
+            └───Toolkit
+```
+
+![Edit GPO Policy](../images/example-admx-LogPath-03-GPO-new.png)
+
+Select **Enable** and define the path. This example uses the Intune Management Extension log folder,
+so PSADT logs are collected alongside Intune's own:
+
+```powershell
+$envProgramData\Microsoft\IntuneManagementExtension\Logs
+```
+
+![Configure Policy](../images/example-admx-LogPath-04-GPO-new.png)
+
+Select **OK**, configure any other policies you need, and close the editor.
+
+## 3. Link the GPO
+
+Navigate to the domain or OU you want the policy to apply to, right-click and select
+**Link an Existing GPO...**
+
+![Link Policy](../images/example-admx-LogPath-05-GPO-new.png)
+
+Select the GPO and click **OK**.
+
+![Select Link Policy](../images/example-admx-LogPath-06-GPO-new.png)
+
+The GPO now appears linked at that location.
+
+![Link Policy Success](../images/example-admx-LogPath-07-GPO-new.png)
+
+## 4. Apply and verify
+
+On a machine in scope, refresh policy:
+
+```text
+gpupdate /force
+```
+
+![Update Group Policy](../images/example-admx-LogPath-08-GPO-new.png)
+
+Confirm the GPO applied:
+
+```text
+gpresult /r /scope computer
+```
+
+![Verify Group Policy](../images/example-admx-LogPath-09-GPO-new.png)
+
+Confirm the setting reached the registry:
+
+```text
+Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\PSAppDeployToolkit\Config\Toolkit
+```
+
+![Verify Group Policy](../images/example-admx-LogPath-10-GPO-new.png)
+
+## 5. Run a deployment
+
+The toolkit imports Group Policy settings as it initializes, so the next deployment writes its log
+to the configured folder, in this case `ProgramData\Microsoft\IntuneManagementExtension\Logs`.
+
+![Run a Deployment](../images/example-admx-LogPath-11-GPO-new.png)
+
+## Troubleshooting
+
+### Logs still go to the old location
+
+The deployment started before policy refreshed, or the machine is out of scope. Re-check
+`gpresult /r /scope computer` and confirm the registry value exists.
