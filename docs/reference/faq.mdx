@@ -1,24 +1,29 @@
 ---
-sidebar_position: 9
+sidebar_position: 13
+sidebar_label: 'FAQ'
 title: 'FAQ'
 description: 'Frequently Asked Questions'
 slug: /getting-started/faq
 hide_title: true
 tags:
-  - Getting Started
+  - Reference
   - FAQ
 ---
 
 ## Frequently Asked Questions
+
+For symptoms with a known cause and fix, see [Troubleshooting](./troubleshooting.mdx). For a
+diagnostic process, see
+[How to troubleshoot a deployment](../how-to/troubleshoot-a-deployment.mdx).
 
 <details>
   <summary>Everything has changed since v3! Where do I begin?</summary>
 
   Some useful links to get you started:
 
-- [Release Notes](../getting-started/release-notes.mdx)
+- [Release Notes](../reference/release-notes.mdx)
 - [v4 Function Mapping](../reference/v4-function-mapping.mdx)
-- [Upgrade Guidance: v3.x to v4.1](../getting-started/upgrade-guidance-v3x-to-v41.mdx)
+- [Upgrade Guidance: v3.x to v4.1](../how-to/upgrade-from-v3.mdx)
 
 </details>
 
@@ -72,7 +77,7 @@ tags:
 <details>
   <summary>How can I update the version of the toolkit that my package uses?</summary>
 
-  To update a PSAppDeployToolkit v3 package to v4, there is a `Convert-ADTDeployment` command in the companion [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) module (see [Upgrade Guidance: v3.x to v4.1](../getting-started/upgrade-guidance-v3x-to-v41.mdx) for further details).
+  To update a PSAppDeployToolkit v3 package to v4, there is a `Convert-ADTDeployment` command in the companion [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) module (see [Upgrade Guidance: v3.x to v4.1](../how-to/upgrade-from-v3.mdx) for further details).
 
   To update a v4 package to a newer version, because the config and asset folders are externalized, you can simply replace the PSAppDeployToolkit folder with the new version. There should be no breaking changes if you apply a patch release (for example, upgrading from 4.0.0 to 4.0.4).
 
