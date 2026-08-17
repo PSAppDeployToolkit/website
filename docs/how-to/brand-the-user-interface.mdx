@@ -1,0 +1,135 @@
+---
+sidebar_position: 15
+title: 'How to brand the user interface'
+description: 'How to apply your own logo, banner, accent colour and wording to the toolkit dialogs.'
+slug: /how-to/brand-the-user-interface
+hide_title: true
+tags:
+  - User Interface
+  - Customizing
+  - How-to
+---
+
+## How to brand the user interface
+
+Branding is applied per deployment, in the `Assets` and `Config` folders of the package, or centrally
+with [Group Policy](./configure-with-group-policy.mdx).
+
+## Replace the logo
+
+The Fluent dialogs show a logo. Replace `Assets\AppIcon.png` with your own file, keeping the
+filename. Use a 256x256 PNG.
+
+To use a different image in dark mode, set `Assets.LogoDark` in `config.psd1`:
+
+```powershell
+@{
+    Assets = @{
+        Logo = 'AppIcon.png'
+        LogoDark = 'AppIcon.Dark.png'
+    }
+}
+```
+
+Both settings accept either a filename relative to the `Assets` folder or a Base64 string, which is
+useful when you want branding embedded in a policy rather than in every package.
+
+## Replace the Classic banner
+
+The Classic dialogs show a banner instead of a logo. Replace `Assets\Banner.Classic.png`, keeping
+the filename. The file must be a PNG, 450 x 50 pixels.
+
+The banner is ignored by the Fluent dialogs.
+
+## Set the accent colour
+
+```powershell
+@{
+    UI = @{
+        FluentAccentColor = 0xFF0078D4
+        FluentAccentColorDark = 0xFF4CC2FF
+    }
+}
+```
+
+The accent colour is used by the Fluent dialogs and by the `[accent]` tag in
+[text formatting](../reference/text-formatting.mdx).
+
+## Set the company name
+
+Dialog subtitles default to your company name. Set it once:
+
+```powershell
+@{
+    Toolkit = @{
+        CompanyName = 'Contoso'
+    }
+}
+```
+
+## Choose the dialog style
+
+`UI.DialogStyle` selects between the Fluent and Classic dialog sets. New deployments should use
+Fluent; Classic exists for continuity with v3 and is the only style available in
+[v3 compatibility mode](./upgrade-from-v3.mdx).
+
+## Change the wording
+
+Dialog text lives in `Strings\strings.psd1`, not in the assets. See
+[How to customize a deployment](./customize-a-deployment.mdx) and the
+[Language Strings reference](../reference/language-strings.mdx).
+
+### Writing dialog copy
+
+Messages support [text formatting](../reference/text-formatting.mdx) tags. A few rules keep the
+result readable:
+
+**Use formatting sparingly.** When everything is formatted, nothing stands out.
+
+Avoid:
+
+```text
+[bold][italic][accent]Everything[/accent][/italic][/bold] is [bold]formatted[/bold] [italic]differently[/italic]!
+```
+
+Prefer:
+
+```text
+[bold]Important:[/bold] Please [accent]save your work[/accent] before continuing.
+```
+
+**Be consistent.** Pick a role for each tag and keep to it across every package:
+
+- `[bold]` for headings and important labels
+- `[accent]` for critical information or warnings
+- `[italic]` for supplementary information or examples
+- `[url]` for support links and resources
+
+**Keep it accessible.** Ensure the accent colour has sufficient contrast against both themes, never
+rely on formatting alone to carry meaning, and test your text in light and dark mode.
+
+**Close tags in reverse order.** `[bold][italic]Text[/italic][/bold]` is valid;
+`[bold][italic]Text[/bold][/italic]` is not.
+
+## Apply branding across the estate
+
+Every setting above is also exposed as a Group Policy setting, so you can brand centrally instead of
+per package. See [How to configure the toolkit with Group Policy](./configure-with-group-policy.mdx).
+Policy wins over the package's own `config.psd1`.
+
+## Check the result
+
+Every dialog and how it looks in light and dark mode is shown in the
+[Dialogs reference](../reference/dialogs.mdx).
+
+## Troubleshooting
+
+### The logo did not change
+
+The package's `Assets` folder was updated but `Assets.Logo` points somewhere else, or a Group Policy
+setting is overriding it. Policy takes precedence; see
+[Configuration](../explanation/configuration.mdx).
+
+### The banner is ignored
+
+The deployment is using the Fluent dialogs. Banners are Classic-only.
