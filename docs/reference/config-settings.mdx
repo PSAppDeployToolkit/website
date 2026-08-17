@@ -1,8 +1,8 @@
 ﻿---
-sidebar_position: 3
+sidebar_position: 5
 sidebar_label: 'Configuration Settings'
 title: 'Configuration Settings'
-description: 'PSAppDeployToolkit uses ADTSession to govern each deployment. You can find more information here'
+description: 'Every setting available in config.psd1, and the Group Policy equivalents.'
 slug: /reference/config-settings
 hide_title: true
 tags:
@@ -12,7 +12,10 @@ tags:
 
 ## Configuration Settings
 
-PSAppDeployToolkit provides comprehensive configuration management through multiple layers: Group Policy (highest precedence), local configuration files, and built-in defaults.
+Settings are resolved from three layers, in increasing order of precedence: the module's built-in
+defaults, the deployment's `Config\config.psd1`, and Group Policy. How the layers interact is
+described in [Configuration](../explanation/configuration.mdx); applying them centrally is covered
+in [How to configure the toolkit with Group Policy](../how-to/configure-with-group-policy.mdx).
 
 ### Settings
 
@@ -58,10 +61,10 @@ PSAppDeployToolkit provides comprehensive configuration management through multi
 
 | Setting                    | Description                                                                                                             |
 | :------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
-| `MSI.InstallParams`        | Defines the installation parameters for MSI. **Default changed to `/qn REBOOT=ReallySuppress`**                         |
+| `MSI.InstallParams`        | Installation parameters for MSI. Defaults to `/qn REBOOT=ReallySuppress`.                         |
 | `MSI.LoggingOptions`       | Specifies the logging options for MSI.                                                                                  |
-| `MSI.LogPath`              | Specifies the log path for MSI. **Now uses Toolkit.LogPath when empty**                                                 |
-| `MSI.LogPathNoAdminRights` | Specifies the log path for MSI when no administrative privileges are available. **Now uses Toolkit.LogPathNoAdminRights when empty** |
+| `MSI.LogPath`              | Log path for MSI. Falls back to `Toolkit.LogPath` when empty.                                                 |
+| `MSI.LogPathNoAdminRights` | Log path for MSI when no administrative privileges are available. Falls back to `Toolkit.LogPathNoAdminRights` when empty. |
 | `MSI.MutexWaitTime`        | Sets the mutex wait time for MSI.                                                                                       |
 | `MSI.SilentParams`         | Defines the silent parameters for MSI.                                                                                  |
 | `MSI.UninstallParams`      | Defines the uninstall parameters for MSI.                                                                               |
@@ -74,7 +77,7 @@ PSAppDeployToolkit provides comprehensive configuration management through multi
 | `UI.DefaultExitCode`              | Specifies the default exit code for the UI.                               |
 | `UI.DefaultPromptPersistInterval` | Sets the default interval for prompt persistence.                         |
 | `UI.DefaultTimeout`               | Defines the default timeout for the UI.                                   |
-| `UI.DeferExitCode`                | Specifies the exit code for deferred actions. **Default changed to 1602** |
+| `UI.DeferExitCode`                | Exit code returned when the user defers. Defaults to 1602. |
 | `UI.DialogStyle`                  | Defines the appearance of dialogs.                                        |
 | `UI.FluentAccentColor`            | Specifies the accent color for Fluent UI dialogs.                         |
 | `UI.FluentAccentColorDark`        | Specifies the accent color for Fluent UI dialogs (for dark mode).         |

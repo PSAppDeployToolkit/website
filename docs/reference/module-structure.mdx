@@ -1,52 +1,49 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
+sidebar_label: 'Module Structure'
 title: 'Module Structure'
 description: 'The file / folder structure of the PSADT module explained.'
 slug: /reference/module-structure
 hide_title: true
 tags:
-  - Usage
-  - Archive
+  - Module Structure
   - Reference
 ---
 
-## Deployment Structure
+## Module Structure
 
-### PSADT Core Module Files
+The contents of the `PSAppDeployToolkit/` folder, listed for reference. Nothing in this folder is
+intended to be modified. Custom functions belong in
+[`PSAppDeployToolkit.Extensions`](../how-to/extend-the-toolkit-with-custom-functions.mdx), and
+settings belong in the deployment's own `Config` and `Strings` folders.
 
-The PSADT core module files are located in the `PSAppDeployToolkit/` folder. This folder contains all the necessary files for the PSADT module to function correctly. You should not modify any files in this folder, as they are essential for the proper operation of the PSADT module.
+## Core module files
 
-These are here for reference only, and you should not modify them. If you need to customize the PSADT module, you can create your own custom functions in the `PSAppDeployToolkit.Extensions/` folder.
+| Folder                  | File                    | Purpose                                                                                                                                                                        |
+| :---------------------- | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **PSAppDeployToolkit/** |                         |                                                                                                                                                                                |
+|                         | PSAppDeployToolkit.cer  | Public certificate. Used to verify the deployment scripts and executables.                                                                                                     |
+|                         | PSAppDeployToolkit.psd1 | Module manifest. Contains metadata about the module, such as its version and dependencies.                                                                                     |
+|                         | PSAppDeployToolkit.psm1 | Module file. Automatically loaded by the deployment script.                                                                                                                    |
+| **ADMX/**               |                         | Group Policy ADMX files, for configuring the toolkit centrally. Import these into your Central Store or Intune; see [how to use them](../how-to/configure-with-group-policy.mdx). |
+| **Assets/**             | AppIcon.png             | Default app icon. Used as a fallback when a deployment does not supply its own.                                                                                                |
+| **Config/**             | config.psd1             | Default configuration. The bottom layer of the [configuration hierarchy](../explanation/configuration.mdx).                                                                     |
+| **Strings/**            | strings.psd1            | Default UI strings. Contains the default English strings, used as a fallback when a language is unavailable.                                                                    |
+| **Frontend/**           |                         | Deployment script templates used by [`New-ADTTemplate`](./functions/New-ADTTemplate.mdx).                                                                                       |
+| **Lib/**                |                         | Supporting libraries and .NET assemblies used by the module.                                                                                                                   |
 
-| Folder                  | File                    | Purpose                                                                                                                                                                                                                                                     |
-| :---------------------- | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **PSAppDeployToolkit/** |                         |                                                                                                                                                                                                                                                             |
-|                         | PSAppDeployToolkit.cer  | PSADT Public Certificate. Used to verify the deployment scripts and executables.                                                                                                                                                                            |
-|                         | PSAppDeployToolkit.psd1 | PSADT Module Manifest file. Contains metadata about the module, such as its version and dependencies.                                                                                                                                                       |
-|                         | PSAppDeployToolkit.psm1 | PSADT Module file. This is automatically loaded by the deployment script.                                                                                                                                                                                   |
-| **ADMX/**               |                         |                                                                                                                                                                                                                                                             |
-|                         |                         | PSADT Group Policy ADMX files. These files are used to integrate the PSADT module with Group Policy. They allow you to configure PSADT settings via Group Policy. You can import these files into your Group Policy Management Console.                     |
-| **Assets**              |                         |                                                                                                                                                                                                                                                             |
-|                         | AppIcon.png             | PSADT Default App Icon. This is the fallback if you do not customize it. You should NOT modify this file.                                                                                                                                                   |
-| **Config/**             |                         |                                                                                                                                                                                                                                                             |
-|                         | config.psd1             | PSADT Default Configuration file. This file contains the default configuration settings for the PSADT module. You should NOT modify this file.                                                                                                              |
-| **Strings/**            |                         |                                                                                                                                                                                                                                                             |
-|                         | strings.psd1            | PSADT Default User Interface strings file. This changes the text displayed in the PSADT User Interface. It contains the default English strings. If a specific language is not available, this will be used as a fallback. You should NOT modify this file. |
-| **Strings/**            |                         |                                                                                                                                                                                                                                                             |
-|                         | strings.psd1            | PSADT Default User Interface strings file. This changes the text displayed in the PSADT User Interface. It contains the default English strings. If a specific language is not available, this will be used as a fallback. You should NOT modify this file. |
-| **FrontEnd/**           |                         |                                                                                                                                                                                                                                                             |
-|                         |                         | PSADT Default deployment script files. Contains the templates for the deployment scripts. You should NOT modify these files.                                                                                                                                |
-| **Lib/**                |                         |                                                                                                                                                                                                                                                             |
-|                         |                         | PSADT Library files. Contains additional logic and functionality used by the PSADT module. These files are used to extend the functionality of the PSADT module. You should NOT modify these files.                                                         |
+## Extensions module files
 
-## PSADT Extensions Module Files
+The extensions module is a template for your own reusable functions. It is imported automatically by
+the deployment script, so no manual import is required.
 
-These files are part of the PSADT Extensions module, which provides additional functionality for the PSADT framework.
+| Folder                             | File                               | Purpose                                                                          |
+| :--------------------------------- | :--------------------------------- | :--------------------------------------------------------------------------------- |
+| **PSAppDeployToolkit.Extensions/** |                                    |                                                                                  |
+|                                    | PSAppDeployToolkit.Extensions.psd1 | Extensions module manifest. Contains metadata and the list of exported functions. |
+|                                    | PSAppDeployToolkit.Extensions.psm1 | Extensions module script. Contains your functions.                                |
 
-The PSADT Extensions module is designed to allow you to create your own custom functions and logic that can be used in your deployment scripts. The module will be automatically imported by the PSADT core module, so you do not need to import it manually.
+## Related
 
-| Folder                              | File                                | Purpose                                                                                  |
-| :---------------------------------- | :---------------------------------- | :--------------------------------------------------------------------------------------- |
-| **PSAppDeployToolkit. Extensions/** |                                     |                                                                                          |
-|                                     | PSAppDeployToolkit. Extensions.psd1 | PSADT Extensions module manifest. Contains metadata about the module and its version.    |
-|                                     | PSAppDeployToolkit. Extensions.psm1 | PSADT Extensions module script. Contains all the functions and logic for the extensions. |
+- [Deployment Template](./deployment-template.mdx), covering the folders around the module
+- [How to extend the toolkit with custom functions](../how-to/extend-the-toolkit-with-custom-functions.mdx)

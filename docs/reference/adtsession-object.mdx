@@ -1,8 +1,8 @@
 ﻿---
-sidebar_position: 1
+sidebar_position: 4
 sidebar_label: 'ADTSession Object'
 title: 'ADTSession Object'
-description: 'PSAppDeployToolkit uses ADTSession to govern each deployment. You can find more information here'
+description: 'Every property of the ADTSession object that governs a deployment.'
 slug: /reference/adtsession-object
 hide_title: true
 tags:
@@ -25,6 +25,11 @@ $adtSession = Open-ADTSession -AppName "YourAppName" -AppVersion "1.0.0" -AppVen
 This initializes the session and gathers information about the deployment, user, and computer, providing an object with several helpful properties you can use.
 
 In addition, opening a session creates additional variables in your PowerShell environment that are independent of any particular deployment. More information about these variables can be found in the [Variables](./variables.mdx) page.
+
+Why deployment state is held in a session object at all is discussed in
+[Architecture](../explanation/architecture.mdx). In a deployment built from the template, these
+properties are set in the `$adtSession` hashtable at the top of `Invoke-AppDeployToolkit.ps1`. See
+[The deployment script](../explanation/the-deployment-script.mdx).
 
 ## Properties
 
