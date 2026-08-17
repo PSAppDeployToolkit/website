@@ -1,12 +1,13 @@
 ﻿---
-sidebar_position: 5
+sidebar_position: 12
+sidebar_label: 'Release Notes'
 title: 'Release Notes'
 description: 'Release notes for PSAppDeployToolkit v4.1'
 slug: /getting-started/release-notes
 hide_title: true
 tags:
   - Changes
-  - Getting Started
+  - Reference
 ---
 
 ## Release Notes
@@ -265,8 +266,8 @@ This release strengthens Windows Installer (.msi) and Patch (.msp) deployment re
 - Reworked `Invoke-AppDeployToolkit.exe` to be more compliant within `WDAC` environments
 - Added `-NoWait` support to [Show-ADTDialogBox](../reference/functions/Show-ADTDialogBox)
 - Added process detection code to enable automatic silent deployments when processes aren't running
-- Added `/Debug` switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit) to show terminal output for debugging purposes
-- Added `/Core` switch to [Invoke-AppDeployToolkit.exe](../deployment-concepts/invoke-appdeploytoolkit) to allow PowerShell 7 usage
+- Added `/Debug` switch to [Invoke-AppDeployToolkit.exe](../explanation/the-deployment-script.mdx) to show terminal output for debugging purposes
+- Added `/Core` switch to [Invoke-AppDeployToolkit.exe](../explanation/the-deployment-script.mdx) to allow PowerShell 7 usage
 - Added support for running processes from network drives
 
 #### ️ Changes
@@ -324,19 +325,19 @@ This release strengthens Windows Installer (.msi) and Patch (.msp) deployment re
 #### Key Filename Changes
 
 :::info
-Further changes to the deployment layout are detailed in the [Deployment Structure](../deployment-concepts/deployment-structure.mdx) page.
+Further changes to the deployment layout are detailed in the [Deployment Structure](../reference/deployment-template.mdx) page.
 :::
 
 | Old Name                     | New Name                      | More Information                                                              |
 | :--------------------------- | :---------------------------- | :---------------------------------------------------------------------------- |
-| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit.mdx) |
-| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../deployment-concepts/invoke-appdeploytoolkit.mdx) |
+| `Deploy-Application.ps1`     | `Invoke-AppDeployToolkit.ps1` | [Invoke-AppDeployToolkit](../explanation/the-deployment-script.mdx) |
+| `Deploy-Application.exe`     | `Invoke-AppDeployToolkit.exe` | [Invoke-AppDeployToolkit](../explanation/the-deployment-script.mdx) |
 | `AppDeployToolkitConfig.xml` | `Config\Config.psd1`          | [Configuration Settings](../reference/config-settings.mdx)                    |
 | *Was part of Config file*    | `Strings\Strings.psd1`        | [Language Strings](../reference/language-strings.mdx)                         |
 
 #### New Configuration Format
 
-- Changed to .psd1 as the native PowerShell config file format. See [Customizing Deployments](../usage/customizing-deployments.mdx) for more information.
+- Changed to .psd1 as the native PowerShell config file format. See [Customizing Deployments](../how-to/customize-a-deployment.mdx) for more information.
 
 #### Key Function Name Changes
 
@@ -413,4 +414,4 @@ Added `-LoadProfilePaths` switch to [Get-ADTUserProfiles](../reference/functions
 
 Added support for compressing file content into a `WIM` archive and mounting it during installation. You can manage this manually using [Mount-ADTWimFile](../reference/functions/Mount-ADTWimFile.mdx) and [Dismount-ADTWimFile](../reference/functions/Dismount-ADTWimFile.mdx), or you can use the `-ForceWimDetection` switch with [Open-ADTSession](../reference/functions/Open-ADTSession.mdx) to auto-mount and dismount any `WIM` files found.
 
-Added [Zero Config](../deployment-concepts/zero-config-deployment.mdx) feature that starts automatically if you leave the **AppName** blank, mounts any `WIM` file found, and installs the `MSI` located inside.
+Added [Zero Config](../how-to/deploy-an-msi-with-zero-config.mdx) feature that starts automatically if you leave the **AppName** blank, mounts any `WIM` file found, and installs the `MSI` located inside.
