@@ -1,0 +1,124 @@
+---
+sidebar_position: 16
+title: 'How to extend the toolkit with custom functions'
+description: 'How to add your own reusable functions using the PSAppDeployToolkit.Extensions module.'
+slug: /how-to/extend-the-toolkit
+hide_title: true
+tags:
+  - Extensions
+  - How-to
+---
+
+## How to extend the toolkit with custom functions
+
+Reusable logic belongs in the `PSAppDeployToolkit.Extensions` module that ships with the v4 template,
+not inline in `Invoke-AppDeployToolkit.ps1`. The deployment script imports every
+`PSAppDeployToolkit.*` folder next to it automatically, so functions you add there are available in
+all phases.
+
+## 1. Open the extensions module
+
+In the deployment folder:
+
+```text
+PSAppDeployToolkit.Extensions/
+├── PSAppDeployToolkit.Extensions.psd1
+└── PSAppDeployToolkit.Extensions.psm1
+```
+
+Add your functions to the `.psm1`. The supplied `New-ADTExampleFunction` is a working skeleton to
+copy.
+
+## 2. Follow the function skeleton
+
+Toolkit functions bracket their work with three helpers so that logging, error handling and session
+state behave the same as every built-in command:
+
+```powershell
+function Set-ContosoAppSettings
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [System.String]$SettingsPath
+    )
+
+    begin
+    {
+        Initialize-ADTFunction -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    }
+
+    process
+    {
+        try
+        {
+            try
+            {
+                Write-ADTLogEntry -Message "Applying settings from [$SettingsPath]."
+                # your logic here
+            }
+            catch
+            {
+                # Re-writing the ErrorRecord with Write-Error ensures the correct PositionMessage is used.
+                Write-Error -ErrorRecord $_
+            }
+        }
+        catch
+        {
+            Invoke-ADTFunctionErrorHandler -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState -ErrorRecord $_
+        }
+    }
+
+    end
+    {
+        Complete-ADTFunction -Cmdlet $PSCmdlet
+    }
+}
+```
+
+- [`Initialize-ADTFunction`](../reference/functions/Initialize-ADTFunction.mdx) logs the function
+  entry and inherits the caller's preferences.
+- [`Invoke-ADTFunctionErrorHandler`](../reference/functions/Invoke-ADTFunctionErrorHandler.mdx) logs
+  the error and rethrows according to the caller's `ErrorAction`.
+- [`Complete-ADTFunction`](../reference/functions/Complete-ADTFunction.mdx) logs the exit.
+
+Use [`Write-ADTLogEntry`](../reference/functions/Write-ADTLogEntry.mdx) for output so your messages
+land in the deployment log alongside everything else.
+
+## 3. Export the function
+
+Add the function name to `FunctionsToExport` in `PSAppDeployToolkit.Extensions.psd1`. Functions that
+are not exported are not visible to the deployment script.
+
+## 4. Call it from the deployment script
+
+```powershell
+## MARK: Post-Install
+New-Variable -Name Post-Install -Force -Value {
+    Set-ContosoAppSettings -SettingsPath "$($adtSession.DirSupportFiles)\settings.json"
+}
+```
+
+## Reserve your own exit codes
+
+`70000` to `79999` is reserved for exit codes raised from the extensions module, so they do not
+collide with the toolkit's own. See the [Exit Codes reference](../reference/exit-codes.mdx).
+
+## Sharing extensions across packages
+
+The import is driven by folder name: any directory alongside the deployment script matching
+`PSAppDeployToolkit.*` is imported. Keep your organization's extensions in source control and copy
+the folder into each package, or publish it as a module and pre-install it on packaging machines.
+
+## Troubleshooting
+
+### The function is not recognized
+
+It is not listed in `FunctionsToExport`, or the folder does not match the `PSAppDeployToolkit.*`
+naming pattern.
+
+### The module imports but logs nothing
+
+`Write-ADTLogEntry` needs an open session. Anything running before `Open-ADTSession` has no log to
+write to.

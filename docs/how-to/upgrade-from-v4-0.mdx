@@ -1,0 +1,125 @@
+---
+sidebar_position: 11
+title: 'How to upgrade from v4.0 to v4.1'
+description: 'Upgrade guidance for those coming from v4.0.'
+slug: /getting-started/upgrade-guidance-4x-to-v41
+hide_title: true
+tags:
+  - Migration
+  - How-to
+---
+
+## How to upgrade from v4.0 to v4.1
+
+For a patch release, say v4.0.5 to v4.0.6, replacing the `PSAppDeployToolkit` folder inside the
+package is normally all that is required. Moving from v4.0 to v4.1 needs the changes below.
+
+:::warning[Breaking changes in v4.1]
+
+- `DeployMode` now defaults to `Auto`, which resolves to interactive but falls back to silent when
+  the device is in the OOBE/ESP phase, no user is logged on, or there are no processes to close.
+- `OOBEDetection` and `SessionDetection` are no longer set in `Config.psd1`. They are now
+  per-deployment session properties, `NoOOBEDetection` and `NoSessionDetection`.
+- `AppProcessesToClose` is a new session property that defines the processes to close for
+  Install/Uninstall/Repair in one place, instead of passing them to `-CloseProcesses` on each call
+  to `Show-ADTInstallationWelcome`.
+- `RequireAdmin` is no longer set in `Config.psd1`. It must be set per deployment in the session
+  properties.
+- `Invoke-AppDeployToolkit.exe` no longer requests elevation when `RequireAdmin` is set. You must
+  launch it elevated yourself.
+- Several config options were removed or had their defaults changed. See below.
+- Deprecated functions and parameters are scheduled for removal in 4.2.0. Update your scripts.
+
+:::
+
+## 1. Replace the module
+
+Replace the `PSAppDeployToolkit` folder inside the package with the v4.1 version.
+
+## 2. Update Invoke-AppDeployToolkit.ps1
+
+Add the two new session properties to the `$adtSession` hashtable:
+
+```powershell
+$adtSession = @{
+    # App variables.
+
+    AppProcessesToClose = @('excel', @{ Name = 'winword'; Description = 'Microsoft Word' })
+
+    RequireAdmin = $true
+}
+```
+
+- `AppProcessesToClose` defines the processes to close once, instead of repeating the list in the
+  Install, Uninstall and Repair sections. When `DeployMode` is `Auto`, the toolkit switches to
+  `Silent` if none of these processes are running when the session opens. Set the
+  `NoProcessDetection` session property to disable that behaviour.
+- `RequireAdmin` moved from the config file to the template, because it is a per-package setting.
+  When `$true`, the script fails at the point the session opens if the user is not an administrator.
+
+Update the `Show-ADTInstallationWelcome` call to feed from the new property. The v4.1 template uses
+[splatting](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting):
+
+```powershell
+$saiwParams = @{
+    AllowDefer = $true
+    DeferTimes = 3
+    CheckDiskSpace = $true
+    PersistPrompt = $true
+}
+if ($adtSession.AppProcessesToClose.Count -gt 0)
+{
+    $saiwParams.Add('CloseProcesses', $adtSession.AppProcessesToClose)
+}
+Show-ADTInstallationWelcome @saiwParams
+```
+
+This only adds `CloseProcesses` when the list is non-empty. The v4.0 pattern still works, and the
+template is yours to customize.
+
+Finally, add the call that strips null and empty values from the hashtable before it reaches
+`Open-ADTSession`:
+
+```powershell
+    $adtSession = Remove-ADTHashtableNullOrEmptyValues -Hashtable $adtSession ⬅️
+    $adtSession = Open-ADTSession @adtSession @iadtParams -PassThru
+```
+
+## 3. Update Config.psd1
+
+Remove these options, which no longer exist:
+
+- `Toolkit.OobeDetection`
+- `Toolkit.SessionDetection`
+- `Toolkit.RequireAdmin`
+
+Check whether you were relying on any default that has changed:
+
+| Option                   | New default               | Notes                                                              |
+| ------------------------ | ------------------------- | ------------------------------------------------------------------ |
+| MSI.InstallParams        | /qn REBOOT=ReallySuppress | Default MSI parameters for installation.                           |
+| MSI.LogPath              |                           | Now uses the same path as Toolkit.LogPath when empty.              |
+| MSI.LogPathNoAdminRights |                           | Now uses the same path as Toolkit.LogPathNoAdminRights when empty. |
+| UI.DeferExitCode         | 1602                      | Default exit code for deferred installations.                      |
+
+:::warning[OOBE and session detection]
+Detection logic changed in 4.1. OOBE detection now includes the User ESP phase, and both OOBE and
+session detection can be bypassed per deployment with the `NoOobeDetection` and `NoSessionDetection`
+session properties. Review any script or config that relied on the old behaviour;
+[Deployment Modes](../explanation/deployment-modes.mdx) describes what happens now.
+:::
+
+## 4. Review Strings.psd1
+
+The `Strings.psd1` files changed extensively for every language, too many changes to list. If you
+customized yours, re-apply your changes on top of the new file rather than keeping the old one.
+
+Translation improvements are welcome as issues or pull requests on GitHub.
+
+## 5. Check for deprecations
+
+- Run `Test-ADTCompatibility` from
+  [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) against
+  your script.
+- Review the function and parameter deprecations in the
+  [release notes](../reference/release-notes.mdx). Deprecated items are removed in 4.2.0.
