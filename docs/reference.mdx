@@ -1,7 +1,7 @@
-﻿---
+---
 sidebar_position: 1
 title: 'Reference'
-description: 'A handy reference to the PSAppDeployToolkit library of functions, ADTSession object properties, and exit codes.'
+description: 'Technical reference for the PSAppDeployToolkit function library, session object, settings, strings and exit codes.'
 id: reference
 hide_title: true
 tags:
@@ -10,18 +10,54 @@ tags:
 
 ## Reference
 
-You can find extensive details on all of the available Functions, `ADTSession` properties, Variables, Configuration Settings, Langauge Strings, Text Formatting and Exit Codes in the sidebar or by using the search bar.
+Precise descriptions of what PSAppDeployToolkit provides. Use the sidebar or the search bar to find
+what you need; if you are looking for instructions rather than facts, start from the
+[documentation](./introduction.mdx).
 
 ----
 
-- PSAppDeployToolkit has an **extensive library of functions** to simplify common deployment tasks. Every function adheres to the same security standards and best practices, including documentation.
-- The **`ADTSession`** object is a core component of PSAppDeployToolkit, managing the state and information throughout a deployment session. It gathers essential details about the deployment environment and provides convenient properties and methods for use in scripts.
-- When you open an `ADTSession` several useful **Variables** are created. These include hardware information, system and user paths, and Active Directory domain details, among others.
-- PSADT provides comprehensive **Configuration Settings** through multiple layers.
-- You can customize all of the User Interface text strings for English or any other language using **Language Strings**.
-- PSADT supports rich **Text Formatting** in dialog messages, allowing you to create more visually appealing and informative user interfaces.
-- Pre-defined **Exit Codes** are used to indicate the success or failure of a deployment and can be used to control the flow of your deployment logic, or just to understand what happened during a deployment.
+### The package
+
+- [Requirements](./reference/requirements.mdx): supported PowerShell, .NET and Windows versions.
+- [Deployment Template](./reference/deployment-template.mdx): the folders and files that make up a
+  deployment, for both the v4 native and v3 compatibility templates.
+- [Module Structure](./reference/module-structure.mdx): what is inside the module folder.
+
+### Running a deployment
+
+- [ADTSession Object](./reference/adtsession-object.mdx): every property of the object that governs
+  a deployment session.
+- [Command-Line Parameters](./reference/command-line-parameters.mdx): parameters accepted by the
+  deployment script and its launcher.
+- [Variables](./reference/variables.mdx): the hardware, path, account and domain variables created
+  when a session opens.
+- [Exit Codes](./reference/exit-codes.mdx): the codes a deployment can return, and the ranges
+  reserved for your own.
+
+### Configuration and text
+
+- [Configuration Settings](./reference/config-settings.mdx): every key in `config.psd1`.
+- [Language Strings](./reference/language-strings.mdx): every key in `strings.psd1`.
+- [Text Formatting](./reference/text-formatting.mdx): markup tags supported in dialog messages.
+- [Dialogs](./reference/dialogs.mdx): every dialog the toolkit can display.
+
+### Commands
+
+- [Functions](./category/functions): the full library. Every command documents its parameters,
+  inputs, outputs and examples.
+- [Process Execution Parameters](./reference/process-execution.mdx): the parameters most commonly
+  used when running installers.
+- [v4 Function Mapping](./reference/v4-function-mapping.mdx): each v3 function and its v4
+  equivalent.
+
+### When something goes wrong
+
+- [Troubleshooting](./reference/troubleshooting.mdx): known symptoms, causes and resolutions.
+- [FAQ](./reference/faq.mdx): frequently asked questions.
+- [Release Notes](./reference/release-notes.mdx): what changed, and when.
+- [Licensing](./reference/licensing.mdx): the licence the toolkit is published under.
 
 ### Something missing?
 
-If you find issues with the documentation or have suggestions on how to improve the documentation or the project in general, please [file an issue](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/issues) for us.
+If you find issues with the documentation, or have suggestions for improving it or the project in
+general, please [file an issue](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/issues).
