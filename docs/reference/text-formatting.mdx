@@ -1,28 +1,21 @@
 ---
-sidebar_position: 10
+sidebar_position: 9
 sidebar_label: 'Text Formatting'
 title: 'Text Formatting'
-description: 'Learn how to use rich text formatting in PSAppDeployToolkit dialogs'
+description: 'The markup tags supported in PSAppDeployToolkit dialog messages.'
 slug: /reference/text-formatting
 hide_title: true
 tags:
   - Text Formatting
-  - UI Customization
   - Reference
 ---
 
 ## Text Formatting
 
-PSAppDeployToolkit v4.1 supports rich text formatting in dialog messages, allowing you to create more visually appealing and informative user interfaces. This feature works with the Fluent dialog style and supports nested formatting for complex text styling.
+Dialog messages support rich text formatting through markup tags. Formatting is rendered by the
+Fluent dialogs and supports nesting.
 
-The text formatting system allows you to apply various styles to text displayed in dialogs using simple markup tags. These tags can be:
-
-- Used individually for simple formatting
-- Combined for cumulative effects
-
-### Supported Formatting Tags
-
-#### Basic Formatting
+## Tags
 
 | Tag                               | Description                                                              | Example                                                                 |
 | :-------------------------------- | :----------------------------------------------------------------------- | :---------------------------------------------------------------------- |
@@ -32,15 +25,13 @@ The text formatting system allows you to apply various styles to text displayed 
 | `[url]...[/url]`                  | Creates a simple clickable hyperlink                                     | `[url]https://psappdeploytoolkit.com[/url]`                             |
 | `[url=...]Link Description[/url]` | Creates a clickable hyperlink with a link description instead of the URL | `[url=https://psappdeploytoolkit.com]PSAppDeployToolkit Homepage[/url]` |
 
-The formatting system automatically adapts to the user's theme:
+Rendering adapts to the user's theme: accent colors adjust for contrast, hyperlinks take
+theme-appropriate colors, and bold and italic are unchanged between themes.
 
-- Accent colors adjust for optimal contrast
-- Hyperlinks use theme-appropriate colors
-- Bold and italic formatting remain consistent
+## Nesting
 
-### Nested Formatting
-
-The formatting system supports nesting tags for combined effects:
+Tags may be nested for combined effects, and must be closed in the reverse of the order they were
+opened.
 
 ```text
 [bold]This is bold [accent]and this is bold with accent color[/accent][/bold]
@@ -50,9 +41,21 @@ The formatting system supports nesting tags for combined effects:
 [bold][accent][italic]All three formats combined![/italic][/accent][/bold]
 ```
 
-### Accent Color Configuration
+Correct:
 
-The accent color used by `[accent]` tags can be configured in your deployment:
+```text
+[bold][italic]Text[/italic][/bold]
+```
+
+Incorrect:
+
+```text
+[bold][italic]Text[/bold][/italic]
+```
+
+## Accent color
+
+The color applied by `[accent]` is set in `config.psd1`:
 
 ```powershell
 # In Config\config.psd1
@@ -63,11 +66,12 @@ The accent color used by `[accent]` tags can be configured in your deployment:
 }
 ```
 
-### Usage in Dialogs
+`UI.FluentAccentColorDark` sets the equivalent for dark mode. See
+[Configuration Settings](./config-settings.mdx).
 
-#### Configuration Strings
+## Where formatting can be used
 
-Text formatting can be used in your `Strings\strings.psd1` configuration:
+### In strings.psd1
 
 ```powershell
 @{
@@ -80,9 +84,7 @@ Text formatting can be used in your `Strings\strings.psd1` configuration:
 }
 ```
 
-#### Custom Messages
-
-You can use formatting tags in custom messages passed to dialogs:
+### In messages passed to dialog commands
 
 ```powershell
 Show-ADTInstallationPrompt -Message "[bold]Installation Notice[/bold]
@@ -92,69 +94,16 @@ Show-ADTInstallationPrompt -Message "[bold]Installation Notice[/bold]
 For help, visit [url]https://support.company.com[/url]" -ButtonText "OK"
 ```
 
-### Best Practices
+## URL examples
 
-#### 1. Use Formatting Sparingly
-
-While formatting enhances readability, overuse can make text difficult to read:
-
-❌ **Bad:**
-
-```text
-[bold][italic][accent]Everything[/accent][/italic][/bold] is [bold]formatted[/bold] [italic]differently[/italic]!
-```
-
-✅ **Good:**
-
-```text
-[bold]Important:[/bold] Please [accent]save your work[/accent] before continuing.
-```
-
-### 2. Maintain Consistency
-
-Use formatting consistently throughout your deployment:
-
-- **[bold]** for headings and important labels
-- **[accent]** for critical information or warnings
-- **[italic]** for supplementary information or examples
-- **[url]** for support links and resources
-
-### 3. Consider Accessibility
-
-- Ensure sufficient contrast between accent colors and backgrounds
-- Don't rely solely on formatting to convey critical information
-- Test your formatted text in both light and dark themes
-
-#### 4. Close Tags Properly
-
-Always close tags in the reverse order they were opened:
-
-❌ **Incorrect:**
-
-```text
-[bold][italic]Text[/bold][/italic]
-```
-
-✅ **Correct:**
-
-```text
-[bold][italic]Text[/italic][/bold]
-```
-
-## URL Formatting Examples
-
-### Simple URL Format
-
-Use the simple format when you want to display the actual URL:
+Displaying the URL itself:
 
 ```text
 Need help? Visit [url]https://support.company.com[/url]
 Email us at [url]support@company.com[/url]
 ```
 
-#### Descriptive URL Format
-
-Use the descriptive format when you want to display custom text instead of the URL:
+Displaying custom link text:
 
 ```text
 For help, visit our [url=https://support.company.com]Support Portal[/url]
@@ -162,9 +111,7 @@ Download the latest version from [url=https://github.com/PSAppDeployToolkit/PSAp
 Contact [url=mailto:admin@company.com]IT Support[/url] for assistance
 ```
 
-#### Mixed URL Formats
-
-You can combine both formats in the same text:
+Both forms in one message:
 
 ```text
 [bold]Resources Available:[/bold]
@@ -174,9 +121,9 @@ You can combine both formats in the same text:
 • Report Issues: [url=https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/issues]Submit a Bug Report[/url]
 ```
 
-### Complex Formatting Examples
+## Extended examples
 
-#### Corporate Deployment Message
+A deployment notice:
 
 ```text
 [bold]Software Deployment Notice[/bold]
@@ -200,7 +147,7 @@ For more information, visit our [url]https://intranet.company.com/office365[/url
 [italic]Thank you for your cooperation.[/italic]
 ```
 
-#### Security Update Notification
+A security update notification:
 
 ```text
 [bold][accent]SECURITY UPDATE REQUIRED[/accent][/bold]
@@ -214,3 +161,9 @@ This update addresses:
 
 Learn more: [url]https://adobe.com/security[/url]
 ```
+
+## Related
+
+- [Language Strings](./language-strings.mdx)
+- [How to brand the user interface](../how-to/brand-the-user-interface.mdx), which covers writing
+  dialog copy
