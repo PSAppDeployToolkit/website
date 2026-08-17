@@ -1,0 +1,94 @@
+---
+sidebar_position: 10
+title: 'How to deploy with Configuration Manager'
+description: 'How to deploy a PSAppDeployToolkit package with Microsoft Configuration Manager.'
+slug: /how-to/deploy-with-configmgr
+hide_title: true
+tags:
+  - Configuration Manager
+  - How-to
+---
+
+## How to deploy with Configuration Manager
+
+This guide deploys a finished deployment folder as a Configuration Manager application.
+
+## Prerequisites
+
+- A working deployment folder that runs correctly when launched locally. See
+  [How to run a deployment](./run-a-deployment.mdx).
+- The folder placed on a content source share that the site server can read.
+
+## 1. Create the application
+
+Create a new application and choose to specify the information manually, then add a deployment type
+of type **Script Installer**. Point the content location at the deployment folder. The entire folder
+is the content, not just the script.
+
+## 2. Set the programs
+
+| Field             | Value                                                   |
+| ----------------- | -------------------------------------------------------- |
+| Installation program | `Invoke-AppDeployToolkit.exe -DeploymentType Install`    |
+| Uninstall program    | `Invoke-AppDeployToolkit.exe -DeploymentType Uninstall`  |
+| Repair program       | `Invoke-AppDeployToolkit.exe -DeploymentType Repair`     |
+
+Leave `DeployMode` off the command line unless you need to force a mode.
+
+## 3. Set the user experience
+
+| Field                       | Value                                    |
+| --------------------------- | ---------------------------------------- |
+| Installation behavior       | Install for system                       |
+| Logon requirement           | Whether or not a user is logged on       |
+| Installation program visibility | Normal or Hidden; the toolkit's own UI is unaffected |
+
+:::info
+**Allow users to view and interact with the program installation** is no longer required. From
+v4.1.0 the UI runs in its own process in the user's session, so it appears regardless of that
+setting. See [The user interface](../explanation/user-interface.mdx).
+:::
+
+## 4. Map the return codes
+
+On the deployment type's **Return Codes** tab:
+
+| Return code | Map to      | Why                                                                        |
+| ----------- | ----------- | --------------------------------------------------------------------------- |
+| `0`         | Success     | Default.                                                                    |
+| `3010`      | Soft reboot | Default.                                                                    |
+| `1641`      | Hard reboot | Default.                                                                    |
+| `1618`      | Fast retry  | Default. Another install is in progress.                                    |
+| `1602`      | Failure     | The user deferred. See below.                                               |
+
+To have Configuration Manager retry after a deferral rather than record a failure, set
+`UI.DeferExitCode` to `1618` in `config.psd1`. Configuration Manager's fast retry interval is
+configurable by client policy, which makes it a better fit for deferrals than a plain failure.
+
+## 5. Set the detection method
+
+Use a product code, file version or registry value. Detection is Configuration Manager's
+responsibility, and the toolkit does not participate in it.
+
+## Task sequences
+
+A deployment run from a task sequence is non-interactive by design. The toolkit detects this and
+logs that it is running inside a ConfigMgr task sequence; `$RunningTaskSequence` is available to
+your script if you need to branch on it. See the [Variables reference](../reference/variables.mdx).
+
+## Troubleshooting
+
+### The deployment reports success but nothing installed
+
+The detection method matched before the install ran, or the install exited with a code you mapped to
+success. Check the toolkit log and the exit code it recorded.
+
+### The UI never appears
+
+Check whether `DeployMode` resolved to `Silent`. The log records the mode and the reason. See
+[Deployment Modes](../explanation/deployment-modes.mdx).
+
+### Content is missing at runtime
+
+Only the folder set as the content location is delivered. Confirm `Files` and `SupportFiles` are
+inside it and that the distribution point content is up to date.
