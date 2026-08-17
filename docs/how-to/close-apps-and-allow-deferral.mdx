@@ -1,0 +1,122 @@
+---
+sidebar_position: 14
+title: 'How to close applications and allow deferral'
+description: 'How to prompt users to close applications, and how to let them defer a deployment.'
+slug: /how-to/close-apps-and-allow-deferral
+hide_title: true
+tags:
+  - User Interface
+  - Deferral
+  - How-to
+---
+
+## How to close applications and allow deferral
+
+Installers that replace files in use need the application closed first.
+[`Show-ADTInstallationWelcome`](../reference/functions/Show-ADTInstallationWelcome.mdx) asks the
+user to do that, and can offer a deferral so they are not interrupted mid-task.
+
+## 1. Declare the processes once
+
+Set `AppProcessesToClose` in the session properties rather than passing the same list to each call:
+
+```powershell
+$adtSession = @{
+    # ...
+    AppProcessesToClose = @('excel', @{ Name = 'winword'; Description = 'Microsoft Word' })
+}
+```
+
+Use a hashtable with `Name` and `Description` where the process name is not obvious to a user.
+`winword` means nothing to most people, "Microsoft Word" does.
+
+Declaring processes here also affects mode selection: with `DeployMode` at its default of `Auto`,
+the deployment runs silently when none of these processes is running. See
+[Deployment Modes](../explanation/deployment-modes.mdx).
+
+## 2. Show the welcome dialog
+
+The supplied template already wires the property into the dialog:
+
+```powershell
+$saiwParams = @{
+    AllowDefer = $true
+    DeferTimes = 3
+    CheckDiskSpace = $true
+    PersistPrompt = $true
+}
+if ($adtSession.AppProcessesToClose.Count -gt 0)
+{
+    $saiwParams.Add('CloseProcesses', $adtSession.AppProcessesToClose)
+}
+Show-ADTInstallationWelcome @saiwParams
+```
+
+## 3. Choose how deferral behaves
+
+| Goal                                                           | Use                                                             |
+| -------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Always offer a defer button                                    | `-AllowDefer`                                                    |
+| Offer defer only when one of the apps is actually open         | `-AllowDeferCloseProcesses` (this implies `-AllowDefer`)         |
+| Limit to a number of deferrals                                 | `-DeferTimes 3`                                                  |
+| Limit by elapsed time since first run                          | `-DeferDays 5`                                                   |
+| Stop deferrals at a fixed date                                 | `-DeferDeadline '2026-08-25 18:00:00Z'`                          |
+| Avoid re-prompting immediately after a deferral                | `-DeferRunInterval ([System.TimeSpan]::FromHours(4))`            |
+
+`-DeferDays` is converted to a deadline on first run. For `-DeferDeadline`, use the universal
+sortable format (`2026-08-25 11:51:52Z`) if the package runs on machines of differing cultures.
+
+:::tip[Intune]
+Intune retries a failed install within minutes, so a user who defers can be prompted again almost
+immediately. `-DeferRunInterval` suppresses the prompt until the interval has elapsed.
+:::
+
+## 4. Choose how closing behaves
+
+| Goal                                                                | Use                                    |
+| -------------------------------------------------------------------- | -------------------------------------- |
+| Count down, then close the apps, once deferrals are exhausted        | `-CloseProcessesCountdown 300`         |
+| Count down and close regardless of whether deferral is allowed       | `-ForceCloseProcessesCountdown 300`    |
+| Count down, then continue, when deferral is enabled                  | `-ForceCountdown 300`                  |
+| Ask applications to save work before closing                         | `-PromptToSave`                        |
+| Stop the user reopening the apps during the deployment               | `-BlockExecution`                      |
+| Re-show the dialog if the user dismisses it                          | `-PersistPrompt`                       |
+| Skip the dialog entirely and just close the apps                     | `-Silent`                              |
+
+Countdown parameters take a `TimeSpan`, but plain numbers are interpreted as seconds.
+
+## 5. Handle the deferral exit code
+
+When the user defers, the deployment exits with `UI.DeferExitCode`, which is `1602` by default. Your
+management system decides what that means:
+
+- [Intune](./deploy-with-intune.mdx): map `1602` to *Retry*.
+- [Configuration Manager](./deploy-with-configmgr.mdx): set `UI.DeferExitCode` to `1618` so it is
+  treated as a fast retry.
+
+## Example
+
+Offer three deferrals, only when Word or Excel is open, then force a five minute countdown and
+block the apps from restarting during the install:
+
+```powershell
+Show-ADTInstallationWelcome -CloseProcesses $adtSession.AppProcessesToClose `
+    -AllowDeferCloseProcesses -DeferTimes 3 `
+    -CloseProcessesCountdown 300 -PromptToSave -BlockExecution -PersistPrompt
+```
+
+## Troubleshooting
+
+### The dialog never appears
+
+The deployment resolved to `Silent` or `NonInteractive`. Check the log for the mode and the reason.
+See [Deployment Modes](../explanation/deployment-modes.mdx).
+
+### The user is prompted again seconds after deferring
+
+The management system retried. Add `-DeferRunInterval`.
+
+### Deferrals do not reset between versions
+
+Defer history is tracked per package. Use
+[`Reset-ADTDeferHistory`](../reference/functions/Reset-ADTDeferHistory.mdx) if you need to clear it.
