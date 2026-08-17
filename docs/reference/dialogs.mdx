@@ -10,17 +10,24 @@ tags:
   - Reference
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 ## Dialogs
 
 The dialogs below are shown by the commands listed against each one. All of them:
 
 - Take their text from `strings.psd1`, localized into 25 languages, selected from the operating
   system unless `UI.LanguageOverride` is set. See [Language Strings](./language-strings.mdx).
-- Follow the light or dark theme of the user's session.
+- Follow the light or dark theme of the user's session. (the documentation screenshots follow the
+  website theme - change it in the top-right hand corner of the page to switch screenshots.
 - Are branded from the `Assets` folder, using a logo for the Fluent dialogs and a banner for the
   Classic dialogs.
 - Are suppressed according to the deployment mode. `-DeployMode Silent` shows none of them; see
   [Deployment Modes](../explanation/deployment-modes.mdx).
+
+The screenshots show the Fluent dialogs, which is the default and the set new deployments should
+use. The Classic dialogs are shown when `UI.DialogStyle` is `Classic`, and are the only set
+available in v3 compatibility mode.
 
 ## Installation progress
 
@@ -28,84 +35,241 @@ Displays a progress bar and status text. Shown by
 [`Show-ADTInstallationProgress`](./functions/Show-ADTInstallationProgress.mdx); closed by
 [`Close-ADTInstallationProgress`](./functions/Close-ADTInstallationProgress.mdx).
 
-The bar is indeterminate by default. With the Fluent dialogs, supplying `-StatusBarPercentage`
-switches it to show that percentage complete, which is useful when your script can report
-incremental progress of its own.
+The bar is indeterminate by default, which is the right choice when your script cannot tell how far
+along it is.
 
-<img src={require('../images/progressdialog1_light.png').default} alt="Installation Progress (Light Mode)" class="markdown_image" />
+<ThemedImage
+  alt="The installation progress dialog with an indeterminate progress bar"
+  className="markdown_image"
+  sources={{
+    light: require('../images/progress_plain_light.png').default,
+    dark: require('../images/progress_plain_dark.png').default,
+  }}
+/>
 
-<img src={require('../images/progressdialog1_dark.png').default} alt="Installation Progress (Dark Mode)" class="markdown_image" />
+Calling the command again while the dialog is open updates it in place rather than opening a second
+dialog, which is how a long install is narrated. Supplying `-StatusBarPercentage` switches the bar
+to show a specific percentage, and `-StatusMessageDetail` adds a second line beneath the message.
 
-Calling the command again while the dialog is open updates the message in place rather than opening
-a second dialog.
-
-<img src={require('../images/progressdialog2_light.png').default} alt="Dynamic Progress Updating (Light Mode)" class="markdown_image" />
-
-<img src={require('../images/progressdialog2_dark.png').default} alt="Dynamic Progress Updating (Dark Mode)" class="markdown_image" />
+<ThemedImage
+  alt="The progress dialog showing a detail line and the bar at 75 percent"
+  className="markdown_image"
+  sources={{
+    light: require('../images/progress_detail_75_light.png').default,
+    dark: require('../images/progress_detail_75_dark.png').default,
+  }}
+/>
 
 ## Installation welcome
 
 Lists applications that must be closed, and optionally offers deferral and a countdown. Shown by
 [`Show-ADTInstallationWelcome`](./functions/Show-ADTInstallationWelcome.mdx).
 
-With deferral available:
+With applications to close and deferral offered, the dialog lists each application and shows how
+many deferrals are left.
 
-<img src={require('../images/deferappsdialog_light.png').default} alt="Installation Welcome With Defer (Light Mode)" class="markdown_image" />
+<ThemedImage
+  alt="The welcome dialog listing three applications to close, with a Defer button and three deferrals remaining"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_fluent_light.png').default,
+    dark: require('../images/welcome_fluent_dark.png').default,
+  }}
+/>
 
-<img src={require('../images/deferappsdialog_dark.png').default} alt="Installation Welcome With Defer (Dark Mode)" class="markdown_image" />
+With `-AllowDefer` but nothing running to close, the dialog asks only when to start.
 
-With applications to close:
+<ThemedImage
+  alt="The welcome dialog offering Install and Defer with no applications listed"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_defer_only_light.png').default,
+    dark: require('../images/welcome_defer_only_dark.png').default,
+  }}
+/>
 
-<img src={require('../images/closeappsdialog_light.png').default} alt="Installation Welcome With Close (Light Mode)" class="markdown_image" />
+`-CloseProcessesCountdown` adds a countdown, after which the listed applications are closed and the
+deployment continues.
 
-<img src={require('../images/closeappsdialog_dark.png').default} alt="Installation Welcome With Close (Dark Mode)" class="markdown_image" />
+<ThemedImage
+  alt="The welcome dialog counting down before it closes the listed applications"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_countdown_light.png').default,
+    dark: require('../images/welcome_countdown_dark.png').default,
+  }}
+/>
+
+The limits combine. Here `-DeferDeadline` fixes the date after which deferral is no longer offered,
+while `-ForceCountdown` starts the installation automatically when its timer expires, so the dialog
+shows both.
+
+<ThemedImage
+  alt="The welcome dialog showing an automatic start countdown and a deferral deadline together"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_deadline_force_light.png').default,
+    dark: require('../images/welcome_deadline_force_dark.png').default,
+  }}
+/>
 
 Usage is covered in
 [How to close applications and allow deferral](../how-to/close-apps-and-allow-deferral.mdx).
 
 ## Installation prompt
 
-A branded prompt with a custom title and message, and up to three buttons. Shown by
-[`Show-ADTInstallationPrompt`](./functions/Show-ADTInstallationPrompt.mdx).
+A branded prompt with a custom title, message and buttons. Shown by
+[`Show-ADTInstallationPrompt`](./functions/Show-ADTInstallationPrompt.mdx). Message text supports
+[text formatting](./text-formatting.mdx).
 
-<img src={require('../images/customdialog_light.png').default} alt="3 Buttons being used in a custom message box (Light Mode)" class="markdown_image" />
+With one button it reports a result and waits for acknowledgement.
 
-<img src={require('../images/customdialog_dark.png').default} alt="3 Buttons being used in a custom message box (Dark Mode)" class="markdown_image" />
+<ThemedImage
+  alt="An informational prompt with a single OK button"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_info_light.png').default,
+    dark: require('../images/prompt_info_dark.png').default,
+  }}
+/>
 
-The same command collects input when `-RequestInput` is used:
+`-ButtonLeftText` and `-ButtonRightText` give two choices.
 
-<img src={require('../images/inputbox_light.png').default} alt="Input box (Light Mode)" class="markdown_image" />
+<ThemedImage
+  alt="A prompt offering two buttons, Remind me later and Install now"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_two_button_light.png').default,
+    dark: require('../images/prompt_two_button_dark.png').default,
+  }}
+/>
 
-<img src={require('../images/inputbox_dark.png').default} alt="Input box (Dark Mode)" class="markdown_image" />
+Adding `-ButtonMiddleText` gives three.
 
-Or presents a list when `-ListItems` is supplied:
+<ThemedImage
+  alt="A prompt offering three buttons, Uninstall, Repair and Cancel"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_three_button_light.png').default,
+    dark: require('../images/prompt_three_button_dark.png').default,
+  }}
+/>
 
-<img src={require('../images/multiselect_light.png').default} alt="Multiselect Listbox (Light Mode)" class="markdown_image" />
+`-RequestInput` collects a value from the user.
 
-<img src={require('../images/multiselect_dark.png').default} alt="Multiselect Listbox (Dark Mode)" class="markdown_image" />
+<ThemedImage
+  alt="A prompt with an empty text field for the user to complete"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_input_light.png').default,
+    dark: require('../images/prompt_input_dark.png').default,
+  }}
+/>
 
-Message text supports [text formatting](./text-formatting.mdx).
+`-DefaultValue` pre-fills the field, which turns the question into a confirmation.
+
+<ThemedImage
+  alt="The same input prompt pre-filled with an asset tag"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_input_default_light.png').default,
+    dark: require('../images/prompt_input_default_dark.png').default,
+  }}
+/>
+
+`-SecureInput` masks what is typed, for licence keys and similar. The field looks the same until
+the user types into it.
+
+<ThemedImage
+  alt="An input prompt whose field masks what the user types"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_input_secure_light.png').default,
+    dark: require('../images/prompt_input_secure_dark.png').default,
+  }}
+/>
+
+`-ListItems` presents a list to choose from, with `-DefaultIndex` selecting the initial entry. One
+item is chosen, not several.
+
+<ThemedImage
+  alt="A prompt asking the user to choose one item from a list"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_list_light.png').default,
+    dark: require('../images/prompt_list_dark.png').default,
+  }}
+/>
+
+:::note
+`-Icon` is accepted but has no effect on the Fluent dialogs. It applies to the Classic dialogs only.
+:::
 
 ## Installation restart prompt
 
-A restart prompt with a countdown to automatic restart. Shown by
-[`Show-ADTInstallationRestartPrompt`](./functions/Show-ADTInstallationRestartPrompt.mdx).
+Asks the user to restart. Shown by
+[`Show-ADTInstallationRestartPrompt`](./functions/Show-ADTInstallationRestartPrompt.mdx). The prompt
+runs in a separate PowerShell session, so the deployment still returns its exit code to the parent
+process.
 
-<img src={require('../images/devicerestart_light.png').default} alt="Installation Restart Prompt (Light Mode)" class="markdown_image" />
+`-NoCountdown` asks without imposing a deadline. Nothing happens until the user chooses.
 
-<img src={require('../images/devicerestart_dark.png').default} alt="Installation Restart Prompt (Dark Mode)" class="markdown_image" />
+<ThemedImage
+  alt="The restart prompt with Restart Now and Minimize buttons and no countdown"
+  className="markdown_image"
+  sources={{
+    light: require('../images/restart_nocountdown_light.png').default,
+    dark: require('../images/restart_nocountdown_dark.png').default,
+  }}
+/>
 
-The prompt runs in a separate PowerShell session, so the deployment still returns its exit code to
-the parent process.
+`-Countdown` restarts the computer automatically when the timer reaches zero.
+
+<ThemedImage
+  alt="The restart prompt showing the time remaining before an automatic restart"
+  className="markdown_image"
+  sources={{
+    light: require('../images/restart_countdown_light.png').default,
+    dark: require('../images/restart_countdown_dark.png').default,
+  }}
+/>
+
+`-CountdownNoHide` runs the same countdown but takes away the option to minimise it.
+
+<ThemedImage
+  alt="The restart prompt counting down with no Minimize button"
+  className="markdown_image"
+  sources={{
+    light: require('../images/restart_countdown_nohide_light.png').default,
+    dark: require('../images/restart_countdown_nohide_dark.png').default,
+  }}
+/>
 
 ## Dialog box
 
 A generic, unbranded message box with configurable system icon and buttons. Shown by
-[`Show-ADTDialogBox`](./functions/Show-ADTDialogBox.mdx).
+[`Show-ADTDialogBox`](./functions/Show-ADTDialogBox.mdx). Because it is a Windows message box rather
+than a toolkit dialog, it takes no branding and ignores the dialog style.
 
-<img src={require('../images/customdialog_light.png').default} alt="Custom Dialog (Light Mode)" class="markdown_image" />
+<ThemedImage
+  alt="An unbranded message box with OK and Cancel buttons"
+  className="markdown_image"
+  sources={{
+    light: require('../images/dialogbox_okcancel_light.png').default,
+    dark: require('../images/dialogbox_okcancel_dark.png').default,
+  }}
+/>
 
-<img src={require('../images/customdialog_dark.png').default} alt="Custom Dialog (Dark Mode)" class="markdown_image" />
+`-Buttons` selects the combination, from `Ok` through to `CancelTryContinue`.
+
+<ThemedImage
+  alt="An unbranded message box with Yes, No and Cancel buttons"
+  className="markdown_image"
+  sources={{
+    light: require('../images/dialogbox_yesnocancel_light.png').default,
+    dark: require('../images/dialogbox_yesnocancel_dark.png').default,
+  }}
+/>
 
 ## Balloon tips and notifications
 
@@ -113,7 +277,8 @@ Transient notifications are shown by
 [`Show-ADTBalloonTip`](./functions/Show-ADTBalloonTip.mdx), and the notification area icon by
 [`Show-ADTNotifyIcon`](./functions/Show-ADTNotifyIcon.mdx) and
 [`Close-ADTNotifyIcon`](./functions/Close-ADTNotifyIcon.mdx). Balloon notifications are governed by
-the `UI.BalloonNotifications` setting.
+the `UI.BalloonNotifications` setting, and are delivered by Windows rather than drawn by the
+toolkit, so they follow whatever notification settings apply to the device.
 
 ## Help console
 
@@ -121,4 +286,4 @@ A browsable list of the toolkit's commands and their help, shown by
 [`Show-ADTHelpConsole`](./functions/Show-ADTHelpConsole.mdx). Intended for use while authoring a
 package, not during a deployment.
 
-<img src={require('../images/helpconsole.png').default} alt="PowerShell App Deployment Toolkit Help Console" class="markdown_image" />
+<img src={require('../images/helpconsole_42.png').default} alt="The help console listing the toolkit's commands with the help for the selected one" class="markdown_image" />
