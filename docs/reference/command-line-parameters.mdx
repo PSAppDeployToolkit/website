@@ -1,0 +1,66 @@
+---
+sidebar_position: 6
+sidebar_label: 'Command-Line Parameters'
+title: 'Command-Line Parameters'
+description: 'Parameters accepted by Invoke-AppDeployToolkit.ps1 and Invoke-AppDeployToolkit.exe.'
+slug: /reference/command-line-parameters
+hide_title: true
+tags:
+  - Command Line
+  - Reference
+---
+
+## Command-Line Parameters
+
+`Invoke-AppDeployToolkit.ps1` is the deployment script supplied by the v4 template.
+`Invoke-AppDeployToolkit.exe` is a launcher that starts that script in a PowerShell process.
+
+## Script parameters
+
+Accepted by both `Invoke-AppDeployToolkit.ps1` and `Invoke-AppDeployToolkit.exe`.
+
+| Parameter                 | Values                                                          | Description                                                                                                          |
+| ------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `-DeploymentType`         | `Install` *(default)*<br />`Uninstall`<br />`Repair`            | The deployment action to perform.                                                                                    |
+| `-DeployMode`             | `Auto` *(default)*<br />`Interactive`<br />`NonInteractive`<br />`Silent` | Controls dialog behaviour. `Auto` resolves at runtime; see [Deployment Modes](../explanation/deployment-modes.mdx). |
+| `-SuppressRebootPassThru` | *(switch)*                                                      | Returns `0` instead of a reboot exit code such as `3010`.                                                             |
+
+:::info
+These are the parameters declared by the template script itself. Because the template is yours to
+edit, you can add parameters of your own. Everything else that governs a deployment, such as
+`TerminalServerMode`, `DisableLogging` or `RequireAdmin`, is set as a session property inside the
+script. See the [ADTSession Object reference](./adtsession-object.mdx).
+:::
+
+## Launcher parameters
+
+Accepted only by `Invoke-AppDeployToolkit.exe`. They are consumed by the launcher and are not
+passed through to the script.
+
+| Parameter | Values  | Description                                                                                                          |
+| --------- | ------- | -------------------------------------------------------------------------------------------------------------------- |
+| `/Debug`  |         | Allocates a console and displays live logging output on screen. Only takes effect in an interactive user session.    |
+| `/32`     |         | Runs the script under Windows PowerShell x86. Cannot be combined with `/Core`.                                        |
+| `/Core`   |         | Runs the script under PowerShell Core (`pwsh.exe`). Cannot be combined with `/32`.                                    |
+| `-File`   | `*.ps1` | Runs the specified script instead of the default. The rest of the command line is passed through untouched.           |
+| `*.ps1`   |         | A bare `.ps1` path anywhere on the command line is treated the same as `-File`.                                       |
+
+If neither `/32` nor `/Core` is supplied, the launcher runs Windows PowerShell, unless its parent
+process is PowerShell Core, in which case it follows the parent.
+
+`-Command` is rejected: the launcher throws an error and directs you to `-File`, because `-Command`
+does not propagate exit codes reliably.
+
+### Default script name
+
+With no script specified, the launcher runs the `.ps1` file that shares its own base name in the
+same folder, so `Invoke-AppDeployToolkit.exe` runs `Invoke-AppDeployToolkit.ps1`. Renaming the
+launcher therefore changes which script it looks for.
+
+## Exit codes
+
+See the [Exit Codes reference](./exit-codes.mdx).
+
+## Examples
+
+See [How to run a deployment](../how-to/run-a-deployment.mdx).

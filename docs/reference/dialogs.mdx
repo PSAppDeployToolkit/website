@@ -1,0 +1,124 @@
+---
+sidebar_position: 10
+sidebar_label: 'Dialogs'
+title: 'Dialogs'
+description: 'The dialogs PSAppDeployToolkit can display, and the commands that show them.'
+slug: /usage/adding-ui-elements
+hide_title: true
+tags:
+  - User Interface
+  - Reference
+---
+
+## Dialogs
+
+The dialogs below are shown by the commands listed against each one. All of them:
+
+- Take their text from `strings.psd1`, localized into 25 languages, selected from the operating
+  system unless `UI.LanguageOverride` is set. See [Language Strings](./language-strings.mdx).
+- Follow the light or dark theme of the user's session.
+- Are branded from the `Assets` folder, using a logo for the Fluent dialogs and a banner for the
+  Classic dialogs.
+- Are suppressed according to the deployment mode. `-DeployMode Silent` shows none of them; see
+  [Deployment Modes](../explanation/deployment-modes.mdx).
+
+## Installation progress
+
+Displays a progress bar and status text. Shown by
+[`Show-ADTInstallationProgress`](./functions/Show-ADTInstallationProgress.mdx); closed by
+[`Close-ADTInstallationProgress`](./functions/Close-ADTInstallationProgress.mdx).
+
+The bar is indeterminate by default. With the Fluent dialogs, supplying `-StatusBarPercentage`
+switches it to show that percentage complete, which is useful when your script can report
+incremental progress of its own.
+
+<img src={require('../images/progressdialog1_light.png').default} alt="Installation Progress (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/progressdialog1_dark.png').default} alt="Installation Progress (Dark Mode)" class="markdown_image" />
+
+Calling the command again while the dialog is open updates the message in place rather than opening
+a second dialog.
+
+<img src={require('../images/progressdialog2_light.png').default} alt="Dynamic Progress Updating (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/progressdialog2_dark.png').default} alt="Dynamic Progress Updating (Dark Mode)" class="markdown_image" />
+
+## Installation welcome
+
+Lists applications that must be closed, and optionally offers deferral and a countdown. Shown by
+[`Show-ADTInstallationWelcome`](./functions/Show-ADTInstallationWelcome.mdx).
+
+With deferral available:
+
+<img src={require('../images/deferappsdialog_light.png').default} alt="Installation Welcome With Defer (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/deferappsdialog_dark.png').default} alt="Installation Welcome With Defer (Dark Mode)" class="markdown_image" />
+
+With applications to close:
+
+<img src={require('../images/closeappsdialog_light.png').default} alt="Installation Welcome With Close (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/closeappsdialog_dark.png').default} alt="Installation Welcome With Close (Dark Mode)" class="markdown_image" />
+
+Usage is covered in
+[How to close applications and allow deferral](../how-to/close-apps-and-allow-deferral.mdx).
+
+## Installation prompt
+
+A branded prompt with a custom title and message, and up to three buttons. Shown by
+[`Show-ADTInstallationPrompt`](./functions/Show-ADTInstallationPrompt.mdx).
+
+<img src={require('../images/customdialog_light.png').default} alt="3 Buttons being used in a custom message box (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/customdialog_dark.png').default} alt="3 Buttons being used in a custom message box (Dark Mode)" class="markdown_image" />
+
+The same command collects input when `-RequestInput` is used:
+
+<img src={require('../images/inputbox_light.png').default} alt="Input box (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/inputbox_dark.png').default} alt="Input box (Dark Mode)" class="markdown_image" />
+
+Or presents a list when `-ListItems` is supplied:
+
+<img src={require('../images/multiselect_light.png').default} alt="Multiselect Listbox (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/multiselect_dark.png').default} alt="Multiselect Listbox (Dark Mode)" class="markdown_image" />
+
+Message text supports [text formatting](./text-formatting.mdx).
+
+## Installation restart prompt
+
+A restart prompt with a countdown to automatic restart. Shown by
+[`Show-ADTInstallationRestartPrompt`](./functions/Show-ADTInstallationRestartPrompt.mdx).
+
+<img src={require('../images/devicerestart_light.png').default} alt="Installation Restart Prompt (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/devicerestart_dark.png').default} alt="Installation Restart Prompt (Dark Mode)" class="markdown_image" />
+
+The prompt runs in a separate PowerShell session, so the deployment still returns its exit code to
+the parent process.
+
+## Dialog box
+
+A generic, unbranded message box with configurable system icon and buttons. Shown by
+[`Show-ADTDialogBox`](./functions/Show-ADTDialogBox.mdx).
+
+<img src={require('../images/customdialog_light.png').default} alt="Custom Dialog (Light Mode)" class="markdown_image" />
+
+<img src={require('../images/customdialog_dark.png').default} alt="Custom Dialog (Dark Mode)" class="markdown_image" />
+
+## Balloon tips and notifications
+
+Transient notifications are shown by
+[`Show-ADTBalloonTip`](./functions/Show-ADTBalloonTip.mdx), and the notification area icon by
+[`Show-ADTNotifyIcon`](./functions/Show-ADTNotifyIcon.mdx) and
+[`Close-ADTNotifyIcon`](./functions/Close-ADTNotifyIcon.mdx). Balloon notifications are governed by
+the `UI.BalloonNotifications` setting.
+
+## Help console
+
+A browsable list of the toolkit's commands and their help, shown by
+[`Show-ADTHelpConsole`](./functions/Show-ADTHelpConsole.mdx). Intended for use while authoring a
+package, not during a deployment.
+
+<img src={require('../images/helpconsole.png').default} alt="PowerShell App Deployment Toolkit Help Console" class="markdown_image" />
