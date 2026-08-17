@@ -20,8 +20,8 @@ export const featureGroups: readonly FeatureGroup[] = [
       { text: 'Classic UI option for backward compatibility' },
       { text: 'Welcome dialog with app-close prompts, deferrals, and countdown timers' },
       {
-        text: 'Custom dialogs with buttons, icons, input boxes, secure password fields* and dropdown selection boxes*',
-        version: '*v4.2',
+        text: 'Custom dialogs with buttons, icons, input boxes*, secure password fields** and dropdown selection boxes**',
+        version: '*v4.1 **v4.2',
       },
       { text: 'Progress bar with real-time percentage tracking', version: 'v4.1' },
       { text: 'Restart prompts with countdown, snooze, and deadline enforcement' },
