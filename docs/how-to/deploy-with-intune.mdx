@@ -1,0 +1,101 @@
+---
+sidebar_position: 9
+title: 'How to deploy with Microsoft Intune'
+description: 'How to package a PSAppDeployToolkit deployment as an Intune Win32 app.'
+slug: /how-to/deploy-with-intune
+hide_title: true
+tags:
+  - Intune
+  - How-to
+---
+
+## How to deploy with Microsoft Intune
+
+This guide packages a finished deployment folder as a Win32 app and deploys it with Intune.
+
+## Prerequisites
+
+- A working deployment folder that runs correctly when launched locally. See
+  [How to run a deployment](./run-a-deployment.mdx).
+- The Microsoft Win32 Content Prep Tool (`IntuneWinAppUtil.exe`).
+
+## 1. Wrap the package
+
+Run the content prep tool against the deployment folder, using the launcher as the setup file:
+
+```text
+IntuneWinAppUtil.exe -c C:\Packages\YourApp -s Invoke-AppDeployToolkit.exe -o C:\Output
+```
+
+The whole folder goes into the resulting `.intunewin`: `Files`, `SupportFiles`, `Config`, `Strings`,
+`Assets` and the `PSAppDeployToolkit` module.
+
+## 2. Create the Win32 app
+
+In Intune, add a new **Windows app (Win32)** and upload the `.intunewin` file.
+
+Set the commands to:
+
+| Field             | Value                                              |
+| ----------------- | -------------------------------------------------- |
+| Install command   | `Invoke-AppDeployToolkit.exe -DeploymentType Install`   |
+| Uninstall command | `Invoke-AppDeployToolkit.exe -DeploymentType Uninstall` |
+| Install behavior  | System                                             |
+
+Leave `DeployMode` off the command line unless you need to force a mode. The default, `Auto`,
+already falls back to silent when there is nobody to show a dialog to. See
+[Deployment Modes](../explanation/deployment-modes.mdx).
+
+For an application that installs per-user, set **Install behavior** to *User* and set
+`RequireAdmin = $false` in the session properties.
+
+## 3. Map the return codes
+
+Intune's default mapping does not cover the toolkit's deferral code. Add the codes you rely on:
+
+| Return code | Map to      | Why                                                                     |
+| ----------- | ----------- | ------------------------------------------------------------------------ |
+| `0`         | Success     | Default.                                                                 |
+| `3010`      | Soft reboot | Default.                                                                 |
+| `1641`      | Hard reboot | Default.                                                                 |
+| `1618`      | Retry       | Default. Another install is already in progress.                         |
+| `1602`      | Retry       | The user deferred. This is `UI.DeferExitCode`, which you can change.     |
+
+:::warning[Deferral retries are fast on Intune]
+Intune's retry interval is short and not configurable, so a deferred install can be re-attempted
+within minutes. Use the `-DeferRunInterval` parameter of
+[`Show-ADTInstallationWelcome`](../reference/functions/Show-ADTInstallationWelcome.mdx) to abort the
+run if the deployment was already deferred within a given timespan.
+:::
+
+## 4. Set the detection rule
+
+Detection is Intune's business, not the toolkit's. Use an MSI product code, a file version, or a
+registry value written by your `Post-Install` phase.
+
+## Notes on the user interface
+
+As of v4.1.0 the UI runs in its own process in the user's session, so **no `ServiceUI.exe`
+workaround is needed** for the dialogs to appear.
+
+During Autopilot, the toolkit detects the OOBE and ESP phases and runs `NonInteractive`, so progress
+dialogs are suppressed but the install proceeds. To show the UI during ESP anyway, set
+`NoOobeDetection = $true` in the session properties.
+
+## Troubleshooting
+
+### The app reports failure with 60008
+
+The module failed to import or the session failed to open. Check the toolkit log, then see
+[How to troubleshoot a deployment](./troubleshoot-a-deployment.mdx).
+
+### Nothing is shown to the user
+
+Expected when the device is in OOBE/ESP, no user is logged on, or `AppProcessesToClose` is set and
+none of those processes are running. See [Deployment Modes](../explanation/deployment-modes.mdx).
+
+### Logs are hard to find alongside Intune's
+
+Point `Toolkit.LogPath` at the Intune Management Extension log folder, either in `config.psd1` or
+centrally: see
+[How to set the log path with Group Policy](./set-the-log-path-with-group-policy.mdx).
