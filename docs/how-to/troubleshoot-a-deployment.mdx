@@ -1,0 +1,91 @@
+---
+sidebar_position: 17
+title: 'How to troubleshoot a deployment'
+description: 'How to work out why a PSAppDeployToolkit deployment failed.'
+slug: /how-to/troubleshoot-a-deployment
+hide_title: true
+tags:
+  - Troubleshooting
+  - Logging
+  - How-to
+---
+
+## How to troubleshoot a deployment
+
+Work through these in order. Most failures are identified by step 2.
+
+## 1. Reproduce it interactively
+
+Run the package by hand on an affected device, from an elevated prompt, with the debug console
+attached:
+
+```powershell
+Invoke-AppDeployToolkit.exe /Debug -DeploymentType Install
+```
+
+`/Debug` allocates a console and streams the log to the screen as it runs, so you see the failure in
+context instead of reading it back afterwards.
+
+To reproduce what a management system sees, with no interactive user and no dialogs, add
+`-DeployMode Silent`.
+
+## 2. Read the log
+
+The deployment log defaults to `C:\Windows\Logs\Software`, unless `Toolkit.LogPath` has been changed
+in `config.psd1` or by [Group Policy](./set-the-log-path-with-group-policy.mdx). The file is named
+after the package, for example:
+
+```text
+Oracle_JavaRuntime_1.7.0.17_EN_01_PSAppDeployToolkit.log
+```
+
+MSI actions get their own log per action: `..._Install.log`, `..._Uninstall.log`, `..._Repair.log`
+and `..._Patch.log`.
+
+Open it in CMTrace or OneTrace if `Toolkit.LogStyle` is `CMTrace`; otherwise any text editor will do.
+
+Look for:
+
+- The line recording which `DeployMode` was chosen and why.
+- The `Initialization` entries confirming the module and any extensions imported.
+- The last `Write-ADTLogEntry` before the failure, which names the phase that was running.
+- The exit code the session closed with.
+
+## 3. Turn on debug logging
+
+If the log is not detailed enough, set `Toolkit.LogDebugMessage = $true` in `config.psd1` and run
+again. This adds the toolkit's own diagnostic messages.
+
+## 4. Identify the exit code
+
+Match the code against the [Exit Codes reference](../reference/exit-codes.mdx). In short:
+
+- `60001` is an error in your script logic.
+- `60008` means the module failed to import, or the session failed to open. The failure happened
+  before logging started, so use `/Debug` to see it.
+- `60010` and `60011` mean the launcher could not start PowerShell at all.
+
+## 5. Check known causes
+
+Common symptoms and their causes are listed in the
+[Troubleshooting reference](../reference/troubleshooting.mdx).
+
+## 6. Collect everything
+
+If you need to hand the problem to someone else, set `Toolkit.CompressLogs = $true` and run again.
+All logs are written to `$adtSession.LogTempFolder` and zipped into the log folder at the end of the
+run, timestamped so earlier runs are not overwritten. Anything your own script writes to that folder
+is included.
+
+## Inspecting the toolkit interactively
+
+To explore the available commands and their help on a machine with the module installed:
+
+```powershell
+Show-ADTHelpConsole
+```
+
+## Getting help
+
+If you are still stuck, the [community channels](../introduction.mdx) can help. Include the log, the
+exit code, the toolkit version, and how the package was launched.
