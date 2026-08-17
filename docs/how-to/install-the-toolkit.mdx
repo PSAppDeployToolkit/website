@@ -1,0 +1,71 @@
+---
+sidebar_position: 1
+title: 'How to install PSAppDeployToolkit'
+description: 'How to obtain PSAppDeployToolkit from the PowerShell Gallery or GitHub.'
+slug: /getting-started/download
+hide_title: true
+tags:
+  - Download
+  - How-to
+---
+
+## How to install PSAppDeployToolkit
+
+PSAppDeployToolkit is distributed as a PowerShell module on the PowerShell Gallery, and as
+self-contained zip archives on GitHub. Either source gives you everything needed to create a
+deployment.
+
+Check the [Requirements](../reference/requirements.mdx) before you begin.
+
+## Install from the PowerShell Gallery
+
+Run:
+
+```powershell
+Install-Module -Name PSAppDeployToolkit -Scope CurrentUser
+```
+
+This is the recommended option when you intend to create deployments with
+[`New-ADTTemplate`](../reference/functions/New-ADTTemplate.mdx), because the module is then
+available in every PowerShell session on the packaging machine.
+
+## Download from GitHub releases
+
+Go to the [PSAppDeployToolkit releases page](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/releases/latest)
+and open the `Assets` dropdown. Download the asset that matches what you need:
+
+| Asset                                | Use it when                                                                |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| `PSAppDeployToolkit_ModuleOnly.zip`  | You only want the module, for example to update an existing package.       |
+| `PSAppDeployToolkit_Template_v4.zip` | You want a ready-made v4 native deployment folder.                         |
+| `PSAppDeployToolkit_Template_v3.zip` | You want a ready-made v3 compatibility deployment folder.                  |
+| `Source code (zip)`                  | You want to read or build the source.                                      |
+
+Extract the archive. The folder layout you get is described in the
+[Deployment Template reference](../reference/deployment-template.mdx).
+
+## Install PSAppDeployToolkit.Tools
+
+`PSAppDeployToolkit.Tools` is a companion module for functions that help you *create* packages
+rather than deploy them, including the [v3 migration tools](./upgrade-from-v3.mdx).
+
+It is currently in pre-release, so the PowerShell Gallery install needs an extra switch:
+
+```powershell
+Install-Module PSAppDeployToolkit.Tools -Scope CurrentUser -AllowPreRelease
+```
+
+If PowerShell reports that `-AllowPreRelease` is not recognized, update PowerShellGet first, then
+restart your PowerShell console and retry:
+
+```powershell
+Install-Module PowerShellGet -Force -Scope CurrentUser
+```
+
+Release assets are also available from the
+[PSAppDeployToolkit.Tools releases page](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools/releases/latest).
+
+## Next steps
+
+- [Create a new deployment](./create-a-deployment.mdx)
+- [Your first deployment](../tutorials/your-first-deployment.mdx), a guided walkthrough

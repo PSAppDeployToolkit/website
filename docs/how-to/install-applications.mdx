@@ -1,0 +1,105 @@
+---
+sidebar_position: 5
+title: 'How to install applications'
+description: 'How to run installers from a PSAppDeployToolkit deployment script.'
+slug: /usage/installing-applications
+hide_title: true
+tags:
+  - Installing Applications
+  - How-to
+---
+
+## How to install applications
+
+Put these commands in the `Install`, `Uninstall` or `Repair` script block of
+`Invoke-AppDeployToolkit.ps1`. Every one of them logs to the deployment log and applies the
+toolkit's exit-code handling.
+
+The parameters most often used are listed in the
+[Process Execution Parameters reference](../reference/process-execution.mdx).
+
+## Install an EXE
+
+Use [`Start-ADTProcess`](../reference/functions/Start-ADTProcess.mdx). Files placed directly in the
+`Files` folder can be referenced by name alone:
+
+```powershell
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S'
+```
+
+If the installer hands off to a child process and exits early, wait for the children so the
+deployment does not report success too soon:
+
+```powershell
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -WaitForChildProcesses
+```
+
+If the installer returns a vendor-specific code you want treated as success:
+
+```powershell
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -SuccessExitCodes 0, 3010, 1641
+```
+
+If the arguments contain a licence key or password, keep them out of the log:
+
+```powershell
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList "/S /KEY=$key" -SecureArgumentList
+```
+
+## Install an MSI
+
+Use [`Start-ADTMsiProcess`](../reference/functions/Start-ADTMsiProcess.mdx):
+
+```powershell
+Start-ADTMsiProcess -Action Install -FilePath 'SomeApp.msi' -Transforms 'SomeApp.mst' -AdditionalArgumentList 'SERIAL=12345' -SecureArgumentList
+```
+
+Use `-AdditionalArgumentList` to add MSI properties on top of the configured defaults. Use
+`-ArgumentList` only when you intend to **replace** the defaults such as
+`/qn REBOOT=ReallySuppress`.
+
+To uninstall an MSI you no longer have the source for, pipe it in from
+[`Get-ADTApplication`](../reference/functions/Get-ADTApplication.mdx):
+
+```powershell
+Get-ADTApplication -Name 'SomeApp' | Start-ADTMsiProcess -Action Uninstall
+```
+
+If your package needs to install a single MSI and nothing else, consider
+[zero-config deployment](./deploy-an-msi-with-zero-config.mdx) instead of scripting it.
+
+## Run something as the logged-on user
+
+Use [`Start-ADTProcessAsUser`](../reference/functions/Start-ADTProcessAsUser.mdx) when a step has to
+run in the user's context rather than as SYSTEM. Typical cases:
+
+- A "machine-wide" installer that writes an `HKLM` `Run` key so a per-user stub installs at next
+  logon. Running that stub now completes the install without a logoff.
+- Replacing a per-user installation with a machine-wide one, where the old uninstaller has to run as
+  the user first.
+- A configuration or licensing tool that must run once in user context before the app is usable.
+
+```powershell
+Start-ADTProcessAsUser -FilePath '%LOCALAPPDATA%\Programs\SomeApp\Uninstall.exe' -ArgumentList '/S' -ExpandEnvironmentVariables
+```
+
+:::tip
+For an application that is genuinely per-user, prefer building a user-context deployment with
+user-context detection rules over running an installer as the user from a SYSTEM deployment.
+:::
+
+## Troubleshooting
+
+### The installer fails only when run by the toolkit
+
+The toolkit runs as SYSTEM. Some installers refuse to run elevated, or expect a user profile. Try
+`-UseUnelevatedToken`, or move the step to `Start-ADTProcessAsUser`.
+
+### The deployment finishes before the installer does
+
+The installer spawned a child process and exited. Add `-WaitForChildProcesses`.
+
+### Uninstalling an MSI returns 1605
+
+The product is not installed under the account running the uninstall. See the
+[Troubleshooting reference](../reference/troubleshooting.mdx).

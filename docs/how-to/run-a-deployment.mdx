@@ -1,0 +1,112 @@
+---
+sidebar_position: 3
+title: 'How to run a deployment'
+description: 'How to launch a PSAppDeployToolkit deployment from the command line.'
+slug: /usage/how-to-deploy
+hide_title: true
+tags:
+  - How to Deploy
+  - How-to
+---
+
+## How to run a deployment
+
+There are two ways to launch a deployment.
+
+Run the script directly with PowerShell:
+
+```text
+%SystemRoot%\System32\WindowsPowerShell\v1.0\PowerShell.exe -ExecutionPolicy Bypass -NoProfile -File Invoke-AppDeployToolkit.ps1
+```
+
+Or run the supplied launcher, which starts the same script in a hidden PowerShell window:
+
+```text
+Invoke-AppDeployToolkit.exe
+```
+
+For every accepted parameter, see the
+[Command-Line Parameters reference](../reference/command-line-parameters.mdx).
+
+:::info[Elevation]
+If your script sets `RequireAdmin = $true`, launch it from an elevated context. The launcher does
+not request elevation on your behalf.
+:::
+
+## Common invocations
+
+Install interactively, which is the default:
+
+```powershell
+Invoke-AppDeployToolkit.exe
+```
+
+Install silently, converting reboot exit codes to `0`:
+
+```powershell
+Invoke-AppDeployToolkit.exe -DeploymentType Install -DeployMode Silent -SuppressRebootPassThru
+```
+
+Uninstall without prompting the user, but still showing progress dialogs:
+
+```powershell
+Invoke-AppDeployToolkit.ps1 -DeploymentType Uninstall -DeployMode NonInteractive
+```
+
+Install silently under PowerShell x86, with a debug console:
+
+```powershell
+Invoke-AppDeployToolkit.exe /32 /Debug -DeploymentType Install -DeployMode Silent
+```
+
+Install silently under PowerShell Core:
+
+```powershell
+Invoke-AppDeployToolkit.exe /Core -DeploymentType Install -DeployMode Silent
+```
+
+Run a script other than the default:
+
+```powershell
+Invoke-AppDeployToolkit.exe Custom-Script.ps1
+```
+
+```powershell
+Invoke-AppDeployToolkit.exe -File Custom-Script.ps1
+```
+
+## Running from a management system
+
+- [Deploy with Microsoft Intune](./deploy-with-intune.mdx)
+- [Deploy with Microsoft Configuration Manager](./deploy-with-configmgr.mdx)
+
+:::info[ServiceUI is no longer needed]
+As of v4.1.0 the user interface runs in its own process in the user's session, so:
+
+- Intune deployments no longer need `ServiceUI.exe` workarounds to show the UI.
+- Configuration Manager deployments no longer need **Allow users to view and interact with the
+  program installation**.
+- `Invoke-ServiceUI.ps1` has been removed from the toolkit.
+
+Why this changed is covered in [The user interface](../explanation/user-interface.mdx).
+:::
+
+:::warning
+You can still include `ServiceUI.exe` in a package and use it to launch an installer interactively,
+but doing so is a security risk. Any file dialog or hyperlink the installer exposes can be abused by
+the user to gain SYSTEM access.
+:::
+
+## Troubleshooting
+
+### The deployment exits immediately with 60008
+
+The module failed to import, or the session failed to open. Run the launcher with `/Debug` from an
+interactive session to see the error on screen. See
+[How to troubleshoot a deployment](./troubleshoot-a-deployment.mdx).
+
+### No dialogs appear
+
+`DeployMode` resolved to `Silent`. This is expected when no user is logged on, when the device is in
+OOBE/ESP, or when there are no running processes to close. See
+[Deployment Modes](../explanation/deployment-modes.mdx).

@@ -1,0 +1,74 @@
+---
+sidebar_position: 6
+title: 'How to customize a deployment'
+description: 'How to change the configuration, UI text and behaviour of a deployment.'
+slug: /usage/customizing-deployments
+hide_title: true
+tags:
+  - Customizing
+  - How-to
+---
+
+## How to customize a deployment
+
+Beyond the logic in `Invoke-AppDeployToolkit.ps1`, a deployment needs no configuration to work.
+When you do need to change something, there are three places to do it.
+
+## Change toolkit settings
+
+Edit `Config\config.psd1` in the **deployment folder**, not the copy inside the
+`PSAppDeployToolkit` module folder. The deployment copy is layered over the module defaults, so you
+only need to include the settings you are changing.
+
+Common changes:
+
+```powershell
+@{
+    Toolkit = @{
+        LogPath = 'C:\Windows\Logs\Software'
+        CompressLogs = $true
+    }
+    MSI = @{
+        InstallParams = '/qn REBOOT=ReallySuppress'
+    }
+}
+```
+
+Every available setting is listed in the
+[Configuration Settings reference](../reference/config-settings.mdx). How the layers combine is
+covered in [Configuration](../explanation/configuration.mdx).
+
+To enforce settings across an estate rather than per package, use
+[Group Policy](./configure-with-group-policy.mdx).
+
+## Change the text shown to users
+
+Edit `Strings\strings.psd1`. The English strings live in the root of the `Strings` folder; other
+languages live in their own subfolders and ship pre-translated into 25 languages.
+
+The language is chosen from the operating system settings. To force one, set `UI.LanguageOverride`
+in `config.psd1`.
+
+Every string key is listed in the
+[Language Strings reference](../reference/language-strings.mdx). Strings support rich formatting; see
+[Text Formatting](../reference/text-formatting.mdx).
+
+## Change the branding
+
+Replace the files in the `Assets` folder. See
+[How to brand the user interface](./brand-the-user-interface.mdx).
+
+## Change where logs go
+
+Set `Toolkit.LogPath` in `config.psd1`, or apply it centrally with
+[Group Policy](./set-the-log-path-with-group-policy.mdx). To collect all logs from a deployment into
+a single zip, set `Toolkit.CompressLogs = $true`; anything your package writes to
+`$adtSession.LogTempFolder` is included.
+
+What gets logged, and how log files are named, is described in
+[Logging](../explanation/logging.mdx).
+
+## Add your own functions
+
+Custom functions belong in the `PSAppDeployToolkit.Extensions` module rather than in the deployment
+script. See [How to extend the toolkit](./extend-the-toolkit-with-custom-functions.mdx).
