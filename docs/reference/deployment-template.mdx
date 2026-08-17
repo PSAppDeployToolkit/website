@@ -1,0 +1,160 @@
+---
+sidebar_position: 2
+sidebar_label: 'Deployment Template'
+title: 'Deployment Template'
+description: 'The file and folder structure of a PSAppDeployToolkit deployment.'
+slug: /deployment-concepts/deployment-structure
+hide_title: true
+tags:
+  - Deployment Template
+  - Reference
+---
+
+## Deployment Template
+
+Two templates ship with PSAppDeployToolkit: the **v4 native** template, used for all new work, and
+the **v3 compatibility** template, used to run existing v3 scripts under the v4 engine. Both are
+produced by [`New-ADTTemplate`](./functions/New-ADTTemplate.mdx) or downloaded from the releases
+page.
+
+Why the structure is shaped this way is covered in [Architecture](../explanation/architecture.mdx).
+
+## V4 native template
+
+| Folder                             | File                        | Purpose                                                                                                        |
+| :--------------------------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| **/**                              | Invoke-AppDeployToolkit.ps1 | The deployment script. Main entry point, and the file you edit.                                                |
+|                                    | Invoke-AppDeployToolkit.exe | Launcher that starts the script in a PowerShell process.                                                       |
+| **PSAppDeployToolkit/**            |                             | PSADT core module files. Do not modify anything under this folder.                                             |
+| **PSAppDeployToolkit.Extensions/** |                             | Optional custom functions. Ignore this folder if you are not using any.                                        |
+| **Files/**                         |                             | Installation media. *Put installation files here.*                                                             |
+|                                    | Setup.exe                   | Example setup executable.                                                                                      |
+|                                    | AppInstaller.msi            | Example Windows Installer MSI.                                                                                 |
+| **SupportFiles/**                  |                             | Auxiliary files used during or after installation. *Put optional install support files here.*                  |
+|                                    | PerUserSettings.reg         | Example installation support file.                                                                             |
+| **Assets/**                        | AppIcon.png                 | Application icon or organization logo. 256x256 PNG.                                                            |
+| **Config/**                        | config.psd1                 | Deployment configuration. Layered over the module defaults.                                                    |
+| **Strings/**                       | strings.psd1                | User interface text. English in the root; other languages in subfolders.                                       |
+
+### Root directory
+
+- **`Invoke-AppDeployToolkit.ps1`** holds the session properties, the Install/Uninstall/Repair phase
+  blocks, and the fixed initialization block. See
+  [The deployment script](../explanation/the-deployment-script.mdx).
+- **`Invoke-AppDeployToolkit.exe`** launches the script without exposing its contents in a command
+  line, and accepts `/Debug`, `/32`, `/Core` and `-File`. See
+  [Command-Line Parameters](./command-line-parameters.mdx).
+
+### PSAppDeployToolkit
+
+The complete framework: module files, both UI dialog sets, session and privilege management, the
+function library, and the required .NET assemblies. It is signed and is not intended to be modified.
+Its contents are listed in [Module Structure](./module-structure.mdx).
+
+### Files
+
+The primary location for installation media. Commonly used file types:
+
+- Executable installers: `.exe`, `.msi`, `.msm`
+- Windows Installer patches: `.msp`
+- Transform files: `.mst`
+- WIM images: `.wim`
+- Archive files: `.zip`, `.7z`
+
+An MSI, MST, MSP or WIM placed here can be picked up automatically; see
+[zero-config deployment](../how-to/deploy-an-msi-with-zero-config.mdx). The folder's path is
+available to the script as `$adtSession.DirFiles`.
+
+### SupportFiles
+
+Auxiliary content that is not the installer itself: `.reg` files, configuration templates,
+documentation, shortcuts, licence files. Available to the script as `$adtSession.DirSupportFiles`.
+
+### Assets
+
+Branding used by the dialogs. The Fluent dialogs use a logo, the Classic dialogs use a banner, and
+each ignores the other's asset. See
+[How to brand the user interface](../how-to/brand-the-user-interface.mdx).
+
+### Config
+
+`config.psd1` holds deployment settings: logging paths and behaviour, dialog defaults, and MSI
+parameters. Settings are resolved from built-in defaults, then this file, then Group Policy. Every
+key is listed in [Configuration Settings](./config-settings.mdx).
+
+### Strings
+
+`strings.psd1` holds all user-facing text. English lives in the root of the folder; other languages
+live in their own subfolders. See [Language Strings](./language-strings.mdx).
+
+## V3 compatibility template
+
+The v3 compatibility template lets an existing v3 `Deploy-Application.ps1` run on the v4 engine. It
+keeps the v3 file and folder names, so paths inside your script still resolve, and maps each v3
+function to its v4 equivalent.
+
+| Folder                                   | File             | Purpose                                                                    |
+| :--------------------------------------- | :--------------- | :--------------------------------------------------------------------------- |
+| **/**                                    |                  | Compatibility shim script, restoring the v3 function wrappers.             |
+|                                          |                  | Community extension scripts, for your custom v3 functions.                 |
+| **AppDeployToolkit/PSAppDeployToolkit/** |                  | PSADT core module files. Do not modify anything under this folder.         |
+| **Files/**                               |                  | Installation media. *Put installation files here.*                         |
+|                                          | Setup.exe        | Example setup executable.                                                  |
+|                                          | AppInstaller.msi | Example Windows Installer MSI.                                             |
+| **SupportFiles/**                        |                  | *Put optional install support files here.*                                 |
+| **Assets/**                              | AppIcon.png      | Application icon or organization logo. 256x256 PNG.                        |
+| **Config/**                              | config.psd1      | Deployment configuration.                                                  |
+| **Strings/**                             | strings.psd1     | User interface text.                                                       |
+
+Compatibility mode supports the Classic dialogs only, and `config.xml` is not read. See
+[How to upgrade from v3.x](../how-to/upgrade-from-v3.mdx).
+
+## Example layouts
+
+A deployment for a single application:
+
+```text
+YourApp-Deployment/
+├── Invoke-AppDeployToolkit.ps1
+├── Invoke-AppDeployToolkit.exe
+├── PSAppDeployToolkit/            # Core framework
+├── PSAppDeployToolkit.Extensions/ # Custom functions
+├── Files/
+│   ├── YourApp-Setup.exe
+│   ├── YourApp-Setup.msi
+│   ├── YourApp-Patch.msp
+│   └── YourApp-Config.mst
+├── SupportFiles/
+│   ├── UserSettings.reg
+│   ├── SystemSettings.reg
+│   └── Config/
+│       ├── AppConfig.xml
+│       └── UserPreferences.json
+├── Assets/
+│   ├── AppIcon.png
+│   ├── AppIcon-Dark.png
+│   ├── CompanyLogo.png
+│   └── Banner.png
+├── Config/
+│   └── config.psd1
+└── Strings/
+    ├── strings.psd1
+    └── de-DE/
+        └── strings.psd1
+```
+
+A deployment carrying multiple architectures:
+
+```text
+YourApp-Deployment/
+├── Files/
+│   ├── x64/
+│   │   ├── YourApp-x64-Setup.exe
+│   │   └── YourApp-x64-Patch.msp
+│   ├── x86/
+│   │   ├── YourApp-x86-Setup.exe
+│   │   └── YourApp-x86-Patch.msp
+│   └── Common/
+│       ├── SharedComponents.msi
+│       └── License.lic
+```

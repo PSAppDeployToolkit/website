@@ -1,0 +1,65 @@
+---
+sidebar_position: 11
+sidebar_label: 'Troubleshooting'
+title: 'Troubleshooting'
+description: 'Known symptoms, their causes and their resolutions.'
+slug: /reference/troubleshooting
+hide_title: true
+tags:
+  - Troubleshooting
+  - Reference
+---
+
+## Troubleshooting
+
+A lookup table of known symptoms. For the diagnostic process, see
+[How to troubleshoot a deployment](../how-to/troubleshoot-a-deployment.mdx).
+
+## Startup and module loading
+
+| Symptom                                                                             | Cause                                                                                                                       | Resolution                                                                                                                                     |
+| :---------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| Exit code `60008`, no log file produced                                             | The module failed to import or the session failed to open, before logging began.                                            | Re-run with `Invoke-AppDeployToolkit.exe /Debug` to see the error on screen.                                                                    |
+| `A PSAppDeployToolkit assembly of a different file hash is already loaded`           | A different version of the toolkit's assemblies is already loaded in the PowerShell session. Loaded DLLs cannot be unloaded. | Restart PowerShell, or test in a separate shell. Keep the installed module and the package's bundled module on the same version.                |
+| Exit code `60010` or `60011`                                                        | `Invoke-AppDeployToolkit.exe` could not launch, or could not execute, the PowerShell process.                               | Check that the requested PowerShell exists (`/Core` requires `pwsh.exe` to be installed) and that execution is not blocked by security tooling. |
+| Exit code `60001`                                                                   | An unhandled error in the deployment script.                                                                                | Check the log for the last phase that ran, and the error record recorded with it.                                                              |
+| Toolkit variables such as `$envProgramFiles` are empty                              | The module has not been imported and initialized yet; the `$adtSession` hashtable at the top of the script runs too early.   | Use these variables inside the phase script blocks, or call [`Export-ADTEnvironmentTableToSessionState`](./functions/Export-ADTEnvironmentTableToSessionState.mdx). |
+| The script fails immediately when a standard user runs it                           | `RequireAdmin = $true` and the process is not elevated. The launcher does not elevate itself.                                | Launch elevated, or set `RequireAdmin = $false` for a genuinely user-context package.                                                           |
+
+## User interface
+
+| Symptom                                                        | Cause                                                                                                     | Resolution                                                                                                                    |
+| :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| No dialogs appear at all                                       | `DeployMode` resolved to `Silent`: no user logged on, device in OOBE/ESP, or no processes to close running.  | Check the mode and reason recorded in the log. See [Deployment Modes](../explanation/deployment-modes.mdx).                    |
+| No dialogs during Autopilot / ESP                              | OOBE detection switched the deployment to `NonInteractive`.                                                 | Set `NoOobeDetection = $true` in the session properties if the UI must be shown during ESP.                                    |
+| Dialogs appear but prompts are skipped                         | `DeployMode` is `NonInteractive`: progress dialogs are allowed, anything needing input is suppressed.        | Use `Interactive` if user input is required.                                                                                  |
+| The Fluent UI is unavailable in a v3 compatibility deployment  | The Fluent dialogs take parameters, such as `SubTitle`, that the v3 functions do not have.                   | Only the Classic UI is supported in compatibility mode. Convert the package to v4 native to use Fluent.                       |
+| Branding changes have no effect                                | A Group Policy setting is overriding the package's `config.psd1`.                                            | Policy wins. See [Configuration](../explanation/configuration.mdx).                                                            |
+| The banner is ignored                                          | Banners are used by the Classic dialogs only.                                                                | Replace `Assets\AppIcon.png`, or set `Assets.Logo`, for the Fluent dialogs.                                                    |
+
+## Installing and uninstalling
+
+| Symptom                                                          | Cause                                                                                                             | Resolution                                                                                                        |
+| :---------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------ |
+| Uninstalling an MSI returns `1605`                                | The product is not installed. Common when a per-user install was made under a different account.                    | Use `-IgnoreExitCodes 1605` on [`Uninstall-ADTApplication`](./functions/Uninstall-ADTApplication.mdx).             |
+| The deployment succeeds but the application is not installed      | The installer spawned a child process and exited early.                                                            | Add `-WaitForChildProcesses` to [`Start-ADTProcess`](./functions/Start-ADTProcess.mdx).                            |
+| An MSI property is ignored                                       | `-ArgumentList` replaces the configured default MSI parameters rather than adding to them.                          | Use `-AdditionalArgumentList` for properties.                                                                     |
+| Zero-config picks the wrong MSI                                   | More than one MSI is present in `Files`; the first is used.                                                        | Leave only one MSI, or script the install explicitly.                                                             |
+| A transform is not applied in zero-config mode                    | The MST filename does not match the MSI filename.                                                                  | Rename the MST to match, e.g. `test01.msi` and `test01.mst`.                                                      |
+| An installer fails only when run by the toolkit                   | The toolkit runs as SYSTEM; the installer expects a user context, or refuses to run elevated.                       | Try `-UseUnelevatedToken`, or run the step with [`Start-ADTProcessAsUser`](./functions/Start-ADTProcessAsUser.mdx). |
+
+## Deferral and retries
+
+| Symptom                                                       | Cause                                                                                        | Resolution                                                                                                            |
+| :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| The user is re-prompted moments after deferring                | The management system retried. Intune's retry interval is short and not configurable.         | Set `-DeferRunInterval` on [`Show-ADTInstallationWelcome`](./functions/Show-ADTInstallationWelcome.mdx).               |
+| A deferral is recorded as a failed deployment                  | The deferral exit code, `1602` by default, is not mapped to a retry.                          | Map `1602` to *Retry* in Intune, or set `UI.DeferExitCode` to `1618` for Configuration Manager fast retry.             |
+| Reboot exit codes are reported as failures                     | `3010` and `1641` are not mapped in the management system.                                    | Map them, or use `-SuppressRebootPassThru` to return `0`.                                                             |
+
+## Packages and versions
+
+| Symptom                                                     | Cause                                                                                          | Resolution                                                                                                              |
+| :----------------------------------------------------------- | :----------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| A package works on the packaging machine but not on endpoints | The endpoint has a different toolkit version pre-installed than the one the package was tested with. | Ship the module inside the package, or standardize the pre-installed version. See the [FAQ](./faq.mdx).                 |
+| An upgrade from v4.0 to v4.1 fails at session open            | `RequireAdmin`, `OobeDetection` or `SessionDetection` are still set in `config.psd1`.               | Remove them and set the equivalents as session properties. See [upgrading from v4.0](../how-to/upgrade-from-v4-0.mdx). |
+| A converted v3 script is missing custom logic                 | `Convert-ADTDeployment` transfers only the Install, Uninstall and Repair blocks and known variables. | Port the remaining code by hand. See [upgrading from v3](../how-to/upgrade-from-v3.mdx).                                |
