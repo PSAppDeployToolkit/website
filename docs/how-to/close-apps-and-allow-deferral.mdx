@@ -10,6 +10,8 @@ tags:
   - How-to
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 ## How to close applications and allow deferral
 
 Installers that replace files in use need the application closed first.
@@ -63,6 +65,18 @@ Show-ADTInstallationWelcome @saiwParams
 | Stop deferrals at a fixed date                                 | `-DeferDeadline '2026-08-25 18:00:00Z'`                          |
 | Avoid re-prompting immediately after a deferral                | `-DeferRunInterval ([System.TimeSpan]::FromHours(4))`            |
 
+With `-AllowDefer` set and none of the declared applications running, the dialog simply asks the
+user to choose when to start.
+
+<ThemedImage
+  alt="The welcome dialog offering Install and Defer with no applications listed"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_defer_only_light.png').default,
+    dark: require('../images/welcome_defer_only_dark.png').default,
+  }}
+/>
+
 `-DeferDays` is converted to a deadline on first run. For `-DeferDeadline`, use the universal
 sortable format (`2026-08-25 11:51:52Z`) if the package runs on machines of differing cultures.
 
@@ -84,6 +98,17 @@ immediately. `-DeferRunInterval` suppresses the prompt until the interval has el
 | Skip the dialog entirely and just close the apps                     | `-Silent`                              |
 
 Countdown parameters take a `TimeSpan`, but plain numbers are interpreted as seconds.
+
+<ThemedImage
+  alt="The welcome dialog counting down before it closes the listed applications"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_countdown_light.png').default,
+    dark: require('../images/welcome_countdown_dark.png').default,
+  }}
+/>
+
+When the countdown reaches zero the listed applications are closed and the deployment continues.
 
 ## 5. Handle the deferral exit code
 

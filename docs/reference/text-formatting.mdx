@@ -10,6 +10,8 @@ tags:
   - Reference
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 ## Text Formatting
 
 Dialog messages support rich text formatting through markup tags. Formatting is rendered by the
@@ -146,6 +148,17 @@ For more information, visit our [url]https://intranet.company.com/office365[/url
 
 [italic]Thank you for your cooperation.[/italic]
 ```
+
+Rendered, that message looks like this:
+
+<ThemedImage
+  alt="The Office 365 deployment notice rendered in a dialog, with bold, italic, accent and hyperlink formatting applied"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_formatting_light.png').default,
+    dark: require('../images/prompt_formatting_dark.png').default,
+  }}
+/>
 
 A security update notification:
 

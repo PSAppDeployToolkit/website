@@ -10,6 +10,8 @@ tags:
   - How-to
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 ## How to brand the user interface
 
 Branding is applied per deployment, in the `Assets` and `Config` folders of the package, or centrally
@@ -121,11 +123,25 @@ Policy wins over the package's own `config.psd1`.
 
 Out of the box, a deployment shows the toolkit's own logo and the default blue accent:
 
-<img src={require('../images/welcomedialog_fluent.png').default} alt="The Welcome dialog with default branding" class="markdown_image" />
+<ThemedImage
+  alt="The Welcome dialog with default branding"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_fluent_light.png').default,
+    dark: require('../images/welcome_fluent_dark.png').default,
+  }}
+/>
 
 With `Assets\AppIcon.png` replaced and `FluentAccentColor` set, the same deployment looks like this:
 
-<img src={require('../images/welcomedialog_branded.png').default} alt="The same Welcome dialog with a replacement logo and a custom accent colour" class="markdown_image" />
+<ThemedImage
+  alt="The same Welcome dialog with a replacement logo and a custom accent colour"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_branded_light.png').default,
+    dark: require('../images/welcome_branded_dark.png').default,
+  }}
+/>
 
 Every dialog and how it looks in light and dark mode is shown in the
 [Dialogs reference](../reference/dialogs.mdx).

@@ -9,6 +9,8 @@ tags:
   - User Interface
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 ## Adding a user experience
 
 In the [first tutorial](./your-first-deployment.mdx) we let the toolkit do everything. In this one we
@@ -125,7 +127,18 @@ This time we have not asked for `Interactive`, and we do not need to. Notepad is
 toolkit works out for itself that there is something to talk to the user about.
 
 You should see the welcome dialog listing **Notepad**, with buttons to close it, and a **Defer**
-button. The template already asked for deferral on your behalf:
+button.
+
+<ThemedImage
+  alt="The welcome dialog listing Notepad, with Close Programs and Defer buttons and three deferrals remaining"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_notepad_defer_light.png').default,
+    dark: require('../images/welcome_notepad_defer_dark.png').default,
+  }}
+/>
+
+The template already asked for deferral on your behalf:
 
 ```powershell
 $saiwParams = @{
@@ -157,12 +170,31 @@ me again later", which is why
 Run it twice more and defer each time. On the fourth run the **Defer** button is gone: `DeferTimes`
 was set to 3, and the deployment has run out of patience.
 
+<ThemedImage
+  alt="The same dialog on the fourth run, with no Defer button offered"
+  className="markdown_image"
+  sources={{
+    light: require('../images/welcome_notepad_nodefer_light.png').default,
+    dark: require('../images/welcome_notepad_nodefer_dark.png').default,
+  }}
+/>
+
 ## Step 7: Let it install
 
 With Notepad still open, run it once more and click **Close Programs**. Notepad closes and the
 progress dialog appears. Watch the detail line change from "Creating the application folder" to
-"Copying files", and the progress bar move from 25% to 75%, as your two commands run. A completion
-prompt follows.
+"Copying files", and the progress bar move from 25% to 75%, as your two commands run.
+
+<ThemedImage
+  alt="The progress dialog showing the Copying files detail line and the bar at 75%"
+  className="markdown_image"
+  sources={{
+    light: require('../images/progress_detail_75_light.png').default,
+    dark: require('../images/progress_detail_75_dark.png').default,
+  }}
+/>
+
+A completion prompt follows.
 
 Confirm the result:
 
