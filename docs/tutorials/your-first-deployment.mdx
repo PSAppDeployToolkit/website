@@ -1,0 +1,200 @@
+---
+sidebar_position: 1
+title: 'Your first deployment'
+description: 'Build and run a working PSAppDeployToolkit deployment from scratch.'
+slug: /tutorials/your-first-deployment
+hide_title: true
+tags:
+  - Tutorial
+  - Getting Started
+---
+
+## Your first deployment
+
+In this tutorial we will build a working deployment package, run it, watch it install an
+application, and read the log it produces. By the end you will have a package you could hand to
+Intune or Configuration Manager, and you will know where everything in it lives.
+
+We will not write any deployment logic yet. The toolkit can install an MSI with no script at all,
+which makes it a good first result. Writing logic comes in the [next
+tutorial](./adding-a-user-experience.mdx).
+
+## Before you begin
+
+You will need:
+
+- A Windows test machine you are happy to install software on. A virtual machine is ideal.
+- An elevated PowerShell prompt.
+- Any small MSI installer. If you do not have one to hand, download a vendor MSI such as the 7-Zip
+  `.msi`. The tutorial does not depend on which one you choose.
+
+Check the [Requirements](../reference/requirements.mdx) if your test machine is older than
+Windows 10 1607.
+
+## Step 1: Install the toolkit
+
+In your elevated PowerShell prompt, run:
+
+```powershell
+Install-Module -Name PSAppDeployToolkit -Scope CurrentUser
+```
+
+Confirm it is there:
+
+```powershell
+Get-Module -Name PSAppDeployToolkit -ListAvailable
+```
+
+The output should look something like:
+
+```text
+    Directory: C:\Users\you\Documents\PowerShell\Modules
+
+ModuleType Version    Name                      ExportedCommands
+---------- -------    ----                      ----------------
+Manifest   4.1.8      PSAppDeployToolkit        {Add-ADTEdgeExtension, Add-ADTFont, ...}
+```
+
+## Step 2: Create a deployment folder
+
+Now create a package from the toolkit's own template:
+
+```powershell
+New-ADTTemplate -Destination C:\Temp -Name 'MyFirstDeployment'
+```
+
+Look at what you have:
+
+```powershell
+Get-ChildItem -Path C:\Temp\MyFirstDeployment
+```
+
+```text
+    Directory: C:\Temp\MyFirstDeployment
+
+Mode    Name
+----    ----
+d----   Assets
+d----   Config
+d----   Files
+d----   PSAppDeployToolkit
+d----   PSAppDeployToolkit.Extensions
+d----   Strings
+d----   SupportFiles
+-a---   Invoke-AppDeployToolkit.exe
+-a---   Invoke-AppDeployToolkit.ps1
+```
+
+Notice that this is a complete, self-contained package: the toolkit itself is in the
+`PSAppDeployToolkit` folder, so this deployment will run on a machine that has never seen the module.
+Only two of these folders are ours to fill in right now, `Files` and `SupportFiles`. The rest are
+covered in the [Deployment Template reference](../reference/deployment-template.mdx).
+
+## Step 3: Add your installer
+
+Copy your MSI into the `Files` folder:
+
+```powershell
+Copy-Item -Path C:\Downloads\YourApp.msi -Destination C:\Temp\MyFirstDeployment\Files
+```
+
+That is the entire configuration. Because we have left `AppName` empty in the deployment script, the
+toolkit will find the MSI on its own and build the install from it. This is called
+[zero-config deployment](../how-to/deploy-an-msi-with-zero-config.mdx).
+
+## Step 4: Run it
+
+From an elevated prompt, in the package folder:
+
+```powershell
+cd C:\Temp\MyFirstDeployment
+.\Invoke-AppDeployToolkit.exe /Debug -DeployMode Interactive
+```
+
+`/Debug` opens a console window and streams the log to the screen as the deployment runs.
+
+We ask for `Interactive` explicitly because, left to itself, the toolkit would decide there is
+nothing worth interrupting anyone for and run silently, since our package declares no applications
+that need closing. That decision-making is the subject of
+[Deployment Modes](../explanation/deployment-modes.mdx); for now we want to see the dialogs.
+
+Watch the console output go past. You should see the module import, the session open, the MSI
+detected, and the install run:
+
+```text
+[Initialization] [Info] :: [YourApp_1.0.0_EN_01] install started.
+[Initialization] [Info] :: [PSAppDeployToolkit] module version is [4.2.0].
+[Initialization] [Info] :: Discovered Zero-Config MSI installation file [C:\Temp\MyFirstDeployment\Files\YourApp.msi].
+[Initialization] [Info] :: Deployment is running in [Interactive] mode.
+[Install] [Info] :: Executing MSI action [Install]...
+```
+
+(Each real line also carries a timestamp and the command that wrote it; they are trimmed here.)
+
+A progress dialog appears while the MSI runs, and a completion prompt when it finishes. When the
+console returns you to a prompt, the deployment is done.
+
+Confirm the application is installed. It should now appear in **Apps & features**.
+
+## Step 5: Read the log
+
+The interesting part is what the deployment left behind:
+
+```powershell
+Get-ChildItem -Path C:\Windows\Logs\Software
+```
+
+There are two files: the toolkit's own log, and Windows Installer's log for the MSI action.
+
+```text
+YourApp_1.0.0_EN_01_PSAppDeployToolkit.log
+YourApp_1.0.0_EN_01_Install.log
+```
+
+Open the first one:
+
+```powershell
+Get-Content -Path C:\Windows\Logs\Software\*_PSAppDeployToolkit.log | Select-Object -Last 30
+```
+
+Notice that every line carries the phase it belongs to: `Initialization`, `Pre-Install`, `Install`,
+`Post-Install`. When a deployment fails somewhere in an estate of thousands of machines, this is what
+you will be reading, and the phase tells you where to look first.
+
+## Step 6: Uninstall it again
+
+The same package uninstalls the application. Run:
+
+```powershell
+.\Invoke-AppDeployToolkit.exe /Debug -DeploymentType Uninstall -DeployMode Interactive
+```
+
+The toolkit resolves the MSI's product code and uninstalls it, and writes a second pair of logs
+ending in `_Uninstall.log`. One package covers all three deployment types, which is why the
+management system only ever needs one piece of content per application.
+
+## Step 7: See it run silently
+
+Finally, run the install again the way a management system would, with no user interaction:
+
+```powershell
+.\Invoke-AppDeployToolkit.exe -DeploymentType Install -DeployMode Silent
+```
+
+No dialogs appear this time, and the console returns immediately. Check the log and you will find the
+same sequence of events. Whether a user is talked to is a separate question from what gets installed;
+see [Deployment Modes](../explanation/deployment-modes.mdx).
+
+## What you have built
+
+You have a self-contained deployment package that installs and uninstalls an MSI, logs what it does,
+and behaves differently depending on whether anyone is watching, without a line of script written.
+
+## Next steps
+
+- [Adding a user experience](./adding-a-user-experience.mdx) is the next tutorial, where we start
+  writing deployment logic.
+- [How to install applications](../how-to/install-applications.mdx) covers installers that are not a
+  plain MSI.
+- [The deployment script](../explanation/the-deployment-script.mdx) explains how the script you have
+  not yet edited actually works.

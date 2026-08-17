@@ -1,0 +1,223 @@
+---
+sidebar_position: 2
+title: 'Adding a user experience'
+description: 'Write deployment logic and add dialogs that close applications, allow deferral and report progress.'
+slug: /tutorials/adding-a-user-experience
+hide_title: true
+tags:
+  - Tutorial
+  - User Interface
+---
+
+## Adding a user experience
+
+In the [first tutorial](./your-first-deployment.mdx) we let the toolkit do everything. In this one we
+will write the deployment logic ourselves, and give the deployment a user experience: it will ask the
+user to close Notepad, let them put it off, report progress while it works, and tell them when it is
+done.
+
+We will use Notepad as the application to close because it is already on your machine, and a small
+file copy as the "installation" so that nothing needs downloading. Everything you learn here applies
+unchanged to a real installer.
+
+## Before you begin
+
+- Completed [Your first deployment](./your-first-deployment.mdx), or otherwise have the toolkit
+  installed.
+- An elevated PowerShell prompt.
+
+## Step 1: Create a fresh package
+
+```powershell
+New-ADTTemplate -Destination C:\Temp -Name 'ContosoDemo'
+cd C:\Temp\ContosoDemo
+```
+
+Create the file our deployment will install:
+
+```powershell
+'Installed by PSAppDeployToolkit.' | Out-File -FilePath .\SupportFiles\readme.txt -Encoding utf8
+```
+
+## Step 2: Describe the deployment
+
+Open `Invoke-AppDeployToolkit.ps1` in an editor and find the `$adtSession` hashtable near the top.
+Fill it in:
+
+```powershell
+$adtSession = @{
+    AppVendor = 'Contoso'
+    AppName = 'Demo App'
+    AppVersion = '1.0.0'
+    AppArch = 'x64'
+    AppLang = 'EN'
+    AppRevision = '01'
+    AppSuccessExitCodes = @(0)
+    AppRebootExitCodes = @(1641, 3010)
+    AppProcessesToClose = @(@{ Name = 'notepad'; Description = 'Notepad' })
+
+    AppScriptVersion = '1.0.0'
+    AppScriptDate = '2026-08-16'
+    AppScriptAuthor = 'Your Name'
+
+    DeployAppScriptFriendlyName = $MyInvocation.MyCommand.Name
+    DeployAppScriptParameters = $PSBoundParameters
+    DeployAppScriptVersion = '4.2.0'
+}
+```
+
+The line that matters most is `AppProcessesToClose`. We are declaring, once, that this deployment
+cannot proceed while Notepad is open. Notice we gave it a `Description`, so the dialog will show
+"Notepad" to the user rather than the process name.
+
+Setting `AppName` also takes us out of zero-config mode, so from here on the deployment does what our
+script says and nothing else.
+
+## Step 3: Write the install logic
+
+Find the `Install` script block, which is empty, and fill it in:
+
+```powershell
+## MARK: Install
+New-Variable -Name Install -Force -Value {
+    Show-ADTInstallationProgress -StatusMessage 'Installing Contoso Demo App...' -StatusMessageDetail 'Creating the application folder.' -StatusBarPercentage 25
+    New-ADTFolder -LiteralPath "$envProgramFiles\ContosoDemo"
+
+    Show-ADTInstallationProgress -StatusMessage 'Installing Contoso Demo App...' -StatusMessageDetail 'Copying files.' -StatusBarPercentage 75
+    Copy-ADTFile -Path "$($adtSession.DirSupportFiles)\readme.txt" -Destination "$envProgramFiles\ContosoDemo"
+}
+```
+
+Three things to notice here:
+
+- `Show-ADTInstallationProgress` can be called repeatedly. Each call updates the dialog already on
+  screen rather than opening a new one, which is how you narrate a long install.
+- `-StatusBarPercentage` drives the Fluent progress bar to a specific value. Leave it off and you get
+  an indeterminate progress bar instead, which is the right choice when you cannot tell how far along
+  you are.
+- `$envProgramFiles` works here, inside a phase block, even though it would have been empty up in the
+  `$adtSession` hashtable. The module is imported and the session is open by the time this runs.
+
+## Step 4: Write the uninstall logic
+
+Fill in the `Uninstall` block so the package can undo itself:
+
+```powershell
+## MARK: Uninstall
+New-Variable -Name Uninstall -Force -Value {
+    Show-ADTInstallationProgress -StatusMessage 'Removing Contoso Demo App...'
+    Remove-ADTFolder -Path "$envProgramFiles\ContosoDemo"
+}
+```
+
+Save the file.
+
+## Step 5: Run it with Notepad open
+
+Open Notepad, type something into it so it has unsaved work, and leave it open. Then, from your
+elevated prompt in the package folder:
+
+```powershell
+.\Invoke-AppDeployToolkit.exe /Debug -DeploymentType Install
+```
+
+This time we have not asked for `Interactive`, and we do not need to. Notepad is running, so the
+toolkit works out for itself that there is something to talk to the user about.
+
+You should see the welcome dialog listing **Notepad**, with buttons to close it, and a **Defer**
+button. The template already asked for deferral on your behalf:
+
+```powershell
+$saiwParams = @{
+    AllowDefer = $true
+    DeferTimes = 3
+    CheckDiskSpace = $true
+    PersistPrompt = $true
+}
+```
+
+## Step 6: Defer it
+
+Click **Defer**. The deployment stops, and no files are copied.
+
+Check what it returned:
+
+```powershell
+$LASTEXITCODE
+```
+
+```text
+1602
+```
+
+That is the deferral exit code. To a management system, this is the deployment saying "not now, ask
+me again later", which is why
+[Intune and Configuration Manager need it mapped to a retry](../how-to/close-apps-and-allow-deferral.mdx).
+
+Run it twice more and defer each time. On the fourth run the **Defer** button is gone: `DeferTimes`
+was set to 3, and the deployment has run out of patience.
+
+## Step 7: Let it install
+
+With Notepad still open, run it once more and click **Close Programs**. Notepad closes and the
+progress dialog appears. Watch the detail line change from "Creating the application folder" to
+"Copying files", and the progress bar move from 25% to 75%, as your two commands run. A completion
+prompt follows.
+
+Confirm the result:
+
+```powershell
+Get-Content "$env:ProgramFiles\ContosoDemo\readme.txt"
+```
+
+```text
+Installed by PSAppDeployToolkit.
+```
+
+## Step 8: Watch it stay silent
+
+Now run the same package again with Notepad closed:
+
+```powershell
+.\Invoke-AppDeployToolkit.exe /Debug -DeploymentType Install
+```
+
+No dialogs. The deployment installs anyway, but decides there is no reason to interrupt a user when
+nothing needs closing. Look for the reason in the console output:
+
+```text
+[Initialization] [Info] :: The processes ['notepad'] were specified as requiring closure but none were running, changing deployment mode to [Silent].
+```
+
+This is the single most useful line in the log when someone reports that "the dialogs don't show".
+
+## Step 9: Change the wording
+
+Open `Strings\strings.psd1` and search for the progress messages. Change one of them, save, and run
+the deployment again with Notepad open. The dialog picks up your text with no code change and no
+rebuild.
+
+This is why user-facing text lives in its own file: it can be translated, re-branded, or corrected
+without anyone touching deployment logic. The full set of keys is in the
+[Language Strings reference](../reference/language-strings.mdx).
+
+## Step 10: Clean up
+
+```powershell
+.\Invoke-AppDeployToolkit.exe /Debug -DeploymentType Uninstall -DeployMode Interactive
+```
+
+## What you have built
+
+A deployment that installs and uninstalls, protects itself against an application being open, gives
+the user a limited number of opportunities to postpone it, reports what it is doing while it works,
+and falls silent when there is nobody to talk to.
+
+## Next steps
+
+- [How to install applications](../how-to/install-applications.mdx) replaces the file copy with a
+  real installer.
+- [How to brand the user interface](../how-to/brand-the-user-interface.mdx) makes the dialogs yours.
+- [Deployment Modes](../explanation/deployment-modes.mdx) covers the rest of the decisions behind
+  step 8.
+- [Dialogs reference](../reference/dialogs.mdx) lists every dialog available to you.
