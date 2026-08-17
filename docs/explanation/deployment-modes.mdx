@@ -9,6 +9,8 @@ tags:
   - Explanation
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 ## Deployment modes
 
 `DeployMode` answers one question: how much may this deployment involve the user? It gets blamed for
@@ -27,6 +29,17 @@ exactly what it was asked to do.
 `NonInteractive` exists for the case where a user is present but must not be asked to make a
 decision. Autopilot enrolment is the usual example: a prompt would block provisioning, but progress
 is still worth showing.
+
+<ThemedImage
+  alt="The progress dialog, the only kind of dialog NonInteractive allows"
+  className="markdown_image"
+  sources={{
+    light: require('../images/progress_plain_light.png').default,
+    dark: require('../images/progress_plain_dark.png').default,
+  }}
+/>
+
+In `Silent`, even this is suppressed.
 
 ## Why Auto is the default
 

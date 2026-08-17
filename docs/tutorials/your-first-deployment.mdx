@@ -9,6 +9,8 @@ tags:
   - Getting Started
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 ## Your first deployment
 
 In this tutorial we will build a working deployment package, run it, watch it install an
@@ -133,6 +135,26 @@ detected, and the install run:
 
 A progress dialog appears while the MSI runs, and a completion prompt when it finishes. When the
 console returns you to a prompt, the deployment is done.
+
+<ThemedImage
+  alt="The installation progress dialog shown while the MSI installs"
+  className="markdown_image"
+  sources={{
+    light: require('../images/progress_indeterminate_light.png').default,
+    dark: require('../images/progress_indeterminate_dark.png').default,
+  }}
+/>
+
+When it finishes, the completion prompt is the last thing the user sees.
+
+<ThemedImage
+  alt="The completion prompt shown when the installation has finished"
+  className="markdown_image"
+  sources={{
+    light: require('../images/prompt_complete_light.png').default,
+    dark: require('../images/prompt_complete_dark.png').default,
+  }}
+/>
 
 Confirm the application is installed. It should now appear in **Apps & features**.
 
