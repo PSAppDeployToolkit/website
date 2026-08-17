@@ -24,6 +24,12 @@ In v4.2, it will now switch to a silent install by default *even if no processes
 As before, you can prevent this by adding `NoProcessDetection = $true` to the `$adtSession` properties.
 :::
 
+:::warning[Get-ADTApplication and Uninstall-ADTApplication]
+`Get-ADTApplication` now ignores hidden system components by default unless `-Force` is specified. This mirrors how PowerShell's `Get-Item` handles hidden files.
+
+`Uninstall-ADTApplication` now ignores hidden system components AND apps with *NoRemove = 1* by default unless `-Force` is specified. This mirrors how PowerShell's `Remove-Item` handles hidden and read-only files.]
+:::
+
 :::warning[32-bit PowerShell]
 v4.2 will by default throw an error if running in 32-bit PowerShell on a 64-bit OS:
 

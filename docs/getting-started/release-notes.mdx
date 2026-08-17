@@ -11,27 +11,27 @@ tags:
 
 ## Release Notes
 
-### v4.2.0 RC1 (2026-07-01)
+### v4.2.0 RC1 (2026-08-17)
 
 #### Highlights
 
-- Major code refactoring to clean up and optimise the code base.
-- Module has reduced in size from 20.5MB to 13MB.
+- Major code refactoring to clean up and optimise the code base. Everything now runs faster and the module is significantly smaller in size. AI and static analysis tools used to ensure code quality (CodeQL, Meziantou.Analyzer, Microsoft.CodeAnalysis.BannedApiAnalyzers, Microsoft.Extensions.StaticAnalysis, Roslynator.Analyzers), and tests have been updated to take advantage of Pester v6.
 - iNKORE WPF library replaced by [Fluence](https://github.com/sintaxasn/Fluence.Wpf) (created and maintained by PSAppDeployToolkit founder Dan Cunningham).
 - [Show-ADTInstallationPrompt](../reference/functions/Show-ADTInstallationPrompt) now supports secured text inputs and dropdown selection boxes.
 - [Show-ADTInstallationRestartPrompt](../reference/functions/Show-ADTInstallationRestartPrompt) now supports a cancel button.
 - You can now configure a different accent color for dark mode.
-- Dialogs now fallback to default image if specified asset is not found, also images can be encoded as Base64 strings instead of supplying file paths.
+- Dialogs now fallback to default image if the specified asset is not found, also images can be encoded as Base64 strings instead of supplying file paths.
 - Tray notification icon shown whenever balloon tips / toasts are invoked.
 - UIAccess to allow the UI to overlay the Autopilot setup screen.
 - Ability to test if user is in focus mode.
 - A more streamlined default `Invoke-AppDeployToolkit.ps1` template.
 - [New-ADTTemplate](../reference/functions/New-ADTTemplate) now allows you to generate an entire deployment package in a single command by specifying session properties, config, assets, files, and script blocks.
 - Functions added to add/remove fonts.
-- Copy-ADTContentToCache now has a separate cache location for non-admins.
+- Copy-ADTContentToCache now applies administrator permissions to the shared cache and has a separate cache location for non-admins.
 - Descriptions for all known MSI error codes now included in logging output.
 - All WMI dependencies removed, so the toolkit can run on devices with WMI corruption.
 - Ability to run custom functions whenever writing to the log or when a deployment is deferred via [Add-ADTModuleCallback](../reference/functions/Add-ADTModuleCallback).
+- All time-based parameters now accept TimeSpan objects as well as interpreting integers as seconds.
 - `-WhatIf` support added throughout to test changes non-destructively.
 
 #### New Functions
@@ -54,6 +54,7 @@ tags:
 - [Copy-ADTContentToCache](../reference/functions/Copy-ADTContentToCache): added `-Content`
 - [Copy-ADTFile](../reference/functions/Copy-ADTFile): added `-NoClobber`
 - [Copy-ADTFileToUserProfiles](../reference/functions/Copy-ADTFileToUserProfiles): added `-NoClobber`
+- [Get-ADTApplication](../reference/functions/Get-ADTApplication): added `-Force`
 - [Get-ADTBoundParametersAndDefaultValues](../reference/functions/Get-ADTBoundParametersAndDefaultValues): added `-Include`
 - [Get-ADTServiceStartMode](../reference/functions/Get-ADTServiceStartMode): added `-DisplayName`, `-InputObject`, `-Name`
 - [Get-ADTStringTable](../reference/functions/Get-ADTStringTable): added `-SessionState`
@@ -82,7 +83,7 @@ tags:
 - [Start-ADTServiceAndDependencies](../reference/functions/Start-ADTServiceAndDependencies): added `-DisplayName`
 - [Stop-ADTServiceAndDependencies](../reference/functions/Stop-ADTServiceAndDependencies): added `-DisplayName`
 - [Test-ADTServiceExists](../reference/functions/Test-ADTServiceExists): added `-DisplayName`
-- [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication): added `-ForceUninstallString`
+- [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication): added `-Force`, `-ForceUninstallString`
 - [Unregister-ADTDll](../reference/functions/Unregister-ADTDll): added `-AsUser`
 - [Update-ADTGroupPolicy](../reference/functions/Update-ADTGroupPolicy): added `-Force`, `-NoWait`, `-Target`
 
@@ -105,7 +106,9 @@ tags:
 
 #### Breaking Changes
 
-- With `DeployMode` left as `Auto`, sessions will now be silent by install by default if no processes to close are defined, unless `NoProcessDetection = $true` is set in the session properties.
+- In v4.1, the default `DeployMode` value of `Auto` will switch to a silent install if none of the defined processes are running; but *only when processes are defined*. In v4.2, it will now switch to a silent install by default *even if no processes are defined*. As before, you can prevent this by adding `NoProcessDetection = $true` to the `$adtSession` properties.
+- `Get-ADTApplication` now ignores hidden system components by default unless `-Force` is specified. This mirrors how PowerShell's `Get-Item` handles hidden files.
+- `Uninstall-ADTApplication` now ignores hidden system components AND apps with *NoRemove = 1* by default unless `-Force` is specified. This mirrors how PowerShell's `Remove-Item` handles hidden and read-only files.
 - An error is now thrown when opening a session in 32-bit PowerShell on a 64-bit OS, unless `AllowWowProcess = $true` is set in the session properties.
 
 #### Deprecated Functions
@@ -197,6 +200,7 @@ tags:
 - #2177 [Feature] Allow `Set-ADTShortcut` to clear shortcut command line arguments
 - #2187 [Feature] `Invoke-AppDeployToolkit.exe` with help
 - #2201 [Feature] Add additional .LINK section that goes to the function source
+- #2269 [Feature] Update all UI functions that support a Timeout parameter to accept Timespan values
 
 #### Closed Issues
 
