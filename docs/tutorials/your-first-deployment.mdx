@@ -65,10 +65,10 @@ Manifest   4.1.8      PSAppDeployToolkit        {Add-ADTEdgeExtension, Add-ADTFo
 
 ## Step 2: Create a deployment folder
 
-Now create a package from the toolkit's own template:
+Now create a package from the toolkit's own 'ZeroConfig' template:
 
 ```powershell
-New-ADTTemplate -Destination C:\Temp -Name 'MyFirstDeployment'
+New-ADTTemplate -Destination C:\Temp -Name 'MyFirstDeployment' -ZeroConfig
 ```
 
 Look at what you have:
