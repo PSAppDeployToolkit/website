@@ -3,7 +3,7 @@ sidebar_position: 10
 sidebar_label: 'Dialogs'
 title: 'Dialogs'
 description: 'The dialogs PSAppDeployToolkit can display, and the commands that show them.'
-slug: /usage/adding-ui-elements
+slug: /reference/dialogs
 hide_title: true
 tags:
   - User Interface
@@ -19,15 +19,15 @@ The dialogs below are shown by the commands listed against each one. All of them
 - Take their text from `strings.psd1`, localized into 25 languages, selected from the operating
   system unless `UI.LanguageOverride` is set. See [Language Strings](./language-strings.mdx).
 - Follow the light or dark theme of the user's session. (the screenshots in this documentation
-  will follow the current desktop theme. You can change between light / dark by adjusting the 
+  will follow the current desktop theme. You can change between light / dark by adjusting the
   selected theme in the top right hand corner of this page).
 - Are branded from the `Assets` folder, using a logo for the Fluent dialogs and a banner for the
   Classic dialogs.
 - Are suppressed according to the deployment mode. `-DeployMode Silent` shows none of them; see
   [Deployment Modes](../explanation/deployment-modes.mdx).
 
-The screenshots show the Fluent dialogs, which is the default for any new deployments. The 
-Classic dialogs are shown when `UI.DialogStyle` is `Classic`, and are the only set available in 
+The screenshots show the Fluent dialogs, which is the default for any new deployments. The
+Classic dialogs are shown when `UI.DialogStyle` is `Classic`, and are the only set available in
 v3 compatibility mode.
 
 ## Installation progress

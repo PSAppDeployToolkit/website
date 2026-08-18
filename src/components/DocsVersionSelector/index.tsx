@@ -8,14 +8,32 @@ import {
 } from '@docusaurus/plugin-content-docs/client';
 import {useHistorySelector} from '@docusaurus/theme-common';
 import styles from './DocsVersionSelector.module.css';
+import {findVersionDocMapping} from './versionDocMappings';
 
 function getVersionMainDoc(version) {
   return version.docs.find((doc) => doc.id === version.mainDocId);
 }
 
+function getVersionReferenceDoc(version) {
+  return version.docs.find((doc) => doc.id === 'reference');
+}
+
 function getVersionTargetDoc(version, activeDocContext) {
+  const activeDocId = activeDocContext.activeDoc?.id;
+  const mapping = findVersionDocMapping(activeDocId);
+  const mappedDocId = mapping?.[version.name];
+  const mappedDoc = mappedDocId
+    ? version.docs.find((doc) => doc.id === mappedDocId)
+    : undefined;
+  const alternateDoc = activeDocContext.alternateDocVersions[version.name];
+  const referenceDoc = activeDocId?.startsWith('reference/')
+    ? getVersionReferenceDoc(version)
+    : undefined;
+
   return (
-    activeDocContext.alternateDocVersions[version.name] ??
+    mappedDoc ??
+    alternateDoc ??
+    referenceDoc ??
     getVersionMainDoc(version)
   );
 }

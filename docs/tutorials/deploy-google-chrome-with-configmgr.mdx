@@ -1,20 +1,20 @@
 ---
 sidebar_position: 13
-title: 'How to deploy Google Chrome with Configuration Manager'
+title: 'Deploy Google Chrome with Configuration Manager'
 description: 'A worked example of packaging and deploying Google Chrome Enterprise with PSAppDeployToolkit.'
-slug: /examples/googlechrome-configmgr
+slug: /tutorials/deploy-google-chrome-with-configmgr
 hide_title: true
 tags:
   - Google Chrome
   - Microsoft Configuration Manager
-  - How-to
+  - Tutorial
 ---
 
-## How to deploy Google Chrome with Configuration Manager
+## Deploy Google Chrome with Configuration Manager
 
 A worked example: an MSI that must not install while the browser is open, with a deferral for users
 who are mid-task. The general steps for the Configuration Manager side are in
-[How to deploy with Configuration Manager](./deploy-with-configmgr.mdx). This page covers what is
+[How to deploy with Configuration Manager](../how-to/deploy-with-configmgr.mdx). This page covers what is
 specific to Chrome.
 
 ## Prerequisites
@@ -22,7 +22,7 @@ specific to Chrome.
 - The Chrome Enterprise MSI bundle downloaded from Google. The 64-bit installer is named
   `GoogleChromeStandaloneEnterprise64.msi`.
 - A deployment folder created as described in
-  [How to create a new deployment](./create-a-deployment.mdx).
+  [How to create a new deployment](../how-to/create-a-deployment.mdx).
 
 ## 1. Add the source files
 
@@ -99,7 +99,7 @@ Open Chrome first, so you can confirm the close/defer dialog behaves as you expe
 
 ## 6. Create the Configuration Manager application
 
-Follow [How to deploy with Configuration Manager](./deploy-with-configmgr.mdx). For detection, use
+Follow [How to deploy with Configuration Manager](../how-to/deploy-with-configmgr.mdx). For detection, use
 the MSI product code of the Chrome build you packaged, or the file version of
 `chrome.exe`.
 
@@ -108,4 +108,4 @@ the MSI product code of the Chrome build you packaged, or the file version of
 - Chrome keeps itself updated through Google Update. If your organization manages Chrome versions
   centrally, configure that policy separately. It is not something the deployment controls.
 - Chrome's own ADMX templates are distributed by Google and are unrelated to the
-  [toolkit's ADMX templates](./configure-with-group-policy.mdx).
+  [toolkit's ADMX templates](../how-to/configure-with-group-policy.mdx).
