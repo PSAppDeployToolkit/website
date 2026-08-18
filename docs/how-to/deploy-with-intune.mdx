@@ -46,26 +46,32 @@ Leave `DeployMode` off the command line unless you need to force a mode. The def
 already falls back to silent when there is nobody to show a dialog to. See
 [Deployment Modes](../explanation/deployment-modes.mdx).
 
-For an application that installs per-user, set **Install behavior** to *User* and set
-`RequireAdmin = $false` in the session properties.
+For an application that installs per-user, set **Install behavior** to *User* and either omit
+`RequireAdmin` (template default) or set it to `$false` in the session properties.
 
 ## 3. Map the return codes
 
-Intune's default mapping does not cover the toolkit's deferral code. Add the codes you rely on:
+Intune's default return code mapping is as below:
 
-| Return code | Map to      | Why                                                                     |
-| ----------- | ----------- | ------------------------------------------------------------------------ |
-| `0`         | Success     | Default.                                                                 |
-| `3010`      | Soft reboot | Default.                                                                 |
-| `1641`      | Hard reboot | Default.                                                                 |
-| `1618`      | Retry       | Default. Another install is already in progress.                         |
-| `1602`      | Retry       | The user deferred. This is `UI.DeferExitCode`, which you can change.     |
+| Return code | Map to      |
+| ----------- | ----------- |
+| `0`         | Success     |
+| `3010`      | Soft reboot |
+| `1641`      | Hard reboot |
+| `1618`      | Retry       |
 
-:::warning[Deferral retries are fast on Intune]
-Intune's retry interval is short and not configurable, so a deferred install can be re-attempted
-within minutes. Use the `-DeferRunInterval` parameter of
-[`Show-ADTInstallationWelcome`](../reference/functions/Show-ADTInstallationWelcome.mdx) to abort the
-run if the deployment was already deferred within a given timespan.
+To make Intune retry more frequently than the default 24 hours, you can either set `UI.DeferExitCode`
+to `1618` in `config.psd1` or map `1602` to `Retry` here.
+
+:::warning[Retry handling in Intune]
+If the deferral exit code is interpreted by Intune as Retry rather than Failed, it will retry every 5 minutes for a maximum
+of 3 times.<br/>
+Take care if modifying the defer exit code to 1618 or mapping 1602 as Retry, as this can result in
+re-prompting the user too soon.<br/>
+Use the `-DeferRunInterval` parameter of
+[`Show-ADTInstallationWelcome`](../reference/functions/Show-ADTInstallationWelcome.mdx) to abort the run
+if the deployment was already deferred within a given timespan - refer to
+[How to close applications and allow deferral](../how-to/close-apps-and-allow-deferral.mdx).
 :::
 
 ## 4. Set the detection rule

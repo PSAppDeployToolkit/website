@@ -110,12 +110,25 @@ When the countdown reaches zero the listed applications are closed and the deplo
 
 ## 5. Handle the deferral exit code
 
-When the user defers, the deployment exits with `UI.DeferExitCode`, which is `1602` by default. Your
-management system decides what that means:
+When the user defers, the deployment exits with `UI.DeferExitCode`, which is `1602` by default. ConfigMgr and Intune
+interpret that as an error with the description 'User cancelled the installation'.
 
-- [Intune](./deploy-with-intune.mdx): map `1602` to *Retry*.
-- [Configuration Manager](./deploy-with-configmgr.mdx): set `UI.DeferExitCode` to `1618` so it is
-  treated as a fast retry.
+- ConfigMgr will retry the deployment when the app eval cycle next runs; this is configurable in the client settings and the default is every 7 days.
+- Intune will retry the deployment the following day.
+
+To get the deployment system to recognise this as a 'retry' rather than an 'error', you have the option of either modifying
+`UI.DeferExitCode` in `config.psd1` to 1618, or you could map 1602 to Retry (Intune) or Fast Retry (ConfigMgr) in the return
+code handling when publishing the package.
+
+- ConfigMgr (Application model) will retry every 2 hours, up to 10 times.
+- ConfigMgr (Package model) will retry every 10 minutes up to 1008 times.
+- Intune will retry every 5 minutes up to 3 times.
+
+If you do make these changes to the defer return codes or their handling, this may result in the user being prompted again
+too soon. You can make use of the `-DeferRunInterval` parameter of [`Show-ADTInstallationWelcome`](../reference/functions/Show-ADTInstallationWelcome.mdx)
+to silently defer again if the required interval has not yet elapsed since the last attempt.
+
+Refer to [Deploy with Intune](./deploy-with-intune.mdx) and [Deploy with ConfigMgr](./deploy-with-configmgr.mdx) for further details on configuring deployments.
 
 ## Example
 
@@ -135,11 +148,6 @@ Show-ADTInstallationWelcome -CloseProcesses $adtSession.AppProcessesToClose `
 The deployment resolved to `Silent` or `NonInteractive`. Check the log for the mode and the reason.
 See [Deployment Modes](../explanation/deployment-modes.mdx).
 
-### The user is prompted again seconds after deferring
-
-The management system retried. Add `-DeferRunInterval`.
-
 ### Deferrals do not reset between versions
 
-Defer history is tracked per package. Use
-[`Reset-ADTDeferHistory`](../reference/functions/Reset-ADTDeferHistory.mdx) if you need to clear it.
+Defer history is tracked per package. Use [`Reset-ADTDeferHistory`](../reference/functions/Reset-ADTDeferHistory.mdx) if you need to clear it.
