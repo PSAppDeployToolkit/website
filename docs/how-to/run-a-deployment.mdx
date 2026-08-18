@@ -35,10 +35,16 @@ not request elevation on your behalf.
 
 ## Common invocations
 
-Install interactively, which is the default:
+Install in auto mode, which is the default (the toolkit decides whether to run silently or interactively):
 
 ```powershell
 Invoke-AppDeployToolkit.exe
+```
+
+Install interactively, which is what you would specify if the deployment *must* be interactive, and should fail if it cannot be:
+
+```powershell
+Invoke-AppDeployToolkit.exe -DeployMode Interactive
 ```
 
 Install silently, converting reboot exit codes to `0`:
