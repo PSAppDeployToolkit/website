@@ -51,19 +51,20 @@ setting. See [The user interface](../explanation/user-interface.mdx).
 
 ## 4. Map the return codes
 
-On the deployment type's **Return Codes** tab:
+On the deployment type's **Return Codes** tab, the default values are as below:
 
-| Return code | Map to      | Why                                                                        |
-| ----------- | ----------- | --------------------------------------------------------------------------- |
-| `0`         | Success     | Default.                                                                    |
-| `3010`      | Soft reboot | Default.                                                                    |
-| `1641`      | Hard reboot | Default.                                                                    |
-| `1618`      | Fast retry  | Default. Another install is in progress.                                    |
-| `1602`      | Failure     | The user deferred. See below.                                               |
+| Return code | Map to      |
+| ----------- | ----------- |
+| `0`         | Success     |
+| `3010`      | Soft reboot |
+| `1641`      | Hard reboot |
+| `1618`      | Fast retry  |
 
-To have Configuration Manager retry after a deferral rather than record a failure, set
-`UI.DeferExitCode` to `1618` in `config.psd1`. Configuration Manager's fast retry interval is
-configurable by client policy, which makes it a better fit for deferrals than a plain failure.
+To make Configuration Manager retry more frequently than the client's App Eval cycle period, you can
+either set `UI.DeferExitCode` to `1618` in `config.psd1` or map `1602` to `Fast retry` here. You may
+want to make use of `-DeferRunInterval` on
+[`Show-ADTInstallationWelcome`](../reference/functions/Show-ADTInstallationWelcome.mdx) if doing this -
+refer to [How to close applications and allow deferral](../how-to/close-apps-and-allow-deferral.mdx).
 
 ## 5. Set the detection method
 
