@@ -52,7 +52,7 @@
     '4.1.x': 'getting-started/upgrade-guidance-4x-to-v41',
   },
   {
-    current: 'tutorials/set-the-log-path-with-group-policy',
+    current: 'how-to/set-the-log-path-with-group-policy',
     '4.1.x': 'examples/admxtemplate-LogPath',
   },
   {
