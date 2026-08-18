@@ -94,3 +94,12 @@
 export function findVersionDocMapping(docId) {
   return versionDocMappings.find((entry) => Object.values(entry).includes(docId));
 }
+
+// Resolves the equivalent doc in the target version for the active doc, if mapped.
+export function resolveVersionTargetDoc(version, activeDocId, {fallback} = {}) {
+  const mappedId = findVersionDocMapping(activeDocId)?.[version.name];
+  const mappedDoc = mappedId
+    ? version.docs.find((doc) => doc.id === mappedId)
+    : undefined;
+  return mappedDoc ?? fallback ?? undefined;
+}
