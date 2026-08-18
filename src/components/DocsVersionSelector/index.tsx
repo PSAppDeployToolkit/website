@@ -34,7 +34,10 @@ function getVersionTargetDoc(version, activeDocContext) {
 
 export default function DocsVersionSelector(): React.JSX.Element | null {
   const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const optionRefs = useRef<Array<HTMLLIElement | null>>([]);
   const history = useHistory();
 
   const docsPluginId = undefined; // default plugin
@@ -49,18 +52,20 @@ export default function DocsVersionSelector(): React.JSX.Element | null {
   const displayedVersion =
     candidates.find((c) => versions.includes(c)) ?? versions[0];
 
-  // Close on click outside
-  const handleClickOutside = useCallback(
-    (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setOpen(false);
-      }
-    },
-    [],
+  const activeVersionIndex = Math.max(
+    versions.findIndex((v) => v === activeDocContext.activeVersion),
+    0,
   );
+
+  // Close on click outside
+  const handleClickOutside = useCallback((e: MouseEvent) => {
+    if (
+      containerRef.current &&
+      !containerRef.current.contains(e.target as Node)
+    ) {
+      setOpen(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -69,18 +74,24 @@ export default function DocsVersionSelector(): React.JSX.Element | null {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [open, handleClickOutside]);
 
-  // Close on Escape
+  // Move DOM focus to the highlighted option (roving tabindex)
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setOpen(false);
-      }
-    };
     if (open) {
-      document.addEventListener('keydown', handleKeyDown);
+      optionRefs.current[activeIndex]?.focus();
     }
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open]);
+  }, [open, activeIndex]);
+
+  const openMenu = (initialIndex: number) => {
+    setActiveIndex(initialIndex);
+    setOpen(true);
+  };
+
+  const closeMenu = (returnFocus = true) => {
+    setOpen(false);
+    if (returnFocus) {
+      triggerRef.current?.focus();
+    }
+  };
 
   // Single version: render static label
   if (versions.length <= 1) {
@@ -99,12 +110,66 @@ export default function DocsVersionSelector(): React.JSX.Element | null {
     history.push(`${targetDoc.path}${search}${hash}`);
   };
 
+  const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    switch (e.key) {
+      case 'ArrowDown':
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        openMenu(activeVersionIndex);
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        openMenu(versions.length - 1);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleListKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setActiveIndex((i) => (i + 1) % versions.length);
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setActiveIndex((i) => (i - 1 + versions.length) % versions.length);
+        break;
+      case 'Home':
+        e.preventDefault();
+        setActiveIndex(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        setActiveIndex(versions.length - 1);
+        break;
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        handleVersionClick(versions[activeIndex]);
+        break;
+      case 'Escape':
+        e.preventDefault();
+        closeMenu();
+        break;
+      case 'Tab':
+        closeMenu(false);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className={styles.container} ref={containerRef}>
       <span className={styles.label}>Docs Version:</span>
       <button
+        ref={triggerRef}
         className={styles.trigger}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => (open ? closeMenu(false) : openMenu(activeVersionIndex))}
+        onKeyDown={handleTriggerKeyDown}
         aria-expanded={open}
         aria-haspopup="listbox"
         type="button"
@@ -129,23 +194,24 @@ export default function DocsVersionSelector(): React.JSX.Element | null {
       </button>
 
       {open && (
-        <ul className={styles.dropdown} role="listbox">
-          {versions.map((version) => {
+        <ul
+          className={styles.dropdown}
+          role="listbox"
+          onKeyDown={handleListKeyDown}
+        >
+          {versions.map((version, index) => {
             const isActive = version === activeDocContext.activeVersion;
             return (
               <li
                 key={version.name}
+                ref={(el) => {
+                  optionRefs.current[index] = el;
+                }}
                 role="option"
                 aria-selected={isActive}
                 className={`${styles.item} ${isActive ? styles.itemActive : ''}`}
                 onClick={() => handleVersionClick(version)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    handleVersionClick(version);
-                  }
-                }}
-                tabIndex={0}
+                tabIndex={index === activeIndex ? 0 : -1}
               >
                 {version.label}
               </li>
