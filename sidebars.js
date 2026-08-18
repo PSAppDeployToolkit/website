@@ -29,7 +29,12 @@ const sidebars = {
           'Lessons that take you through building a working deployment, start to finish. Follow them in order if you are new to PSAppDeployToolkit.',
       },
       collapsed: false,
-      items: ['tutorials/your-first-deployment', 'tutorials/adding-a-user-experience'],
+      items: [
+        'tutorials/your-first-deployment',
+        'tutorials/adding-a-user-experience',
+        'tutorials/deploy-google-chrome-with-configmgr',
+        'tutorials/set-the-log-path-with-group-policy',
+      ],
     },
     {
       type: 'category',
@@ -52,9 +57,7 @@ const sidebars = {
         'how-to/extend-the-toolkit-with-custom-functions',
         'how-to/deploy-with-intune',
         'how-to/deploy-with-configmgr',
-        'how-to/deploy-google-chrome-with-configmgr',
         'how-to/configure-with-group-policy',
-        'how-to/set-the-log-path-with-group-policy',
         'how-to/troubleshoot-a-deployment',
         'how-to/upgrade-from-v4-0',
         'how-to/upgrade-from-v3',
