@@ -29,12 +29,10 @@ $adtSession = @{
 }
 ```
 
-Use a hashtable with `Name` and `Description` where the process name is not obvious to a user.
-`winword` means nothing to most people, "Microsoft Word" does.
+By default, the description will be pulled from the process itself. To override this, use a hashtable with `Name` and `Description` values.
 
 Declaring processes here also affects mode selection: with `DeployMode` at its default of `Auto`,
-the deployment runs silently when none of these processes is running. See
-[Deployment Modes](../explanation/deployment-modes.mdx).
+the deployment runs silently when none of these processes are running. See [Deployment Modes](../explanation/deployment-modes.mdx).
 
 ## 2. Show the welcome dialog
 
@@ -81,7 +79,7 @@ user to choose when to start.
 sortable format (`2026-08-25 11:51:52Z`) if the package runs on machines of differing cultures.
 
 :::tip[Intune]
-Intune retries a failed install within minutes, so a user who defers can be prompted again almost
+Intune could potentially retry a failed install within minutes, so a user who defers could be prompted again almost
 immediately. `-DeferRunInterval` suppresses the prompt until the interval has elapsed.
 :::
 
