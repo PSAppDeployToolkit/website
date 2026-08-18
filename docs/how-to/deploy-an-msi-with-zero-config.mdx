@@ -16,15 +16,16 @@ MSI in the `Files` folder and builds the install, uninstall and repair actions f
 
 ## Steps
 
-1. Leave `AppName` empty in the `$adtSession` hashtable in `Invoke-AppDeployToolkit.ps1`. An empty
+1. Ensure you have either downloaded the ZeroConfig template or have used `New-ADTTemplate -ZeroConfig` to create one.
+2. Leave `AppName` empty in the `$adtSession` hashtable in `Invoke-AppDeployToolkit.ps1`. An empty
    `AppName` is what activates zero-config mode.
-2. Put your MSI into the `Files` folder. Only one MSI is supported; if more than one is present, the
+3. Put your MSI into the `Files` folder. Only one MSI is supported; if more than one is present, the
    first is used.
-3. If you have a transform, put the MST into `Files` as well, named identically to the MSI. For
+4. If you have a transform, put the MST into `Files` as well, named identically to the MSI. For
    `test01.msi` the transform must be `test01.mst`.
-4. If you have patches, put the MSP files into `Files`. Multiple patches are supported; they are
+5. If you have patches, put the MSP files into `Files`. Multiple patches are supported; they are
    applied in alphabetical order, so name them accordingly.
-5. Run the deployment as normal. See [How to run a deployment](./run-a-deployment.mdx).
+6. Run the deployment as normal. See [How to run a deployment](./run-a-deployment.mdx).
 
 ## Using a WIM instead
 
