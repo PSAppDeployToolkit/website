@@ -27,11 +27,23 @@ Use [`Start-ADTProcess`](../reference/functions/Start-ADTProcess.mdx). Files pla
 Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S'
 ```
 
-If the installer hands off to a child process and exits early, wait for the children so the
+If the installer is known to install an embedded MSI package and you want to wait for MsiExec to become available before starting:
+
+```powershell
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -WaitForMsiExec
+```
+
+If the installer hands off to a child process and exits early, wait for the child processes so the
 deployment does not report success too soon:
 
 ```powershell
 Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -WaitForChildProcesses
+```
+
+If the installer launches an application post-install which you don't want left running as SYSTEM, yoou can terminate them when the installer completes:
+
+```powershell
+Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -KillChildProcessesWithParent
 ```
 
 If the installer returns a vendor-specific code you want treated as success:
