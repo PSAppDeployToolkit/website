@@ -22,21 +22,22 @@ Full documentation: [`Start-ADTProcess`](./functions/Start-ADTProcess.mdx).
 
 | Parameter                       | Description                                                                                                                                                                                                    |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-FilePath`                     | Path to the file to be executed. If the file is located directly in the **Files** directory, only the filename needs to be specified.                                                                           |
+| `-FilePath`                     | Path to the file to be executed. If the file is located directly in the **Files** directory, only the filename needs to be specified.                                                                          |
 | `-ArgumentList`                 | Arguments to be passed to the executable.                                                                                                                                                                      |
 | `-SecureArgumentList`           | Hide ArgumentList from the log file.                                                                                                                                                                           |
-| `-WorkingDirectory`             | The working directory used for executing the process. Defaults to the directory of the file being executed.                                                                                                     |
+| `-WorkingDirectory`             | The working directory used for executing the process. Defaults to the directory of the file being executed.                                                                                                    |
 | `-WindowStyle`                  | Style of the window of the process executed. Options: Normal, Hidden, Maximized, Minimized.                                                                                                                    |
-| `-CreateNoWindow`               | Used with console apps, stop a new window being created and allows capture of the standard output streams.                                                                                                      |
-| `-WaitForMsiExec`               | Wait until Windows Installer is free before starting the process.                                                                                                                                               |
-| `-WaitForChildProcesses`        | Wait for all child processes to complete. Useful for installers or uninstallers that exit early and hand off to a child process.                                                                                |
+| `-CreateNoWindow`               | Used with console apps, stop a new window being created and allows capture of the standard output streams.                                                                                                     |
+| `-WaitForMsiExec`               | Wait until Windows Installer is free before starting the process.                                                                                                                                              |
+| `-WaitForChildProcesses`        | Wait for all child processes to complete. Useful for installers or uninstallers that exit early and hand off to a child process.                                                                               |
 | `-KillChildProcessesWithParent` | Terminate all child processes once the main process closes. Useful when an installer launches the application once complete and you want it closed.                                                            |
-| `-UseUnelevatedToken`           | Force the process to be started with the user's unelevated token. Useful when installing user-context apps that refuse to install when elevated, or to work around Windows 11 Administrator Protection issues.  |
-| `-Verb`                         | Use `-Verb RunAs` to force the process to run elevated. Note that this does not magically make standard users into admins.                                                                                      |
-| `-UseShellExecute`              | Useful for opening a file or URL and letting the Windows shell figure out which application to open it with.                                                                                                    |
-| `-NoWait`                       | Do not wait for the process to complete. This is useful for launching processes that run in the background or when you do not need to wait for the process to finish before continuing with the script.         |
+| `-UseUnelevatedToken`           | Force the process to be started with the user's unelevated token. Useful when installing user-context apps that refuse to install when elevated, or to work around Windows 11 Administrator Protection issues. |
+| `-Verb`                         | Use `-Verb RunAs` to force the process to run elevated. Note that this does not magically make standard users into admins.                                                                                     |
+| `-UseShellExecute`              | Useful for opening a file or URL and letting the Windows shell figure out which application to open it with.                                                                                                   |
+| `-ExpandEnvironmentVariables`   | Expand environment variables such as `%APPDATA%` in the file path, arguments, and working directory.                                                                                                           |
+| `-NoWait`                       | Do not wait for the process to complete. This is useful for launching processes that run in the background or when you do not need to wait for the process to finish before continuing with the script.        |
 | `-Timeout`                      | Specifies the maximum time to wait for the process to complete.                                                                                                                                                |
-| `-TimeoutAction`                | Specifies the action to take if the process does not complete within the specified timeout period.                                                                                                              |
+| `-TimeoutAction`                | Specifies the action to take if the process does not complete within the specified timeout period.                                                                                                             |
 | `-NoTerminateOnTimeout`         | Specifies that the process should be left running if the timeout is reached.                                                                                                                                   |
 | `-SuccessExitCodes`             | List of exit codes to be considered successful.                                                                                                                                                                |
 | `-RebootExitCodes`              | List of exit codes to indicate a reboot is required.                                                                                                                                                           |
@@ -51,22 +52,23 @@ Full documentation: [`Start-ADTProcessAsUser`](./functions/Start-ADTProcessAsUse
 
 The following parameters are only relevant when starting a process as a user:
 
-| Parameter                      | Description                                                                                                                                                  |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `-UseLinkedAdminToken`         | Run the process with the user's admin token if available.                                                                                                    |
+| Parameter                      | Description                                                                                                                                                   |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-DenyUserTermination`         | Prevent non-administrative userss from terminating the process.                                                                                               |
+| `-UseLinkedAdminToken`         | Run the process requiring a user's admin token.                                                                                                               |
+| `-UseHighestAvailableToken`    | Run the process with the user's admin token if available.                                                                                                     |
 | `-InheritEnvironmentVariables` | Inherit environment variables from the current deployment process; user environment variables such as `APPDATA` are always layered on top so take precedence. |
-| `-ExpandEnvironmentVariables`  | Expand environment variables such as `%APPDATA%` in the file path, arguments, and working directory.                                                          |
 
 ## Start-ADTMsiProcess
 
 Installs, uninstalls, repairs or patches an MSI. It also wraps `Start-ADTProcess` and shares most of
 its parameters. Full documentation: [`Start-ADTMsiProcess`](./functions/Start-ADTMsiProcess.mdx).
 
-| Parameter                       | Description                                                                                                                                                                                                  |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Parameter                       | Description                                                                                                                                                                                                   |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `-Action`                       | The action to perform on the MSI file. Options: Install, Uninstall, Repair, Patch. Defaults to Install.                                                                                                       |
 | `-FilePath`                     | Path to the MSI file to be executed. If the file is located directly in the **Files** directory, only the filename needs to be specified.                                                                     |
-| `-ProductCode`                  | The product code of an installed MSI; only valid for Repair/Uninstall operations.                                                                                                                            |
+| `-ProductCode`                  | The product code of an installed MSI; only valid for Repair/Uninstall operations.                                                                                                                             |
 | `-InstalledApplication`         | Allows you to perform MSI operations by piping output from the [`Get-ADTApplication`](./functions/Get-ADTApplication.mdx) function.                                                                           |
 | `-ArgumentList`                 | Arguments to be passed to the MSI file. Note that this **replaces** the default MSI parameters defined in the config (e.g. `/qn REBOOT=ReallySuppress`).                                                      |
 | `-AdditionalArgumentList`       | Additional arguments to be appended to the default MSI parameters defined in the config. This is what you will typically use when setting MSI properties.                                                     |
@@ -74,7 +76,7 @@ its parameters. Full documentation: [`Start-ADTMsiProcess`](./functions/Start-AD
 | `-Patches`                      | Names of the MSP patch files to be applied to the MSI. MSP files should be located in the same directory as the MSI file.                                                                                     |
 | `-RepairMode`                   | Specify `Reinstall` (default) to reinstall by adding `REINSTALL=ALL REINSTALLMODE=omus` to the standard InstallParams, or `Repair` to repair via `msiexec.exe /p` (which can trigger unsuppressable reboots). |
 | `-RepairFromSource`             | Adds `REINSTALLMODE=vomus` to the command line to force the cached MSI to be replaced with the source MSI file.                                                                                               |
-| `-SkipMSIAlreadyInstalledCheck` | Attempt to install if already installed, or uninstall if not detected.                                                                                                                                       |
+| `-SkipMSIAlreadyInstalledCheck` | Attempt to install if already installed, or uninstall if not detected.                                                                                                                                        |
 
 ## Related
 

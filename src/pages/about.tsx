@@ -107,7 +107,7 @@ const AboutPage = () => {
               The <b>PowerShell App Deployment Toolkit</b> (<b>PSAppDeployToolkit</b> or <b>PSADT</b>) is an open-source
               framework which simplifies the complex scripting challenges of application repackaging, customization, and
               deployment of applications in a managed Windows environment. It complements and enhances existing
-              deployment and configuration management solutions (such as Microsoft Intune, SCCM, IBM BigFix, Tanium
+              deployment and configuration management solutions (such as Microsoft Intune, ConfigMgr, IBM BigFix, Tanium
               Deploy and VMware Workspace ONE) with new capabilities. It provides a consistent, corporate-branded
               deployment experience for end users, ensures packaging teams follow best practices, and substantially
               improves overall deployment success rates.

@@ -101,12 +101,12 @@ export const featureGroups: readonly FeatureGroup[] = [
     description: 'First-class support for Intune, ConfigMgr, and other endpoint management platforms.',
     items: [
       { text: 'Microsoft Intune deployment with metadata and standardized flows' },
-      { text: 'ConfigMgr (SCCM/MCM) application model support' },
-      { text: 'MCM exit code handling with Fast Retry for accurate reporting' },
+      { text: 'ConfigMgr application model support' },
+      { text: 'Exit code handling with Fast Retry support for accurate reporting' },
       { text: 'Reboot code suppression (3010) to prevent unwanted prompts' },
       { text: 'Application bundling beyond the 5-app dependency chain limit' },
       { text: 'Bandwidth-efficient loose file deployment over distribution points' },
-      { text: 'SCCM software update and task execution integration' },
+      { text: 'ConfigMgr software update and task execution integration' },
     ],
   },
   {
@@ -115,7 +115,7 @@ export const featureGroups: readonly FeatureGroup[] = [
     description: 'Automatically detect system state, user activity, and environmental conditions.',
     items: [
       { text: 'Operating system and hardware information gathering' },
-      { text: 'Pending reboot detection (CBS, Windows Update, SCCM, file renames)' },
+      { text: 'Pending reboot detection (CBS, Windows Update, ConfigMgr, file renames)' },
       { text: 'Battery/laptop and microphone-in-use detection' },
       { text: 'PowerPoint full-screen presentation mode detection' },
       {

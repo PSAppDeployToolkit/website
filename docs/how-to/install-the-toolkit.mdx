@@ -25,6 +25,18 @@ Run:
 Install-Module -Name PSAppDeployToolkit -Scope CurrentUser
 ```
 
+To install a pre-release version:
+
+```powershell
+Install-Module -Name PSAppDeployToolkit -Scope CurrentUser -AllowPreRelease
+```
+
+If this produces an error that the -AllowPreRelease parameter is not recognized, then first update PowerShellGet and then restart your PowerShell console:
+
+```powershell
+Install-Module PowerShellGet -Force -Scope CurrentUser
+```
+
 This is the recommended option when you intend to create deployments with
 [`New-ADTTemplate`](../reference/functions/New-ADTTemplate.mdx), because the module is then
 available in every PowerShell session on the packaging machine.
