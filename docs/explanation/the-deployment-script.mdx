@@ -36,8 +36,8 @@ understanding rather than just looking up:
 **`AppProcessesToClose`** declares the applications that must not be running. Declaring them here
 rather than passing them to each dialog call means the same list is used for install, uninstall and
 repair. It also means the session sees the list when it opens, so it can decide whether a user needs
-to be involved at all. Give each entry a `Name` and a `Description` where the process name would mean
-nothing to a user:
+to be involved at all. You can list just the process name, or optionally give each entry a `Name` and
+a `Description` to override the description pulled directly from the process:
 
 ```powershell
 AppProcessesToClose = @(@{ Name = 'winword'; Description = 'Microsoft Word' })
