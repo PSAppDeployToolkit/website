@@ -164,13 +164,6 @@ Variables specific to a particular deployment, such as `$appName` and `$appVersi
 | :---------------------------- | :----------------------------------------------------------- |
 | `$MSIProductCodeRegExPattern` | Contains the regex pattern used to detect a MSI product code |
 
-### COM Objects
-
-| Variable    | Description                                                   |
-| :---------- | :------------------------------------------------------------ |
-| `$Shell`    | Represents and allows use of the WScript.Shell COM object     |
-| `$ShellApp` | Represents and allows use of the Shell.Application COM object |
-
 ### Logged On Users
 
 | Variable                      | Description                                                                                                                                                                                                                                 |
@@ -197,4 +190,4 @@ Variables specific to a particular deployment, such as `$appName` and `$appVersi
 | `$invalidFileNameChars`     | Array of all invalid file name characters used to sanitize variables which may be used to create file names. |
 | `$LocalAdministratorsGroup` | Returns the name of the local Administrators group, typically `BUILTIN\Administrators`                       |
 | `$LocalUsersGroup`          | Returns the name of the local Users group, typically `BUILTIN\Users`                                         |
-| `$RunningTaskSequence`      | Is the current process running in a SCCM task sequence? (e.g. `$true` / `$false`)                            |
+| `$RunningTaskSequence`      | Is the current process running in a ConfigMgr task sequence? (e.g. `$true` / `$false`)                            |
