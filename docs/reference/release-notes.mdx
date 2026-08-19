@@ -12,6 +12,245 @@ tags:
 
 ## Release Notes
 
+### v4.2.0 RC1 (2026-08-19)
+
+#### Highlights
+
+- Major code refactoring to clean up and optimise the code base. Everything now runs faster and the module is significantly smaller in size.
+- iNKORE WPF library replaced by [Fluence](https://github.com/sintaxasn/Fluence.Wpf) (created and maintained by PSAppDeployToolkit founder [Dan Cunningham](https://github.com/sintaxasn)).
+- A more streamlined default `Invoke-AppDeployToolkit.ps1` template. ZeroConfig code has been removed from the default template and is now a separate download, or can be generated via `New-ADTTemplate -ZeroConfig`.
+- [New-ADTTemplate](../reference/functions/New-ADTTemplate) now allows you to generate an entire deployment package in a single command by specifying session properties, config, assets, files, and script blocks.
+- [Show-ADTInstallationPrompt](../reference/functions/Show-ADTInstallationPrompt) now supports secured text inputs and dropdown selection boxes.
+- [Show-ADTInstallationRestartPrompt](../reference/functions/Show-ADTInstallationRestartPrompt) now supports a cancel button.
+- You can now configure a different accent color for dark mode.
+- Dialogs now fallback to default image if the specified asset is not found, also images can be encoded as Base64 strings instead of supplying file paths.
+- Tray notification icon shown whenever balloon tips / toasts are invoked.
+- UIAccess to allow the UI to overlay the Autopilot setup screen.
+- Ability to test if user is in focus mode.
+- Functions added to add/remove fonts.
+- Copy-ADTContentToCache now applies administrator permissions to the shared cache and has a separate cache location for non-admins.
+- Descriptions for all known MSI error codes now included in logging output.
+- All WMI dependencies removed, so the toolkit can run on devices with WMI corruption.
+- Ability to run custom functions whenever writing to the log or when a deployment is deferred via [Add-ADTModuleCallback](../reference/functions/Add-ADTModuleCallback).
+- All time-based parameters now accept TimeSpan objects as well as interpreting integers as seconds.
+- `-WhatIf` support added throughout to test changes non-destructively.
+- AI and static analysis tools used to ensure code quality (CodeQL, Meziantou.Analyzer, Microsoft.CodeAnalysis.BannedApiAnalyzers, Microsoft.Extensions.StaticAnalysis, Roslynator.Analyzers).
+- Pester tests updated for Pester v6 (thanks [@nohwnd!](https://github.com/nohwnd))
+
+#### New Functions
+
+- [Add-ADTFont](../reference/functions/Add-ADTFont)
+- [Close-ADTNotifyIcon](../reference/functions/Close-ADTNotifyIcon)
+- [Get-ADTUserToastNotificationMode](../reference/functions/Get-ADTUserToastNotificationMode)
+- [Initialize-ADTModuleIfUninitialized](../reference/functions/Initialize-ADTModuleIfUninitialized)
+- [New-ADTLogFileName](../reference/functions/New-ADTLogFileName)
+- [Remove-ADTDesktopShortcut](../reference/functions/Remove-ADTDesktopShortcut)
+- [Remove-ADTFont](../reference/functions/Remove-ADTFont)
+- [Select-ADTUniqueObject](../reference/functions/Select-ADTUniqueObject)
+- [Show-ADTNotifyIcon](../reference/functions/Show-ADTNotifyIcon)
+- [Test-ADTUserInFocusMode](../reference/functions/Test-ADTUserInFocusMode)
+
+#### New Parameters
+
+- [Add-ADTModuleCallback](../reference/functions/Add-ADTModuleCallback): added `OnLogEntry` and `OnDefer` hookpoints
+- [Close-ADTSession](../reference/functions/Close-ADTSession): Added `-ExitMessage`
+- [Copy-ADTContentToCache](../reference/functions/Copy-ADTContentToCache): added `-Content`
+- [Copy-ADTFile](../reference/functions/Copy-ADTFile): added `-NoClobber`
+- [Copy-ADTFileToUserProfiles](../reference/functions/Copy-ADTFileToUserProfiles): added `-NoClobber`
+- [Get-ADTApplication](../reference/functions/Get-ADTApplication): added `-Force`
+- [Get-ADTBoundParametersAndDefaultValues](../reference/functions/Get-ADTBoundParametersAndDefaultValues): added `-Include`
+- [Get-ADTServiceStartMode](../reference/functions/Get-ADTServiceStartMode): added `-DisplayName`, `-InputObject`, `-Name`
+- [Get-ADTStringTable](../reference/functions/Get-ADTStringTable): added `-SessionState`
+- [Get-ADTUserProfiles](../reference/functions/Get-ADTUserProfiles): added `-IncludeEpmProfiles`, `-SID`
+- [Get-ADTWindowTitle](../reference/functions/Get-ADTWindowTitle): added `-ParentProcessId`, `-ParentProcessMainWindowHandle`
+- [Invoke-ADTRegSvr32](../reference/functions/Invoke-ADTRegSvr32): added `-AsUser`
+- [New-ADTFolder](../reference/functions/New-ADTFolder): added `-PassThru`
+- [New-ADTShortcut](../reference/functions/New-ADTShortcut): added `-Force`, `-PassThru`
+- [New-ADTTemplate](../reference/functions/New-ADTTemplate): added `-Assets`, `-Config`, `-Files`, `-InstallScriptBlock`, `-PostInstallScriptBlock`, `-PostRepairScriptBlock`, `-PostUninstallScriptBlock`, `-PreInstallScriptBlock`, `-PreRepairScriptBlock`, `-PreUninstallScriptBlock`, `-RepairScriptBlock`, `-SessionProperties`, `-SupportFiles`, `-UninstallScriptBlock`, `-ZeroConfig`
+- [Open-ADTSession](../reference/functions/Open-ADTSession): added `-AdditionalEnvironmentVariables`, `-AllowWowProcess`, `-ExitWithMsiCodes`, `-ProcessInteractivityDetection`
+- [Register-ADTDll](../reference/functions/Register-ADTDll): added `-AsUser`
+- [Remove-ADTFile](../reference/functions/Remove-ADTFile): added `-InputObject`
+- [Remove-ADTFolder](../reference/functions/Remove-ADTFolder): added `-OnlyIfEmpty`
+- [Remove-ADTHashtableNullOrEmptyValues](../reference/functions/Remove-ADTHashtableNullOrEmptyValues): added `-Depth`, Recurse
+- [Set-ADTEnvironmentVariable](../reference/functions/Set-ADTEnvironmentVariable): added `-Append`, `-Expandable`, `-Remove`
+- [Set-ADTItemPermission](../reference/functions/Set-ADTItemPermission): added `-Owner`
+- [Set-ADTServiceStartMode](../reference/functions/Set-ADTServiceStartMode): added `-DisplayName`, `-InputObject, `-Name`
+- [Set-ADTShortcut](../reference/functions/Set-ADTShortcut): added `-Clear`, `-Force`, `-InputObject`, `-PassThru`
+- [Show-ADTInstallationPrompt](../reference/functions/Show-ADTInstallationPrompt): added `-DefaultButton`, `-DefaultIndex`, `-ListItems`, `-SecureInput`
+- [Show-ADTInstallationRestartPrompt](../reference/functions/Show-ADTInstallationRestartPrompt): added `-AllowCancel`, `-CustomMessage`, `-CustomMessageText`, `-PersistPrompt`, `-ShutdownReasonText`
+- [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome): added `-AllowMinimize`, `-ContinueOnProcessClosure`, `-CustomMessage`, `-CustomMessageText`, `-PassThru`
+- [Start-ADTMsiProcessAsUser](../reference/functions/Start-ADTMsiProcessAsUser): added `-ContinueWhenNoUserLoggedOn`
+- [Start-ADTMspProcessAsUser](../reference/functions/Start-ADTMspProcessAsUser): added `-ContinueWhenNoUserLoggedOn`
+- [Start-ADTProcess](../reference/functions/Start-ADTProcess): added `-StandardInput`
+- [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser): added `-ContinueWhenNoUserLoggedOn`, `-StandardInput`, `-UseShellExecute`, `-Verb`
+- [Start-ADTServiceAndDependencies](../reference/functions/Start-ADTServiceAndDependencies): added `-DisplayName`
+- [Stop-ADTServiceAndDependencies](../reference/functions/Stop-ADTServiceAndDependencies): added `-DisplayName`
+- [Test-ADTServiceExists](../reference/functions/Test-ADTServiceExists): added `-DisplayName`
+- [Uninstall-ADTApplication](../reference/functions/Uninstall-ADTApplication): added `-Force`, `-ForceUninstallString`
+- [Unregister-ADTDll](../reference/functions/Unregister-ADTDll): added `-AsUser`
+- [Update-ADTGroupPolicy](../reference/functions/Update-ADTGroupPolicy): added `-Force`, `-NoWait`, `-Target`
+
+#### Additions to Config.psd1
+
+- Assets
+  - TaskbarIcon
+- Toolkit
+  - CachePathNoAdminRights
+  - LogMaxHierarchy
+- UI
+  - FluentAccentColorDark
+
+#### Additions to Strings.psd1
+
+- ListSelectionPrompt
+  - ListSelectionMessage
+- RestartPrompt
+  - ButtonCancel
+
+#### Breaking Changes
+
+- In v4.1, the default `DeployMode` value of `Auto` will switch to a silent install if none of the defined processes are running; but *only when processes are defined*. In v4.2, it will now switch to a silent install by default *even if no processes are defined*. As before, you can prevent this by adding `NoProcessDetection = $true` to the `$adtSession` properties.
+- `Get-ADTApplication` now ignores hidden system components by default unless `-Force` is specified. This mirrors how PowerShell's `Get-Item` handles hidden files.
+- `Uninstall-ADTApplication` now ignores hidden system components AND apps with *NoRemove = 1* by default unless `-Force` is specified. This mirrors how PowerShell's `Remove-Item` handles hidden and read-only files.
+- An error is now thrown when opening a session in 32-bit PowerShell on a 64-bit OS, unless `AllowWowProcess = $true` is set in the session properties.
+
+#### Deprecated Functions
+
+- [Get-ADTEnvironment](../4.1.x/reference/functions/Get-ADTEnvironment)
+- [Get-ADTUniversalDate](../4.1.x/reference/functions/Get-ADTUniversalDate)
+
+#### Deprecated Parameters
+
+- [Invoke-ADTCommandWithRetries](../reference/functions/Invoke-ADTCommandWithRetries): removed `-SleepSeconds`
+- [Send-ADTKeys](../reference/functions/Send-ADTKeys): removed `-WaitSeconds`
+- [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome): removed `-NoMinimizeWindows`
+- [Update-ADTEnvironmentPsProvider](../reference/functions/Update-ADTEnvironmentPsProvider): removed `-LoadLoggedOnUserEnvironmentVariables`
+
+#### Deprecated Variables
+
+- `$MachineDomainController`
+- `$envOS`
+- `$envOSServicePack`
+- `$envPSVersionBuildLabel`
+- `$envPSVersionPreReleaseLabel`
+- `$envPSVersionSemantic`
+- `$ProcessNTAccountSID`
+
+#### Closed Feature Requests
+
+- #341 [Feature] Add `-WhatIf` support
+- #675 [Feature] PSADT UI not rendered by screen readers (JAWS, NVDA, Windows Narrator ...)
+- #832 [Feature] Install font command
+- #1099 [Feature] v4 `New-ADTTemplate` populates the `$adtsession` values
+- #1153 [Feature] Replace CIM/WMI call to `Win32_ComputerSystem` with Win32 API calls
+- #1476 [Feature] Add `LogSubFolderHistory`
+- #1500 [Feature] Replace all shortcut code with `IShellLinkW` via CsWin32
+- #1501 [Feature] Replace `subst.exe` code with `DefineDosDeviceW()` P/Invoke
+- #1503 [Feature] Rewrite all PowerShell code that gets called from our C# code
+- #1504 [Feature] Implement proper .url handling with `IUniformResourceLocatorW` COM interface
+- #1540 [Feature] Add proper enumerator/iterator support for SafeMemoryHandle types
+- #1543 [Feature] Use `Span<T>` and `MemoryMarshal.Read<T>()` in more places
+- #1544 [Feature] `Install-ADTMSUpdates` improvements
+- #1547 [Feature] Enhancement to `Remove-ADTFolder` Function with `-IfEmpty` Parameter
+- #1562 [Feature] `Remove-ADTDesktopShortcuts`
+- #1563 [Feature] Add pipeline support to `Remove-ADTFile`
+- #1564 [Feature] Restore v3 ability to use a different app icon (taskbar) and company logo (UI) in v4
+- #1591 [Feature] Explore UIAccess for `PSADT.ClientServer.Client`
+- #1592 [Feature] Add `Microsoft.Windows.Common-Controls 6.0.0.0` to `PSADT.ClientServer.Client` manifest
+- #1611 [Feature] Rework digital signing of binaries to reduce timeout issues with anticipated incoming unit tests
+- #1636 [Feature] Add `Copy-ADTFile` / `Copy-ADTFileToUserProfiles` no overwrite switch
+- #1654 [Feature] Allow for install to continue automatically without clicking OK despite the remaining time on countdown if users close required programs
+- #1676 [Feature] Allow to set/add expandable environment variables
+- #1730 [Feature] `PSADT.UserInterface.DialogOptions` option to hide user input behind ****
+- #1740 [Feature] Skip 'Folder' on `Copy-ADTContentToCache`
+- #1742 [Feature] Write a success event for async client/server operations so the main thread can wait on it
+- #1747 [Feature] Let `Show-ADTInstallationWelcome` return deferral choice
+- #1772 [Feature] Add UICulture output to `Get-ADTUserProfiles` data
+- #1802 [Feature] Replace most ReadOnlyCollection/ReadOnlyDictionary types for Immutable types from `System.Collections.Immutable`
+- #1805 [Feature] Minimize of PSADT Fluent UI Welcome window
+- #1816 [Feature] Only apply `-CreateNoWindow` for console apps
+- #1817 [Feature] Allow `-PersistPrompt` for `Show-ADTInstallationWelcome` to always work, even when deferrals have expired
+- #1823 [Feature] Show-ADTInstallationRestartPrompt allow for an optional cancel button
+- #1824 [Feature] `Show-ADTInstallationRestartPrompt` pass the reason that the computer was rebooted to the operating system like `shutdown.exe` can
+- #1826 [Feature] `Show-ADTInstallationRestartPrompt` allow it to work for both silent as well as interactive installs
+- #1829 [Feature] Add option to define logos as base64 encoded string
+- #1841 [Feature] User UI Culture Variable
+- #1845 [Feature] Multiple Choice (3x) function
+- #1872 [Feature] Parameter 'run on defer'
+- #1889 [Feature] Allow use of $variables in `Strings.psd1`
+- #1893 [Feature] Improvents for `Uninstall-ADTApplication`
+- #1898 [Feature] Review all CsWin32 P/Invoke wrappers to ensure we're leveraging recent enhancements
+- #1918 [Feature] `Set-ADTEnvironmentVariable` - New parameter `Append`
+- #1926 [Feature] Make `Start-ADTMsiProcess -LogFileName` intuitive to use
+- #1953 [Feature] Re-usable function for logfile filenames
+- #1962 [Feature] Script should exit with 1618 when msiexec mutex timeout is breached
+- #1982 [Feature] Add the `-PersistPrompt` feature to `Show-ADTInstallationRestartPrompt`
+- #1997 [Feature] Append Install/uninstall to temporary logging folder name when using `LogToSubfolder` feature
+- #2004 [Feature] `Update-ADTGroupPolicy -NoWait`
+- #2026 [Feature] Make the `-PassThru` parameter of `Show-ADTInstallationWelcome` always return the prompt result
+- #2027 [Feature] Publicize `Initialize-ADTModuleIfUnitialized` for use in extension modules
+- #2029 [Feature] Add detection of DeployR task sequences
+- #2046 [Feature] Add fallback asset support in the event a file cannot be found/loaded
+- #2048 [Feature] Allow specification of accented button for `Show-ADTInstallationPrompt`
+- #2064 [Feature] Allow custom log file extensions in `Open-ADTSession`
+- #2093 [Feature] Give proper ArgumentList support to `Set-ADTActiveSetup`
+- #2120 [Feature] Add setup to restore 3.x task sequence silencing
+- #2130 [Feature] Dark mode accent separate to Light mode accent color
+- #2150 [Feature] Include UpgradeCode in InstalledApplication for MSI
+- #2159 [Feature] Add Message override parameter to `Show-ADTInstallationWelcome`
+- #2162 [Feature] Give `Start-ADTProcessAsUser` read/execute permissions to content executed from `DirFiles`
+- #2175 [Feature] Allow wildcards in `AppProcessesToClose`
+- #2177 [Feature] Allow `Set-ADTShortcut` to clear shortcut command line arguments
+- #2187 [Feature] `Invoke-AppDeployToolkit.exe` with help
+- #2201 [Feature] Add additional .LINK section that goes to the function source
+- #2269 [Feature] Update all UI functions that support a Timeout parameter to accept Timespan values
+
+#### Closed Issues
+
+- #1158 [Bug] `Start-ADTMsiProcess -Action Repair` not working with ProductCode
+- #1594 [Bug] `Copy-ADTFile` - Robocopy cannot handle literal file names with wildcard characters
+- #1743 [Bug] Error when trying to use `Show-ADTInstallationWelcome` through PDQ Deploy - Access is denied
+- #1848 [Bug] Session exit code should be 3010 if any installation returned a 3010
+- #1880 [Bug] Failure occurred while instantiating new deployment session: `System.InvalidOperationException: Unable to find drive letter for NT device`
+- #1890 [Bug] Grab everything from the config that the session needs during construction
+- #1907 [Bug] Exception calling `ShowCloseAppsDialog`
+- #1948 [Bug] `Start-ADTProcess -ArgumentLis`t mishandles quotation marks when passed a string array
+- #1963 [Bug] `Copy-ADTContentToCache` fails when re-running
+- #1966 [Bug] `Show-ADTInstallationWelcome -PromptToSave` fails to close multiple instances of the same app
+- #1969 [Bug] `CloseProcesses` not working - LibreOffice
+- #1971 [Bug] `Copy-ADTFile` (folder) places the folder inside a folder of the same name (doco update)
+- #1973 [Bug] Zero-Config MSI installation is failing
+- #1979 [Bug] Toolkit no longer appends username to log filename when running non-elevated
+- #1980 [Bug] `Set-ADTIniValue` writes to new Section in stead of updating the existing value
+- #1983 [Bug] `Show-ADTInstallationWelcome -HideCloseButton` assumes wrong state post timeout
+- #1990 [Bug] Incorrect Dutch strings
+- #1992 [Bug] `Start-ADTMsiProcess` does not pre-create MSI log folder if it does not exist
+- #1995 [Bug] `Install-ADTMSUpdates` - A parameter cannot be found that matches parameter name `LiteralPath`
+- #1996 [Bug] `GetProcessImageName` sometimes returns invalid result
+- #2003 [Bug] `CopyADTFile` & `CopyADTFileToUserProfiles` destination path with numbers and dot creates folder, not file
+- #2006 [Bug] Zero-Config MSI support - System.ArgumentOutOfRangeException: Index was out of range
+- #2015 [Bug] Whitespace not recognised between text formatting tags
+- #2019 [Bug] Zero Touch MSI Installation with Google Chrome: System.ArgumentOutOfRangeException
+- #2021 [Bug] `Start-ADTProcessAsUser` runs while TaskSeqeuence
+- #2022 [Bug] `Copy-ADTFileToUserProfiles` fails when using a Zero-Config WIM file `ForceWimDetection = $true`
+- #2024 [Bug] `Invoke-AppDeployToolkit.exe` does not run if there are consecutive spaces in the folder name
+- #2056 [Bug] Checking "Do not disturb" notification settings, fix bad QUNS setup
+- #2057 [Bug] Get CodeQL working again for scanning our C# codebase
+- #2073 [Bug] `Start-ADTProcess` issue with `Set-ADTActiveSetup` and ps1 scripts
+- #2074 [Bug] `Get-ADTWindowTitle -WindowTitle` regex matching doesn't work
+- #2114 [Bug] `MsiSummaryInfo.Get()` fails to get MSI Codepage property
+- #2131 [Bug] `Set-ADTActiveSetup` doesn't populate the (Default) reg keys with description
+- #2135 [Bug] `Invoke-AppDeployToolkit.exe` doesn't start PS1 installer when both are renamed to AppName_AppVersion.EXE and PS1
+- #2140 [Bug] `PSADT.ClientServer.Client.exe` - This application could not be started
+- #2144 [Bug] AppProcessesToClose on `Show-ADTInstallationWelcome` closes all running .exe files, even when a specific path is defined
+- #2145 [Bug] Expand the width of the classic UI to better handle long button texts in other languages
+- #2147 [Bug] MinimizeWindow exception
+- #2152 [Bug] Generated template from `New-ADTTemplate` has extra line feed at end
+- #2163 [Bug] `Show-ADTInstallationWelcome` defer parameter inconsistencies
+- #2170 [Bug] `Show-ADTInstallationRestartPrompt` fails to perform forced restart when countdown reach 0
+- #2215 [Bug] Remove-ADTFile unable to delete file
+- #2222 [Bug] Ensure the config's UI.DefaultTimeout value is never lower than a specified countdown
+
 ### v4.1.8 (2026-01-14)
 
 #### Highlights
@@ -276,7 +515,7 @@ This release strengthens Windows Installer (.msi) and Patch (.msp) deployment re
 - Added `-NoSessionDetection` option to `Open-ADTSession` to bypass session detection logic when `DeployMode` is set to `Auto`. Use this to show the UI when no user is logged on and the `SYSTEM` process is interactive.
 - Added `-NoProcessDetection` option to `Open-ADTSession` to bypass process detection logic when `DeployMode` is set to `Auto`. Use this to show the UI even if there are no processes to close.
 - Changed `-DeployMode` `Interactive` to always show interactively. This means the toolkit will always show the dialogs, bypassing the `OOBE`/`Session`/`Process` detections that occur in `Auto` mode.
-- Changed default `DeferExitCode` from `60012` to `1602`, since `ConfigMgr` and Intune recognize this natively as 'User cancelled the installation'
+- Changed default `DeferExitCode` from `60012` to `1602`, since ConfigMgr and Intune recognize this natively as 'User cancelled the installation'
 - Changed toolkit to exit with `3010` if a suppressed reboot was encountered without having to use `-AllowRebootPassThru`. To mask `3010` return codes and exit with `0`, you can now add `-SuppressRebootPassThru`
 - Changed default `msiexec.exe` parameters in interactive mode from `/qb-!` to `/qn`
 - Changed UI functions to no longer minimize windows by default, `-MinimizeWindows` can be added to enable this
@@ -288,7 +527,7 @@ This release strengthens Windows Installer (.msi) and Patch (.msp) deployment re
 - Fixed [Start-ADTProcessAsUser](../reference/functions/Start-ADTProcessAsUser) function to work as expected
 - Fixed [Block-ADTAppExecution](../reference/functions/Block-ADTAppExecution) to avoid triggering AV solutions
 - Fixed dialogs to show correct deployment type Install / Uninstall / Repair
-- Fixed `SCCM` pending reboot tests within [Get-ADTPendingReboot](../reference/functions/Get-ADTPendingReboot)
+- Fixed `ConfigMgr` pending reboot tests within [Get-ADTPendingReboot](../reference/functions/Get-ADTPendingReboot)
 - Fixed MSI repair to default to 'Reinstall' to avoid forced unavoidable reboots when running `msiexec` `/f` against an app that is in-use
 - Fixed `OOBE` detection code to factor in User `ESP` phase
 - Fixed launching processes in the users' session when using certain MDMs, e.g. VMware Workspace ONE.

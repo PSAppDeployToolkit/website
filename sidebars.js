@@ -59,6 +59,7 @@ const sidebars = {
         'how-to/configure-with-group-policy',
         'how-to/set-the-log-path-with-group-policy',
         'how-to/troubleshoot-a-deployment',
+        'how-to/upgrade-from-v4-1',
         'how-to/upgrade-from-v4-0',
         'how-to/upgrade-from-v3',
       ],

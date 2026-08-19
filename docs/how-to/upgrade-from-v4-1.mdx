@@ -1,0 +1,94 @@
+---
+sidebar_position: 10
+title: 'How to upgrade from v4.1 to v4.2'
+description: 'Upgrade guidance for those coming from v4.1.'
+slug: /how-to/upgrade-from-v4-1
+hide_title: true
+tags:
+  - Migration
+  - How-to
+---
+
+
+## Upgrade Guidance: v4.1 to v4.2
+
+You can upgrade an existing deployment package simply by replacing the PSAppDeployToolkit folder with the latest version of the module. Please review the changes below to see if any affect you.
+
+### Breaking Changes in v4.2
+
+:::warning[DeployMode Process Detection]
+In v4.1, the default `DeployMode` value of `Auto` will switch to a silent install if none of the defined processes are running; but *only when processes are defined*.
+
+In v4.2, it will now switch to a silent install by default *even if no processes are defined*. To prevent this changing existing behavior on older packages, this will only apply if DeployAppScriptVersion is unset or >= 4.2.0.
+
+As before, you can prevent this by adding `NoProcessDetection = $true` to the `$adtSession` properties.
+:::
+
+:::warning[Get-ADTApplication and Uninstall-ADTApplication]
+`Get-ADTApplication` now ignores hidden system components by default unless `-Force` is specified. This mirrors how PowerShell's `Get-Item` handles hidden files.
+
+`Uninstall-ADTApplication` now ignores hidden system components AND apps with *NoRemove = 1* by default unless `-Force` is specified. This mirrors how PowerShell's `Remove-Item` handles hidden and read-only files.]
+:::
+
+:::warning[32-bit PowerShell]
+v4.2 will by default throw an error if running in 32-bit PowerShell on a 64-bit OS:
+
+`The current PowerShell process is 32-bit on a 64-bit operating system. Please run the deployment script in a 64-bit PowerShell process.`
+
+This is usually an unintended scenario caused by a 32-bit process calling PowerShell from `System32` and can result in files and registry entries being written to the wrong place if gone unchecked.
+
+To prevent this from happening, either call `PowerShell.exe` from `SysNative` instead of `System32`, or use the `Invoke-AppDeployToolkit.exe` launcher, which will ensure the correct PowerShell host is used.
+
+In the rare case where launching in 32-bit PowerShell is intentional, you can allow this by adding `AllowWowProcess = $true` to the `$adtSession` properties.
+:::
+
+#### Deprecated Functions
+
+- [Get-ADTEnvironment](../4.1.x/reference/functions/Get-ADTEnvironment)
+- [Get-ADTUniversalDate](../4.1.x/reference/functions/Get-ADTUniversalDate)
+
+#### Deprecated Parameters
+
+- [Invoke-ADTCommandWithRetries](../reference/functions/Invoke-ADTCommandWithRetries): removed `-SleepSeconds`
+- [Send-ADTKeys](../reference/functions/Send-ADTKeys): removed `-WaitSeconds`
+- [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome): removed `-NoMinimizeWindows`
+- [Update-ADTEnvironmentPsProvider](../reference/functions/Update-ADTEnvironmentPsProvider): removed `-LoadLoggedOnUserEnvironmentVariables`
+
+#### Deprecated Variables
+
+- `$MachineDomainController`
+- `$EnvOS`
+- `$EnvOSServicePack`
+- `$EnvPSVersionBuildLabel`
+- `$EnvPSVersionPreReleaseLabel`
+- `$EnvPSVersionSemantic`
+- `$ProcessNTAccountSID`
+
+### Changes in Invoke-AppDeployToolkit.ps1
+
+:::info[New Template]
+The default template has had a major overhaul; however the old v4.1 templates will still work and there is no forced requirement to migrate them to the new format.
+:::
+
+- ZeroConfig code not included by default; there is a separate ZeroConfig template now that can be downloaded or generated via `New-ADTTemplate -ZeroConfig`.
+- `TerminalServerMode` and `DisableLogging` parameters have been removed.
+- `RequireAdmin` removed from $adtSession block - it was more of a hindrance than a help as it always needed changing for user context deployments. It can be added back in manually if required.
+- `InstallName` / `InstallTitle` removed - some users were always filling this in as they did not realise they were optional fields - by default the toolkit generate these values from the AppName etc.
+- Install phases are now defined as scriptblock variables rather than functions.
+
+### Additions to Config.psd1
+
+- Assets
+  - TaskbarIcon
+- Toolkit
+  - CachePathNoAdminRights
+  - LogMaxHierarchy
+- UI
+  - FluentAccentColorDark
+
+### Additions to Strings.psd1
+
+- ListSelectionPrompt
+  - ListSelectionMessage
+- RestartPrompt
+  - ButtonCancel
