@@ -28,7 +28,6 @@ package is normally all that is required. Moving from v4.0 to v4.1 needs the cha
 - `Invoke-AppDeployToolkit.exe` no longer requests elevation when `RequireAdmin` is set. You must
   launch it elevated yourself.
 - Several config options were removed or had their defaults changed. See below.
-- Deprecated functions and parameters are scheduled for removal in 4.2.0. Update your scripts.
 
 :::
 
@@ -77,8 +76,8 @@ Show-ADTInstallationWelcome @saiwParams
 This only adds `CloseProcesses` when the list is non-empty. The v4.0 pattern still works, and the
 template is yours to customize.
 
-Finally, add the call that strips null and empty values from the hashtable before it reaches
-`Open-ADTSession`:
+**The last important change** is this line that calls Remove-ADTHashtableNullOrEmptyValues to strip out
+any null or empty values from the $adtSession hashtable before it is passed to the `Open-ADTSession` function:
 
 ```powershell
     $adtSession = Remove-ADTHashtableNullOrEmptyValues -Hashtable $adtSession ⬅️
@@ -115,11 +114,3 @@ The `Strings.psd1` files changed extensively for every language, too many change
 customized yours, re-apply your changes on top of the new file rather than keeping the old one.
 
 Translation improvements are welcome as issues or pull requests on GitHub.
-
-## 5. Check for deprecations
-
-- Run `Test-ADTCompatibility` from
-  [PSAppDeployToolkit.Tools](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit.Tools) against
-  your script.
-- Review the function and parameter deprecations in the
-  [release notes](../reference/release-notes.mdx). Deprecated items are removed in 4.2.0.
