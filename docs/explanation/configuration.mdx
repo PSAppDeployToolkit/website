@@ -18,7 +18,7 @@ saves a lot of time later.
 
 | Layer                   | Lives in                                    | Scope                       |
 | :---------------------- | :------------------------------------------ | :-------------------------- |
-| Built-in defaults       | `config.psd1` inside the module folder      | Every deployment, everywhere |
+| Built-in defaults       | `ImportsLast.ps1` embedded in the module    | Every deployment, everywhere |
 | Package configuration   | `Config\config.psd1` in the deployment      | One package                 |
 | Group Policy            | `HKLM\SOFTWARE\Policies\PSAppDeployToolkit` | Every deployment on the device |
 
@@ -32,9 +32,12 @@ a policy change to alter something that only affects their own application.
 
 ## Why the module's copy is off-limits
 
-The module ships its own `config.psd1` holding the defaults. It is there to be read, not edited.
-Editing it means the next module update silently reverts your change, and means two packages using
+The module ships its own defaults that are there to be read, not edited.
+Editing them means the next module update silently reverts your change, and means two packages using
 the same module version behave differently depending on when they were built.
+
+*Prior to 4.2*, there was a `config.pd1` and `strings.psd1` inside the module as well as the deployment folder. To avoid confusion
+over which one should be edited, the default config and strings are now embedded directly in the PowerShell code.
 
 Put changes in the deployment's `Config\config.psd1` instead (see
 [how to customize a deployment](../how-to/customize-a-deployment.mdx)), or in Group Policy if they
