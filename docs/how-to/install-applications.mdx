@@ -40,7 +40,7 @@ deployment does not report success too soon:
 Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -WaitForChildProcesses
 ```
 
-If the installer launches an application post-install which you don't want left running as SYSTEM, yoou can terminate them when the installer completes:
+If the installer launches an application post-install which you don't want left running as SYSTEM, you can terminate them when the installer completes:
 
 ```powershell
 Start-ADTProcess -FilePath 'setup.exe' -ArgumentList '/S' -KillChildProcessesWithParent
