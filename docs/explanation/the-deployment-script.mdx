@@ -30,8 +30,7 @@ module has not been imported and nothing has been populated. Anything that needs
 machine belongs inside a phase block, which runs after the session is open.
 
 The full list of properties is in the
-[ADTSession Object reference](../reference/adtsession-object.mdx). Two of them are worth
-understanding rather than just looking up:
+[ADTSession Object reference](../reference/adtsession-object.mdx). One in particular that should be understood:
 
 **`AppProcessesToClose`** declares the applications that must not be running. Declaring them here
 rather than passing them to each dialog call means the same list is used for install, uninstall and
@@ -42,15 +41,6 @@ a `Description` to override the description pulled directly from the process:
 ```powershell
 AppProcessesToClose = @(@{ Name = 'winword'; Description = 'Microsoft Word' })
 ```
-
-**`RequireAdmin`** states whether the deployment needs administrative rights. It is a property of the
-package, not of the environment, which is why it moved out of the config file in v4.1. When it is
-`$true` and the process is not elevated, the session refuses to open. Note that
-`Invoke-AppDeployToolkit.exe` does not elevate itself on the strength of this setting. That is the
-caller's job.
-
-Both properties are new in v4.1; if you are coming from v4.0, see
-[how to upgrade](../how-to/upgrade-from-v4-0.mdx).
 
 ## Three deployment types, three phases each
 
