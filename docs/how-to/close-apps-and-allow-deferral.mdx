@@ -92,7 +92,7 @@ immediately. `-DeferRunInterval` suppresses the prompt until the interval has el
 | Count down, then continue, when deferral is enabled                  | `-ForceCountdown 300`                  |
 | Ask applications to save work before closing                         | `-PromptToSave`                        |
 | Stop the user reopening the apps during the deployment               | `-BlockExecution`                      |
-| Re-show the dialog if the user dismisses it                          | `-PersistPrompt`                       |
+| Regularly restore the dialog if the user minimizes it                | `-PersistPrompt`                       |
 | Skip the dialog entirely and just close the apps                     | `-Silent`                              |
 
 Countdown parameters take a `TimeSpan`, but plain numbers are interpreted as seconds.
