@@ -91,7 +91,8 @@ checks would infer:
 
 - `Silent` for anything genuinely unattended, where a dialog would be an error rather than a
   courtesy.
-- `Interactive` for a self-service install the user launched themselves.
+- `Interactive` for when you know the user will always be present, or when the user **must** be present
+(e.g. to make a decision). If the session cannot be made interactive, it will fail.
 - `NonInteractive` when you want progress shown but no decisions asked.
 
 Prefer the bypass properties over an explicit mode when only one check is wrong. Wanting the UI
@@ -105,6 +106,9 @@ three checks.
 - A user cannot defer a deployment that never shows them a dialog. Deferral is an interactive
   feature; see [closing apps and allowing deferral](../how-to/close-apps-and-allow-deferral.mdx).
 - Mode affects the user experience only. It does not change what gets installed, or the exit code.
+- [`Show-ADTInstallationPrompt`](../reference/functions/Show-ADTInstallationPrompt.mdx) supports a
+`-Force` parameter to display a prompt even when in silent mode. A use case for this is to always
+show error prompts, but no others.
 
 ## Related
 
