@@ -14,7 +14,7 @@ index 0898608..a57c2d8 100644
        const imageHeader = readImageHeader(input, imageOffset);
        const imageSize = getImageSize2(imageHeader[0]);
        images.push(imageSize);
-+      if (!(imageHeader[1] > 0)) break;
++      if (imageHeader[1] <= 0) break;
        imageOffset += imageHeader[1];
      }
      if (images.length === 0) {
@@ -42,7 +42,7 @@ index 67afcab..24728a0 100644
        const imageHeader = readImageHeader(input, imageOffset);
        const imageSize = getImageSize2(imageHeader[0]);
        images.push(imageSize);
-+      if (!(imageHeader[1] > 0)) break;
++      if (imageHeader[1] <= 0) break;
        imageOffset += imageHeader[1];
      }
      if (images.length === 0) {
