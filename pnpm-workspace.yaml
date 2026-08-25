@@ -21,6 +21,13 @@ overrides:
 
 patchedDependencies:
   gray-matter@4.0.3: patches/gray-matter@4.0.3.patch
+  # image-size is pulled in transitively by @docusaurus/mdx-loader, which calls
+  # imageSizeFromFile() at build time. Upstream archived the repo on 2026-06-03
+  # leaving CVE-2025-71329 (JXL/HEIF) and CVE-2025-71330 (ICNS) unfixed -- both
+  # are infinite-loop DoS bugs where a zero-length entry never advances the read
+  # offset. The patch adds forward-progress guards to the three affected loops.
+  # esbuild inlines the parsers into every entry bundle, hence 16 files touched.
+  image-size@2.0.2: patches/image-size@2.0.2.patch
 
 peerDependencyRules:
   allowedVersions:
