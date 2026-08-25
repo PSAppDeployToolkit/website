@@ -45,7 +45,7 @@ Enable `CompressLogs` in `config.psd1` to collect log files in a temporary folde
 
 One of the options in config.psd1 is **CompressLogs**. Enabling this option will create a temporary logging folder where you can save all of the log files you want to include in the single ZIP file that will be created from this folder. When set to True, the following happens:
 
-- Both toolkit and MSI logs are temporally placed in a temp folder, the path of which is set in `$adtSession.LogTempFolder` and defaults to `$envTemp\$installName`.
+- Both toolkit and MSI logs are temporarily placed in a temp folder, the path of which is set in `$adtSession.LogTempFolder` and defaults to `$envTemp\$installName`.
 - At the end of the install / uninstall, the logs are compressed into a new zip file which is placed in the LogFolder location in the config file, and the temp folder is deleted.
 - The Zip file name indicates whether it is an Install / Uninstall and has the timestamp in the filename so previous logs do not get overwritten.
 - If your package creates other log files, you can send them to the temporary logging folder at `$adtSession.LogTempFolder`.
