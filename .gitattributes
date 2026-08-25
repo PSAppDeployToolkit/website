@@ -1,0 +1,5 @@
+# pnpm applies the files in patches/ verbatim during `pnpm install`. With
+# core.autocrlf=true (the Git for Windows default) they would be checked out
+# with CRLF endings, which can stop the patches applying. Pin them to LF on
+# every platform.
+*.patch text eol=lf
