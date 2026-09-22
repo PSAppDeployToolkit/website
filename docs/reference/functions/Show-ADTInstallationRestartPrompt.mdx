@@ -15,15 +15,15 @@ Displays a restart prompt with a countdown to a forced restart.
 
 ```powershell
 Show-ADTInstallationRestartPrompt [-Countdown <TimeSpan>] [-CountdownNoHide <TimeSpan>]
- [-ShutdownReasonText <String>] [-WindowLocation <DialogPosition>] [-PersistPrompt] [-CustomMessage]
- [-CustomMessageText <String>] [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+ [-ShutdownReasonText <String>] [-NoForceCloseApps] [-WindowLocation <DialogPosition>] [-PersistPrompt]
+ [-CustomMessage] [-CustomMessageText <String>] [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String>
+ -Subtitle <String> [<CommonParameters>]
 ```
 
 ### NoCountdown
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-NoCountdown] [-ShutdownReasonText <String>]
+Show-ADTInstallationRestartPrompt [-NoCountdown] [-ShutdownReasonText <String>] [-NoForceCloseApps]
  [-WindowLocation <DialogPosition>] [-PersistPrompt] [-CustomMessage] [-CustomMessageText <String>]
  [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
@@ -31,9 +31,9 @@ Show-ADTInstallationRestartPrompt [-NoCountdown] [-ShutdownReasonText <String>]
 ### SilentRestart
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-SilentRestart] [-SilentCountdown <TimeSpan>]
- [-WindowLocation <DialogPosition>] [-NotTopMost] [-AllowMove] -Title <String> -Subtitle <String>
- [<CommonParameters>]
+Show-ADTInstallationRestartPrompt [-SilentRestart] [-SilentCountdown <TimeSpan>] [-ShutdownReasonText <String>]
+ [-NoForceCloseApps] [-WindowLocation <DialogPosition>] [-NotTopMost] [-AllowMove] -Title <String>
+ -Subtitle <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -159,12 +159,29 @@ Specifies the shutdown comment to provide to the underlying `shutdown.exe` call 
 
 ```yaml
 Type: String
-Parameter Sets: Countdown, NoCountdown
+Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoForceCloseApps
+
+Specifies that the underlying `shutdown.exe` call should omit its `/f` switch, which is otherwise passed to force running applications closed without forewarning users.
+Note that an application with unsaved work can then block the restart entirely.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -345,4 +362,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 [https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTInstallationRestartPrompt](https://psappdeploytoolkit.com/docs/reference/functions/Show-ADTInstallationRestartPrompt)
 
-[https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/src/PSAppDeployToolkit/Public/Show-ADTInstallationRestartPrompt.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/src/PSAppDeployToolkit/Public/Show-ADTInstallationRestartPrompt.ps1)
+[https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/modules/PSAppDeployToolkit/Public/Show-ADTInstallationRestartPrompt.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/modules/PSAppDeployToolkit/Public/Show-ADTInstallationRestartPrompt.ps1)

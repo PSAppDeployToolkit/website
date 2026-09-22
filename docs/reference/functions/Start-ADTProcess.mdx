@@ -426,6 +426,9 @@ Accept wildcard characters: False
 
 Arguments to be passed to the executable.
 
+Passing an array says where each argument ends, so one element always reaches the executable as one argument however it is punctuated.
+What it does not do is sanitise: an element is quoted where it has to be and otherwise left in the form an installer expects, so interpolating a value you did not author into one leaves that value able to say anything an argument can say.
+
 ```yaml
 Type: String[]
 Parameter Sets: (All)
@@ -761,7 +764,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: [System.TimeSpan]::FromSeconds($(if (!(& $Script:CommandTable.'Test-ADTModuleInitialized')) { & $Script:CommandTable.'Get-ADTDefaultConfig' } else { & $Script:CommandTable.'Get-ADTConfig' }).MSI.MutexWaitTime)
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -1046,4 +1049,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 [https://psappdeploytoolkit.com/docs/reference/functions/Start-ADTProcess](https://psappdeploytoolkit.com/docs/reference/functions/Start-ADTProcess)
 
-[https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/src/PSAppDeployToolkit/Public/Start-ADTProcess.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/src/PSAppDeployToolkit/Public/Start-ADTProcess.ps1)
+[https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/modules/PSAppDeployToolkit/Public/Start-ADTProcess.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/modules/PSAppDeployToolkit/Public/Start-ADTProcess.ps1)

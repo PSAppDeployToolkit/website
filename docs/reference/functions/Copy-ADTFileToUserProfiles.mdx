@@ -11,37 +11,42 @@ Copy one or more items to each user profile on the system.
 
 ## SYNTAX
 
-### CalculatedProfiles (Default)
-
-```powershell
-Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten] [-NoClobber]
- [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles] [-IncludeServiceProfiles] [-ExcludeDefaultUser]
- [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### Path
+### PathCalculatedProfiles (Default)
 
 ```powershell
 Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
  [-Flatten] [-NoClobber] [-FileCopyMode <String>] [-RobocopyParams <String>]
- [-RobocopyAdditionalParams <String>] [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-RobocopyAdditionalParams <String>] [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles]
+ [-IncludeServiceProfiles] [-ExcludeDefaultUser] [-ContinueFileCopyOnError] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
-### LiteralPath
+### PathSpecifiedProfiles
+
+```powershell
+Copy-ADTFileToUserProfiles [-Path] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
+ [-Flatten] [-NoClobber] [-FileCopyMode <String>] [-RobocopyParams <String>]
+ [-RobocopyAdditionalParams <String>] -UserProfiles <UserProfileInfo[]> [-ContinueFileCopyOnError] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
+```
+
+### LiteralPathSpecifiedProfiles
 
 ```powershell
 Copy-ADTFileToUserProfiles [-LiteralPath] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
  [-Flatten] [-NoClobber] [-FileCopyMode <String>] [-RobocopyParams <String>]
- [-RobocopyAdditionalParams <String>] [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-RobocopyAdditionalParams <String>] -UserProfiles <UserProfileInfo[]> [-ContinueFileCopyOnError] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
-### SpecifiedProfiles
+### LiteralPathCalculatedProfiles
 
 ```powershell
-Copy-ADTFileToUserProfiles [[-Destination] <String>] [-BasePath <String>] [-Recurse] [-Flatten] [-NoClobber]
- [-FileCopyMode <String>] [-RobocopyParams <String>] [-RobocopyAdditionalParams <String>]
- -UserProfiles <UserProfileInfo[]> [-ContinueFileCopyOnError] [-WhatIf] [-Confirm] [<CommonParameters>]
+Copy-ADTFileToUserProfiles [-LiteralPath] <String[]> [[-Destination] <String>] [-BasePath <String>] [-Recurse]
+ [-Flatten] [-NoClobber] [-FileCopyMode <String>] [-RobocopyParams <String>]
+ [-RobocopyAdditionalParams <String>] [-ExcludeNTAccount <String[]>] [-IncludeSystemProfiles]
+ [-IncludeServiceProfiles] [-ExcludeDefaultUser] [-ContinueFileCopyOnError] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -83,6 +88,14 @@ Copy-ADTFileToUserProfiles -Path "$($adtSession.DirFiles)\.appConfigFolder" -Rec
 
 Copy an entire folder to `C:\Users&lt;UserName>` for each user.
 
+### EXAMPLE 5
+
+```powershell
+Copy-ADTFileToUserProfiles -Path "$($adtSession.DirSupportFiles)\config.txt" -Destination "AppData\Roaming\MyApp" -UserProfiles (Get-ADTUserProfiles -ExcludeDefaultUser)
+```
+
+Copy a single file to `C:\Users&lt;UserName>\AppData\Roaming\MyApp` for each of the specified user profiles.
+
 ## PARAMETERS
 
 ### -Path
@@ -91,7 +104,7 @@ The path of the file or folder to copy.
 
 ```yaml
 Type: String[]
-Parameter Sets: Path
+Parameter Sets: PathCalculatedProfiles, PathSpecifiedProfiles
 Aliases:
 
 Required: True
@@ -107,7 +120,7 @@ The literal path of the file or folder to copy.
 
 ```yaml
 Type: String[]
-Parameter Sets: LiteralPath
+Parameter Sets: LiteralPathSpecifiedProfiles, LiteralPathCalculatedProfiles
 Aliases:
 
 Required: True
@@ -254,7 +267,7 @@ Specifies one or more UserProfileInfo objects to copy files into.
 
 ```yaml
 Type: UserProfileInfo[]
-Parameter Sets: SpecifiedProfiles
+Parameter Sets: PathSpecifiedProfiles, LiteralPathSpecifiedProfiles
 Aliases:
 
 Required: True
@@ -270,7 +283,7 @@ Specify NT account names in Domain\Username format to exclude from the list of u
 
 ```yaml
 Type: String[]
-Parameter Sets: CalculatedProfiles
+Parameter Sets: PathCalculatedProfiles, LiteralPathCalculatedProfiles
 Aliases:
 
 Required: False
@@ -286,7 +299,7 @@ Include system profiles: SYSTEM, LOCAL SERVICE, NETWORK SERVICE.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: CalculatedProfiles
+Parameter Sets: PathCalculatedProfiles, LiteralPathCalculatedProfiles
 Aliases:
 
 Required: False
@@ -302,7 +315,7 @@ Include service profiles where NTAccount begins with NT SERVICE.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: CalculatedProfiles
+Parameter Sets: PathCalculatedProfiles, LiteralPathCalculatedProfiles
 Aliases:
 
 Required: False
@@ -318,7 +331,7 @@ Exclude the Default User.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: CalculatedProfiles
+Parameter Sets: PathCalculatedProfiles, LiteralPathCalculatedProfiles
 Aliases:
 
 Required: False
@@ -406,4 +419,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 [https://psappdeploytoolkit.com/docs/reference/functions/Copy-ADTFileToUserProfiles](https://psappdeploytoolkit.com/docs/reference/functions/Copy-ADTFileToUserProfiles)
 
-[https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/src/PSAppDeployToolkit/Public/Copy-ADTFileToUserProfiles.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/src/PSAppDeployToolkit/Public/Copy-ADTFileToUserProfiles.ps1)
+[https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/modules/PSAppDeployToolkit/Public/Copy-ADTFileToUserProfiles.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/modules/PSAppDeployToolkit/Public/Copy-ADTFileToUserProfiles.ps1)

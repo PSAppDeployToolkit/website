@@ -15,7 +15,8 @@ Get all of the properties from a Windows Installer database table or the Summary
 
 ```powershell
 Get-ADTMsiTableProperty -LiteralPath <String> [-TransformPath <String[]>] [-Table <String>]
- [-TablePropertyNameColumnNum <UInt32>] [-TablePropertyValueColumnNum <UInt32>] [<CommonParameters>]
+ [-TablePropertyNameColumnNum <UInt32>] [-TablePropertyValueColumnNum <UInt32>] [-NoClobber]
+ [<CommonParameters>]
 ```
 
 ### SummaryInfo
@@ -138,6 +139,26 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -NoClobber
+
+Fails when the name column holds the same value on more than one row, rather than letting the later row replace the earlier one.
+
+Names are read with their surrounding whitespace removed, so two rows differing only by that arrive as one.
+Which column the names are read from is also yours to choose, and nothing requires the one you choose to hold a value only once.
+Either way the default keeps the last row read, which is what this function has always done; use this to be told instead.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: TableInfo
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -GetSummaryInformation
 
 Retrieves the Summary Information for the Windows Installer database.
@@ -201,4 +222,4 @@ License: https://opensource.org/license/lgpl-3-0
 
 [https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTMsiTableProperty](https://psappdeploytoolkit.com/docs/reference/functions/Get-ADTMsiTableProperty)
 
-[https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/src/PSAppDeployToolkit/Public/Get-ADTMsiTableProperty.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/src/PSAppDeployToolkit/Public/Get-ADTMsiTableProperty.ps1)
+[https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/modules/PSAppDeployToolkit/Public/Get-ADTMsiTableProperty.ps1](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/blob/main/modules/PSAppDeployToolkit/Public/Get-ADTMsiTableProperty.ps1)
