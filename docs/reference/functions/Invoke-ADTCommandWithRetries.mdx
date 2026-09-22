@@ -39,7 +39,7 @@ Invoke-ADTCommandWithRetries Get-FileHash -Path '\\MyShare\MyFile' -MaximumElaps
 ```
 
 Gets the hash of a file on an SMB share.
-If the connection to the SMB share drops, it will retry the command every 2 seconds until it successfully gets the hash or 90 seconds have passed since the initial attempt.
+If the connection to the SMB share drops, it will retry the command every second until it successfully gets the hash or 90 seconds have passed since the initial attempt.
 
 ### EXAMPLE 3
 
@@ -48,12 +48,12 @@ Invoke-ADTCommandWithRetries Get-FileHash -Path '\\MyShare\MyFile' -MaximumElaps
 ```
 
 Gets the hash of a file on an SMB share.
-If the connection to the SMB share drops, it will retry the command every 2 seconds until it successfully gets the hash or 90 seconds have passed since the initial attempt.
+If the connection to the SMB share drops, it will retry the command every second until it successfully gets the hash or 90 seconds have passed since the initial attempt.
 
 ### EXAMPLE 4
 
 ```powershell
-Invoke-ADTCommandWithRetries Copy-ADTFile -Path '\\MyShare\MyFile' -Destination 'C:\Windows\Temp' -Retries 5 -MaximumElapsedTime 00:00:05
+Invoke-ADTCommandWithRetries Copy-ADTFile -Path '\\MyShare\MyFile' -Destination 'C:\Windows\Temp' -Retries 5 -MaximumElapsedTime 00:05:00
 ```
 
 Copies a file from an SMB share to C:\Windows\Temp.
