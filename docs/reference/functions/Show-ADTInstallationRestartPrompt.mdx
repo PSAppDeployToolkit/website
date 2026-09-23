@@ -11,29 +11,39 @@ Displays a restart prompt with a countdown to a forced restart.
 
 ## SYNTAX
 
-### Countdown (Default)
+### InteractiveCountdown (Default)
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-Countdown <TimeSpan>] [-CountdownNoHide <TimeSpan>]
+Show-ADTInstallationRestartPrompt [-InteractiveCountdown <TimeSpan>] [-InteractiveCountdownNoHide <TimeSpan>]
  [-ShutdownReasonText <String>] [-NoForceCloseApps] [-WindowLocation <DialogPosition>] [-PersistPrompt]
  [-CustomMessage] [-CustomMessageText <String>] [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String>
  -Subtitle <String> [<CommonParameters>]
 ```
 
-### NoCountdown
+### NoInteractiveCountdownAllowSilentRestart
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-NoCountdown] [-ShutdownReasonText <String>] [-NoForceCloseApps]
+Show-ADTInstallationRestartPrompt [-NoInteractiveCountdown] [-AllowSilentRestart] [-SilentCountdown <TimeSpan>]
+ [-ShutdownReasonText <String>] [-NoForceCloseApps] [-WindowLocation <DialogPosition>] [-PersistPrompt]
+ [-CustomMessage] [-CustomMessageText <String>] [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String>
+ -Subtitle <String> [<CommonParameters>]
+```
+
+### NoInteractiveCountdown
+
+```powershell
+Show-ADTInstallationRestartPrompt [-NoInteractiveCountdown] [-ShutdownReasonText <String>] [-NoForceCloseApps]
  [-WindowLocation <DialogPosition>] [-PersistPrompt] [-CustomMessage] [-CustomMessageText <String>]
  [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
-### SilentRestart
+### InteractiveCountdownAllowSilentRestart
 
 ```powershell
-Show-ADTInstallationRestartPrompt [-SilentRestart] [-SilentCountdown <TimeSpan>] [-ShutdownReasonText <String>]
- [-NoForceCloseApps] [-WindowLocation <DialogPosition>] [-NotTopMost] [-AllowMove] -Title <String>
- -Subtitle <String> [<CommonParameters>]
+Show-ADTInstallationRestartPrompt [-InteractiveCountdown <TimeSpan>] [-InteractiveCountdownNoHide <TimeSpan>]
+ [-AllowSilentRestart] [-SilentCountdown <TimeSpan>] [-ShutdownReasonText <String>] [-NoForceCloseApps]
+ [-WindowLocation <DialogPosition>] [-PersistPrompt] [-CustomMessage] [-CustomMessageText <String>]
+ [-NotTopMost] [-AllowMove] [-AllowCancel] -Title <String> -Subtitle <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -47,7 +57,7 @@ It also supports silent mode where the restart can be triggered without user int
 ### EXAMPLE 1
 
 ```powershell
-Show-ADTInstallationRestartPrompt -NoCountdown
+Show-ADTInstallationRestartPrompt -NoInteractiveCountdown
 ```
 
 Displays a restart prompt without a countdown.
@@ -55,7 +65,7 @@ Displays a restart prompt without a countdown.
 ### EXAMPLE 2
 
 ```powershell
-Show-ADTInstallationRestartPrompt -Countdown 300
+Show-ADTInstallationRestartPrompt -InteractiveCountdown 300
 ```
 
 Displays a restart prompt with a 300-second countdown.
@@ -63,21 +73,21 @@ Displays a restart prompt with a 300-second countdown.
 ### EXAMPLE 3
 
 ```powershell
-Show-ADTInstallationRestartPrompt -Countdown 600 -CountdownNoHide 60
+Show-ADTInstallationRestartPrompt -InteractiveCountdown 600 -InteractiveCountdownNoHide 60
 ```
 
 Displays a restart prompt with a 600-second countdown, removing the ability to hide/minimise the dialog for the last 60 seconds.
 
 ## PARAMETERS
 
-### -NoCountdown
+### -NoInteractiveCountdown
 
 Specifies whether the user should receive a prompt to immediately restart their workstation.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: NoCountdown
-Aliases:
+Parameter Sets: NoInteractiveCountdownAllowSilentRestart, NoInteractiveCountdown
+Aliases: NoCountdown
 
 Required: True
 Position: Named
@@ -86,15 +96,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Countdown
+### -InteractiveCountdown
 
 Specifies how long to display the restart prompt.
 Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
 Type: TimeSpan
-Parameter Sets: Countdown
-Aliases: CountdownSeconds
+Parameter Sets: InteractiveCountdown, InteractiveCountdownAllowSilentRestart
+Aliases: Countdown, CountdownSeconds
 
 Required: False
 Position: Named
@@ -103,15 +113,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CountdownNoHide
+### -InteractiveCountdownNoHide
 
 Specifies how long to display the restart prompt without allowing the window to be hidden.
 Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
 Type: TimeSpan
-Parameter Sets: Countdown
-Aliases: CountdownNoHideSeconds
+Parameter Sets: InteractiveCountdown, InteractiveCountdownAllowSilentRestart
+Aliases: CountdownNoHide, CountdownNoHideSeconds
 
 Required: False
 Position: Named
@@ -120,14 +130,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SilentRestart
+### -AllowSilentRestart
 
-Specifies whether the restart should be triggered when DeployMode is silent or very silent.
+Specifies whether an automatic silent restart should be triggered when DeployMode is silent.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: SilentRestart
-Aliases:
+Parameter Sets: NoInteractiveCountdownAllowSilentRestart, InteractiveCountdownAllowSilentRestart
+Aliases: SilentRestart
 
 Required: True
 Position: Named
@@ -138,12 +148,12 @@ Accept wildcard characters: False
 
 ### -SilentCountdown
 
-Specifies how long to countdown for the restart when the toolkit is running in silent mode and `-SilentRestart` is specified.
+Specifies how long to countdown for the restart when the toolkit is running in silent mode and `-AllowSilentRestart` is specified.
 Accepts TimeSpan objects, but also interprets numerical values as seconds.
 
 ```yaml
 Type: TimeSpan
-Parameter Sets: SilentRestart
+Parameter Sets: NoInteractiveCountdownAllowSilentRestart, InteractiveCountdownAllowSilentRestart
 Aliases: SilentCountdownSeconds
 
 Required: False
@@ -211,7 +221,7 @@ This only takes effect if deferral is not allowed or has expired.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Countdown, NoCountdown
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -228,7 +238,7 @@ Custom message must be populated for each language section in the `strings.psd1`
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Countdown, NoCountdown
+Parameter Sets: (All)
 Aliases: CustomText
 
 Required: False
@@ -244,7 +254,7 @@ Specifies a literal custom message to display, ignoring the custom message speci
 
 ```yaml
 Type: String
-Parameter Sets: Countdown, NoCountdown
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -292,7 +302,7 @@ Specifies that a Cancel button is displayed alongside the restart options, allow
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Countdown, NoCountdown
+Parameter Sets: (All)
 Aliases:
 
 Required: False
