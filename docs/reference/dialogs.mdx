@@ -179,7 +179,7 @@ Adding `-ButtonMiddleText` gives three.
 />
 
 `-SecureInput` masks what is typed, for licence keys and similar. The field looks the same until
-the user types into it.
+the user types into it. The entered text is returned as a `SecureString`.
 
 <ThemedImage
   alt="An input prompt whose field masks what the user types"
@@ -213,7 +213,7 @@ Asks the user to restart. Shown by
 runs in a separate PowerShell session, so the deployment still returns its exit code to the parent
 process.
 
-`-NoCountdown` asks without imposing a deadline. Nothing happens until the user chooses.
+`-NoInteractiveCountdown` asks without imposing a deadline. Nothing happens until the user chooses.
 
 <ThemedImage
   alt="The restart prompt with Restart Now and Minimize buttons and no countdown"
@@ -224,7 +224,8 @@ process.
   }}
 />
 
-`-Countdown` restarts the computer automatically when the timer reaches zero.
+`-InteractiveCountdown` restarts the computer automatically when the timer reaches zero. The default
+duration is set by `UI.RestartPromptInteractiveCountdown` in `config.psd1`.
 
 <ThemedImage
   alt="The restart prompt showing the time remaining before an automatic restart"
@@ -235,7 +236,7 @@ process.
   }}
 />
 
-`-CountdownNoHide` runs the same countdown but takes away the option to minimise it.
+`-InteractiveCountdownNoHide` specifies how long to display the restart prompt without allowing the window to be hidden.
 
 <ThemedImage
   alt="The restart prompt counting down with no Minimize button"

@@ -23,7 +23,7 @@ defaults. See [Configuration](../explanation/configuration.mdx).
 
 The template can be found in the `PSAppDeployToolkit` module under the `opt\ADMX` folder.
 
-You can also find it in [GitHub](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/tree/main/src/PSAppDeployToolkit/opt/ADMX)
+You can also find it in [GitHub](https://github.com/PSAppDeployToolkit/PSAppDeployToolkit/tree/main/modules/PSAppDeployToolkit/opt/ADMX)
 (ensure to select the correct branch or tag for the required PSADT version).
 
 It contains the language-neutral policy definitions and the `en-US` descriptions:
@@ -71,6 +71,11 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Policies\PSAppDeployToolkit
 ```
 
 ![Registry Policy Location](../images/psadt-admx-registry.png)
+
+Settings that older versions of the toolkit can't read, such as Base64 assets, are written to a
+versioned subkey (e.g. `HKEY_LOCAL_MACHINE\SOFTWARE\Policies\PSAppDeployToolkit\4.2`). Each toolkit
+version applies the shared key first, then any versioned keys up to its own version, so 4.0/4.1
+deployments on the same device are unaffected.
 
 The toolkit reads them as it initializes, so a deployment started after the policy applies picks
 them up.
