@@ -65,6 +65,7 @@ in [How to configure the toolkit with Group Policy](../how-to/configure-with-gro
 | `Toolkit.LogToHierarchy`            | Log to a hierarchical structure of AppVendor\AppName\AppVersion.                                 |
 | `Toolkit.LogToSubfolder`            | Log to a subfolder based on InstallName.                                                         |
 | `Toolkit.LogWriteToHost`            | Determines if logs should be written to the host.                                                |
+| `Toolkit.PathsBasedOnSystemContext` | Uses NoAdminRights paths whenever the caller isn't LocalSystem, rather than when not an admin.   |
 | `Toolkit.RegPath`                   | Specifies the registry path for the toolkit.                                                     |
 | `Toolkit.RegPathNoAdminRights`      | Specifies the registry path when no administrative privileges are available.                     |
 | `Toolkit.TempPath`                  | Specifies the temporary path for the toolkit.                                                    |
@@ -72,19 +73,22 @@ in [How to configure the toolkit with Group Policy](../how-to/configure-with-gro
 
 #### User Interface Settings
 
-| Setting                           | Description                                                        |
-| :-------------------------------- | :----------------------------------------------------------------- |
-| `UI.BalloonNotifications`         | Enables or disables balloon notifications.                         |
-| `UI.DefaultExitCode`              | Specifies the default exit code for the UI.                        |
-| `UI.DefaultPromptPersistInterval` | Sets the default interval for prompt persistence.                  |
-| `UI.DefaultTimeout`               | Defines the default timeout for the UI.                            |
-| `UI.DeferExitCode`                | Specifies the exit code for deferred actions. **Defaults to 1602** |
-| `UI.DialogStyle`                  | Defines the appearance of dialogs.                                 |
-| `UI.FluentAccentColor`            | Specifies the accent color for Fluent UI dialogs.                  |
-| `UI.FluentAccentColorDark`        | Specifies the accent color for Fluent UI dialogs (for dark mode).  |
-| `UI.LanguageOverride`             | Overrides the language for the UI.                                 |
-| `UI.PromptToSaveTimeout`          | Controls how long the user has to respond before a prompt closes.  |
-| `UI.RestartPromptPersistInterval` | Sets the interval for restart prompt persistence.                  |
+| Setting                                     | Description                                                             |
+| :------------------------------------------ | :---------------------------------------------------------------------- |
+| `UI.BalloonNotifications`                   | Enables or disables balloon notifications.                              |
+| `UI.DefaultExitCode`                        | Specifies the default exit code for the UI.                             |
+| `UI.DefaultPromptPersistInterval`           | Sets the default interval for prompt persistence.                       |
+| `UI.DefaultTimeout`                         | Defines the default timeout for the UI.                                 |
+| `UI.DeferExitCode`                          | Specifies the exit code for deferred actions. **Defaults to 1602**      |
+| `UI.DialogStyle`                            | Defines the appearance of dialogs.                                      |
+| `UI.FluentAccentColor`                      | Specifies the accent color for Fluent UI dialogs.                       |
+| `UI.FluentAccentColorDark`                  | Specifies the accent color for Fluent UI dialogs (for dark mode).       |
+| `UI.LanguageOverride`                       | Overrides the language for the UI.                                      |
+| `UI.PromptToSaveTimeout`                    | Controls how long the user has to respond before a prompt closes.       |
+| `UI.RestartPromptInteractiveCountdown`      | Seconds to display the restart prompt before a restart is triggered.    |
+| `UI.RestartPromptInteractiveCountdownNoHide` | Seconds at the end of the restart countdown where it can't be hidden.   |
+| `UI.RestartPromptPersistInterval`           | Interval at which the restart prompt reappears with `-PersistPrompt`.   |
+| `UI.RestartPromptSilentCountdown`           | Seconds to count down before triggering a silent restart.               |
 
 :::info[Custom Branding]
 Use `UI.FluentAccentColor` and `UI.FluentAccentColorDark` to match your organization's branding in modern Fluent UI dialogs. Supports standard color names and hex values.

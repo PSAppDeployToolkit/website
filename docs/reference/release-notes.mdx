@@ -12,6 +12,71 @@ tags:
 
 ## Release Notes
 
+### v4.2.0 RC2 (2026-10-01)
+
+#### Highlights
+
+- [Show-ADTInstallationRestartPrompt](../reference/functions/Show-ADTInstallationRestartPrompt) improvements:
+  - Some parameters have been renamed to make their behaviour clearer (with previous names retained as aliases)
+  - `-Force` switch support to show the prompt in Silent/NonInteractive mode
+  - `-NoForceCloseApps` switch to omit the `/f` switch when calling `shutdown.exe` for more graceful restarts
+  - Parameter sets fixed so that all UI options are still available when suppling `-AllowSilentRestart` (previously named `-SilentRestart`)
+  - Default countdown durations can now be set in `config.psd1`.
+- [New-ADTTemplate](../reference/functions/New-ADTTemplate) can now rename the `Invoke-AppDeployToolkit` launcher files via `-LauncherName`, and omit content (Assets, Config, Extensions, Files, Module, Strings, SupportFiles) via `-ExcludeContent`.
+- [Show-ADTInstallationPrompt](../reference/functions/Show-ADTInstallationPrompt) `-SecureInput` now returns the entered text as a `SecureString`.
+- [Show-ADTInstallationWelcome](../reference/functions/Show-ADTInstallationWelcome) `-CheckDiskSpace` / `-RequiredDiskSpace` now work without an active deployment session.
+- Group Policy now supports version-specific policy keys (`HKLM\SOFTWARE\Policies\PSAppDeployToolkit\4.2`), so 4.2-only settings such as Base64 assets don't break 4.0/4.1 deployments on the same device. The ADMX/ADML templates have been updated to match, and empty policy values can now clear values set in a deployment's config.
+- New `PathsBasedOnSystemContext` config option to use the `NoAdminRights` paths whenever the caller isn't the LocalSystem account, rather than whenever the caller isn't an admin.
+- Numerous fixes to the v3 compatibility layer (`AppDeployToolkitMain.ps1`) to better match v3 behaviour.
+- Extensive new C# and Pester unit test coverage.
+
+#### New Parameters
+
+- [Get-ADTMsiTableProperty](../reference/functions/Get-ADTMsiTableProperty): added `-NoClobber`
+- [New-ADTTemplate](../reference/functions/New-ADTTemplate): added `-ExcludeContent`, `-LauncherName`
+- [Show-ADTInstallationRestartPrompt](../reference/functions/Show-ADTInstallationRestartPrompt): added `-Force`, `-NoForceCloseApps`
+
+#### Additions to Config.psd1
+
+- Toolkit
+  - PathsBasedOnSystemContext
+- UI
+  - RestartPromptInteractiveCountdown
+  - RestartPromptInteractiveCountdownNoHide
+  - RestartPromptSilentCountdown
+
+#### Breaking Changes
+
+- `Show-ADTInstallationRestartPrompt` is no longer displayed when the DeployMode is NonInteractive unless `-Force` is specified, consistent with `Show-ADTInstallationPrompt`.
+- `Show-ADTInstallationPrompt -SecureInput` now returns a `SecureInputDialogResult` object whose `Text` property is a `SecureString` rather than a plain string.
+- `Initialize-ADTModuleIfUninitialized`, which was added in 4.2.0 RC1, is no longer available.
+
+#### Closed Feature Requests
+
+- #1414 [Feature] Write unit/integration tests for everything to improve toolkit reliability
+- #1632 [Feature] Make log location dependent upon user type rather than based upon admin rights
+- #1667 [Feature] Make parameters for `Show-ADTInstallationRestartPrompt` better
+- #2299 [Feature] `New-ADTTemplate` - create SupportFiles folder only if `-SupportFiles` is set
+- #2300 [Feature] `New-ADTTemplate` - Add parameter to rename `Invoke-AppDeployToolkit.exe`
+- #2305 [Feature] Add inverse switch to `Show-ADTInstallationRestartPrompt`
+- #2323 [Feature] Add `-ShutdownReasonText` as an option for silent restarts on `Show-ADTInstallationRestartPrompt`
+- #2334 [Feature] Use `SecureString` with `Show-ADTInstallationPrompt -SecureInput`
+- #2346 [Feature] Support version-specific Config via Group Policy, fix 4.2/4.1 config collisions
+
+#### Closed Issues
+
+- #2273 [Bug] `System.OutOfMemoryException` probably `Invoke-ADTAllUsersRegistryAction`
+- #2301 [Bug] `Start-ADTMsiProcess` adds user to log name even when elevated
+- #2308 [Bug] `Show-ADTInstallationWelcome` failing to get user token for session ID through network share
+- #2309 [Bug] Update Meziantou.Polyfill when https://github.com/meziantou/Meziantou.Polyfill/issues/303 lands
+- #2315 [Bug] `FluentAccentColor` and `FluentAccentColorDark` settings in config.psd1 not working properly
+- #2328 [Bug] `Test-ADTUserInFocusMode` crash on Windows Server 2022
+- #2330 [Bug] Zero-Config template has CommandTable injection
+- #2335 [Bug] `Show-ADTInstallationWelcome` causes "Access Denied" when run as SYSTEM through Configuration Manager
+- #2337 [Bug] `Copy-ADTFileToUserProfiles`: `-Path`/`-LiteralPath` can't be combined with `-UserProfiles` or the `*Profiles` switches (AmbiguousParameterSet)
+- #2351 [Bug] `Uninstall-ADTApplication -Force` not recognized
+- #2353 [Bug] `Show-ADTInstallationWelcome` with `-RequiredDiskSpace` ignores Title and Subtitle
+
 ### v4.2.0 RC1 (2026-08-19)
 
 #### Highlights
