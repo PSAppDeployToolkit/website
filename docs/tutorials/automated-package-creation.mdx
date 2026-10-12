@@ -1,0 +1,94 @@
+---
+sidebar_position: 1
+title: 'Automated package creation'
+description: 'Build a PSAppDeployToolkit deployment from the command line.'
+slug: /tutorials/automated-package-creation
+hide_title: true
+tags:
+  - Tutorial
+---
+## Automated package creation
+
+In this tutorial we will build a full deployment package purely through code. This is a great way to
+automate the creation of new versions of your packages.
+
+## Before you begin
+
+You will need:
+
+- A Windows test machine you are happy to install software on. A virtual machine is ideal.
+- An elevated PowerShell prompt.
+- Your company branding assets (e.g, logo).
+- An application installer and code snippets required to install and uninstall it.
+
+## Step 1: Define the assets and config
+
+Create a new script file and add the following to brand the package for your organization:
+
+```powershell
+$Assets = '.\Assets\MyCompany.png'
+
+$Config = @{
+    Assets = @{
+        Logo = '..\Assets\MyCompany.png'
+    }
+    Toolkit = @{
+        CompanyName = 'MyCompany'
+    }
+}
+```
+
+## Step 2: Define the application specific data
+
+Next, set up the session properties and define any required scriptblocks:
+
+```powershell
+$SessionProperties = @{
+    AppVendor = 'MyVendor'
+    AppName = 'MyApp'
+    AppVersion = '1.2.3'
+    AppArch = 'x64'
+    AppProcessesToClose = @(@{ Name = 'MyApp'; Description = 'My App' })
+}
+
+$Files = '.\Files\*'
+
+$InstallScriptBlock = {
+    Start-ADTProcess -FilePath 'Setup.exe' -ArgumentList '/q'
+}
+
+$UninstallScriptBlock = {
+    Uninstall-ADTApplication -Name 'MyApp' -NameMatch Exact -ApplicationType EXE -ArgumentList '/q'
+}
+
+$RepairScriptBlock = [scriptblock]::Create($UninstallScriptBlock.ToString().TrimEnd() + $InstallScriptBlock.ToString())
+```
+
+## Step 3: Generate the deployment package
+
+With all the necessary data defined, you can now generate the deployment package via `New-ADTTemplate`.
+Here we pass the variables we just created as well as define some additional template parameters.
+You can use splatting to better organise the parameters rather then having one long line:
+
+```powershell
+$TemplateParams = @{
+    Name = @($SessionProperties.AppVendor, $SessionProperties.AppName, $SessionProperties.AppVersion) -join '_'
+    Assets = $Assets
+    Config = $Config
+    Files = $Files
+    ExcludeContent = 'Assets', 'Extensions', 'Strings', 'SupportFiles'
+    SessionProperties = $SessionProperties
+    InstallScriptBlock = $InstallScriptBlock
+    UninstallScriptBlock = $UninstallScriptBlock
+    RepairScriptBlock = $RepairScriptBlock
+    Force = $true
+    Show = $true
+}
+
+New-ADTTemplate @TemplateParams
+```
+
+`-Show` is useful when testing to show an explorer window with the generated deployment package.
+
+You can also use `-PassThrough` if you need the path of the resulting package to perform further actions with it,
+such as building an intunewin file.

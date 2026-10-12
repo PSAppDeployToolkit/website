@@ -32,6 +32,7 @@ const sidebars = {
       items: [
         'tutorials/your-first-deployment',
         'tutorials/adding-a-user-experience',
+        'tutorials/automated-package-creation',
       ],
     },
     {
