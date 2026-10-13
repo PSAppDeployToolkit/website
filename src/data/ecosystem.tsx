@@ -95,6 +95,17 @@ export const solutions: Solution[] = [
     categories: ['App Repackaging', 'Package Authoring'],
   },
   {
+    name: 'AppIT',
+    featured: false,
+    logo: '/images/solutions/appit_light.png',
+    logoDark: '/images/solutions/appit_dark.png',
+    url: 'https://app-intel.com/',
+    type: 'commercial',
+    description:  'Application packaging, testing and user acceptance testing platform with PSAppDeployToolkit integration for deployment through ConfigMgr and Intune.',
+    worksWith: ['ConfigMgr', 'Intune'],
+    categories: [ 'App Repackaging', 'Package Authoring', 'Deployment Automation', 'Readiness & Testing','Packaging Services'],
+  },
+  {
     name: 'Juriba App Readiness',
     featured: false,
     logo: '/images/solutions/juriba_light.png',
