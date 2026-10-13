@@ -240,7 +240,7 @@ Accept wildcard characters: False
 
 ### -CustomMessage
 
-Specify whether to display a custom message specified in the `strings.psd1` file.
+Displays an additional custom message after the standard dialog text.
 Custom message must be populated for each language section in the `strings.psd1` file.
 
 ```yaml
@@ -257,7 +257,8 @@ Accept wildcard characters: False
 
 ### -CustomMessageText
 
-Specifies a literal custom message to display, ignoring the custom message specified in the `strings.psd1` file.
+Displays an additional custom message after the standard dialog text, using the supplied text.
+This overrides any custom message set in the `strings.psd1` file.
 
 ```yaml
 Type: String
