@@ -14,7 +14,7 @@ Creates a new folder containing a template front end and module folder, ready to
 ```powershell
 New-ADTTemplate [[-Destination] <String>] [[-Name] <String>] [[-Version] <Int32>] [[-LauncherName] <String>]
  [[-ExcludeContent] <String[]>] [[-SessionProperties] <IDictionary>] [[-Config] <IDictionary>]
- [[-PreInstallScriptBlock] <ScriptBlock>] [[-InstallScriptBlock] <ScriptBlock>]
+ [[-Strings] <IDictionary>] [[-PreInstallScriptBlock] <ScriptBlock>] [[-InstallScriptBlock] <ScriptBlock>]
  [[-PostInstallScriptBlock] <ScriptBlock>] [[-PreUninstallScriptBlock] <ScriptBlock>]
  [[-UninstallScriptBlock] <ScriptBlock>] [[-PostUninstallScriptBlock] <ScriptBlock>]
  [[-PreRepairScriptBlock] <ScriptBlock>] [[-RepairScriptBlock] <ScriptBlock>]
@@ -86,6 +86,14 @@ New-ADTTemplate -Destination 'C:\Temp' -Assets 'C:\Assets\AppIconLight.png', 'C:
 Creates a new v4 template with custom icons copied to Assets, with config.psd1 updated and configured to use them.
 
 ### EXAMPLE 8
+
+```powershell
+New-ADTTemplate -Destination 'C:\Temp' -Strings @{ en = @{ BalloonTip = @{ Start = @{ Install = 'Contoso App installation started.' } } }; fr = @{ BalloonTip = @{ Start = @{ Install = 'Contoso App : installation en cours.' } } } }
+```
+
+Creates a new v4 template with the English and French balloon tip text for the start of an installation overridden.
+
+### EXAMPLE 9
 
 ```powershell
 New-ADTTemplate -Destination 'C:\Temp' -SessionProperties @{ AppVendor = 'Contoso'; AppName = 'MyApp'; AppVersion = '6.7' } -Files 'C:\Installers\Setup.msi' -InstallScriptBlock { Start-ADTMsiProcess -Action Install -FilePath 'Setup.msi' } -UninstallScriptBlock { Start-ADTMsiProcess -Action Uninstall -FilePath 'Setup.msi' }
@@ -167,7 +175,7 @@ Accept wildcard characters: False
 Specifies one or more optional content categories to omit from the generated template.
 Valid values are Assets, Config, Extensions, Files, Module, Strings and SupportFiles.
 All content is included by default.
-You cannot exclude Files, SupportFiles or Config if specifying those items as separate parameters.
+You cannot exclude Files, SupportFiles, Config or Strings if specifying those items as separate parameters.
 You can exclude Assets while specifying -Assets to omit the default assets.
 Excluding Module omits the bundled PSAppDeployToolkit module for deployments that provide it externally.
 
@@ -221,6 +229,30 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Strings
+
+A dictionary of language codes to key-value pairs to override or add to the generated strings.psd1 files.
+Each top-level key must be a language code (e.g.
+en, fr, pt-BR), where en targets Strings\strings.psd1 and every other language targets Strings&lt;language&gt;\strings.psd1.
+A language that the module does not ship is created from a copy of the English string table with the supplied values applied on top.
+The value for each language must mirror the string table's nested hashtable layout (e.g.
+@\{ en = @\{ BalloonTip = @\{ Start = @\{ Install = 'Install has started.' \} \} \} \}).
+Language codes and keys are matched case-insensitively; specifying the same language or key more than once with differing case is an error.
+Existing keys are overridden in place.
+New keys that do not exist in the default string table are appended at the end of the relevant hashtable level.
+
+```yaml
+Type: IDictionary
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 8
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -PreInstallScriptBlock
 
 A ScriptBlock whose content will replace the Pre-Install phase of the Install-ADTDeployment function in the generated Invoke-AppDeployToolkit.ps1.
@@ -232,7 +264,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 8
+Position: 9
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -249,7 +281,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 9
+Position: 10
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -266,7 +298,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 10
+Position: 11
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -283,7 +315,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 11
+Position: 12
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -300,7 +332,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 12
+Position: 13
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -317,7 +349,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 13
+Position: 14
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -334,7 +366,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 14
+Position: 15
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -351,7 +383,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 15
+Position: 16
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -368,7 +400,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 16
+Position: 17
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -386,7 +418,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 17
+Position: 18
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: True
@@ -403,7 +435,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 18
+Position: 19
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: True
@@ -420,7 +452,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 19
+Position: 20
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: True
